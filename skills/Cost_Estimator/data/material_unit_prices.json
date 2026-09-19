@@ -1,0 +1,137 @@
+{
+  "version": "Q2/2026",
+  "currency": "VNĐ",
+  "tax_included": false,
+  "region": "Miền Nam Việt Nam",
+  "last_updated": "2026-04-15",
+  "source": "Bộ Xây dựng + Tổng Công ty Tư vấn Xây dựng Việt Nam",
+  "items": {
+    "concrete_B15": {
+      "name": "Bê tông B15 (M150)",
+      "price_VND_per_m3": 1850000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 280,
+      "supplier_avg": ["Hòa Bình", "COTECCONS", "SCI"]
+    },
+    "concrete_B20": {
+      "name": "Bê tông B20 (M200)",
+      "price_VND_per_m3": 2100000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 300,
+      "supplier_avg": ["Hòa Bình", "COTECCONS", "SCI"]
+    },
+    "concrete_B22.5": {
+      "name": "Bê tông B22.5 (M225)",
+      "price_VND_per_m3": 2250000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 310,
+      "supplier_avg": ["Hòa Bình", "COTECCONS", "Hoa Sen"]
+    },
+    "concrete_B25": {
+      "name": "Bê tông B25 (M250)",
+      "price_VND_per_m3": 2400000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 330,
+      "supplier_avg": ["Hòa Bình", "COTECCONS", "Hoa Sen", "Fico"]
+    },
+    "concrete_B30": {
+      "name": "Bê tông B30 (M300)",
+      "price_VND_per_m3": 2650000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 350,
+      "supplier_avg": ["Hòa Bình", "COTECCONS", "Hoa Sen", "Fico"]
+    },
+    "concrete_B35": {
+      "name": "Bê tông B35 (M350)",
+      "price_VND_per_m3": 2900000,
+      "tolerance_pct": 3.0,
+      "carbon_kgCO2_per_m3": 380,
+      "supplier_avg": ["Hoa Sen", "Fico"]
+    },
+    "steel_CB300V": {
+      "name": "Thép cốt bê tông CB300V",
+      "price_VND_per_kg": 18500,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2050,
+      "supplier_avg": ["Hòa Phát", "Hoa Sen", "Pomina", "Vinausteel"]
+    },
+    "steel_CB400V": {
+      "name": "Thép cốt bê tông CB400V",
+      "price_VND_per_kg": 19500,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2100,
+      "supplier_avg": ["Hòa Phát", "Hoa Sen", "Pomina", "Vinausteel"]
+    },
+    "steel_CB500V": {
+      "name": "Thép cốt bê tông CB500V",
+      "price_VND_per_kg": 21000,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2150,
+      "supplier_avg": ["Hòa Phát", "Vinausteel", "Việt Đức"]
+    },
+    "steel_structural_S235": {
+      "name": "Thép hình kết cấu S235",
+      "price_VND_per_kg": 22000,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2200,
+      "supplier_avg": ["Hòa Phát", "Vinausteel", "Tasco"]
+    },
+    "steel_structural_S345": {
+      "name": "Thép hình kết cấu S345",
+      "price_VND_per_kg": 24000,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2300,
+      "supplier_avg": ["Vinausteel", "Tasco", "Nippon"]
+    },
+    "steel_structural_S390": {
+      "name": "Thép hình kết cấu S390",
+      "price_VND_per_kg": 26500,
+      "tolerance_pct": 4.0,
+      "carbon_kgCO2_per_ton": 2450,
+      "supplier_avg": ["Vinausteel", "Nippon"]
+    },
+    "formwork_wood": {
+      "name": "Ván khuôn gỗ (thuê)",
+      "price_VND_per_m2": 45000,
+      "tolerance_pct": 8.0,
+      "carbon_kgCO2_per_m3": 430,
+      "supplier_avg": ["CopphaVN", "Đông Anh", "Ba Sao"]
+    },
+    "formwork_steel": {
+      "name": "Ván khuôn thép (thuê)",
+      "price_VND_per_m2": 15000,
+      "tolerance_pct": 5.0,
+      "carbon_kgCO2_per_ton": 1800,
+      "supplier_avg": ["CopphaVN", "Ba Sao"]
+    },
+    "labor_carpenter": {
+      "name": "Nhân công thợ mộc (KTV)",
+      "price_VND_per_day": 350000,
+      "tolerance_pct": 5.0,
+      "carbon_kgCO2_per_day": 0,
+      "region_avg": ["Hà Nội", "TP.HCM", "Đà Nẵng"]
+    },
+    "labor_steelfixer": {
+      "name": "Nhân công thợ sắt",
+      "price_VND_per_day": 380000,
+      "tolerance_pct": 5.0,
+      "carbon_kgCO2_per_day": 0,
+      "region_avg": ["Hà Nội", "TP.HCM", "Đà Nẵng"]
+    },
+    "labor_welder": {
+      "name": "Nhân công thợ hàn",
+      "price_VND_per_day": 420000,
+      "tolerance_pct": 5.0,
+      "carbon_kgCO2_per_day": 0,
+      "region_avg": ["Hà Nội", "TP.HCM", "Đà Nẵng"]
+    }
+  },
+  "regional_multipliers": {
+    "ha_noi": 1.05,
+    "tp_hcm": 1.08,
+    "da_nang": 1.00,
+    "hai_phong": 1.02,
+    "can_tho": 0.95,
+    "mien_tay": 0.92
+  }
+}

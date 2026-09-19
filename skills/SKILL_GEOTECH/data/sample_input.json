@@ -1,0 +1,253 @@
+{
+  "project_name": "Sample Project - Ho Dao Test",
+  "author": "SKILL_GEOTECH v2.2.0",
+  "project_location": "TP.HCM, Vietnam",
+  "survey_report_ref": "Bao cao Khao sat Dia chat Cong trinh so 01-08/2024",
+  "gwl_depth": -4.40,
+  "excavation_depth": 3.95,
+  "excavation_dimensions": "7.0m x 14.5m",
+  "retaining_system": "Cu thep C250x50x6, L=6.0m, 01 tang gilang H200x200x8x12",
+
+  "soil_layers": [
+    {
+      "layer_id": "ad",
+      "description": "Dat dap, cat pha set, xa banh",
+      "soil_type": "sand",
+      "model": "Mohr-Coulomb",
+      "drainage_type": "Drained",
+      "top_depth": 0.00,
+      "bottom_depth": -0.80,
+      "N_SPT": 4,
+      "gamma_unsat": 17.50,
+      "gamma_sat": 19.50,
+      "Su": null,
+      "c_kpa": 5.0,
+      "phi_deg": 24.0,
+      "psi_deg": 0.0,
+      "E_ref": 10000,
+      "nu": 0.30,
+      "Rinter": 0.70,
+      "m": null,
+      "E50_ref_kpa": null,
+      "Eoed_ref_kpa": null,
+      "Eur_ref_kpa": null,
+      "k_x_m_per_day": 0.01,
+      "k_y_m_per_day": 0.01,
+      "source": "Bao cao KSDC",
+      "notes": "Lop san lap"
+    },
+    {
+      "layer_id": "1",
+      "description": "Set pha xam xanh, deo mem den deo cung",
+      "soil_type": "clay",
+      "model": "Hardening Soil",
+      "drainage_type": "Undrained B",
+      "top_depth": -0.80,
+      "bottom_depth": -6.50,
+      "N_SPT": 7,
+      "gamma_unsat": 19.12,
+      "gamma_sat": 20.17,
+      "Su": 21.15,
+      "c_kpa": 14.9,
+      "phi_deg": 15.0,
+      "psi_deg": 0.0,
+      "E_ref": null,
+      "nu": null,
+      "Rinter": 0.70,
+      "m": 0.80,
+      "E50_ref_kpa": 15000,
+      "Eoed_ref_kpa": 15000,
+      "Eur_ref_kpa": 45000,
+      "k_x_m_per_day": 0.00606,
+      "k_y_m_per_day": 0.00606,
+      "source": "E50 = 710 x Su (CIRIA C760)",
+      "notes": "Day ho dao nam trong lop nay"
+    },
+    {
+      "layer_id": "2",
+      "description": "Cat hat nho den hat trung, xam trang, bao hoa",
+      "soil_type": "sand",
+      "model": "Hardening Soil",
+      "drainage_type": "Drained",
+      "top_depth": -6.50,
+      "bottom_depth": -29.00,
+      "N_SPT": 13,
+      "gamma_unsat": 18.61,
+      "gamma_sat": 19.78,
+      "Su": null,
+      "c_kpa": 1.0,
+      "phi_deg": 31.7,
+      "psi_deg": 1.7,
+      "E_ref": null,
+      "nu": null,
+      "Rinter": 0.70,
+      "m": 0.50,
+      "E50_ref_kpa": 35000,
+      "Eoed_ref_kpa": 35000,
+      "Eur_ref_kpa": 105000,
+      "k_x_m_per_day": 2.95,
+      "k_y_m_per_day": 2.95,
+      "source": "E50 = 2700 x N_SPT (Bowles)",
+      "notes": "Tang chua nuoc ngam"
+    }
+  ],
+
+  "stress_profile": [
+    {"z": 0.00, "layer_id": "ad", "layer_name": "Mat dat tu nhien", "sigma_z": 0.0, "u": 0.0, "sigma_z_eff": 0.0, "K0": 0.59, "sigma_x_eff": 0.0, "K0_method": "Jaky"},
+    {"z": -0.80, "layer_id": "1", "layer_name": "Day Lop ad", "sigma_z": 14.0, "u": 0.0, "sigma_z_eff": 14.0, "K0": 0.74, "sigma_x_eff": 10.4, "K0_method": "Jaky"},
+    {"z": -3.95, "layer_id": "1", "layer_name": "DAY HO DAO", "sigma_z": 74.2, "u": 0.0, "sigma_z_eff": 74.2, "K0": 0.74, "sigma_x_eff": 54.9, "K0_method": "Jaky"},
+    {"z": -4.40, "layer_id": "1", "layer_name": "Muc nuoc ngam (GWT)", "sigma_z": 82.8, "u": 0.0, "sigma_z_eff": 82.8, "K0": 0.74, "sigma_x_eff": 61.3, "K0_method": "Jaky"},
+    {"z": -6.00, "layer_id": "1", "layer_name": "CHAN CU THEP", "sigma_z": 115.1, "u": 15.7, "sigma_z_eff": 99.4, "K0": 0.74, "sigma_x_eff": 73.6, "K0_method": "Jaky"},
+    {"z": -6.50, "layer_id": "2", "layer_name": "Day Lop 1 / Dinh Lop Cat", "sigma_z": 125.2, "u": 20.6, "sigma_z_eff": 104.6, "K0": 0.47, "sigma_x_eff": 49.2, "K0_method": "Jaky"}
+  ],
+
+  "structural_elements": [
+    {
+      "element_type": "Sheet Pile",
+      "name": "Cu thep C250x50x6 (4 thanh/m)",
+      "thickness_m": 0.006,
+      "A_m2_per_m": 0.008112,
+      "I_m4_per_m": 6.27e-05,
+      "E_kpa": 210000000,
+      "EA_kn_per_m": 1703520,
+      "EI_knm2_per_m": 13165,
+      "w_kn_per_m2_per_m": 0.64,
+      "nu": 0.30,
+      "cracked_section_factor": 1.0,
+      "spacing_m": null,
+      "EA_per_m_kn_per_m": null,
+      "N_Rd_or_M_Rd": "M_Rd = 117.9 kNm/m",
+      "plaxis_element": "Plate",
+      "material": "SS400",
+      "note": "4 cu moi met chieu dai tuong"
+    },
+    {
+      "element_type": "Strut",
+      "name": "Thanh chong H200x200x8x12",
+      "thickness_m": 0.20,
+      "A_m2_per_m": null,
+      "I_m4_per_m": null,
+      "E_kpa": 210000000,
+      "EA_kn_per_m": 1303680,
+      "EI_knm2_per_m": null,
+      "w_kn_per_m2_per_m": null,
+      "nu": 0.30,
+      "cracked_section_factor": null,
+      "spacing_m": 4.0,
+      "EA_per_m_kn_per_m": 325920,
+      "N_Rd_or_M_Rd": "N_Rd = 517 kN (L=7m)",
+      "plaxis_element": "Node-to-node Anchor",
+      "material": "SS400",
+      "note": "Chieu dai nhip L=7.0m, lambda=137.8, phi=0.355"
+    }
+  ],
+
+  "sls_checks": [
+    {
+      "id": 1,
+      "name": "Chuyen vi ngang cu max",
+      "calculated": "Doi Plaxis",
+      "allowable": "19.75 mm (0.5%H)",
+      "eta": null,
+      "status": "CHO_PHEP_PL_AXIS",
+      "standard": "Clough & O'Rourke 1990",
+      "method": "Plaxis 2D output"
+    },
+    {
+      "id": 2,
+      "name": "Lun mat dat lan can",
+      "calculated": "Doi Plaxis",
+      "allowable": "20.0 mm",
+      "eta": null,
+      "status": "CHO_PHEP_PL_AXIS",
+      "standard": "CIRIA C760",
+      "method": "Plaxis 2D output"
+    },
+    {
+      "id": 3,
+      "name": "On dinh day ho dao (Base Heave)",
+      "calculated": "Fs = 1.42",
+      "allowable": "Fs >= 1.50",
+      "eta": 0.95,
+      "status": "CANH_BAO",
+      "standard": "Terzaghi 1943, Bjerrum-Eide 1956",
+      "method": "Analytical - Nen be mat"
+    }
+  ],
+
+  "capacity_checks": [
+    {
+      "element": "Cu C250x50x6 (4 thanh/m)",
+      "check_type": "Suc chiu uon (M_Rd)",
+      "capacity": 117.9,
+      "unit": "kNm/m",
+      "standard": "TCVN 5575:2012",
+      "assumptions": "SS400, W=501 cm3/m, fy=235 MPa"
+    },
+    {
+      "element": "Cu C250x50x6 (4 thanh/m)",
+      "check_type": "Suc chiu cat (V_Rd)",
+      "capacity": 771.1,
+      "unit": "kN/m",
+      "standard": "TCVN 5575:2012",
+      "assumptions": "SS400, Av=57.1 cm2/m, fv=135 MPa"
+    },
+    {
+      "element": "Strut H200x200x8x12 (L=7m)",
+      "check_type": "Suc chiu nen (N_Rd)",
+      "capacity": 517.0,
+      "unit": "kN",
+      "standard": "TCVN 5575:2012",
+      "assumptions": "SS400, lambda=137.8, phi=0.355"
+    }
+  ],
+
+  "calc_logs": {
+    "1": [
+      {
+        "step": "Xac dinh E50ref - Lop 1 (Set pha deo mem)",
+        "formula": "E50 = Ke x Su",
+        "input": "Su = 21.15 kPa, Ke = 710 (CIRIA C760, Ip=12.8%)",
+        "result": "E50 = 15,016 kPa -> 15,000 kPa",
+        "source": "Jamiolkowski 1979, Stroud 1974, CIRIA C760"
+      },
+      {
+        "step": "Xac dinh E50ref - Lop 2 (Cat hat nho-trung)",
+        "formula": "E50 = alpha x N_SPT",
+        "input": "N_SPT = 13, alpha = 2700 kPa/bua",
+        "result": "E50 = 35,100 kPa -> 35,000 kPa",
+        "source": "Bowles 1997, CIRIA C760"
+      },
+      {
+        "step": "Tinh Eurref",
+        "formula": "Eur = 3 x E50",
+        "input": "E50,Lop1=15000 kPa, E50,Lop2=35000 kPa",
+        "result": "Eur,Lop1 = 45,000 kPa; Eur,Lop2 = 105,000 kPa",
+        "source": "Plaxis Material Models Manual"
+      },
+      {
+        "step": "Tinh he so mu m",
+        "formula": "m = f(soil_type)",
+        "input": "Lop1=Set pha (de mem), Lop2=Cat",
+        "result": "m,Lop1 = 0.80; m,Lop2 = 0.50",
+        "source": "Plaxis Manual, Von Soos 1990"
+      },
+      {
+        "step": "Tinh goc gian no psi",
+        "formula": "psi = max(0, phi' - 30)",
+        "input": "phi',Lop1=15.0deg, phi',Lop2=31.7deg",
+        "result": "psi,Lop1 = 0.0deg; psi,Lop2 = 1.7deg",
+        "source": "Bolton 1986, CIRIA C760"
+      }
+    ],
+    "2": [
+      {
+        "step": "Kiem tra on dinh day ho (Base Heave)",
+        "formula": "Fs = Nc x Su / (gamma_avg x H + q)",
+        "input": "Nc=5.64 (B/L=0.48), Su=21.15kPa, gamma=18.79kN/m3, H=3.95m, q=10kPa",
+        "result": "Fs = 119.3 / 84.2 = 1.42 < 1.50 -> CANH BAO",
+        "source": "Terzaghi 1943, Bjerrum-Eide 1956"
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "description": "Database chứa số liệu ĐCCT thực tế từ các hồ sơ TMTT BPTC đã được phê duyệt",
+  "version": "1.0",
+  "projects": [
+    {
+      "project_name": "NAVI TOWER - QUY NHON",
+      "source_file": "2018.03.22 NAVI TOWER - QUY NHON v2.doc",
+      "soil_layers": [
+        {
+          "layer_name": "Lớp 1A - Cát pha",
+          "spt_range": [10, 15],
+          "spt_avg": 11.0,
+          "parameters": {
+            "E50_ref_kpa": 15000,
+            "Eoed_ref_kpa": 15000,
+            "Eur_ref_kpa": 45000,
+            "c_kpa": 5,
+            "phi_deg": 25
+          }
+        },
+        {
+          "layer_name": "Lớp 1B - Cát pha chặt vừa",
+          "spt_range": [20, 28],
+          "spt_avg": 23.4,
+          "parameters": {
+            "E50_ref_kpa": 22000,
+            "Eoed_ref_kpa": 22000,
+            "Eur_ref_kpa": 66000,
+            "c_kpa": 8,
+            "phi_deg": 30
+          }
+        }
+      ]
+    },
+    {
+      "project_name": "SAIGON PEARL",
+      "source_file": "SAIGON PEARL_TMTT BPTC TANG HAM_FINAL.doc",
+      "soil_layers": [
+        {
+          "layer_name": "Bùn sét / Sét mềm",
+          "spt_range": [0, 2],
+          "spt_avg": 1.5,
+          "parameters": {
+            "E50_ref_kpa": 10000,
+            "Eoed_ref_kpa": 10000,
+            "Eur_ref_kpa": 30000,
+            "c_kpa": 8,
+            "phi_deg": 5
+          }
+        },
+        {
+          "layer_name": "Cát mịn chặt",
+          "spt_range": [30, 45],
+          "spt_avg": 35.0,
+          "parameters": {
+            "E50_ref_kpa": 43200,
+            "Eoed_ref_kpa": 43200,
+            "Eur_ref_kpa": 129600,
+            "c_kpa": 0,
+            "phi_deg": 32
+          }
+        },
+        {
+          "layer_name": "Sét cứng",
+          "spt_range": [40, 50],
+          "spt_avg": 45.0,
+          "parameters": {
+            "E50_ref_kpa": 67680,
+            "Eoed_ref_kpa": 67680,
+            "Eur_ref_kpa": 203040,
+            "c_kpa": 45,
+            "phi_deg": 20
+          }
+        }
+      ]
+    },
+    {
+      "project_name": "NHA O KET HOP VAN PHONG - QUAN 3",
+      "source_file": "03. BCTT - BPTC TANG HAM - NHA O KET HOP VAN PHONG - QUAN 3 - TP HCM.doc",
+      "soil_layers": [
+        {
+          "layer_name": "Đất san lấp",
+          "spt_range": [4, 8],
+          "spt_avg": 6.0,
+          "parameters": {
+            "E50_ref_kpa": 12000,
+            "Eoed_ref_kpa": 12000,
+            "c_kpa": 5,
+            "phi_deg": 25
+          }
+        },
+        {
+          "layer_name": "Sét pha dẻo mềm",
+          "spt_range": [3, 6],
+          "spt_avg": 4.5,
+          "parameters": {
+            "E50_ref_kpa": 11000,
+            "Eoed_ref_kpa": 11000,
+            "c_kpa": 14,
+            "phi_deg": 10
+          }
+        }
+      ]
+    },
+    {
+      "project_name": "NHA THIEU NHI QUAN PHU NHUAN",
+      "source_file": "2025.04.03. TMTT - BPTC HAM NHA THIEU NHI QUAN PHU NHUAN.doc",
+      "soil_layers": [
+        {
+          "layer_name": "Sét pha nửa cứng",
+          "spt_range": [12, 18],
+          "spt_avg": 15.0,
+          "parameters": {
+            "E50_ref_kpa": 25000,
+            "Eoed_ref_kpa": 25000,
+            "c_kpa": 28,
+            "phi_deg": 16
+          }
+        }
+      ]
+    }
+  ]
+}

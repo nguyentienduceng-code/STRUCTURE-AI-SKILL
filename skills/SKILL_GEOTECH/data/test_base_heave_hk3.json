@@ -1,0 +1,37 @@
+{
+  "excavation": {
+    "B_m": 7.1,
+    "L_m": 14.5,
+    "H_exc_m": 3.85,
+    "Su_kpa": 25.0,
+    "q_kpa": 10.0,
+    "D_pile_m": 6.0
+  },
+  "layers": [
+    {
+      "id": "Lop_1",
+      "name": "Dat lap",
+      "top_depth": 0.0,
+      "bottom_depth": -1.0,
+      "gamma_unsat": 18.0,
+      "gamma_sat": 19.0
+    },
+    {
+      "id": "Lop_2",
+      "name": "Set deo mem",
+      "top_depth": -1.0,
+      "bottom_depth": -3.85,
+      "gamma_unsat": 17.0,
+      "gamma_sat": 17.5
+    },
+    {
+      "id": "Lop_3",
+      "name": "Cat pha",
+      "top_depth": -3.85,
+      "bottom_depth": -10.0,
+      "gamma_unsat": 19.0,
+      "gamma_sat": 20.0
+    }
+  ],
+  "gwl_depth": -4.40
+}

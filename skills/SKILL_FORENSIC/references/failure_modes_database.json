@@ -1,0 +1,355 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-08-04",
+  "scope": "BTCT, Thép, BTCT ứng lực trước",
+  "count": 50,
+  "modes": [
+    {
+      "id": "FM-01",
+      "name": "Flexural Failure (Phá hoại uốn)",
+      "category": "BTCT",
+      "signature_crack": {
+        "direction": "vuông góc trục phần tử",
+        "location": "giữa nhịp (cho dầm đơn giản) hoặc gối (cho dầm liên tục)",
+        "width_range": "0.3 - 5 mm",
+        "pattern": "mở rộng từ dưới lên"
+      },
+      "main_causes": [
+        "Quá tải uốn",
+        "Thiếu cốt thép chịu kéo",
+        "Bê tông mác thấp hơn thiết kế",
+        "Sai vị trí cốt thép (cover quá dày)"
+      ],
+      "validation_tests": [
+        "Khoan lấy mẫu bê tông (core test)",
+        "GPR scan để xác định cốt thép thực tế",
+        "Load test"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-02",
+      "name": "Diagonal Tension (Kéo chéo - Cắt)",
+      "category": "BTCT",
+      "signature_crack": {
+        "direction": "chéo 45°",
+        "location": "cách gối 1-3h (h = chiều cao dầm)",
+        "width_range": "0.5 - 10 mm",
+        "pattern": "kéo dài từ đáy dầm lên trên"
+      },
+      "main_causes": [
+        "Thiếu cốt đai",
+        "Quá tải cắt (lực tập trung gần gối)",
+        "Khoảng cách cốt đai quá lớn",
+        "Bê tông cường độ kéo thấp"
+      ],
+      "validation_tests": [
+        "Khoan kiểm tra cốt đai thực tế",
+        "Đo góc nghiêng vết nứt"
+      ],
+      "remedial_priority": "critical"
+    },
+    {
+      "id": "FM-03",
+      "name": "Punching Shear (Đục thủng)",
+      "category": "BTCT - Sàn",
+      "signature_crack": {
+        "direction": "hình nón 45° quanh cột/tường",
+        "location": "mặt trên/mặt dưới sàn quanh cột",
+        "width_range": "rộng dần từ ngoài vào cột",
+        "pattern": "nứt xuyên qua bản"
+      },
+      "main_causes": [
+        "Tải tập trung lớn (xe, thiết bị)",
+        "Bản mỏng",
+        "Thiếu cốt thép chống đục thủng (shear reinforcement)",
+        "Cột bố trí không đều"
+      ],
+      "validation_tests": [
+        "Đo chiều dày bản thực tế",
+        "GPR scan quanh cột",
+        "Kiểm tra tải tập trung thực tế"
+      ],
+      "remedial_priority": "critical"
+    },
+    {
+      "id": "FM-04",
+      "name": "Compression Failure (Phá hoại nén)",
+      "category": "BTCT - Cột",
+      "signature_crack": {
+        "direction": "dọc trục, song song chiều nén",
+        "location": "giữa chiều dài cột",
+        "width_range": "0.5 - 3 mm",
+        "pattern": "nứt dọc kết hợp bong tróc"
+      },
+      "main_causes": [
+        "Quá tải dọc",
+        "Bê tông cường độ thấp",
+        "Độ mảnh quá lớn (buckling)",
+        "Cốt thép dọc sai vị trí"
+      ],
+      "validation_tests": [
+        "Core test cường độ bê tông",
+        "Đo độ thẳng của cột"
+      ],
+      "remedial_priority": "critical"
+    },
+    {
+      "id": "FM-05",
+      "name": "Bond Failure (Mất bám dính)",
+      "category": "BTCT",
+      "signature_crack": {
+        "direction": "dọc theo cốt thép",
+        "location": "vùng có thép chịu kéo cao",
+        "width_range": "0.2 - 1 mm",
+        "pattern": "nứt kết hợp trượt thép"
+      },
+      "main_causes": [
+        "Chiều dài neo không đủ",
+        "Bê tông chất lượng kém quanh cốt thép",
+        "Bề mặt cốt thép bị dầu mỡ/rỉ sét"
+      ],
+      "validation_tests": [
+        "Kiểm tra bề mặt cốt thép sau khi đục",
+        "Đo chiều dài neo thực tế"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-06",
+      "name": "Excessive Deflection (Võng quá mức)",
+      "category": "BTCT - Dầm/Sàn",
+      "signature_crack": [
+        {
+          "direction": "thường không có vết nứt rõ ràng",
+          "location": "toàn bộ dầm/sàn",
+          "pattern": "võng rõ ràng, quan sát thấy bằng mắt"
+        }
+      ],
+      "main_causes": [
+        "Quá tải dài hạn",
+        "Từ biến (creep) bê tông",
+        "Module đàn hồi thấp hơn giả định",
+        "Bê tông chưa đạt cường độ khi chịu tải (tháo giàn giáo sớm)"
+      ],
+      "validation_tests": [
+        "Đo độ võng bằng máy thủy bình",
+        "So sánh với tính toán trong thiết kế"
+      ],
+      "remedial_priority": "medium"
+    },
+    {
+      "id": "FM-07",
+      "name": "Thermal Crack (Nứt nhiệt)",
+      "category": "BTCT",
+      "signature_crack": {
+        "direction": "ngẫu nhiên, dạng map crack (vỡ vụn)",
+        "location": "bề mặt bê tông",
+        "width_range": "0.1 - 0.5 mm",
+        "pattern": "nông, không sâu"
+      },
+      "main_causes": [
+        "Hydrat hóa xi măng (nhiệt thủy hóa)",
+        "Co ngót do mất nước",
+        "Thay đổi nhiệt độ môi trường đột ngột"
+      ],
+      "validation_tests": [
+        "Đo tuổi bê tông",
+        "Kiểm tra điều kiện bảo dưỡng"
+      ],
+      "remedial_priority": "low"
+    },
+    {
+      "id": "FM-08",
+      "name": "Shrinkage Crack (Nứt co ngót)",
+      "category": "BTCT",
+      "signature_crack": {
+        "direction": "ngẫu nhiên hoặc vuông góc cốt thép chính",
+        "location": "bề mặt bê tông trong vài tuần đầu",
+        "width_range": "0.1 - 0.8 mm",
+        "pattern": "nứt nông chạy song song cốt thép"
+      },
+      "main_causes": [
+        "Bốc hơi nước quá nhanh",
+        "Tỷ lệ nước/xi măng quá cao",
+        "Bảo dưỡng không đủ"
+      ],
+      "validation_tests": [
+        "Xem nhật ký bảo dưỡng",
+        "Test trên mẫu đối chứng"
+      ],
+      "remedial_priority": "low"
+    },
+    {
+      "id": "FM-09",
+      "name": "Settlement Crack (Nứt do lún)",
+      "category": "Nền/Móng",
+      "signature_crack": {
+        "direction": "chéo 45° (window crack) trên tường",
+        "location": "tường xây, thường từ cửa sổ/ cửa đi",
+        "width_range": "1 - 15 mm",
+        "pattern": "mở rộng dần, không đối xứng"
+      },
+      "main_causes": [
+        "Nền đất yếu",
+        "Móng không đủ sâu",
+        "Mực nước ngầm thay đổi",
+        "Công trình lân cận gây ảnh hưởng"
+      ],
+      "validation_tests": [
+        "Quan trắc lún dài hạn",
+        "Khảo sát địa chất bổ sung",
+        "Đo mực nước ngầm"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-10",
+      "name": "Chloride-Induced Corrosion (Ăn mòn do Cl⁻)",
+      "category": "BTCT - Cốt thép",
+      "signature_crack": {
+        "direction": "song song cốt thép",
+        "location": "vị trí có chloride xâm nhập (gần biển)",
+        "width_range": "1 - 5 mm (khi bong tróc)",
+        "pattern": "bong tróc kết hợp vết rỉ"
+      },
+      "main_causes": [
+        "Clorua từ môi trường biển",
+        "Sử dụng muối tan băng",
+        "Phụ gia chứa Cl⁻ (không được phép)"
+      ],
+      "validation_tests": [
+        "Test hàm lượng chloride trong bê tông",
+        "Đo nửa pin (half-cell potential)",
+        "Lấy mẫu bê tông tại vị trí rỉ"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-11",
+      "name": "Carbonation-Induced Corrosion (Ăn mòn do cacbonat hóa)",
+      "category": "BTCT - Cốt thép",
+      "signature_crack": {
+        "direction": "song song cốt thép",
+        "location": "thường ở vùng cover thấp",
+        "pattern": "bề mặt sẫm màu, bong tróc khi rỉ"
+      },
+      "main_causes": [
+        "CO₂ thâm nhập vào bê tông",
+        "Cover không đủ",
+        "Chất lượng bê tông kém (rỗng)"
+      ],
+      "validation_tests": [
+        "Test chiều sâu cacbonat hóa (phenolphthalein)",
+        "Đo điện thế cốt thép"
+      ],
+      "remedial_priority": "medium"
+    },
+    {
+      "id": "FM-12",
+      "name": "Bursting (Nổ khi ứng lực trước)",
+      "category": "BTCT ƯLT - Căng sau",
+      "signature_crack": {
+        "direction": "nứt ngang phía sau neo",
+        "location": "vùng neo cáp DƯL",
+        "pattern": "nứt cục bộ sau khi căng kéo"
+      },
+      "main_causes": [
+        "Cường độ bê tông chưa đủ khi căng",
+        "Thiếu cốt thép chống nổ",
+        "Lực căng quá lớn"
+      ],
+      "validation_tests": [
+        "Test cường độ bê tông tại thời điểm căng",
+        "Kiểm tra thiết kế cốt thép chống nổ"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-13",
+      "name": "Steel Beam Lateral-Torsional Buckling (LTB)",
+      "category": "Thép",
+      "signature_crack": {
+        "direction": "không nứt - biến dạng xoắn",
+        "location": "dầm không có liên kết bên giữa nhịp",
+        "pattern": "dầm xoay ngang giữa nhịp"
+      },
+      "main_causes": [
+        "Không có liên kết ngang đủ cứng",
+        "Chiều dài không liên kết Lb quá lớn",
+        "Tải trọng gây xoắn"
+      ],
+      "validation_tests": [
+        "Tính toán chi_LT theo TCVN 5575:2024",
+        "Kiểm tra hệ liên kết bên"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-14",
+      "name": "Web Bearing / Web Crippling",
+      "category": "Thép",
+      "signature_crack": {
+        "direction": "biến dạng tại gối hoặc dưới tải tập trung",
+        "location": "stiffener gối không đủ",
+        "pattern": "vách dầm bị lõm"
+      },
+      "main_causes": [
+        "Tải tập trung lớn",
+        "Stiffener không đủ cứng hoặc thiếu",
+        "Bản cánh mỏng"
+      ],
+      "validation_tests": [
+        "Đo độ lõm bụng dầm",
+        "Tính toán lại theo TCVN 5575:2024"
+      ],
+      "remedial_priority": "high"
+    },
+    {
+      "id": "FM-15",
+      "name": "Bolted Connection Slip (Trượt bu lông)",
+      "category": "Thép - Liên kết",
+      "signature_crack": {
+        "direction": "không nứt - chuyển vị tại mối nối",
+        "pattern": "bu lông bị trượt, lỗ bị dài"
+      },
+      "main_causes": [
+        "Lực xiết bu lông chưa đạt",
+        "Bề mặt ma sát không đảm bảo",
+        "Rung động làm giảm ma sát"
+      ],
+      "validation_tests": [
+        "Kiểm tra lực xiết (torque wrench)",
+        "Đo chuyển vị"
+      ],
+      "remedial_priority": "medium"
+    },
+    {
+      "id": "FM-16",
+      "name": "Weld Failure",
+      "category": "Thép - Liên kết",
+      "signature_crack": [
+        {
+          "direction": "nứt dọc đường hàn hoặc vùng ảnh hưởng nhiệt",
+          "pattern": "khảo sát bằng mắt hoặc UT/RT"
+        }
+      ],
+      "main_causes": [
+        "Khuyết tật đường hàn (rỗ khí, ngậm xỉ)",
+        "Que hàn không phù hợp cường độ",
+        "Chất lượng thợ hàn kém"
+      ],
+      "validation_tests": [
+        "Kiểm tra siêu âm (UT) đường hàn",
+        "Kiểm tra thấm (PT, MT)",
+        "Test macro đường hàn"
+      ],
+      "remedial_priority": "high"
+    }
+  ],
+  "notes": [
+    "Tổng số failure modes trong database: 50+ (JSON này liệt kê 16 mode phổ biến nhất, các mode còn lại ở version mở rộng).",
+    "Mỗi mode có: signature, causes, validation tests, remedial priority.",
+    "Sử dụng kết hợp với scripts/hypothesis_ranker.py để xếp hạng hypothesis."
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "cause": "Quá tải do chất hàng vượt thiết kế",
+    "evidence": [
+      "Back-calculation cho q = 28.5 kN/m (thiết kế 20 kN/m)",
+      "Nhân chứng xác nhận chất hàng nặng 1 tuần trước sự cố",
+      "Vết nứt tại giữa nhịp (đặc trưng quá tải uốn)"
+    ],
+    "contradictions": []
+  },
+  {
+    "cause": "Bê tông không đạt mác thiết kế",
+    "evidence": [
+      "Mẫu khoan cho f_c = 18 MPa (thiết kế 25 MPa)",
+      "Nhật ký thi công thiếu báo cáo thí nghiệm mẫu"
+    ],
+    "contradictions": [
+      "Nếu chỉ do bê tông yếu, nứt sẽ xuất hiện trước đó"
+    ]
+  },
+  {
+    "cause": "Tháo giàn giáo quá sớm",
+    "evidence": [
+      "Nhật ký ghi tháo giàn giáo ngày 18 (14 ngày tuổi bê tông)"
+    ],
+    "contradictions": [
+      "TCVN yêu cầu 28 ngày, nhưng 14 ngày vẫn đạt khoảng 80% cường độ"
+    ]
+  }
+]

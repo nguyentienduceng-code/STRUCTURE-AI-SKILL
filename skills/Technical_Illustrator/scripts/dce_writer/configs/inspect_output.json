@@ -1,0 +1,352 @@
+{
+  "Row_1": [
+    "",
+    "",
+    "THÔNG TIN CẤU KIỆN",
+    "",
+    ""
+  ],
+  "Row_2": [
+    "",
+    "",
+    "Tên dầm:",
+    "",
+    ""
+  ],
+  "Row_3": [
+    "",
+    "",
+    "b dầm (mm):",
+    "",
+    ""
+  ],
+  "Row_4": [
+    "",
+    "",
+    "h dầm (mm):",
+    "",
+    ""
+  ],
+  "Row_5": [
+    "Made by: Nguyễn Văn Duy\nPhone: 0989.111.206\nEmail: duynv.ksxd@gmail.com",
+    "",
+    "Số cấu kiện:",
+    "",
+    ""
+  ],
+  "Row_6": [
+    "",
+    "",
+    "Cao trình dầm:",
+    "",
+    ""
+  ],
+  "Row_7": [
+    "",
+    "",
+    "h sàn (mm):",
+    "",
+    ""
+  ],
+  "Row_8": [
+    "Website: http://www.dcejsc.com",
+    "",
+    "Dầm ngắn L(m) <",
+    "",
+    ""
+  ],
+  "Row_9": [
+    "Số bắt đầu ở mặt cắt ngang:",
+    "1",
+    "",
+    "",
+    ""
+  ],
+  "Row_10": [
+    "STT dầm:",
+    "4",
+    "Gối",
+    "Nhịp 1",
+    "Gối"
+  ],
+  "Row_11": [
+    "Thép chịu lực trên",
+    "5T16",
+    "400",
+    "3900",
+    "400"
+  ],
+  "Row_12": [
+    "Thép chịu lực dưới",
+    "5T16",
+    "",
+    "",
+    ""
+  ],
+  "Row_13": [
+    "Thép Tăng cường lớp trên",
+    "Lớp 1",
+    "",
+    "",
+    ""
+  ],
+  "Row_14": [
+    "",
+    "Lớp 2",
+    "",
+    "",
+    ""
+  ],
+  "Row_15": [
+    "",
+    "Lớp 3",
+    "",
+    "",
+    ""
+  ],
+  "Row_16": [
+    "",
+    "Lớp 4",
+    "",
+    "",
+    ""
+  ],
+  "Row_17": [
+    "",
+    "Lớp 5",
+    "",
+    "",
+    ""
+  ],
+  "Row_18": [
+    "Thép Tăng cường lớp dưới",
+    "Lớp 5",
+    "",
+    "",
+    ""
+  ],
+  "Row_19": [
+    "",
+    "Lớp 4",
+    "",
+    "",
+    ""
+  ],
+  "Row_20": [
+    "",
+    "Lớp 3",
+    "",
+    "",
+    ""
+  ],
+  "Row_21": [
+    "",
+    "Lớp 2",
+    "",
+    "",
+    ""
+  ],
+  "Row_22": [
+    "",
+    "Lớp 1",
+    "",
+    "",
+    ""
+  ],
+  "Row_23": [
+    "Giật mép trên dầm:",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_24": [
+    "KT dầm giao tại cột; Thép Giá:",
+    "",
+    "",
+    "2t12",
+    ""
+  ],
+  "Row_25": [
+    "Lệch dầm giao và tâm cột; Giật mép dưới:",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_26": [
+    "Tên các trục cột; Thép đai:",
+    "",
+    "",
+    "8-100/200",
+    ""
+  ],
+  "Row_27": [
+    "Độ lệch của trục so với tâm cột; Đai trong",
+    "",
+    "200",
+    "",
+    "200"
+  ],
+  "Row_28": [
+    "KT dầm giao tại nhịp; Đai xoắn/Giật sàn",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_29": [
+    "Lệch dầm giao nhịp và tâm cột.",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_30": [
+    "Thép tăng cường vai bò dầm giao nhịp.",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_31": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_32": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_33": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_34": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_35": [
+    "",
+    "ElementId",
+    " ",
+    "",
+    ""
+  ],
+  "Row_36": [
+    "",
+    "Beam",
+    "",
+    "",
+    ""
+  ],
+  "Row_37": [
+    "",
+    "As Top",
+    "2.34",
+    "0.91",
+    "2.63/1.45"
+  ],
+  "Row_38": [
+    "",
+    "Check FS",
+    "=IFERROR(ROUND((DienTich($B$11)+DienTich(C13)+DienTich(C14)+DienTich(C15)+DienTich(C16)+DienTich(C17))/_xll.Max2As_Dce(C37),2),\"\")",
+    "=IFERROR(ROUND((DienTich($B$11)+DienTich(D13)+DienTich(D14)+DienTich(D15)+DienTich(D16)+DienTich(D17))/_xll.Max2As_Dce(D37),2),\"\")",
+    "=IFERROR(ROUND((DienTich($B$11)+DienTich(E13)+DienTich(E14)+DienTich(E15)+DienTich(E16)+DienTich(E17))/_xll.Max2As_Dce(E37),2),\"\")"
+  ],
+  "Row_39": [
+    "",
+    "As Bot",
+    "0.91",
+    "2.46",
+    "0.91/0.91"
+  ],
+  "Row_40": [
+    "",
+    "Check FS",
+    "=IFERROR(ROUND((DienTich($B$12)+DienTich(C22)+DienTich(C21)+DienTich(C20)+DienTich(C19)+DienTich(C18))/_xll.Max2As_Dce(C39),2),\"\")",
+    "=IFERROR(ROUND((DienTich($B$12)+DienTich(D22)+DienTich(D21)+DienTich(D20)+DienTich(D19)+DienTich(D18))/_xll.Max2As_Dce(D39),2),\"\")",
+    "=IFERROR(ROUND((DienTich($B$12)+DienTich(E22)+DienTich(E21)+DienTich(E20)+DienTich(E19)+DienTich(E18))/_xll.Max2As_Dce(E39),2),\"\")"
+  ],
+  "Row_41": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Row_42": [
+    "",
+    "Đai U",
+    "",
+    "Vị trí thép đai tăng cường tương ứng số lượng thép [chạy suốt Min (trên và dưới)] [Dùng trong trường hợp có gia cường lớp thứ nhất]",
+    ""
+  ],
+  "Row_43": [
+    "",
+    "Nối chồng:",
+    "SL thép",
+    "",
+    ""
+  ],
+  "Row_44": [
+    "",
+    "30",
+    "-",
+    "",
+    ""
+  ],
+  "Row_45": [
+    "",
+    "",
+    "1",
+    "Đai □",
+    ""
+  ],
+  "Row_46": [
+    "",
+    "",
+    "1",
+    "Đai C",
+    ""
+  ],
+  "Row_47": [
+    "=IFERROR(IF('BEAM DCE'!AP4<>\"\",\"STT: \" & ROW('BEAM DCE'!AP4) & \" - \" & \"Dầm \" & 'BEAM DCE'!AP4,\"\"),\"\")",
+    "",
+    "2",
+    "Đai □",
+    ""
+  ],
+  "Row_48": [
+    "=IFERROR(IF('BEAM DCE'!AP5<>\"\",\"STT: \" & ROW('BEAM DCE'!AP5) & \" - \" & \"Dầm \" & 'BEAM DCE'!AP5,\"\"),\"\")",
+    "",
+    "2",
+    "Đai C",
+    ""
+  ],
+  "Row_49": [
+    "=IFERROR(IF('BEAM DCE'!AP6<>\"\",\"STT: \" & ROW('BEAM DCE'!AP6) & \" - \" & \"Dầm \" & 'BEAM DCE'!AP6,\"\"),\"\")",
+    "",
+    "3",
+    "Đai □",
+    ""
+  ],
+  "Row_50": [
+    "=IFERROR(IF('BEAM DCE'!AP7<>\"\",\"STT: \" & ROW('BEAM DCE'!AP7) & \" - \" & \"Dầm \" & 'BEAM DCE'!AP7,\"\"),\"\")",
+    "",
+    "3",
+    "Đai C",
+    "2"
+  ]
+}

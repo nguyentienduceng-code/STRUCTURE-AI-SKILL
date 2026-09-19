@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SKILLKC Handoff Schema v3.0",
+  "description": "Schema xac thuc JSON handoff tu SKILLKC -> SKILL_REPORT. Dong bo voi SKILLKC_OUTPUTS.md va SKILL_REPORT.md.",
+  "type": "object",
+  "required": [
+    "Ten_Du_An",
+    "Hang_Muc",
+    "Giai_Doan_TK",
+    "Ngay",
+    "Kien_Nghi"
+  ],
+  "$defs": {
+    "CitationObject": {
+      "type": "object",
+      "required": ["Ma_Tieu_Chuan", "Nam_Ban_Hanh", "Dieu_Bang_Muc", "Trich_Yeu"],
+      "properties": {
+        "Ma_Tieu_Chuan": { "type": "string", "minLength": 1 },
+        "Nam_Ban_Hanh": { "type": "string", "pattern": "^[0-9]{4}$" },
+        "Dieu_Bang_Muc": { "type": "string", "minLength": 1 },
+        "Ten_Bang_Hinh": { "type": "string" },
+        "Trang_So": { "type": "string" },
+        "Trich_Yeu": { "type": "string", "minLength": 5 },
+        "Nguon_File": { "type": "string" }
+      }
+    },
+    "CitationRef": {
+      "type": "object",
+      "properties": {
+        "Ma_TC": { "type": "string" },
+        "Dieu_Muc": { "type": "string" },
+        "Bang_Hinh": { "type": "string" },
+        "Trang": { "type": "string" }
+      }
+    },
+    "DoiChieuTieuChuan": {
+      "type": "object",
+      "required": ["Ket_Qua", "Citations"],
+      "properties": {
+        "Ket_Qua": { "type": "string", "minLength": 1 },
+        "Citations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CitationObject" },
+          "minItems": 1
+        },
+        "Citation_Status": { "type": "string", "enum": ["VERIFIED", "UNVERIFIED"] }
+      }
+    },
+    "CalculationLogEntry": {
+      "type": "object",
+      "required": ["Step", "Formula", "Values", "Result"],
+      "description": "Mot buoc trong chuoi tinh toan 6 buoc (Rule C15). Sinh boi script trong calculators/.",
+      "properties": {
+        "Step": { "type": "string", "minLength": 1 },
+        "Principle": { "type": "string" },
+        "Static_Scheme": { "type": "string" },
+        "Formula": { "type": "string", "minLength": 1 },
+        "Citation": { "$ref": "#/$defs/CitationRef" },
+        "Values": { "type": "string" },
+        "Result": { "type": "string", "minLength": 1 },
+        "Utilization": { "type": "string" },
+        "Rating": { "type": "string", "enum": ["GREEN", "YELLOW", "ORANGE", "RED"] },
+        "Remark": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "Ten_Du_An": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "Data Missing" }
+    },
+    "Hang_Muc": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "Data Missing" }
+    },
+    "Giai_Doan_TK": {
+      "type": "string",
+      "enum": ["TKCS", "TKKT", "BVTC", "Hoan_cong"]
+    },
+    "Ngay": {
+      "type": "string",
+      "pattern": "^\\d{2}/\\d{2}/\\d{4}$"
+    },
+    "Loai_Phan_Tich": {
+      "type": "string",
+      "enum": ["tinh_toan", "NCR", "so_sanh_PA", "review_QC"]
+    },
+    "Kien_Nghi": {
+      "type": "string",
+      "minLength": 5
+    },
+    "Calculation_Logs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/CalculationLogEntry" }
+    },
+    "Calculation_Details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["Thong_So", "Gia_Tri_Thiet_Ke", "Danh_Gia"],
+        "properties": {
+          "Thong_So": { "type": "string", "minLength": 1 },
+          "Gia_Tri_Thiet_Ke": { "type": "string", "minLength": 1 },
+          "Cong_Thuc_Kiem_Tra": { "type": "string" },
+          "Tieu_Chuan_Tham_Chieu": { "$ref": "#/$defs/CitationRef" },
+          "Danh_Gia": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "Standard_Method": {
+      "type": "string",
+      "description": "Phien ban tieu chuan ma script tinh toan thuc su cai dat (AGENTS.md dieu 6). Bat buoc khi co Calculation_Logs."
+    },
+    "Danh_Gia_Stability_Over_Strength": { "type": "string" },
+    "Constructability_Risk": {
+      "type": "string",
+      "pattern": "^(CRITICAL|MAJOR|MINOR)"
+    },
+    "Hinh_Anh": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "Unverified_Items": {
+      "type": "array",
+      "description": "Danh sach gia tri chua co Citation hop le (Rule C13). Bat buoc hien thi tai Review Gate.",
+      "items": { "type": "string" }
+    },
+    "NCR_Classification": {
+      "type": "string",
+      "enum": ["CRITICAL", "MAJOR", "MINOR"]
+    },
+    "NCR_Description": { "type": "string" },
+    "NCR_Root_Cause": { "type": "string" },
+    "NCR_Corrective_Action": { "type": "string" },
+    "So_Sanh": {
+      "type": "object",
+      "required": ["categories", "plans"],
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 3
+        },
+        "plans": {
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "number" }
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^Doi_Chieu_Tieu_Chuan_.+$": { "$ref": "#/$defs/DoiChieuTieuChuan" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "Loai_Phan_Tich": { "const": "NCR" } }, "required": ["Loai_Phan_Tich"] },
+      "then": { "required": ["NCR_Classification", "NCR_Description", "NCR_Corrective_Action"] }
+    },
+    {
+      "if": { "properties": { "Loai_Phan_Tich": { "const": "so_sanh_PA" } }, "required": ["Loai_Phan_Tich"] },
+      "then": { "required": ["So_Sanh"] }
+    },
+    {
+      "if": { "required": ["Calculation_Logs"] },
+      "then": { "required": ["Standard_Method"] }
+    }
+  ]
+}

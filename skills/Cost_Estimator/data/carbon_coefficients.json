@@ -1,0 +1,56 @@
+{
+  "version": "2025-Q4",
+  "currency": "kg CO2 equivalent",
+  "scope": "Cradle-to-gate (A1-A3)",
+  "last_updated": "2025-10-01",
+  "sources": [
+    "ICE Database v3.0 (Circular Ecology 2024)",
+    "WorldSteel 2025 LCA Report",
+    "EPD Việt Nam 2024",
+    "FSC Database 2024",
+    "ISO 14067:2018"
+  ],
+  "coefficients": {
+    "concrete": {
+      "B15":   {"factor": 280, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 15},
+      "B20":   {"factor": 300, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 15},
+      "B22.5": {"factor": 310, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 15},
+      "B25":   {"factor": 330, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 12},
+      "B30":   {"factor": 350, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 12},
+      "B35":   {"factor": 380, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 12},
+      "B40":   {"factor": 410, "unit": "kg CO2/m3", "source": "ICE v3.0", "uncertainty_pct": 12}
+    },
+    "steel": {
+      "rebar_CB300V":     {"factor": 2050, "unit": "kg CO2/tấn", "source": "WorldSteel 2025", "uncertainty_pct": 10},
+      "rebar_CB400V":     {"factor": 2100, "unit": "kg CO2/tấn", "source": "WorldSteel 2025", "uncertainty_pct": 10},
+      "rebar_CB500V":     {"factor": 2150, "unit": "kg CO2/tấn", "source": "WorldSteel 2025", "uncertainty_pct": 10},
+      "structural_S235":  {"factor": 2200, "unit": "kg CO2/tấn", "source": "EPD 2024", "uncertainty_pct": 12},
+      "structural_S345":  {"factor": 2300, "unit": "kg CO2/tấn", "source": "EPD 2024", "uncertainty_pct": 12},
+      "structural_S390":  {"factor": 2450, "unit": "kg CO2/tấn", "source": "EPD 2024", "uncertainty_pct": 12}
+    },
+    "formwork": {
+      "wood":    {"factor": 430,  "unit": "kg CO2/m3",  "source": "FSC 2024", "uncertainty_pct": 20},
+      "plywood": {"factor": 600,  "unit": "kg CO2/m3",  "source": "EPD 2024", "uncertainty_pct": 18},
+      "steel":   {"factor": 1800, "unit": "kg CO2/tấn", "source": "Market 2024", "uncertainty_pct": 12},
+      "plastic": {"factor": 1850, "unit": "kg CO2/tấn", "source": "EPD 2024", "uncertainty_pct": 15}
+    },
+    "transport": {
+      "truck_diesel":  {"factor": 0.27, "unit": "kg CO2/tấn.km", "source": "DEFRA 2024", "uncertainty_pct": 8},
+      "rail":          {"factor": 0.035,"unit": "kg CO2/tấn.km", "source": "DEFRA 2024", "uncertainty_pct": 10},
+      "ship":          {"factor": 0.015,"unit": "kg CO2/tấn.km", "source": "DEFRA 2024", "uncertainty_pct": 12}
+    }
+  },
+  "benchmarks_kgCO2_per_m2": {
+    "office_typical":    {"max": 250, "rating": "Office Standard (Q1/2026 VN)"},
+    "LEED_Gold":         {"max": 180, "rating": "LEED Gold Certified"},
+    "LEED_Platinum":     {"max": 150, "rating": "LEED Platinum"},
+    "Net_Zero_2030":     {"max": 120, "rating": "VN Net Zero Target 2030"},
+    "Net_Zero_2050":     {"max": 100, "rating": "VN Net Zero Target 2050"}
+  },
+  "notes": [
+    "Hệ số chỉ mang tính ngành-trung-bình; EPD cụ thể của nhà cung cấp ưu tiên hơn.",
+    "Scope A1-A3 (sản xuất, không bao gồm vận chuyển tới công trình - dùng module transport nếu cần).",
+    "Không bao gồm Module A4-A5 (thi công), B (use), C (end-of-life), D (recycling benefits).",
+    "Để chứng nhận ESG chính thức: cần third-party verified LCA theo EN 15978 / ISO 14067."
+  ]
+}

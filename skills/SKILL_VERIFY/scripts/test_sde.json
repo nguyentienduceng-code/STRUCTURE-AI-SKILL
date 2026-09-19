@@ -1,0 +1,15 @@
+{
+  "module": "Structural_Design_Engineer",
+  "results": [
+    {
+      "element": "B1",
+      "M_Ed": 250.0,
+      "M_Rd": 298.2,
+      "eta_M": 0.838,
+      "V_Ed": 150.0,
+      "V_Rd": 200.0,
+      "eta_V": 0.75,
+      "Standard": "TCVN 5574:2018"
+    }
+  ]
+}

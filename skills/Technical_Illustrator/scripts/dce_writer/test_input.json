@@ -1,0 +1,17 @@
+{
+  "project_code": "TEST001",
+  "beam_name": "B1",
+  "b": 200,
+  "h": 400,
+  "L": 6000,
+  "concrete": "B30",
+  "steel": "CB400",
+  "rebar_top": {"n": 3, "dia": 20},
+  "rebar_bottom": {"n": 2, "dia": 20},
+  "stirrup": {"dia": 8, "s1": 100, "s2": 200},
+  "M_ed": 150.5,
+  "V_ed": 85.3,
+  "q": 25.0,
+  "eta_M": 0.75,
+  "eta_V": 0.45
+}

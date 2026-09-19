@@ -1,0 +1,30 @@
+{
+  "Calculation_Logs": [
+    {
+      "Step": 1,
+      "Title": "Tính M_Rd",
+      "Formula": "M_Rd = phi * As * fy * (d - a/2)",
+      "Substitution": "phi=0.9, As=1520, fy=400, d=650, a=45",
+      "Result": "M_Rd = 343.7 kN.m",
+      "Citation": {
+        "code": "TCVN 5574:2018",
+        "year": "2018",
+        "article": "Điều 7.1.2",
+        "excerpt": "M_Rd = phi * As * fy * (d - a/2)"
+      }
+    },
+    {
+      "Step": 2,
+      "Title": "Tính eta",
+      "Formula": "eta = M_Ed / M_Rd",
+      "Substitution": "250 / 343.7",
+      "Result": "eta = 0.727",
+      "Citation": {
+        "code": "TCVN 5574:2018",
+        "year": "2018",
+        "article": "Điều 7.1.2",
+        "excerpt": "Utilization ratio"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Phương án A - Dầm BTCT 400x700",
+    "type": "RC",
+    "concrete_vol": 120.5,
+    "steel_weight": 10200,
+    "formwork_area": 680,
+    "duration_days": 45,
+    "concrete_grade": "B25",
+    "steel_grade": "CB400V",
+    "formwork_type": "wood",
+    "total_investment": 500000000000
+  },
+  {
+    "name": "Phương án B - Dầm thép H400x200",
+    "type": "Steel",
+    "concrete_vol": 85.0,
+    "steel_weight": 18500,
+    "formwork_area": 450,
+    "duration_days": 30,
+    "concrete_grade": "B30",
+    "steel_grade": "structural_S345",
+    "formwork_type": "steel",
+    "total_investment": 500000000000
+  },
+  {
+    "name": "Phương án C - Dầm tiền chế BTCT",
+    "type": "Precast",
+    "concrete_vol": 110.0,
+    "steel_weight": 9500,
+    "formwork_area": 200,
+    "duration_days": 35,
+    "concrete_grade": "B30",
+    "steel_grade": "CB400V",
+    "formwork_type": "steel",
+    "total_investment": 500000000000
+  }
+]

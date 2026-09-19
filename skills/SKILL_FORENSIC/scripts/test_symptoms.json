@@ -1,0 +1,5 @@
+{
+  "crack_type": "flexural_crack",
+  "crack_location": "midspan",
+  "crack_width_mm": 2.0
+}

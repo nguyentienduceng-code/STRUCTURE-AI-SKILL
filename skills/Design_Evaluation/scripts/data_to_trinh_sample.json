@@ -1,0 +1,76 @@
+{
+  "_comment": "File JSON mẫu cho generate_to_trinh.js — Tờ Trình phương án kết cấu",
+  "_usage": "node scripts/generate_to_trinh.js scripts/data_to_trinh_sample.json output_to_trinh.docx",
+
+  "Ten_Du_An": "BURANO SÓNG THẦN",
+  "Ten_Cong_Ty": "CÔNG TY CỔ PHẦN CT SÓNG THẦN",
+  "Don_Vi_Phat_Hanh": "BAN QUẢN LÝ THIẾT KẾ",
+  "So_Van_Ban": "015/TTr-QLTK",
+  "Ngay_Lap": "03/06/2026",
+  "Dia_Diem": "TP.HCM",
+
+  "Ve_Viec": "Trình duyệt phương án kết cấu Nhà ăn 200 PAX — Container vs Nhà tiền chế",
+  "Nguoi_Nhan": "Giám đốc Ban Xây Dựng",
+
+  "Can_Cu_Phap_Ly": [
+    "TCVN 2737:2023 — Tải trọng và tác động",
+    "TCVN 5575:2024 — Thiết kế kết cấu thép",
+    "TCVN 9362:2012 — Thiết kế nền nhà và công trình",
+    "Hồ sơ bản vẽ kiến trúc: PHƯƠNG ÁN KIẾN TRÚC ĐỀ XUẤT.pdf",
+    "Hợp đồng tư vấn thiết kế số 2026/HĐ-TVTK"
+  ],
+
+  "Hien_Trang": "Dự án cần xây dựng nhà ăn 200 người (PAX) tại khu vực nhà máy. Kiến trúc đề xuất 2 phương án: (1) Sử dụng 12 container xếp chồng 2 tầng, (2) Nhà thép tiền chế khung cột-dầm truyền thống. Phương án 1 đang được kiến trúc ưu tiên nhưng tiềm ẩn nhiều rủi ro kết cấu.",
+
+  "Phan_Tich_So_Luoc": "Qua phân tích kỹ thuật chi tiết (xem báo cáo đính kèm), Phương án 1 có 3 rủi ro chính: (1) Mái container nguyên bản không chịu được hoạt tải 400 kg/m² khi dùng làm sàn tầng 2; (2) Cắt vách container giảm sút nghiêm trọng khả năng chịu lực ngang; (3) Thiếu chi tiết liên kết Twist Lock và thiết kế móng chống lật.",
+
+  "Bang_So_Sanh": [
+    {
+      "Tiêu chí": "Sự nguyên vẹn kết cấu",
+      "PA1 — Container 2 tầng": "Bị phá hoại cục bộ do cắt vách, độ cứng suy giảm mạnh",
+      "PA2 — Nhà tiền chế": "Hệ khung tính toán chủ động, độ cứng đảm bảo"
+    },
+    {
+      "Tiêu chí": "Sàn chịu tải (Tầng 2)",
+      "PA1 — Container 2 tầng": "Mái container không chịu hoạt tải 400kg/m². Cần thiết kế thêm hệ dầm",
+      "PA2 — Nhà tiền chế": "Hệ dầm thép I + sàn Cemboard đáp ứng dễ dàng"
+    },
+    {
+      "Tiêu chí": "Liên kết & Móng",
+      "PA1 — Container 2 tầng": "Twist Lock + hàn gia cường phức tạp",
+      "PA2 — Nhà tiền chế": "Bu lông cường độ cao chuẩn hóa"
+    },
+    {
+      "Tiêu chí": "Pháp lý & Tiêu chuẩn",
+      "PA1 — Container 2 tầng": "TCVN chưa quy định rõ về container tái chế",
+      "PA2 — Nhà tiền chế": "Tuân thủ hoàn toàn TCVN 5575:2024"
+    }
+  ],
+
+  "Hinh_Anh": [
+    {
+      "path": "images/beam_corner_casting.png",
+      "caption": "Minh họa dầm thép I gác lên gù chịu lực container",
+      "width": 450
+    },
+    {
+      "path": "images/twist_lock_detail.png",
+      "caption": "Chi tiết ngàm Twist Lock khóa góc chồng tầng",
+      "width": 400
+    }
+  ],
+
+  "Ma_Bao_Cao_Dinh_Kem": "BXD-BCPT-BURANO-REV01",
+
+  "Kien_Nghi": [
+    "Ưu tiên chọn Phương án 2 (Nhà tiền chế) để kiểm soát rủi ro pháp lý và kỹ thuật.",
+    "Trường hợp chốt PA1 (Container): yêu cầu Nhà thầu đệ trình thuyết minh tính toán kết cấu, bản vẽ chi tiết gia cường, và cập nhật BOQ so sánh kinh tế PA1 vs PA2."
+  ],
+  "Tac_Dong_Chi_Phi": "PA1 sau khi gia cường có thể tương đương hoặc cao hơn PA2 do chi phí gia cường thép bổ sung",
+  "Tac_Dong_Tien_Do": "PA2 nhanh hơn PA1 khoảng 2-3 tuần do thi công chuẩn hóa, không cần gia cường riêng lẻ",
+
+  "Nguoi_Ky": "Nguyễn Nhật Linh",
+  "Chuc_Danh_Ky": "Trưởng phòng QLTK",
+  "Don_Vi_Ky": "PHÒNG QUẢN LÝ THIẾT KẾ",
+  "De_Nghi_Phe_Duyet": "Kính đề nghị Giám đốc Ban Xây Dựng xem xét và phê duyệt Phương án 2 (Nhà tiền chế) cho hạng mục Nhà ăn 200 PAX tại dự án Burano Sóng Thần, để Phòng QLTK có cơ sở triển khai các bước tiếp theo."
+}

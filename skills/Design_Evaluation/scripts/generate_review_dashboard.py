@@ -1,0 +1,480 @@
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+import json
+import argparse
+from datetime import datetime
+
+def generate_review_dashboard(analysis_data, output_html):
+    """
+    Tạo Interactive Review Gate Dashboard từ kết quả phân tích.
+
+    Args:
+        analysis_data: Dict hoặc JSON file chứa kết quả phân tích
+        output_html: Đường dẫn file HTML output
+    """
+
+    if isinstance(analysis_data, str):
+        with open(analysis_data, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    else:
+        data = analysis_data
+
+    # Trích xuất thông tin chính
+    project_name = data.get('Project_Name', 'Dự án không xác định')
+    analysis_date = data.get('Date', datetime.now().strftime('%d/%m/%Y'))
+    results = data.get('Results', [])
+    unverified = data.get('Unverified_Items', [])
+    warnings = data.get('Warnings', [])
+
+    # Tạo HTML Dashboard
+    html_content = f"""<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Gate Dashboard - {project_name}</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0A0D12 0%, #161D2B 100%);
+            color: #E5E7EB;
+            padding: 2rem;
+            line-height: 1.6;
+        }}
+
+        .container {{
+            max-width: 1400px;
+            margin: 0 auto;
+        }}
+
+        header {{
+            background: linear-gradient(135deg, #1E2636 0%, #0F131C 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }}
+
+        h1 {{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }}
+
+        .subtitle {{
+            color: #9CA3AF;
+            font-size: 0.95rem;
+        }}
+
+        .grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }}
+
+        .card {{
+            background: #1E2636;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }}
+
+        .card:hover {{
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }}
+
+        .card-title {{
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }}
+
+        .card-value {{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }}
+
+        .status-table {{
+            width: 100%;
+            background: #1E2636;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }}
+
+        .status-table th {{
+            background: #0F131C;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9CA3AF;
+        }}
+
+        .status-table td {{
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }}
+
+        .status-table tr:hover {{
+            background: rgba(56, 189, 248, 0.05);
+        }}
+
+        .badge {{
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }}
+
+        .badge-green {{
+            background: rgba(34, 197, 94, 0.15);
+            color: #6EE7B7;
+        }}
+
+        .badge-yellow {{
+            background: rgba(234, 179, 8, 0.15);
+            color: #FCD34D;
+        }}
+
+        .badge-orange {{
+            background: rgba(249, 115, 22, 0.15);
+            color: #FB923C;
+        }}
+
+        .badge-red {{
+            background: rgba(239, 68, 68, 0.15);
+            color: #FCA5A5;
+        }}
+
+        .eta-bar {{
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }}
+
+        .eta-fill {{
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.5s ease;
+        }}
+
+        .unverified-section {{
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }}
+
+        .warning-section {{
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }}
+
+        .checklist {{
+            list-style: none;
+        }}
+
+        .checklist-item {{
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }}
+
+        .checklist-item input[type="checkbox"] {{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }}
+
+        .approve-section {{
+            background: linear-gradient(135deg, #1E2636 0%, #0F131C 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: center;
+        }}
+
+        .btn {{
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }}
+
+        .btn-primary {{
+            background: linear-gradient(135deg, #38BDF8 0%, #3B6DFF 100%);
+            color: white;
+        }}
+
+        .btn-primary:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
+        }}
+
+        .btn-primary:disabled {{
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }}
+
+        .btn-secondary {{
+            background: rgba(255, 255, 255, 0.1);
+            color: #E5E7EB;
+        }}
+
+        .section-title {{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }}
+
+        .radar-chart {{
+            max-width: 500px;
+            margin: 2rem auto;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Review Gate Dashboard</h1>
+            <p class="subtitle">Dự án: {project_name} • Ngày phân tích: {analysis_date}</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">Tổng số hạng mục</div>
+                <div class="card-value">{len(results)}</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Đạt yêu cầu</div>
+                <div class="card-value" style="color: #6EE7B7;">{sum(1 for r in results if r.get('Status') == 'PASS')}</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Không đạt</div>
+                <div class="card-value" style="color: #FCA5A5;">{sum(1 for r in results if r.get('Status') == 'FAIL')}</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Chưa xác minh</div>
+                <div class="card-value" style="color: #FCD34D;">{len(unverified)}</div>
+            </div>
+        </div>
+"""
+
+    # Bảng kết quả chi tiết
+    if results:
+        html_content += """
+        <h2 class="section-title">📊 Bảng Chỉ số Sử dụng (η)</h2>
+        <table class="status-table">
+            <thead>
+                <tr>
+                    <th>Hạng mục</th>
+                    <th>η (Utilization)</th>
+                    <th style="width: 200px">Biểu đồ</th>
+                    <th>Đánh giá</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+"""
+
+        for idx, result in enumerate(results):
+            name = result.get('Name', f'Hạng mục {idx+1}')
+            eta = result.get('eta', result.get('utilization_ratio', 0))
+            rating = result.get('Rating', 'YELLOW')
+            status = result.get('Status', 'N/A')
+
+            # Màu cho eta bar
+            if rating == 'GREEN':
+                eta_color = '#6EE7B7'
+            elif rating == 'YELLOW':
+                eta_color = '#FCD34D'
+            elif rating == 'ORANGE':
+                eta_color = '#FB923C'
+            else:
+                eta_color = '#FCA5A5'
+
+            badge_class = f'badge-{rating.lower()}'
+
+            html_content += f"""
+                <tr>
+                    <td><strong>{name}</strong></td>
+                    <td><strong>{eta:.3f}</strong> ({eta*100:.1f}%)</td>
+                    <td>
+                        <div class="eta-bar">
+                            <div class="eta-fill" style="width: {min(eta*100, 100)}%; background: {eta_color};"></div>
+                        </div>
+                    </td>
+                    <td><span class="badge {badge_class}">{rating}</span></td>
+                    <td>{status}</td>
+                </tr>
+"""
+
+        html_content += """
+            </tbody>
+        </table>
+"""
+
+    # Cảnh báo
+    if warnings:
+        html_content += """
+        <div class="warning-section">
+            <h2 class="section-title">⚠️ Cảnh báo Kỹ thuật</h2>
+            <ul class="checklist">
+"""
+        for warning in warnings:
+            html_content += f'                <li class="checklist-item">⚠️ {warning}</li>\n'
+
+        html_content += """
+            </ul>
+        </div>
+"""
+
+    # Unverified Items
+    if unverified:
+        html_content += """
+        <div class="unverified-section">
+            <h2 class="section-title">🚨 Danh sách Số liệu Chưa Xác minh</h2>
+            <p style="margin-bottom: 1rem; color: #FCA5A5;">Các số liệu sau chưa có Citation Object hợp lệ. Bắt buộc kiểm tra trước khi xuất báo cáo chính thức.</p>
+            <ul class="checklist">
+"""
+        for item in unverified:
+            html_content += f"""
+                <li class="checklist-item">
+                    <input type="checkbox" class="unverified-check" data-item="{item}">
+                    <span>{item}</span>
+                </li>
+"""
+
+        html_content += """
+            </ul>
+        </div>
+"""
+
+    # Phần approve
+    html_content += f"""
+        <div class="approve-section">
+            <h2 class="section-title">✅ Xác nhận Xuất Báo cáo</h2>
+            <p style="margin-bottom: 1.5rem; color: #9CA3AF;">
+                {'⚠️ Có ' + str(len(unverified)) + ' số liệu chưa xác minh. Vui lòng kiểm tra tất cả trước khi xuất file.' if unverified else 'Tất cả số liệu đã được xác minh.'}
+            </p>
+            <div>
+                <button id="approveBtn" class="btn btn-primary" {"disabled" if unverified else ""}>
+                    Đồng ý xuất báo cáo (.docx / .pdf)
+                </button>
+                <button id="rejectBtn" class="btn btn-secondary">
+                    Yêu cầu bổ sung số liệu
+                </button>
+            </div>
+            <p id="statusMsg" style="margin-top: 1rem; font-weight: 600;"></p>
+        </div>
+
+        <script>
+            // Enable approve button only when all unverified items are checked
+            const checks = document.querySelectorAll('.unverified-check');
+            const approveBtn = document.getElementById('approveBtn');
+            const statusMsg = document.getElementById('statusMsg');
+
+            checks.forEach(check => {{
+                check.addEventListener('change', () => {{
+                    const allChecked = Array.from(checks).every(c => c.checked);
+                    approveBtn.disabled = !allChecked;
+
+                    if (allChecked) {{
+                        statusMsg.textContent = '✅ Tất cả số liệu đã được kiểm tra.';
+                        statusMsg.style.color = '#6EE7B7';
+                    }} else {{
+                        statusMsg.textContent = '';
+                    }}
+                }});
+            }});
+
+            approveBtn.addEventListener('click', () => {{
+                statusMsg.textContent = '✅ APPROVED — Tiến hành xuất báo cáo...';
+                statusMsg.style.color = '#6EE7B7';
+
+                // Send approval signal (trong thực tế sẽ gọi API hoặc write file)
+                const approval = {{
+                    approved: true,
+                    timestamp: new Date().toISOString(),
+                    project: '{project_name}'
+                }};
+                console.log('Review Gate APPROVED:', approval);
+
+                // Có thể ghi file JSON approval
+                setTimeout(() => {{
+                    alert('✅ Phê duyệt thành công! Tiếp tục xuất báo cáo Word/PDF.');
+                }}, 500);
+            }});
+
+            document.getElementById('rejectBtn').addEventListener('click', () => {{
+                statusMsg.textContent = '❌ REJECTED — Yêu cầu User bổ sung số liệu.';
+                statusMsg.style.color = '#FCA5A5';
+
+                setTimeout(() => {{
+                    alert('❌ Yêu cầu bổ sung số liệu. Dừng luồng xuất báo cáo.');
+                }}, 500);
+            }});
+        </script>
+    </div>
+</body>
+</html>
+"""
+
+    # Ghi file
+    with open(output_html, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    return {
+        "status": "success",
+        "output_file": output_html,
+        "total_items": len(results),
+        "unverified_count": len(unverified),
+        "warnings_count": len(warnings)
+    }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Generate Interactive Review Gate Dashboard")
+    parser.add_argument("--data", required=True, help="JSON file chứa kết quả phân tích")
+    parser.add_argument("--output", required=True, help="Đường dẫn file HTML output")
+
+    args = parser.parse_args()
+
+    result = generate_review_dashboard(args.data, args.output)
+    print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -1,0 +1,45 @@
+; AutoCAD Script - Export DCE Pro Forms to DXF
+; Run: SCRIPT command in AutoCAD, select this file
+
+; Export Form 2 (Dầm)
+_OPEN "C:\DCE Pro\Cad\Form 2.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 2.dxf
+; Press Enter to accept default settings
+
+; Export Form 2_Steel (Dầm + Thép)
+_OPEN "C:\DCE Pro\Cad\Form 2_Steel.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 2_Steel.dxf
+
+; Export Form 3 (Cột)
+_OPEN "C:\DCE Pro\Cad\Form 3.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 3.dxf
+
+; Export Form 3_Steel
+_OPEN "C:\DCE Pro\Cad\Form 3_Steel.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 3_Steel.dxf
+
+; Export Form 4 (Vách)
+_OPEN "C:\DCE Pro\Cad\Form 4.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 4.dxf
+
+; Export Form 4_Steel
+_OPEN "C:\DCE Pro\Cad\Form 4_Steel.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 4_Steel.dxf
+
+; Export Form 5 (Móng)
+_OPEN "C:\DCE Pro\Cad\Form 5.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 5.dxf
+
+; Export Form 5_Steel
+_OPEN "C:\DCE Pro\Cad\Form 5_Steel.dwg"
+_-DXFOUT
+C:\DCE Pro\Cad\Form 5_Steel.dxf
+
+(princ)

@@ -1,0 +1,95 @@
+{
+  "version": "Q2/2026",
+  "currency": "VNĐ",
+  "unit": "VNĐ/ngày công (8h)",
+  "tax_included": false,
+  "last_updated": "2026-04-15",
+  "source": "Bộ Xây dựng + Thị trường lao động VN Q1/2026",
+  "regions": {
+    "ha_noi": {
+      "multiplier": 1.05,
+      "notes": "Giá cao do thị trường cạnh tranh"
+    },
+    "tp_hcm": {
+      "multiplier": 1.08,
+      "notes": "Cao nhất VN, đặc biệt khu vực Q1, Q2, Q7, Bình Thạnh"
+    },
+    "da_nang": {
+      "multiplier": 1.00,
+      "notes": "Baseline"
+    },
+    "hai_phong": {
+      "multiplier": 1.02,
+      "notes": "Tương đương Đà Nẵng"
+    },
+    "can_tho": {
+      "multiplier": 0.95,
+      "notes": "Thấp hơn 5% so với baseline"
+    },
+    "mien_tay_other": {
+      "multiplier": 0.92,
+      "notes": "Các tỉnh miền Tây khác"
+    }
+  },
+  "rates_per_day": {
+    "labor_basic_helper": {
+      "name": "Phụ hồ (lao động phổ thông)",
+      "base_price": 280000,
+      "skill_required": "Không",
+      "productivity_m3_per_day": 1.5,
+      "supervision": "Tổ trưởng"
+    },
+    "labor_carpenter": {
+      "name": "Thợ mộc (coppha, hoàn thiện)",
+      "base_price": 350000,
+      "skill_required": "Bậc 3-4",
+      "productivity_m2_per_day": 12,
+      "supervision": "Đội trưởng coppha"
+    },
+    "labor_steelfixer": {
+      "name": "Thợ sắt (gia công + lắp đặt cốt thép)",
+      "base_price": 380000,
+      "skill_required": "Bậc 3-4",
+      "productivity_kg_per_day": 120,
+      "supervision": "Kỹ thuật viên thép"
+    },
+    "labor_concrete_pourer": {
+      "name": "Thợ đổ bê tông",
+      "base_price": 360000,
+      "skill_required": "Bậc 3",
+      "productivity_m3_per_day": 8,
+      "supervision": "Tổ trưởng BT"
+    },
+    "labor_welder": {
+      "name": "Thợ hàn (3G, 4G, 6G)",
+      "base_price": 420000,
+      "skill_required": "Bậc 4-5 + chứng chỉ hàn",
+      "productivity_m_per_day": 18,
+      "supervision": "QA/QC hàn"
+    },
+    "labor_rigger": {
+      "name": "Thợ cẩu/cẩu lắp",
+      "base_price": 450000,
+      "skill_required": "Bậc 4 + chứng chỉ cẩu",
+      "supervision": "Chỉ huy trưởng"
+    },
+    "labor_pile_driverman": {
+      "name": "Thợ đóng/ép cọc",
+      "base_price": 480000,
+      "skill_required": "Bậc 4 + chứng chỉ thiết bị",
+      "supervision": "Kỹ sư nền móng"
+    },
+    "foreman": {
+      "name": "Đội trưởng / tổ trưởng",
+      "base_price": 550000,
+      "skill_required": "Bậc 5-6 + chứng chỉ QL",
+      "supervision": "Chỉ huy trưởng"
+    }
+  },
+  "notes": [
+    "Giá đã bao gồm lương cơ bản + phụ cấp + BHXH (employer portion).",
+    "Chưa bao gồm: ăn trưa, công tác phí, làm thêm giờ (tính riêng).",
+    "Ngày công = 8h, tăng ca 1.5x, ngày lễ 3x theo Bộ luật LĐ 2019.",
+    "Năng suất ước tính cho điều kiện thi công bình thường; điều chỉnh theo thực tế."
+  ]
+}

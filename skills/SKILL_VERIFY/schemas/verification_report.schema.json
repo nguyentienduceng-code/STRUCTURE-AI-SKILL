@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Verification Report Schema",
+  "description": "Cấu trúc chuẩn cho báo cáo kiểm chứng từ SKILL_VERIFY",
+  "type": "object",
+  "required": ["Verification_ID", "Timestamp", "Project", "Verification_Types", "Results", "Overall_Status"],
+  "properties": {
+    "Verification_ID": {
+      "type": "string",
+      "pattern": "^VRF-\\d{8}-\\d{3}$",
+      "description": "Mã định danh duy nhất, format: VRF-YYYYMMDD-###",
+      "example": "VRF-20260804-001"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Thời điểm chạy verification (ISO 8601)"
+    },
+    "Project": {
+      "type": "string",
+      "description": "Tên dự án"
+    },
+    "Scope": {
+      "type": "string",
+      "description": "Phạm vi kiểm chứng (vd: Dầm tầng 5, Toàn bộ kết cấu)"
+    },
+    "Verification_Types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Inter-Module",
+          "Standard-Version",
+          "Calculation-Logs",
+          "External-Software",
+          "Report-Consistency"
+        ]
+      },
+      "description": "Danh sách các loại kiểm chứng đã chạy"
+    },
+    "Results": {
+      "type": "object",
+      "required": ["Total_Checks", "Passed", "Warnings", "Critical"],
+      "properties": {
+        "Total_Checks": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Tổng số kiểm tra đã thực hiện"
+        },
+        "Passed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Số kiểm tra pass"
+        },
+        "Warnings": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Số cảnh báo"
+        },
+        "Critical": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Số lỗi nghiêm trọng"
+        }
+      }
+    },
+    "Issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["Type", "Severity", "Description", "Action"],
+        "properties": {
+          "Type": {
+            "type": "string",
+            "enum": [
+              "INTER_MODULE_VARIANCE",
+              "STANDARD_VERSION_CONFLICT",
+              "CALCULATION_INCONSISTENCY",
+              "MISSING_REQUIRED_FIELD",
+              "EXTERNAL_SOFTWARE_MISMATCH",
+              "REPORT_DATA_MISMATCH"
+            ]
+          },
+          "Severity": {
+            "type": "string",
+            "enum": ["INFO", "WARNING", "MEDIUM", "CRITICAL"]
+          },
+          "Element": {
+            "type": "string",
+            "description": "Cấu kiện bị ảnh hưởng (nếu có)"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Mô tả chi tiết vấn đề"
+          },
+          "Threshold": {
+            "type": "string",
+            "description": "Ngưỡng cho phép (nếu áp dụng)"
+          },
+          "Action": {
+            "type": "string",
+            "description": "Hành động đề xuất"
+          }
+        }
+      }
+    },
+    "Overall_Status": {
+      "type": "string",
+      "enum": ["PASS", "WARNING", "FAILED"],
+      "description": "Trạng thái tổng thể: PASS = không vấn đề, WARNING = có cảnh báo, FAILED = có lỗi CRITICAL"
+    },
+    "Recommendation": {
+      "type": "string",
+      "description": "Khuyến nghị hành động tiếp theo"
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "Executed_By": {
+          "type": "string",
+          "description": "Người/hệ thống chạy verification"
+        },
+        "Duration_Seconds": {
+          "type": "number",
+          "description": "Thời gian thực hiện (giây)"
+        },
+        "Scripts_Used": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Danh sách script đã chạy"
+        }
+      }
+    }
+  }
+}

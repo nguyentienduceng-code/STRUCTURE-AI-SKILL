@@ -1,0 +1,51 @@
+{
+  "Project_Name": "Test Dashboard - Dự án Văn phòng ABC Tower",
+  "Date": "04/08/2026",
+  "Results": [
+    {
+      "Name": "Dầm B1 (400x700) - Kiểm tra uốn",
+      "eta": 0.72,
+      "utilization_ratio": 0.72,
+      "Rating": "YELLOW",
+      "Status": "PASS"
+    },
+    {
+      "Name": "Dầm thép H400x200 - LTB",
+      "eta": 0.062,
+      "utilization_ratio": 0.062,
+      "Rating": "GREEN",
+      "Status": "PASS"
+    },
+    {
+      "Name": "Cột C1 (600x600) - Nén uốn",
+      "eta": 0.89,
+      "utilization_ratio": 0.89,
+      "Rating": "YELLOW",
+      "Status": "PASS"
+    },
+    {
+      "Name": "Móng M1 - Sức chịu tải",
+      "eta": 0.95,
+      "utilization_ratio": 0.95,
+      "Rating": "ORANGE",
+      "Status": "PASS"
+    },
+    {
+      "Name": "Dầm chuyển B5 - Kiểm tra cắt",
+      "eta": 1.12,
+      "utilization_ratio": 1.12,
+      "Rating": "RED",
+      "Status": "FAIL"
+    }
+  ],
+  "Unverified_Items": [
+    "Hệ số tin cậy gió gamma_f: Chưa có căn cứ từ TCVN 2737:2023 Điều 10.2",
+    "Cường độ bê tông B22.5: Chưa trích dẫn TCVN 5574:2018 Bảng 7",
+    "Độ võng cho phép L/250: Cần xác nhận theo TCVN 5574:2018 Phụ lục M"
+  ],
+  "Warnings": [
+    "Dầm chuyển B5: η = 112% > 100% — KHÔNG ĐẠT. Yêu cầu tăng tiết diện từ 400x800 lên 450x900.",
+    "Móng M1: η = 95% — Sát ngưỡng. Cần kiểm tra thêm lún tổng (chưa tính).",
+    "Clash Detection: Dầm B1 xung đột với ống gió AHU-01 tại trục 3-C. Yêu cầu phối hợp MEP."
+  ]
+}

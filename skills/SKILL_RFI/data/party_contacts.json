@@ -1,0 +1,103 @@
+{
+  "project_name": "",
+  "last_updated": "2026-08-30",
+  "parties": {
+    "Owner": {
+      "name": "",
+      "company": "",
+      "contact_person": "",
+      "email": "",
+      "phone": "",
+      "role": "Chủ đầu tư (Owner)",
+      "responsibilities": [
+        "Phê duyệt thiết kế cuối cùng",
+        "Phê duyệt Change Order",
+        "Quyết định các vấn đề ảnh hưởng ngân sách"
+      ]
+    },
+    "Designer": {
+      "name": "",
+      "company": "",
+      "contact_person": "",
+      "email": "",
+      "phone": "",
+      "role": "Đơn vị Thiết kế (Designer)",
+      "responsibilities": [
+        "Trả lời RFI/Tech Query",
+        "Duyệt Shop Drawing/Submittal",
+        "Cung cấp Clarification khi cần"
+      ]
+    },
+    "CSHT": {
+      "name": "",
+      "company": "",
+      "contact_person": "",
+      "email": "",
+      "phone": "",
+      "role": "Tư vấn Giám sát (CSHT)",
+      "responsibilities": [
+        "Giám sát thi công",
+        "Duyệt Submittal",
+        "Phát hành NCR khi phát hiện sự cố",
+        "Xác nhận công việc hoàn thành"
+      ]
+    },
+    "Contractor": {
+      "name": "",
+      "company": "",
+      "contact_person": "",
+      "email": "",
+      "phone": "",
+      "role": "Nhà thầu Thi công (Contractor)",
+      "responsibilities": [
+        "Thi công theo thiết kế",
+        "Gửi Shop Drawing/Submittal",
+        "Trả lời NCR",
+        "Đề xuất Change Order khi cần"
+      ]
+    },
+    "QC": {
+      "name": "",
+      "company": "",
+      "contact_person": "",
+      "email": "",
+      "phone": "",
+      "role": "Ban Quản lý Chất lượng (QC)",
+      "responsibilities": [
+        "Kiểm tra chất lượng vật liệu",
+        "Giám sát thí nghiệm",
+        "Phát hành Test Report"
+      ]
+    }
+  },
+  "escalation_chain": {
+    "RFI": {
+      "Level1": "Designer PM",
+      "Level2": "CSHT PM",
+      "Level3": "Owner PM"
+    },
+    "NCR": {
+      "Level1": "Contractor PM",
+      "Level2": "CSHT PM",
+      "Level3": "Owner PM"
+    },
+    "Submittal": {
+      "Level1": "Designer Reviewer",
+      "Level2": "CSHT PM",
+      "Level3": "Designer PM"
+    },
+    "ChangeOrder": {
+      "Level1": "CSHT Review",
+      "Level2": "Owner PM",
+      "Level3": "Owner Board"
+    }
+  },
+  "default_deadlines": {
+    "RFI": 7,
+    "NCR": 1,
+    "Submittal_Approval": 14,
+    "ChangeOrder": 3,
+    "TechQuery": 5,
+    "PreBidRFI": 3
+  }
+}

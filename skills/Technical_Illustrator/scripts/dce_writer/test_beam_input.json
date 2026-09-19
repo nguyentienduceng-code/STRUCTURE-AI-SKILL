@@ -1,0 +1,24 @@
+{
+  "beam_name": "Dầm B1",
+  "b": 200,
+  "h": 400,
+  "so_cau_kien": 1,
+  "cao_trinh": 3.5,
+  "h_san": 120,
+  "L_ngan": 3.5,
+  "rebar_top": [
+    {"n": 3, "dia": 20},
+    {"n": 3, "dia": 20},
+    {"n": 2, "dia": 20}
+  ],
+  "rebar_bottom": [
+    {"n": 2, "dia": 20},
+    {"n": 3, "dia": 20},
+    {"n": 2, "dia": 20}
+  ],
+  "stirrup": {
+    "dia": 8,
+    "s1": 100,
+    "s2": 200
+  }
+}

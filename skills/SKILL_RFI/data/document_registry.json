@@ -1,0 +1,312 @@
+{
+  "project_name": "Test",
+  "last_updated": "2026-08-31",
+  "parties": {},
+  "documents": {
+    "RFI": [
+      {
+        "Doc_Code": "RFI-GEN-20260831-739",
+        "Doc_Type": "RFI",
+        "Doc_Name": "Request for Information",
+        "Date_Issued": "31/08/2026",
+        "Project_Name": "Audit 2026",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "AI Assistant",
+        "To_Party": "Designer",
+        "Issue": {
+          "Summary": "Test RFI mới",
+          "Context": "Trong quá trình kiểm tra/giám sát dự án Audit 2026, phát hiện vấn đề: Test RFI mới",
+          "Related_Drawings": [],
+          "Items": [
+            "Yêu cầu cung cấp thông tin đầy đủ."
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Có thể ảnh hưởng đến tiến độ và chất lượng.",
+        "Deadline": "07/09/2026",
+        "Days_To_Deadline": 7,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "31/08/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "31/08/2026",
+          "History": [
+            {
+              "date": "31/08/2026 21:50",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null
+      }
+    ],
+    "NCR": [
+      {
+        "Doc_Code": "NCR-GEN-20260831-298",
+        "Doc_Type": "NCR",
+        "Doc_Name": "Non-Conformance Report",
+        "Date_Issued": "31/08/2026",
+        "Project_Name": "Audit 2026",
+        "Priority": "CRITICAL",
+        "Priority_Symbol": "🔴",
+        "Status": "Draft",
+        "From_Party": "AI Assistant",
+        "To_Party": "Contractor",
+        "Issue": {
+          "Summary": "Cột nứt nghiêm trọng",
+          "Context": "Trong quá trình kiểm tra/giám sát dự án Audit 2026, phát hiện vấn đề: Cột nứt nghiêm trọng",
+          "Related_Drawings": [],
+          "Items": [
+            "Mô tả chi tiết không phù hợp:",
+            "Vị trí cụ thể:",
+            "Nguyên nhân dự kiến:",
+            "Đề xuất biện pháp khắc phục:"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Có thể ảnh hưởng đến tiến độ và chất lượng.",
+        "Deadline": "01/09/2026",
+        "Days_To_Deadline": 1,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "31/08/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "31/08/2026",
+          "History": [
+            {
+              "date": "31/08/2026 21:50",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null,
+        "NCR_Severity": "CRITICAL",
+        "NCR_Severity_Action": "Dừng ngay, báo cáo Owner"
+      }
+    ],
+    "SUBMITTAL": [
+      {
+        "Doc_Code": "SUB-GEN-20260831-120",
+        "Doc_Type": "SUBMITTAL",
+        "Doc_Name": "Shop Drawing / Material Submittal",
+        "Date_Issued": "31/08/2026",
+        "Project_Name": "Audit 2026",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "AI Assistant",
+        "To_Party": "Designer",
+        "Issue": {
+          "Summary": "Shop Drawing dầm",
+          "Context": "Trong quá trình kiểm tra/giám sát dự án Audit 2026, phát hiện vấn đề: Shop Drawing dầm",
+          "Related_Drawings": [],
+          "Items": [
+            "Mô tả item gửi duyệt:",
+            "Reference drawing/specification:",
+            "Yêu cầu kiểm tra cụ thể:"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Có thể ảnh hưởng đến tiến độ và chất lượng.",
+        "Deadline": "07/09/2026",
+        "Days_To_Deadline": 7,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "31/08/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "31/08/2026",
+          "History": [
+            {
+              "date": "31/08/2026 21:50",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null,
+        "Submittal_Status": "Pending Review",
+        "Approval_History": []
+      }
+    ],
+    "CO": [
+      {
+        "Doc_Code": "CO-GEN-20260831-338",
+        "Doc_Type": "CO",
+        "Doc_Name": "Change Order",
+        "Date_Issued": "31/08/2026",
+        "Project_Name": "Audit 2026",
+        "Priority": "CRITICAL",
+        "Priority_Symbol": "🔴",
+        "Status": "Draft",
+        "From_Party": "AI Assistant",
+        "To_Party": "Owner",
+        "Issue": {
+          "Summary": "Thay đổi khối lượng thép",
+          "Context": "Trong quá trình kiểm tra/giám sát dự án Audit 2026, phát hiện vấn đề: Thay đổi khối lượng thép",
+          "Related_Drawings": [],
+          "Items": [
+            "Mô tả thay đổi:",
+            "Khối lượng thay đổi (+/-):",
+            "Đơn giá áp dụng:",
+            "Ảnh hưởng tiến độ (ngày):"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Có thể ảnh hưởng đến tiến độ và chất lượng.",
+        "Deadline": "01/09/2026",
+        "Days_To_Deadline": 1,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "31/08/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "31/08/2026",
+          "History": [
+            {
+              "date": "31/08/2026 21:50",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null,
+        "CO_Amount": 0,
+        "CO_Time_Impact": 0,
+        "CO_Status": "Pending Approval"
+      }
+    ],
+    "TQ": [
+      {
+        "Doc_Code": "TQ-QC-20260831-025",
+        "Doc_Type": "TQ",
+        "Doc_Name": "Technical Query",
+        "Date_Issued": "31/08/2026",
+        "Project_Name": "Test",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "QC",
+        "To_Party": "Designer",
+        "Issue": {
+          "Summary": "Cách tính hệ số khí động cho tháp cao 80m?",
+          "Context": "Trong quá trình kiểm tra/giám sát dự án Test, phát hiện vấn đề: Cách tính hệ số khí động cho tháp cao 80m?",
+          "Related_Drawings": [],
+          "Items": [
+            "Câu hỏi kỹ thuật cụ thể:",
+            "Phân tích đã thực hiện:",
+            "Đề xuất của bạn:"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Có thể ảnh hưởng đến tiến độ và chất lượng.",
+        "Deadline": "07/09/2026",
+        "Days_To_Deadline": 7,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "31/08/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "31/08/2026",
+          "History": [
+            {
+              "date": "31/08/2026 22:10",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null
+      }
+    ],
+    "PBRFI": []
+  },
+  "statistics": {
+    "rfi": {
+      "total": 1,
+      "draft": 1,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 0
+    },
+    "ncr": {
+      "total": 1,
+      "draft": 1,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 1
+    },
+    "submittal": {
+      "total": 1,
+      "draft": 1,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 0
+    },
+    "co": {
+      "total": 1,
+      "draft": 1,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 1
+    },
+    "tq": {
+      "total": 1,
+      "draft": 1,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 0
+    },
+    "pbrfi": {
+      "total": 0,
+      "draft": 0,
+      "open": 0,
+      "pending": 0,
+      "approved": 0,
+      "rejected": 0,
+      "overdue": 0,
+      "critical": 0
+    }
+  }
+}

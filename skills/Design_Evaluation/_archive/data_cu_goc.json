@@ -1,0 +1,40 @@
+{
+  "Ten_Du_An": "DỰ ÁN XÂY DỰNG TẦNG HẦM",
+  "Ve_Viec": "Phê duyệt phương án xử lý liên kết Cừ Larsen tại vị trí góc hố đào",
+  "Nguoi_Nhan": "Giám đốc Ban Xây Dựng",
+  "Ten_Cong_Ty": "CÔNG TY CỔ PHẦN ĐẦU TƯ XÂY DỰNG",
+  "Don_Vi_Phat_Hanh": "PHÒNG QUẢN LÝ THIẾT KẾ",
+  "So_Van_Ban": "001/TTr-QLTK",
+  "Ngay_Lap": "04/06/2026",
+  "Dia_Diem": "TP.HCM",
+  "Can_Cu_Phap_Ly": [
+    "Căn cứ TCVN 4253:2012, TCVN 9364:2012",
+    "Căn cứ Biện pháp thi công tường vây cừ Larsen"
+  ],
+  "Hien_Trang": "Tại vị trí chuyển hướng hố đào (góc vuông), ngàm khóa cừ Larsen không thể liên kết tự nhiên, gây nguy cơ rò rỉ nước ngầm, xói lở bùn cát và mất ổn định hệ giằng nếu không có chi tiết xử lý chuyển góc đặc thù.",
+  "Phan_Tich_So_Luoc": "Phương án sử dụng cừ dị hình (Corner Section) gia công tại chỗ bằng cách cắt ngàm khóa và hàn ghép góc 90 độ vào bụng/cánh cừ chính. Giải pháp này đảm bảo tính liên tục của tường chắn nhưng đòi hỏi kiểm soát chặt chẽ rủi ro xoắn vặn khi đóng (Plumbness) và khuyết tật đường hàn gây thấm.",
+  "Bang_So_Sanh": [
+    {
+      "Tiêu chí": "Phương án 1: Cừ đúc sẵn nhập khẩu",
+      "PA1": "Chống thấm tốt",
+      "PA2": "Chi phí cao, chậm tiến độ"
+    },
+    {
+      "Tiêu chí": "Phương án 2: Tự cắt & hàn cừ dị hình",
+      "PA1": "Phụ thuộc tay nghề thợ hàn",
+      "PA2": "Chi phí thấp, tiến độ nhanh"
+    }
+  ],
+  "Kien_Nghi": [
+    "Phê duyệt áp dụng Phương án 2 (tự gia công cừ dị hình tại công trường).",
+    "Bắt buộc Nhà thầu sử dụng hệ khung vây dẫn hướng (Guide frame) khi ép cừ góc.",
+    "Yêu cầu TVGS siêu âm/kiểm tra thẩm thấu màu 100% đường hàn cừ góc trước khi hạ xuống hố đào."
+  ],
+  "Tac_Dong_Chi_Phi": "Tối ưu hóa chi phí so với việc nhập khẩu cừ định hình sẵn.",
+  "Tac_Dong_Tien_Do": "Đẩy nhanh tiến độ thi công do có thể chủ động gia công ngay tại công trường.",
+  "Ma_Bao_Cao_Dinh_Kem": "BXD-BCPT-001-REV00",
+  "Nguoi_Ky": "Nguyễn Văn AI",
+  "Chuc_Danh_Ky": "Trưởng Phòng",
+  "Don_Vi_Ky": "PHÒNG QLTK",
+  "De_Nghi_Phe_Duyet": "Kính đề nghị Giám đốc Ban Xây Dựng xem xét và phê duyệt phương án gia công cừ góc để làm cơ sở cho Nhà thầu triển khai thi công."
+}
