@@ -10,6 +10,13 @@ _approval_cache/
 *.tmp
 *.bak
 *.log
+traces/
+*.db
+*.db-shm
+*.db-wal
+
+# External References & Clones
+references/
 
 # Dependencies
 node_modules/

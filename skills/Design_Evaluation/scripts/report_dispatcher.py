@@ -37,6 +37,38 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
 SCRIPT_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
+# --- Bộ Kiểm Soát Hệ Thống (System Controller) -----------------------------
+# Gắn preflight_check vào cổng xuất báo cáo để chặn thao tác nguy hiểm /
+# vòng lặp tác tử trước khi ghi file. Xem .agents/tools/system_controller.py
+def _find_skill_guard_dir():
+    """Tìm .agents/_SHARED/SHARED_CONTEXT bằng cách đi lên từng cấp (không phụ thuộc độ sâu)."""
+    cur = SCRIPT_DIR.resolve()
+    for _ in range(8):
+        cand = cur / "_SHARED" / "SHARED_CONTEXT"
+        if cand.is_dir():
+            return cand
+        parent = cur.parent
+        if parent == cur:
+            break
+        cur = parent
+    return None
+
+
+try:
+    _SHARED_CTX = _find_skill_guard_dir()
+    if _SHARED_CTX and str(_SHARED_CTX) not in sys.path:
+        sys.path.insert(0, str(_SHARED_CTX))
+    from skill_guard import preflight as _preflight
+    _GUARD_AVAILABLE = True
+except Exception:  # pragma: no cover
+    _GUARD_AVAILABLE = False
+
+
+def _guard_check(tool_name: str, payload: dict | None = None) -> tuple[bool, str]:
+    if not _GUARD_AVAILABLE:
+        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
+    return _preflight("Design_Evaluation", tool_name, payload or {}, fail_open=True)
+
 from _lib._audience_profiles import get_profile, list_audiences
 from _lib._report_utils import (
     format_eta, format_citation, format_vn_date,
@@ -535,6 +567,15 @@ Examples:
         print("❌ Cần --handoff (path to JSON file)")
         parser.print_help()
         sys.exit(1)
+
+    # Preflight — Bộ Kiểm Soát Hệ Thống (chặn vòng lặp tác tử / thao tác nguy hiểm)
+    allowed, guard_reason = _guard_check(
+        "design_evaluation_report",
+        {"command": "", "handoff": args.handoff, "output": args.output},
+    )
+    if not allowed:
+        print(f"⛔ PREFLIGHT BLOCKED: {guard_reason}")
+        sys.exit(2)
 
     # Load data
     handoff = load_handoff(args.handoff)

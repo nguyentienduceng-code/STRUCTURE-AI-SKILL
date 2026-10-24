@@ -1,0 +1,54 @@
+[
+  {
+    "lesson_id": "LL-PRIME-01",
+    "project_code": "Prime_Diamond",
+    "category": "BEAM",
+    "issue_description": "Xuất hiện vết nứt nhiệt và co ngót ở dầm chuyển tầng 4",
+    "root_cause": "Chiều cao dầm h=1.8m khối lớn nhưng thiếu thép cấu tạo chống nứt mặt bên và bảo dưỡng nhiệt",
+    "preventive_solution": "Bố trí thép cấu tạo mặt bên phi 14a150 kèm bảo dưỡng ẩm phủ bao bố liên tục 14 ngày",
+    "related_standards": [
+      "TCVN 5574:2018"
+    ],
+    "tags": [
+      "dam_chuyen",
+      "nut_be_tong",
+      "nhiet_khoi_lon"
+    ],
+    "created_at": "2026-10-24T15:19:13.375785"
+  },
+  {
+    "lesson_id": "LL-SS1-01",
+    "project_code": "SS1",
+    "category": "CLIENT_PREF",
+    "issue_description": "Chủ đầu tư từ chối nghiệm thu bản vẽ dầm có hàm lượng thép mu > 2.0%",
+    "root_cause": "Chủ đầu tư yêu cầu khống chế hàm lượng thép dầm để tối ưu chi phí và tránh khó khăn khi đổ bê tông",
+    "preventive_solution": "Tăng tiết diện dầm từ 300x600 lên 350x650 để đưa mu về khoảng tối ưu 1.2% - 1.6%",
+    "related_standards": [
+      "TCVN 5574:2018"
+    ],
+    "tags": [
+      "ham_luong_thep",
+      "chu_dau_tu",
+      "toi_uu_boq"
+    ],
+    "created_at": "2026-10-24T15:19:13.375785"
+  },
+  {
+    "lesson_id": "LL-MONTALP-01",
+    "project_code": "MONTALP",
+    "category": "CONSTRUCTION",
+    "issue_description": "Bị Tư vấn giám sát lập biên bản NCR do chiều dày lớp bê tông bảo vệ cọc/móng không đạt 50mm",
+    "root_cause": "Dùng con kê nhựa mỏng 25mm không đúng quy định móng tiếp xúc đất",
+    "preventive_solution": "Quy định bắt buộc dùng con kê bê tông mác cao c_nom >= 50mm cho toàn bộ cấu kiện móng",
+    "related_standards": [
+      "TCVN 5574:2018",
+      "TCVN 9346:2012"
+    ],
+    "tags": [
+      "lop_bao_ve",
+      "mong_coc",
+      "ncr"
+    ],
+    "created_at": "2026-10-24T15:19:13.375785"
+  }
+]

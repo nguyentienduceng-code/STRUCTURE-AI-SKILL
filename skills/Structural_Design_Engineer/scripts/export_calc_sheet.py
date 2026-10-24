@@ -5,6 +5,38 @@ import json
 if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
+# --- Bộ Kiểm Soát Hệ Thống (System Controller) -----------------------------
+# Gắn preflight_check vào cổng xuất Thuyết minh tính toán. Xem .agents/tools/system_controller.py
+def _find_skill_guard_dir():
+    """Tìm .agents/_SHARED/SHARED_CONTEXT bằng cách đi lên từng cấp (không phụ thuộc độ sâu)."""
+    from pathlib import Path
+    cur = Path(__file__).resolve().parent
+    for _ in range(8):
+        cand = cur / "_SHARED" / "SHARED_CONTEXT"
+        if cand.is_dir():
+            return cand
+        parent = cur.parent
+        if parent == cur:
+            break
+        cur = parent
+    return None
+
+
+try:
+    _SHARED_CTX = _find_skill_guard_dir()
+    if _SHARED_CTX and _SHARED_CTX not in sys.path:
+        sys.path.insert(0, _SHARED_CTX)
+    from skill_guard import preflight as _preflight
+    _GUARD_AVAILABLE = True
+except Exception:  # pragma: no cover
+    _GUARD_AVAILABLE = False
+
+
+def _guard_check(tool_name, payload=None):
+    if not _GUARD_AVAILABLE:
+        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
+    return _preflight("Structural_Design_Engineer", tool_name, payload or {}, fail_open=True)
+
 def format_formula(formula_str):
     """Basic helper to format raw formula strings to basic LaTeX if possible."""
     f = formula_str.replace("<=", "\\le")
@@ -269,6 +301,15 @@ if __name__ == "__main__":
     parser.add_argument("out_file")
     parser.add_argument("json_file")
     args = parser.parse_args()
+
+    # Preflight — Bộ Kiểm Soát Hệ Thống (chặn vòng lặp tác tử / thao tác nguy hiểm)
+    allowed, guard_reason = _guard_check(
+        "structural_design_export_calc_sheet",
+        {"command": "", "output": args.out_file},
+    )
+    if not allowed:
+        print(f"⛔ PREFLIGHT BLOCKED: {guard_reason}")
+        sys.exit(2)
 
     with open(args.json_file, "r", encoding="utf-8-sig") as f:
         data = json.load(f)

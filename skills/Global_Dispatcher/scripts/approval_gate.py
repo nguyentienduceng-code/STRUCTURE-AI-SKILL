@@ -36,6 +36,39 @@ from approval_state import (
     TOKEN_CRITICAL_THRESHOLD,
 )
 
+# --- Bộ Kiểm Soát Hệ Thống (System Controller) — fail-closed guard ----------
+# Gắn preflight_check vào cổng vào của Global_Dispatcher để chặn thao tác
+# nguy hiểm / vòng lặp tác tử TRƯỚC khi pipeline chạy. Xem .agents/tools/system_controller.py
+def _find_skill_guard_dir() -> "Path | None":
+    """Tìm .agents/_SHARED/SHARED_CONTEXT bằng cách đi lên từng cấp (không phụ thuộc độ sâu)."""
+    cur = Path(__file__).resolve().parent
+    for _ in range(8):
+        cand = cur / "_SHARED" / "SHARED_CONTEXT"
+        if cand.is_dir():
+            return cand
+        parent = cur.parent
+        if parent == cur:
+            break
+        cur = parent
+    return None
+
+
+try:
+    _SHARED_CTX = _find_skill_guard_dir()
+    if _SHARED_CTX and str(_SHARED_CTX) not in sys.path:
+        sys.path.insert(0, str(_SHARED_CTX))
+    from skill_guard import preflight as _preflight
+    _GUARD_AVAILABLE = True
+except Exception:  # pragma: no cover - hệ thống kiểm soát chưa sẵn sàng
+    _GUARD_AVAILABLE = False
+
+
+def _guard_check(tool_name: str, payload: dict | None = None) -> tuple[bool, str]:
+    """Chạy preflight check; nếu controller không khả dụng thì cho phép (non-blocking)."""
+    if not _GUARD_AVAILABLE:
+        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
+    return _preflight("Global_Dispatcher", tool_name, payload or {}, fail_open=True)
+
 
 # =============================================================================
 # CONFIGURATION
@@ -251,6 +284,18 @@ class ApprovalGate:
             - Nếu is_halted=True → trả về Approval Card
             - Nếu is_halted=False → không cần approval
         """
+        # 0. Preflight check của Bộ Kiểm Soát Hệ Thống (chặn vòng lặp tác tử / lệnh nguy hiểm)
+        allowed, guard_reason = _guard_check(
+            "global_dispatcher_pipeline",
+            {"command": "", "stages": stages or []},
+        )
+        if not allowed:
+            return True, (
+                f"⛔ **PREFLIGHT BLOCKED** — Bộ Kiểm Soát Hệ Thống chặn pipeline.\n\n"
+                f"{guard_reason}\n\n"
+                f"Đề nghị kiểm tra lại chuỗi tác tử / lệnh thực thi trước khi tiếp tục."
+            )
+
         # Xác định mức approval
         stages = stages or []
         total_stages = len(stages)
