@@ -149,8 +149,10 @@ Chạy `npm install` trực tiếp trong `Design_Evaluation/` báo lỗi `EBADF:
 ```bash
 mkdir %TEMP%\docxstage && cd %TEMP%\docxstage
 npm install docx@^9.7.1
-xcopy /E /I /Y %TEMP%\docxstage\node_modules\docx "G:\My Drive\Google AI Studio\.agents\skills\Design_Evaluation\node_modules\docx"
+xcopy /E /I /Y %TEMP%\docxstage\node_modules\docx "G:\My Drive\Google AI Studio\.agents\.npm\docx"
 ```
+
+**Lưu ý:** Package `docx` hiện được lưu tại `.npm/docx/` (thay vì trong `Design_Evaluation/node_modules/`).
 
 Script `scripts/_require_docx.js` tự phát hiện tình trạng này và in hướng dẫn sửa. Có thể trỏ biến môi trường `DOCX_PATH` tới một bản `docx` đang hoạt động để bỏ qua hoàn toàn.
 

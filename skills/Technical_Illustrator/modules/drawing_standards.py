@@ -15,6 +15,9 @@ Usage:
     DrawingStandards.add_title_block(fig, ...)
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.lines import Line2D

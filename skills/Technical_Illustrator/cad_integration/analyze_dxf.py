@@ -13,6 +13,9 @@ Tác dụng:
 """
 
 import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+import sys
 import os
 
 try:
@@ -120,7 +123,7 @@ def print_analysis(result: dict):
     # Layers
     print(f"\n--- LAYERS ({len(result.get('layers', []))}) ---")
     for layer in result.get('layers', []):
-        print(f"  [{layer['color']:>3}] {layer['name':<20} | {layer['linetype']}")
+        print(f"  [{layer['color']:>3}] {layer['name']:<20} | {layer['linetype']}")
 
     # Blocks
     print(f"\n--- BLOCKS ({len(result.get('blocks', []))}) ---")

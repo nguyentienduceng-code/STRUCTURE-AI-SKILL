@@ -7,6 +7,9 @@ Usage:
     python validate_verification_report.py --input verification_report.json --strict
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import json
 import sys

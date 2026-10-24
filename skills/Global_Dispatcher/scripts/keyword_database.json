@@ -1,0 +1,775 @@
+{
+  "_meta": {
+    "version": "1.1.0",
+    "last_updated": "2026-10-18",
+    "total_keywords": 417,
+    "description": "Keyword database cho Intent Classifier — mapping prompt keywords → skill"
+  },
+  "skills": {
+    "Design_Evaluation": {
+      "skill_id": "DE",
+      "display_name": "Design Evaluation (Quản lý Thiết kế / QLTK)",
+      "entry_points": [
+        "SKILLKC.md",
+        "SKILL_REPORT.md"
+      ],
+      "role": "Đại diện Chủ đầu tư / QLTK — review, thẩm tra, nghiệm thu",
+      "primary_keywords": [
+        "review",
+        "thẩm tra",
+        "thẩm định",
+        "nghiệm thu",
+        "NCR",
+        "tờ trình",
+        "trình duyệt",
+        "lập tờ trình",
+        "bóc tách khối lượng",
+        "bóc khối lượng",
+        "so sánh phương án",
+        "hoàn công",
+        "đối chiếu tiêu chuẩn",
+        "review bản vẽ",
+        "kiểm tra hồ sơ",
+        "QC",
+        "QA",
+        "xuất báo cáo",
+        "soạn báo cáo",
+        "xuất Word",
+        "lập báo cáo",
+        "xuất dự toán",
+        "đánh giá biện pháp thi công",
+        "xử lý NCR",
+        "xử lý sự cố nhẹ"
+      ],
+      "secondary_keywords": [
+        "check thép",
+        "check võng",
+        "kiểm tra TCVN",
+        "đánh giá",
+        "nhận xét",
+        "góp ý",
+        "phản biện",
+        "audit",
+        "inspection",
+        "submission review",
+        "shop drawing review",
+        "as-built",
+        "hồ sơ hoàn thành",
+        "biên bản",
+        "protocol",
+        "checklist",
+        "xuất Excel",
+        "xuất XLSX",
+        "dashboard"
+      ],
+      "regex_patterns": [
+        "review\\s+(dầm|cột|sàn|móng|kết cấu|bản vẽ|hồ sơ)",
+        "kiểm tra\\s+(hồ sơ|thiết kế|bản vẽ|tiêu chuẩn)",
+        "thẩm (tra|định)\\s+",
+        "(lập|soạn|xuất)\\s+(tờ trình|báo cáo|biên bản)",
+        "bóc\\s+(tách\\s+)?khối lượng",
+        "so sánh\\s+(phương án|giải pháp|option)"
+      ],
+      "anti_keywords": [
+        "tính toán thiết kế",
+        "tự tính",
+        "thuyết minh tính toán",
+        "calculation sheet",
+        "tính bu lông",
+        "tính đường hàn"
+      ]
+    },
+    "Structural_Design_Engineer": {
+      "skill_id": "SDE",
+      "display_name": "Structural Design Engineer (Kỹ sư Thiết kế)",
+      "entry_points": [
+        "SKILL_CALC.md",
+        "SKILL_CONNECTION.md",
+        "SKILL_CALC_REPORT.md"
+      ],
+      "role": "Đơn vị thiết kế — tự tính ra tiết diện / cốt thép / bu lông / đường hàn",
+      "primary_keywords": [
+        "thuyết minh tính toán",
+        "calculation sheet",
+        "tính liên kết",
+        "tính bu lông",
+        "tính đường hàn",
+        "tính bản mã",
+        "chiều dài neo",
+        "tính toán kết cấu",
+        "thiết kế kết cấu",
+        "tính cốt thép",
+        "thiết kế dầm",
+        "thiết kế cột",
+        "tính móng cọc",
+        "tính võng nứt",
+        "chi tiết liên kết",
+        "neo cốt thép",
+        "tính tiết diện",
+        "chọn tiết diện",
+        "tính thép"
+      ],
+      "secondary_keywords": [
+        "thép dầm",
+        "thép cột",
+        "thép sàn",
+        "thép móng",
+        "ULS",
+        "SLS",
+        "trạng thái giới hạn",
+        "uốn",
+        "xoắn",
+        "nén",
+        "moment",
+        "lực cắt",
+        "lực dọc",
+        "ổn định tổng thể",
+        "ổn định cục bộ",
+        "LTB",
+        "lateral torsional buckling",
+        "dầm thép",
+        "cột thép",
+        "dầm BTCT",
+        "cột BTCT",
+        "sàn BTCT",
+        "vách BTCT",
+        "steel design",
+        "RC design",
+        "connection design",
+        "bolt design",
+        "weld design"
+      ],
+      "regex_patterns": [
+        "tính\\s+(toán\\s+)?(dầm|cột|sàn|móng|vách|tường|kết cấu)",
+        "thiết kế\\s+(dầm|cột|sàn|móng|vách|liên kết)",
+        "chọn\\s+(tiết diện|thép|cốt thép|bu lông)",
+        "(tính|kiểm tra)\\s+(bu lông|đường hàn|bản mã|neo)",
+        "calculation\\s+sheet",
+        "thuyết minh\\s+tính toán",
+        "tính.*(thép|cốt thép|dầm|cột|sàn|móng|tiết diện)",
+        "(tính|thiết kế)\\s+(giùm|hộ|cho|giúp)?.*(dầm|cột|sàn|móng|thép|cốt thép)"
+      ],
+      "anti_keywords": [
+        "review",
+        "thẩm tra",
+        "tờ trình",
+        "nghiệm thu"
+      ]
+    },
+    "SKILL_PHULUC": {
+      "skill_id": "PL",
+      "display_name": "SKILL_PHULUC (Phụ lục Tính toán)",
+      "entry_points": [
+        "TMTT_FULL.md",
+        "PARTIAL_BE_TONG.md",
+        "PARTIAL_THEP.md"
+      ],
+      "role": "Phụ lục tính toán step-by-step đầy đủ cho thẩm tra",
+      "primary_keywords": [
+        "phụ lục tính toán",
+        "phụ lục kết cấu",
+        "thuyết minh chi tiết",
+        "bảng tính kết cấu",
+        "giải trình kỹ thuật",
+        "báo cáo kỹ thuật đầy đủ",
+        "TMTT",
+        "thuyết minh tính toán đầy đủ",
+        "appendix",
+        "calculation appendix"
+      ],
+      "secondary_keywords": [
+        "step-by-step",
+        "từng bước",
+        "đầy đủ 12 chương",
+        "phụ lục bê tông",
+        "phụ lục thép",
+        "phụ lục dầm",
+        "phụ lục cột"
+      ],
+      "regex_patterns": [
+        "phụ lục\\s+(tính toán|kết cấu|kỹ thuật)",
+        "(lập|tạo|xuất)\\s+phụ lục",
+        "thuyết minh\\s+(chi tiết|đầy đủ|step.by.step)"
+      ],
+      "anti_keywords": []
+    },
+    "Technical_Illustrator": {
+      "skill_id": "TI",
+      "display_name": "Technical Illustrator (Minh họa Kỹ thuật)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Vẽ hình minh họa 2D/3D — CHỈ là skill phụ trợ khi có nội dung tính toán",
+      "primary_keywords": [
+        "vẽ minh họa",
+        "tạo ảnh phương án",
+        "render phối cảnh",
+        "vẽ mặt cắt",
+        "vẽ chi tiết thép",
+        "sơ đồ biện pháp thi công",
+        "trực quan hóa",
+        "visualization",
+        "vẽ bản vẽ",
+        "vẽ 2D",
+        "vẽ 3D",
+        "render 3D",
+        "phối cảnh 3D",
+        "vẽ chi tiết",
+        "chi tiết cấu tạo",
+        "vẽ nút khung"
+      ],
+      "secondary_keywords": [
+        "mặt cắt ngang",
+        "mặt cắt dọc",
+        "hình ảnh minh họa",
+        "biểu đồ",
+        "draw section",
+        "draw detail",
+        "draw foundation",
+        "draw beam",
+        "vẽ đài cọc",
+        "vẽ móng",
+        "vẽ dầm",
+        "DXF",
+        "CAD",
+        "nút khung"
+      ],
+      "regex_patterns": [
+        "vẽ\\s+(mặt cắt|chi tiết|bản vẽ|minh họa|sơ đồ|hình)",
+        "(tạo|xuất|render)\\s+(ảnh|hình|phối cảnh|3D|2D)",
+        "draw\\s+(section|detail|beam|column|foundation)",
+        "vẽ.*(chi tiết|mặt cắt|bản vẽ|minh họa|sơ đồ|hình|cấu tạo|nút khung)",
+        "(vẽ|render|phác thảo)\\s+(giúp|hộ|cho|giùm)?.*(chi tiết|mặt cắt|bản vẽ|nút khung|kết cấu)"
+      ],
+      "anti_keywords": [
+        "tính toán",
+        "review",
+        "thẩm tra"
+      ],
+      "special_rule": "Không bao giờ là skill chính khi yêu cầu có nội dung tính toán — luôn được gọi bởi DE hoặc SDE"
+    },
+    "Cost_Estimator": {
+      "skill_id": "CE",
+      "display_name": "Cost Estimator (Phân tích Chi phí)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "So sánh chi phí, Value Engineering, Embodied Carbon",
+      "primary_keywords": [
+        "value engineering",
+        "VE",
+        "tối ưu chi phí",
+        "so sánh chi phí",
+        "phân tích chi phí",
+        "tối ưu ngân sách",
+        "giảm hàm lượng thép",
+        "CAPEX",
+        "embodied carbon",
+        "ROI phương án",
+        "tính carbon",
+        "carbon footprint",
+        "đơn giá",
+        "dự toán chi phí",
+        "tiết kiệm",
+        "tiết kiệm chi phí"
+      ],
+      "secondary_keywords": [
+        "BOQ",
+        "bill of quantities",
+        "đơn giá vật liệu",
+        "nhân công",
+        "chi phí lãi vay",
+        "tiến độ chi phí",
+        "giảm vật liệu",
+        "tối ưu vật liệu",
+        "LEED",
+        "green building",
+        "so sánh BTCT vs thép",
+        "so sánh phương án chi phí",
+        "schedule impact",
+        "hidden cost"
+      ],
+      "regex_patterns": [
+        "(so sánh|phân tích|tính)\\s+chi phí",
+        "so sánh.*chi phí",
+        "xem.*có tiết kiệm",
+        "value\\s+engineering",
+        "(tối ưu|giảm)\\s+(chi phí|ngân sách|vật liệu|thép)",
+        "embodied\\s+carbon",
+        "(tính|ước tính)\\s+carbon"
+      ],
+      "anti_keywords": []
+    },
+    "SKILL_FORENSIC": {
+      "skill_id": "FOR",
+      "display_name": "SKILL_FORENSIC (Điều tra Sự cố)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Điều tra nguyên nhân sự cố, back-calculation, hypothesis ranking",
+      "primary_keywords": [
+        "sự cố",
+        "sập",
+        "nứt nghiêm trọng",
+        "điều tra nguyên nhân",
+        "NCR nghiêm trọng",
+        "phân tích hư hỏng",
+        "back-calculation",
+        "tính toán ngược",
+        "failure investigation",
+        "collapse",
+        "structural failure",
+        "bị nứt",
+        "vết nứt",
+        "nguyên nhân nứt",
+        "kiểm tra nguyên nhân",
+        "nứt xéo",
+        "nứt cột",
+        "nứt dầm"
+      ],
+      "secondary_keywords": [
+        "vết nứt",
+        "biến dạng",
+        "lún lệch",
+        "nguyên nhân nứt",
+        "nguyên nhân sập",
+        "giả thuyết",
+        "hypothesis",
+        "forensic",
+        "root cause",
+        "remedial",
+        "phương án xử lý sự cố",
+        "thí nghiệm kiểm chứng"
+      ],
+      "regex_patterns": [
+        "(điều tra|phân tích)\\s+(sự cố|hư hỏng|nứt|sập|nguyên nhân)",
+        "back.?calculation",
+        "(nứt|sập|lún)\\s+(nghiêm trọng|bất thường)",
+        "failure\\s+(investigation|analysis|mode)",
+        "(nứt|bị nứt|nứt xéo|nứt dọc|vết nứt)",
+        "(nguyên nhân|tại sao|vì sao).*(nứt|hư hỏng|sự cố|sập)",
+        "(kiểm tra|tìm|xác định|điều tra)\\s+(nguyên nhân)"
+      ],
+      "anti_keywords": []
+    },
+    "SKILL_VERIFY": {
+      "skill_id": "VER",
+      "display_name": "SKILL_VERIFY (Kiểm chứng Chéo & Kiểm soát Xung đột)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Cross-check kết quả, kiểm soát xung đột hồ sơ chéo (CDC-01 đến CDC-08)",
+      "primary_keywords": [
+        "kiểm chứng",
+        "verify",
+        "cross-check",
+        "so sánh kết quả",
+        "kiểm chứng chéo",
+        "phát hiện mâu thuẫn",
+        "sai lệch",
+        "cross verification",
+        "double check",
+        "xung đột hồ sơ",
+        "kiểm soát xung đột",
+        "cross-doc conflict",
+        "CDC",
+        "CDC-01",
+        "CDC-02",
+        "CDC-03",
+        "CDC-04",
+        "CDC-05",
+        "CDC-06",
+        "CDC-07",
+        "CDC-08",
+        "đồ thị sự thật",
+        "project truth graph"
+      ],
+      "secondary_keywords": [
+        "so sánh ETABS",
+        "so sánh SAP2000",
+        "variance",
+        "inconsistency",
+        "kiểm tra nhất quán",
+        "standard conflict",
+        "xung đột tiêu chuẩn",
+        "phiên bản tiêu chuẩn",
+        "lệch cao độ tầng",
+        "lệch lưới trục",
+        "xung đột mác bê tông",
+        "xung đột vật liệu",
+        "cột mồ côi",
+        "tĩnh không dầm",
+        "tĩnh không mep",
+        "mũi cọc địa chất",
+        "giai đoạn hồ sơ không đồng bộ"
+      ],
+      "regex_patterns": [
+        "(kiểm chứng|verify|cross.?check)\\s+",
+        "so sánh\\s+(kết quả|với ETABS|với SAP)",
+        "(sai lệch|mâu thuẫn|xung đột)\\s+(tiêu chuẩn|kết quả|số liệu)",
+        "(xung đột|conflict)\\s+(hồ sơ|tài liệu|bản vẽ|đa nguồn|chéo)",
+        "kiểm soát\\s+(xung đột|hồ sơ)",
+        "(cdc|cdc-\\d{2})\\b",
+        "project.?truth.?graph"
+      ],
+      "anti_keywords": []
+    },
+    "SKILL_RFI": {
+      "skill_id": "RFI",
+      "display_name": "SKILL_RFI (Quản lý Giao dịch Kỹ thuật)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Quản lý RFI, NCR, Submittal, Change Order với các bên",
+      "primary_keywords": [
+        "tạo RFI",
+        "theo dõi RFI",
+        "phản hồi RFI",
+        "RFI quá hạn",
+        "submittal",
+        "change order",
+        "shop drawing",
+        "transmittal",
+        "giao dịch kỹ thuật",
+        "document lifecycle"
+      ],
+      "secondary_keywords": [
+        "nhà thầu",
+        "contractor",
+        "subcontractor",
+        "chủ đầu tư",
+        "owner",
+        "CSHT",
+        "deadline",
+        "theo dõi",
+        "tracking",
+        "leo thang",
+        "escalation",
+        "phản hồi",
+        "response"
+      ],
+      "regex_patterns": [
+        "(tạo|lập|gửi|theo dõi|phản hồi)\\s+(RFI|NCR|submittal|change order)",
+        "RFI\\s+(quá hạn|pending|open|closed)",
+        "(shop|working)\\s+drawing"
+      ],
+      "anti_keywords": []
+    },
+    "SKILL_GEOTECH": {
+      "skill_id": "GEO",
+      "display_name": "SKILL_GEOTECH (Địa kỹ thuật)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Phân tích ĐCCT, tính thông số Plaxis, tương quan SPT/CPT",
+      "primary_keywords": [
+        "thông số đất",
+        "SPT",
+        "CPT",
+        "CPTu",
+        "Plaxis input",
+        "Plaxis",
+        "E50",
+        "Hardening Soil",
+        "Mohr-Coulomb",
+        "tường vây",
+        "EA EI",
+        "ứng suất hữu hiệu",
+        "phân tích địa chất",
+        "ĐCCT",
+        "hố đào sâu",
+        "biện pháp thi công hầm",
+        "Soft Soil Creep",
+        "thông số Plaxis"
+      ],
+      "secondary_keywords": [
+        "địa chất công trình",
+        "khảo sát địa chất",
+        "cừ Larsen",
+        "cừ thép",
+        "diaphragm wall",
+        "base heave",
+        "strut",
+        "waling",
+        "OCR",
+        "K0",
+        "Su",
+        "undrained",
+        "tương quan SPT",
+        "tương quan CPT",
+        "geostatic stress",
+        "effective stress",
+        "pile load test",
+        "Davisson",
+        "Chin-Kondner",
+        "plane strain ratio"
+      ],
+      "regex_patterns": [
+        "(phân tích|khảo sát|số liệu)\\s+(địa chất|ĐCCT|đất)",
+        "(thông số|parameter)\\s+(Plaxis|đất|soil|Mohr|Hardening)",
+        "(SPT|CPT|CPTu)\\s*(→|->|correlation|tương quan)?",
+        "(tường vây|cừ thép|cừ Larsen|diaphragm wall)",
+        "(hố đào|excavation|base heave|strut|waling)",
+        "E50\\s*(ref)?|Eur|Eoed"
+      ],
+      "anti_keywords": []
+    },
+    "SKILL_TEMPWORKS": {
+      "skill_id": "TW",
+      "display_name": "SKILL_TEMPWORKS (Thiết kế Cốp pha & Biện pháp thi công)",
+      "entry_points": [
+        "SKILL.md",
+        "calculators/calc_formwork_slab.py"
+      ],
+      "role": "Thiết kế cốp pha sàn, cây chống, kiểm tra ổn định thi công",
+      "primary_keywords": [
+        "cốp pha",
+        "coffa",
+        "cây chống",
+        "shoring",
+        "bracing",
+        "temporary works",
+        "ván khuôn",
+        "giàn giáo",
+        "scaffolding",
+        "hệ giằng",
+        "cốp pha sàn",
+        "cốp pha dầm",
+        "cốp pha cột",
+        "cốp pha tường",
+        "cây chống đơn",
+        "giáo nêm",
+        "giáo ringlock",
+        "giáo đĩa",
+        "ván ép phủ phim",
+        "xà gồ cốp pha",
+        "đà giáo"
+      ],
+      "secondary_keywords": [
+        "tải trọng thi công",
+        "construction load",
+        "formwork",
+        "propping",
+        "reshoring",
+        "chống phụ",
+        "ổn định thi công",
+        "falsework"
+      ],
+      "regex_patterns": [
+        "(cốp pha|coffa|cây chống|shoring|scaffolding|giàn giáo|ván khuôn)",
+        "temporary\\s+works",
+        "(thiết kế|tính)\\s+(coffa|cốp pha|cây chống|ván khuôn)"
+      ],
+      "anti_keywords": [
+        "thuyết minh tính toán kết cấu",
+        "thiết kế kết cấu vĩnh cửu",
+        "tính cốt thép dầm",
+        "tính cốt thép cột",
+        "mô hình ETABS",
+        "thẩm tra thiết kế cơ sở"
+      ],
+      "is_placeholder": false
+    },
+    "Project_Manager": {
+      "skill_id": "PM",
+      "display_name": "Project Manager (Quản lý Dự án) [PLACEHOLDER]",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Quản lý vòng đời dự án, lộ trình pháp lý, ĐTM, PCCC",
+      "primary_keywords": [
+        "lập tiến độ",
+        "quản lý rủi ro",
+        "tài liệu pháp lý",
+        "milestone",
+        "Gantt chart",
+        "tiến độ thi công",
+        "ĐTM",
+        "đánh giá tác động môi trường",
+        "PCCC",
+        "phòng cháy chữa cháy"
+      ],
+      "secondary_keywords": [
+        "risk register",
+        "risk matrix",
+        "WBS",
+        "critical path",
+        "stakeholder",
+        "project timeline"
+      ],
+      "regex_patterns": [
+        "(lập|quản lý)\\s+(tiến độ|rủi ro|dự án)",
+        "(ĐTM|PCCC|phòng cháy)",
+        "milestone|Gantt|WBS|critical path"
+      ],
+      "anti_keywords": [],
+      "is_placeholder": true
+    },
+    "SKILL_BIM_COORDINATION": {
+      "skill_id": "BIM",
+      "display_name": "SKILL_BIM_COORDINATION (BIM) [PLACEHOLDER]",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "role": "Clash detection giữa KC và MEP, IFC analysis",
+      "primary_keywords": [
+        "clash detection",
+        "BIM review",
+        "IFC analysis",
+        "xung đột kỹ thuật",
+        "BIM coordination",
+        "model review"
+      ],
+      "secondary_keywords": [
+        "IFC",
+        "Revit",
+        "Navisworks",
+        "MEP clash",
+        "structural clash",
+        "coordination report"
+      ],
+      "regex_patterns": [
+        "clash\\s+detection",
+        "BIM\\s+(review|coordination|model)",
+        "IFC\\s+(analysis|review|check)"
+      ],
+      "anti_keywords": [],
+      "is_placeholder": true
+    }
+  },
+  "tie_breakers": {
+    "description": "Khi 2+ skills cùng match, áp dụng tie-breaker rules theo thứ tự ưu tiên",
+    "rules": [
+      {
+        "rule_id": "TB-01",
+        "condition": "SDE_keywords_present AND NOT DE_keywords_present",
+        "winner": "Structural_Design_Engineer",
+        "reason": "Có keyword tính toán thiết kế, không có keyword review/thẩm tra"
+      },
+      {
+        "rule_id": "TB-02",
+        "condition": "DE_keywords_present AND NOT SDE_keywords_present",
+        "winner": "Design_Evaluation",
+        "reason": "Có keyword review/thẩm tra, không có keyword tính toán thiết kế"
+      },
+      {
+        "rule_id": "TB-03",
+        "condition": "SDE_keywords_present AND DE_keywords_present",
+        "winner": "PIPELINE:SDE→DE",
+        "reason": "Cả tính toán và review → chạy nối tiếp: tính trước, review sau"
+      },
+      {
+        "rule_id": "TB-04",
+        "condition": "GEO_keywords_present",
+        "winner": "SKILL_GEOTECH",
+        "reason": "Keyword địa kỹ thuật luôn thắng tuyệt đối"
+      },
+      {
+        "rule_id": "TB-05",
+        "condition": "TI_only AND has_calculation_context",
+        "winner": "DELEGATE_TO_PRIMARY",
+        "reason": "Technical_Illustrator không bao giờ là skill chính khi có nội dung tính toán"
+      },
+      {
+        "rule_id": "TB-06",
+        "condition": "TW_keywords_present",
+        "winner": "SKILL_TEMPWORKS",
+        "reason": "Keyword cốp pha, ván khuôn, cây chống, temporary works luôn thắng tuyệt đối"
+      }
+    ]
+  },
+  "pipeline_templates": {
+    "design_then_review": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Design_Evaluation"
+      ],
+      "trigger_keywords": [
+        "tính rồi review",
+        "tính lại rồi lập tờ trình",
+        "thiết kế xong báo cáo",
+        "rồi lập tờ trình",
+        "rồi trình duyệt",
+        "rồi thẩm tra",
+        "rồi review",
+        "tính.*rồi.*(lập tờ trình|trình duyệt|báo cáo|review)"
+      ],
+      "description": "Tính toán thiết kế → Review Gate → Xuất báo cáo"
+    },
+    "design_then_draw": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Technical_Illustrator"
+      ],
+      "trigger_keywords": [
+        "tính rồi vẽ",
+        "tính.*rồi vẽ",
+        "rồi vẽ mặt cắt",
+        "rồi vẽ chi tiết",
+        "rồi vẽ",
+        "thiết kế xong vẽ",
+        "tính.*rồi.*vẽ"
+      ],
+      "description": "Tính toán thiết kế → Vẽ hình minh họa 2D"
+    },
+    "geotech_then_design": {
+      "skills": [
+        "SKILL_GEOTECH",
+        "Structural_Design_Engineer"
+      ],
+      "trigger_keywords": [
+        "phân tích đất rồi thiết kế móng",
+        "SPT xong tính móng"
+      ],
+      "description": "Phân tích địa chất → Thiết kế móng/cọc"
+    },
+    "design_then_cost": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "thiết kế xong tính chi phí",
+        "tính rồi so sánh chi phí"
+      ],
+      "description": "Thiết kế → Phân tích chi phí / VE"
+    },
+    "full_review_pipeline": {
+      "skills": [
+        "Design_Evaluation",
+        "SKILL_VERIFY",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "review toàn diện",
+        "thẩm tra đầy đủ",
+        "full audit"
+      ],
+      "description": "Review → Kiểm chứng → Phân tích chi phí"
+    },
+    "design_then_tempworks": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "SKILL_TEMPWORKS"
+      ],
+      "trigger_keywords": [
+        "tính sàn rồi tính cốp pha",
+        "thiết kế xong tính ván khuôn",
+        "tính sàn xong tính coffa"
+      ],
+      "description": "Thiết kế kết cấu sàn → Thiết kế hệ cốp pha & cây chống"
+    },
+    "tempworks_then_cost": {
+      "skills": [
+        "SKILL_TEMPWORKS",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "tính cốp pha rồi tính chi phí",
+        "tính coffa xong dự toán",
+        "dự toán cốp pha"
+      ],
+      "description": "Thiết kế cốp pha → Dự toán chi phí ván khuôn & cây chống"
+    }
+  }
+}

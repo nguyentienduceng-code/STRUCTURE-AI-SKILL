@@ -1,15 +1,15 @@
 ---
 name: SKILL_GEOTECH
-version: 3.0.0
-last_updated: 2026-09-19
-description: "Kỹ sư Địa kỹ thuật AI: Phân tích số liệu khảo sát ĐCCT, quy đổi thông số Plaxis. Kiểm tra Base Heave, Strut, Waling Beam. Tích hợp Module 17 quy đổi tải trọng từ Plaxis sang ETABS, Module 18 định dạng bảng ETABS Design Summary. Tự động sinh TMTT BPTC đầy đủ 6 Chương + Phụ lục A bắt buộc. Cung cấp bộ thông số Cừ thép chuẩn JIS A 5528."
+version: 3.1.0
+last_updated: 2026-10-21
+description: "Kỹ sư Địa kỹ thuật AI: Đánh giá mạng lưới Khảo sát ĐCCT theo TCVN 9363:2012 & TCVN 4419:1987, phân cấp công trình theo TT 34/2026/TT-BXD & QCVN 03:2022/BXD, đánh giá ăn mòn nước ngầm theo TCVN 12041:2017 & TCVN 9346:2012, quy đổi thông số Plaxis, kiểm tra Base Heave, Strut, Waling Beam. Tích hợp Module 17 quy đổi tải trọng Plaxis sang ETABS, Module 18 định dạng bảng ETABS Design Summary."
 ---
 
-# SKILL_GEOTECH v3.0.0 — Phân tích Địa chất & Thiết kế BPTC (Full TMTT Automation)
+# SKILL_GEOTECH v3.1.0 — Phân tích Địa chất, Đánh giá KSĐC & Thiết kế BPTC (Full TMTT Automation)
 
 ## ⚠ ĐỌC TRƯỚC: Đây có đúng là skill cần dùng không?
 
-Skill này đóng vai **Kỹ sư Địa kỹ thuật** — xử lý số liệu thô từ khảo sát ĐCCT và quy đổi thành thông số đầu vào cho phần mềm mô phỏng Plaxis.
+Skill này đóng vai **Kỹ sư Địa kỹ thuật** — đánh giá hồ sơ Khảo sát địa chất công trình (KSĐC) theo tiêu chuẩn quốc gia và xử lý số liệu thô từ khảo sát ĐCCT thành thông số đầu vào cho phần mềm mô phỏng Plaxis / SAFE / ETABS.
 
 **Nếu User muốn:**
 - REVIEW hồ sơ BPTC, lập tờ trình → dùng `Design_Evaluation`
@@ -22,22 +22,91 @@ Bảng phân xử đầy đủ: `../AGENTS.md` mục 0.
 
 ## Tổng quan
 
-**SKILL_GEOTECH v2.3.0** tự động hóa toàn bộ quy trình chuyển đổi từ số liệu thí nghiệm sang **thông số đầu vào trực tiếp cho Plaxis**, bao gồm:
+**SKILL_GEOTECH v3.1.0** tự động hóa toàn bộ quy trình đánh giá KSĐC và chuyển đổi số liệu thí nghiệm sang **thông số đầu vào trực tiếp cho Plaxis**:
 
-1. Xử lý dữ liệu thô SPT/CPT/CPTu từ báo cáo khảo sát ĐCCT.
-2. Tính ứng suất hữu hiệu, K0 (kể cả đất quá cố kết OCR) theo Mayne & Kulhawy.
-3. **Tương quan E50 tối ưu:**
+1. **Đánh giá Hồ sơ Khảo sát Địa chất (KSĐC) & Phân cấp Công trình (MỚI v3.1):**
+   - Phân cấp công trình xây dựng theo **Thông tư 34/2026/TT-BXD** (hiệu lực 01/07/2026, đối chiếu chuyển tiếp **Thông tư 06/2021/TT-BXD**) và phân cấp phục vụ thiết kế (Cấp hậu quả `C1, C2, C3`, Thời hạn sử dụng `Mức 1–4`) theo **QCVN 03:2022/BXD** & **TCVN 2737:2023 (Bảng H.1)**.
+   - Xác định Cấp phức tạp điều kiện địa chất công trình (`Cấp I, II, III`) theo **Điều 3.5 & Phụ lục 2 TCVN 4419:1987**.
+   - Kiểm tra mật độ, khoảng cách, chiều sâu hố khoan và tỷ lệ hố khoan khống chế ($\ge 1/3$) theo **TCVN 9363:2012** (Bước TKCS: Điều 5.2.4.2 & Phụ lục C; Bước TKKT: Điều 5.3.6, Phụ lục D & Bảng D.1).
+   - Đánh giá mức độ ăn mòn hóa học của nước ngầm đối với bê tông và BTCT theo **TCVN 12041:2017** và **TCVN 9346:2012** *(thay thế TCVN 3994:1985 đã hết hiệu lực)*.
+2. Xử lý dữ liệu thô SPT/CPT/CPTu từ báo cáo khảo sát ĐCCT.
+3. Tính ứng suất hữu hiệu, K0 (kể cả đất quá cố kết OCR) theo Mayne & Kulhawy.
+4. **Tương quan E50 tối ưu:**
    - Đất dính: `E50 = Ke × Su` (Ke theo Ip, nguồn Jamiolkowski/CIRIA C760)
    - Đất rời: `E50 = α × N_SPT` (Bowles 1997/CIRIA C760)
-4. Xuất thông số cho mô hình Mohr-Coulomb, Hardening Soil, và Soft Soil Creep.
-5. **Kiểm tra ổn định đáy hố đào (Base Heave)** theo Terzaghi với bước tính số cụ thể.
-6. **Kiểm tra ổn định thanh chống (Strut Buckling)** với Lambda, Phi, N_Rd.
-7. Quy đổi kết cấu chắn giữ (có xét Stiffness Degradation).
-8. Kiểm chứng Ground Truth với bảng so sánh % deviance.
-9. Kiểm chứng giới hạn chuyển vị (SLS - Clough & O'Rourke).
-10. Phân tích sức chịu tải cọc (Davisson, Chin-Kondner).
+5. Xuất thông số cho mô hình Mohr-Coulomb, Hardening Soil, và Soft Soil Creep.
+6. **Kiểm tra ổn định đáy hố đào (Base Heave)** theo Terzaghi + Bjerrum-Eide với bước tính số cụ thể.
+7. **Kiểm tra ổn định thanh chống (Strut Buckling)** với Lambda, Phi, N_Rd.
+8. Quy đổi kết cấu chắn giữ (có xét Stiffness Degradation).
+9. Kiểm chứng Ground Truth với bảng so sánh % deviance.
+10. Kiểm chứng giới hạn chuyển vị (SLS - Clough & O'Rourke).
+11. Phân tích sức chịu tải cọc (Davisson, Chin-Kondner).
 
-**Tiêu chuẩn:** TCVN 9351:2012, Eurocode 7, CIRIA C760, ASTM D1143, TCVN 5575:2018.
+**Tiêu chuẩn áp dụng chuẩn xác:**
+- **Thông tư 34/2026/TT-BXD** (hiệu lực 01/07/2026, thay thế TT 06/2021/TT-BXD & TT 02/2025/TT-BXD) — Quy định chi tiết về cấp công trình xây dựng
+- **QCVN 03:2022/BXD** — Phân cấp công trình phục vụ thiết kế xây dựng (Cấp hậu quả C1–C3, Thời hạn sử dụng Mức 1–4)
+- **TCVN 9363:2012** — Khảo sát cho xây dựng – Khảo sát địa kỹ thuật cho nhà cao tầng
+- **TCVN 4419:1987** — Khảo sát cho xây dựng – Nguyên tắc cơ bản
+- **TCVN 9351:2022** (thay thế TCVN 9351:2012) — Đất xây dựng – Phương pháp thí nghiệm hiện trường – Thí nghiệm xuyên tiêu chuẩn (SPT)
+- **TCVN 12041:2017 & TCVN 9346:2012** (thay thế TCVN 3994:1985) — Bảo vệ chống ăn mòn cho kết cấu bê tông và BTCT
+- **TCVN 9362:2012, TCVN 10304:2025, TCVN 2737:2023, TCVN 5574:2018, TCVN 5575:2024, Eurocode 7, CIRIA C760**
+
+---
+
+## QUY CHUẨN BẮT BUỘC KHI ĐÁNH GIÁ HỒ SƠ KSĐC & PHÂN CẤP CÔNG TRÌNH (MỚI v3.1.0)
+
+> **CẢNH BÁO CHỐNG SAI LỆCH PHÁP LÝ:** Mọi báo cáo đánh giá KSĐC, đề cương khảo sát bổ sung và thuyết minh địa kỹ thuật BẮT BUỘC tuân thủ chính xác các điều khoản và con số dưới đây (nghiêm cấm tự suy diễn tên bảng/điều khoản):
+
+### A. Phân cấp Công trình Xây dựng & Cấp Hậu quả Thiết kế
+1. **Cấp công trình phục vụ quản lý hoạt động xây dựng (`Thông tư 34/2026/TT-BXD` & `Thông tư 06/2021/TT-BXD`)**:
+   - Tra theo **Phụ lục I** (quy mô công suất/tầm quan trọng) và **Bảng 2 Phụ lục II** (quy mô kết cấu — **Phụ lục II chỉ có Bảng 2**, tuyệt đối không ghi *"Bảng 1 Phụ lục II"*).
+   - Đối với **Nhà, Kết cấu dạng nhà (Mục 2.1.1 Bảng 2 Phụ lục II)**:
+     - **a) Chiều cao (m)**: Đặc biệt `> H*` (`150m` hoặc `200m`) | Cấp I `> 75 ÷ H*` | Cấp II `> 28 ÷ 75` | Cấp III `> 6 ÷ 28` | Cấp IV `≤ 6`.
+     - **b) Số tầng cao**: Đặc biệt `> 50` | Cấp I `25 ÷ 50` | Cấp II `8 ÷ 24` | Cấp III `2 ÷ 7` | Cấp IV `1`.
+     - **c) Tổng diện tích sàn GFA (nghìn m²)**: Cấp I **`> 30`** (`> 30,000 m²`, **không phải ngưỡng 100,000 m²**) | Cấp II `> 10 ÷ 30` | Cấp III `1 ÷ 10` | Cấp IV `< 1`.
+     - **d) Nhịp kết cấu lớn nhất (m)**: Đặc biệt `> 200` | Cấp I `100 ÷ 200` | Cấp II `50 ÷ < 100` | Cấp III `15 ÷ < 50` | Cấp IV `< 15`.
+     - **đ) Độ sâu ngầm (m)** *(tính từ cốt mặt đất đặt công trình tới **mặt trên của sàn tầng hầm sâu nhất**, theo điểm k Ghi chú Bảng 2 Phụ lục II)*: Cấp I `> 18` | Cấp II **`6 ÷ 18`** | Cấp III `< 6` *(Lưu ý: Tuyệt đối không trích dẫn nhầm sang Bảng 1.2 Phụ lục I vì Bảng 1.2 là Công trình sản xuất công nghiệp)*.
+     - **e) Số tầng ngầm**: Cấp I `≥ 5` | Cấp II `2 ÷ 4` | Cấp III `1`.
+2. **Phân cấp phục vụ thiết kế xây dựng (`QCVN 03:2022/BXD` & `TCVN 2737:2023`)**:
+   - **Cấp hậu quả (`C1` thấp, `C2` trung bình, `C3` cao)**: Quy định tại **Mục 2.1 và Phụ lục A QCVN 03:2022/BXD** (không có *"Bảng 1.1 QCVN 03:2022/BXD"*) và **Bảng H.1 Phụ lục H TCVN 2737:2023** ($\gamma_n = 0.87$ cho C1; $1.00$ cho C2; $1.15$ cho C3). Tuyệt đối dùng ký hiệu **`C1, C2, C3`**, không dùng `CC1, CC2, CC3` (ký hiệu của Eurocode). Trung tâm thương mại có tổng diện tích sàn kinh doanh `> 30,000 m²` thuộc cấp **`C3`** theo **Mục A.1.1.3 Phụ lục A QCVN 03:2022/BXD**.
+   - **Thời hạn sử dụng theo thiết kế (Tuổi thọ thiết kế)**: Quy định tại **Mục 2.2.2 Bảng 1 QCVN 03:2022/BXD**:
+     - **Mức 1 (`< 25 năm`)**: Công trình tạm (Mục A.2 Phụ lục A).
+     - **Mức 2 (`≥ 25 năm`)**: Công trình chịu tác động trực tiếp của môi trường xâm thực mạnh (hóa chất, biển).
+     - **Mức 3 (`≥ 50 năm`)**: **Các công trình dân dụng, công nghiệp, hạ tầng kỹ thuật thông thường** (không thuộc Mức 1, 2, 4).
+     - **Mức 4 (`≥ 100 năm`)**: Chỉ bắt buộc đối với nhà và công trình độc đáo, có giá trị kiến trúc hoặc mang ý nghĩa biểu tượng quan trọng (Bảo tàng quốc gia, sân vận động quốc gia/quốc tế, nhà hát quốc gia, công trình điểm nhấn đặc biệt...) hoặc khi Chủ đầu tư quy định riêng trong Nhiệm vụ thiết kế.
+
+### B. Tiêu chuẩn Khảo sát Địa kỹ thuật (`TCVN 9363:2012` & `TCVN 4419:1987`)
+1. **Tên chuẩn của `TCVN 9363:2012`**: *"Khảo sát cho xây dựng – Khảo sát địa kỹ thuật cho nhà cao tầng"* (không có cụm từ *"và công trình ngầm"*).
+2. **Cấp mức độ phức tạp điều kiện địa chất công trình (`Cấp I` - Đơn giản, `Cấp II` - Trung bình, `Cấp III` - Phức tạp)**:
+   - Quy định tại **Điều 3.5 và Phụ lục 2 `TCVN 4419:1987`**, được dẫn chiếu tại **Chú thích Điều 5.2.4.1 `TCVN 9363:2012`** (không phải Điều 4.2 TCVN 9363:2012 — Điều 4.2 chỉ quy định các giai đoạn khảo sát).
+   - Nguyên tắc bố trí điểm thăm dò theo các trục chính hoặc chu vi công trình ở bước TKKT/BVTC nằm tại **Điều 3.19 `TCVN 4419:1987`** (không phải Điều 3.4 & Bảng 2).
+3. **Quy định mạng lưới, khoảng cách và chiều sâu hố khoan theo `TCVN 9363:2012`**:
+   - **Giai đoạn Thiết kế cơ sở (TKCS)**:
+     - **Khoảng cách điểm khảo sát (Điều 5.2.4.2)**: Thường dao động từ **`50 m đến 200 m`** (không phải khống chế cứng `50m – 100m`, và không có *"Bảng 1"* trong TCVN 9363:2012).
+     - **Chiều sâu điểm thăm dò (Điều 5.2.5 & Phụ lục C)**: Với điều kiện địa chất phức tạp, công trình quan trọng quy mô lớn (**Mục C.1**): nếu gặp đất yếu phải khoan qua đất yếu, **1/2 số điểm khoan vào đất tốt ít nhất 3 m ($N_{SPT} > 30$)**; mỗi hạng mục/đơn nguyên có ít nhất 1 hố khoan khống chế.
+   - **Giai đoạn Thiết kế kỹ thuật (TKKT)**:
+     - **Khoảng cách điểm thăm dò (Điều 5.3.6, Phụ lục D & Bảng D.1)**:
+       - **Mục D.1 Phụ lục D** (Điều kiện địa chất phức tạp - Cấp III, công trình quan trọng nhạy cảm lún/lún lệch): Khoảng cách khoan thông thường từ **`20 m đến 30 m`**; có thể bổ sung xuyên tĩnh cách nhau trung bình `10 m`; trường hợp đặc biệt khoanh vùng đất yếu/karst có thể `< 20 m`; tối thiểu 3 điểm cho 1 nhà riêng rẽ và 3–5 điểm cho 1 cụm công trình.
+       - **Bảng D.1 Phụ lục D**: Với điều kiện địa chất Cấp III, lưới khoan là **`30m × 30m`** (nhà dưới 9 tầng hoặc dưới 16 tầng tải cột $\le 2,000\text{ T}$, tối thiểu 3–4 hố/nhà) hoặc **`20m × 20m`** (nhà 16–28 tầng hoặc công trình có tải cột khung $> 2,000\text{ T}$, tối thiểu 5 hố/nhà).
+     - **Tỷ lệ hố khoan khống chế bắt buộc (Điều 5.3.6.3)**: Số lượng điểm khảo sát khống chế **không được ít hơn 1/3 (`33.3%`)** tổng số điểm khảo sát! *(Khi lập đề cương khoan bổ sung bước TKKT, bắt buộc kiểm tra: $\text{Tổng số hố khống chế (cũ + mới)} \ge \frac{1}{3} \times \text{Tổng số hố khảo sát (cũ + mới)}$)*.
+     - **Tỷ lệ điểm khoan lấy mẫu và thí nghiệm hiện trường (Điều 5.3.6.4)**: Không ít hơn **2/3 (`66.7%`)** tổng số điểm khảo sát.
+     - **Chiều sâu và phạm vi khảo sát cho hố đào sâu (Điều 5.3.7.6)**: Độ sâu thăm dò lấy từ **`2 đến 3 lần` chiều sâu hố đào**; phạm vi mặt bằng khảo sát rộng hơn phạm vi hố đào từ `2 đến 3 lần` chiều sâu hố đào.
+4. **Đánh giá tính ăn mòn / xâm thực của nước ngầm đối với bê tông và BTCT**:
+   - Bắt buộc viện dẫn **`TCVN 12041:2017`** (*Kết cấu bê tông và bê tông cốt thép - Yêu cầu chung về thiết kế độ bền lâu và tuổi thọ trong môi trường xâm thực*) và **`TCVN 9346:2012`** *(thay thế hoàn toàn `TCVN 3994:1985` đã hết hiệu lực)*.
+
+---
+
+## Khi Cần Protocol Chi Tiết — Lazy Load
+
+| Nhu cầu | File cần đọc |
+|---------|-------------|
+| Công thức gốc, bảng Ke/α, tương quan SPT & chuẩn KSĐC TCVN 9363:2012 | `references/GEOTECH_GUIDE.md` |
+| Hướng dẫn nhập liệu Plaxis chi tiết | `references/PLAXIS_MODEL_GUIDE.md` |
+| Template TMTT BPTC chuẩn | `references/THUYET_MINH_TEMPLATE.md` |
+| Hướng dẫn mô hình ETABS cho hệ Shoring | `references/ETABS_SHORING_GUIDE.md` |
+| Phụ lục giải trình từng bước | `SKILL_SOIL_PARAMS.md` |
+
+---
 
 | Module | File | Chức năng |
 |--------|------|-----------|
@@ -53,223 +122,15 @@ Bảng phân xử đầy đủ: `../AGENTS.md` mục 0.
 | **MODULE 10** | `SKILL_SOIL_PARAMS.md` | Phụ lục giải trình từng bước — Template đầy đủ theo Rule 7.1 |
 | **MODULE 11** | `calc_base_heave.py` | Kiểm tra ổn định đáy hố đào (Terzaghi + Bjerrum-Eide) |
 | **MODULE 12** | `calc_strut_capacity.py` | Kiểm tra ổn định thanh chống thẳng (Lambda, Phi, N_Rd) |
-| **MODULE 12b** | `calc_waling_beam_capacity.py` | **MỚI v2.4:** Kiểm tra khả năng chịu uốn Dầm bo (Waling Beam) — nhịp tự do, M_max, η, L_max_safe |
-| **MODULE 13** | `assess_excavation_geometry.py` | **MỚI v2.4:** Phân tích hình học mặt bằng hố đào — xác định cạnh nguy hiểm nhất, tính nhịp tự do từng cạnh, hình học thanh chống góc |
-| **MODULE 15** | `calc_corner_brace.py` | **MỚI v2.4:** Tính toán hệ chống góc xiên (Corner Brace/Raking Strut) — chiều dài, góc, phân giải lực, kiểm tra buckling |
-| **MODULE 16** | `calc_plaxis_model_geometry.py` | **MỚI v2.4:** Tính toán kích thước mô hình Plaxis (Bounding Box, ảnh hưởng biên CIRIA C760) |
-| **MODULE 17** | `plaxis_to_etabs_handoff.py` | **MỚI v2.5:** Quy đổi nội lực từ Plaxis sang tải phân bố $q$ (kN/m) cho ETABS. Hướng dẫn thiết lập ETABS Shoring |
-| **MODULE 18** | `format_etabs_output.py` | **MỚI v3.0:** Định dạng bảng ETABS Design Summary → Markdown/Word cẩn đẹ, tô màu Ratio, kết luận tự động |
+| **MODULE 12b** | `calc_waling_beam_capacity.py` | Kiểm tra khả năng chịu uốn Dầm bo (Waling Beam) — nhịp tự do, M_max, η, L_max_safe |
+| **MODULE 13** | `assess_excavation_geometry.py` | Phân tích hình học mặt bằng hố đào — xác định cạnh nguy hiểm nhất, tính nhịp tự do từng cạnh |
+| **MODULE 15** | `calc_corner_brace.py` | Tính toán hệ chống góc xiên (Corner Brace/Raking Strut) |
+| **MODULE 16** | `calc_plaxis_model_geometry.py` | Tính toán kích thước mô hình Plaxis (Bounding Box, ảnh hưởng biên CIRIA C760) |
+| **MODULE 17** | `plaxis_to_etabs_handoff.py` | Quy đổi nội lực từ Plaxis sang tải phân bố $q$ (kN/m) cho ETABS |
+| **MODULE 18** | `format_etabs_output.py` | Định dạng bảng ETABS Design Summary → Markdown/Word |
 | **VERIFY 1** | `verify_against_ground_truth.py` | So sánh E50 với Ground Truth, cảnh báo W001 |
 | **VERIFY 2** | `verify_serviceability_limits.py` | Kiểm tra chuyển vị ngang hố đào (SLS - Clough & O'Rourke) |
-| **EXPORT** | `export_geotech_report.py` | Xuất Thuyết minh (MD) + Bảng tính Plaxis (XLSX 12 sheets với Sheet 12 Phụ lục) |
-
----
-
-## Quy tắc Điều phối (Dispatcher Logic)
-
-### → Kích hoạt MODULE 5 + MODULE 1 + MODULE 2/3 (Full Pipeline) khi:
-- User cung cấp bảng số liệu SPT đầy đủ từ hố khoan và muốn ra "bộ thông số Plaxis".
-- Keywords: *phân tích địa chất, thông số đất cho Plaxis, input Plaxis, tương quan SPT*
-
-### → Kích hoạt MODULE 11 (Base Heave) khi:
-- User cần kiểm tra ổn định đáy hố đào.
-- Keywords: *Base Heave, ổn định đáy hố, Terzaghi, Fs đáy hố*
-
-### → Kích hoạt MODULE 12 (Strut Capacity) khi:
-- User cần kiểm tra khả năng chịu lực thanh chống.
-- Keywords: *Strut, thanh chống, buckling, N_Rd, lambda, kiểm tra ổn định*
-
-### → Kích hoạt MODULE 6 khi:
-- User có dữ liệu CPT (qc, fs theo chiều sâu).
-- Keywords: *CPT, xuyên tĩnh, cone penetration, qc, fs*
-
-### → Kích hoạt MODULE 12b (Waling Beam Check) khi:
-- User hỏi về khả năng chịu lực dầm bo, nhịp dầm bo, waling beam gãy.
-- Keywords: *dầm bo, waling beam, nhịp tự do dầm bo, M dầm bo, dầm bo gãy, I200 gãy*
-
-### → Kích hoạt MODULE 13 (Geometry Assessment) — BẮT BUỘC KHI DỰ ÁN MỚI:
-- Trigger tự động: Ngay khi User cung cấp kích thước hố đào (L × W) và mô tả các cạnh.
-- Keywords: *mặt bằng hố đào, các cạnh hố đào, vách hiện hữu, giáp ranh, sát tòa nhà*
-- **Bắt buộc chạy trước MODULE 12 và 12b.**
-
-### → Kích hoạt MODULE 15 (Corner Brace) khi:
-- User hỏi về thanh chống góc xiên, raking strut, mở rộng góc chống.
-- Keywords: *chống góc, corner brace, raking strut, thanh xiên, góc chống, chiều dài thanh chống góc*
-
-### → Kích hoạt MODULE 17 (ETABS Handoff) khi:
-- User hỏi cách mô hình ETABS cho dầm bo, thanh chống, hỏi cách chuyển lực từ Plaxis sang ETABS, hoặc cách gán liên kết ngàm/khớp trong ETABS.
-- Keywords: *ETABS, gán tải ETABS, chuyển Plaxis sang ETABS, khóa liên kết, release ETABS, ngàm khớp thanh chống*
-
-### → Kích hoạt MODULE 18 (ETABS Design Summary Format) khi:
-- User cần xuất bảng kết quả Design Summary từ ETABS ra báo cáo, hoặc dán bảng ETABS vào TMTT.
-- Keywords: *bảng ETABS, Design Summary, PMM Ratio, D/C Ratio, kết quả kiểm tra thép ETABS*
-
-### → Kích hoạt ADJACENT STRUCTURE PROTOCOL (Giao thức Công trình Lân cận) khi:
-- Có vách, móng, cọc hiện hữu trong phạm vi 2H từ mép hố đào.
-- Keywords: *sát tòa nhà, giáp ranh, vách hiện hữu, móng cọc lân cận, lún nhà bên cạnh, không ép được cừ*
-- Quy trình bắt buộc:
-  1. Chạy MODULE 13 (Geometry Assessment) — xác định cạnh nào bị ảnh hưởng.
-  2. Kiểm tra setback distance: Nếu khoảng cách < H (chiều sâu hố đào) → cảnh báo Zone of Influence.
-  3. Đánh giá từng cạnh: Vách bê tông hiện hữu → loại bỏ ngay rủi ro cạnh đó. Cọc/đài hiện hữu → cảnh báo không ép cừ được, đề xuất biện pháp thay thế.
-
-### → Full Pipeline (khi User cung cấp báo cáo ĐCCT đầy đủ):
-```
-Input ĐCCT + Kích thước hố đào
-  → MODULE 13 (Geometry Assessment — BẮT BUỘC ĐẦU TIÊN)
-  → MODULE 5 (tương quan SPT với Ke×Su / α×N)
-  → Ground Truth Verification (Check W001)
-  → MODULE 1 (ứng suất ranh giới lớp)
-  → MODULE 11 (Base Heave check)
-  → MODULE 2 hoặc 3 (thông số đất)
-  → MODULE 4 (kết cấu)
-  → MODULE 12 (Strut capacity — chống thẳng)
-  → MODULE 12b (Waling Beam — SONG SONG với MODULE 12)
-  → MODULE 15 (Corner Brace — nếu có hệ chống góc)
-  → JSON Output → Review Gate → Bảng tổng hợp
-```
-
----
-
-## Cấu trúc Thư mục
-
-```
-SKILL_GEOTECH/
-├── SKILL.md                              ← BẠN ĐANG Ở ĐÂY (Entry Point)
-├── SKILL_SOIL_PARAMS.md                  ← Quy trình tính thông số đất + PHỤ LỤC GIẢI TRÌNH (Section 6)
-├── references/
-│   ├── GEOTECH_GUIDE.md                 ← Công thức gốc, bảng Ke/α, nguồn tham khảo (v2.3 mở rộng)
-│   ├── PLAXIS_MODEL_GUIDE.md            ← Hướng dẫn nhập liệu Plaxis chi tiết
-│   └── THUYET_MINH_TEMPLATE.md          ← Template Thuyết minh BPTC (8 mục)
-├── scripts/
-│   ├── calc_geostatic_stress.py           ← MODULE 1: Ứng suất hữu hiệu + boundary stress
-│   ├── calc_soil_params_mc.py            ← MODULE 2: Mohr-Coulomb params
-│   ├── calc_soil_params_hs.py             ← MODULE 3: Hardening Soil params
-│   ├── calc_structural_elements.py         ← MODULE 4: DW/Cừ/Strut (v2.5: Thư viện Cừ JIS A 5528)
-│   ├── calc_spt_correlations.py           ← MODULE 5: SPT correlations
-│   ├── calc_cpt_interpretation.py        ← MODULE 6: CPT interpretation
-│   ├── calc_soil_params_ssc.py            ← MODULE 7: Soft Soil Creep params
-│   ├── calc_pile_load_test.py             ← MODULE 8: Pile load test analysis
-│   ├── calc_psr.py                        ← MODULE 9: Plane Strain Ratio
-│   ├── calc_base_heave.py                 ← MODULE 11: Base Heave check
-│   ├── calc_strut_capacity.py             ← MODULE 12: Strut buckling
-│   ├── calc_waling_beam_capacity.py       ← MODULE 12b: Waling Beam uốn ngang
-│   ├── assess_excavation_geometry.py      ← MODULE 13: Geometry Assessment
-│   ├── calc_corner_brace.py               ← MODULE 15: Corner Brace
-│   ├── plaxis_to_etabs_handoff.py         ← MODULE 17: ETABS Handoff
-│   ├── format_etabs_output.py            ← MODULE 18: ETABS Design Summary Format [MỚI v3.0]
-│   ├── verify_against_ground_truth.py      ← VERIFY 1: Ground Truth check
-│   ├── verify_serviceability_limits.py        ← VERIFY 2: SLS check
-│   └── export_geotech_report.py            ← EXPORT v2.3: 12 sheets Excel + Markdown
-└── data/
-    └── ground_truth_db.json               ← DB dữ liệu thực từ hồ sơ TMTT
-```
-
----
-
-## Quy tắc Kỹ thuật Bắt buộc
-
-1. **Deterministic Math:** Mọi phép toán PHẢI chạy qua script Python, AI KHÔNG nhẩm tay.
-2. **Calculation_Logs:** Mọi script trả về `Calculation_Logs` (mảng bước tính) và `Standard_Method`.
-3. **Step-by-step:** Hiển thị công thức tổng quát → thế số → kết quả cho từng lớp đất.
-4. **Review Gate:** Trước khi xuất bảng tổng hợp chính thức, in tóm tắt và chờ User xác nhận.
-5. **No Hallucination:** Thiếu dữ kiện → ghi `Data Missing: [Tên Thông Số]`. KHÔNG tự đoán.
-6. **Dual Standard:** Ghi rõ nguồn tương quan đang dùng (TCVN / Bowles / Jamiolkowski / CIRIA C760).
-7. **Mandatory Formulation Explanation (Giải trình Toán học Chi tiết):** Mọi kết quả quy đổi thông số đất và kết cấu BẮT BUỘC phải đi kèm diễn giải chi tiết công thức gốc. Viết rõ công thức tổng quát, hệ số lựa chọn, phép thế số và kết quả cuối cùng (giống như Phụ lục Giải trình trong thuyết minh mẫu Sunrise HK3). Tuyệt đối không chỉ đưa ra bảng kết quả trống không.
-
-### 7.1. Cấu trúc Thuyết minh Giải trình Bắt buộc (v2.3)
-
-```
-PHẦN THUYẾT MINH GIẢI TRÌNH
-├── I. CƠ SỞ LÝ THUYẾT
-│   ├── 1.1. Nguồn tiêu chuẩn, tài liệu tham khảo
-│   ├── 1.2. Giả định tính toán
-│   └── 1.3. Giới hạn áp dụng
-│
-├── II. CÔNG THỨC TỔNG QUÁT
-│   ├── 2.1. E50 cho đất dính: E50 = Ke × Su
-│   ├── 2.2. E50 cho đất rời: E50 = α × N_SPT
-│   ├── 2.3. Ứng suất hữu hiệu: σ'v = σv - u
-│   ├── 2.4. Base Heave: Fs = (Nc × Su) / (γ_avg × H + q)
-│   └── 2.5. Strut: λ = L0/im ; φ = f(λ̅) ; N_Rd = φ × A × fy
-│
-├── III. THẾ SỐ VÀ TÍNH TOÁN
-│   ├── 3.1. Bảng số liệu đầu vào
-│   ├── 3.2. Từng bước tính (step-by-step) — ĐẦY ĐỦ SỐ CỤ THỂ
-│   └── 3.3. Bảng kết quả trung gian
-│
-├── IV. KẾT QUẢ QUY ĐỔI
-│   ├── 4.1. Bảng tổng hợp thông số đầu vào Plaxis (transpose)
-│   └── 4.2. Kiểm chứng Ground Truth (bảng deviance)
-│
-├── V. KIỂM TRA ỔN ĐỊNH
-│   ├── 5.1. Base Heave check (Fs, η, khuyến nghị)
-│   └── 5.2. Strut capacity check (λ, φ, N_Rd)
-│
-└── VI. KIỂM CHỨNG SLS
-    └── 6.1. Chuyển vị ngang, độ lún (η, màu 🟢🟡🟠🔴)
-```
-
-### 7.2. Reference Documents cho Thuyết minh
-
-| File | Mục đích |
-|------|----------|
-| `references/GEOTECH_GUIDE.md` | Công thức gốc, bảng Ke/α, nguồn tham khảo |
-| `references/PLAXIS_MODEL_GUIDE.md` | Hướng dẫn nhập liệu Plaxis chi tiết |
-| `references/THUYET_MINH_TEMPLATE.md` | **Template TMTT BPTC 6 Chương + Phụ lục A (BẮT BUỘC GIỮ)** |
-| `references/ETABS_SHORING_GUIDE.md` | Hướng dẫn mô hình, gán tải trọng, liên kết ETABS cho hệ Shoring |
-
-### 7.3. Tiêu chuẩn viện dẫn bắt buộc
-
-```
-• TCVN 9351:2012 — Khảo sát địa kỹ thuật
-• TCVN 5575:2012 / TCVN 5574:2018 — Kết cấu thép / BTCT
-• TCVN 2737:2023 — Tải trọng và tác động
-• CIRIA C760 — Design of deep basements
-• Eurocode 7 (BS EN 1997-1) — Geotechnical design
-• Bowles (1997) — Foundation Analysis and Design, Eq. 3-12
-• Jamiolkowski et al. (1979), Stroud (1974) — E50/Su correlation
-• Terzaghi (1943) — Base Heave stability
-• TCVN 5575:2018 — Kiểm tra ổn định thanh chống (Lambda, Phi, N_Rd)
-• Plaxis Material Models Manual (Brinkgreve et al.)
-```
-
----
-
-## Lịch sử và Lộ trình phát triển (Roadmap)
-
-**Giai đoạn 1 (v1.0.0):**
-- Xây dựng Pipeline chuẩn từ SPT/CPT → MC/HS parameters.
-- Tích hợp 15+ báo cáo TMTT vào CSDL tương quan.
-- Quy đổi kết cấu cơ bản (Tường vây, cừ Larsen, hệ giằng).
-
-**Giai đoạn 2 (v2.0.0):**
-- **Động hóa (Dynamic):** CPTu (áp lực lỗ rỗng), Nkt động dựa trên Bq/Ip, tính OCR từ CPTu.
-- **Tiêu chuẩn Quốc tế:** Tích hợp Eurocode 7 & CIRIA C760. Phân loại đất SBT 2016.
-- **Mô hình Nâng cao:** Bổ sung Soft Soil Creep (SSC), Stiffness Degradation cho tường vây.
-- **Kiểm định:** Module kiểm chứng SLS (Clough & O'Rourke) và diễn dịch sức chịu tải cọc.
-- **Xuất báo cáo:** Module xuất Thuyết minh (MD) + Bảng tính Plaxis (XLSX).
-
-**Giai đoạn 2.1 (v2.2.0):**
-- Thêm references/GEOTECH_GUIDE.md, PLAXIS_MODEL_GUIDE.md, THUYET_MINH_TEMPLATE.md
-- Viết lại export_geotech_report.py với 8 sheets Excel đầy đủ
-
-**Giai đoạn 2.3 (v2.3.0) — PHIÊN BẢN HIỆN TẠI:**
-- **MODULE 5 nâng cấp:** Tách riêng E50 cho đất dính (`E50 = Ke × Su`) và đất rời (`E50 = α × N_SPT`). Bổ sung bảng Ke theo Ip (CIRIA C760 / Jamiolkowski / Stroud).
-- **MODULE 1 nâng cấp:** Thêm `calc_layer_boundary_stress()` — bảng ứng suất tại ranh giới lớp chính xác với diễn giải bước tính số.
-- **MODULE 11 MỚI:** `calc_base_heave.py` — Kiểm tra ổn định đáy hố đào theo Terzaghi. Tính Nc, γ_avg, Fs, η. Đưa ra khuyến nghị nếu Fs < 1.50.
-- **MODULE 12 MỚI:** `calc_strut_capacity.py` — Kiểm tra ổn định thanh chống: độ mảnh Lambda, hệ số uốn dọc Phi (TCVN 5575:2018 / EC3), khả năng chịu nén N_Rd. Bổ sung CSDL thép hình phổ biến VN (H150→H400, 2H200, 2H300).
-- **VERIFY 1 nâng cấp:** Ground Truth verification tích hợp vào pipeline chính. Xuất bảng so sánh deviance % trong Sheet 9.
-- **EXPORT v2.3:** Mở rộng lên 12 sheets Excel: thêm "4_Ung suat Ranh gioi", "6_Base Heave", "7_Strut Capacity", "9_Ground Truth", và **"12_Phu luc Giai trinh"**. Markdown report mở rộng thêm Section 5 (Ground Truth) và Section 6 (Base Heave).
-- **MODULE 10 MỚI:** `SKILL_SOIL_PARAMS.md` bổ sung Section 6 — Template giải trình từng bước công thức toán học theo yêu cầu Rule 7.1.
-- **SKILL.md cập nhật:** Bổ sung dispatcher cho MODULE 10, 11, 12.
-
-**Giai đoạn 3 (Nợ kỹ thuật / Roadmap Tương lai - v3.0.0):**
-| Item | Mô tả | Ưu tiên |
-|------|--------|----------|
-| Machine Learning | Huấn luyện mô hình hồi quy phi tuyến từ Ground Truth thay cho hệ số tương quan tĩnh | Cao |
-| Plaxis API Hook | Script Python trực tiếp kết nối Plaxis 2D Remote Scripting API | Cao |
-| HSS Model | Thông số Hardening Soil with Small-Strain Stiffness (G0, γ_0.7) | Trung bình |
-| Nhập liệu tự động | Đọc trực tiếp file Excel/PDF báo cáo ĐCCT (OCR Vision) thay vì JSON Handoff | Rất Cao |
+| **EXPORT** | `export_geotech_report.py` | Xuất Thuyết minh (MD) + Bảng tính Plaxis (XLSX 12 sheets) |
 
 ---
 
@@ -277,11 +138,6 @@ PHẦN THUYẾT MINH GIẢI TRÌNH
 
 | Version | Date | Changes |
 |---------|------|---------|
-| **3.0.0** | **2026-09-19** | **Full TMTT Automation** — Nâng cấp toàn diện `THUYET_MINH_TEMPLATE.md` thành Template 6 Chương + Phụ lục A bắt buộc (giải trình step-by-step E50/Eur/K0/Rinter từng lớp + bảng Ground Truth). Tạo MODULE 18 `format_etabs_output.py` tự động định dạng bảng ETABS Design Summary thành Markdown đẹ với màu đánh giá và kết luận tự động. |
+| **3.1.0** | **2026-10-21** | **Chuẩn hóa Pháp lý Phân cấp & Khảo sát ĐCCT**: Cập nhật Thông tư 34/2026/TT-BXD (Bảng 2 Phụ lục II), QCVN 03:2022/BXD (Cấp hậu quả C1–C3, Niên hạn Mức 1–4 tại Bảng 1), TCVN 9363:2012 (Điều 5.2.4.2 cự ly TKCS 50–200m; Điều 5.3.6 & Phụ lục D cự ly TKKT 20–30m; Điều 5.3.6.3 tỷ lệ hố khống chế ≥ 1/3), TCVN 4419:1987 (Điều 3.5 & Phụ lục 2; Điều 3.19), TCVN 9351:2022 và TCVN 12041:2017 / TCVN 9346:2012 (thay thế TCVN 3994:1985). |
+| **3.0.0** | **2026-09-19** | **Full TMTT Automation** — Nâng cấp toàn diện `THUYET_MINH_TEMPLATE.md` thành Template 6 Chương + Phụ lục A bắt buộc + MODULE 18. |
 | 2.4.0 | 2026-09-18 | Urban Excavation Upgrade — MODULE 12b (Waling Beam), MODULE 13 (Geometry), MODULE 15 (Corner Brace). |
-| 2.3.2 | 2026-09-21 | Fix #1-7: calc_soil_params_hs, verify_ground_truth, calc_soil_params_mc, calc_base_heave (Bjerrum-Eide), calc_strut_capacity, calc_cpt_interpretation (SBT 2016, Nkt động). |
-| 2.3.0 | 2026-09-20 | MODULE 5: Tách Ke×Su / α×N. MODULE 11: Base Heave. MODULE 12: Strut Capacity. EXPORT: 12 sheets Excel. |
-| 2.2.0 | 2026-09-20 | Thêm references GEOTECH_GUIDE, PLAXIS_MODEL_GUIDE, THUYET_MINH_TEMPLATE. |
-| 2.1.0 | 2026-09-17 | Rule 7: Mandatory Formulation Explanation. |
-| 2.0.0 | 2026-09-16 | Tích hợp SSC, CPTu (SBT 2016), Nkt động, K0 (Mayne & Kulhawy), Rinter (CIRIA C760), SLS, Pile Load Test. |
-| 1.0.0 | 2026-09-16 | Initial release — 6 modules, MC & HS support. |

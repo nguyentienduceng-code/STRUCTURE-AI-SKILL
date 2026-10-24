@@ -14,6 +14,9 @@ Usage:
     python -m dce_writer.column_writer --input data.json
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 from .beam_writer import BeamWriter
 from .column_writer import ColumnWriter
 from .steel_writer import SteelWriter

@@ -42,7 +42,7 @@ def calculate_deflection(L, M, E, I_eff, long_term_coeff=2.0, limit_ratio=250.0)
             "Step": "Kiểm tra giới hạn độ võng",
             "Principle": "Võng vượt giới hạn gây nứt lớp hoàn thiện và cảm giác không an toàn cho người sử dụng.",
             "Formula": f"delta_allowable = L / {limit_ratio:.0f}",
-            "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Phụ lục M - Độ võng giới hạn", "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Phụ lục M - Độ võng giới hạn", "Bang_Hinh": "Bảng M.1", "Trang": "178", "Trich_Yeu": "Độ võng giới hạn cho phép của cấu kiện uốn"},
             "Values": f"L={L*1000} mm, tỷ số giới hạn = 1/{limit_ratio:.0f}",
             "Result": f"[f] = {allowable_deflection_mm:.1f} mm  vs  f = {delta_long_term_mm:.2f} mm",
             "Utilization": f"eta = {eta:.3f} ({eta * 100:.1f}%)",

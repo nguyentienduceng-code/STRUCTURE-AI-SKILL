@@ -1,6 +1,6 @@
 {
-  "project_name": "Test",
-  "last_updated": "2026-08-31",
+  "project_name": "Nhà Nguyên",
+  "last_updated": "2026-09-20",
   "parties": {},
   "documents": {
     "RFI": [
@@ -38,6 +38,139 @@
           "History": [
             {
               "date": "31/08/2026 21:50",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null
+      },
+      {
+        "Doc_Code": "RFI-ĐẠI-20260920-807",
+        "Doc_Type": "RFI",
+        "Doc_Name": "Request for Information",
+        "Date_Issued": "20/09/2026",
+        "Project_Name": "Nhà Nguyên",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "Đại diện CĐT (QLTK)",
+        "To_Party": "Tư vấn thiết kế MẠNH CƯỜNG",
+        "Issue": {
+          "Summary": "Làm rõ cột CC1 (250x400) và CC3 (250x450)",
+          "Context": "Xuất hiện trên mặt bằng cột tầng 2 của KC nhưng không có trong KT và không có móng tương ứng",
+          "Related_Drawings": [
+            "KCSB: KC-05, KC-09"
+          ],
+          "Items": [
+            "Yêu cầu cung cấp thông tin đầy đủ."
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Thiếu móng chịu lực, sai khác kiến trúc",
+        "Deadline": "27/09/2026",
+        "Days_To_Deadline": 7,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "20/09/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "20/09/2026",
+          "History": [
+            {
+              "date": "20/09/2026 12:52",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null
+      },
+      {
+        "Doc_Code": "RFI-ĐẠI-20260920-665",
+        "Doc_Type": "RFI",
+        "Doc_Name": "Request for Information",
+        "Date_Issued": "20/09/2026",
+        "Project_Name": "Nhà Nguyên",
+        "Priority": "NORMAL",
+        "Priority_Symbol": "🟢",
+        "Status": "Draft",
+        "From_Party": "Đại diện CĐT (QLTK)",
+        "To_Party": "Tư vấn thiết kế MẠNH CƯỜNG",
+        "Issue": {
+          "Summary": "Lưới trục bản vẽ MEP Điện (18.000mm) lệch với Kết cấu (16.800mm)",
+          "Context": "20 trang bản vẽ MEP dùng tổng chiều rộng 18m, trong khi KC là 16.8m",
+          "Related_Drawings": [
+            "MEP: Bản vẽ mặt bằng"
+          ],
+          "Items": [
+            "Yêu cầu cung cấp thông tin đầy đủ."
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Tất cả vị trí thiết bị MEP đều sai lệch thực tế 1.2m",
+        "Deadline": "30/09/2026",
+        "Days_To_Deadline": 10,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "20/09/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "20/09/2026",
+          "History": [
+            {
+              "date": "20/09/2026 12:52",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null
+      },
+      {
+        "Doc_Code": "RFI-ĐẠI-20260920-100",
+        "Doc_Type": "RFI",
+        "Doc_Name": "Request for Information",
+        "Date_Issued": "20/09/2026",
+        "Project_Name": "Nhà Nguyên",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "Đại diện CĐT (QLTK)",
+        "To_Party": "Tư vấn thiết kế MẠNH CƯỜNG",
+        "Issue": {
+          "Summary": "Thiếu hoàn toàn hồ sơ MEP cấp thoát nước sinh hoạt",
+          "Context": "Hồ sơ chỉ có MEP Điện, Thông tin, chưa có Cấp thoát nước",
+          "Related_Drawings": [],
+          "Items": [
+            "Yêu cầu cung cấp thông tin đầy đủ."
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Không đủ hồ sơ trình duyệt TKCS, không thể thi công",
+        "Deadline": "05/10/2026",
+        "Days_To_Deadline": 15,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "20/09/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "20/09/2026",
+          "History": [
+            {
+              "date": "20/09/2026 12:52",
               "action": "Created",
               "user": "System"
             }
@@ -96,6 +229,105 @@
         "Resolved_Date": null,
         "NCR_Severity": "CRITICAL",
         "NCR_Severity_Action": "Dừng ngay, báo cáo Owner"
+      },
+      {
+        "Doc_Code": "NCR-ĐẠI-20260920-626",
+        "Doc_Type": "NCR",
+        "Doc_Name": "Non-Conformance Report",
+        "Date_Issued": "20/09/2026",
+        "Project_Name": "Nhà Nguyên",
+        "Priority": "CRITICAL",
+        "Priority_Symbol": "🔴",
+        "Status": "Draft",
+        "From_Party": "Đại diện CĐT (QLTK)",
+        "To_Party": "Tư vấn thiết kế MẠNH CƯỜNG",
+        "Issue": {
+          "Summary": "Sai lệch cao độ sàn T2 và T3 giữa Kiến trúc và Kết cấu",
+          "Context": "Cao độ sàn T2 TKTC là +3,900m nhưng KCSB là +3,850m (lệch 50mm)",
+          "Related_Drawings": [
+            "TKTC: A02, A06",
+            " KCSB: KC-08, KC-10"
+          ],
+          "Items": [
+            "Mô tả chi tiết không phù hợp:",
+            "Vị trí cụ thể:",
+            "Nguyên nhân dự kiến:",
+            "Đề xuất biện pháp khắc phục:"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Ảnh hưởng nghiêm trọng đến cao độ cửa, số bậc cầu thang, độ dốc sàn vệ sinh",
+        "Deadline": "21/09/2026",
+        "Days_To_Deadline": 1,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "20/09/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "20/09/2026",
+          "History": [
+            {
+              "date": "20/09/2026 12:52",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null,
+        "NCR_Severity": "CRITICAL",
+        "NCR_Severity_Action": "Dừng ngay, báo cáo Owner"
+      },
+      {
+        "Doc_Code": "NCR-ĐẠI-20260920-409",
+        "Doc_Type": "NCR",
+        "Doc_Name": "Non-Conformance Report",
+        "Date_Issued": "20/09/2026",
+        "Project_Name": "Nhà Nguyên",
+        "Priority": "HIGH",
+        "Priority_Symbol": "🟡",
+        "Status": "Draft",
+        "From_Party": "Đại diện CĐT (QLTK)",
+        "To_Party": "Tư vấn thiết kế MẠNH CƯỜNG",
+        "Issue": {
+          "Summary": "Giai đoạn hồ sơ không đồng bộ (KT S3, KC S4)",
+          "Context": "KCSB đóng dấu S4 (Bản vẽ thi công) trong khi Kiến trúc chỉ đóng dấu S3 (Bản vẽ cơ sở)",
+          "Related_Drawings": [],
+          "Items": [
+            "Mô tả chi tiết không phù hợp:",
+            "Vị trí cụ thể:",
+            "Nguyên nhân dự kiến:",
+            "Đề xuất biện pháp khắc phục:"
+          ],
+          "Related_Documents": []
+        },
+        "Impact_If_Not_Resolved": "Vi phạm quy trình thiết kế, rủi ro pháp lý thẩm duyệt",
+        "Deadline": "25/09/2026",
+        "Days_To_Deadline": 5,
+        "Submitted_By": "Trợ lý AI - Kỹ sư QLTK",
+        "Attachments": [],
+        "Tracking": {
+          "Created_Date": "20/09/2026",
+          "Days_Open": 0,
+          "Overdue": false,
+          "Escalation_Level": 0,
+          "Last_Updated": "20/09/2026",
+          "History": [
+            {
+              "date": "20/09/2026 12:52",
+              "action": "Created",
+              "user": "System"
+            }
+          ]
+        },
+        "Response": null,
+        "Approved": null,
+        "Resolved_Date": null,
+        "NCR_Severity": "MINOR",
+        "NCR_Severity_Action": "Sửa và kiểm tra"
       }
     ],
     "SUBMITTAL": [
@@ -249,8 +481,8 @@
   },
   "statistics": {
     "rfi": {
-      "total": 1,
-      "draft": 1,
+      "total": 4,
+      "draft": 4,
       "open": 0,
       "pending": 0,
       "approved": 0,
@@ -259,14 +491,14 @@
       "critical": 0
     },
     "ncr": {
-      "total": 1,
-      "draft": 1,
+      "total": 3,
+      "draft": 3,
       "open": 0,
       "pending": 0,
       "approved": 0,
       "rejected": 0,
       "overdue": 0,
-      "critical": 1
+      "critical": 2
     },
     "submittal": {
       "total": 1,

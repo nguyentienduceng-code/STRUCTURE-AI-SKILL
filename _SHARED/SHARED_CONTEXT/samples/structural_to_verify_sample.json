@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "handoff_type": "qa_check_request",
+    "version": "1.0",
+    "source_skill": "Structural_Design_Engineer",
+    "target_skill": "SKILL_VERIFY",
+    "project_id": "PROJ001",
+    "check_type": "design",
+    "calculation_log_ids": ["sde_beam_20260925_001", "sde_connection_20260925_002"],
+    "timestamp": "2026-09-25T14:35:00+07:00"
+  },
+
+  "calculation_reference": {
+    "skill_used": "Structural_Design_Engineer",
+    "script_ids": ["calc_steel_beam_tcvn.py", "calc_steel_connection_tcvn.py"],
+    "calculation_log_ids": ["sde_beam_20260925_001", "sde_connection_20260925_002"]
+  },
+
+  "input_data": {
+    "summary": "I400x200x8x13 steel beam, M_ed=220 kNm, V_ed=180 kN, L=6m, simply supported",
+    "steel_grade": "SS400 (fy = 245 MPa)",
+    "section_class": "Class 1 (compact)",
+    "lateral_torsional_buckling": "Check required, C1=1.127"
+  },
+
+  "results": {
+    "summary": "Steel beam design check - ALL PASS",
+    "element_id": "B1",
+    "eta_M": 0.547,
+    "eta_V": 0.277,
+    "eta_LTB": 0.573,
+    "eta_f": 0.518,
+    "max_deflection_mm": 12.5,
+    "allowable_deflection_mm": 24.0,
+    "eta_deflection": 0.521,
+    "standard_method": "TCVN 5575:2024"
+  },
+
+  "check_scope": {
+    "verify_math": true,
+    "verify_standard": true,
+    "compare_with_etabs": false,
+    "etabs_results": null
+  }
+}

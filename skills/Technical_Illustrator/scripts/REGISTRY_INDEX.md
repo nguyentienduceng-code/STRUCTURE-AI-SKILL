@@ -19,6 +19,7 @@
 | **Móng đơn / Móng băng** | `draw_foundation.py` | PNG | `--type single\|strip` — tham số hóa |
 | **Đài cọc** | `draw_pile_cap.py` | PNG | Nhiều loại đài cọc — tham số hóa |
 | **Bố trí thép sàn** | `draw_slab_rebar.py` | PNG | Mặt bằng thép lưới, thanh — tham số hóa |
+| **Biểu đồ nội lực (M, V, N)** | `draw_moment_diagram.py` | SVG/DXF | Biểu đồ moment, lực cắt, lực dọc — tham số hóa |
 | **So sánh phương án** | `draw_comparison_chart.py` | PNG | Radar + Bar chart — JSON input |
 | **Tích hợp CAD (DCE Pro)** | `dce_trigger.py` | DWG | AI → Excel → DCE Pro Add-In |
 
@@ -55,6 +56,7 @@
 | Script | Input chính | Output |
 |--------|-------------|--------|
 | `draw_comparison_chart.py` | `--json` | Radar + Bar chart |
+| `draw_moment_diagram.py` | `--input --output` | SVG/DXF biểu đồ M, V, N |
 
 ---
 

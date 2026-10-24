@@ -10,6 +10,9 @@ Usage:
     python dce_trigger.py --excel "output.xlsx" --module steel
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import subprocess
 import sys
 import argparse

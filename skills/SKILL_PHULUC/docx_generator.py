@@ -1,20 +1,23 @@
 """
 DOCX_Generator.py — Generator Thuyết minh Tính toán ra DOCX
 
-Tạo file DOCX với font chuẩn Arial, format chuẩn TCVN.
+Tạo file DOCX với font chuẩn Times New Roman, format chuẩn TCVN.
 
 Font chuẩn:
-- Normal: Arial 12pt
-- Heading 1: Arial 12pt Bold
-- Heading 2: Arial 11pt Bold
-- Heading 3: Arial 10pt Bold
-- Table: Arial 11pt
+- Normal: Times New Roman 12pt
+- Heading 1: Times New Roman 14pt Bold
+- Heading 2: Times New Roman 13pt Bold
+- Heading 3: Times New Roman 12pt Bold
+- Table: Times New Roman 11pt
 
 Usage:
     python docx_generator.py --input TMTT.md --output TMTT.docx
     python docx_generator.py --input TMTT.md --output TMTT.docx --cover "Công trình ABC"
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import sys
 import re
@@ -32,7 +35,7 @@ from docx.oxml import OxmlElement
 # =============================================================================
 
 # Font settings
-NORMAL_FONT = 'Arial'
+NORMAL_FONT = 'Times New Roman'
 NORMAL_SIZE = Pt(12)
 HEADING1_SIZE = Pt(14)
 HEADING2_SIZE = Pt(13)

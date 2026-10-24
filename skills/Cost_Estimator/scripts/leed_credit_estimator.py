@@ -9,6 +9,9 @@ Usage:
 Output: JSON với điểm LEED dự kiến, chi phí VE, và Carbon footprint
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import json
 import sys

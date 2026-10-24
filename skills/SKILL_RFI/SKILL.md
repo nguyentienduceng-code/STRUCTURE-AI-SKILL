@@ -1,7 +1,7 @@
 ---
 name: SKILL_RFI
 version: 1.2.0
-last_updated: 2026-08-30
+last_updated: 2026-09-27
 description: "Kỹ sư Quản lý Giao dịch Kỹ thuật AI: Quản lý toàn bộ RFI, NCR, Submittal, Shop Drawing, Change Order và các tài liệu giao dịch với Chủ đầu tư (Owner), Tư vấn Giám sát (CSHT), Nhà thầu (Contractor), và Đơn vị Thiết kế (Designer). Tự động phân loại mức độ ưu tiên, theo dõi deadline, leo thang khi quá hạn, và tích hợp phản hồi vào phân tích kỹ thuật. Kích hoạt khi: tạo RFI/NCR/Submittal, theo dõi, phản hồi, đối chiếu với các bên liên quan."
 ---
 
@@ -90,6 +90,8 @@ VD: SUB-CNT-20260830-001  (Submittal từ Contractor)
 | 🟡 HIGH | Kỹ thuật quan trọng | "thiếu thông tin", "không rõ" | 7 ngày | Theo dõi |
 | 🟢 NORMAL | Kỹ thuật thông thường | "cần xác nhận", "làm rõ" | 14 ngày | Standard |
 | 🔵 ROUTINE | Hành chính | "bổ sung", "cập nhật" | 21 ngày | Batch review |
+
+> **Code-enforced:** Cơ chế phân loại ưu tiên và gán deadline được thực thi tự động qua `tools/policy_engine.py` (`classify_rfi_priority`). Kiểm thử: `tests/test_policy_engine.py`.
 
 ---
 

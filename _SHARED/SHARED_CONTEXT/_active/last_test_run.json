@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "captured_at": "2026-10-24T07:48:22",
+  "all_passed": true,
+  "total_elapsed_sec": 20.56984519958496,
+  "grand_total_passed": 384,
+  "grand_total_failed": 0,
+  "unparsed_suites": [],
+  "suites": [
+    {
+      "name": "1. Integration Test (62 checks)",
+      "passed": true,
+      "elapsed_sec": 0.34864068031311035,
+      "passed_count": 62,
+      "failed_count": 0,
+      "total_count": 62,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "2. Regression Calculator Test (13 calculators)",
+      "passed": true,
+      "elapsed_sec": 0.3214855194091797,
+      "passed_count": 13,
+      "failed_count": 0,
+      "total_count": 13,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "3. Pre-Execution Approval Gate (32 tests)",
+      "passed": true,
+      "elapsed_sec": 0.2688889503479004,
+      "passed_count": 32,
+      "failed_count": 0,
+      "total_count": 32,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "4. Intent Classifier Benchmark (17 tests)",
+      "passed": true,
+      "elapsed_sec": 0.20505642890930176,
+      "passed_count": 17,
+      "failed_count": 0,
+      "total_count": 17,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "5. E2E Pipeline Workflow",
+      "passed": true,
+      "elapsed_sec": 0.21738409996032715,
+      "passed_count": 5,
+      "failed_count": 0,
+      "total_count": 5,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "6. DE Calculators Unit Tests (10 tests)",
+      "passed": true,
+      "elapsed_sec": 0.22313809394836426,
+      "passed_count": 10,
+      "failed_count": 0,
+      "total_count": 10,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "7. Sprint 1 Reporting & TCVN Tests (4 tests)",
+      "passed": true,
+      "elapsed_sec": 1.39725923538208,
+      "passed_count": 4,
+      "failed_count": 0,
+      "total_count": 4,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
+      "passed": true,
+      "elapsed_sec": 0.25292348861694336,
+      "passed_count": 3,
+      "failed_count": 0,
+      "total_count": 3,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
+      "passed": true,
+      "elapsed_sec": 0.31865572929382324,
+      "passed_count": 61,
+      "failed_count": 0,
+      "total_count": 61,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)",
+      "passed": true,
+      "elapsed_sec": 1.0555932521820068,
+      "passed_count": 19,
+      "failed_count": 0,
+      "total_count": 19,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "11. Sprint 3.4 DCE Deep Integration Tests (11 tests)",
+      "passed": true,
+      "elapsed_sec": 1.5746235847473145,
+      "passed_count": 16,
+      "failed_count": 0,
+      "total_count": 16,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)",
+      "passed": true,
+      "elapsed_sec": 2.296751022338867,
+      "passed_count": 70,
+      "failed_count": 0,
+      "total_count": 70,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "13. Sprint 5 Comprehensive Verification & Reporting (16 tests)",
+      "passed": true,
+      "elapsed_sec": 10.765421152114868,
+      "passed_count": 16,
+      "failed_count": 0,
+      "total_count": 16,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "14. Policy Engine & Multi-Trigger Rules (42 tests)",
+      "passed": true,
+      "elapsed_sec": 0.25939273834228516,
+      "passed_count": 42,
+      "failed_count": 0,
+      "total_count": 42,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "15. Sync Report System Consistency (14 tests)",
+      "passed": true,
+      "elapsed_sec": 1.0616192817687988,
+      "passed_count": 14,
+      "failed_count": 0,
+      "total_count": 14,
+      "timed_out": false,
+      "error": ""
+    }
+  ]
+}

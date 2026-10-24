@@ -1,8 +1,9 @@
 # RED FLAG TRIGGERS — SKILL_FORENSIC
 
-> **Phiên bản:** v1.0 — 2026-08-19
+> **Phiên bản:** v1.1 — 2026-10-17 (Phase C Code-Enforced)
 > **Mục đích:** Tự động phát hiện dấu hiệu nguy hiểm → kích hoạt leo thang khẩn cấp
 > **Phạm vi:** Mọi phân tích SKILL_FORENSIC phải chạy checklist này trước
+> **Code-enforced:** Toàn bộ 18 Red Flag triggers được thực thi tự động qua `tools/policy_engine.py` (`scan_red_flags`, `evaluate_red_flag`). Kiểm thử: `tests/test_policy_engine.py`.
 
 ---
 

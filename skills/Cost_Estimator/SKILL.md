@@ -1,7 +1,7 @@
 ---
 name: Cost_Estimator
 version: 1.2.0
-last_updated: 2026-08-25
+last_updated: 2026-09-27
 description: "Kỹ sư Định giá AI: Tính toán chi phí vật tư từ BOQ, so sánh chi phí giữa các phương án kết cấu (BTCT/Thép/Tiền chế), tính hàm lượng Carbon (Embodied Carbon), phân tích tác động tiến độ và chi phí lãi vay ẩn. Kích hoạt khi nhắc đến: Value Engineering, so sánh chi phí, tối ưu ngân sách, giảm hàm lượng thép, phân tích CAPEX, embodied carbon, ROI phương án."
 ---
 

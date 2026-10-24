@@ -21,6 +21,9 @@ Usage:
 Updated: 2026-08-31 — Phase A of Reporting Upgrade v4.0
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import os
 from typing import List, Optional, Tuple, Union
 

@@ -1,7 +1,7 @@
 ---
 name: Structural_Design_Engineer
 version: 1.3.0
-last_updated: 2026-08-30
+last_updated: 2026-09-27
 description: "Kỹ sư Thiết kế Kết cấu Chuyên nghiệp Độc lập: Thiết kế tính toán kết cấu (BTCT, thép, móng), kiểm tra trạng thái giới hạn (ULS/SLS), tính toán thiết kế chi tiết liên kết (nút khung, bu lông, đường hàn, bản mã, neo cốt thép), và xuất Thuyết minh tính toán kỹ thuật (Calculation Sheet) chuyên sâu kèm bản vẽ chi tiết 2D. Kích hoạt khi nhắc đến các keyword: tính toán kết cấu, thuyết minh tính toán, tính liên kết, tính bu lông, tính đường hàn, thiết kế dầm, thiết kế cột, tính móng cọc, tính võng nứt, calculation sheet, chi tiết liên kết, tính bản mã, neo cốt thép."
 ---
 
@@ -70,7 +70,15 @@ Structural_Design_Engineer/
 ├── scripts/                          ← Tool Python tính toán & xuất file
 │   ├── calc_steel_beam_tcvn.py     ← ✅ Dầm thép: uốn + cắt + LTB + võng (TCVN 5575:2024)
 │   ├── calc_steel_connection_tcvn.py ← ✅ Bu lông: cắt + ép mặt + kéo (TCVN 5575:2024)
-│   ├── calc_rc_section.py           ← Dầm BTCT: uốn + cắt (TCVN 5574:2018)
+│   ├── calc_rc_section.py           ← ✅ Dầm BTCT: uốn + cắt (TCVN 5574:2018)
+│   ├── calc_rc_column.py            ← ✅ Cột BTCT: nén lệch tâm phẳng (TCVN 5574:2018)
+│   ├── calc_punching_shear.py      ← ✅ Sàn phẳng/đài cọc: chọc thủng + cốt đai chống (TCVN 5574:2018 Điều 8.1.5–8.1.6)
+│   ├── calc_anchorage_lap.py        ← ✅ Neo cốt thép & nối chồng (TCVN 5574:2018 Mục 10.3.5–10.3.6)
+│   ├── calc_rc_wall.py             ← ✅ Vách cứng BTCT: nén lệch tâm + cắt + uốn dọc (TCVN 5574:2018 Điều 8.1.2–8.1.4)
+│   ├── calc_foundation_pile.py      ← ✅ Cọc: sức chịu tải ma sát thân + mũi (TCVN 10304:2025)
+│   ├── calc_crack_width.py          ← ✅ Kiểm tra bề rộng khe nứt (TCVN 5574:2018)
+│   ├── calc_slab.py                 ← ✅ Sàn BTCT: uốn + cắt (TCVN 5574:2018)
+│   ├── calc_weld_tcvn.py            ← ✅ Đường hàn: kéo + nén + cắt (TCVN 5575:2024)
 │   └── export_calc_sheet.py          ← Xuất Thuyết minh tính toán (.md)
 └── _deprecated/                      ← ⚠️ Scripts Eurocode — THAM KHẢO ĐỐI CHIẾU
     ├── README.md                    ← Chính sách deprecation

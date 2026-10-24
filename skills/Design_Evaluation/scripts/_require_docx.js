@@ -36,10 +36,12 @@ function isHealthy(dir) {
 function loadDocx() {
   const skillRoot = path.resolve(__dirname, "..");            // Design_Evaluation/
   const local = path.join(skillRoot, "node_modules", "docx");
+  const agentsNpm = path.resolve(__dirname, "../../../.npm/docx/docx"); // vendor backup tren .agents
 
   const candidates = [
     process.env.DOCX_PATH || null,                            // ghi de thu cong
     isHealthy(local) ? local : null,                          // node_modules cua skill
+    isHealthy(agentsNpm) ? agentsNpm : null,                  // vendor backup .agents/.npm/docx
     "docx",                                                   // do phan giai chuan cua Node
   ].filter(Boolean);
 

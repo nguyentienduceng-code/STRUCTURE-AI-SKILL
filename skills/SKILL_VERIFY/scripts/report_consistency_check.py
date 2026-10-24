@@ -20,6 +20,8 @@ Kỹ thuật parse:
 """
 
 import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import json
 import argparse
 import re
@@ -35,17 +37,24 @@ except ImportError:
 
 # Pattern nhận dạng các số liệu kỹ thuật
 NUMBER_PATTERNS = {
-    "M_Rd":     r"M[_\s]?Rd\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "M_Ed":     r"M[_\s]?Ed\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "V_Rd":     r"V[_\s]?Rd\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "V_Ed":     r"V[_\s]?Ed\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "N_Rd":     r"N[_\s]?Rd\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "As":       r"\bAs\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "eta":      r"[η]\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "fck":      r"f[_\s]?ck\s*[=:]\s*([0-9]+\.?[0-9]*)",
-    "fy":       r"f[_\s]?y\s*[=:]\s*([0-9]+\.?[0-9]*)",
+    "M_Rd":      r"M[_\s]?Rd\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "M_Ed":      r"M[_\s]?Ed\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "V_Rd":      r"V[_\s]?Rd\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "V_Ed":      r"V[_\s]?Ed\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "N_Rd":      r"N[_\s]?Rd\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "As":        r"\bAs\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "eta":       r"[η]\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "fck":       r"f[_\s]?ck\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "fy":        r"f[_\s]?y\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
     "b_section": r"\bb\s*[=:]\s*([0-9]{2,4})",
-    "h_section": r"\bh\s*[=:]\s*([0-9]{2,4})"
+    "h_section": r"\bh\s*[=:]\s*([0-9]{2,4})",
+    "Rb":        r"\bR[_\s]?b\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "Rbt":       r"\bR[_\s]?bt\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "Rs":        r"\bR[_\s]?s\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "Rsw":       r"\bR[_\s]?sw\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "L_an":      r"\bL[_\s]?an\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "L_lap":     r"\bL[_\s]?lap\s*[=:]\s*([0-9]+[.,]?[0-9]*)",
+    "a_crc":     r"\ba[_\s]?crc\s*[=:]\s*([0-9]+[.,]?[0-9]*)"
 }
 
 # Bỏ qua các số:
@@ -56,6 +65,27 @@ IGNORE_PATTERNS = [
     r"^0\.\d{1,3}$",             # Hệ số gamma nhỏ
     r"^\d{1,3}$",                 # Số đếm nhỏ
 ]
+
+
+def extract_numbers_from_text(text: str):
+    """
+    Trích xuất tất cả số liệu kỹ thuật từ chuỗi văn bản (Markdown, Text, trích từ Docx).
+    Xử lý chuẩn hóa dấu phẩy thập phân ',' -> '.' theo chuẩn Việt Nam.
+    """
+    extracted = {}
+    for field, pattern in NUMBER_PATTERNS.items():
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        if matches:
+            vals = []
+            for m in matches:
+                try:
+                    val_str = m.replace(",", ".") if isinstance(m, str) else str(m)
+                    vals.append(float(val_str))
+                except ValueError:
+                    continue
+            if vals:
+                extracted[field] = vals
+    return extracted
 
 
 def extract_numbers_from_docx(docx_path):
@@ -74,13 +104,18 @@ def extract_numbers_from_docx(docx_path):
             for cell in row.cells:
                 full_text += "\n" + cell.text
 
-    extracted = {}
-    for field, pattern in NUMBER_PATTERNS.items():
-        matches = re.findall(pattern, full_text, re.IGNORECASE)
-        if matches:
-            extracted[field] = [float(m) for m in matches]
+    return extract_numbers_from_text(full_text)
 
-    return extracted
+
+def extract_numbers_from_report_file(file_path):
+    """
+    Trích xuất số liệu tự động nhận diện định dạng: .docx hoặc .md / .txt
+    """
+    p = Path(file_path)
+    if p.suffix.lower() in [".md", ".txt", ".json"]:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return extract_numbers_from_text(f.read())
+    return extract_numbers_from_docx(file_path)
 
 
 def extract_numbers_from_handoff(json_path):
@@ -114,26 +149,34 @@ def extract_numbers_from_handoff(json_path):
     return extracted
 
 
-# Map JSON keys → docx patterns
+# Map JSON keys → docx/report patterns
 JSON_TO_DOCX_KEY_MAP = {
-    "M_Rd":     ["M_Rd", "M.Rd", "MRd", "M_n"],
-    "M_Ed":     ["M_Ed", "M.Ed", "MEd", "M_u", "Mu"],
-    "V_Rd":     ["V_Rd", "V.Rd", "VRd", "V_n"],
-    "V_Ed":     ["V_Ed", "V.Ed", "VEd", "V_u", "Vu"],
-    "N_Rd":     ["N_Rd", "N.Rd", "NRd"],
-    "N_Ed":     ["N_Ed", "N.Ed", "NEd", "N_u"],
-    "As":       ["As", "As_provided", "As_prov", "As_actual"],
-    "eta":      ["eta", "eta_M", "η"],
-    "fck":      ["fck", "f_ck", "fc"],
-    "fy":       ["fy", "f_y"]
+    "M_Rd":      ["M_Rd", "M.Rd", "MRd", "M_n"],
+    "M_Ed":      ["M_Ed", "M.Ed", "MEd", "M_u", "Mu"],
+    "V_Rd":      ["V_Rd", "V.Rd", "VRd", "V_n"],
+    "V_Ed":      ["V_Ed", "V.Ed", "VEd", "V_u", "Vu"],
+    "N_Rd":      ["N_Rd", "N.Rd", "NRd"],
+    "N_Ed":      ["N_Ed", "N.Ed", "NEd", "N_u"],
+    "As":        ["As", "As_provided", "As_prov", "As_actual"],
+    "eta":       ["eta", "eta_M", "η"],
+    "fck":       ["fck", "f_ck", "fc"],
+    "fy":        ["fy", "f_y"],
+    "Rb":        ["Rb", "R_b", "f_cd"],
+    "Rbt":       ["Rbt", "R_bt", "f_ctd"],
+    "Rs":        ["Rs", "R_s", "fy", "f_yd"],
+    "Rsw":       ["Rsw", "R_sw", "fyw", "f_ywd"],
+    "L_an":      ["L_an", "Lan", "L_0_an", "L0_an", "Anchorage_Length_mm"],
+    "L_lap":     ["L_lap", "Llap", "l_lap", "Lap_Length_mm"],
+    "a_crc":     ["a_crc", "acrc", "a_crc_max", "Crack_Width_mm"]
 }
 
 
 def check_consistency(docx_path, json_path, tolerance=0.5):
     """
-    So sánh từng giá trị giữa docx và json. Nếu lệch > tolerance % → báo mismatch.
+    So sánh từng giá trị giữa báo cáo (.docx, .md, .txt) và JSON handoff.
+    Nếu lệch > tolerance % → báo mismatch.
     """
-    docx_data = extract_numbers_from_docx(docx_path)
+    docx_data = extract_numbers_from_report_file(docx_path)
     json_data = extract_numbers_from_handoff(json_path)
 
     mismatches = []
@@ -148,6 +191,12 @@ def check_consistency(docx_path, json_path, tolerance=0.5):
             if jk in json_data:
                 json_value = json_data[jk][0]
                 json_key_used = jk
+                break
+            # Hỗ trợ tìm kiếm các key lồng nhau trong JSON (vd: Section.Rb hoặc Input.Rb)
+            matching_keys = [k for k in json_data if k == jk or k.endswith(f".{jk}") or k.endswith(f"_{jk}")]
+            if matching_keys:
+                json_value = json_data[matching_keys[0]][0]
+                json_key_used = matching_keys[0]
                 break
 
         if json_value is None:
@@ -217,7 +266,7 @@ def main():
     parser = argparse.ArgumentParser(description="Check Report Consistency")
     parser.add_argument("--docx", required=True, help="File Word (.docx) xuất ra")
     parser.add_argument("--json", required=True, help="File JSON handoff gốc")
-    parser.add_argument("--tolerance", type=float, default=0.5, help="Tolerance %")
+    parser.add_argument("--tolerance", type=float, default=0.5, help="Tolerance %%")
     parser.add_argument("--output", help="File JSON output")
 
     args = parser.parse_args()

@@ -14,7 +14,17 @@ if sys.stdout.encoding != 'utf-8':
 # =============================================================================
 
 # --- Hang so theo TCVN 5575:2024 ---
-GAMMA_M0 = 1.05      # He so tin cay vat lieu (ben)
+from pathlib import Path
+for _p in Path(__file__).resolve().parents:
+    if (_p / "_SHARED" / "standards" / "tables.py").exists():
+        if str(_p) not in sys.path:
+            sys.path.insert(0, str(_p))
+        break
+
+try:
+    from _SHARED.standards.tables import GAMMA_M0
+except ImportError:
+    GAMMA_M0 = 1.05      # He so tin cay vat lieu (ben)
 GAMMA_M2 = 1.25      # He so tin cay lien ket (cho lien ket bu long)
 
 # --- Cuong do keo dut bu long fub (MPa) theo TCVN 1916 / ISO 898-1 ---
@@ -141,7 +151,7 @@ def calc_steel_connection_tcvn(bolt_d=20, grade="8.8", n_bolts=6, V_ed=180,
             "Nam": "2024",
             "Dieu_Muc": "Dieu 10.2.4",
             "Bang_Hinh": "Bang 10.1",
-            "Trang": "",
+            "Trang": "142",
             "Trich_Yeu": "Cuong do tinh toan chiu cat cua bu long"
         },
         "Substitution": (
@@ -207,7 +217,7 @@ def calc_steel_connection_tcvn(bolt_d=20, grade="8.8", n_bolts=6, V_ed=180,
             "Nam": "2024",
             "Dieu_Muc": "Dieu 10.2.5",
             "Bang_Hinh": "Bang 10.2",
-            "Trang": "",
+            "Trang": "144",
             "Trich_Yeu": "Kha nang chiu ep mat cua ban thep"
         },
         "Substitution": (
@@ -244,7 +254,7 @@ def calc_steel_connection_tcvn(bolt_d=20, grade="8.8", n_bolts=6, V_ed=180,
                 "Nam": "2024",
                 "Dieu_Muc": "Dieu 10.2.3",
                 "Bang_Hinh": "Bang 10.1",
-                "Trang": "",
+                "Trang": "141",
                 "Trich_Yeu": "Cuong do tinh toan chiu keo cua bu long"
             },
             "Substitution": f"0.9 * {fub} MPa * {A_s:.1f} mm2 / {GAMMA_M2}",
@@ -279,7 +289,7 @@ def calc_steel_connection_tcvn(bolt_d=20, grade="8.8", n_bolts=6, V_ed=180,
                 "Nam": "2024",
                 "Dieu_Muc": "Dieu 10.2.6",
                 "Bang_Hinh": "",
-                "Trang": "",
+                "Trang": "146",
                 "Trich_Yeu": "Tuong tac giua luc cat va luc keo"
             },
             "Substitution": (

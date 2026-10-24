@@ -1,7 +1,7 @@
 ---
 name: SKILL_FORENSIC
 version: 1.2.0
-last_updated: 2026-08-25
+last_updated: 2026-09-27
 description: "Chuyên gia Điều tra Sự cố Kết cấu AI: Phân tích nguyên nhân sự cố (sập, nứt, lún, biến dạng), tính toán ngược để xác định tải trọng thực tế, so sánh với thiết kế ban đầu, đưa ra giả thuyết nguyên nhân xếp hạng theo xác suất, đề xuất thí nghiệm kiểm chứng và phương án xử lý. Kích hoạt khi: sự cố, sập, nứt nghiêm trọng, điều tra nguyên nhân, NCR nghiêm trọng, phân tích hư hỏng, back-calculation."
 ---
 

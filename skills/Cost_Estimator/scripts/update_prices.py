@@ -13,6 +13,9 @@ Quy trình cập nhật:
 4. Xuất file prices.json mới
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import json
 import sys

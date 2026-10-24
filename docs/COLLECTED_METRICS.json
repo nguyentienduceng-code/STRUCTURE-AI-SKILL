@@ -1,0 +1,345 @@
+{
+  "timestamp": "2026-10-20T08:27:55.036193+07:00",
+  "skills_summary": {
+    "total": 13,
+    "production": 11,
+    "placeholder": 2,
+    "skills": [
+      {
+        "name": "Cost_Estimator",
+        "version": "1.2.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "Design_Evaluation",
+        "version": "2.2.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "Global_Dispatcher",
+        "version": "1.0.0",
+        "last_updated": "2026-10-12",
+        "status": "production"
+      },
+      {
+        "name": "Project_Manager",
+        "version": "0.5.0",
+        "last_updated": "2026-10-17",
+        "status": "placeholder"
+      },
+      {
+        "name": "SKILL_BIM_COORDINATION",
+        "version": "0.5.0",
+        "last_updated": "2026-10-17",
+        "status": "placeholder"
+      },
+      {
+        "name": "SKILL_FORENSIC",
+        "version": "1.2.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "SKILL_GEOTECH",
+        "version": "3.0.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "SKILL_PHULUC",
+        "version": "1.2.0",
+        "last_updated": "2026-10-18",
+        "status": "production"
+      },
+      {
+        "name": "SKILL_RFI",
+        "version": "1.2.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "SKILL_TEMPWORKS",
+        "version": "1.0.0",
+        "last_updated": "2026-10-18",
+        "status": "production"
+      },
+      {
+        "name": "SKILL_VERIFY",
+        "version": "1.2.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "Structural_Design_Engineer",
+        "version": "1.3.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      },
+      {
+        "name": "Technical_Illustrator",
+        "version": "1.3.0",
+        "last_updated": "2026-09-27",
+        "status": "production"
+      }
+    ]
+  },
+  "standards": {
+    "total_standards_locked": 15,
+    "items": [
+      {
+        "domain": "Tải trọng & tác động",
+        "current": "TCVN 2737:2023",
+        "legacy": "TCVN 2737:1995",
+        "pdf_ref": "`TCVN/1. TCVN 2737-2023_...pdf`"
+      },
+      {
+        "domain": "Động đất",
+        "current": "TCVN 9386:2025",
+        "legacy": "TCVN 9386:2012",
+        "pdf_ref": "`TCVN/2a.` + `TCVN/2b.`"
+      },
+      {
+        "domain": "Bê tông cốt thép",
+        "current": "TCVN 5574:2018",
+        "legacy": "TCVN 5574:2012",
+        "pdf_ref": "`TCVN/10.TCVN 5574-2018_...pdf`"
+      },
+      {
+        "domain": "Kết cấu thép",
+        "current": "TCVN 5575:2024",
+        "legacy": "TCVN 5575:2012",
+        "pdf_ref": "`TCVN/13. TCVN 5575-2024_...pdf`"
+      },
+      {
+        "domain": "Khối xây",
+        "current": "TCVN 5573:2025",
+        "legacy": "TCVN 5573:2011",
+        "pdf_ref": "`TCVN/12. TCVN 5573 2025_...pdf`"
+      },
+      {
+        "domain": "Móng cọc",
+        "current": "TCVN 10304:2025",
+        "legacy": "TCVN 10304:2014",
+        "pdf_ref": "`TCVN/6. TCVN 10304 2025_...pdf`"
+      },
+      {
+        "domain": "Nền nhà & công trình",
+        "current": "TCVN 9362:2012",
+        "legacy": null,
+        "pdf_ref": "`TCVN/5. TCVN 9362-2012_...pdf`"
+      },
+      {
+        "domain": "Thi công & nghiệm thu BTCT",
+        "current": "TCVN 4453:1995",
+        "legacy": null,
+        "pdf_ref": "`TCVN/11. TCVN 4453-1995_...pdf`"
+      },
+      {
+        "domain": "Cốp pha & Chống tạm (Tempworks)",
+        "current": "TCVN 4453:1995",
+        "legacy": null,
+        "pdf_ref": null
+      },
+      {
+        "domain": "Phân cấp công trình",
+        "current": "QCVN 03:2022",
+        "legacy": "TT 06/2021",
+        "pdf_ref": "`QCVN/3.` + `QCVN/3a.`"
+      },
+      {
+        "domain": "Số liệu tự nhiên (vùng gió, động đất)",
+        "current": "QCVN 02:2022",
+        "legacy": "QCVN 02:2009",
+        "pdf_ref": "`QCVN/2. QCVN02-2022_...pdf`"
+      },
+      {
+        "domain": "An toàn cháy",
+        "current": "QCVN 06:2022/BXD",
+        "legacy": "QCVN 06:2022",
+        "pdf_ref": "`QCVN/6.` + `QCVN/6a.`"
+      },
+      {
+        "domain": "Nhà chung cư",
+        "current": "QCVN 04:2021",
+        "legacy": null,
+        "pdf_ref": "`QCVN/4. QCVN 04-2021_...pdf`"
+      },
+      {
+        "domain": "Quy hoạch xây dựng",
+        "current": "QCVN 01:2021/BXD",
+        "legacy": "QCVN 01:2012/BXD",
+        "pdf_ref": "`QCVN/1. QCVN01-2021_...pdf`"
+      },
+      {
+        "domain": "Khảo sát ĐCCT",
+        "current": "TCVN 9351:2012",
+        "legacy": null,
+        "pdf_ref": null
+      }
+    ]
+  },
+  "changelog_latest": {
+    "version": "v6.4",
+    "date": "2026-10-15",
+    "title": "Tối Ưu Hóa & Đồng Bộ Toàn Bộ Hệ Thống (System Optimization & Sync)",
+    "bullet_count": 6,
+    "raw_heading": "## 2026-10-15 — v6.4: Tối Ưu Hóa & Đồng Bộ Toàn Bộ Hệ Thống (System Optimization & Sync)\n"
+  },
+  "keyword_database": {
+    "schema_version": "1.1.0",
+    "last_updated": "2026-10-18",
+    "declared_total_keywords": 417,
+    "actual_skill_count": 12,
+    "actual_primary_keyword_count": 192,
+    "actual_secondary_keyword_count": 164,
+    "actual_regex_count": 61,
+    "actual_anti_keyword_count": 19,
+    "actual_total_keyword_count": 417,
+    "tie_breaker_keys": [
+      "description",
+      "rules"
+    ],
+    "pipeline_templates": [
+      "design_then_cost",
+      "design_then_draw",
+      "design_then_review",
+      "design_then_tempworks",
+      "full_review_pipeline",
+      "geotech_then_design",
+      "tempworks_then_cost"
+    ],
+    "warnings": []
+  },
+  "calculators": {
+    "total_count": 100,
+    "skill_count_with_calculators": 12,
+    "by_skill": {
+      "Design_Evaluation": [
+        "Design_Evaluation/calculators/deflection_check.py",
+        "Design_Evaluation/calculators/earthquake_load_calc.py",
+        "Design_Evaluation/calculators/foundation_bearing.py",
+        "Design_Evaluation/calculators/rc_flexure_design.py",
+        "Design_Evaluation/calculators/steel_member_check_v2024.py",
+        "Design_Evaluation/calculators/wind_load_calc.py",
+        "Design_Evaluation/scripts/auto_rfi_generator.py",
+        "Design_Evaluation/scripts/boq_extractor.py",
+        "Design_Evaluation/scripts/convert_standards_to_md.py",
+        "Design_Evaluation/scripts/generate_report.py",
+        "Design_Evaluation/scripts/generate_review_dashboard.py",
+        "Design_Evaluation/scripts/report_dispatcher.py",
+        "Design_Evaluation/scripts/stage_gate_checklist.py",
+        "Design_Evaluation/scripts/validate_handoff.py",
+        "Design_Evaluation/scripts/validate_registry.py",
+        "Design_Evaluation/scripts/xlsx_report.py"
+      ],
+      "Structural_Design_Engineer": [
+        "Structural_Design_Engineer/scripts/calc_anchorage_lap.py",
+        "Structural_Design_Engineer/scripts/calc_crack_width.py",
+        "Structural_Design_Engineer/scripts/calc_foundation_pile.py",
+        "Structural_Design_Engineer/scripts/calc_punching_shear.py",
+        "Structural_Design_Engineer/scripts/calc_rc_column.py",
+        "Structural_Design_Engineer/scripts/calc_rc_section.py",
+        "Structural_Design_Engineer/scripts/calc_rc_wall.py",
+        "Structural_Design_Engineer/scripts/calc_slab.py",
+        "Structural_Design_Engineer/scripts/calc_steel_beam_tcvn.py",
+        "Structural_Design_Engineer/scripts/calc_steel_connection_tcvn.py",
+        "Structural_Design_Engineer/scripts/calc_weld_tcvn.py",
+        "Structural_Design_Engineer/scripts/export_calc_sheet.py",
+        "Structural_Design_Engineer/scripts/rebar_cutting_optimizer.py",
+        "Structural_Design_Engineer/scripts/rebar_tokenizer.py"
+      ],
+      "SKILL_GEOTECH": [
+        "SKILL_GEOTECH/calculators/assess_excavation_geometry.py",
+        "SKILL_GEOTECH/calculators/calc_base_heave.py",
+        "SKILL_GEOTECH/calculators/calc_corner_brace.py",
+        "SKILL_GEOTECH/calculators/calc_cpt_interpretation.py",
+        "SKILL_GEOTECH/calculators/calc_geostatic_stress.py",
+        "SKILL_GEOTECH/calculators/calc_pile_load_test.py",
+        "SKILL_GEOTECH/calculators/calc_plaxis_model_geometry.py",
+        "SKILL_GEOTECH/calculators/calc_psr.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_hs.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_mc.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_ssc.py",
+        "SKILL_GEOTECH/calculators/calc_spt_correlations.py",
+        "SKILL_GEOTECH/calculators/calc_structural_elements.py",
+        "SKILL_GEOTECH/calculators/calc_strut_capacity.py",
+        "SKILL_GEOTECH/calculators/calc_waling_beam_capacity.py",
+        "SKILL_GEOTECH/calculators/export_geotech_report.py",
+        "SKILL_GEOTECH/calculators/format_etabs_output.py",
+        "SKILL_GEOTECH/calculators/plaxis_to_etabs_handoff.py",
+        "SKILL_GEOTECH/calculators/verify_against_ground_truth.py",
+        "SKILL_GEOTECH/calculators/verify_serviceability_limits.py"
+      ],
+      "SKILL_TEMPWORKS": [
+        "SKILL_TEMPWORKS/calculators/calc_formwork_column.py",
+        "SKILL_TEMPWORKS/calculators/calc_formwork_slab.py",
+        "SKILL_TEMPWORKS/calculators/calc_formwork_wall.py",
+        "SKILL_TEMPWORKS/calculators/calc_shoring_system.py"
+      ],
+      "SKILL_FORENSIC": [
+        "SKILL_FORENSIC/scripts/back_calculation.py",
+        "SKILL_FORENSIC/scripts/evidence_checklist_generator.py",
+        "SKILL_FORENSIC/scripts/hypothesis_ranker.py",
+        "SKILL_FORENSIC/scripts/remedial_solution_generator.py",
+        "SKILL_FORENSIC/scripts/search_fm.py"
+      ],
+      "SKILL_RFI": [
+        "SKILL_RFI/scripts/deadline_escalation.py",
+        "SKILL_RFI/scripts/document_generator.py",
+        "SKILL_RFI/scripts/document_renderer.py",
+        "SKILL_RFI/scripts/document_tracker.py",
+        "SKILL_RFI/scripts/rfi_dashboard.py"
+      ],
+      "SKILL_VERIFY": [
+        "SKILL_VERIFY/scripts/calculation_logs_checker.py",
+        "SKILL_VERIFY/scripts/compare_with_etabs.py",
+        "SKILL_VERIFY/scripts/cross_doc_conflict_checker.py",
+        "SKILL_VERIFY/scripts/ingest_project_docs.py",
+        "SKILL_VERIFY/scripts/inter_module_verify.py",
+        "SKILL_VERIFY/scripts/report_consistency_check.py",
+        "SKILL_VERIFY/scripts/standard_conflict_checker.py",
+        "SKILL_VERIFY/scripts/validate_verification_report.py",
+        "SKILL_VERIFY/scripts/verify_all.py"
+      ],
+      "Cost_Estimator": [
+        "Cost_Estimator/scripts/boq_cost_analysis.py",
+        "Cost_Estimator/scripts/carbon_calculator.py",
+        "Cost_Estimator/scripts/compare_structural_options.py",
+        "Cost_Estimator/scripts/leed_credit_estimator.py",
+        "Cost_Estimator/scripts/material_optimization.py",
+        "Cost_Estimator/scripts/schedule_cost_impact.py",
+        "Cost_Estimator/scripts/update_prices.py"
+      ],
+      "Global_Dispatcher": [
+        "Global_Dispatcher/scripts/approval_gate.py",
+        "Global_Dispatcher/scripts/approval_state.py",
+        "Global_Dispatcher/scripts/intent_classifier.py",
+        "Global_Dispatcher/scripts/pipeline_builder.py",
+        "Global_Dispatcher/scripts/workflow_integration.py"
+      ],
+      "Technical_Illustrator": [
+        "Technical_Illustrator/scripts/dce_trigger.py",
+        "Technical_Illustrator/scripts/draw_2d_section.py",
+        "Technical_Illustrator/scripts/draw_bolt_connection.py",
+        "Technical_Illustrator/scripts/draw_comparison_chart.py",
+        "Technical_Illustrator/scripts/draw_foundation.py",
+        "Technical_Illustrator/scripts/draw_moment_diagram.py",
+        "Technical_Illustrator/scripts/draw_pile_cap.py",
+        "Technical_Illustrator/scripts/draw_rc_beam_full.py",
+        "Technical_Illustrator/scripts/draw_rc_column.py",
+        "Technical_Illustrator/scripts/draw_rc_wall.py",
+        "Technical_Illustrator/scripts/draw_slab_rebar.py",
+        "Technical_Illustrator/scripts/draw_weld_detail.py"
+      ],
+      "Project_Manager": [
+        "Project_Manager/scripts/project_grading.py",
+        "Project_Manager/scripts/project_roadmap.py"
+      ],
+      "SKILL_BIM_COORDINATION": [
+        "SKILL_BIM_COORDINATION/scripts/clash_detector.py"
+      ]
+    }
+  }
+}

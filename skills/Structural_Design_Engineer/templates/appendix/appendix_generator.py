@@ -9,6 +9,9 @@ Usage:
     python appendix_generator.py --type steel_beam --input calc_result.json --output appendix.md
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import json
 import argparse
 import sys

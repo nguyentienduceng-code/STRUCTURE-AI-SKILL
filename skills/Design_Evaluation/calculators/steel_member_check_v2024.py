@@ -6,8 +6,18 @@ import argparse
 import math
 
 # Hệ số tin cậy về vật liệu thép — chốt theo STANDARDS_LOCK.md mục 3
-GAMMA_M0 = 1.05  # TCVN 5575:2024 Bảng 3 - Cấu kiện chính
-GAMMA_M1 = 1.10  # TCVN 5575:2024 Bảng 3 - Kiểm tra ổn định
+from pathlib import Path
+for _p in Path(__file__).resolve().parents:
+    if (_p / "_SHARED" / "standards" / "tables.py").exists():
+        if str(_p) not in sys.path:
+            sys.path.insert(0, str(_p))
+        break
+
+try:
+    from _SHARED.standards.tables import GAMMA_M0, GAMMA_M1
+except ImportError:
+    GAMMA_M0 = 1.05  # TCVN 5575:2024 Bảng 3 - Cấu kiện chính
+    GAMMA_M1 = 1.10  # TCVN 5575:2024 Bảng 3 - Kiểm tra ổn định
 
 def check_steel_member_v2024(M, N, V, Area, Wx, Iy, tf, tw, h, b, L_beam, fy,
                               lateral_support=True, gamma_c=1.0, check_ltb=True, check_shear=True):

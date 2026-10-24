@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectTruthGraph",
+  "description": "Unified Single Source of Truth schema integrating data from ARCH, STRUC, MEP, FEM, BOQ, and GEOTECH documents",
+  "type": "object",
+  "required": ["project_name", "documents_registry"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Tên dự án hoặc công trình"
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Mã số định danh dự án"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Thời điểm tạo đồ thị sự thật"
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0.0"
+    },
+    "required_disciplines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Danh sách các bộ môn bắt buộc có trong hồ sơ giai đoạn này"
+    },
+    "documents_registry": {
+      "type": "object",
+      "description": "Danh mục các bộ môn và giai đoạn phát hành hồ sơ",
+      "patternProperties": {
+        "^[A-Za-z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "stage": {
+              "type": "string",
+              "description": "Giai đoạn hồ sơ (S1, S2, S3, S4, S5, CONCEPT, FEED, TKCS, TKKT, BVTC)"
+            },
+            "present": {
+              "type": "boolean",
+              "default": true
+            },
+            "issue_date": {
+              "type": "string"
+            },
+            "doc_ref": {
+              "type": "string"
+            },
+            "file_path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "materials": {
+      "type": "object",
+      "description": "Thông số mác vật liệu quy định từ các nguồn hồ sơ khác nhau",
+      "patternProperties": {
+        "^[A-Za-z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "concrete_grade": { "type": "string" },
+            "rebar_main": { "type": "string" },
+            "rebar_stirrup": { "type": "string" },
+            "cover_mm": { "type": "number" },
+            "source_doc": { "type": "string" }
+          }
+        }
+      }
+    },
+    "grids_and_levels": {
+      "type": "object",
+      "properties": {
+        "total_width_x_mm": {
+          "type": "object",
+          "description": "Tổng bề rộng mặt bằng theo phương X (mm) theo từng bộ môn"
+        },
+        "total_length_y_mm": {
+          "type": "object",
+          "description": "Tổng chiều dài mặt bằng theo phương Y (mm) theo từng bộ môn"
+        },
+        "grid_spans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "axis": { "type": "string" },
+              "span_mm": { "type": "number" },
+              "discipline": { "type": "string" }
+            }
+          }
+        },
+        "story_levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["story"],
+            "properties": {
+              "story": { "type": "string" },
+              "z_struc_mm": { "type": "number", "description": "Cao độ kết cấu sàn bê tông (mm)" },
+              "z_arch_mm": { "type": "number", "description": "Cao độ kiến trúc hoàn thiện (mm)" },
+              "z_fem_mm": { "type": "number", "description": "Cao độ sàn trong mô hình ETABS/SAP2000 (mm)" },
+              "finish_thickness_mm": { "type": "number", "default": 0, "description": "Độ dày lớp cán nền hoàn thiện kiến trúc (mm)" }
+            }
+          }
+        }
+      }
+    },
+    "elements": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "section": { "type": "string" },
+              "b_mm": { "type": "number" },
+              "h_mm": { "type": "number" },
+              "stories_present": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "has_foundation": { "type": "boolean", "default": true },
+              "in_arch_plan": { "type": "boolean", "default": true }
+            }
+          }
+        },
+        "beams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "section": { "type": "string" },
+              "b_mm": { "type": "number" },
+              "h_mm": { "type": "number" },
+              "story": { "type": "string" },
+              "story_elevation_mm": { "type": "number" },
+              "ceiling_aff_mm": { "type": "number" },
+              "mep_clearance_req_mm": { "type": "number", "default": 450 }
+            }
+          }
+        },
+        "slabs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "story": { "type": "string" },
+              "t_slab_mm": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "geotech": {
+      "type": "object",
+      "properties": {
+        "gwt_m": { "type": "number", "description": "Mực nước ngầm (m)" },
+        "pile_tip_elev_m": { "type": "number", "description": "Cao độ mũi cọc thiết kế (m)" },
+        "pile_tip_layer_spt": { "type": "number", "description": "Chỉ số SPT tại lớp đất chứa mũi cọc" },
+        "soil_layers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "z_top_m": { "type": "number" },
+              "z_bot_m": { "type": "number" },
+              "N_spt": { "type": "number" },
+              "c_kpa": { "type": "number" },
+              "phi_deg": { "type": "number" },
+              "gamma_kn_m3": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

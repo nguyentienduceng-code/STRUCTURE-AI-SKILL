@@ -12,6 +12,9 @@ Output: Ranking với probability scores
 """
 
 import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+import sys
 import json
 import argparse
 from datetime import datetime

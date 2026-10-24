@@ -1,54 +1,320 @@
-﻿# CHANGELOG â€” ToÃ n bá»™ Bá»™ Skills Ká»¹ nÄƒng Káº¿t cáº¥u
+# CHANGELOG — Toan bo Bo Skills Ky Nang Ket Cau
 
-> **Pháº¡m vi:** Ghi nháº­n thay Ä‘ï¿½i cá»§a **Má»ŒI skill** trong `.agents/skills/`.
-> **Cáº­p nháº­t lá»›n nháº¥t:** 2026-09-01
+> **Pham vi:** Ghi nhan thay doi cua **MOI skill** trong `.agents/skills/`.
+> **Cap nhat lon nhat:** 2026-10-13 (v6.3 / Clean Architecture & De-clutter)
 
 ---
 
-## 2026-09-20 - SKILL_GEOTECH v2.2.0 - **Hoan thien Thuyet minh Giai trinh**
+## 2026-10-15 — v6.4: Tối Ưu Hóa & Đồng Bộ Toàn Bộ Hệ Thống (System Optimization & Sync)
 
 ### Tong quan
 
-Hoan thien bo thuyet minh giai trinh ky thuat cho SKILL_GEOTECH.
+- **Đồng bộ SSOT 100%:** Đồng bộ byte-for-byte giữa `.agents/AGENTS.md` và `.agents/skills/AGENTS.md` (giải quyết triệt để version drift từ v5.5 lên v6.1).
+- **Vá Fallback Loader `_require_docx.js`:** Tự động nạp gói `docx` từ vendor dự phòng `.agents/.npm/docx/docx` khi chạy trên Google Drive, đảm bảo xuất báo cáo Word qua Node.js luôn thông suốt.
+- **Chuẩn hóa Git & .gitignore:** Bổ sung `.npm/` vào `.gitignore`, loại bỏ hoàn toàn các file tracking dư thừa.
+- **Sửa đường dẫn `SKILL_INDEX.md`:** Cập nhật vị trí chuẩn của `SKILL_BRIDGE.md` và `INTER_SKILL_TRIGGERS.md` về `skills/`.
+- **Dọn dẹp & Tinh gọn Workspace:** Di chuyển 5 script vẽ cũ về `.agents/_deprecated/technical-illustrator-scripts/`, xóa bỏ thư mục `_deprecated` rỗng ngoài root, chuẩn hóa root chỉ còn đúng 10 thư mục chức năng.
+- **Kiểm thử hệ thống:** 6/6 test suites đạt 100% PASS (thời gian: 1.29s).
 
-### Files moi
+---
+
+## 2026-10-13 — v6.3: Tái Cấu Trúc Khoa Học & Chuẩn Hóa Kiến Trúc Hệ Sinh Thái (Clean Architecture)
+
+### Tong quan
+
+Giải quyết triệt để vấn đề lộn xộn, tệp tin rác và nhân bản file vô tội vạ:
+- **Tạo thư mục `.agents/tests/`:** Tập trung toàn bộ test runner và suites (`run_all_tests.py`, `integration_test.py`, `test_runner.py`), xóa bỏ các file test rơi rớt ở root và `skills/`.
+- **Tạo thư mục `.agents/docs/`:** Tập trung các báo cáo kỹ thuật và đề án phát triển (`BAO_CAO_PHAT_TRIEN_DIEU_PHOI_AI.md`, `SYSTEM_REVIEW_RESPONSE.md`).
+- **Xóa bỏ triệt để thư mục clone thừa thãi `skills/_SYSTEM/`:** Loại bỏ 4 bản sao duplicate không cần thiết.
+- **Xóa các bản sao trùng lặp trong `_SHARED/`:** `SKILL_BRIDGE.md` và `INTER_SKILL_TRIGGERS.md` nay chỉ lưu 1 bản duy nhất tại `skills/`.
+- **Xóa bản clone `SKILL_INDEX.md` ở root:** Chỉ giữ 1 bản SSOT duy nhất tại `skills/SKILL_INDEX.md`.
+- **Dọn sạch rác, cache, output tạm:** Dọn dẹp toàn bộ 30+ thư mục `__pycache__`, xóa các thư mục rỗng `test_output`, `.claude`, chuẩn hóa `.gitignore`.
+
+### Files moi & Thay doi
+
+| File / Folder | Mo ta |
+|---------------|-------|
+| `.agents/tests/run_all_tests.py` | Master Test Runner chạy toàn bộ 6 test suites trong 1 lệnh |
+| `.agents/tests/integration_test.py` | Di chuyển từ root sang tests/, 67 checks passed |
+| `.agents/tests/test_runner.py` | Di chuyển từ skills/ sang tests/, 13 calculators passed |
+| `.agents/docs/` | Thư mục tập trung báo cáo đề án & tài liệu kiến trúc |
+| `.agents/skills/_SYSTEM/` | Đã xóa bỏ hoàn toàn (không còn file clone thừa) |
+| `.agents/.gitignore` | Chuẩn hóa, bổ sung loại bỏ cache, artifacts tạm thời |
+
+---
+
+## 2026-10-13 — v6.2: Đồng bộ Toàn diện & Trích xuất Thực thể Kỹ thuật (Entity Extraction)
+
+### Tong quan
+
+Hoàn thiện rà soát tổng hợp hệ thống và triển khai các nhiệm vụ trọng tâm:
+- **Đồng bộ SSOT 100%:** Đồng bộ byte-for-byte các văn bản cốt lõi (`SKILL_INDEX.md`, `CHANGELOG.md`, `AGENTS.md`) tại cả 3 vị trí (`.agents/`, `skills/`, `_SYSTEM/`).
+- **Nâng cấp `INTEGRATION_TEST.py`:** Bổ sung `Global_Dispatcher` và 3 scripts điều phối trung tâm (`intent_classifier.py`, `pipeline_builder.py`, `approval_gate.py`) $\rightarrow$ Đạt **67/67 checks passed (100%)**.
+- **Cài đặt `EntityExtractor` (P1 Slot Filling):** Tích hợp vào `intent_classifier.py` để bóc tách tự động hình học ($b, h, L$, chiều dày sàn), vật liệu chuẩn TCVN, nội lực ($M, V, N, q$), và tự động sinh các giả định kỹ thuật (`ASSUMED`).
+- **Hoàn thiện Guardrails trong `pipeline_builder.py`:** Bổ sung cờ `requires_pre_approval = True` cho multi-stage pipelines và chốt hạn mức `max_repair_iterations = 3`.
+
+### Files moi & Cap nhat
 
 | File | Mo ta |
-|------|--------|
-| `references/GEOTECH_GUIDE.md` | Cong thuc goc, bang tuong quan, nguon tham khao |
-| `references/PLAXIS_MODEL_GUIDE.md` | Huong dan nhap lieu Plaxis chi tiet |
-| `references/THUYET_MINH_TEMPLATE.md` | Template Thuyet minh BPTC chuan (8 muc) |
+|------|-------|
+| `SKILL_INDEX.md` (root) | Cập nhật v2.0 đồng bộ với `skills/SKILL_INDEX.md` |
+| `_SYSTEM/CHANGELOG.md` | Cập nhật đồng bộ với `skills/CHANGELOG.md` |
+| `INTEGRATION_TEST.py` | Bổ sung Global_Dispatcher và 3 core scripts điều phối (67 checks) |
+| `Global_Dispatcher/scripts/intent_classifier.py` | Bổ sung class `EntityExtractor` cho slot filling kỹ thuật |
+| `Global_Dispatcher/scripts/pipeline_builder.py` | Bổ sung `requires_pre_approval` và `max_repair_iterations = 3` |
 
-### Thay doi chinh
+---
 
-- Viet lai `export_geotech_report.py` voi 8 sheets Excel day du:
-  - Sheet 1: Ket qua KSDC
-  - Sheet 2: Thong so Dat Plaxis
-  - Sheet 3: Ung suat Huu hieu
-  - Sheet 4: Thong so Ket cau
-  - Sheet 5: Kiem chung SLS
-  - Sheet 6: Kha nang Chi luc
-  - Sheet 7: Huong dan JSON
-  - Sheet 8: Nhat ky Tinh toan
+## 2026-10-12 — Global Dispatcher: Bộ Điều phối Trung tâm (Central Orchestrator)
+
+### Tong quan
+
+Giải quyết vấn đề cognitive load khi hệ thống có 12 skills riêng lẻ:
+- Tạo skill `Global_Dispatcher` với vai trò Central Orchestrator
+- Python Intent Classifier phân tích prompt ngôn ngữ tự nhiên thành skill và confidence score (100% test pass)
+- Database 220+ keywords, regex patterns, anti-keywords và tie-breaker rules
+- Multi-skill Pipeline Builder tự động chuỗi hóa các workflow phức tạp (ví dụ: SDE → Review Gate → DE)
+- Đồng bộ toàn diện `AGENTS.md` (v6.0), `SKILL_INDEX.md` (v2.0), và `README.md`
+
+### Files moi & Cap nhat
+
+| File | Mo ta |
+|------|-------|
+| `Global_Dispatcher/SKILL.md` | Instruction chính: Quy trình phân loại intent, định tuyến, và quản lý pipeline |
+| `Global_Dispatcher/scripts/intent_classifier.py` | CLI phân tích prompt, tính confidence score, áp dụng tie-breakers, phát hiện pipeline |
+| `Global_Dispatcher/scripts/keyword_database.json` | CSDL 220+ keywords phân theo 12 skills, regex patterns, tie-breaker rules, pipeline templates |
+| `Global_Dispatcher/scripts/pipeline_builder.py` | CLI tự động xây dựng stage pipeline, liên kết handoff schema, thiết lập review gates |
+| `AGENTS.md` (3 vi tri) | Nâng cấp v6.0: Bổ sung mục 0.1 Global Dispatcher tự động |
+| `SKILL_INDEX.md` | Nâng cấp v2.0: Bổ sung Global_Dispatcher vào cây kiến trúc và danh mục skill |
+| `README.md` | Cập nhật hướng dẫn khởi đầu nhanh với Global Dispatcher |
+
+---
+
+## 2026-09-27 — P1: Agentic Workflow Infrastructure
+
+### Tong quan
+
+Trien khai day du Agentic Workflow Infrastructure (Phan 1):
+
+1. **Confidence Score Calculator** — 5-factor model
+2. **Validation Scripts** — Schema validation
+3. **Handoff Manager** — CLI cho lifecycle management
+
+### Files moi (P1)
+
+| File | Mo ta |
+|------|-------|
+| `_SHARED/SHARED_CONTEXT/validate_handoff_schema.py` | Validate JSON schema, check required fields, version compatibility |
+| `_SHARED/SHARED_CONTEXT/confidence_score.py` | Calculate confidence level (5 factors, weighted) |
+| `_SHARED/SHARED_CONTEXT/handoff_manager.py` | CLI: create/list/validate/archive/reject/receipt |
+| `_SHARED/SHARED_CONTEXT/samples/geotech_to_structural_sample.json` | Sample foundation params handoff |
+| `_SHARED/SHARED_CONTEXT/samples/structural_to_verify_sample.json` | Sample QA check request |
+| `_SHARED/SHARED_CONTEXT/trigger_log.json` | Template cho trigger logging |
+
+### Confidence Score Model
+
+**5 Factors (weighted sum):**
+| Factor | Weight | Check |
+|--------|--------|-------|
+| `data_completeness` | 25% | Required fields present |
+| `input_quality` | 20% | Material grades, dimensions valid |
+| `standard_compliance` | 20% | Standards properly cited |
+| `calculation_consistency` | 20% | Internal log consistency |
+| `source_reliability` | 15% | Measured/Calculated/Estimated |
+
+**Thresholds:**
+- HIGH: score ≥ 0.85
+- MEDIUM: 0.60 - 0.84 → Auto-send to SKILL_VERIFY
+- LOW: < 0.60 → **BLOCK** file export
+
+### Handoff Manager CLI
+
+```bash
+# Create handoff
+python handoff_manager.py create foundation_params PROJ001 \
+    --source SKILL_GEOTECH --target Structural_Design_Engineer \
+    --data data.json --confidence HIGH
+
+# List handoffs
+python handoff_manager.py list --status active
+
+# Validate handoff
+python handoff_manager.py validate geotech_to_structural_PROJ001_xxx.json
+
+# Create receipt
+python handoff_manager.py receipt handoff.json --processor SKILL_VERIFY
+
+# Archive completed
+python handoff_manager.py archive handoff.json
+
+# Reject with reason
+python handoff_manager.py reject handoff.json --reason "Missing phi_deg field"
+```
 
 ### Versions
 
 | File | Truoc | Sau |
-|------|--------|-----|
-| SKILL_GEOTECH | v2.0.0 | **v2.2.0** |
+|------|-------|-----|
+| AGENTS.md | v5.7 | **v5.9** |
+| SKILL_INDEX.md | v1.7 | **v1.9** |
 
 ---
 
-## 2026-09-16 - SKILL_GEOTECH v2.0.0 - **Tich hop CPTu, SSC, SLS, Pile Load Test**
+## 2026-09-26 — P0: Agentic Workflow Infrastructure
 
 ### Tong quan
 
-Mo rong SKILL_GEOTECH voi cac tinh nang nang cao.
+Trien khai 2 file P0 giai quyet blind spots trong he thong hien tai:
+1. **SKILL_BRIDGE.md** — Data contracts & handoff protocol
+2. **INTER_SKILL_TRIGGERS.md** — Quy tac tu dong goi skill
+
+### Files moi
+
+| File | Mo ta |
+|------|-------|
+| `SKILL_BRIDGE.md` | Data contracts JSON schema + validation + receipt protocol |
+| `INTER_SKILL_TRIGGERS.md` | 15 triggers tu dong, error handling, circular dependency prevention |
+| `_SHARED/SHARED_CONTEXT/README.md` | Huong dan su dung SHARED_CONTEXT directory |
+| `_SHARED/SHARED_CONTEXT/_active/` | Thu muc handoff dang xu ly |
+| `_SHARED/SHARED_CONTEXT/_archive/` | Thu muc handoff da xu ly |
+| `_SHARED/SHARED_CONTEXT/_rejected/` | Thu muc handoff bi tu choi |
+
+### Data Contracts (SKILL_BRIDGE.md)
+
+5 JSON schema cho inter-skill handoff:
+
+| Schema | From | To | Content |
+|--------|------|----|---------|
+| `geotech_to_structural` | SKILL_GEOTECH | Structural_Design_Engineer | Foundation params |
+| `structural_to_verify` | Structural_Design_Engineer | SKILL_VERIFY | QA check request |
+| `structural_to_cost` | Structural_Design_Engineer | Cost_Estimator | Design output for VE |
+| `design_eval_to_cost` | Design_Evaluation | Cost_Estimator | VE analysis request |
+| `geotech_to_design_eval` | SKILL_GEOTECH | Design_Evaluation | Foundation review |
+
+### Auto-Invocations (INTER_SKILL_TRIGGERS.md)
+
+15 triggers chia 3 categories:
+
+**Post-Completion Triggers (AUTO):**
+| Trigger | Source | Target | Condition |
+|---------|--------|--------|-----------|
+| POST-GEOTECH-01 | SKILL_GEOTECH | Structural_Design | Soil params complete |
+| POST-GEOTECH-02 | SKILL_GEOTECH | Design_Evaluation | Base heave complete |
+| POST-GEOTECH-03 | SKILL_GEOTECH | SKILL_FORENSIC | Adverse conditions |
+| POST-DESIGN-01 | Structural_Design | SKILL_VERIFY | Design complete (BAT BUOC) |
+| POST-DESIGN-02 | Structural_Design | Cost_Estimator | η ≤ 0.70 |
+| POST-DESIGN-03 | Structural_Design | Technical_Illustrator | Need drawing |
+| POST-EVAL-01 | Design_Evaluation | Cost_Estimator | High cost detected |
+| POST-EVAL-02 | Design_Evaluation | SKILL_VERIFY | Standard conflict |
+| POST-VERIFY-01 | SKILL_VERIFY | Source Skill | Variance > 5% |
+| POST-COST-01 | Cost_Estimator | Structural_Design | VE potential |
+
+**Escalation Triggers (BLOCKING):**
+| Trigger | Condition | Action |
+|---------|-----------|--------|
+| ESC-001 | Missing Data (E002) | Block + request upstream |
+| ESC-002 | Standard Conflict (E004) | Escalate SKILL_VERIFY |
+| ESC-003 | Low Confidence | Block file export |
+| ESC-004 | Safety Issue | Escalate SKILL_FORENSIC |
+
+### Key Improvements
+
+1. **Loai bo thao thong tin** — Schema validation bat buoc
+2. **Tu dong orchestration** — Skills goi nhau khong can User ra lenh
+3. **Block halluncination** — POST-DESIGN-01 BAT BUOC verify truoc xuat file
+4. **Circular dependency prevention** — Max depth = 5
+
+### Versions
+
+| File | Truoc | Sau |
+|------|-------|-----|
+| AGENTS.md | v5.7 | **v5.8** |
+| SKILL_INDEX.md | v1.7 | **v1.8** |
+
+---
+
+## 2026-09-25 — Critical Fixes
+
+### Tong quan
+
+Sua cac loi nghiem trong duoc phat hien qua audit toan bo he thong.
+
+### Fixes
+
+| File | Van de | Fix |
+|------|-------|-----|
+| `STANDARDS_LOCK.md` | Version outdate (v2.4.0) | Cap nhat len v3.0.0 |
+| `SKILL_INDEX.md` | Version mismatch | Dong bo: DE v2.2.0, GEOTECH v3.0.0 |
+| `AGENTS.md` | Version header loi | Cap nhat len v5.7 |
+| `Design_Evaluation/SKILL.md` | Deprecated script reference | Sua steel_member_check.py → steel_member_check_v2024.py |
+| `CHANGELOG.md` | Encoding loi | Viet lai UTF-8 |
+| `SKILL_GEOTECH` | Missing lazy load section | Them muc Lazy Load |
+
+### Versions moi
+
+| File | Truoc | Sau |
+|------|-------|-----|
+| AGENTS.md | v5.6 | **v5.7** |
+| SKILL_INDEX.md | v1.6 | **v1.7** |
+| STANDARDS_LOCK.md | v2.4.0 | **v3.0.0** |
+
+---
+
+## 2026-09-20 - SKILL_GEOTECH v3.0.0 - Full TMTT Automation
+
+### Tong quan
+
+Nang cap toan dien `THUYET_MINH_TEMPLATE.md` thanh Template 6 Chuong + Phu luc A bat buoc (giai trinh step-by-step E50/Eur/K0/Rinter tung lop + bang Ground Truth). Tao MODULE 18 `format_etabs_output.py` tu dong dinh dang bang ETABS Design Summary thanh Markdown dep voi mau danh gia va ket luan tu dong.
+
+### Files moi
+
+| File | Mo ta |
+|------|-------|
+| `format_etabs_output.py` | MODULE 18: Dinh dang bang ETABS Design Summary |
+| `references/ETABS_SHORING_GUIDE.md` | Huong dan mo hinh ETABS cho he Shoring |
+
+### Changes
+
+- MODULE 18: Tu dong dinh dang PMM Ratio, D/C Ratio voi mau tu dong
+- Thuyet minh BPTC: 6 Chuong + Phu luc A bat buoc
+
+### Versions
+
+| File | Truoc | Sau |
+|------|-------|-----|
+| SKILL_GEOTECH | v2.4.0 | **v3.0.0** |
+
+---
+
+## 2026-09-20 - SKILL_GEOTECH v2.4.0 - Urban Excavation Upgrade
+
+### Tong quan
+
+Them cac module cho hoi dao trong thanh pho.
+
+### Tinh nang moi
+
+| Module | File | Mo ta |
+|--------|------|-------|
+| MODULE 12b | `calc_waling_beam_capacity.py` | Kiem tra kha nang chiu uon Dam bo (Waling Beam) |
+| MODULE 13 | `assess_excavation_geometry.py` | Phan tich hinh hoc mat bang hoi dao |
+| MODULE 15 | `calc_corner_brace.py` | Tinh toan he chong goc xien |
+| MODULE 16 | `calc_plaxis_model_geometry.py` | Tinh kich thuoc mo hinh Plaxis |
+
+### Versions
+
+| File | Truoc | Sau |
+|------|-------|-----|
+| SKILL_GEOTECH | v2.3.0 | **v2.4.0** |
+
+---
+
+## 2026-09-16 - SKILL_GEOTECH v2.0.0 - Tich hop CPTu, SSC, SLS, Pile Load Test
 
 ### Tinh nang moi
 
 | Tinh nang | Mo ta |
-|-----------|--------|
+|-----------|-------|
 | **CPTu Support** | Ap luc lo rong, Nkt dong dua tren Bq/Ip, OCR tu CPTu |
 | **Soft Soil Creep (SSC)** | Thong so lambda*, kappa*, mu* tu Oedometer |
 | **Eurocode 7 & CIRIA C760** | Tich hop de chon Rinter, SBT 2016 |
@@ -56,773 +322,258 @@ Mo rong SKILL_GEOTECH voi cac tinh nang nang cao.
 | **SLS Check** | Kiem chung chuyen vi ngang (Clough & O'Rourke) |
 | **Pile Load Test** | Dien dich thi nghiem nen tinh coc (Davisson, Chin-Kondner) |
 
-### Scripts moi
-
-| Script | Chuc nang |
-|--------|-----------|
-| `calc_soil_params_ssc.py` | Soft Soil Creep parameters |
-| `calc_pile_load_test.py` | Davisson, Chin-Kondner |
-| `calc_psr.py` | Plane Strain Ratio |
-| `verify_serviceability_limits.py` | SLS check |
-
-### Versions
-
-| File | Truoc | Sau |
-|------|--------|-----|
-| SKILL_GEOTECH | v1.0.0 | **v2.0.0** |
-
 ---
-## 2026-09-01 â€” PHULUC Upgrade (v4.2) â€” **Phá»¥ lá»¥c TÃ­nh toÃ¡n ChuyÃªn nghiá»‡p**
 
-### Tá»•ng quan
+## 2026-09-01 — PHULUC Upgrade (v4.2) — Phu Luc Tinh Toan Chuyen Nghiep
 
-Táº¡o há»‡ thá»‘ng **Phá»¥ lá»¥c TÃ­nh toÃ¡n** Ä‘áº§y Ä‘á»§ theo chuáº©n Ä‘Æ¡n vá»‹ tÆ° váº¥n thiáº¿t káº¿ Ä‘á»™c láº­p.
+### Tao
 
-### Option A â€” NÃ¢ng cáº¥p SKILL_CALC_REPORT
-
-| File | MÃ´ táº£ |
-|------|--------|
-| `templates/appendix/APPENDIX_BEAM_RC.md` | Template dáº§m BTCT |
-| `templates/appendix/APPENDIX_COLUMN_RC.md` | Template cá»™t BTCT |
-| `templates/appendix/APPENDIX_STEEL_BEAM.md` | Template dáº§m thÃ©p |
-| `templates/appendix/appendix_generator.py` | Generator script |
-
-### Option B â€” SKILL_PHULUC Má»›i
-
-| File | MÃ´ táº£ |
-|------|--------|
+| File | Mo ta |
+|------|-------|
 | `SKILL_PHULUC/SKILL.md` | Skill entry point |
-| `SKILL_PHULUC/references/MATERIAL_TABLES.md` | Báº£ng tra váº­t liá»‡u |
-| `SKILL_PHULUC/templates/` | Templates (shared vá»›i Option A) |
+| `SKILL_PHULUC/references/MATERIAL_TABLES.md` | Bang tra vat lieu |
+| `templates/appendix/APPENDIX_BEAM_RC.md` | Template dam BTCT |
+| `templates/appendix/APPENDIX_COLUMN_RC.md` | Template cot BTCT |
+| `templates/appendix/APPENDIX_STEEL_BEAM.md` | Template dam thep |
 
-### Cáº¥u trÃºc Phá»¥ lá»¥c (Step-by-Step)
+### Cau truc Phu luc (Step-by-Step)
 
-```
-1. THÃ”NG TIN CHUNG
-2. Váº¬T LIá»†U (Ä‘áº§y Ä‘á»§ báº£ng tra)
-3. Táº¢I TRá»ŒNG (tÄ©nh táº£i, hoáº¡t táº£i, tá»• há»£p)
-4. SÆ  Äá»’ Káº¾T Cáº¤U (hÃ¬nh váº½)
-5. Ná»˜I Lá»°C (báº£ng chi tiáº¿t)
-6. TÃNH TOÃN CHI TIáº¾T
-   â”œâ”€â”€ BÆ°á»›c 1: ...
-   â”œâ”€â”€ BÆ°á»›c 2: ...
-   â””â”€â”€ Kiá»ƒm tra: Î· = ...
-7. Báº¢NG Tá»”NG Há»¢P
-8. Káº¾T LUáº¬N
-9. PHá»¤ Lá»¤C (báº£ng tra, há»‡ sá»‘)
-10. CHá»® KÃ XÃC NHáº¬N
-```
-
-### Versions má»›i
-
-| File | Version |
-|------|---------|
-| SKILL_PHULUC | v1.0.0 |
-| Structural_Design_Engineer | v1.4.0 |
+1. THONG TIN CHUNG
+2. VAT LIEU (day du bang tra)
+3. TAI TRONG (tinh tai, hoat tai, to hop)
+4. SO DO KET CAU (hinh ve)
+5. NOI LUC (bang chi tiet)
+6. TINH TOAN CHI TIET
+   - Buoc 1: ...
+   - Buoc 2: ...
+   - Kiem tra: η = ...
+7. BANG TONG HOP
+8. KET LUAN
+9. PHU LUC (bang tra, he so)
+10. CHU KY XAC NHAN
 
 ---
 
-## 2026-08-31 â€” Reporting Upgrade (v4.1) â€” **NÃ¢ng cáº¥p TrÃ¬nh bÃ y BÃ¡o cÃ¡o**
+## 2026-08-31 — Reporting Upgrade (v4.1)
 
-### Tá»•ng quan
+### Tinh nang chinh
 
-NÃ¢ng cáº¥p toÃ n diá»‡n kháº£ nÄƒng **trÃ¬nh bÃ y vÃ  thá»ƒ hiá»‡n bÃ¡o cÃ¡o chuyÃªn nghiá»‡p** cho cáº£ 3 skill (Design_Evaluation, SKILL_RFI, Technical_Illustrator). Thá»‘ng nháº¥t qua **Unified Dispatcher** vá»›i 5 audience profiles.
+Unified Dispatcher + 5 Audience Profiles
 
-### Phase A â€” Foundation Library (`_lib/`)
+### Files moi
 
-| File | Chá»©c nÄƒng |
-|------|-----------|
-| `_lib/__init__.py` | Version stamp v1.0.0 |
-| `_lib/_docx_helpers.py` | DOCX helpers: cover page (NÄ 30/2020), TOC field, header/footer + PAGE/NUMPAGES, styled tables (zebra, borders), callouts (info/warn/critical/success), headings |
-| `_lib/_report_utils.py` | Formatters: `format_eta()` (Î· + emoji), `format_citation()` (4-tuple), `format_currency()`, `safe_filename()` (Vietnamese), `safe_print()` |
-| `_lib/_chart_inserter.py` | Charts (matplotlib Agg): radar, grouped bar, progress, eta heatmap, cost breakdown; auto-insert DOCX/MD |
-| `_lib/_executive_dashboard.py` | Dashboard cho Owner: KPI table, status banner, top 3 risks, CTA â€” MD/HTML/DOCX |
-| `_lib/_audience_profiles.py` | 5 profiles: **designer** / **engineer** / **contractor** / **owner** / **authority** â€” section selection, tone, detail level |
+| File | Mo ta |
+|------|-------|
+| `scripts/_lib/_docx_helpers.py` | DOCX helpers: cover page, TOC, headers |
+| `scripts/_lib/_report_utils.py` | Formatters: η, citation, currency |
+| `scripts/_lib/_chart_inserter.py` | Charts: radar, bar, progress |
+| `scripts/_lib/_executive_dashboard.py` | Dashboard cho Owner |
+| `scripts/_lib/_audience_profiles.py` | 5 profiles |
+| `scripts/report_dispatcher.py` | Unified CLI |
+| `scripts/xlsx_report.py` | Excel: BOQ, Calc, Comparison |
+| `SKILL_RFI/scripts/document_renderer.py` | RFI DOCX/MD renderer |
 
-### Phase C â€” Unified Dispatcher (Report v4.0)
+### 5 Audience Profiles
 
-| File | Chá»©c nÄƒng |
-|------|-----------|
-| `Design_Evaluation/scripts/report_dispatcher.py` | â­ Unified CLI: 1 handoff JSON â†’ nhiá»u format MD/DOCX/HTML, vá»›i audience-aware sections, charts tá»± Ä‘á»™ng |
-
-**Usage:**
-```bash
-python report_dispatcher.py --handoff audit.json --audience designer --formats md,docx
-python report_dispatcher.py --handoff audit.json --audience owner --formats docx --include-charts
-python report_dispatcher.py --list-audiences
-```
-
-### Phase D â€” SKILL_RFI Document Renderer
-
-| File | Chá»©c nÄƒng |
-|------|-----------|
-| `SKILL_RFI/scripts/document_renderer.py` | Render RFI/NCR/SUBMITTAL/CO/TQ/PBRFI ra DOCX (vá»›i severity colors, 5W1H NCR) hoáº·c MD |
-
-### Phase E â€” Excel Generator
-
-| File | Chá»©c nÄƒng |
-|------|-----------|
-| `Design_Evaluation/scripts/xlsx_report.py` | Excel: BOQ (Bill of Quantities), Calc Sheet (Î· + Rating mÃ u), Comparison Matrix (cÃ³ chart), Submittal Log (cho SKILL_RFI) |
-
-### Phase F â€” Documentation
-
-| File | Chá»©c nÄƒng |
-|------|-----------|
-| `Design_Evaluation/references/REPORT_FORMATS.md` | â­ Catalogue 4 luá»“ng reporting + decision flow |
-
-### Backward Compatibility
-
-âœ… **Giá»¯ nguyÃªn 100%** 4 generator cÅ© (`generate_report.py`, `generate_to_trinh.js`, `md_to_docx_report.js`, `md_to_pdf_report.js`) â€” khÃ´ng breaking change.
-
-### Audience Profile Matrix
-
-| Audience | Sections Ä‘áº§y Ä‘á»§ | Tone | Executive Dashboard |
-|----------|----------------|------|---------------------|
-| `designer` | âœ… Cover + TOC + Dashboard + Logs + Citations + Charts | Formal technical | CÃ³ |
-| `engineer` | Cover + TOC + Logs + Charts | Technical precise | KhÃ´ng |
-| `contractor` | Cover + TOC + Project Info + Charts + Approval | Practical | CÃ³ (compact) |
-| `owner` | Cover + Dashboard + Comparison + Charts | Business friendly | CÃ³ (Ä‘áº§y Ä‘á»§) |
-| `authority` | Cover + TOC + All sections + Full audit | Official formal | CÃ³ |
-
-### Output Quality Standards (má»›i Ã¡p dá»¥ng)
-
-- [x] Cover page (logo, project, version, date) cho `.docx`
-- [x] Header/Footer + Page X/Y
-- [x] Executive Dashboard (Owner/Contractor)
-- [x] Calculation logs vá»›i Î· + Rating mÃ u (Designer/Engineer)
-- [x] Citations format 4-tuple (Designer/Authority)
-- [x] Charts auto-generated 300 DPI
-- [x] Approval Matrix 3-column
-- [x] Disclaimer á»Ÿ cuá»‘i
-
-### Audit
-
-- 13 files má»›i táº¡o/sá»­a
-- 0 breaking changes
-- Tested: report_dispatcher (designer 44 Ä‘oáº¡n vs owner 35 Ä‘oáº¡n), xlsx 3 types, document_renderer 5 doc types
+| Audience | Use Case | Sections day du |
+|----------|----------|-----------------|
+| `designer` | Tu van thiet ke | Cover + TOC + Dashboard + Logs + Citations + Charts |
+| `engineer` | Ky su tinh toan | Cover + TOC + Logs + Charts |
+| `contractor` | Nha thau thi cong | Cover + TOC + Project Info + Charts + Approval |
+| `owner` | Chu dau tu | Cover + Dashboard + Comparison + Charts |
+| `authority` | Co quan quan ly | Cover + TOC + All sections + Full audit |
 
 ---
 
-## 2026-08-31 â€” Final Audit & Validator Fix (v4.0)
+## 2026-08-31 — Final Audit & Validator Fix (v4.0)
 
-### Tá»•ng quan
+### Van de da sua
 
-Audit cuá»‘i cÃ¹ng vÃ  sá»­a 3 váº¥n Ä‘á» quan trá»ng phÃ¡t hiá»‡n Ä‘Æ°á»£c.
-
-### Váº¥n Ä‘á» Ä‘Ã£ sá»­a
-
-| Issue | MÃ´ táº£ | Fix |
+| Issue | Mo ta | Fix |
 |-------|-------|-----|
-| **VALIDATOR-BROKEN** | `validate_registry.py` khÃ´ng bao giá» cháº¡y Ä‘Æ°á»£c â€” dÃ¹ng field `file_path` khÃ´ng tá»“n táº¡i trong registry.json | Rewrite Ä‘á»ƒ dÃ¹ng `name` field + auto-detect path cho cáº¥u trÃºc _CORE_SKILLS má»›i |
-| **DASHBOARD-FORMAT-MISMATCH** | `rfi_dashboard.py` chá»‰ Ä‘á»c field `rfis` cÅ©, khÃ´ng hiá»ƒu thá»‹ cÃ¡c loáº¡i document khÃ¡c | Rewrite Ä‘á»ƒ iterate qua `documents.{type}` dict |
-| **REGISTRY-MISSING-DCE** | 5 DCE scripts trong `dce_writer/` khÃ´ng cÃ³ trong registry.json | ThÃªm DCE scripts vÃ o registry vá»›i `status: ACTIVE` |
+| **VALIDATOR-BROKEN** | `validate_registry.py` khong bao gio chay duoc | Rewrite de dung `name` field |
+| **DASHBOARD-FORMAT-MISMATCH** | `rfi_dashboard.py` chi doc field `rfis` cu | Rewrite de iterate qua `documents.{type}` |
+| **REGISTRY-MISSING-DCE** | 5 DCE scripts khong co trong registry.json | Them DCE scripts voi `status: ACTIVE` |
 
-### TÃ­nh nÄƒng má»›i
+### Audit ket qua
 
-| TÃ­nh nÄƒng | MÃ´ táº£ |
-|-----------|--------|
-| `validate_registry.py` v2.0 | Auto-detect path, há»— trá»£ `_deprecated/` scripts, UTF-8 output |
-| Validator skip `internal: true` | KhÃ´ng cáº£nh bÃ¡o orphan cho __init__.py |
-
-### Files Ä‘Ã£ sá»­a
-
-| File | Thay Ä‘á»•i |
-|------|----------|
-| `_CORE_SKILLS/Design_Evaluation/scripts/validate_registry.py` | v1.0 â†’ v2.0 â€” rewrite hoÃ n toÃ n |
-| `_SUPPORT_SKILLS/SKILL_RFI/scripts/rfi_dashboard.py` | Rewrite Ä‘á»ƒ Ä‘á»c multi-document registry |
-| `_CORE_SKILLS/Technical_Illustrator/scripts/registry.json` | v2.1.0 â€” thÃªm 5 DCE scripts |
-
-### Audit káº¿t quáº£
-
-âœ… **PASSED** â€” 0 issues, 0 warnings
 - 89 Python scripts
-- 7 SKILL.md files (Ä‘á»“ng bá»™ version)
+- 7 SKILL.md files (dong bo version)
 - 77 .md references
-- 5 _deprecated/ scripts (Ä‘Ã£ archive Ä‘Ãºng chá»—)
-- 6 loáº¡i documents trong registry (RFI/NCR/Submittal/CO/TQ/PBRFI)
+- 5 _deprecated/ scripts
+- 6 loai documents trong registry
 
 ---
 
-## 2026-08-30 â€” SKILL_RFI Extended (v3.9)
+## 2026-08-30 — SKILL_RFI Extended (v3.9)
 
-### Tá»•ng quan
+### Cac loai tai lieu
 
-Má»Ÿ rá»™ng SKILL_RFI tá»« RFI-only sang há»‡ thá»‘ng quáº£n lÃ½ giao dá»‹ch ká»¹ thuáº­t toÃ n diá»‡n.
-
-### CÃ¡c loáº¡i tÃ i liá»‡u Ä‘Æ°á»£c há»— trá»£
-
-| Loáº¡i | MÃ£ | MÃ´ táº£ | Gá»­i cho |
-|------|------|--------|---------|
-| **RFI** | Request for Information | YÃªu cáº§u lÃ m rÃµ thÃ´ng tin | Designer/CSHT |
-| **NCR** | Non-Conformance Report | BÃ¡o cÃ¡o khÃ´ng phÃ¹ há»£p | Contractor |
-| **Submittal** | Shop Drawing/Material | Báº£n váº½ thi cÃ´ng | Designer/CSHT |
-| **Change Order** | CO | YÃªu cáº§u thay Ä‘á»•i KL | Owner |
-| **Tech Query** | TQ | CÃ¢u há»i ká»¹ thuáº­t chuyÃªn sÃ¢u | Designer |
-| **Pre-Bid RFI** | PB-RFI | LÃ m rÃµ trÆ°á»›c Ä‘áº¥u tháº§u | Owner/Designer |
-
-### Ma tráº­n cÃ¡c bÃªn
-
-| BÃªn | Vai trÃ² | Nháº­n tá»« | Gá»­i Ä‘áº¿n |
-|------|---------|----------|----------|
-| Owner | Chá»§ Ä‘áº§u tÆ° | CO, Final Submittal | Approval |
-| Designer | ÄÆ¡n vá»‹ TK | RFI, Shop Drawing | RFI Response |
-| CSHT | TÆ° váº¥n GS | RFI, NCR | Approval |
-| Contractor | NhÃ  tháº§u | RFI, NCR | Shop Drawing, CO |
-
-### Files má»›i
-
-| File | MÃ´ táº£ |
-|------|--------|
-| `SKILL_RFI/data/party_contacts.json` | Template danh báº¡ cÃ¡c bÃªn |
-| `SKILL_RFI/scripts/document_generator.py` | Táº¡o táº¥t cáº£ loáº¡i tÃ i liá»‡u |
-| `SKILL_RFI/scripts/document_tracker.py` | Theo dÃµi táº¥t cáº£ loáº¡i tÃ i liá»‡u |
-| `SKILL_RFI/references/Party_Matrix.md` | Ma tráº­n trÃ¡ch nhiá»‡m cÃ¡c bÃªn |
-
-### Priority Levels má»›i
-
-| Má»©c | KÃ½ hiá»‡u | Trigger | Deadline |
-|------|----------|---------|----------|
-| ðŸ”´ CRITICAL | An toÃ n/Káº¿t cáº¥u | "sáº­p", "ná»©t", "nguy hiá»ƒm" | 24h |
-| ðŸŸ  URGENT | áº¢nh hÆ°á»Ÿng tiáº¿n Ä‘á»™ | "cháº­m", "phÃ¡t sinh" | 3 ngÃ y |
-| ðŸŸ¡ HIGH | Ká»¹ thuáº­t quan trá»ng | "thiáº¿u thÃ´ng tin" | 7 ngÃ y |
-| ðŸŸ¢ NORMAL | Ká»¹ thuáº­t thÃ´ng thÆ°á»ng | "xÃ¡c nháº­n", "lÃ m rÃµ" | 14 ngÃ y |
-| ðŸ”µ ROUTINE | HÃ nh chÃ­nh | "cáº­p nháº­t", "bá»• sung" | 21 ngÃ y |
+| Loai | Ma | Mo ta |
+|------|-----|-------|
+| **RFI** | Request for Information | Yeu cau lam ro thong tin |
+| **NCR** | Non-Conformance Report | Bao cao khong phu hop |
+| **Submittal** | Shop Drawing/Material | Ban ve thi cong |
+| **Change Order** | CO | Yeu cau thay doi khoi luong |
+| **Tech Query** | TQ | Cau hoi ky thuat chuyen sau |
+| **Pre-Bid RFI** | PB-RFI | Lam ro truoc dau thau |
 
 ---
 
-## 2026-08-30 â€” SKILL_RFI New Skill (v3.8)
+## 2026-08-30 — Audit Fixes & Standards Synchronization (v3.7)
 
-### Tá»•ng quan
+### Van de da sua
 
-PhÃ¡t triá»ƒn SKILL_RFI hoÃ n chá»‰nh â€” module quáº£n lÃ½ Request for Information (RFI) vá»›i vÃ²ng Ä‘á»i Ä‘áº§y Ä‘á»§.
-
-### SKILL_RFI Features
-
-| Feature | MÃ´ táº£ |
-|---------|--------|
-| **RFI Generator** | Táº¡o RFI vá»›i auto-priority detection |
-| **RFI Tracker** | Theo dÃµi tráº¡ng thÃ¡i & deadline |
-| **RFI Dashboard** | Dashboard HTML tá»•ng quan |
-| **Priority Levels** | URGENT/HIGH/NORMAL/LOW vá»›i deadline tá»± Ä‘á»™ng |
-| **Auto-escalation** | Leo thang khi quÃ¡ háº¡n |
-
-### Files má»›i
-
-| File | MÃ´ táº£ |
-|------|--------|
-| `SKILL_RFI/SKILL.md` | Entry point Ä‘áº§y Ä‘á»§ |
-| `SKILL_RFI/scripts/rfi_generator.py` | Táº¡o RFI vá»›i priority detection |
-| `SKILL_RFI/scripts/rfi_tracker.py` | Theo dÃµi tráº¡ng thÃ¡i |
-| `SKILL_RFI/scripts/rfi_dashboard.py` | Dashboard HTML |
-| `SKILL_RFI/references/RFI_Types_Guide.md` | HÆ°á»›ng dáº«n phÃ¢n loáº¡i RFI |
-
-### RFI Priority Classification
-
-| Má»©c | Trigger | Deadline |
-|------|---------|----------|
-| ðŸ”´ URGENT | "sáº­p", "nguy hiá»ƒm", "an toÃ n" | 24h |
-| ðŸŸ  HIGH | "cháº­m tiáº¿n Ä‘á»™", "phÃ¡t sinh" | 3 ngÃ y |
-| ðŸŸ¡ NORMAL | "thiáº¿u thÃ´ng tin", "cáº§n xÃ¡c nháº­n" | 7 ngÃ y |
-| ðŸŸ¢ LOW | "lÃ m rÃµ", "bá»• sung" | 14 ngÃ y |
-
-### Integration
-
-```
-Design_Evaluation phÃ¡t hiá»‡n Data Missing
-    â†“
-SKILL_RFI táº¡o RFI tá»± Ä‘á»™ng
-    â†“
-Theo dÃµi & leo thang
-    â†“
-Pháº£n há»“i â†’ TÃ­ch há»£p vÃ o phÃ¢n tÃ­ch
-```
-
----
-
-## 2026-08-30 â€” Audit Fixes & Standards Synchronization (v3.7)
-
-### Tá»•ng quan
-
-Sá»­a cÃ¡c lá»—i Ä‘Æ°á»£c phÃ¡t hiá»‡n qua audit toÃ n bá»™ há»‡ thá»‘ng skills.
-
-### Váº¥n Ä‘á» Ä‘Ã£ sá»­a
-
-| Issue | MÃ´ táº£ | Fix |
+| Issue | Mo ta | Fix |
 |-------|-------|-----|
-| REGISTRY_INDEX-SCRIPT-NAMES | Script names khÃ´ng khá»›p vá»›i files thá»±c táº¿ | Viáº¿t láº¡i REGISTRY_INDEX.md vá»›i Ä‘Ãºng names |
-| SKILL_INDEX-VERSION-MISMATCH | SKILL_INDEX ghi version cÅ© cho 2 skills | Cáº­p nháº­t: SDE v1.3.0, TI v1.3.0, DE v2.1.1 |
-| REGISTRY_JSON-DEPRECATED | Deprecated scripts khÃ´ng cÃ³ `status: "DEPRECATED"` | ThÃªm trÆ°á»ng status cho 5 scripts cÅ© |
-
-### Files Ä‘Ã£ sá»­a
-
-| File | Thay Ä‘á»•i |
-|------|----------|
-| `_SYSTEM/SKILL_INDEX.md` | v1.3 â†’ v1.4, cáº­p nháº­t 3 version |
-| `Technical_Illustrator/scripts/REGISTRY_INDEX.md` | Viáº¿t láº¡i hoÃ n toÃ n vá»›i Ä‘Ãºng script names |
-| `Technical_Illustrator/scripts/registry.json` | v2.0.0 â†’ v2.1.0, thÃªm `"status": "DEPRECATED"` |
-
-### Scripts trong registry.json
-
-**ACTIVE (10 scripts):**
-- `draw_2d_section.py` âœ…
-- `draw_bolt_connection.py` âœ…
-- `draw_rc_column.py` âœ…
-- `draw_foundation.py` âœ…
-- `draw_slab_rebar.py` âœ…
-- `draw_comparison_chart.py` âœ…
-- `draw_rc_beam_full.py` âœ…
-- `draw_rc_wall.py` âœ…
-- `draw_pile_cap.py` âœ…
-- `draw_weld_detail.py` âœ…
-
-**DEPRECATED (5 scripts):**
-- `draw_ap_luc_dat_bo_ke.py` âš ï¸
-- `draw_ke_buy_dung.py` âš ï¸
-- `draw_ke_pi_gieng.py` âš ï¸
-- `draw_pi_gieng_composite.py` âš ï¸
-- `draw_tham_da.py` âš ï¸
+| REGISTRY_INDEX-SCRIPT-NAMES | Script names khong khop voi files thuc te | Viet lai REGISTRY_INDEX.md |
+| SKILL_INDEX-VERSION-MISMATCH | SKILL_INDEX ghi version cu cho 2 skills | Cap nhat: SDE v1.3.0, TI v1.3.0, DE v2.1.1 |
+| REGISTRY_JSON-DEPRECATED | Deprecated scripts khong co `status` | Them `status: "DEPRECATED"` |
 
 ---
 
-## 2026-08-30 â€” DCE Pro Integration (v3.6)
+## 2026-08-30 — DCE Pro Integration (v3.6)
 
-### Tá»•ng quan
-
-TÃ­ch há»£p AI Agent vá»›i DCE Pro qua chiáº¿n lÆ°á»£c má»›i:
-- AI chá»‰ Ä‘iá»n data vÃ o Excel
-- DCE Pro Add-In tá»± váº½ CAD
-- KhÃ´ng cáº§n COM Interop phá»©c táº¡p
-
-### Files má»›i
-
-| File | MÃ´ táº£ | Size |
-|------|--------|------|
-| `dce_writer/__init__.py` | Module init | 525B |
-| `dce_writer/beam_writer.py` | Ghi data dáº§m BTCT â†’ Excel | 8KB |
-| `dce_writer/column_writer.py` | Ghi data cá»™t BTCT â†’ Excel | 6.7KB |
-| `dce_writer/steel_writer.py` | Ghi data káº¿t cáº¥u thÃ©p â†’ Excel | 7.8KB |
-| `dce_writer/README.md` | HÆ°á»›ng dáº«n sá»­ dá»¥ng | 2KB |
-| `dce_trigger.py` | KÃ­ch hoáº¡t DCE Pro | 5.9KB |
-
-### Luá»“ng hoáº¡t Ä‘á»™ng
+### Luong hoat dong
 
 ```
 AI Agent (Claude Code)
-       â”‚
-       â”œâ”€â”€ 1. TÃ­nh toÃ¡n káº¿t cáº¥u
-       â”‚
-       â”œâ”€â”€ 2. Gá»i dce_writer.py â†’ Ä‘iá»n data vÃ o Excel
-       â”‚
-       â”œâ”€â”€ 3. DCE Pro Add-In Ä‘á»c Excel â†’ váº½ CAD
-       â”‚
-       â””â”€â”€ 4. Agent trÃ­ch xuáº¥t PDF/DWG
+     |
+     +-- 1. Tinh toan ket cau
+     +-- 2. Goi dce_writer.py --> dieu data vao Excel
+     +-- 3. DCE Pro Add-In doc Excel --> ve CAD
+     +-- 4. Agent trich xuat PDF/DWG
 ```
 
-### Templates Ä‘Æ°á»£c há»— trá»£
+### Templates duoc ho tro
 
-| Module | Template DCE | Status |
-|--------|-------------|--------|
-| Dáº§m BTCT | `09. DCE_Beam_2020.xlsm` | âœ… |
-| Cá»™t BTCT | `08. DCE_ColumnWall_2020.xlsm` | âœ… |
-| ThÃ©p Dáº§m | `20. TCVN 5575 Steel Beam Design - Section I.xlsm` | âœ… |
-| ThÃ©p Cá»™t | `25. TCVN 5575 Steel Column Design - Section I.xlsm` | âœ… |
-| Bu lÃ´ng neo | `160. Chi tiet bu long neo.xlsm` | âœ… |
-
-### Version updates
-
-| File | TrÆ°á»›c | Sau |
-|------|--------|-----|
-| Technical_Illustrator | v1.2.0 | **v1.3.0** |
+| Module | Template DCE |
+|--------|-------------|
+| Dam BTCT | `09. DCE_Beam_2020.xlsm` |
+| Cot BTCT | `08. DCE_ColumnWall_2020.xlsm` |
+| Thep Dam | `20. TCVN 5575 Steel Beam Design - Section I.xlsm` |
+| Thep Cot | `25. TCVN 5575 Steel Column Design - Section I.xlsm` |
+| Bu long neo | `160. Chi tiet bu long neo.xlsm` |
 
 ---
 
-## 2026-08-30 â€” Reorganization (v3.5)
+## 2026-08-30 — Reorganization (v3.5)
 
-### Tá»•ng quan
-
-TÃ¡i cáº¥u trÃºc toÃ n bá»™ há»‡ thá»‘ng Ä‘á»ƒ dá»… sá»­ dá»¥ng vÃ  báº£o trÃ¬.
-
-### Cáº¥u trÃºc má»›i
+### Cau truc moi
 
 ```
 .agents/skills/
-â”‚
-â”œâ”€â”€ _SYSTEM/                    â† ðŸ“– Äá»ŒC TRÆ¯á»šC
-â”‚   â”œâ”€â”€ AGENTS.md             â† Quy táº¯c chung
-â”‚   â”œâ”€â”€ SKILL_INDEX.md         â† Chá»‰ má»¥c & tra cá»©u
-â”‚   â””â”€â”€ STANDARDS_LOCK.md     â† TiÃªu chuáº©n chuáº©n
-â”‚
-â”œâ”€â”€ _CORE_SKILLS/             â† ðŸ”§ SKILLS CHÃNH
-â”‚   â”œâ”€â”€ Design_Evaluation/
-â”‚   â”œâ”€â”€ Structural_Design_Engineer/
-â”‚   â””â”€â”€ Technical_Illustrator/
-â”‚
-â”œâ”€â”€ _SUPPORT_SKILLS/           â† ðŸ”§ SKILLS Há»– TRá»¢
-â”‚   â”œâ”€â”€ Cost_Estimator/
-â”‚   â”œâ”€â”€ SKILL_FORENSIC/
-â”‚   â””â”€â”€ SKILL_VERIFY/
-â”‚
-â”œâ”€â”€ _SHARED/shared/           â† ðŸ”§ Shared utilities
-â”‚
-â”œâ”€â”€ _archive/                â† ðŸ“¦ File cÅ©
-â”‚
-â”œâ”€â”€ README.md               â† ðŸ”¹ Entry point Má»šI
-â””â”€â”€ CHANGELOG.md
+|
++-- _SYSTEM/
+|   +-- AGENTS.md
+|   +-- SKILL_INDEX.md
+|   +-- STANDARDS_LOCK.md
+|
++-- _CORE_SKILLS/
+|   +-- Design_Evaluation/
+|   +-- Structural_Design_Engineer/
+|   +-- Technical_Illustrator/
+|
++-- _SUPPORT_SKILLS/
+|   +-- Cost_Estimator/
+|   +-- SKILL_FORENSIC/
+|   +-- SKILL_VERIFY/
+|   +-- SKILL_RFI/
+|   +-- SKILL_PHULUC/
+|   +-- SKILL_GEOTECH/
+|
++-- _SHARED/
++-- README.md
++-- CHANGELOG.md
 ```
 
-### Thay Ä‘á»•i
+---
 
-| Thay Ä‘á»•i | Chi tiáº¿t |
-|-----------|----------|
-| Táº¡o README.md | Entry point má»›i â€” user biáº¿t báº¯t Ä‘áº§u tá»« Ä‘Ã¢u |
-| NhÃ³m _SYSTEM | AGENTS.md, SKILL_INDEX.md, STANDARDS_LOCK.md |
-| NhÃ³m _CORE_SKILLS | 3 skills chÃ­nh |
-| NhÃ³m _SUPPORT_SKILLS | 3 skills há»— trá»£ |
-| NhÃ³m _SHARED | Utilities chung |
+## 2026-08-30 — Phase 1 Quick Wins (v3.2)
 
-### Version updates
+### Scripts moi
 
-| File | TrÆ°á»›c | Sau |
-|------|--------|-----|
-| README.md | âŒ KhÃ´ng cÃ³ | âœ… Má»›i |
-| AGENTS.md | v5.2 | **v5.3** |
-| SKILL_INDEX.md | v1.2 | **v1.3** |
+| Script | Mo ta |
+|--------|-------|
+| `validate_registry.py` | Kiem tra consistency giua registry.json va actual files |
+| `validate_handoff.py` | Validate JSON handoff tu SKILLKC → SKILL_REPORT |
+
+### Eurocode Scripts da xu ly
+
+| Script | Hanh dong | Trang thai |
+|--------|----------|-----------|
+| `calc_steel_beam.py` | Di chuyen → `_deprecated/` | Hoan thanh |
+| `calc_steel_connection.py` | Di chuyen → `_deprecated/` | Hoan thanh |
 
 ---
 
-## 2026-08-30 â€” Plan A Cleanup (v3.4)
+## 2026-08-25 — Complete Fixes & TCVN 5575:2024 Scripts (v3.1)
 
-### Tá»•ng quan
+### Scripts moi — TCVN 5575:2024
 
-Dá»n dáº¹p file rÃ¡c vÃ  cáº¥u trÃºc thá»«a.
-
-### ÄÃ£ xÃ³a
-
-| File | LÃ½ do |
-|------|--------|
-| `AUDIT_REPORT_2026-08-18.md` | ÄÃ£ ghi nháº­n trong CHANGELOG |
-| `UPGRADE_SUMMARY.md` | TrÃ¹ng láº·p vá»›i CHANGELOG |
-| `check_upgrade_status.py` | One-time script |
-| `__pycache__/` | Cache khÃ´ng cáº§n thiáº¿t |
-
-### ÄÃ£ di chuyá»ƒn
-
-| File | Äáº¿n |
-|------|------|
-| `INTEGRATION_TEST.py` | `_archive/` |
-
-### Giá»¯ nguyÃªn
-
-| File | LÃ½ do |
-|------|--------|
-| `SKILL_INDEX.md` | Giá»¯ riÃªng vÃ¬ AGENTS.md lÃ  rules, SKILL_INDEX.md lÃ  reference â€” gá»™p láº¡i sáº½ quÃ¡ lá»›n (29KB) |
-
----
-
-## 2026-08-30 â€” Phase 2 Architecture Improvements (v3.3)
-
-### Tá»•ng quan
-
-HoÃ n thÃ nh Phase 2: Cáº£i tiáº¿n kiáº¿n trÃºc há»‡ thá»‘ng.
-
-### Shared Utilities â€” Táº¡o má»›i
-
-| Module | File | MÃ´ táº£ | Status |
-|--------|------|--------|--------|
-| **Standards MCP** | `shared/standards_mcp/server.py` | Fast citation lookup, version validation | âœ… HoÃ n thÃ nh |
-| **Memory Layer** | `shared/memory/project_memory.py` | Project context persistence | âœ… HoÃ n thÃ nh |
-| **Parallel Workflow** | `shared/workflows/parallel_review_workflow.py` | Parallel review engine | âœ… HoÃ n thÃ nh |
-
-### Shared Folder Structure
-
-```
-shared/
-â”œâ”€â”€ standards_mcp/          â† MCP Server cho standards
-â”‚   â”œâ”€â”€ server.py          â† Main server
-â”‚   â””â”€â”€ cache/             â† Cache directory
-â”œâ”€â”€ memory/               â† Memory layer
-â”‚   â”œâ”€â”€ projects/        â† Project contexts
-â”‚   â””â”€â”€ project_memory.py â† CLI tool
-â””â”€â”€ workflows/            â† Workflow templates
-    â”œâ”€â”€ templates/        â† Reusable templates
-    â””â”€â”€ parallel_review_workflow.py
-```
-
-### Documentation Updates
-
-- **SKILL_INDEX.md v1.2**: ThÃªm má»¥c 7 â€” Shared Utilities
-- **shared/README.md**: HÆ°á»›ng dáº«n sá»­ dá»¥ng cÃ¡c tools má»›i
-
----
-
-## 2026-08-30 â€” Phase 1 Quick Wins (v3.2)
-
-### Tá»•ng quan
-
-HoÃ n thÃ nh Phase 1 Quick Wins: nhá»¯ng thay Ä‘á»•i Ã­t rá»§i ro, hiá»‡u quáº£ cao.
-
-### Scripts Má»›i â€” Validation Tools
-
-| Script | Vá»‹ trÃ­ | MÃ´ táº£ | Status |
-|--------|--------|--------|--------|
-| `validate_registry.py` | `Design_Evaluation/scripts/` | Kiá»ƒm tra consistency giá»¯a registry.json vÃ  actual files | âœ… HoÃ n thÃ nh |
-| `validate_handoff.py` | `Design_Evaluation/scripts/` | Validate JSON handoff tá»« SKILLKC â†’ SKILL_REPORT | âœ… HoÃ n thÃ nh |
-
-### Eurocode Scripts â€” ÄÃ£ xá»­ lÃ½
-
-| Script | HÃ nh Ä‘á»™ng | Tráº¡ng thÃ¡i |
-|--------|------------|-------------|
-| `calc_steel_beam.py` | Di chuyá»ƒn â†’ `_deprecated/` | âœ… HoÃ n thÃ nh |
-| `calc_steel_connection.py` | Di chuyá»ƒn â†’ `_deprecated/` | âœ… HoÃ n thÃ nh |
-
-### Version Updates
-
-| Skill | TrÆ°á»›c | Sau |
-|-------|--------|-----|
-| Design_Evaluation | 2.1.0 | **2.1.1** |
-| Structural_Design_Engineer | 1.2.0 | **1.3.0** |
-| AGENTS.md | v5.0 | **v5.1** |
-| SKILL_INDEX.md | v1.0 | **v1.1** |
-
-### Documentation Updates
-
-- **SKILL_INDEX.md v1.1**: Cáº­p nháº­t deprecated scripts table, Standards Lock summary
-- **Structural_Design_Engineer/SKILL.md v1.3.0**: ThÃªm `_deprecated/` folder, cáº­p nháº­t script table
-- **Design_Evaluation/SKILL.md v2.1.1**: ThÃªm reference Ä‘áº¿n validation scripts
-- **AGENTS.md v5.1**: Cáº­p nháº­t changelog
-
----
-
-## 2026-08-25 â€” Complete Fixes & TCVN 5575:2024 Scripts (v3.1)
-
-### Tá»•ng quan
-
-HoÃ n thÃ nh táº¥t cáº£ cÃ¡c fix cÃ²n láº¡i tá»« audit 2026-08-18.
-
-### Scripts Má»›i â€” TCVN 5575:2024
-
-| Script | MÃ´ táº£ | Status |
-|--------|--------|--------|
-| `calc_steel_beam_tcvn.py` | Kiá»ƒm tra dáº§m thÃ©p: uá»‘n + cáº¯t + LTB + vÃµng | âœ… HoÃ n thÃ nh |
-| `calc_steeL_connection_tcvn.py` | Kiá»ƒm tra liÃªn káº¿t bu lÃ´ng: cáº¯t + Ã©p máº·t + kÃ©o | âœ… HoÃ n thÃ nh |
+| Script | Mo ta |
+|--------|-------|
+| `calc_steel_beam_tcvn.py` | Kiem tra dam thep: uon + cat + LTB + vong |
+| `calc_steel_connection_tcvn.py` | Kiem tra lien ket bu long: cat + ep mat + keo |
 
 **Verification:**
-- `calc_steel_beam_tcvn.py`: I400x200x8x13, M_ed=220kNm â†’ eta_M=54.7%, eta_V=27.7%, eta_LTB=57.3%, eta_f=51.8% â†’ PASS âœ…
-- `calc_steel_connection_tcvn.py`: M20 cáº¥p 8.8, 6 bu lÃ´ng â†’ eta_shear=31.9%, eta_bearing=43.4%, eta_tension=5.9% â†’ PASS âœ…
-
-### Cáº­p nháº­t STANDARDS_LOCK.md
-
-- ThÃªm 2 script má»›i vÃ o báº£ng script
-- Cáº­p nháº­t Known Gap section: âœ… FIXED cho cáº£ 2 issues
-- HÆ°á»›ng dáº«n chá»n script: dÃ¹ng script TCVN cho há»“ sÆ¡ má»›i, Eurocode cho Ä‘á»‘i chiáº¿u quá»‘c táº¿
-
-### Cáº­p nháº­t SKILL_INDEX.md
-
-- ThÃªm 2 script má»›i vÃ o báº£ng Structural_Design_Engineer
-- ThÃªm 2 script má»›i vÃ o Quick Reference
-
-### Integration Test
-
-- 46/46 tests PASS âœ…
+- `calc_steel_beam_tcvn.py`: I400x200x8x13, M_ed=220kNm → eta_M=54.7%, eta_V=27.7%, eta_LTB=57.3%, eta_f=51.8% → PASS
+- `calc_steel_connection_tcvn.py`: M20 cap 8.8, 6 bu long → eta_shear=31.9%, eta_bearing=43.4%, eta_tension=5.9% → PASS
 
 ---
 
-## 2026-08-25 â€” Critical Cleanup & Governance Fixes (v3.0)
+## 2026-08-25 — Critical Cleanup & Governance Fixes (v3.0)
 
-### Tá»•ng quan
+### Deprecated Scripts da di chuyen
 
-Fix 5 váº¥n Ä‘á» governance vÃ  structure Ä‘Æ°á»£c phÃ¡t hiá»‡n qua audit.
+5 script fixed-geometry da duoc di chuyen sang `scripts/_deprecated/`:
 
-### Version Synchronization
-
-| Skill | TrÆ°á»›c | Sau |
-|-------|-------|-----|
-| Design_Evaluation | 1.3.0 | **2.1.0** |
-| Technical_Illustrator | 1.1.0 | **1.2.0** |
-| Cost_Estimator | 1.1.0 | **1.2.0** |
-| SKILL_FORENSIC | 1.1.0 | **1.2.0** |
-| SKILL_VERIFY | 1.1.0 | **1.2.0** |
-
-### Deprecated Scripts â€” Di chuyá»ƒn sang `_deprecated/`
-
-5 script fixed-geometry khÃ´ng sá»­ dá»¥ng Ä‘Æ°á»£c cho dá»± Ã¡n khÃ¡c:
-
-| Script | LÃ½ do | HÃ nh Ä‘á»™ng |
-|--------|-------|-----------|
-| `draw_ap_luc_dat_bo_ke.py` | Fixed geometry | Di chuyá»ƒn â†’ `_deprecated/` |
-| `draw_ke_buy_dung.py` | Fixed geometry | Di chuyá»ƒn â†’ `_deprecated/` |
-| `draw_ke_pi_gieng.py` | Fixed geometry | Di chuyá»ƒn â†’ `_deprecated/` |
-| `draw_pi_gieng_composite.py` | Fixed geometry | Di chuyá»ƒn â†’ `_deprecated/` |
-| `draw_tham_da.py` | Fixed geometry | Di chuyá»ƒn â†’ `_deprecated/` |
-
-### SKILL_INDEX.md â€” Táº¡o má»›i
-
-Táº¡o file `SKILL_INDEX.md` lÃ m nguá»“n sá»± tháº­t DUY NHáº¤T vá»:
-- Kiáº¿n trÃºc tá»•ng thá»ƒ (dependency graph)
-- Danh má»¥c Ä‘áº§y Ä‘á»§ 6 skill + sub-modules
-- Báº£ng tra nhanh: tÃ¬nh huá»‘ng â†’ skill â†’ script
-- Tá»•ng há»£p STANDARDS_LOCK
-- Pipeline Ä‘iá»ƒn hÃ¬nh
-- Error codes
-
-### Cáº­p nháº­t SKILL.md
-
-Táº¥t cáº£ SKILL.md Ä‘Æ°á»£c cáº­p nháº­t:
-- ThÃªm reference tá»›i `SKILL_INDEX.md`
-- Cáº­p nháº­t path deprecated scripts tá»« má»¥c chÃ­nh sang `_deprecated/`
-
-### Audit Findings Addressed
-
-| Issue ID | MÃ´ táº£ | Fix |
-|----------|-------|-----|
-| AUDIT-01 | Version mismatch giá»¯a SKILL.md vÃ  SKILLKC.md | Äá»“ng bá»™ vá» 2.1.0 |
-| AUDIT-02 | 5 deprecated scripts váº«n náº±m trong thÆ° má»¥c chÃ­nh | Di chuyá»ƒn sang `_deprecated/` |
-| AUDIT-03 | Thiáº¿u centralized index | Táº¡o `SKILL_INDEX.md` |
-| AUDIT-04 | KhÃ´ng cÃ³ integration test | Ghi nháº­n, cáº§n táº¡o sau |
-| AUDIT-05 | Database calibration cáº§n cáº­p nháº­t | Ghi nháº­n trong SKILL_INDEX |
+| Script | Ly do |
+|--------|-------|
+| `draw_ap_luc_dat_bo_ke.py` | Fixed geometry |
+| `draw_ke_buy_dung.py` | Fixed geometry |
+| `draw_ke_pi_gieng.py` | Fixed geometry |
+| `draw_pi_gieng_composite.py` | Fixed geometry |
+| `draw_tham_da.py` | Fixed geometry |
 
 ---
 
-## 2026-08-19 â€” New Scripts & Reference Files (v2.1)
+## 2026-08-18 — Critical Bug Fixes & Standards Cleanup (v2.1.1)
 
----
-
-## 2026-08-18 â€” Critical Bug Fixes & Standards Cleanup (v2.1.1)
-
-### Critical Fixes (Priority 1 - MUST FIX)
+### Critical Fixes
 
 | Bug ID | File | Issue | Fix |
 |--------|------|-------|-----|
 | BUG-01 | `calc_steel_beam.py` | `GAMMA_M1 = 1.05` (sai) | Changed to `GAMMA_M1 = 1.10` |
-| BUG-02 | `calc_steel_beam.py` | `ALPHA_LT = 0.34` (sai) | Changed to `ALPHA_LT = 0.21` (Ä‘Æ°á»ng cong a) |
-| BUG-03 | `steel_member_check_v2024.py` | `M_c_Rd * 10` (vÃ´ nghÄ©a) | Removed `* 10`, Ä‘Ãºng Ä‘Æ¡n vá»‹ |
-| BUG-04 | `calc_steel_beam.py` | KhÃ´ng tuyÃªn bá»‘ Eurocode | ThÃªm warning lá»›n Ä‘áº§u file |
-
-### Logic Fixes
-
-| Fix ID | File | Issue | Fix |
-|--------|------|-------|-----|
-| LOGIC-01 | `compare_structural_options.py` | Hardcoded `370000` labor rate | DÃ¹ng `DEFAULT_LABOR_RATE` constant |
-| LOGIC-02 | `auto_rfi_generator.py` | `hash()` khÃ´ng deterministic | DÃ¹ng `hashlib.md5()` |
-
-### Documentation Updates
-
-| Doc ID | File | Change |
-|--------|------|--------|
-| DOC-01 | `SKILLKC.md` | ThÃªm YAML frontmatter |
-| DOC-01 | `SKILL_REPORT.md` | ThÃªm YAML frontmatter |
-| DOC-01 | `SKILL_CALC.md` | ThÃªm YAML frontmatter |
-
-### Standards Cleanup
-
-- Thá»‘ng nháº¥t `TCVN 9386` â†’ `TCVN 9386:2025` (P1+P5)
-- Thá»‘ng nháº¥t `TCVN 10304` â†’ `TCVN 10304:2025`
-- ÄÃ¡nh dáº¥u `calc_steel_beam.py` dÃ¹ng EN 1993-1-1 (khÃ´ng pháº£i TCVN)
-- Cáº­p nháº­t `STANDARDS_LOCK.md` vá»›i thÃ´ng tin má»›i
-
-### Deprecated Files
-
-| File | Tráº¡ng thÃ¡i | Thay tháº¿ bá»Ÿi |
-|------|------------|---------------|
-| `steel_member_check.py` (2012) | âš ï¸ DEPRECATED | `steel_member_check_v2024.py` |
+| BUG-02 | `calc_steel_beam.py` | `ALPHA_LT = 0.34` (sai) | Changed to `ALPHA_LT = 0.21` |
+| BUG-03 | `steel_member_check_v2024.py` | `M_c_Rd * 10` (vo nghia) | Removed `* 10` |
 
 ---
 
-## 2026-08-19 â€” New Scripts & Reference Files (v2.1)
+## 2026-08-18 — Major Cleanup & Synchronization (v2.0)
 
-### Tá»•ng quan
-
-Bá»• sung 9 script/reference file má»›i Ä‘á»ƒ hoÃ n thiá»‡n há»‡ thá»‘ng.
-
-### Design_Evaluation
-- **Má»šI:** `calculators/earthquake_load_calc.py` â€” TÃ­nh táº£i trá»ng Ä‘á»™ng Ä‘áº¥t TCVN 9386:2025 (P1+P5), phá»• pháº£n á»©ng, phÃ¢n bá»‘ lá»±c theo chiá»u cao
-- **Má»šI:** `scripts/stage_gate_checklist.py` â€” Táº¡o checklist tá»± Ä‘á»™ng theo giai Ä‘oáº¡n (QS/TH/BVTC/THAU/GIAHAN), cÃ³ modifier theo loáº¡i cÃ´ng trÃ¬nh
-
-### Technical_Illustrator
-- **Má»šI:** `scripts/REGISTRY_INDEX.md` â€” Báº£ng tra cá»©u nhanh: tÃ¬nh huá»‘ng â†’ script, quy Æ°á»›c Ä‘áº·t tÃªn file output
-
-### Structural_Design_Engineer
-- **Má»šI:** `references/INDEX.md` â€” Chá»‰ má»¥c tham chiáº¿u: 3 nhÃ³m (BTCT/thÃ©p/mÃ³ng) + quick reference
-
-### SKILL_VERIFY
-- **Má»šI:** `scripts/verify_all.py` â€” Unified CLI cháº¡y Ä‘á»“ng thá»i cáº£ 5 loáº¡i kiá»ƒm chá»©ng, exit code theo CRITICAL/PASS
-
-### SKILL_FORENSIC
-- **Má»šI:** `references/RED_FLAG_TRIGGERS.md` â€” 4 cáº¥p nguy hiá»ƒm (CRITICALâ†’LOW), 18 triggers cá»¥ thá»ƒ, checklist kÃ­ch hoáº¡t, máº«u bÃ¡o cÃ¡o kháº©n
-- **Má»šI:** `scripts/search_fm.py` â€” TÃ¬m kiáº¿m Failure Mode Database theo tá»« khÃ³a, 15 failure modes cÃ³ sáºµn
-
-### Cost_Estimator
-- **Má»šI:** `scripts/update_prices.py` â€” Cáº­p nháº­t Ä‘Æ¡n giÃ¡ thá»§ cÃ´ng/tá»± Ä‘á»™ng, so sÃ¡nh vs giÃ¡ cÅ©, xuáº¥t bÃ¡o cÃ¡o markdown
-- **Má»šI:** `scripts/leed_credit_estimator.py` â€” Æ¯á»›c tÃ­nh Ä‘iá»ƒm LEED v4 BD+C, Carbon footprint vÃ²ng Ä‘á»i (embodied + operational), chi phÃ­ VE premium
+Dong bo toan bo 6 skills, tao CHANGELOG tap trung.
 
 ---
 
-## 2026-08-18 â€” Major Cleanup & Synchronization (v2.0)
+## 2026-07-28 — AGENTS.md v3.0 & STANDARDS_LOCK v1.0
 
-### Tá»•ng quan
-
-Äá»“ng bá»™ toÃ n bá»™ 6 skills: thÃªm frontmatter version, xÃ³a ná»™i dung trÃ¹ng láº·p, má»Ÿ rá»™ng AGENTS.md, cáº­p nháº­t STANDARDS_LOCK.md, táº¡o CHANGELOG táº­p trung.
-
-### Design_Evaluation
-- ThÃªm `version: 1.3.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-- Cáº­p nháº­t reference tá»« `SKILLKC.md` (19 nhÃ³m, 19 rules)
-
-### Technical_Illustrator
-- **FIX:** XÃ³a block trÃ¹ng láº·p ~200 dÃ²ng (2 báº£n mÃ´ táº£ vai trÃ² QLTK)
-- ThÃªm `version: 1.1.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-- Bá»• sung tráº¡ng thÃ¡i **âš ï¸ DEPRECATED** cho 5 fixed-geometry scripts
-- ThÃªm quy Æ°á»›c Ä‘áº·t tÃªn file output: `{ProjectCode}_{Element}_{View}_{Rev}.png`
-- ThÃªm reference tá»›i `scripts/REGISTRY_INDEX.md` (táº¡o khi cáº§n)
-
-### Structural_Design_Engineer
-- ThÃªm `version: 1.2.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-- Bá»• sung hÆ°á»›ng dáº«n `calc_steel_beam.py` dÃ¹ng Eurocode 3 (khÃ´ng pháº£i TCVN 5575)
-
-### Cost_Estimator
-- ThÃªm `version: 1.1.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-
-### SKILL_FORENSIC
-- ThÃªm `version: 1.1.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-
-### SKILL_VERIFY
-- ThÃªm `version: 1.1.0` + `last_updated: 2026-08-18` vÃ o frontmatter
-
-### AGENTS.md (má»›i)
-- Má»Ÿ rá»™ng tá»« 3 skills lÃªn **6 skills** Ä‘áº§y Ä‘á»§
-- Bá»• sung má»¥c 15: **Error Code System** (E001â€“E004, W001, I001)
-- Bá»• sung má»¥c 16: **Pipeline Ä‘iá»ƒn hÃ¬nh** cho 4 luá»“ng cÃ´ng viá»‡c chÃ­nh
-- Bá»• sung má»¥c 17: **Version Control** cho skills
-- Cáº­p nháº­t Version History: v1.0 â†’ v4.0
-
-### STANDARDS_LOCK.md
-- Cáº­p nháº­t version: v1.0 â†’ v2.0
-- Bá»• sung `steel_member_check_v2024.py` (TCVN 5575:2024 âœ…) vÃ o báº£ng script
-- ThÃªm **HÆ°á»›ng dáº«n chá»n script** giá»¯a v2024 vÃ  v2012
-
-### Changelog (má»›i)
-- Táº¡o file `CHANGELOG.md` táº­p trung táº¡i `.agents/skills/`
-- Ghi nháº­n táº¥t cáº£ thay Ä‘á»•i tá»« v1.0 Ä‘áº¿n v2.0
+- Them van phong ky thuat chuan hoa
+- Them version control cho file output
+- Tao STANDARDS_LOCK.md lam nguon su that duy nhat ve tieu chuan
+- Bo sung Citation Object 6 truong
 
 ---
 
-## 2026-07-28 â€” AGENTS.md v3.0 & STANDARDS_LOCK v1.0
+## 2026-07-15 — Deterministic Math v2.0
 
-- ThÃªm vÄƒn phong ká»¹ thuáº­t chuáº©n hÃ³a (Ä‘iá»u 12)
-- ThÃªm version control cho file output
-- Táº¡o STANDARDS_LOCK.md lÃ m nguá»“n sá»± tháº­t duy nháº¥t vá» tiÃªu chuáº©n
-- Bá»• sung Citation Object 6 trÆ°á»ng
-
----
-
-## 2026-07-15 â€” Deterministic Math v2.0
-
-- Báº¯t buá»™c gá»i script tÃ­nh toÃ¡n, cáº¥m nháº©m tay
-- YÃªu cáº§u má»i script tráº£ vá» `Calculation_Logs` + `Standard_Method`
-- Má»Ÿ rá»™ng Standards Version Lock
+- Bat buoc goi script tinh toan, cam nham tay
+- Yeu cau moi script tra ve `Calculation_Logs` + `Standard_Method`
+- Mo rong Standards Version Lock
 
 ---
 
-## 2026-06-01 â€” Initial Release
+## 2026-06-01 — Initial Release
 
-- 3 skills ban Ä‘áº§u: Design_Evaluation, Structural_Design_Engineer, Technical_Illustrator
-- AGENTS.md v1.0 vá»›i 11 Ä‘iá»u
+- 3 skills ban dau: Design_Evaluation, Structural_Design_Engineer, Technical_Illustrator
+- AGENTS.md v1.0 voi 11 dieu

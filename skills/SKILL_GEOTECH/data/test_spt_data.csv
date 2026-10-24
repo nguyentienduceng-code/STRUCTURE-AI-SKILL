@@ -1,0 +1,11 @@
+Depth(m),N_SPT,SoilType,Description
+1.0,4,Fill,Dat dap
+2.0,5,Clay,Set huu co, deo mem
+3.0,6,Clay,Set pha, dẻo mem
+4.5,12,Sand,Cat pha, chat vua
+6.0,15,Sand,Cat hat trung, chat vua
+8.0,22,Clay,Set, nua cung
+10.0,28,Clay,Set, cung
+12.0,35,Sand,Cat thach anh, chat
+15.0,50,Sand,Cat tho, rat chat
+20.0,50,Rock,Da phong hoa

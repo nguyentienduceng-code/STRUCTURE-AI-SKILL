@@ -1,0 +1,35 @@
+{
+  "project": {
+    "name": "Tòa nhà văn phòng V-15 Hà Nội",
+    "date": "2026-09-27",
+    "designer": "Test E2E Pipeline"
+  },
+  "geometry": {
+    "b": 200,
+    "h": 500,
+    "a_bottom": 35,
+    "a_top": 35
+  },
+  "materials": {
+    "concrete_grade": "B25",
+    "rebar_grade": "CB300"
+  },
+  "reinforcement": {
+    "As_bottom": 628,
+    "As_top": 0,
+    "rebar_bottom": "2Ø20",
+    "rebar_top": ""
+  },
+  "loads": {
+    "M_service": 120,
+    "N_service": 0
+  },
+  "environment": {
+    "type": "normal",
+    "humidity": 60
+  },
+  "expected_results": {
+    "a_crc_max_mm": 0.4,
+    "sigma_s_max_mpa": 250
+  }
+}

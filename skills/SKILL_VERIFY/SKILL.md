@@ -1,7 +1,7 @@
 ---
 name: SKILL_VERIFY
 version: 1.2.0
-last_updated: 2026-08-25
+last_updated: 2026-09-27
 description: "Module Kiểm chứng Chéo AI: Tự động so sánh kết quả tính toán từ nhiều nguồn (SKILLKC vs Structural_Design_Engineer vs phần mềm thương mại), phát hiện sai lệch > 5%, cảnh báo mâu thuẫn phiên bản tiêu chuẩn, kiểm tra tính nhất quán giữa các báo cáo. Kích hoạt tự động sau mỗi phân tích hoặc khi User yêu cầu: kiểm chứng, verify, cross-check, so sánh kết quả."
 ---
 

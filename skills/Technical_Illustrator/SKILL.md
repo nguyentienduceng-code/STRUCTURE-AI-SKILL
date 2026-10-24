@@ -1,7 +1,7 @@
 ---
 name: Technical_Illustrator
 version: 1.3.0
-last_updated: 2026-08-30
+last_updated: 2026-09-27
 description: "Kỹ sư Minh họa Kỹ thuật AI chuyên sinh ảnh mô phỏng thực tế (AI Render) và bản vẽ mặt cắt 2D chính xác (Python) cho các phương án kết cấu. Kích hoạt khi nhắc đến các keyword: vẽ minh họa, tạo ảnh phương án, render phối cảnh, vẽ mặt cắt, vẽ chi tiết thép, sơ đồ biện pháp thi công, trực quan hóa kết cấu."
 ---
 # Technical Illustrator — SKILL Entry Point

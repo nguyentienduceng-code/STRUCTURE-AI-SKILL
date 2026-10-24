@@ -1,0 +1,3318 @@
+{
+  "metadata": {
+    "title": "DCE Pro Reverse-Engineered Engineering Rules Registry",
+    "version": "1.0.0",
+    "created_at": "2026-10-18T19:35:08.254548",
+    "source": "C:\\Dce Pro (1,239 txt configs + DbimSteelAutocad.dll + Form 2.dxf)",
+    "standard_compliance": "TCVN 5574:2018, TCVN 5575:2024",
+    "total_txt_configs": 992,
+    "total_dxf_layers": 46,
+    "total_dxf_blocks": 168
+  },
+  "rc_detailing_rules": {
+    "standard_lap_multiplier": 40,
+    "min_lap_stagger_offset": 10,
+    "standard_stock_length_mm": 11700,
+    "min_reuse_offcut_length_mm": 500,
+    "default_cover_beam": 25,
+    "default_cover_col": 30,
+    "default_cover_slab": 15,
+    "default_cover_wall": 30,
+    "default_cover_footing": 50,
+    "cat_sole_cung_mot_lop": true,
+    "diem_noi_dau_cach_san_ve_cot": 100,
+    "dk_noi_nhan_co_chai": 18,
+    "column_noi_coupler": false,
+    "pa_cat_thep_trong_mot_vung_noi": "PA1",
+    "shop_toi_uu_to_hop_thep": true,
+    "bo_dim_dinh_vi_vung_noi": false,
+    "dce_kh_dai": "%%c",
+    "AnSoHieuThep": true,
+    "AnSoHieuThepKhiVeChiTiet": false,
+    "AnThongKeThepCot": false,
+    "AnThongKeThepVach": false,
+    "AutoStrThepSanKhoaChiTiet": true,
+    "BeamLMocDaiCPhai": 8,
+    "BeamLMocDaiCTrai": 8,
+    "BeKeDuChieuDaiNeo": true,
+    "BeKeThepLopDuoiDam": "15d",
+    "BeMocDaiCotTronLoai2": true,
+    "BeThepTren2DauQuaMatDuoiDam": true,
+    "BeThepTren2DauQuaMatDuoiDamMM": "-50mm",
+    "BoDimDinhViVungNoiThepDam": false,
+    "BuocThepDocVDGanLK": "100/200",
+    "CatChanThepCuoi": false,
+    "CatThepDaiVongV": false,
+    "CatThepDaiVongVOption2": false,
+    "ChanThepVoiPhanShop": false,
+    "CheckBoVeThepChanTronGanLK": false,
+    "ChiaKhoangCachGiaCuong": "cf",
+    "ChieuDaiMinXetCatThep": "2.5d",
+    "ChieuDaiThepDocGanLK": 11700,
+    "ChieuDaiThepDocRiengGanLK": 11700,
+    "ChieuDaiThepShop": 0,
+    "ChieuDaiThuVienThepShop": 0,
+    "ColumnNoiCoupler": false,
+    "DaiVungNoiThep": "Không tùy chỉnh",
+    "DDMocDaiKinCotVavh": 135,
+    "DiemNoiDauCachSanVeCot": 100,
+    "DimDinhViThepTangCuongShop": false,
+    "DimDVCatChanThep": true,
+    "DimThepShopp": true,
+    "DKDKThepChamTron": false,
+    "DKNoiNhanCoChai": 18,
+    "DKThepChamTron": 16,
+    "DKThepDocVeGanLK": "20/16",
+    "DKThepDocVeRiengGanLK": 16,
+    "DKThepRaiSan": 12,
+    "DoanBeMoc": 70,
+    "DoanMocThep": 20,
+    "DoiMauThanhThepSauKhiGan": true,
+    "DoiXungThepGoiNhipLon": false,
+    "DolechChanThepVoiPhanShop": 650,
+    "DVKCNoi2LanNoi": "d",
+    "GanLKThepDam": "GanLienKetThep",
+    "GhiChieuDaiThepCot": false,
+    "GhiChieuDaiThepSan": false,
+    "GhiChieuDaiThepShop": true,
+    "GhiDienTichThepBoTriTrenMCD": false,
+    "GhiDienTichThepBoTriTrenMCNVach": false,
+    "GocMocPhaiGanLK": 180,
+    "GocMocTraiGanLK": 180,
+    "GocQuayMocC": 180,
+    "GocQuayMocC2": 180,
+    "GocQuayMocCCot": 180,
+    "GocQuayMocCCot2": 180,
+    "GocQuayMocU": 135,
+    "HinhDangVaThepVach": "GenC",
+    "KCGiuaHaiLanNoiCot": 0,
+    "KCRaiThepSan": 200,
+    "KCThongThuy2LopThepCot": 0,
+    "KeoChanThepCot": false,
+    "KeoHetCotThepChaySuotDuoi": false,
+    "KeoHetCotThepChaySuotTren": false,
+    "KeoThep50": 0,
+    "KeoThepDaiVaiBo": 20,
+    "KeoThepGiaDamDenHetCot": true,
+    "KetNoiCSI": "Etabs",
+    "KhoangCach2KhungVp": 200,
+    "KhoangCachDaiDauTienDenMep": 50,
+    "KhoangCachGiuaHaiLopThep": 50,
+    "KhoangLechCatThep": 100,
+    "KhoangLechCatThep2thanhsole": "10TLV",
+    "KhongHacthVungNoi": false,
+    "KiemSoatLoiKhiThongKeThep": false,
+    "LamTronKc2DoanNoi": 1,
+    "LamTronMocDai": 1,
+    "LamTronNoiThep": 1,
+    "LenhSuaThep": "suathep",
+    "LMocDaiGanLK": 6,
+    "LnhipNganTagThep": 5500,
+    "LNoiThepMin": false,
+    "LNoithepVachBienGiua": true,
+    "LThepShop": 11700,
+    "LuonBeKeThepLopDuoiDam": false,
+    "LuonBeKeThepLopTrenD": "Mép dưới",
+    "LuonKeoThepLopDuoi2DauHetCot": true,
+    "LuonKeoThepLopTren2DauHetCot": false,
+    "MauThanhThepSauKhiDoi": 3,
+    "MCSChamThepDuoi": "T10a200",
+    "MCSChamThepDuoiNamDuoi": false,
+    "MCSChamThepTren": "T10a200",
+    "MCSChamThepTrenNamTren": false,
+    "MCSKhongVeThepSan": false,
+    "MCSThepLopDuoi": "T10a200",
+    "MCSThepLopTren": "T10a200",
+    "MCSVeThepLTren4": false,
+    "MCSVeThepRaiDeu": true,
+    "MmMocDaiGanLK": 0,
+    "MocCDoTangCuong": 16,
+    "MocDaiCCL1": 6,
+    "MocDaiCCL2": 6,
+    "MocDaiThuong": 8,
+    "MocDaiTrongVedam": 8,
+    "MocDaiUBao": 10,
+    "MocDaiUTrong": 8,
+    "MocDaiVeVach": 6,
+    "MocDaiVongVeCot": 6,
+    "MocDaiVongVeVach": "",
+    "MocDaiXoan": 40,
+    "NeoThepLuonTrongCotDam": true,
+    "NhanDangMocDon": true,
+    "NoiDuoilientuc": false,
+    "NoiThepDongTruc": true,
+    "NoiThepSole": true,
+    "OptionRaiThepSanTuDong": "Default",
+    "OsThepDocVDGanLK": 40,
+    "PACatThepTrong1VungNoi": "PA1",
+    "QTKT_Noi1": 40,
+    "QTKT_Noi1NV": 40,
+    "QTKT_Noi2": 40,
+    "QTKT_Noi2NV": 40,
+    "QTKT_Noi3": 40,
+    "QTKT_Noi3NV": 40,
+    "QTKT_Noi4": 40,
+    "QTKT_Noi4NV": 40,
+    "QTKT_Noi5": 40,
+    "QTKT_Noi5NV": 40,
+    "QTKT_Noi6": 40,
+    "QTKT_Noi6NV": 40,
+    "QTKT_Noi7": 40,
+    "QTKT_Noi7NV": 40,
+    "QTKT_Noi8": 40,
+    "QTKT_Noi8NV": 40,
+    "QTKT_NoiThepmm": "",
+    "QTKT_NoiThepNVmm": "",
+    "QTKT_UuTienNoiThepmm": false,
+    "QuetThepDuTruocShop": false,
+    "RaiThepNhungKhongCatThep": false,
+    "RoundUpSLThepKR": true,
+    "SaiSoVungNoi": 0,
+    "ShopBeam_LamTronThep": 1,
+    "ShopDimNoiThepDangD": false,
+    "ShopGhiViTriLopThep": false,
+    "ShopKcViTriLopThep": 800,
+    "ShopKhongNoiThepVungCot": false,
+    "ShopKhongNoiVungCotBot": true,
+    "ShopKhongNoiVungCotGia": true,
+    "ShopKhongNoiVungCotTop": true,
+    "ShopTagThep": true,
+    "ShopTHepLamTronDoanNoi": 1,
+    "ShopThepSanDimSole": true,
+    "ShopThepSanNgatLienKetDim": false,
+    "ShopThepSanTinhTien": "",
+    "ShopToiUuToHopThep": true,
+    "Shop_Dv2MoiNoi": "d",
+    "Shop_KC2MoiNoi": 0,
+    "SHTSGopThepGiongNhau": true,
+    "STLamTronThepGiaCuongGN": 50,
+    "StrecthThepUpdateL": true,
+    "StrecthThepUpdateSH": false,
+    "SuaDuongKinhThep": "sdkt",
+    "SuaNhieuThep_DinhDangText": "Sl&Dk",
+    "SuaNhieuThep_DoiChieuDaiChamThep": "L",
+    "SuaNhieuThep_DoiChieuDaiChamThepValue": 3600,
+    "SuaNhieuThep_DuongKinhThepCu": "",
+    "SuaNhieuThep_DuongKinhThepMoi": "",
+    "SuaNhieuThep_KhoangRaiThepCu": "",
+    "SuaNhieuThep_KhoangRaiThepMoi": "",
+    "SuaNhieuThep_SoCauKienMoi": 3,
+    "SuaNhieuThep_SoLuongThepCu": "",
+    "SuaNhieuThep_SoLuongThepMoi": "",
+    "SuaNhieuThep_TenCK": "BMY.1",
+    "SuaNhieuThep_ThepKep": "",
+    "SuaNhieuThep_TuKhoaThayThe": "",
+    "SuaNhieuThep_TuKhoaTimKiem": "",
+    "SuaThongKeThep": "stk_dce",
+    "TachSHThep": false,
+    "TachSHThepCot": true,
+    "TagThepCdoThepGia": true,
+    "TagThepShowChieuDai": false,
+    "TaoFieldThepCot": false,
+    "TaoThongKeThep": "tkt_dce",
+    "ThepKhacSoLuongKhacSoHieu": true,
+    "ThepShopDamXepTrungLayOut": false,
+    "ThepShopDamXepTrungLayOutXoaChiTiet": false,
+    "ThepSoLeKhacSoHieu": true,
+    "ThongKeThepSan": "tkts",
+    "ThongKeTrungBinhCongThepBienThien": true,
+    "TKTSGopThepGiongNhau": true,
+    "ToiUuCatThep": "ToiUuCatThep",
+    "TongChieuDai2ThanhThepShopGanNhau": 6000,
+    "TrienKhaiThepGiaShop": false,
+    "TuCatThepDam": "100/100/100",
+    "TyLeVeShopThepSan": 100,
+    "UDThongKeThepDam": "QuetThongKe_dce",
+    "UpdateThepTinhToan": "UpdateThepTinhToan",
+    "UuTienVungNoiHonUuTienNoiSole": false,
+    "ViewPortSapXepToiUu": false,
+    "VitriNoiDongTruc": "Trên",
+    "ViTriTThepTT": "",
+    "VN_GopThep": true,
+    "VN_LayerThepGc": "DCE_ThepSanGC",
+    "VN_LayerThepSuot": "DCE_ThepChu",
+    "VN_Neo": 40,
+    "VungNoiThep": "Chân cột",
+    "VVHCoThepChoGanLK": false,
+    "VVHDaiNeoThepGanLK": 40,
+    "VVHLThepNgangGanLK": 11700,
+    "VVHThepDungGanLK": "14a150",
+    "VVHThepNgangGanLK": "10a200",
+    "XemLKThepDam": "XemLienKetThep",
+    "XoaLKThepDam": "XoaLienKetThep",
+    "AutoCad_KhoangCach_a": 15,
+    "AutoCad_KhoangCach_b": 20
+  },
+  "viewport_packing_rules": {
+    "standard_sheet_height": 297,
+    "standard_sheet_width": 368,
+    "standard_scale": 20,
+    "padding_x": 5,
+    "click_origin": "0,0,0",
+    "chieu_cao_khung_ten_ve_cot": 4000,
+    "chieu_cao_khung_ten_ve_vach": 4000,
+    "chia_khung_model_cat_dung_truc": false,
+    "viewport_command": "taomv",
+    "viewport_sap_xep_toi_uu": false,
+    "ChiaKhungModelCatDungTruc": false,
+    "ChiaKhungModelCatDungTrucKeoDaiHetKhung": false,
+    "ChiaKhungModelUuTienXepKinBanVe": false,
+    "ChieuCaoKhungTenVeCot": 4000,
+    "ChieuCaoKhungTenVeVach": 4000,
+    "ChieuRongKhungTen": 1000,
+    "ChieuRongKhungTenVeCot": 2000,
+    "ChieuRongKhungTenVeVach": 1500,
+    "CoDinhChieuCaoKhungCotVach": "",
+    "GhiTyLeOMatCat": "Tên CK & TL",
+    "KhoangCach2KhungVp": 200,
+    "KhungCot2": false,
+    "TaoKhungMCN": true,
+    "TMBA_TyLeBanVeMB": 100,
+    "TyLeTagTT": 50,
+    "TyleTaoViewPort": 20,
+    "TyLeVeShop2drw": 50,
+    "TyLeVeShopdrw": 50,
+    "TyLeVeShopThepSan": 100,
+    "ViewPortAutoClickToaDoChinh": "0,0,0",
+    "ViewPortAutoPadXx": 5,
+    "ViewPortCaoKhungTen": 297,
+    "ViewPortDoanChongLan": 500,
+    "ViewPortGianDongDMBV": 5,
+    "ViewPortPadYy": 5,
+    "ViewPortRongKhungTen": 368,
+    "ViewPortSaiSoChoPhepXepKhung": 1,
+    "ViewPortSapXepToiUu": false,
+    "ViewPortTenKhung": "",
+    "ViewPortTheoThuTuSelect": true,
+    "ViewPortTrenXuongDuoi": false,
+    "ViewPortTuDongSapKhungTen": true,
+    "ViewPortTyLeKhung": 50,
+    "ViewPortUuTienXepKhung": "A",
+    "VMCSTyLeVeMcSan": "1:25",
+    "VN_TyLeVe": 50,
+    "AutoCad_TK_SoLuongKhung": 2,
+    "AutoCad_TK_TyLeBanVe": 10
+  },
+  "steel_sections_catalog": {
+    "prefixes": {
+      "I": "I-",
+      "U": "U-",
+      "V": "V-",
+      "Pipe": "PIPE-",
+      "Box": "BOX-",
+      "Plate": "PL"
+    },
+    "sections_I": {
+      "I_1": {
+        "designation": "150",
+        "h_mm": 150.0,
+        "b_mm": 75.0,
+        "tw_mm": 5.0,
+        "tf_mm": 7.0,
+        "weight_kg_m": 14.0
+      },
+      "I_2": {
+        "designation": "200",
+        "h_mm": 200.0,
+        "b_mm": 100.0,
+        "tw_mm": 5.5,
+        "tf_mm": 8.0,
+        "weight_kg_m": 21.3
+      },
+      "I_3": {
+        "designation": "250",
+        "h_mm": 250.0,
+        "b_mm": 125.0,
+        "tw_mm": 6.0,
+        "tf_mm": 9.0,
+        "weight_kg_m": 29.6
+      },
+      "I_4": {
+        "designation": "300",
+        "h_mm": 300.0,
+        "b_mm": 150.0,
+        "tw_mm": 6.5,
+        "tf_mm": 9.0,
+        "weight_kg_m": 36.7
+      },
+      "I_5": {
+        "designation": "350",
+        "h_mm": 350.0,
+        "b_mm": 175.0,
+        "tw_mm": 7.0,
+        "tf_mm": 11.0,
+        "weight_kg_m": 49.6
+      },
+      "I_6": {
+        "designation": "400",
+        "h_mm": 400.0,
+        "b_mm": 200.0,
+        "tw_mm": 8.0,
+        "tf_mm": 13.0,
+        "weight_kg_m": 66.0
+      },
+      "I_7": {
+        "designation": "450",
+        "h_mm": 450.0,
+        "b_mm": 200.0,
+        "tw_mm": 9.0,
+        "tf_mm": 14.0,
+        "weight_kg_m": 76.0
+      },
+      "I_8": {
+        "designation": "500",
+        "h_mm": 500.0,
+        "b_mm": 200.0,
+        "tw_mm": 10.0,
+        "tf_mm": 16.0,
+        "weight_kg_m": 89.6
+      },
+      "I_9": {
+        "designation": "600",
+        "h_mm": 600.0,
+        "b_mm": 200.0,
+        "tw_mm": 11.0,
+        "tf_mm": 17.0,
+        "weight_kg_m": 106.0
+      },
+      "I_10": {
+        "designation": "700",
+        "h_mm": 700.0,
+        "b_mm": 300.0,
+        "tw_mm": 13.0,
+        "tf_mm": 24.0,
+        "weight_kg_m": 185.0
+      },
+      "I_11": {
+        "designation": "H100",
+        "h_mm": 100.0,
+        "b_mm": 100.0,
+        "tw_mm": 6.0,
+        "tf_mm": 8.0,
+        "weight_kg_m": 17.2
+      },
+      "I_12": {
+        "designation": "H125",
+        "h_mm": 125.0,
+        "b_mm": 125.0,
+        "tw_mm": 6.5,
+        "tf_mm": 9.0,
+        "weight_kg_m": 23.8
+      },
+      "I_13": {
+        "designation": "H150",
+        "h_mm": 150.0,
+        "b_mm": 150.0,
+        "tw_mm": 7.0,
+        "tf_mm": 10.0,
+        "weight_kg_m": 31.5
+      },
+      "I_14": {
+        "designation": "H175",
+        "h_mm": 175.0,
+        "b_mm": 175.0,
+        "tw_mm": 7.5,
+        "tf_mm": 11.0,
+        "weight_kg_m": 40.4
+      },
+      "I_15": {
+        "designation": "H200",
+        "h_mm": 200.0,
+        "b_mm": 200.0,
+        "tw_mm": 8.0,
+        "tf_mm": 12.0,
+        "weight_kg_m": 49.9
+      },
+      "I_16": {
+        "designation": "H250",
+        "h_mm": 250.0,
+        "b_mm": 250.0,
+        "tw_mm": 9.0,
+        "tf_mm": 14.0,
+        "weight_kg_m": 72.4
+      },
+      "I_17": {
+        "designation": "H300",
+        "h_mm": 300.0,
+        "b_mm": 300.0,
+        "tw_mm": 10.0,
+        "tf_mm": 15.0,
+        "weight_kg_m": 94.0
+      },
+      "I_18": {
+        "designation": "H350",
+        "h_mm": 350.0,
+        "b_mm": 350.0,
+        "tw_mm": 12.0,
+        "tf_mm": 19.0,
+        "weight_kg_m": 137.0
+      },
+      "I_19": {
+        "designation": "H400",
+        "h_mm": 400.0,
+        "b_mm": 400.0,
+        "tw_mm": 13.0,
+        "tf_mm": 21.0,
+        "weight_kg_m": 172.0
+      }
+    },
+    "sections_U": {
+      "U_1": {
+        "designation": "75",
+        "h_mm": 75.0,
+        "b_mm": 40.0,
+        "tw_mm": 5.0,
+        "tf_mm": 7.0,
+        "weight_kg_m": 6.9
+      },
+      "U_2": {
+        "designation": "100",
+        "h_mm": 100.0,
+        "b_mm": 50.0,
+        "tw_mm": 5.0,
+        "tf_mm": 7.5,
+        "weight_kg_m": 9.4
+      },
+      "U_3": {
+        "designation": "125",
+        "h_mm": 125.0,
+        "b_mm": 65.0,
+        "tw_mm": 6.0,
+        "tf_mm": 8.0,
+        "weight_kg_m": 13.4
+      },
+      "U_4": {
+        "designation": "150",
+        "h_mm": 150.0,
+        "b_mm": 75.0,
+        "tw_mm": 6.5,
+        "tf_mm": 10.0,
+        "weight_kg_m": 18.6
+      },
+      "U_5": {
+        "designation": "1502",
+        "h_mm": 150.0,
+        "b_mm": 75.0,
+        "tw_mm": 9.0,
+        "tf_mm": 12.5,
+        "weight_kg_m": 24.0
+      },
+      "U_6": {
+        "designation": "180",
+        "h_mm": 180.0,
+        "b_mm": 75.0,
+        "tw_mm": 7.0,
+        "tf_mm": 10.5,
+        "weight_kg_m": 21.4
+      },
+      "U_7": {
+        "designation": "200",
+        "h_mm": 200.0,
+        "b_mm": 80.0,
+        "tw_mm": 7.5,
+        "tf_mm": 11.0,
+        "weight_kg_m": 24.6
+      },
+      "U_8": {
+        "designation": "2002",
+        "h_mm": 200.0,
+        "b_mm": 90.0,
+        "tw_mm": 8.0,
+        "tf_mm": 13.5,
+        "weight_kg_m": 30.3
+      },
+      "U_9": {
+        "designation": "250",
+        "h_mm": 250.0,
+        "b_mm": 90.0,
+        "tw_mm": 9.0,
+        "tf_mm": 13.0,
+        "weight_kg_m": 34.6
+      },
+      "U_10": {
+        "designation": "2502",
+        "h_mm": 250.0,
+        "b_mm": 90.0,
+        "tw_mm": 11.0,
+        "tf_mm": 14.5,
+        "weight_kg_m": 40.2
+      },
+      "U_11": {
+        "designation": "300",
+        "h_mm": 300.0,
+        "b_mm": 90.0,
+        "tw_mm": 9.0,
+        "tf_mm": 13.0,
+        "weight_kg_m": 38.1
+      },
+      "U_12": {
+        "designation": "380",
+        "h_mm": 380.0,
+        "b_mm": 100.0,
+        "tw_mm": 10.5,
+        "tf_mm": 16.0,
+        "weight_kg_m": 48.6
+      }
+    },
+    "sections_V": {
+      "V_1": {
+        "designation": "25",
+        "b_mm": 25.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 1.11
+      },
+      "V_2": {
+        "designation": "30",
+        "b_mm": 30.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 1.34
+      },
+      "V_3": {
+        "designation": "40",
+        "b_mm": 40.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 1.81
+      },
+      "V_4": {
+        "designation": "50",
+        "b_mm": 50.0,
+        "t_mm": 4.0,
+        "weight_kg_m": 3.01
+      },
+      "V_5": {
+        "designation": "63",
+        "b_mm": 63.0,
+        "t_mm": 5.0,
+        "weight_kg_m": 4.75
+      },
+      "V_6": {
+        "designation": "70",
+        "b_mm": 70.0,
+        "t_mm": 6.0,
+        "weight_kg_m": 6.31
+      },
+      "V_7": {
+        "designation": "75",
+        "b_mm": 75.0,
+        "t_mm": 6.0,
+        "weight_kg_m": 6.78
+      },
+      "V_8": {
+        "designation": "80",
+        "b_mm": 80.0,
+        "t_mm": 6.0,
+        "weight_kg_m": 7.25
+      },
+      "V_9": {
+        "designation": "90",
+        "b_mm": 90.0,
+        "t_mm": 7.0,
+        "weight_kg_m": 9.51
+      },
+      "V_10": {
+        "designation": "100",
+        "b_mm": 100.0,
+        "t_mm": 8.0,
+        "weight_kg_m": 12.06
+      },
+      "V_11": {
+        "designation": "120",
+        "b_mm": 120.0,
+        "t_mm": 8.0,
+        "weight_kg_m": 14.57
+      },
+      "V_12": {
+        "designation": "130",
+        "b_mm": 130.0,
+        "t_mm": 10.0,
+        "weight_kg_m": 19.62
+      },
+      "V_13": {
+        "designation": "150",
+        "b_mm": 150.0,
+        "t_mm": 10.0,
+        "weight_kg_m": 22.76
+      }
+    },
+    "sections_P": {
+      "P_1": {
+        "designation": "22",
+        "d_mm": 22.0,
+        "t_mm": 2.0,
+        "weight_kg_m": 0.99
+      },
+      "P_2": {
+        "designation": "32",
+        "d_mm": 32.0,
+        "t_mm": 2.0,
+        "weight_kg_m": 1.48
+      },
+      "P_3": {
+        "designation": "42",
+        "d_mm": 42.0,
+        "t_mm": 3.2,
+        "weight_kg_m": 3.06
+      },
+      "P_4": {
+        "designation": "60",
+        "d_mm": 60.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 4.22
+      },
+      "P_5": {
+        "designation": "76",
+        "d_mm": 76.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 5.4
+      },
+      "P_6": {
+        "designation": "90",
+        "d_mm": 90.0,
+        "t_mm": 3.0,
+        "weight_kg_m": 6.44
+      },
+      "P_7": {
+        "designation": "114",
+        "d_mm": 114.0,
+        "t_mm": 3.18,
+        "weight_kg_m": 8.69
+      },
+      "P_8": {
+        "designation": "141",
+        "d_mm": 141.0,
+        "t_mm": 3.96,
+        "weight_kg_m": 13.38
+      },
+      "P_9": {
+        "designation": "168",
+        "d_mm": 168.0,
+        "t_mm": 3.96,
+        "weight_kg_m": 16.02
+      },
+      "P_10": {
+        "designation": "219",
+        "d_mm": 219.0,
+        "t_mm": 4.78,
+        "weight_kg_m": 25.25
+      },
+      "P_11": {
+        "designation": "273",
+        "d_mm": 273.0,
+        "t_mm": 6.35,
+        "weight_kg_m": 41.76
+      }
+    },
+    "unit_weights_I_kg_m": {
+      "I_1": 14.0,
+      "I_2": 21.3,
+      "I_3": 29.6,
+      "I_4": 36.7,
+      "I_5": 49.6,
+      "I_6": 66.0,
+      "I_7": 76.0,
+      "I_8": 89.6,
+      "I_9": 106.0,
+      "I_10": 185.0,
+      "I_11": 17.2,
+      "I_12": 23.8,
+      "I_13": 31.5,
+      "I_14": 40.4,
+      "I_15": 49.9,
+      "I_16": 72.4,
+      "I_17": 94.0,
+      "I_18": 137.0,
+      "I_19": 172.0
+    },
+    "unit_weights_U_kg_m": {
+      "U_1": 6.9,
+      "U_2": 9.4,
+      "U_3": 13.4,
+      "U_4": 18.6,
+      "U_5": 24.0,
+      "U_6": 21.4,
+      "U_7": 24.6,
+      "U_8": 30.3,
+      "U_9": 34.6,
+      "U_10": 40.2,
+      "U_11": 38.1,
+      "U_12": 48.6
+    },
+    "kh_steel_symbols": {
+      "Pipe_MCN": "Pipe_MCN",
+      "Purlin_Z": "Purlin_Z",
+      "Channel_MB": "Channel_MB",
+      "L": "L",
+      "Tube_MCN": "Tube_MCN",
+      "WBArch": "WBArch",
+      "TamGiac_MB": "TamGiac_MB",
+      "WMTopCol": "WMTopCol",
+      "WM3": "WM3",
+      "Angle_MCN": "Angle_MCN",
+      "R": "R",
+      "Channel_MCD": "Channel_MCD",
+      "HCN_MB": "HCN_MB",
+      "WMTopRoof": "WMTopRoof",
+      "GeneralSect": "GeneralSect",
+      "Plan_HW": "Plan_HW",
+      "Tube_MCD": "Tube_MCD",
+      "Channel_C1": "Channel_C1",
+      "HCN_Vat_MB": "HCN_Vat_MB",
+      "WM2": "WM2",
+      "Rod": "Rod",
+      "B": "B",
+      "Pipe_MCD": "Pipe_MCD",
+      "Pipe_MCD_In": "Pipe_MCD_In",
+      "WB": "WB",
+      "Cable": "Cable",
+      "TamGiac_MC": "TamGiac_MC",
+      "Purlin_C": "Purlin_C",
+      "TamTron_MC": "TamTron_MC",
+      "FThkArch": "FThk_Arch",
+      "RCB": "RCB",
+      "HCN_Vat_MC": "HCN_Vat_MC",
+      "WMSTC": "WMSTC",
+      "Channel_MCN": "Channel_MCN",
+      "Channel_C2": "Channel_C2",
+      "Tube_MB": "Tube_MB",
+      "FThk": "FThk",
+      "Obj_Erase": "Obj_Erase",
+      "TamTron_MB": "TamTron_MB",
+      "WMKeoNoiMai": "WMKeoNoiMai",
+      "Plan_HF": "Plan_HF",
+      "Pipe_MCN_In": "Pipe_MCN_In",
+      "TC4": "TC4",
+      "T": "T",
+      "WThk": "WThk",
+      "HCN_MC": "HCN_MC",
+      "FBf": "FBf",
+      "H_MCN": "H_MCN",
+      "Tube_Arch": "Tube_Arch",
+      "Pipe_Arch": "Pipe_Arch",
+      "WMEdge": "WMEdge",
+      "Angle_MCD": "Angle_MCD"
+    }
+  },
+  "steel_bolt_rules": {
+    "bolts": {
+      "M12": {
+        "B": 50,
+        "C": 60,
+        "F": 50,
+        "P": 120
+      },
+      "M16": {
+        "B": 50,
+        "C": 60,
+        "F": 50,
+        "P": 120
+      },
+      "M20": {
+        "B": 50,
+        "C": 60,
+        "F": 50,
+        "G": 120,
+        "P": 120
+      },
+      "M24": {
+        "B": 70,
+        "C": 80,
+        "F": 60,
+        "G": 150,
+        "P": 150
+      },
+      "M27": {
+        "B": 70,
+        "C": 80,
+        "F": 60,
+        "P": 160
+      },
+      "M30": {
+        "B": 70,
+        "C": 80,
+        "F": 60,
+        "P": 200
+      },
+      "M33": {
+        "B": 70,
+        "C": 80,
+        "F": 60,
+        "P": 200
+      },
+      "M36": {
+        "B": 70,
+        "C": 80,
+        "F": 60,
+        "P": 200
+      }
+    },
+    "blng_edge_pitch": {
+      "BLNG1": 100,
+      "BLNG2": 120,
+      "BLNG3": 150,
+      "BLNG4": 150,
+      "BLNG5": 200,
+      "BLNG6": 200,
+      "BLNG7": 200,
+      "BLNG8": 250
+    },
+    "blnw_plate_width": {
+      "BLNW1": 184,
+      "BLNW2": 212,
+      "BLNW3": 298,
+      "BLNW4": 300,
+      "BLNW5": 370,
+      "BLNW6": 370,
+      "BLNW7": 400,
+      "BLNW8": 500
+    },
+    "washers_W": {
+      "W1": 184,
+      "W2": 212,
+      "W3": 298,
+      "W4": 300,
+      "W5": 350,
+      "W6": 370,
+      "W7": 400,
+      "W8": 500
+    },
+    "gaskets_G": {
+      "G1": 100,
+      "G2": 120,
+      "G3": 150,
+      "G4": 150,
+      "G5": 180,
+      "G6": 200,
+      "G7": 200,
+      "G8": 250
+    }
+  },
+  "steel_layers_and_blocks": {
+    "dce_layers_46": [
+      {
+        "name": "0",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Name",
+        "color": 142,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_KT",
+        "color": 142,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "Defpoints",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Dim",
+        "color": 254,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Block",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_MCZiCZac",
+        "color": 144,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "Dce_text",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_BaoBeTong",
+        "color": 4,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_ThepChu",
+        "color": 1,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_ThepDai",
+        "color": 220,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Truc",
+        "color": 8,
+        "linetype": "DASHDOT2_DBIM"
+      },
+      {
+        "name": "DCE_NetKhuat",
+        "color": 9,
+        "linetype": "HIDDEN_DBIM"
+      },
+      {
+        "name": "DCE_NetDut",
+        "color": 8,
+        "linetype": "HIDDEN_DBIM"
+      },
+      {
+        "name": "DCE_Hatch",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Gen_Open",
+        "color": 144,
+        "linetype": "CENTER2_DBIM"
+      },
+      {
+        "name": "AREAS",
+        "color": 1,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "POINTS",
+        "color": 5,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_ThepChu.TTT",
+        "color": 5,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_ThepDai.TTT",
+        "color": 6,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Nhip",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_TKT-TEXT",
+        "color": 2,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Symbol",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_WIPEOUT",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_TenNhip",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_GoiDam",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_SUB-COLN_T---",
+        "color": 6,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_SUB-COWA_----",
+        "color": 210,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_SUB-COLN_S---",
+        "color": 6,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_NetThay",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Lanh_To",
+        "color": 3,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_BottomBars",
+        "color": 1,
+        "linetype": "HIDDEN_DBIM"
+      },
+      {
+        "name": "DCE_Beam",
+        "color": 2,
+        "linetype": "BEAM HIDEN_DBIM"
+      },
+      {
+        "name": "DCE_CDD",
+        "color": 142,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_ChiaDoiTuong",
+        "color": 51,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Note",
+        "color": 117,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "XREF.COLUMN WALL$0$S_SUB-COLN_T---",
+        "color": 6,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "XREF.COLUMN WALL$0$S_Hatch block",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "XREF.COLUMN WALL$0$S_SUB-COLN_S---",
+        "color": 6,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Coc",
+        "color": 2,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_TextCoc",
+        "color": 2,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Coc3D",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Dim2",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "Dce_ViTriThep",
+        "color": 7,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "DCE_Hatch @ 1",
+        "color": 8,
+        "linetype": "Continuous"
+      },
+      {
+        "name": "XREF.COLUMN WALL$0$S_Hatch block @ 1",
+        "color": 8,
+        "linetype": "Continuous"
+      }
+    ],
+    "dce_dimstyles_18": [
+      "Standard",
+      "Dce_100MV",
+      "Dce_50MV",
+      "Dce_25MV",
+      "Dce_20MV",
+      "Dce_30MV",
+      "Dce_120MV",
+      "Dce_40MV",
+      "Dce_125MV",
+      "Dce_150MV",
+      "Dce_200MV",
+      "Dce_75MV",
+      "Dce_206MV",
+      "Dce_LEADERMV",
+      "Dce_207MV",
+      "Dce_208MV",
+      "Dce_205MV",
+      "Dce_209MV"
+    ],
+    "dce_blocks_form2": {
+      "*Model_Space": {
+        "name": "*Model_Space",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*Paper_Space": {
+        "name": "*Paper_Space",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*Paper_Space0": {
+        "name": "*Paper_Space0",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "_ArchTick": {
+        "name": "_ArchTick",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KhTenTruc": {
+        "name": "Dce_KhTenTruc",
+        "attdefs": [
+          "TRUC"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_DanhDauThep": {
+        "name": "Dce_DanhDauThep",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U4": {
+        "name": "*U4",
+        "attdefs": [
+          "TENDAM",
+          "TL"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U5": {
+        "name": "*U5",
+        "attdefs": [
+          "TL",
+          "TENNHIP"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U6": {
+        "name": "*U6",
+        "attdefs": [
+          "TL",
+          "TENMATCAT"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_CaoTrinh": {
+        "name": "Dce_CaoTrinh",
+        "attdefs": [
+          "CT"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK2R1": {
+        "name": "TK2R1",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK3R1": {
+        "name": "TK3R1",
+        "attdefs": [
+          "SH",
+          "L1",
+          "L2",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK5R1": {
+        "name": "TK5R1",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK6R1": {
+        "name": "TK6R1",
+        "attdefs": [
+          "SH",
+          "L1",
+          "L2",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK1R1": {
+        "name": "TK1R1",
+        "attdefs": [
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "L",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK2": {
+        "name": "TK2",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK3": {
+        "name": "TK3",
+        "attdefs": [
+          "SH",
+          "L1",
+          "L2",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK4": {
+        "name": "TK4",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK5": {
+        "name": "TK5",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK6": {
+        "name": "TK6",
+        "attdefs": [
+          "SH",
+          "L1",
+          "L2",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK7": {
+        "name": "TK7",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TKTitle": {
+        "name": "TKTitle",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": true
+      },
+      "TK1": {
+        "name": "TK1",
+        "attdefs": [
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "L",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK8": {
+        "name": "TK8",
+        "attdefs": [
+          "M2",
+          "M1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "L",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK9": {
+        "name": "TK9",
+        "attdefs": [
+          "L2",
+          "L1",
+          "M",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TenCauKien": {
+        "name": "TenCauKien",
+        "attdefs": [
+          "SOCAUKIEN",
+          "TENCAUKIEN"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_MatCatA": {
+        "name": "DCE_MatCatA",
+        "attdefs": [
+          "1"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KyHieuChuLeTrai": {
+        "name": "Dce_KyHieuChuLeTrai",
+        "attdefs": [
+          "KYHIEUCHU"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KyHieuChuGiua": {
+        "name": "Dce_KyHieuChuGiua",
+        "attdefs": [
+          "KYHIEUCHU"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KyHieuChuLeTraiLoai2": {
+        "name": "Dce_KyHieuChuLeTraiLoai2",
+        "attdefs": [
+          "KYHIEUCHU"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KhtSHTPhai": {
+        "name": "Dce_KhtSHTPhai",
+        "attdefs": [
+          "SH"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KhtSHTTrai": {
+        "name": "Dce_KhtSHTTrai",
+        "attdefs": [
+          "SH"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U30": {
+        "name": "*U30",
+        "attdefs": [
+          "SH2",
+          "DKVAKC",
+          "SH"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U31": {
+        "name": "*U31",
+        "attdefs": [
+          "DKVAKC",
+          "SH2",
+          "SH"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK4DV": {
+        "name": "TK4DV",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "Dce_KhtSH": {
+        "name": "Dce_KhtSH",
+        "attdefs": [
+          "SH"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_TenTruc": {
+        "name": "Dce_TenTruc",
+        "attdefs": [
+          "TRUC"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK21": {
+        "name": "TK21",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK24": {
+        "name": "TK24",
+        "attdefs": [
+          "M2",
+          "TSL",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "M1",
+          "L1",
+          "L2"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK17": {
+        "name": "TK17",
+        "attdefs": [
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "DCE_Name": {
+        "name": "DCE_Name",
+        "attdefs": [
+          "MARK"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U39": {
+        "name": "*U39",
+        "attdefs": [
+          "NAME",
+          "C_O_L",
+          "P_SIZE",
+          "PILE",
+          "SLC_PX"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK23": {
+        "name": "TK23",
+        "attdefs": [
+          "SH",
+          "M",
+          "D",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "*U41": {
+        "name": "*U41",
+        "attdefs": [
+          "NAME",
+          "C_O_L",
+          "P_SIZE",
+          "PILE",
+          "SLC_PX"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK36": {
+        "name": "TK36",
+        "attdefs": [
+          "M2",
+          "M1",
+          "TSL",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "L3",
+          "L1",
+          "L2",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "_DotBlank": {
+        "name": "_DotBlank",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_KyHieuChuGiuaLoai2": {
+        "name": "Dce_KyHieuChuGiuaLoai2",
+        "attdefs": [
+          "DKVAKC"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Block_ALL": {
+        "name": "Block_ALL",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK10": {
+        "name": "TK10",
+        "attdefs": [
+          "L5",
+          "L4",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK11": {
+        "name": "TK11",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK12": {
+        "name": "TK12",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK13": {
+        "name": "TK13",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "L",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "M1",
+          "M2"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK14": {
+        "name": "TK14",
+        "attdefs": [
+          "L4",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK15": {
+        "name": "TK15",
+        "attdefs": [
+          "L4",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK16": {
+        "name": "TK16",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK18": {
+        "name": "TK18",
+        "attdefs": [
+          "L4",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK19": {
+        "name": "TK19",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK20": {
+        "name": "TK20",
+        "attdefs": [
+          "L5",
+          "L6",
+          "L4",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK26": {
+        "name": "TK26",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "M1",
+          "L1",
+          "L2",
+          "TSL",
+          "M2"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK27": {
+        "name": "TK27",
+        "attdefs": [
+          "TSL",
+          "L2",
+          "L1",
+          "M",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK28": {
+        "name": "TK28",
+        "attdefs": [
+          "M2",
+          "M1",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK29": {
+        "name": "TK29",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L2",
+          "TSL",
+          "L1",
+          "M"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK30": {
+        "name": "TK30",
+        "attdefs": [
+          "M2",
+          "M1",
+          "L1",
+          "TSL",
+          "L2",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK31": {
+        "name": "TK31",
+        "attdefs": [
+          "M2",
+          "M1",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "TSL",
+          "L4"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK32": {
+        "name": "TK32",
+        "attdefs": [
+          "M2",
+          "M1",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK33": {
+        "name": "TK33",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "M1",
+          "M2"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK34": {
+        "name": "TK34",
+        "attdefs": [
+          "L3",
+          "M2",
+          "M1",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK35": {
+        "name": "TK35",
+        "attdefs": [
+          "L4",
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "M1",
+          "M2",
+          "L3"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK37": {
+        "name": "TK37",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL",
+          "M"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK38": {
+        "name": "TK38",
+        "attdefs": [
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "M1",
+          "M2",
+          "L3"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK39": {
+        "name": "TK39",
+        "attdefs": [
+          "L5",
+          "L3",
+          "L6",
+          "L4",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK40": {
+        "name": "TK40",
+        "attdefs": [
+          "M2",
+          "M1",
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L4",
+          "L3"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK41": {
+        "name": "TK41",
+        "attdefs": [
+          "L5",
+          "L3",
+          "L4",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK42": {
+        "name": "TK42",
+        "attdefs": [
+          "X",
+          "D",
+          "L",
+          "TSL",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK43": {
+        "name": "TK43",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "TSL",
+          "M1",
+          "M2"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK44": {
+        "name": "TK44",
+        "attdefs": [
+          "L4",
+          "M2",
+          "M1",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK25": {
+        "name": "TK25",
+        "attdefs": [
+          "L2",
+          "L1",
+          "M",
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK22": {
+        "name": "TK22",
+        "attdefs": [
+          "L6",
+          "L5",
+          "L4",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "Block_Leader": {
+        "name": "Block_Leader",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U77": {
+        "name": "*U77",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_CL_Circle_": {
+        "name": "DCE_CL_Circle_",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U79": {
+        "name": "*U79",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U80": {
+        "name": "*U80",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_CL_REC1_": {
+        "name": "DCE_CL_REC1_",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U82": {
+        "name": "*U82",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U83": {
+        "name": "*U83",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK15A": {
+        "name": "TK15A",
+        "attdefs": [
+          "L4",
+          "TSL",
+          "L3",
+          "L2",
+          "L1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK27A": {
+        "name": "TK27A",
+        "attdefs": [
+          "TSL",
+          "L2",
+          "L1",
+          "M",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK27B": {
+        "name": "TK27B",
+        "attdefs": [
+          "TSL",
+          "L2",
+          "L1",
+          "M",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK8A": {
+        "name": "TK8A",
+        "attdefs": [
+          "TSL",
+          "L2",
+          "L1",
+          "M",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK8B": {
+        "name": "TK8B",
+        "attdefs": [
+          "M2",
+          "M1",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "L",
+          "SH",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "*U89": {
+        "name": "*U89",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TKTUnknown": {
+        "name": "TKTUnknown",
+        "attdefs": [
+          "TSL",
+          "KL",
+          "Lall",
+          "SKC",
+          "SL",
+          "sumL",
+          "DK",
+          "SH"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK4R1": {
+        "name": "TK4R1",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL",
+          "L4",
+          "L5"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK7R1": {
+        "name": "TK7R1",
+        "attdefs": [
+          "SH",
+          "L2",
+          "L1",
+          "L3",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "TSL",
+          "L4",
+          "L5"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "*U93": {
+        "name": "*U93",
+        "attdefs": [
+          "N",
+          "SIZE",
+          "MARK",
+          "GIATCD"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D94": {
+        "name": "*D94",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D95": {
+        "name": "*D95",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D96": {
+        "name": "*D96",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D97": {
+        "name": "*D97",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D98": {
+        "name": "*D98",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U99": {
+        "name": "*U99",
+        "attdefs": [
+          "N",
+          "SIZE",
+          "MARK",
+          "GIATCD"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U100": {
+        "name": "*U100",
+        "attdefs": [
+          "LEVEL"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U101": {
+        "name": "*U101",
+        "attdefs": [
+          "200"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U102": {
+        "name": "*U102",
+        "attdefs": [
+          "50"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U103": {
+        "name": "*U103",
+        "attdefs": [
+          "200"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U104": {
+        "name": "*U104",
+        "attdefs": [
+          "50"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U105": {
+        "name": "*U105",
+        "attdefs": [
+          "LEVEL"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U106": {
+        "name": "*U106",
+        "attdefs": [
+          "1"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_LanhTo2": {
+        "name": "DCE_LanhTo2",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U108": {
+        "name": "*U108",
+        "attdefs": [
+          "1"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U109": {
+        "name": "*U109",
+        "attdefs": [
+          "N",
+          "SIZE",
+          "MARK",
+          "CAODO"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_Beam2": {
+        "name": "DCE_Beam2",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U111": {
+        "name": "*U111",
+        "attdefs": [
+          "N",
+          "SIZE",
+          "MARK",
+          "CAODO"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U112": {
+        "name": "*U112",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "DKVAKC2"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U113": {
+        "name": "*U113",
+        "attdefs": [
+          "SH",
+          "DKVAKC",
+          "DKVAKC2"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TKTitleE": {
+        "name": "TKTitleE",
+        "attdefs": [],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "*U115": {
+        "name": "*U115",
+        "attdefs": [
+          "DKVAKC",
+          "SHT"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U116": {
+        "name": "*U116",
+        "attdefs": [
+          "DKVAKC",
+          "SHT"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U117": {
+        "name": "*U117",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_Block_REN": {
+        "name": "Dce_Block_REN",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U119": {
+        "name": "*U119",
+        "attdefs": [
+          "PILE.TAG"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U120": {
+        "name": "*U120",
+        "attdefs": [
+          "PILE.TAG2"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U121": {
+        "name": "*U121",
+        "attdefs": [
+          "PILE.TAG2"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U122": {
+        "name": "*U122",
+        "attdefs": [
+          "NAME",
+          "(SIZE)",
+          "NAME+SIZE"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U123": {
+        "name": "*U123",
+        "attdefs": [
+          "NAME",
+          "(SIZE)",
+          "NAME+SIZE"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "TK11A": {
+        "name": "TK11A",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "TK12B": {
+        "name": "TK12B",
+        "attdefs": [
+          "SH",
+          "DK",
+          "sumL",
+          "SL",
+          "SKC",
+          "Lall",
+          "KL",
+          "L1",
+          "L2",
+          "L3",
+          "TSL"
+        ],
+        "is_rebar_shape": true,
+        "is_title": false
+      },
+      "Dce_McThepChu": {
+        "name": "Dce_McThepChu",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "Dce_McThepChu2": {
+        "name": "Dce_McThepChu2",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U128": {
+        "name": "*U128",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U129": {
+        "name": "*U129",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U130": {
+        "name": "*U130",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U131": {
+        "name": "*U131",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U132": {
+        "name": "*U132",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U133": {
+        "name": "*U133",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U134": {
+        "name": "*U134",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U135": {
+        "name": "*U135",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U136": {
+        "name": "*U136",
+        "attdefs": [
+          "NAME",
+          "(SIZE)"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U137": {
+        "name": "*U137",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U138": {
+        "name": "*U138",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U139": {
+        "name": "*U139",
+        "attdefs": [
+          "PC_NAME",
+          "(SIZE)",
+          "NAME"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U140": {
+        "name": "*U140",
+        "attdefs": [
+          "DKVAKC",
+          "SH",
+          "VITRI"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D141": {
+        "name": "*D141",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D142": {
+        "name": "*D142",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D143": {
+        "name": "*D143",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D144": {
+        "name": "*D144",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D145": {
+        "name": "*D145",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D146": {
+        "name": "*D146",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D147": {
+        "name": "*D147",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D148": {
+        "name": "*D148",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D149": {
+        "name": "*D149",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D150": {
+        "name": "*D150",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D151": {
+        "name": "*D151",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D152": {
+        "name": "*D152",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D153": {
+        "name": "*D153",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*D154": {
+        "name": "*D154",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U155": {
+        "name": "*U155",
+        "attdefs": [
+          "PILE.TAG"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "DCE_Plan header 1": {
+        "name": "DCE_Plan header 1",
+        "attdefs": [
+          "SCALE_1:100",
+          "DRAWING-VN",
+          "DRAWING-E"
+        ],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "_Dot": {
+        "name": "_Dot",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U158": {
+        "name": "*U158",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U159": {
+        "name": "*U159",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "SanHaCoteDayDam": {
+        "name": "SanHaCoteDayDam",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U161": {
+        "name": "*U161",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U162": {
+        "name": "*U162",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U163": {
+        "name": "*U163",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U164": {
+        "name": "*U164",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      },
+      "*U165": {
+        "name": "*U165",
+        "attdefs": [],
+        "is_rebar_shape": false,
+        "is_title": false
+      }
+    },
+    "dce_layer_names_reflected": {
+      "DCE_SUB_COWA": "DCE_SUB-COWA_----",
+      "DCE_STEEL_FLANGE": "DCE_Flange",
+      "DCE_ThepChu_TTT": "DCE_ThepChu.TTT",
+      "DCE_NAME": "DCE_Name",
+      "DCE_SUB_COLN_T": "DCE_SUB-COLN_T---",
+      "DCE_BaoBeTong": "DCE_BaoBeTong",
+      "DCE_Beam": "DCE_Beam",
+      "DCE_SUB_COLN_S": "DCE_SUB-COLN_S---",
+      "DCE_BR": "DCE_Bracing",
+      "DCE_MCZiCZac": "DCE_MCZiCZac",
+      "DCE_ThepDai": "DCE_ThepDai",
+      "DCE_TKT_TEXT": "DCE_TKT-TEXT",
+      "Dce_ChiaDoiTuong": "Dce_ChiaDoiTuong",
+      "AREAS": "AREAS",
+      "DCE_SubBeam": "DCE_SubBeam",
+      "DCE_TextCoc": "DCE_TextCoc",
+      "DCE_KT": "DCE_KT",
+      "DCE_U": "DCE_U",
+      "DCE_L": "DCE_L",
+      "DCE_ThepChu": "DCE_ThepChu",
+      "DCE_MainBeam": "DCE_MainBeam",
+      "DCE_WIPEOUT": "DCE_WIPEOUT",
+      "DCE_PURLIN": "DCE_Purlin",
+      "DCE_Coc3D": "DCE_Coc3D",
+      "DCE_NetKhuat": "DCE_NetKhuat",
+      "DCE_STEEL_WEB": "DCE_Web",
+      "DCE_Pipe": "DCE_Pipe",
+      "DCE_HATCH": "DCE_Hatch",
+      "DCE_Truc": "DCE_Truc",
+      "DCE_Coc": "DCE_Coc",
+      "DCE_BottomBars": "DCE_BottomBars",
+      "DCE_TenNhip": "DCE_TenNhip",
+      "DCE_Block": "DCE_Block",
+      "DCE_STEEL_PL": "DCE_Plate",
+      "DCE_Dim2": "DCE_Dim2",
+      "DCE_NetDut": "DCE_NetDut",
+      "DCE_ThepDai_TTT": "DCE_ThepDai.TTT",
+      "DCE_Dim": "DCE_Dim",
+      "Defpoints": "Defpoints",
+      "DCE_Gen_Open": "DCE_Gen_Open",
+      "DCE_Leader": "DCE_Dim",
+      "DCE_TYXG": "DCE_Rod",
+      "DCE_Tube": "DCE_Tube",
+      "DCE_TopBars": "DCE_TopBars",
+      "DCE_WELD": "DCE_Weld",
+      "DCE_TOLE": "DCE_Tole",
+      "DCE_NetThay": "DCE_NetThay",
+      "DCE_Note": "DCE_Note",
+      "Dce_Text": "Dce_Text"
+    },
+    "dce_block_names_reflected": {
+      "Dce_KyHieuChuLeTrai": "Dce_KyHieuChuLeTrai",
+      "Dce_TH11": "DCE_TH11",
+      "Dce_TH21": "DCE_TH21",
+      "Dce_Frame": "Dce-Frame",
+      "Dce_KhTenNhip": "Dce_KhTenNhip",
+      "Dce_KhtThepDai2": "Dce_KhtThepDai2",
+      "Dce_TopCol2": "Dce_TopCol2",
+      "Dce_KyHieuChuGiuaLoai2": "Dce_KyHieuChuGiuaLoai2",
+      "Dce_BangTK3_2": "Dce_BangTK3_2",
+      "DCE_CL_REC1": "DCE_CL_REC1",
+      "Dce_BangTK3_1": "Dce_BangTK3_1",
+      "ColumnRecDBIM": "ColumnRecDBIM",
+      "Dce_IFlange": "Dce_IFlange",
+      "Dce_TH18": "DCE_TH18",
+      "Dce_TH10": "DCE_TH10",
+      "Dce_Bolt": "Dce_Bolt",
+      "Dce_TitleENVN": "Dce_TitleENVN",
+      "Dce_BangThongKe2": "Dce_BangTK2",
+      "Dce_IWeb": "Dce_IWeb",
+      "Dce_TopCol": "Dce_TopCol",
+      "Dce_ThepTam": "Dce-ThepTam",
+      "Dce_TH6": "DCE_TH6",
+      "Dce_McThepChu2": "Dce_McThepChu2",
+      "Dce_HopNgang": "DCE_Hop_Ngang",
+      "Dce_BangThongKe3a_1": "Dce_BangTK3a_1",
+      "DCE_BTKFire": "DCE_BTKFire",
+      "Dce_CaoTrinh": "Dce_CaoTrinh",
+      "Dce_XG": "Dce_XG",
+      "Dce_KhtMcThepChu": "Dce_KhtMcThepChu",
+      "Dce_BracingX": "Dce_BracingX",
+      "Dce_TH100a": "DCE_TH100a",
+      "Dce_BP_Pin6": "Dce_BP_Pin6",
+      "Dce_BeamI": "Dce_BeamI",
+      "Dce_BracingPipe": "Dce_BracingPipe",
+      "Dce_TH9": "DCE_TH9",
+      "Dce_Level": "Dce_Level",
+      "Dce_IFlangeDH": "Dce_IFlangeDH",
+      "Dce_TH101a": "DCE_TH101a",
+      "Dce_TH13": "DCE_TH13",
+      "Dce_TH102a": "DCE_TH102a",
+      "Dce_VachTole": "Dce_VachTole",
+      "Dce_BangThongKe": "DCE_BangThongKe",
+      "Dce_TH15": "DCE_TH15",
+      "DCE_MatCatB": "DCE_MatCatB",
+      "Dce_Tole1": "Dce_Tole1",
+      "Dce_TH101": "DCE_TH101",
+      "Dce_HoleOval": "Dce_HoleOval",
+      "Dce_Tole2": "Dce_Tole2",
+      "Dce_Gutter": "Dce_Gutter",
+      "Dce_TH8": "DCE_TH8",
+      "DCE_MatCatA": "DCE_MatCatA",
+      "Dce_Pile": "Dce_Pile",
+      "Dce_TH7": "DCE_TH7",
+      "Dce_KyHieuChuGiua": "Dce_KyHieuChuGiua",
+      "Dce_giangxago": "Dce_giangxago",
+      "DCE_TH300": "DCE_TH300",
+      "Dce_McThepChu": "Dce_McThepChu",
+      "Dce_TH1": "DCE_TH1",
+      "Dce_BP_Pin4": "Dce_BP_Pin4",
+      "Dce_BangThongKe3a": "Dce_BangTK3a",
+      "Dce_Bolts": "BOLTS",
+      "Dce_KhtSH": "Dce_KhtSH",
+      "Dce_OngNgang": "DCE_Ong_Ngang",
+      "Dce_BP_Fix10": "Dce_BP_Fix10",
+      "Dce_KhtThepDai": "Dce_KhtThepDai",
+      "Dce_Door": "Dce_Door",
+      "Dce_TH14": "DCE_TH14",
+      "Dce_BangThongKe3": "Dce_BangTK3",
+      "Dce_TH17": "DCE_TH17",
+      "Dce_AnchorL2": "Dce_AnchorL2",
+      "Dce_Tole": "Dce_Tole",
+      "RHBolt": "BOLTS",
+      "Dce_AnchorL": "Dce_AnchorL",
+      "Dce_KhThepSan": "Dce_KhThepSan",
+      "Dce_AnchorExpansion": "Dce_AnchorExpansion",
+      "Dce_TH102": "DCE_TH102",
+      "Dce_BracingH": "Dce_BracingH",
+      "Dce_IFlangeDHR": "Dce_IFlangeDHR",
+      "DCE_BTKCK": "DCE_BTKCK",
+      "Dce_Tangcung": "Dce-Tangcung",
+      "Dce_KhTenDam": "Dce_KhTenDam",
+      "Dce_BP_Fix12": "Dce_BP_Fix12",
+      "Dce_BangTK2_1": "Dce_BangTK2_1",
+      "Dce_PurlinZ": "Dce_PurlinZ",
+      "Dce_PlanI": "Dce_PlanI",
+      "Dce_PurlinC": "Dce_PurlinC",
+      "Dce_TH23": "DCE_TH23",
+      "Dce_TH12": "DCE_TH12",
+      "Dce_MBolt": "Dce_MBolt",
+      "Dce_CB": "Dce_CB",
+      "Dce_KhtMcThepTangCuong": "Dce_KhtMcThepTangCuong",
+      "DCE_TH200": "DCE_TH200",
+      "Dce_SectionMark": "DCE_SectionMark",
+      "Dce_PurlinCA": "Dce_PurlinC_(A)",
+      "Dce_Pedestal": "Dce_Pedestal",
+      "Dce_Bracing": "Dce_Bracing",
+      "Dce_KhTenTruc": "Dce_KhTenTruc",
+      "Dce_TH100": "DCE_TH100",
+      "Dce_Anchor": "Dce_Anchor",
+      "Dce_TH19": "DCE_TH19",
+      "Dce_TH16": "DCE_TH16",
+      "Dce_BP_Fix8": "Dce_BP_Fix8",
+      "Dce_KhMatCat": "Dce_KhMatCat",
+      "Dce_BP_Fix6": "Dce_BP_Fix6",
+      "Dce_BasePlateEle": "Dce_BasePlateEle",
+      "Dce_Block_REN": "Dce_Block_REN",
+      "Dce_IPlate": "Dce_IPlate",
+      "Dce_AnchorJ": "Dce_AnchorJ",
+      "Dce_CBF": "Dce_CBF",
+      "Dce_BangTK2_2": "Dce_BangTK2_2"
+    },
+    "dce_tag_blocks_reflected": {
+      "CT": "CT",
+      "PILETAG": "PILE.TAG",
+      "NAME": "NAME",
+      "TENDAM": "TENDAM",
+      "SH": "SH",
+      "DKVAKC": "DKVAKC",
+      "KYHIEUCHU": "KYHIEUCHU",
+      "TENMATCAT": "TENMATCAT",
+      "TL": "TL",
+      "DKVAKC2": "DKVAKC2",
+      "SIZE": "(SIZE)",
+      "SH2": "SH2",
+      "TRUC": "TRUC",
+      "Visibility1": "Visibility1",
+      "TENNHIP": "TENNHIP",
+      "DK": "ĐK:"
+    }
+  },
+  "revit_family_mappings": {
+    "DDGLKNameTagChieuDai": "L",
+    "DDGLKNameTagDK": "DK",
+    "DDGLKNameTagKR": "KR",
+    "DDGLKNameTagSH": "SH",
+    "DDGLKNameTagSL": "SL",
+    "DocTagBlockGanLK": false,
+    "LnhipNganTagThep": 5500,
+    "ShopTagThep": true,
+    "Tagchieudaithep": "ChieuDai",
+    "Tagdkvakc": "DKVAKC",
+    "Taghinhdang": "TypeOfBlock",
+    "Tagkhoangrai": "KhoangRai",
+    "Tagmocphai": "MocPhai",
+    "Tagmoctrai": "MocTrai",
+    "TagSHT": "SHT",
+    "TagThepCdoThepGia": true,
+    "TagThepShowChieuDai": false,
+    "TyLeTagTT": 50,
+    "VeThangNew_TranhDeTag": 1,
+    "XoaTagCuGanLK": false,
+    "DceSetNameFamilytag": "TAG DẦM TYPE NAME- MARK- REVIT ĐÀ NẴNG 2019",
+    "DceSetNameFamilyTagSymbol": "Standard",
+    "ModelCadBeam_BeamFamily": "M_Concrete-Rectangular Beam",
+    "ModelCadColumn_ListFamily": "M_Concrete-Rectangular-Column",
+    "ModelCadColumn_ListFamilyCircle": "M_Concrete-Rectangular-Column",
+    "ModelCadSlab_SlabFamily": "Floor"
+  }
+}

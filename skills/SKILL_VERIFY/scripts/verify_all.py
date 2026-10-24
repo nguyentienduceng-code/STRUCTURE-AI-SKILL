@@ -11,6 +11,9 @@ Exit codes:
     2  = ERROR (script error / missing inputs)
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import json
 import sys
@@ -115,8 +118,25 @@ def summarize(results: dict) -> str:
     for issue in rc.get("Mismatches", []):
         lines.append(f"   ❌ {issue}")
 
+    # 6. Cross-Document Conflict Control (CDC-01 to CDC-08)
+    cdc = results.get("CrossDocConflict", {})
+    if cdc:
+        issues = cdc.get("Issues", [])
+        summary = cdc.get("Summary", {})
+        status = cdc.get("Overall_Status", "PASS")
+        icon = "✅ OK" if status == "PASS" else ("❌ CRITICAL" if status == "CRITICAL" else "⚠️ " + status)
+        lines.append(f"\n6. Cross-Document Conflict Control (CDC): {icon}")
+        lines.append(f"   Tổng: {summary.get('Total_Issues', 0)} (Critical: {summary.get('Critical_Count', 0)}, Major: {summary.get('Major_Count', 0)}, Warning: {summary.get('Warning_Count', 0)})")
+        for iss in issues:
+            sev_mark = "❌" if iss.get("Severity") == "CRITICAL" else "⚠️"
+            lines.append(f"   {sev_mark} [{iss.get('Rule_ID')}] ({iss.get('Disciplines')}): {iss.get('Title')}")
+
     # Overall
-    has_critical = conflict or any(c.get("Status") == "FAIL" for c in im_checks)
+    has_critical = (
+        conflict or
+        any(c.get("Status") == "FAIL" for c in im_checks) or
+        (cdc and cdc.get("Overall_Status") == "CRITICAL")
+    )
     lines.append(f"\n{'='*60}")
     if has_critical:
         lines.append("  ❌ OVERALL: FAILED — Có lỗi CRITICAL. Không xuất báo cáo.")
@@ -133,6 +153,7 @@ def main():
     parser.add_argument("--logs", type=str, help="Calculation logs JSON file")
     parser.add_argument("--etabs", type=str, help="ETABS export JSON file")
     parser.add_argument("--report", type=str, help="Generated report JSON for consistency check")
+    parser.add_argument("--graph", type=str, help="Project Truth Graph JSON file for cross-doc conflict check")
     parser.add_argument("--threshold", type=float, default=5.0, help="Variance threshold %% (default: 5.0)")
     parser.add_argument("--output", type=str, help="Save result to JSON file")
     parser.add_argument("--quiet", action="store_true", help="Suppress console output")
@@ -186,6 +207,23 @@ def main():
         results["ReportConsistency"] = {"Status": "N/A", "Mismatches": []}
         # Placeholder — requires docx parsing, handled by report_consistency_check.py
 
+    # 6. Cross-Document Conflict Control (CDC-01 to CDC-08)
+    if args.graph:
+        try:
+            from cross_doc_conflict_checker import run_conflict_checks
+        except ImportError:
+            sys.path.insert(0, str(Path(__file__).parent))
+            from cross_doc_conflict_checker import run_conflict_checks
+
+        try:
+            with open(args.graph, encoding="utf-8") as f:
+                graph_data = json.load(f)
+            results["CrossDocConflict"] = run_conflict_checks(graph_data)
+        except FileNotFoundError:
+            results["CrossDocConflict"] = {"Overall_Status": "ERROR", "Issues": [{"Title": "File not found", "Severity": "CRITICAL"}]}
+        except json.JSONDecodeError:
+            results["CrossDocConflict"] = {"Overall_Status": "ERROR", "Issues": [{"Title": "Invalid JSON", "Severity": "CRITICAL"}]}
+
     # Output
     if not args.quiet:
         print(summarize(results))
@@ -195,9 +233,11 @@ def main():
             json.dump(results, f, ensure_ascii=False, indent=2)
 
     # Exit code
+    im_checks = results.get("InterModule", {}).get("InterModule", [])
     has_critical = (
         results.get("StandardConflict", {}).get("Conflict") or
-        any(c.get("Status") == "FAIL" for c in results.get("InterModule", {}).get("InterModule", []))
+        any(c.get("Status") == "FAIL" for c in im_checks) or
+        (results.get("CrossDocConflict", {}).get("Overall_Status") == "CRITICAL")
     )
     if results.get("_error"):
         print("ERROR:", results["_error"], file=sys.stderr)

@@ -1,73 +1,86 @@
 # 🎯 SKILLS HỆ THỐNG KỸ SƯ KẾT CẤU
 
 > **Bắt đầu đọc từ đây!**
+> **Hướng dẫn chi tiết:** Xem `../USER_GUIDE.md` để biết cách vận hành toàn bộ hệ thống.
 
 ---
 
 ## 📁 CẤU TRÚC
 
 ```
-.agents/skills/
+.agents/
+├── AGENTS.md                  <- Quy tac cot loi toan he thong
+├── USER_GUIDE.md             <- Huong dan su dung chi tiet
+├── .gitignore
+├── .npm/                     <- Node.js packages (docx)
+├── _SHARED/                  <- Shared infrastructure
+│   ├── SHARED_CONTEXT/        <- Handoff JSON giua cac skill
+│   ├── memory/                <- Luu context du an
+│   └── workflows/             <- Template workflow
+├── docs/                      <- Bao cao ky thuat
+├── tests/                    <- Test suites
+├── _archive/                 <- Luu tru file cu
+├── _deprecated/              <- Code khong dung nua
 │
-├── _SYSTEM/                    ← 📖 ĐỌC TRƯỚC
-│   ├── AGENTS.md              ← Quy tắc chung
-│   ├── SKILL_INDEX.md          ← Chỉ mục & tra cứu nhanh
-│   ├── STANDARDS_LOCK.md       ← Tiêu chuẩn chuẩn
-│   └── CHANGELOG.md           ← Lịch sử thay đổi
-│
-├── _CORE_SKILLS/              ← 🔧 SKILLS CHÍNH
-│   ├── Design_Evaluation/      ← Review, QC/QA, Tờ trình
-│   ├── Structural_Design_Engineer/ ← Tính toán, Thuyết minh
-│   └── Technical_Illustrator/  ← Vẽ 2D
-│
-├── _SUPPORT_SKILLS/           ← 🔧 SKILLS HỖ TRỢ
-│   ├── Cost_Estimator/        ← So sánh chi phí, VE
-│   ├── SKILL_FORENSIC/       ← Điều tra sự cố
-│   └── SKILL_VERIFY/          ← Kiểm chứng kết quả
-│
-├── _SHARED/                   ← 🔧 UTILITIES CHUNG
-│   ├── standards_mcp/         ← MCP Server tra cứu tiêu chuẩn
-│   ├── memory/                ← Lưu context dự án
-│   ├── workflows/             ← Workflow templates
-│   └── README.md             ← Hướng dẫn sử dụng
-│
-├── _archive/                  ← 📦 File cũ
-└── (bạn đang ở đây)
+└── skills/                    <- HE SINH THAI KY NANG (14 Skills)
+    ├── Global_Dispatcher/     <- BO DIEU PHOI TRUNG TAM (Entry Point)
+    ├── Design_Evaluation/     <- Review, Tham tra, To trinh
+    ├── Structural_Design_Engineer/ <- Tinh toan ket cau
+    ├── Technical_Illustrator/ <- Ve ky thuat 2D & Render 3D
+    ├── SKILL_GEOTECH/        <- Dia ky thuat, Plaxis
+    ├── SKILL_TEMPWORKS/      <- Cop pha, Van khuon
+    ├── SKILL_VERIFY/         <- Kiem chung cheo
+    ├── Cost_Estimator/       <- Du toan, VE, Carbon
+    ├── SKILL_FORENSIC/       <- Giam dinh su co
+    ├── SKILL_PHULUC/         <- Phu luc tinh toan
+    ├── SKILL_RFI/            <- Quan ly RFI, NCR
+    ├── Project_Manager/       <- Quan ly du an
+    ├── SKILL_BIM_COORDINATION/<- BIM Coordination
+    ├── AGENTS.md             <- Quy tac lien-skill
+    ├── SKILL_INDEX.md        <- Chi muc tra cuu
+    ├── STANDARDS_LOCK.md     <- Khoa tieu chuan
+    ├── SKILL_BRIDGE.md       <- Giao thuc data
+    ├── INTER_SKILL_TRIGGERS.md<- Kich hoat tu dong
+    └── CHANGELOG.md          <- Lich su phat trien
 ```
 
 ---
 
 ## 🚀 BẮT ĐẦU NHANH
 
-### 1. Đọc `_SYSTEM/`
+### 1. Chọn Skill hoặc Dùng Global Dispatcher (Khuyến nghị)
 
-```
-1. AGENTS.md      — Hiểu quy tắc chung
-2. SKILL_INDEX.md — Biết skill nào cho việc gì
-3. STANDARDS_LOCK — Biết tiêu chuẩn nào dùng
-```
-
-### 2. Chọn Skill
+> **MỚI:** Không cần nhớ từng skill! Global Dispatcher tự động phân tích prompt và định tuyến:
+> ```bash
+> python "Global_Dispatcher/scripts/intent_classifier.py" --prompt "<Yêu cầu của bạn>"
+> ```
 
 | Bạn cần | Dùng skill |
 |----------|------------|
-| Review hồ sơ | `_CORE_SKILLS/Design_Evaluation` |
-| Tính cốt thép/dầm | `_CORE_SKILLS/Structural_Design_Engineer` |
-| Vẽ mặt cắt/chi tiết | `_CORE_SKILLS/Technical_Illustrator` |
-| So sánh chi phí | `_SUPPORT_SKILLS/Cost_Estimator` |
-| Điều tra vết nứt/sự cố | `_SUPPORT_SKILLS/SKILL_FORENSIC` |
-| Kiểm chứng kết quả | `_SUPPORT_SKILLS/SKILL_VERIFY` |
+| Tự động phân loại / Multi-step pipeline | `Global_Dispatcher` |
+| Review hồ sơ / Lập tờ trình | `Design_Evaluation` |
+| Tính cốt thép / Thuyết minh dầm cột | `Structural_Design_Engineer` |
+| Vẽ mặt cắt/chi tiết | `Technical_Illustrator` |
+| So sánh chi phí / Value Engineering | `Cost_Estimator` |
+| Điều tra vết nứt / Sự cố | `SKILL_FORENSIC` |
+| Kiểm chứng kết quả / Check chéo ETABS | `SKILL_VERIFY` |
+| Quản lý giao dịch RFI / Submittal / NCR | `SKILL_RFI` |
+| Phụ lục tính toán step-by-step | `SKILL_PHULUC` |
+| Địa kỹ thuật / SPT / CPT / Plaxis | `SKILL_GEOTECH` |
+| Thiết kế cốp pha / Ván khuôn | `SKILL_TEMPWORKS` |
 
-### 3. Luồng làm việc
+### 2. Luồng làm việc (Agentic Orchestration)
 
 ```
-User Request
+User Request (Ngôn ngữ tự nhiên)
     │
-    ├─► SKILL phù hợp (xem bảng trên)
-    │    │
-    │    └─► Tính toán → Vẽ ảnh → Review → Báo cáo
+    ▼
+Global_Dispatcher (intent_classifier.py + pipeline_builder.py)
     │
-    └─► Output: .docx / .pdf / .md
+    ├─► Single Skill (Confidence >= 0.85) ──► Thực thi trực tiếp
+    │
+    └─► Multi-Skill Pipeline ─────────────► Chaining tuần tự qua Handoff JSON
+         (Ví dụ: SDE tính ──► Review Gate ──► DE xuất tờ trình)
 ```
 
 ---
@@ -75,35 +88,30 @@ User Request
 ## 📋 QUY TẮC VÀNG
 
 | # | Quy tắc | Ví dụ |
-|---|---------|-------|
+|---|---------|--------|
 | **1** | Cấm nhẩm tay | Luôn gọi script tính toán |
-| **2** | Citation đủ 4 phần | `TCVN 2737:2023 — Điều 10.2 — Trang 45 — Hệ số tin cậy` |
-| **3** | η ≤ 1.0 = Đạt | η = 0.85 ✅, η = 1.05 ❌ |
+| **2** | Citation đủ 4 phần | `TCVN 2737:2023 — Điều 10.2 — Trang 45` |
+| **3** | η <= 1.0 = Đạt | η = 0.85 OK, η = 1.05 NOT OK |
 | **4** | Review Gate | Hiển thị kết quả, chờ User duyệt TRƯỚC khi xuất file |
-| **5** | Deprecated = Không dùng | Kiểm tra `_CORE_SKILLS/.../_deprecated/` |
+| **5** | Deprecated = Không dùng | Kiểm tra `_deprecated/` |
 
 ---
 
 ## 🔧 TOOLS HỖ TRỢ
 
-### Validation Scripts
 ```bash
 # Validate Technical_Illustrator registry
-cd _CORE_SKILLS/Design_Evaluation/scripts
+cd Design_Evaluation/scripts
 python validate_registry.py
 
 # Validate SKILLKC JSON handoff
 python validate_handoff.py <file.json>
-```
 
-### Standards MCP Server
-```bash
+# Standards MCP Server
 cd _SHARED/standards_mcp
 python server.py --test
-```
 
-### Project Memory
-```bash
+# Project Memory
 cd _SHARED/memory
 python project_memory.py --project DUAN_A --action list
 ```
@@ -112,10 +120,9 @@ python project_memory.py --project DUAN_A --action list
 
 ## ❓ CẦN HỖ TRỢ?
 
-1. **Không biết dùng skill nào?** → Đọc `SKILL_INDEX.md` mục 8 (Quick Reference)
-2. **Citation không rõ?** → Xem `STANDARDS_LOCK.md`
-3. **Script lỗi?** → Kiểm tra có trong `_deprecated/` không
-4. **Thay đổi gần đây?** → Xem `_SYSTEM/CHANGELOG.md`
+1. **Không biết dùng skill nào?** -> Gửi cho Global_Dispatcher
+2. **Citation không rõ?** -> Xem `STANDARDS_LOCK.md`
+3. **Hướng dẫn chi tiết?** -> Xem `../USER_GUIDE.md`
 
 ---
 
@@ -123,32 +130,18 @@ python project_memory.py --project DUAN_A --action list
 
 | File | Version |
 |------|---------|
-| AGENTS.md | v5.4 |
-| SKILL_INDEX.md | v1.5 (Reporting Upgrade) |
-| STANDARDS_LOCK.md | v2.4.0 (Reporting Upgrade) |
-| Design_Evaluation | v2.2.0 (Reporting Upgrade) |
+| USER_GUIDE.md | v1.0 |
+| AGENTS.md | v6.1 |
+| SKILL_INDEX.md | v2.0 |
+| STANDARDS_LOCK.md | v3.0.0 |
+| Design_Evaluation | v2.2.0 |
 | Structural_Design_Engineer | v1.3.0 |
 | Technical_Illustrator | v1.3.0 |
+| Cost_Estimator | v1.2.0 |
+| SKILL_FORENSIC | v1.2.0 |
+| SKILL_VERIFY | v1.2.0 |
 | SKILL_RFI | v1.2.0 |
-| registry.json | v2.1.0 |
+| SKILL_PHULUC | v1.0.0 |
+| SKILL_GEOTECH | v3.0.0 |
 
-**Cập nhật:** 2026-08-31 — Reporting Upgrade v4.1 (Unified Dispatcher + 5 Audience Profiles)
-
-### 🎨 Reporting Upgrade Highlights
-
-⭐ **New: Unified Dispatcher** — `report_dispatcher.py` xuất 1 JSON → nhiều format (MD/DOCX/HTML) cho 5 audiences:
-
-| Audience | Báo cáo cho |
-|----------|-------------|
-| `designer` | Tư vấn thiết kế (đầy đủ kỹ thuật + citations) |
-| `engineer` | Kỹ sư tính toán (logs + charts) |
-| `contractor` | Nhà thầu (thực tiễn + approval) |
-| `owner` | Chủ đầu tư (dashboard + comparison) |
-| `authority` | Cơ quan quản lý (official + full audit) |
-
-```bash
-python _CORE_SKILLS/Design_Evaluation/scripts/report_dispatcher.py \
-    --handoff audit.json --audience designer --formats md,docx
-```
-
-Xem chi tiết: `_CORE_SKILLS/Design_Evaluation/references/REPORT_FORMATS.md`
+**Cập nhật:** 2026-10-13 — Cap truc khoa hoc hoan thanh

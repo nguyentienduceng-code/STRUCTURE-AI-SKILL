@@ -1,0 +1,26 @@
+{
+  "version": "v6.4",
+  "timestamp": "2026-10-20T08:27:55.036193+07:00",
+  "skills_count": 13,
+  "production_skills": 11,
+  "placeholder_skills": 2,
+  "calculators_total": 100,
+  "standards_locked": 15,
+  "primary_keywords": 192,
+  "regex_patterns": 61,
+  "skill_names": [
+    "Cost_Estimator",
+    "Design_Evaluation",
+    "Global_Dispatcher",
+    "Project_Manager",
+    "SKILL_BIM_COORDINATION",
+    "SKILL_FORENSIC",
+    "SKILL_GEOTECH",
+    "SKILL_PHULUC",
+    "SKILL_RFI",
+    "SKILL_TEMPWORKS",
+    "SKILL_VERIFY",
+    "Structural_Design_Engineer",
+    "Technical_Illustrator"
+  ]
+}

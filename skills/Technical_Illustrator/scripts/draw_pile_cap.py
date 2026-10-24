@@ -250,7 +250,7 @@ def draw_pile_cap_section(
         f"2. Coc: {total_piles} coc x D{pile_diameter}mm, khoang cach {pile_spacing_x}x{pile_spacing_y}mm.\n"
         f"3. Cot thep coc: d{main_rebar_dia}@{main_rebar_spacing}mm, loai {steel_grade}.\n"
         f"4. Lop bao ve: a = {cover}mm (TCVN 5574:2018, Dieu 10.3.1).\n"
-        f"5. Tieu chuan: TCVN 5574:2018, TCVN 10304:2014.\n"
+        f"5. Tieu chuan: TCVN 5574:2018, TCVN 10304:2025.\n"
     )
     fig.text(0.05, 0.02, note_text, fontsize=8.5, family='monospace',
              verticalalignment='bottom',
@@ -405,7 +405,7 @@ def draw_pile_cap_plan(
         f"   khoang cach sx={pile_spacing_x}mm, sy={pile_spacing_y}mm.\n"
         f"3. Cot thep doc coc: d{main_rebar_dia}mm, loai {steel_grade}.\n"
         f"4. Cot cot: {col_width}x{col_depth}mm (xem mat cat A-A, B-B).\n"
-        f"5. Tieu chuan: TCVN 5574:2018, TCVN 10304:2014.\n"
+        f"5. Tieu chuan: TCVN 5574:2018, TCVN 10304:2025.\n"
     )
     fig.text(0.05, 0.02, note_text, fontsize=8.5, family='monospace',
              verticalalignment='bottom',

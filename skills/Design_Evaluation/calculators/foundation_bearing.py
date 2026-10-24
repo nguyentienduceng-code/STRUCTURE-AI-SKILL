@@ -47,7 +47,7 @@ def calculate_bearing_capacity(R0, b, d, gamma_II, soil_type="set", N_tt=None, A
         "Step": "Hiệu chỉnh theo bề rộng móng b",
         "Principle": "Móng rộng hơn bề rộng quy ước 1 m huy động được vùng đất chịu lực lớn hơn.",
         "Formula": "R_b = R0 * [1 + k1 * (b - b1) / b1],  b1 = 1.0 m",
-        "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Hiệu chỉnh áp lực quy ước R0", "Bang_Hinh": f"k1 = {k1} ({SOIL_COEFF[st]['ten']})", "Trang": ""},
+        "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Điều 4.3.5 - Hiệu chỉnh R0 theo bề rộng móng", "Bang_Hinh": f"Bảng 12 (k1 = {k1})", "Trang": "24", "Trich_Yeu": "Hiệu chỉnh áp lực tính toán quy ước của đất nền theo bề rộng móng"},
         "Values": f"R0={R0} kPa, b={b} m, k1={k1}",
         "Result": f"R_b = {R_b:.2f} kPa"
     })
@@ -59,7 +59,7 @@ def calculate_bearing_capacity(R0, b, d, gamma_II, soil_type="set", N_tt=None, A
             "Step": "Hiệu chỉnh theo độ sâu chôn móng d (d >= 2 m)",
             "Principle": "Đất phủ trên đáy móng tạo áp lực hông, tăng sức chịu tải nền.",
             "Formula": "R = R_b + k2 * gamma_II * (d - h1),  h1 = 2.0 m",
-            "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Hiệu chỉnh áp lực quy ước R0", "Bang_Hinh": f"k2 = {k2}", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Điều 4.3.5 - Hiệu chỉnh R0 theo độ sâu chôn móng", "Bang_Hinh": f"Bảng 12 (k2 = {k2})", "Trang": "24", "Trich_Yeu": "Hiệu chỉnh áp lực tính toán quy ước theo độ sâu chôn móng d >= 2m"},
             "Values": f"R_b={R_b:.2f} kPa, d={d} m, gamma_II={gamma_II} kN/m3, k2={k2}",
             "Result": f"R = {R:.2f} kPa"
         })
@@ -69,7 +69,7 @@ def calculate_bearing_capacity(R0, b, d, gamma_II, soil_type="set", N_tt=None, A
             "Step": "Hiệu chỉnh theo độ sâu chôn móng d (d < 2 m)",
             "Principle": "Móng nông hơn độ sâu quy ước 2 m bị giảm sức chịu tải theo tỷ lệ.",
             "Formula": "R = R_b * (d + h1) / (2 * h1),  h1 = 2.0 m",
-            "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Hiệu chỉnh áp lực quy ước R0", "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 9362:2012", "Dieu_Muc": "Điều 4.3.5 - Hiệu chỉnh R0 theo độ sâu chôn móng", "Bang_Hinh": "Công thức (18)", "Trang": "24", "Trich_Yeu": "Hiệu chỉnh áp lực tính toán quy ước khi chiều sâu chôn móng d < 2m"},
             "Values": f"R_b={R_b:.2f} kPa, d={d} m",
             "Result": f"R = {R:.2f} kPa"
         })

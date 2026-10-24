@@ -8,6 +8,9 @@ Usage:
     python search_fm.py --list-all
 """
 
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import argparse
 import json
 import sys

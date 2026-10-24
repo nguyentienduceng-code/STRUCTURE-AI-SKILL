@@ -1,7 +1,7 @@
 ---
 name: Design_Evaluation
 version: 2.2.0
-last_updated: 2026-08-31
+last_updated: 2026-09-27
 description: "Kỹ sư QLTK Kết Cấu AI toàn năng: Tính toán & thiết kế kết cấu (BTCT, thép, tiền chế, container); Review QC/QA hồ sơ theo giai đoạn (TKCS→TKKT→BVTC→Hoàn công); Kiểm soát pháp lý theo TCVN/Eurocode/ACI; Phối hợp đa bộ môn (KC-MEP-KT); Value Engineering; Xử lý NCR & sự cố thi công; Lập BOQ; Soạn thảo báo cáo chuyên nghiệp đa định dạng (MD/DOCX/HTML/XLSX) với 5 audience profiles. Kích hoạt khi nhắc đến các keyword/tiếng lóng: review bản vẽ KC, tính lún, check võng, giải nội lực, check thép, bóc tách khối lượng, xuất dự toán, kiểm tra TCVN, xử lý RFI, đánh giá biện pháp thi công, thiết kế móng, lập tờ trình, xuất Word, soạn báo cáo, trình duyệt, xuất Excel."
 ---
 
@@ -64,9 +64,10 @@ Khi nhận yêu cầu từ User, AI phải xác định module phù hợp:
     ├── calculators/                ← ENGINE TÍNH TOÁN (bắt buộc gọi, cấm nhẩm tay)
     │   ├── rc_flexure_design.py    ← Cốt thép dầm BTCT chịu uốn
     │   ├── deflection_check.py     ← Kiểm tra độ võng
-    │   ├── steel_member_check.py   ← Ứng suất cấu kiện thép
+    │   ├── steel_member_check_v2024.py ← ✅ Ứng suất cấu kiện thép (TCVN 5575:2024)
     │   ├── foundation_bearing.py   ← Sức chịu tải nền (hiệu chỉnh R0)
-    │   └── wind_load_calc.py       ← Tải trọng gió tĩnh
+    │   ├── wind_load_calc.py       ← Tải trọng gió tĩnh
+    │   └── earthquake_load_calc.py  ← Tải trọng động đất (TCVN 9386:2025)
     ├── scripts/                    ← Xuất báo cáo & trích xuất dữ liệu
     │   ├── generate_report.py      ← Bơm JSON vào template Word
     │   ├── generate_to_trinh.js    ← Tạo Word từ đầu (docx-js)

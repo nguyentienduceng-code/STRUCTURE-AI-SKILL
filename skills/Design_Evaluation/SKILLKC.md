@@ -116,8 +116,8 @@ C15. **Transparent Calculation Logic (Minh bạch Công thức 6 bước)**:
     - Bước 2 [Sơ đồ tĩnh học]: Mô tả hoặc vẽ sơ đồ tĩnh học + điều kiện biên. Nếu cấu kiện phức tạp → gọi `Technical_Illustrator` vẽ sơ đồ 2D.
     - Bước 3 [Công thức gốc + Citation]: Ghi rõ công thức tổng quát kèm Citation Object đầy đủ. VD: "M_u ≤ φ·M_n — TCVN 5574:2018 — Điều 7.1.2 — Bảng 14".
     - Bước 4 [Thay số]: Hiển thị rõ các biến số được thay bằng giá trị thực tế kèm đơn vị, căn lề rõ ràng. VD: "M_u = 250 kN.m ≤ φ·M_n = 0.9 × 345 = 310.5 kN.m".
-    - Bước 5 [Kết quả & η]: Tính Utilization Ratio η = Giá trị tính / Giá trị cho phép × 100%. Phân loại: 🟢 η≤70% (An toàn, dư) | 🟡 70%<η≤90% (Đạt, hợp lý) | 🟠 90%<η≤100% (Sát ngưỡng) | 🔴 η>100% (KHÔNG ĐẠT).
-    - Bước 6 [Nhận xét kỹ thuật]: Diễn giải dự trữ an toàn, đề xuất Value Engineering nếu η ≤ 70%, cảnh báo nếu η > 90%, hoặc yêu cầu thiết kế lại nếu η > 100%.
+    - Bước 5 [Kết quả & η]: Tính Utilization Ratio η = Giá trị tính / Giá trị cho phép × 100%. Phân loại thực thi tự động qua `tools/policy_engine.py`: 🟢 η≤70% (An toàn, dư) | 🟡 70%<η≤90% (Đạt, hợp lý) | 🟠 90%<η≤100% (Sát ngưỡng) | 🔴 η>100% (KHÔNG ĐẠT).
+    - Bước 6 [Nhận xét kỹ thuật]: Diễn giải dự trữ an toàn, đề xuất Value Engineering nếu η ≤ 70% (tự động kích hoạt qua `policy_engine.decide_eta`), cảnh báo nếu η > 90%, hoặc yêu cầu thiết kế lại nếu η > 100%.
     TUYỆT ĐỐI KHÔNG ghi gộp kiểu: "Áp dụng công thức kiểm tra uốn, ta có M_u = 250 kN.m Đạt".
     Mẫu trình bày chuẩn:
     ```

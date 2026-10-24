@@ -45,7 +45,7 @@ def calculate_wind_load(w0, z, terrain_category, c, gamma_f, gamma_f_source="Dat
             "Step": "Xác định tham số dạng địa hình",
             "Principle": "Độ nhám mặt đất quyết định biên dạng vận tốc gió theo cao độ.",
             "Formula": "Tra bảng dạng địa hình A/B/C",
-            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": "Dạng địa hình", "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": "Điều 10.2 - Dạng địa hình", "Bang_Hinh": "Bảng 6", "Trang": "38", "Trich_Yeu": "Phân loại dạng địa hình A, B, C theo độ nhám bề mặt"},
             "Values": f"Dạng địa hình: {tc}",
             "Result": f"alpha={params['alpha']}, k10={params['k10']}, z_min={params['z_min']} m"
         },
@@ -53,7 +53,7 @@ def calculate_wind_load(w0, z, terrain_category, c, gamma_f, gamma_f_source="Dat
             "Step": "Tính hệ số thay đổi áp lực gió theo cao độ k(z)",
             "Principle": "Áp lực gió tăng theo cao độ theo quy luật hàm mũ.",
             "Formula": "k(z) = k10 * (max(z, z_min) / 10)^(2*alpha)",
-            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": "Hệ số k(z)", "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": "Điều 10.2.2 - Hệ số k(z)", "Bang_Hinh": "Bảng 7", "Trang": "39", "Trich_Yeu": "Hệ số kể đến sự thay đổi áp lực gió theo độ cao và dạng địa hình"},
             "Values": f"z={z} m, z_eff={z_eff} m, k10={params['k10']}, alpha={params['alpha']}",
             "Result": f"k(z) = {k_z:.3f}"
         },
@@ -68,7 +68,7 @@ def calculate_wind_load(w0, z, terrain_category, c, gamma_f, gamma_f_source="Dat
             "Step": "Tính áp lực gió tính toán W_tt",
             "Principle": "Nhân hệ số độ tin cậy để chuyển sang trạng thái giới hạn thứ nhất.",
             "Formula": "W_tt = W_tc * gamma_f",
-            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": gamma_f_source, "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 2737:2023", "Dieu_Muc": gamma_f_source, "Bang_Hinh": "", "Trang": "37", "Trich_Yeu": "Hệ số độ tin cậy của tải trọng gió gamma_f"},
             "Values": f"W_tc={w_tc:.2f} daN/m2, gamma_f={gamma_f} (nguồn: {gamma_f_source})",
             "Result": f"W_tt = {w_tt:.2f} daN/m2"
         }

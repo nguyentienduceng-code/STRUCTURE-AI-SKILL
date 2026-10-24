@@ -67,7 +67,7 @@ Mọi bài toán thiết kế kết cấu phải tuân theo quy trình 5 bước
 - **Kiểm tra tổng hợp**: $\eta = \max(\frac{M_{Ed}}{M_{b,Rd}}, \frac{V_{Ed}}{V_{c,Rd}}) \le 1.0$
 
 #### 3.4. Sức chịu tải Móng cọc (BTCT)
-- Sức chịu tải cọc đơn theo vật liệu $R_{vl}$ và theo đất nền $R_{dn}$ (TCVN 10304:2014):
+- Sức chịu tải cọc đơn theo vật liệu $R_{vl}$ và theo đất nền $R_{dn}$ (TCVN 10304:2025):
   $$P_{rc} = \min(R_{vl}, R_{dn})$$
 - Tải trọng truyền lên cọc góc/cọc biên trong đài móng:
   $$P_{max} = \frac{N^{tc}}{n} + \frac{M_y^{tc} \cdot x_{max}}{\sum x_i^2} + \frac{M_x^{tc} \cdot y_{max}}{\sum y_i^2} \le 1.2 \cdot P_{rc}$$

@@ -1,6 +1,6 @@
 # Hướng dẫn Thiết kế Nền Móng & Cọc BTCT (Foundation Design Guide)
 
-## 1. Tính toán Móng Cọc Ép / Cọc Nhồi (TCVN 10304:2014)
+## 1. Tính toán Móng Cọc Ép / Cọc Nhồi (TCVN 10304:2025)
 
 ### 1.1. Sức chịu tải của Cọc theo Đất nền ($R_{dn}$)
 $$R_{dn} = \gamma_c \cdot \left(q_b \cdot A_b + u \cdot \sum f_i \cdot l_i\right)$$

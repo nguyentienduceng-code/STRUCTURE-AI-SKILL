@@ -37,7 +37,7 @@ def design_rc_flexure(M, b, h0, Rb, Rs, alpha_R=ALPHA_R_DEFAULT):
             "Step": "Tính hệ số alpha_m",
             "Principle": "alpha_m đặc trưng mức huy động vùng bê tông chịu nén. Vượt alpha_R thì bê tông vỡ trước khi thép chảy (phá hoại giòn).",
             "Formula": "alpha_m = M / (Rb * b * h0^2)",
-            "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Điều 8.1 - Cấu kiện chịu uốn", "Bang_Hinh": "", "Trang": ""},
+            "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Điều 8.1 - Cấu kiện chịu uốn", "Bang_Hinh": "", "Trang": "62", "Trich_Yeu": "Tính toán độ bền cấu kiện chịu uốn trên tiết diện thẳng góc"},
             "Values": f"M={M_Nmm} N.mm, Rb={Rb} MPa, b={b_mm} mm, h0={h0_mm} mm",
             "Result": f"alpha_m = {alpha_m:.3f}  (giới hạn alpha_R = {alpha_R})"
         }
@@ -69,7 +69,7 @@ def design_rc_flexure(M, b, h0, Rb, Rs, alpha_R=ALPHA_R_DEFAULT):
                 "Step": "Kiểm tra hàm lượng cốt thép (mu)",
                 "Principle": "Hàm lượng dưới mức tối thiểu khiến dầm phá hoại đột ngột ngay khi bê tông nứt.",
                 "Formula": "mu = (As / (b * h0)) * 100 >= mu_min",
-                "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Hàm lượng cốt thép tối thiểu", "Bang_Hinh": "", "Trang": ""},
+                "Citation": {"Ma_TC": "TCVN 5574:2018", "Dieu_Muc": "Điều 10.3 - Hàm lượng cốt thép tối thiểu", "Bang_Hinh": "Bảng 18", "Trang": "75", "Trich_Yeu": "Hàm lượng cốt thép dọc tối thiểu trong cấu kiện bê tông cốt thép"},
                 "Values": f"As={As:.2f} mm2, b={b_mm} mm, h0={h0_mm} mm, mu_min={MU_MIN_PERCENT}%",
                 "Result": f"mu = {mu:.3f}%  ({'ĐẠT' if mu >= MU_MIN_PERCENT else 'KHÔNG ĐẠT - đặt theo mu_min'})"
             }

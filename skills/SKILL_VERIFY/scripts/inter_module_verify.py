@@ -179,7 +179,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Inter-Module Verification")
     parser.add_argument("--result1", required=True, help="File JSON kết quả module 1")
     parser.add_argument("--result2", required=True, help="File JSON kết quả module 2")
-    parser.add_argument("--threshold", type=float, default=5.0, help="Ngưỡng cảnh báo (%)")
+    parser.add_argument("--threshold", type=float, default=5.0, help="Ngưỡng cảnh báo (%%)")
     parser.add_argument("--output", help="File output JSON (optional)")
     parser.add_argument("--format", choices=["json", "text", "both"], default="text", help="Format output")
 

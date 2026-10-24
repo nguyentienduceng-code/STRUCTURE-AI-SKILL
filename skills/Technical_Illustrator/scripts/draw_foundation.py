@@ -214,7 +214,7 @@ def draw_foundation(output_path, ftype="single",
         f"  4. Lop bao ve: a = {cover:.0f}mm (theo TCVN 5574:2018, Dieu 10.3.1).\n"
         f"  5. Chieu sau chon mong: Df = {depth_embed:.0f}mm.\n"
         f"  6. Cot {col_w:.0f}x{col_d:.0f}mm, thep cho neo vao mong >= 30d.\n"
-        f"  7. Tieu chuan ap dung: TCVN 5574:2018, TCVN 10304:2014."
+        f"  7. Tieu chuan ap dung: TCVN 5574:2018, TCVN 10304:2025."
     )
     fig.text(0.05, 0.01, note_text, fontsize=8.5, family='monospace',
              verticalalignment='bottom',

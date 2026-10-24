@@ -195,6 +195,23 @@
       "tags": ["steel", "weld", "hàn", "chi tiết", "bản mã"],
       "use_cases": ["steel_connection", "weld_design"]
     },
+    {
+      "name": "draw_moment_diagram.py",
+      "version": "1.0.0",
+      "parametric": true,
+      "status": "ACTIVE",
+      "description": "Vẽ biểu đồ nội lực (M, V, N) cho dầm liên tục (Moment, shear, and axial force diagrams)",
+      "dependencies": [],
+      "cli_args": ["--input", "--output"],
+      "input_schema": {
+        "beam": "object - {name, L: [L1, L2...], supports: [...], h, b}",
+        "loads": "object - {distributed: [...], point: [...]}",
+        "output": "object - {format: svg|dxf, scale_m, scale_v, show_values, colors}"
+      },
+      "output": "SVG / DXF file",
+      "tags": ["diagram", "moment", "shear", "nội lực", "biểu đồ", "dầm"],
+      "use_cases": ["beam_analysis", "moment_diagram", "shear_diagram"]
+    },
 
     {
       "name": "draw_ap_luc_dat_bo_ke.py",

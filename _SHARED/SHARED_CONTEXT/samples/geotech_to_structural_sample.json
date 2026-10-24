@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "handoff_type": "foundation_params",
+    "version": "1.0",
+    "source_skill": "SKILL_GEOTECH",
+    "target_skill": "Structural_Design_Engineer",
+    "project_id": "PROJ001",
+    "calculation_log_id": "geotech_run_20260925_001",
+    "timestamp": "2026-09-25T14:30:00+07:00",
+    "confidence_level": "HIGH",
+    "standards_applied": ["TCVN 9351:2012", "CIRIA C760"]
+  },
+
+  "soil_layers": [
+    {
+      "layer_id": "L1",
+      "depth_top_m": 0.0,
+      "depth_bottom_m": 3.0,
+      "soil_type": "clay",
+      "SPT_N": 8,
+      "phi_deg": 15,
+      "c_kpa": 35,
+      "E50_mpa": 25,
+      "gamma_kn_m3": 18.5,
+      "ocr": 1.5,
+      "assigned_by": "correlation"
+    },
+    {
+      "layer_id": "L2",
+      "depth_top_m": 3.0,
+      "depth_bottom_m": 8.0,
+      "soil_type": "sand",
+      "SPT_N": 18,
+      "phi_deg": 30,
+      "c_kpa": 5,
+      "E50_mpa": 45,
+      "gamma_kn_m3": 19.0,
+      "ocr": 1.0,
+      "assigned_by": "empirical"
+    },
+    {
+      "layer_id": "L3",
+      "depth_top_m": 8.0,
+      "depth_bottom_m": 20.0,
+      "soil_type": "clay",
+      "SPT_N": 25,
+      "phi_deg": 20,
+      "c_kpa": 50,
+      "E50_mpa": 60,
+      "gamma_kn_m3": 19.5,
+      "ocr": 2.0,
+      "assigned_by": "lab_test"
+    }
+  ],
+
+  "design_params": {
+    "q_allowable_kpa": 250,
+    "q_all_method": "Terzaghi",
+    "pile_capacity_kn": 1800,
+    "pile_type": "bore_pile",
+    "pile_diameter_mm": 800,
+    "pile_length_m": 18,
+    "settlement_mm": 35,
+    "groundwater_depth_m": 2.5,
+    "plaxis_model_used": "Hardening Soil"
+  },
+
+  "assumptions": [
+    "Groundwater level assumed at -2.5m from ground surface",
+    "Layer boundaries from borehole BH-01 interpolation",
+    "E50 for clay calculated using Ke x Su correlation (Ke = 250 for Ip = 25)"
+  ],
+
+  "validation_status": {
+    "ground_truth_verified": true,
+    "deviation_percent": 8.5
+  }
+}

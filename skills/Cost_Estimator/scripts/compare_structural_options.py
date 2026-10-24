@@ -223,7 +223,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compare Structural Options Cost")
     parser.add_argument("--options", required=True, help="JSON file chứa danh sách phương án")
     parser.add_argument("--floor_area", type=float, required=True, help="Diện tích sàn (m²)")
-    parser.add_argument("--interest_rate", type=float, default=0.10, help="Lãi suất vay năm (%)")
+    parser.add_argument("--interest_rate", type=float, default=0.10, help="Lãi suất vay năm (%%)")
     parser.add_argument("--output", help="File JSON output (optional)")
 
     args = parser.parse_args()

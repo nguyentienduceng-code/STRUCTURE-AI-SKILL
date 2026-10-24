@@ -12,6 +12,9 @@ Hỗ trợ 4 loại back-calculation phổ biến:
 """
 
 import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+import sys
 import json
 import argparse
 from datetime import datetime
@@ -60,6 +63,22 @@ def back_calc_deflection_to_load(delta_mm, L_mm, E_MPa, I_mm4, beam_type="simply
             "q_N_per_mm": round(q, 4),
             "q_kN_per_m": round(q_kN_per_m, 3)
         },
+        "Standard_Method": "TCVN 5574:2018",
+        "Calculation_Logs": [
+            {
+                "Step": 1,
+                "Description": "Tính ngược tải trọng từ độ võng đo được",
+                "Formula": "q = (384 × E × I × δ) / (5 × L⁴)",
+                "Calculation": f"q = (384 × {E_MPa} × {I_mm4} × {delta_mm}) / (5 × {L_mm}⁴)",
+                "Result": f"q = {round(q_kN_per_m, 3)} kN/m",
+                "Citation": {
+                    "code": "TCVN 5574:2018",
+                    "clause": "Phụ lục F",
+                    "page": "120",
+                    "title": "Độ võng cấu kiện chịu uốn"
+                }
+            }
+        ],
         "Citation": {
             "code": "TCVN 5574:2018",
             "year": "2018",
@@ -108,6 +127,22 @@ def back_calc_crack_to_steel_stress(w_crack_mm, spacing_mm, cover_mm, phi_bar_mm
             "fs_to_fy_ratio": round(fs_ratio, 3),
             "status": "YIELDING" if fs > 400 else "HIGH" if fs > 320 else "OK"
         },
+        "Standard_Method": "TCVN 5574:2018",
+        "Calculation_Logs": [
+            {
+                "Step": 1,
+                "Description": "Tính ngược ứng suất thép từ bề rộng vết nứt",
+                "Formula": "σs = (w_crack × Es) / (β × spacing)",
+                "Calculation": f"σs = ({w_crack_mm} × {E_s_MPa}) / (1.0 × {spacing_mm})",
+                "Result": f"σs = {round(fs, 1)} MPa (fs/fy = {round(fs_ratio, 3)})",
+                "Citation": {
+                    "code": "TCVN 5574:2018",
+                    "clause": "Điều 7.4",
+                    "page": "85",
+                    "title": "Bề rộng vết nứt cấu kiện BTCT"
+                }
+            }
+        ],
         "Citation": {
             "code": "TCVN 5574:2018",
             "year": "2018",
@@ -156,6 +191,22 @@ def back_calc_crack_depth_to_moment(crack_depth_mm, h_mm, b_mm, fck_MPa, fy_MPa,
             "T_to_C_ratio": round(T_ratio, 3),
             "failure_mode": "DUCTILE" if T_ratio >= 0.8 else "BRITTLE"
         },
+        "Standard_Method": "TCVN 5574:2018",
+        "Calculation_Logs": [
+            {
+                "Step": 1,
+                "Description": "Tính ngược moment từ chiều sâu vết nứt",
+                "Formula": "M = 0.85 × fck × b × a × (d - a/2)",
+                "Calculation": f"M = 0.85 × {fck_MPa} × {b_mm} × {a} × ({d} - {a}/2)",
+                "Result": f"M = {round(M_Rd, 2)} kN.m",
+                "Citation": {
+                    "code": "TCVN 5574:2018",
+                    "clause": "Điều 7.1",
+                    "page": "62",
+                    "title": "Momen cực hạn có cốt thép đơn"
+                }
+            }
+        ],
         "Citation": {
             "code": "TCVN 5574:2018",
             "year": "2018",
@@ -196,6 +247,22 @@ def back_calc_column_deformation(delta_axial_mm, L_mm, E_MPa, A_mm2, P_max_estim
             "stress_MPa": round(sigma, 2),
             "P_kN": round(P_kN, 1)
         },
+        "Standard_Method": "TCVN 5574:2018",
+        "Calculation_Logs": [
+            {
+                "Step": 1,
+                "Description": "Tính ngược lực dọc từ biến dạng dọc trục cột",
+                "Formula": "ε = ΔL/L; σ = E×ε; P = σ×A",
+                "Calculation": f"ε = {delta_axial_mm}/{L_mm} = {epsilon:.6f}; σ = {sigma:.2f} MPa; P = {P_kN:.1f} kN",
+                "Result": f"P = {round(P_kN, 1)} kN",
+                "Citation": {
+                    "code": "TCVN 5574:2018",
+                    "clause": "Điều 6.1.3",
+                    "page": "45",
+                    "title": "Quan hệ ứng biến - ứng suất cấu kiện chịu nén"
+                }
+            }
+        ],
         "Citation": {
             "code": "TCVN 5574:2018",
             "year": "2018",

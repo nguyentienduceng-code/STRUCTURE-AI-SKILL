@@ -59,13 +59,64 @@ from _lib._chart_inserter import (
 # DATA LOADING
 # ════════════════════════════════════════════════════════════════════════════
 
+def _normalize_handoff_schema(data: dict) -> dict:
+    """
+    Chuẩn hóa hai chiều giữa Schema tiếng Anh (SKILL_BRIDGE.md v3.0.0)
+    và các khóa tiếng Việt (Ten_Du_An, Giai_Doan_TK, Calculation_Logs).
+    """
+    if not isinstance(data, dict):
+        return data
+
+    res = dict(data)
+    proj_ctx = res.get("project_context", {})
+    payload = res.get("payload", {})
+
+    # Ánh xạ từ English schema (SKILL_BRIDGE) sang Vietnamese keys
+    if "Ten_Du_An" not in res and isinstance(proj_ctx, dict):
+        if proj_ctx.get("project_name"):
+            res["Ten_Du_An"] = proj_ctx["project_name"]
+    if "Giai_Doan_TK" not in res and isinstance(proj_ctx, dict):
+        if proj_ctx.get("phase"):
+            res["Giai_Doan_TK"] = proj_ctx["phase"]
+    if "Calculation_Logs" not in res and isinstance(payload, dict):
+        if payload.get("calculation_logs"):
+            res["Calculation_Logs"] = payload["calculation_logs"]
+    if "Tieu_Chuan" not in res:
+        if isinstance(payload, dict) and payload.get("standard"):
+            res["Tieu_Chuan"] = payload["standard"]
+        elif isinstance(payload, dict) and payload.get("standard_method"):
+            res["Tieu_Chuan"] = payload["standard_method"]
+        elif res.get("Standard_Method"):
+            res["Tieu_Chuan"] = res["Standard_Method"]
+
+    # Ánh xạ ngược từ Vietnamese keys sang English schema nếu thiếu
+    if "project_context" not in res:
+        res["project_context"] = {}
+    if isinstance(res["project_context"], dict):
+        if "project_name" not in res["project_context"] and res.get("Ten_Du_An"):
+            res["project_context"]["project_name"] = res["Ten_Du_An"]
+        if "phase" not in res["project_context"] and res.get("Giai_Doan_TK"):
+            res["project_context"]["phase"] = res["Giai_Doan_TK"]
+
+    if "payload" not in res:
+        res["payload"] = {}
+    if isinstance(res["payload"], dict):
+        if "calculation_logs" not in res["payload"] and res.get("Calculation_Logs"):
+            res["payload"]["calculation_logs"] = res["Calculation_Logs"]
+        if "standard" not in res["payload"] and res.get("Tieu_Chuan"):
+            res["payload"]["standard"] = res["Tieu_Chuan"]
+
+    return res
+
+
 def load_handoff(path: str) -> dict:
-    """Load JSON handoff file."""
+    """Load JSON handoff file and normalize schema."""
     if not os.path.exists(path):
         print(f"❌ File không tồn tại: {path}")
         sys.exit(1)
     with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        data = json.load(f)
+    return _normalize_handoff_schema(data)
 
 
 def extract_executive_metrics(handoff: dict) -> dict:
@@ -158,7 +209,7 @@ def render_markdown(handoff: dict, audience: str = 'designer',
                 step = log.get('Step', '')
                 scheme = log.get('Static_Scheme', '')
                 formula = log.get('Formula', '')
-                values = str(log.get('Values', ''))[:30]
+                values = str(log.get('Substitution') or log.get('Values', ''))[:30]
                 result = log.get('Result', '')
                 util = log.get('Utilization')
                 rating = log.get('Rating', 'GREEN')
