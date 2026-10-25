@@ -1,0 +1,22 @@
+{
+  "fail_closed": true,
+  "controller_error_policy": "block",
+  "harness_missing_policy": "allow_with_warn",
+  "tools_fail_open": [],
+  "modes": {},
+  "readonly_skills": [],
+  "env_override": {
+    "fail_open": "GUARD_FAIL_OPEN",
+    "mode": "GUARD_MODE"
+  },
+  "_doc": {
+    "fail_closed": "Mặc định: controller lỗi => CHẶN (Fail-Closed).",
+    "controller_error_policy": "block|allow — xử lý khi preflight_check ném exception. Default block (an toàn).",
+    "harness_missing_policy": "allow_with_warn|block — xử lý khi chưa import được system_controller (hạ tầng guard chưa có). Default allow_with_warn để không khóa hệ thống lúc khởi động.",
+    "tools_fail_open": "Whitelist tool nào được cho phép chạy tiếp khi controller lỗi (opt-in linh hoạt).",
+    "modes": "Ánh xạ skill -> chế độ guard (SAFE|READ_ONLY|UNRESTRICTED).",
+    "readonly_skills": "Các skill luôn chạy guard ở READ_ONLY (cổng Thẩm định/Review).",
+    "env_override.fail_open": "Tên env var bật fail-open (1/true/yes) để vận hành tạm bỏ qua lỗi controller.",
+    "env_override.mode": "Tên env var ép chế độ guard (vd GUARD_MODE=READ_ONLY)."
+  }
+}

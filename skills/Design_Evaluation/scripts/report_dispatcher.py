@@ -65,9 +65,66 @@ except Exception:  # pragma: no cover
 
 
 def _guard_check(tool_name: str, payload: dict | None = None) -> tuple[bool, str]:
+    """
+    Chạy preflight check theo chính sách guard_policy.json.
+
+    - Controller lỗi        -> CHẶN (Fail-Closed), trừ khi policy/env cho phép.
+    - Chưa có hạ tầng guard  -> CHO PHÉP + cảnh báo.
+    - Design_Evaluation có thể được đặt READ_ONLY trong guard_policy.json
+      (readonly_skills) nếu muốn chặn mọi thao tác ghi khi xuất báo cáo.
+    """
     if not _GUARD_AVAILABLE:
-        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
-    return _preflight("Design_Evaluation", tool_name, payload or {}, fail_open=True)
+        return True, "[HARNESS_MISSING] Chưa cài hệ thống kiểm soát — bỏ qua preflight."
+    return _preflight(
+        "Design_Evaluation", tool_name, payload or {},
+        skill="Design_Evaluation",
+    )
+
+
+# --- Kho Bài Học Kinh Nghiệm Liên Dự Án (Lessons Learned) -------------------
+# Nối LessonsLearnedRepository vào báo cáo để cảnh báo "đã gặp sự cố tương tự".
+# Xem .agents/_SHARED/memory/lessons_lookup.py
+def _find_lessons_dir():
+    """Tìm .agents/_SHARED/memory bằng cách đi lên từng cấp (không phụ thuộc độ sâu)."""
+    cur = SCRIPT_DIR.resolve()
+    for _ in range(8):
+        cand = cur / "_SHARED" / "memory"
+        if cand.is_dir():
+            return cand
+        parent = cur.parent
+        if parent == cur:
+            break
+        cur = parent
+    return None
+
+
+try:
+    _LESSONS_DIR = _find_lessons_dir()
+    if _LESSONS_DIR and str(_LESSONS_DIR) not in sys.path:
+        sys.path.insert(0, str(_LESSONS_DIR))
+    from lessons_lookup import find_relevant_lessons, format_lessons_markdown
+    _LESSONS_AVAILABLE = True
+except Exception:  # pragma: no cover
+    _LESSONS_AVAILABLE = False
+
+
+def _collect_lessons(handoff: dict, limit: int = 5) -> list:
+    """Tra bài học liên quan theo ngữ cảnh handoff (fail-safe: lỗi -> rỗng)."""
+    if not _LESSONS_AVAILABLE:
+        return []
+    try:
+        project_code = handoff.get("Ma_Du_An") or handoff.get("Project_Code")
+        return find_relevant_lessons(
+            project_code=project_code,
+            standards_text=handoff.get("Standard_Method", ""),
+            keyword_text=" ".join(str(handoff.get(k, "")) for k in (
+                "Ten_Du_An", "Hang_Muc", "Loai_Phan_Tich"
+            )),
+            limit=limit,
+        )
+    except Exception:
+        return []
+
 
 from _lib._audience_profiles import get_profile, list_audiences
 from _lib._report_utils import (
@@ -255,6 +312,12 @@ def render_markdown(handoff: dict, audience: str = 'designer',
 
             md_parts.append('')
 
+    # Kinh nghiệm liên dự án (Lessons Learned)
+    if sections.get('lessons_learned', True):
+        lessons = _collect_lessons(handoff)
+        if lessons:
+            md_parts.extend(format_lessons_markdown(lessons))
+
     # Technical Analysis / Citation
     if sections.get('citations_appendix'):
         citations = handoff.get('Citations', [])
@@ -399,6 +462,20 @@ def render_docx(handoff: dict, audience: str = 'designer',
                 rows.append([step, scheme, result, eta_str, rating_str])
             build_table(doc, headers, rows, col_widths_cm=[2.0, 3.5, 6.5, 2.0, 2.5])
 
+    # Kinh nghiệm liên dự án (Lessons Learned)
+    if sections.get('lessons_learned', True):
+        lessons = _collect_lessons(handoff)
+        if lessons:
+            add_h(doc, 'Kinh nghiệm liên dự án', lv=1)
+            add_p(doc, f"{len(lessons)} bài học có liên quan — kiểm tra trước khi áp dụng.",
+                  size=9, italic=True, sa=4)
+            for item in lessons:
+                add_h(doc, f"{item.get('lesson_id', '?')} — {item.get('category', '')}", lv=2)
+                add_p(doc, f"Dự án nguồn: {item.get('project_code', '—')}", size=9, sa=2)
+                add_p(doc, f"Sự cố: {item.get('issue', '')}", size=9, sa=2)
+                add_p(doc, f"Nguyên nhân: {item.get('root_cause', '')}", size=9, sa=2)
+                add_p(doc, f"Giải pháp dự phòng: {item.get('solution', '')}", size=9, sa=6)
+
     # Citations Appendix
     if sections.get('citations_appendix'):
         citations = handoff.get('Citations', [])
@@ -505,6 +582,23 @@ def render_html(handoff: dict, audience: str = 'designer', output_path: str = ''
     html_parts.append(f'<p><strong>Hạng mục:</strong> {handoff.get("Hang_Muc", "—")}<br>')
     html_parts.append(f'<strong>Giai đoạn:</strong> {handoff.get("Giai_Doan_TK", "—")}<br>')
     html_parts.append(f'<strong>Ngày:</strong> {format_vn_date(handoff.get("Ngay"))}</p>')
+
+    # Kinh nghiệm liên dự án
+    if sections.get('lessons_learned', True):
+        lessons = _collect_lessons(handoff)
+        if lessons:
+            html_parts.append('<h2>Kinh nghiệm liên dự án</h2>')
+            html_parts.append(
+                f'<p><em>{len(lessons)} bài học có liên quan — kiểm tra trước khi áp dụng.</em></p>'
+            )
+            for item in lessons:
+                html_parts.append(
+                    f'<h3>{item.get("lesson_id", "?")} — {item.get("category", "")}</h3>'
+                    f'<p><strong>Dự án nguồn:</strong> {item.get("project_code", "—")}<br>'
+                    f'<strong>Sự cố:</strong> {item.get("issue", "")}<br>'
+                    f'<strong>Nguyên nhân:</strong> {item.get("root_cause", "")}<br>'
+                    f'<strong>Giải pháp dự phòng:</strong> {item.get("solution", "")}</p>'
+                )
 
     html_parts.append('</body></html>')
 

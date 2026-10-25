@@ -55,6 +55,9 @@ class StatusCode(str, Enum):
 class PolicyDecision:
     """
     Kết quả đánh giá từ Policy Engine cho chỉ số sử dụng η (Utilization Ratio).
+
+    Các field `standard_basis` và `standard_conflicts` chỉ được điền khi gọi
+    `decide_eta_with_standards(...)` — các trường hợp còn lại giữ giá trị mặc định None.
     """
     action: Action
     status_code: StatusCode
@@ -65,6 +68,8 @@ class PolicyDecision:
     reasons: list[str] = field(default_factory=list)
     triggers: list[str] = field(default_factory=list)
     rule_sources: list[str] = field(default_factory=list)
+    standard_basis: Optional[Dict[str, Any]] = None
+    standard_conflicts: Optional[List[str]] = None
 
     @property
     def is_safe(self) -> bool:
@@ -209,6 +214,262 @@ def decide_eta(
         reasons=reasons,
         triggers=[],
         rule_sources=rule_sources,
+    )
+
+
+# =============================================================================
+# SECTION 1B: ĐỒ THỊ TRI THỨC TIÊU CHUẨN — TRÍCH DẪN NGUỒN & PHÁT HIỆN MÂU THUẪN
+# =============================================================================
+#
+# Mối liên kết Policy Engine <-> StandardsGraph:
+#   - AGENTS.md §6 là nguồn luật TUYỆT ĐỐI cho ngưỡng η (0.70 / 0.90 / 1.00).
+#     Policy Engine KHÔNG tự dịch chuyển ngưỡng theo đồ thị — tránh vi phạm quy tắc.
+#   - StandardsGraph cung cấp CĂN CỨ cho ngưỡng: điều khoản nào, tiêu chuẩn nào,
+#     công thức nào, ngưỡng riêng của phép kiểm tra là bao nhiêu.
+#   - Nếu ngưỡng riêng trong tiêu chuẩn LỆCH khỏi ngưỡng 1.00 của AGENTS.md §6,
+#     đó là tín hiệu MÂU THUẪN cần báo cáo (không tự ý quyết định).
+#
+# Xem .agents/_SHARED/standards/standards_graph.py
+
+import re as _re
+from pathlib import Path as _Path
+from dataclasses import replace as _dataclass_replace
+
+# Ngưỡng η tuyệt đối theo AGENTS.md §6 — giá trị chuẩn để đối chiếu.
+AGENTS_ETA_ULS_LIMIT = 1.00
+
+# Ánh xạ loại cấu kiện (tiếng Anh/Việt) -> node id trong StandardsGraph
+ELEMENT_TYPE_TO_NODE = {
+    "beam": "ELEMENT_BEAM",
+    "dầm": "ELEMENT_BEAM",
+    "dam": "ELEMENT_BEAM",
+    "rc_beam": "ELEMENT_BEAM",
+    "column": "ELEMENT_COLUMN",
+    "cột": "ELEMENT_COLUMN",
+    "cot": "ELEMENT_COLUMN",
+    "rc_column": "ELEMENT_COLUMN",
+    "steel_beam": "ELEMENT_STEEL_BEAM",
+    "dầm thép": "ELEMENT_STEEL_BEAM",
+    "dam_thep": "ELEMENT_STEEL_BEAM",
+}
+
+_standards_graph_cache: Dict[str, Any] = {}
+
+
+def _get_standards_graph(graph: Any = None):
+    """
+    Lấy instance StandardsGraph (lazy import + cache).
+
+    - Nếu truyền `graph` -> dùng luôn (tiện cho test).
+    - Nếu không -> import từ .agents/_SHARED/standards/standards_graph.py.
+
+    Trả về None nếu không import được — Policy Engine KHÔNG BAO GIỜ crash
+    vì thiếu đồ thị tri thức (fail-safe: quyết định vẫn đúng theo AGENTS.md).
+    """
+    if graph is not None:
+        return graph
+    if "instance" in _standards_graph_cache:
+        return _standards_graph_cache["instance"]
+
+    try:
+        import sys as _sys
+        _standards_dir = _Path(__file__).resolve().parent.parent / "_SHARED" / "standards"
+        if str(_standards_dir) not in _sys.path:
+            _sys.path.insert(0, str(_standards_dir))
+        from standards_graph import StandardsGraph as _SG
+        instance = _SG()
+        _standards_graph_cache["instance"] = instance
+        return instance
+    except Exception:
+        _standards_graph_cache["instance"] = None
+        return None
+
+
+def _parse_threshold_value(threshold: Any) -> Optional[float]:
+    """
+    Trích ngưỡng số từ chuỗi threshold của StandardsGraph.
+    - "<= 1.00"   -> 1.0
+    - "<= 0.95"   -> 0.95
+    - "<= L/200"  -> None (tỷ số phân số, không phải ngưỡng η)
+    - "<= 1/200"  -> None (tỷ số, không phải η)
+    - "x/y" bất kỳ -> None (phân số, không chuyển được về η)
+    """
+    if isinstance(threshold, (int, float)):
+        return float(threshold)
+    if not isinstance(threshold, str):
+        return None
+    s = threshold.strip()
+    # Phân số (L/200, 1/200, ...) -> không phải ngưỡng η đơn giản -> None
+    if _re.search(r"\d+\s*/\s*\d+", s):
+        return None
+    m = _re.search(r"(\d+(?:[.,]\d+)?)\s*$", s)
+    if not m:
+        return None
+    raw = m.group(1).replace(",", ".")
+    try:
+        return float(raw)
+    except ValueError:
+        return None
+
+
+def resolve_element_node(
+    element_id: Optional[str] = None,
+    element_type: Optional[str] = None,
+) -> Optional[str]:
+    """
+    Chuẩn hoá định danh cấu kiện thành node id của StandardsGraph.
+    - element_id dạng "ELEMENT_BEAM" -> giữ nguyên.
+    - element_type "beam"/"dầm"/"cot" -> tra bảng ELEMENT_TYPE_TO_NODE.
+    """
+    if element_id:
+        eid = str(element_id).strip()
+        if eid.upper().startswith("ELEMENT_"):
+            return eid.upper()
+        mapped = ELEMENT_TYPE_TO_NODE.get(eid.lower())
+        if mapped:
+            return mapped
+    if element_type:
+        return ELEMENT_TYPE_TO_NODE.get(str(element_type).strip().lower())
+    return None
+
+
+def resolve_standard_basis(
+    element_id: Optional[str] = None,
+    element_type: Optional[str] = None,
+    graph: Any = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    Tra cứu căn cứ tiêu chuẩn cho một cấu kiện trong StandardsGraph.
+
+    Trả về dict:
+        {
+            "element_node": "ELEMENT_BEAM",
+            "element_name": "Dầm bê tông cốt thép",
+            "standards": ["TCVN 5574:2018", ...],
+            "clauses": [{"id", "standard", "clause_no", "title"}],
+            "checks": [{"id", "limit_type", "formula", "threshold", "threshold_value"}],
+        }
+    hoặc None nếu không tra được.
+    """
+    sg = _get_standards_graph(graph)
+    if sg is None:
+        return None
+
+    node_id = resolve_element_node(element_id, element_type)
+    if not node_id:
+        return None
+
+    try:
+        reqs = sg.query_element_requirements(node_id)
+    except Exception:
+        return None
+
+    if not reqs or reqs.get("error"):
+        return None
+
+    checks = []
+    for c in reqs.get("verification_checks", []) or []:
+        item = dict(c)
+        item["threshold_value"] = _parse_threshold_value(item.get("threshold"))
+        checks.append(item)
+
+    return {
+        "element_node": node_id,
+        "element_name": (reqs.get("element") or {}).get("name"),
+        "standards": reqs.get("connected_standards", []) or [],
+        "clauses": reqs.get("applicable_clauses", []) or [],
+        "checks": checks,
+    }
+
+
+def _find_conflicts(basis: Dict[str, Any]) -> List[str]:
+    """
+    Phát hiện mâu thuẫn giữa ngưỡng riêng trong tiêu chuẫn và ngưỡng η của AGENTS.md §6.
+    - Chỉ xét các check ULS (trạng thái giới hạn) có ngưỡng số.
+    - Ngưỡng lệch khỏi 1.00 -> báo cáo mâu thuẫn (KHÔNG tự quyết định thay).
+    """
+    conflicts: List[str] = []
+    for chk in basis.get("checks", []) or []:
+        if chk.get("limit_type") != "ULS":
+            continue
+        tv = chk.get("threshold_value")
+        if tv is None:
+            continue
+        if abs(tv - AGENTS_ETA_ULS_LIMIT) > 1e-9:
+            clause_txt = ""
+            for cl in basis.get("clauses", []) or []:
+                if chk["id"] in str(cl.get("id", "")) or cl.get("id") in str(chk.get("id", "")):
+                    clause_txt = f" [{cl.get('standard', '?')} {cl.get('clause_no', '')}]"
+                    break
+            conflicts.append(
+                f"Phép kiểm tra '{chk['id']}'{clause_txt} đặt ngưỡng η = {tv:.3f} "
+                f"khác ngưỡng AGENTS.md §6 (η <= {AGENTS_ETA_ULS_LIMIT:.2f}). Cần lưu ý."
+            )
+    return conflicts
+
+
+def _format_citation(basis: Dict[str, Any]) -> List[str]:
+    """Tạo chuỗi trích dẫn tiêu chuẩn để bổ sung vào rule_sources."""
+    out: List[str] = []
+    clauses = basis.get("clauses") or []
+    seen = set()
+    for cl in clauses:
+        std = cl.get("standard", "?")
+        cno = cl.get("clause_no", "")
+        key = f"{std}|{cno}"
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(f"Đồ thị tri thức: {std} {cno} — {cl.get('title', '')}".strip())
+    return out
+
+
+def decide_eta_with_standards(
+    eta_input: Union[float, int, Dict[str, Any], List[Union[float, int]]],
+    element_id: Optional[str] = None,
+    element_type: Optional[str] = None,
+    graph: Any = None,
+) -> PolicyDecision:
+    """
+    Quyết định hành động theo η, kèm CĂN CỨ TIÊU CHUẨN từ StandardsGraph.
+
+    Hành vi:
+    1. Gọi `decide_eta()` để lấy quyết định theo AGENTS.md §6 (ngưỡng KHÔNG đổi).
+    2. Tra StandardsGraph để bổ sung:
+       - rule_sources: điều khoản tiêu chuẩn điều khiển phép kiểm tra.
+       - reasons: câu giải thích "vì sao ngưỡng này áp dụng".
+       - standard_basis: toàn bộ căn cứ (tiêu chuẩn / điều khoản / phép kiểm tra).
+       - standard_conflicts: cảnh báo nếu ngưỡng tiêu chuẩn lệch ngưỡng AGENTS.md.
+
+    Nếu đồ thị không khả dụng -> trả về đúng như `decide_eta()` (fail-safe).
+    """
+    decision = decide_eta(eta_input)
+
+    basis = resolve_standard_basis(element_id, element_type, graph)
+    if not basis:
+        return decision
+
+    citations = _format_citation(basis)
+    conflicts = _find_conflicts(basis)
+
+    reasons = list(decision.reasons)
+    rule_sources = list(decision.rule_sources)
+
+    if citations:
+        reasons.append(
+            "Căn cứ tiêu chuẩn (đồ thị tri thức): "
+            + "; ".join(f"{c.get('standard', '?')} {c.get('clause_no', '')}".strip()
+                        for c in (basis.get("clauses") or [])[:3])
+        )
+    if conflicts:
+        reasons.extend(conflicts)
+
+    return _dataclass_replace(
+        decision,
+        reasons=reasons,
+        rule_sources=rule_sources + citations,
+        standard_basis=basis,
+        standard_conflicts=conflicts,
     )
 
 
@@ -509,12 +770,27 @@ def evaluate_trigger(trigger_id: str, context: Dict[str, Any]) -> TriggerEvaluat
         design_res = context.get("design_results")
         if design_res:
             try:
-                dec = decide_eta(design_res)
+                # Dùng bản có căn cứ tiêu chuẩn (đồ thị tri thức) — quyết định η
+                # KHÔNG đổi so với decide_eta, chỉ bổ sung trích dẫn + phát hiện mâu thuẫn.
+                dec = decide_eta_with_standards(
+                    design_res,
+                    element_id=context.get("element_id"),
+                    element_type=context.get("element_type"),
+                )
                 if dec.action == Action.TRIGGER_VE:
                     fired = True
                     message = f"Phát hiện phần tử có η <= 0.70 (min_eta={dec.min_eta:.2f}) -> Kích hoạt Cost_Estimator để Value Engineering."
                     details["min_eta"] = dec.min_eta
                     details["max_eta"] = dec.max_eta
+                if dec.standard_basis:
+                    details["standard_basis"] = dec.standard_basis
+                    details["standard_citations"] = [
+                        rs for rs in dec.rule_sources if rs.startswith("Đồ thị tri thức:")
+                    ]
+                if dec.standard_conflicts:
+                    fired = True
+                    details["standard_conflicts"] = dec.standard_conflicts
+                    message += " | CẢNH BÁO MÂU THUẪN TIÊU CHUẨN: " + "; ".join(dec.standard_conflicts)
             except Exception as e:
                 message = f"Lỗi tính toán η: {e}"
         else:

@@ -33,9 +33,20 @@ except Exception:  # pragma: no cover
 
 
 def _guard_check(tool_name, payload=None):
+    """
+    Chạy preflight check theo chính sách guard_policy.json.
+
+    - Controller lỗi        -> CHẶN (Fail-Closed), trừ khi policy/env cho phép.
+    - Chưa có hạ tầng guard  -> CHO PHÉP + cảnh báo.
+    - Structural_Design_Engineer có thể được đặt READ_ONLY trong guard_policy.json
+      (readonly_skills) nếu muốn chặn mọi thao tác ghi khi xuất Thuyết minh tính toán.
+    """
     if not _GUARD_AVAILABLE:
-        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
-    return _preflight("Structural_Design_Engineer", tool_name, payload or {}, fail_open=True)
+        return True, "[HARNESS_MISSING] Chưa cài hệ thống kiểm soát — bỏ qua preflight."
+    return _preflight(
+        "Structural_Design_Engineer", tool_name, payload or {},
+        skill="Structural_Design_Engineer",
+    )
 
 def format_formula(formula_str):
     """Basic helper to format raw formula strings to basic LaTeX if possible."""

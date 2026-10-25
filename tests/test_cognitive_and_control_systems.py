@@ -15,6 +15,7 @@ if sys.platform == 'win32' and hasattr(sys.stdout, 'reconfigure'):
     if sys.stdout.encoding != 'utf-8':
         sys.stdout.reconfigure(encoding='utf-8')
 
+import os
 import time
 import unittest
 from pathlib import Path
@@ -369,6 +370,117 @@ class TestRegressionClaudeReview(unittest.TestCase):
             guard_dir = mod._find_skill_guard_dir()
             self.assertIsNotNone(guard_dir, f"{skill}: không tìm thấy _SHARED/SHARED_CONTEXT")
             self.assertTrue(guard_dir.is_dir(), f"{skill}: {guard_dir} không tồn tại")
+
+    def test_skill_guard_fail_closed_on_controller_error(self):
+        """
+        BUG-014: khi controller (đã cài) ném exception, preflight phải CHẶN
+        (fail-closed), không cho chạy tự do như hard-code fail_open=True ở v1.0.
+        """
+        import importlib
+        sys.path.insert(0, str(AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT"))
+        skill_guard = importlib.import_module("skill_guard")
+        importlib.reload(skill_guard)
+
+        class Boom:
+            def preflight_check(self, *a, **k):
+                raise RuntimeError("simulated controller crash")
+            loop_breaker = None
+
+        skill_guard._controller = Boom()
+        skill_guard._controller_available = True
+        skill_guard._controller_import_attempted = True
+
+        # Mặc định (policy fail_closed=True) -> CHẶN
+        ok, why = skill_guard.preflight("GD", "some_tool")
+        self.assertFalse(ok)
+        self.assertIn("CONTROLLER_ERROR", why)
+
+        # fail_open=True (ghi đè) -> cho phép
+        ok, why = skill_guard.preflight("GD", "some_tool", fail_open=True)
+        self.assertTrue(ok)
+        self.assertIn("FAIL_OPEN", why)
+
+        # Whitelist tool trong policy -> cho phép
+        skill_guard._policy_cache = dict(skill_guard.load_policy())
+        skill_guard._policy_cache["tools_fail_open"] = ["some_tool"]
+        ok, why = skill_guard.preflight("GD", "some_tool")
+        self.assertTrue(ok)
+
+        # Reset state module về sạch để không ảnh hưởng test khác
+        importlib.reload(skill_guard)
+
+    def test_skill_guard_harness_missing_allows_with_warning_by_default(self):
+        """
+        BUG-014b: khi chưa có hạ tầng guard (không import được controller),
+        mặc định CHO PHÉP + cảnh báo (không thể chặn cái chưa tồn tại).
+        """
+        import importlib
+        sys.path.insert(0, str(AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT"))
+        skill_guard = importlib.import_module("skill_guard")
+        importlib.reload(skill_guard)
+
+        skill_guard._controller = None
+        skill_guard._controller_available = False
+        skill_guard._controller_import_attempted = True
+
+        ok, why = skill_guard.preflight("GD", "some_tool")
+        self.assertTrue(ok)
+        self.assertIn("HARNESS_MISSING", why)
+
+        # Policy block -> CHẶN
+        skill_guard._policy_cache = dict(skill_guard._DEFAULT_POLICY)
+        skill_guard._policy_cache["harness_missing_policy"] = "block"
+        ok, why = skill_guard.preflight("GD", "some_tool")
+        self.assertFalse(ok)
+        self.assertIn("HARNESS_MISSING", why)
+
+        # Reset state module về sạch (controller thật) để không ảnh hưởng test khác
+        importlib.reload(skill_guard)
+
+    def test_skill_guard_guard_mode_from_policy_and_env(self):
+        """
+        BUG-014c: chế độ guard phải được chọn từ guard_policy.json (readonly_skills)
+        và ghi đè được bằng env var GUARD_MODE.
+        """
+        import importlib
+        sys.path.insert(0, str(AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT"))
+        skill_guard = importlib.import_module("skill_guard")
+        importlib.reload(skill_guard)
+
+        self.assertEqual(skill_guard.get_guard_mode("Global_Dispatcher"), "SAFE")
+
+        skill_guard._policy_cache = dict(skill_guard.load_policy())
+        skill_guard._policy_cache["readonly_skills"] = ["Design_Evaluation"]
+        self.assertEqual(skill_guard.get_guard_mode("Design_Evaluation"), "READ_ONLY")
+
+        os.environ["GUARD_MODE"] = "UNRESTRICTED"
+        self.assertEqual(skill_guard.get_guard_mode("Design_Evaluation"), "UNRESTRICTED")
+        del os.environ["GUARD_MODE"]
+        skill_guard._policy_cache = None
+        importlib.reload(skill_guard)
+
+    def test_skill_guard_env_override_fail_open(self):
+        """BUG-014d: env var GUARD_FAIL_OPEN=1 cho phép chạy tiếp khi controller lỗi."""
+        import importlib
+        sys.path.insert(0, str(AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT"))
+        skill_guard = importlib.import_module("skill_guard")
+        importlib.reload(skill_guard)
+
+        class Boom:
+            def preflight_check(self, *a, **k):
+                raise RuntimeError("boom")
+            loop_breaker = None
+
+        skill_guard._controller = Boom()
+        skill_guard._controller_available = True
+        skill_guard._controller_import_attempted = True
+
+        os.environ["GUARD_FAIL_OPEN"] = "1"
+        ok, why = skill_guard.preflight("GD", "some_tool")
+        self.assertTrue(ok)
+        self.assertIn("FAIL_OPEN", why)
+        del os.environ["GUARD_FAIL_OPEN"]
+        importlib.reload(skill_guard)
 
     def test_lessons_repository_does_not_pollute_production_file(self):
         """BUG-012: test không được ghi vào file bài học production."""

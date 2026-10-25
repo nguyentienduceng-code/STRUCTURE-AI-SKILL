@@ -64,10 +64,18 @@ except Exception:  # pragma: no cover - hệ thống kiểm soát chưa sẵn s�
 
 
 def _guard_check(tool_name: str, payload: dict | None = None) -> tuple[bool, str]:
-    """Chạy preflight check; nếu controller không khả dụng thì cho phép (non-blocking)."""
+    """
+    Chạy preflight check theo chính sách guard_policy.json.
+
+    - Controller lỗi        -> CHẶN (Fail-Closed), trừ khi policy/env cho phép.
+    - Chưa có hạ tầng guard  -> CHO PHÉP + cảnh báo (chưa có rào chắn ≠ rào chắn hỏng).
+    """
     if not _GUARD_AVAILABLE:
-        return True, "Bộ kiểm soát hệ thống không khả dụng — bỏ qua preflight."
-    return _preflight("Global_Dispatcher", tool_name, payload or {}, fail_open=True)
+        return True, "[HARNESS_MISSING] Chưa cài hệ thống kiểm soát — bỏ qua preflight."
+    return _preflight(
+        "Global_Dispatcher", tool_name, payload or {},
+        skill="Global_Dispatcher",
+    )
 
 
 # =============================================================================

@@ -30,13 +30,19 @@ from policy_engine import (
     TriggerType,
     classify_rfi_priority,
     decide_eta,
+    decide_eta_with_standards,
     evaluate_all_triggers,
     evaluate_red_flag,
     evaluate_trigger,
     get_active_fired_triggers,
     get_policy_engine_status,
+    resolve_element_node,
+    resolve_standard_basis,
     scan_red_flags,
 )
+
+# Đồ thị tri thức tiêu chuẩn (dùng DB tạm để không ghi rò rỉ vào production)
+sys.path.insert(0, str(_AGENTS_ROOT / "_SHARED" / "standards"))
 
 
 class TestPolicyEnginePhaseA(unittest.TestCase):
@@ -470,6 +476,183 @@ class TestPolicyEnginePhaseC_RFIPriority(unittest.TestCase):
         res = classify_rfi_priority({"priority": "CRITICAL", "content": "Nội dung bất kỳ"})
         self.assertEqual(res.priority, RFIPriority.CRITICAL)
         self.assertEqual(res.deadline_str, "24h")
+
+
+class TestStandardsGraphIntegration(unittest.TestCase):
+    """
+    Kiểm tra tích hợp Policy Engine + StandardsGraph (nâng cấp 1/2026-10-24).
+
+    Đảm bảo:
+    - decide_eta_with_standards trả về NGUYÊN QUYẾT ĐỊNH η (AGENTS.md §6) + CĂN CỨ tiêu chuẩn.
+    - Ngưỡng η KHÔNG đổi — chỉ bổ sung trích dẫn và phát hiện mâu thuẫn.
+    - Fail-safe: nếu đồ thị không khả dụng, không crash, không đổi hành vi.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        import tempfile
+        from standards_graph import StandardsGraph
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.sg = StandardsGraph(db_path=Path(cls._tmp.name) / "sg_test.db")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._tmp.cleanup()
+
+    def test_resolve_element_node_maps_vietnamese_types(self):
+        self.assertEqual(resolve_element_node(element_type="dầm"), "ELEMENT_BEAM")
+        self.assertEqual(resolve_element_node(element_type="cot"), "ELEMENT_COLUMN")
+        self.assertEqual(resolve_element_node(element_type="dam_thep"), "ELEMENT_STEEL_BEAM")
+        self.assertEqual(resolve_element_node(element_id="element_beam"), "ELEMENT_BEAM")
+        self.assertIsNone(resolve_element_node(element_type="loại_chưa_biết"))
+
+    def test_resolve_standard_basis_returns_clauses_and_checks(self):
+        basis = resolve_standard_basis(element_type="dầm", graph=self.sg)
+        self.assertIsNotNone(basis)
+        self.assertEqual(basis["element_node"], "ELEMENT_BEAM")
+        self.assertIn("TCVN 5574:2018", basis["standards"])
+        self.assertTrue(any(c["clause_no"] == "Điều 8.1" for c in basis["clauses"]))
+        # CHECK_MOMENT_ETA phải có ngưỡng ULS = 1.0
+        mom = next(c for c in basis["checks"] if c["id"] == "CHECK_MOMENT_ETA")
+        self.assertEqual(mom["threshold_value"], 1.0)
+        # CHECK_DEFLECTION_RATIO (1/200, SLS) không phải ngưỡng η đơn giản
+        defl = next(c for c in basis["checks"] if c["id"] == "CHECK_DEFLECTION_RATIO")
+        self.assertIsNone(defl["threshold_value"])
+
+    def test_resolve_standard_basis_unknown_element_returns_none(self):
+        self.assertIsNone(resolve_standard_basis(element_type="khong_ton_tai", graph=self.sg))
+
+    def test_decide_eta_with_standards_keeps_eta_decision_unchanged(self):
+        """Quyết định η phải GIỮ NGUYÊN so với decide_eta — chỉ thêm căn cứ."""
+        plain = decide_eta({"eta_M": 0.85, "eta_V": 0.55})
+        wired = decide_eta_with_standards(
+            {"eta_M": 0.85, "eta_V": 0.55}, element_type="dầm", graph=self.sg
+        )
+        self.assertEqual(plain.action, wired.action)
+        self.assertEqual(plain.status_code, wired.status_code)
+        self.assertEqual(plain.color, wired.color)
+        self.assertEqual(plain.max_eta, wired.max_eta)
+        # Nhưng đã có thêm căn cứ tiêu chuẩn
+        self.assertIsNotNone(wired.standard_basis)
+        self.assertTrue(
+            any(s.startswith("Đồ thị tri thức:") for s in wired.rule_sources)
+        )
+
+    def test_decide_eta_with_standards_no_element_falls_back_to_plain(self):
+        """Không có cấu kiện -> chuẩn hành vi decide_eta, standard_basis=None."""
+        d = decide_eta_with_standards({"eta_M": 1.05}, graph=self.sg)
+        self.assertEqual(d.action, Action.REPAIR)
+        self.assertIsNone(d.standard_basis)
+        self.assertIsNone(d.standard_conflicts)
+
+    def test_decide_eta_with_standards_detects_threshold_conflict(self):
+        """
+        Nếu tiêu chuẩn đặt ngưỡng ULS lệch khỏi 1.00 -> phải phát hiện mâu thuẫn.
+        (Dùng node check tuỳ chỉnh có ngưỡng 0.95 để kiểm tra logic conflict.)
+        """
+        # Tạo một check ULS lệch ngưỡng trong DB tạm (không chạm production)
+        self.sg.upsert_node("CHECK_CUSTOM", {
+            "type": "check", "limit_type": "ULS",
+            "formula": "eta", "threshold": "<= 0.95"
+        })
+        self.sg.upsert_node("CLAUSE_CUSTOM", {
+            "type": "clause", "standard": "TEST_STD", "clause_no": "X.1",
+            "title": "Test clause"
+        })
+        self.sg.upsert_edge("ELEMENT_BEAM", "CHECK_CUSTOM", "verified_by")
+
+        d = decide_eta_with_standards(0.9, element_type="dầm", graph=self.sg)
+        self.assertIsNotNone(d.standard_conflicts)
+        self.assertTrue(
+            any("CHECK_CUSTOM" in c for c in d.standard_conflicts),
+            f"Phải phát hiện conflict CHECK_CUSTOM, got: {d.standard_conflicts}"
+        )
+
+    def test_decide_eta_with_standards_failsafe_when_graph_unavailable(self):
+        """Đồ thị không khả dụng (graph=None nhưng import lỗi) -> không crash."""
+        # Pass graph=None: policy_engine sẽ tự import StandardsGraph.
+        # Ở đây ta xác nhận nếu trả về None thì quyết định vẫn đúng.
+        d = decide_eta_with_standards({"eta_M": 0.8}, element_type="dầm")
+        # Hành vi eta luôn đúng (không phụ thuộc đồ thị có sẵn không)
+        self.assertIn(d.action, (Action.PASS, Action.TRIGGER_VE, Action.REPAIR))
+
+    def test_post_eval_trigger_propagates_standard_basis(self):
+        """POST-EVAL-01 phải nhúng standard_basis + citations vào details."""
+        res = evaluate_trigger(
+            "POST-EVAL-01",
+            {"design_results": {"eta_M": 0.5}, "element_type": "dầm"},
+        )
+        self.assertTrue(res.fired)  # η=0.5 <= 0.70 -> VE
+        self.assertIn("standard_basis", res.details)
+        self.assertIn("standard_citations", res.details)
+
+
+# ==============================================================================
+# TEST TÍCH HỢP LESSONS LEARNED -> DESIGN_EVALUATION (nâng cấp 1/2026-10-24)
+# ==============================================================================
+
+class TestLessonsLookupIntegration(unittest.TestCase):
+    """
+    Kiểm tra lessons_lookup + wire vào report_dispatcher không ghi rò rỉ vào production,
+    và khớp đúng bài học theo ngữ cảnh.
+    """
+
+    def test_find_relevant_lessons_by_standard(self):
+        sys.path.insert(0, str(_AGENTS_ROOT / "_SHARED" / "memory"))
+        from lessons_lookup import find_relevant_lessons
+        results = find_relevant_lessons(
+            standards_text="TCVN 5574:2018, TCVN 5575:2024",
+            keyword_text="dầm bê tông cốt thép",
+        )
+        self.assertGreaterEqual(len(results), 1)
+        # Có LL-PRIME-01 (BEAM, TCVN 5574) hoặc LL-SS1-01 (CLIENT_PREF, TCVN 5574)
+        ids = [r["lesson_id"] for r in results]
+        self.assertTrue(
+            any(i in ids for i in ("LL-PRIME-01", "LL-SS1-01")),
+            f"Không khớp lesson nào kỳ vọng, got: {ids}"
+        )
+
+    def test_find_relevant_lessons_by_project_code(self):
+        sys.path.insert(0, str(_AGENTS_ROOT / "_SHARED" / "memory"))
+        from lessons_lookup import find_relevant_lessons
+        results = find_relevant_lessons(project_code="MONTALP")
+        self.assertTrue(any(r["lesson_id"] == "LL-MONTALP-01" for r in results))
+
+    def test_find_relevant_lessons_empty_returns_empty(self):
+        sys.path.insert(0, str(_AGENTS_ROOT / "_SHARED" / "memory"))
+        from lessons_lookup import find_relevant_lessons
+        # Tiêu chuẩn + keyword hoàn toàn không xuất hiện trong bất kỳ lesson nào.
+        results = find_relevant_lessons(
+            standards_text="XQZ-9999:2020",
+            keyword_text="zxywv qrsz",  # token hiếm, không khớp tag/issue/cause/solution
+        )
+        self.assertEqual(results, [])
+
+    def test_format_lessons_markdown_empty_and_populated(self):
+        sys.path.insert(0, str(_AGENTS_ROOT / "_SHARED" / "memory"))
+        from lessons_lookup import find_relevant_lessons, format_lessons_markdown
+        results = find_relevant_lessons(standards_text="TCVN 5574:2018")
+        self.assertGreater(len(results), 0)
+        lines = format_lessons_markdown(results)
+        self.assertTrue(lines)
+        self.assertIn("Kinh nghiệm liên dự án", lines[0])
+        # Không lesson -> []
+        self.assertEqual(format_lessons_markdown([]), [])
+
+    def test_report_dispatcher_collects_lessons_without_crash(self):
+        """report_dispatcher._collect_lessons phải fail-safe (không crash)."""
+        sys.path.insert(0, str(_AGENTS_ROOT / "skills" / "Design_Evaluation" / "scripts"))
+        import importlib
+        import report_dispatcher
+        importlib.reload(report_dispatcher)
+        # Handoff tối giản -> không crash, trả list (có thể rỗng)
+        out = report_dispatcher._collect_lessons({"Ten_Du_An": "X"})
+        self.assertIsInstance(out, list)
+        # Handoff có standards -> không crash
+        out2 = report_dispatcher._collect_lessons(
+            {"Ten_Du_An": "Y", "Standard_Method": "TCVN 5574:2018", "Hang_Muc": "dầm"}
+        )
+        self.assertIsInstance(out2, list)
 
 
 if __name__ == "__main__":

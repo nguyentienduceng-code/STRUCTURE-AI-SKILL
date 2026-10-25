@@ -31,9 +31,9 @@ SUITES = [
     ("11. Sprint 3.4 DCE Deep Integration Tests (11 tests)", [sys.executable, str(TESTS_DIR / "test_dce_deep_integration.py")]),
     ("12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)", [sys.executable, str(TESTS_DIR / "test_suite12_doc_intelligence.py")]),
     ("13. Sprint 5 Comprehensive Verification & Reporting (16 tests)", [sys.executable, str(TESTS_DIR / "test_suite13_verification.py")]),
-    ("14. Policy Engine & Multi-Trigger Rules (42 tests)", [sys.executable, str(TESTS_DIR / "test_policy_engine.py")]),
+    ("14. Policy Engine & Multi-Trigger Rules (55 tests)", [sys.executable, str(TESTS_DIR / "test_policy_engine.py")]),
     ("15. Sync Report System Consistency (14 tests)", [sys.executable, str(TESTS_DIR / "test_sync_report.py")]),
-    ("16. Cognitive & System Control Engine (21 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
+    ("16. Cognitive & System Control Engine (25 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
 ]
 
 def main():
