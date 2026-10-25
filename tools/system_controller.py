@@ -49,7 +49,8 @@ class CircuitBreaker:
     - Sau recovery_timeout giây -> chuyển sang HALF_OPEN để thử 1 lần.
     - HALF_OPEN chỉ cho đúng 1 lượt thử đồng thời (single-probe), tránh "thundering herd".
     """
-    def __init__(self, name: str, failure_threshold: int = 3, recovery_timeout: float = 30.0):
+    def __init__(self, name: str, failure_threshold: int = 3, recovery_timeout: float = 30.0,
+                 recorder: Optional['BlackboxRecorder'] = None):
         self.name = name
         self.failure_threshold = failure_threshold
         self.recovery_timeout = recovery_timeout
@@ -59,21 +60,70 @@ class CircuitBreaker:
         self.success_count = 0
         self._lock = threading.RLock()
         self._half_open_probe_in_flight = False
+        self.recorder = recorder
 
-    def record_success(self):
+    def record_success(self, trace_id: Optional[str] = None):
         with self._lock:
+            prev_state = self.state
             self.failure_count = 0
             self.state = CircuitState.CLOSED
             self.success_count += 1
             self._half_open_probe_in_flight = False
+            if prev_state == CircuitState.HALF_OPEN and self.recorder:
+                try:
+                    active_trace_id = trace_id or self.recorder.generate_trace_id()
+                    span = self.recorder.start_span(
+                        trace_id=active_trace_id,
+                        actor="CircuitBreaker",
+                        action=f"CIRCUIT_RECOVERED:{self.name}"
+                    )
+                    self.recorder.end_span(
+                        span,
+                        status="SUCCESS",
+                        metadata={
+                            "circuit_name": self.name,
+                            "event": "CIRCUIT_RECOVERED",
+                            "success_count": self.success_count,
+                            "recovery_time": datetime.now().astimezone().isoformat()
+                        }
+                    )
+                except Exception:
+                    pass
 
-    def record_failure(self):
+    def record_failure(self, trace_id: Optional[str] = None, error: Optional[str] = None):
         with self._lock:
             self.failure_count += 1
             self.last_failure_time = time.time()
             self._half_open_probe_in_flight = False
+            prev_state = self.state
             if self.failure_count >= self.failure_threshold:
                 self.state = CircuitState.OPEN
+                if prev_state != CircuitState.OPEN and self.recorder:
+                    try:
+                        active_trace_id = trace_id or self.recorder.generate_trace_id()
+                        span = self.recorder.start_span(
+                            trace_id=active_trace_id,
+                            actor="CircuitBreaker",
+                            action=f"TRIP_CIRCUIT:{self.name}"
+                        )
+                        next_retry = datetime.fromtimestamp(
+                            self.last_failure_time + self.recovery_timeout
+                        ).astimezone().isoformat()
+                        self.recorder.end_span(
+                            span,
+                            status="CIRCUIT_OPEN",
+                            error=error or f"Circuit '{self.name}' tripped after {self.failure_count} consecutive failures",
+                            metadata={
+                                "circuit_name": self.name,
+                                "event": "TRIP_CIRCUIT",
+                                "consecutive_failures": self.failure_count,
+                                "threshold": self.failure_threshold,
+                                "cooldown_seconds": self.recovery_timeout,
+                                "next_retry_after": next_retry
+                            }
+                        )
+                    except Exception:
+                        pass
 
     def allow_execution(self) -> bool:
         """
@@ -309,12 +359,14 @@ class BlackboxRecorder:
     v1.1: vết được ghi bền vững xuống <log_dir>/traces/trace_<date>.jsonl
     (mỗi span một dòng JSON) để không mất khi tiến trình kết thúc.
     """
-    def __init__(self, log_dir: Optional[Path] = None, persist: bool = True):
+    def __init__(self, log_dir: Optional[Path] = None, persist: bool = True, max_trace_files: int = 30):
         self.log_dir = Path(log_dir) if log_dir else (Path(__file__).resolve().parent.parent / "_SHARED" / "SHARED_CONTEXT")
         self.persist = persist
+        self.max_trace_files = max_trace_files
         self.traces: List[TraceSpan] = []
         self._lock = threading.RLock()
         self._trace_dir = self.log_dir / "traces"
+        self._last_rotation_date: Optional[str] = None
 
     def _trace_file(self, trace_id: str) -> Path:
         date_str = datetime.now().strftime("%Y%m%d")
@@ -347,12 +399,55 @@ class BlackboxRecorder:
             span.metadata.update(metadata)
         self._flush(span)
 
+    def rotate_traces(self, max_files: Optional[int] = None, max_age_days: int = 14) -> List[str]:
+        """
+        Xoay vòng và dọn dẹp các file trace cũ hơn max_age_days
+        hoặc khi số lượng file vượt quá max_files.
+        Trả về danh sách tên file đã dọn dẹp.
+        """
+        if not self._trace_dir.is_dir():
+            return []
+
+        limit = max_files if max_files is not None else self.max_trace_files
+        removed: List[str] = []
+        with self._lock:
+            try:
+                trace_files = sorted(self._trace_dir.glob("trace_*.jsonl"), key=lambda p: p.stat().st_mtime)
+                now = time.time()
+                remaining = []
+                for p in trace_files:
+                    try:
+                        mtime = p.stat().st_mtime
+                        if (now - mtime) > (max_age_days * 86400):
+                            p.unlink(missing_ok=True)
+                            removed.append(p.name)
+                        else:
+                            remaining.append(p)
+                    except OSError:
+                        remaining.append(p)
+
+                if limit and len(remaining) > limit:
+                    excess = len(remaining) - limit
+                    for p in remaining[:excess]:
+                        try:
+                            p.unlink(missing_ok=True)
+                            removed.append(p.name)
+                        except OSError:
+                            pass
+            except OSError:
+                pass
+        return removed
+
     def _flush(self, span: TraceSpan):
         """Ghi 1 span xuống JSONL (bỏ qua lỗi I/O — trace không được làm hỏng luồng chính)."""
         if not self.persist:
             return
         try:
             self._trace_dir.mkdir(parents=True, exist_ok=True)
+            today_str = datetime.now().strftime("%Y%m%d")
+            if self._last_rotation_date != today_str:
+                self._last_rotation_date = today_str
+                self.rotate_traces()
             payload = asdict(span)
             payload["logged_at"] = datetime.now().astimezone().isoformat()
             with open(self._trace_file(span.trace_id), "a", encoding="utf-8") as f:
@@ -388,22 +483,22 @@ class SystemController:
         return cls._instance
 
     def _init_controller(self):
+        self.recorder = BlackboxRecorder()
         self.breakers: Dict[str, CircuitBreaker] = {
-            "revit_mcp": CircuitBreaker("revit_mcp", failure_threshold=3, recovery_timeout=30.0),
-            "etabs_api": CircuitBreaker("etabs_api", failure_threshold=3, recovery_timeout=20.0),
-            "cad_bridge": CircuitBreaker("cad_bridge", failure_threshold=3, recovery_timeout=15.0),
-            "sqlite_db": CircuitBreaker("sqlite_db", failure_threshold=5, recovery_timeout=10.0),
+            "revit_mcp": CircuitBreaker("revit_mcp", failure_threshold=3, recovery_timeout=30.0, recorder=self.recorder),
+            "etabs_api": CircuitBreaker("etabs_api", failure_threshold=3, recovery_timeout=20.0, recorder=self.recorder),
+            "cad_bridge": CircuitBreaker("cad_bridge", failure_threshold=3, recovery_timeout=15.0, recorder=self.recorder),
+            "sqlite_db": CircuitBreaker("sqlite_db", failure_threshold=5, recovery_timeout=10.0, recorder=self.recorder),
         }
         self.guard = ExecutionGuard(mode="SAFE")
         self.loop_breaker = LoopBreaker(max_hops=10)
-        self.recorder = BlackboxRecorder()
         self._pending_approvals: Set[str] = set()
         self._lock = threading.RLock()
 
     def get_breaker(self, name: str) -> CircuitBreaker:
         with self._lock:
             if name not in self.breakers:
-                self.breakers[name] = CircuitBreaker(name)
+                self.breakers[name] = CircuitBreaker(name, recorder=self.recorder)
             return self.breakers[name]
 
     def set_mode(self, mode: str):

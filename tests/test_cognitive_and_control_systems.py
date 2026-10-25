@@ -482,6 +482,65 @@ class TestRegressionClaudeReview(unittest.TestCase):
         del os.environ["GUARD_FAIL_OPEN"]
         importlib.reload(skill_guard)
 
+    def test_circuit_breaker_emits_trip_and_recovery_spans(self):
+        """Roadmap v2.0 §2.2.A: CircuitBreaker phát sinh TraceSpan khi trip và khi recover."""
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            rec = BlackboxRecorder(log_dir=Path(td))
+            cb = CircuitBreaker("etabs_test", failure_threshold=2, recovery_timeout=0.1, recorder=rec)
+            
+            # Thất bại lần 1: chưa trip
+            cb.record_failure()
+            self.assertEqual(len(rec.traces), 0)
+
+            # Thất bại lần 2: trip sang OPEN -> phải có span TRIP_CIRCUIT:etabs_test
+            cb.record_failure()
+            self.assertEqual(cb.state, CircuitState.OPEN)
+            self.assertEqual(len(rec.traces), 1)
+            trip_span = rec.traces[0]
+            self.assertEqual(trip_span.action, "TRIP_CIRCUIT:etabs_test")
+            self.assertEqual(trip_span.status, "CIRCUIT_OPEN")
+            self.assertEqual(trip_span.metadata["consecutive_failures"], 2)
+
+            # Đợi hạ nhiệt -> chuyển sang HALF_OPEN
+            time.sleep(0.15)
+            self.assertTrue(cb.allow_execution())
+            self.assertEqual(cb.state, CircuitState.HALF_OPEN)
+
+            # Phục hồi thành công -> phải có span CIRCUIT_RECOVERED:etabs_test
+            cb.record_success()
+            self.assertEqual(cb.state, CircuitState.CLOSED)
+            self.assertEqual(len(rec.traces), 2)
+            recov_span = rec.traces[1]
+            self.assertEqual(recov_span.action, "CIRCUIT_RECOVERED:etabs_test")
+            self.assertEqual(recov_span.status, "SUCCESS")
+
+    def test_blackbox_trace_rotation(self):
+        """Roadmap v2.0 §2.2: BlackboxRecorder hỗ trợ xoay vòng dọn dẹp file trace cũ."""
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            rec = BlackboxRecorder(log_dir=Path(td), max_trace_files=3)
+            trace_dir = Path(td) / "traces"
+            trace_dir.mkdir(parents=True, exist_ok=True)
+
+            # Tạo 5 file trace giả lập với timestamp khác nhau
+            now = time.time()
+            for i in range(5):
+                f = trace_dir / f"trace_2026010{i}.jsonl"
+                f.write_text(f'{{"trace_id": "T{i}"}}\n', encoding="utf-8")
+                # Đặt st_mtime cách nhau 100 giây
+                os.utime(f, (now - (10 - i) * 100, now - (10 - i) * 100))
+
+            # Giới hạn max_files=3 -> dọn 2 file cũ nhất
+            removed = rec.rotate_traces(max_files=3, max_age_days=30)
+            self.assertEqual(len(removed), 2)
+            self.assertEqual(len(list(trace_dir.glob("trace_*.jsonl"))), 3)
+
+            # Thử dọn theo max_age_days = 0.0001 ngày (vài giây) -> dọn hết
+            removed_all = rec.rotate_traces(max_files=10, max_age_days=0.00001)
+            self.assertEqual(len(removed_all), 3)
+            self.assertEqual(len(list(trace_dir.glob("trace_*.jsonl"))), 0)
+
     def test_lessons_repository_does_not_pollute_production_file(self):
         """BUG-012: test không được ghi vào file bài học production."""
         import tempfile
