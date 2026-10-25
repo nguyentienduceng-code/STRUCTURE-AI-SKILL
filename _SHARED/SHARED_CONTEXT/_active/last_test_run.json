@@ -1,16 +1,18 @@
 {
   "schema_version": "1.0",
-  "captured_at": "2026-10-24T07:48:22",
+  "captured_at": "2026-10-25T10:50:38",
   "all_passed": true,
-  "total_elapsed_sec": 20.56984519958496,
-  "grand_total_passed": 384,
+  "total_elapsed_sec": 32.96588921546936,
+  "grand_total_passed": 397,
   "grand_total_failed": 0,
-  "unparsed_suites": [],
+  "unparsed_suites": [
+    "16. Cognitive & System Control Engine (31 tests)"
+  ],
   "suites": [
     {
       "name": "1. Integration Test (62 checks)",
       "passed": true,
-      "elapsed_sec": 0.34864068031311035,
+      "elapsed_sec": 0.2678415775299072,
       "passed_count": 62,
       "failed_count": 0,
       "total_count": 62,
@@ -20,7 +22,7 @@
     {
       "name": "2. Regression Calculator Test (13 calculators)",
       "passed": true,
-      "elapsed_sec": 0.3214855194091797,
+      "elapsed_sec": 0.28734707832336426,
       "passed_count": 13,
       "failed_count": 0,
       "total_count": 13,
@@ -30,7 +32,7 @@
     {
       "name": "3. Pre-Execution Approval Gate (32 tests)",
       "passed": true,
-      "elapsed_sec": 0.2688889503479004,
+      "elapsed_sec": 0.25808238983154297,
       "passed_count": 32,
       "failed_count": 0,
       "total_count": 32,
@@ -40,7 +42,7 @@
     {
       "name": "4. Intent Classifier Benchmark (17 tests)",
       "passed": true,
-      "elapsed_sec": 0.20505642890930176,
+      "elapsed_sec": 0.17021894454956055,
       "passed_count": 17,
       "failed_count": 0,
       "total_count": 17,
@@ -50,7 +52,7 @@
     {
       "name": "5. E2E Pipeline Workflow",
       "passed": true,
-      "elapsed_sec": 0.21738409996032715,
+      "elapsed_sec": 0.22977900505065918,
       "passed_count": 5,
       "failed_count": 0,
       "total_count": 5,
@@ -60,7 +62,7 @@
     {
       "name": "6. DE Calculators Unit Tests (10 tests)",
       "passed": true,
-      "elapsed_sec": 0.22313809394836426,
+      "elapsed_sec": 0.2332768440246582,
       "passed_count": 10,
       "failed_count": 0,
       "total_count": 10,
@@ -70,7 +72,7 @@
     {
       "name": "7. Sprint 1 Reporting & TCVN Tests (4 tests)",
       "passed": true,
-      "elapsed_sec": 1.39725923538208,
+      "elapsed_sec": 1.2719900608062744,
       "passed_count": 4,
       "failed_count": 0,
       "total_count": 4,
@@ -80,7 +82,7 @@
     {
       "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
       "passed": true,
-      "elapsed_sec": 0.25292348861694336,
+      "elapsed_sec": 0.2020270824432373,
       "passed_count": 3,
       "failed_count": 0,
       "total_count": 3,
@@ -90,7 +92,7 @@
     {
       "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
       "passed": true,
-      "elapsed_sec": 0.31865572929382324,
+      "elapsed_sec": 0.2165536880493164,
       "passed_count": 61,
       "failed_count": 0,
       "total_count": 61,
@@ -100,7 +102,7 @@
     {
       "name": "10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)",
       "passed": true,
-      "elapsed_sec": 1.0555932521820068,
+      "elapsed_sec": 0.8133587837219238,
       "passed_count": 19,
       "failed_count": 0,
       "total_count": 19,
@@ -110,7 +112,7 @@
     {
       "name": "11. Sprint 3.4 DCE Deep Integration Tests (11 tests)",
       "passed": true,
-      "elapsed_sec": 1.5746235847473145,
+      "elapsed_sec": 1.2013492584228516,
       "passed_count": 16,
       "failed_count": 0,
       "total_count": 16,
@@ -120,7 +122,7 @@
     {
       "name": "12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)",
       "passed": true,
-      "elapsed_sec": 2.296751022338867,
+      "elapsed_sec": 1.74729585647583,
       "passed_count": 70,
       "failed_count": 0,
       "total_count": 70,
@@ -130,7 +132,7 @@
     {
       "name": "13. Sprint 5 Comprehensive Verification & Reporting (16 tests)",
       "passed": true,
-      "elapsed_sec": 10.765421152114868,
+      "elapsed_sec": 17.619364976882935,
       "passed_count": 16,
       "failed_count": 0,
       "total_count": 16,
@@ -138,22 +140,32 @@
       "error": ""
     },
     {
-      "name": "14. Policy Engine & Multi-Trigger Rules (42 tests)",
+      "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
       "passed": true,
-      "elapsed_sec": 0.25939273834228516,
-      "passed_count": 42,
+      "elapsed_sec": 2.4442737102508545,
+      "passed_count": 55,
       "failed_count": 0,
-      "total_count": 42,
+      "total_count": 55,
       "timed_out": false,
       "error": ""
     },
     {
       "name": "15. Sync Report System Consistency (14 tests)",
       "passed": true,
-      "elapsed_sec": 1.0616192817687988,
+      "elapsed_sec": 0.7952868938446045,
       "passed_count": 14,
       "failed_count": 0,
       "total_count": 14,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "16. Cognitive & System Control Engine (31 tests)",
+      "passed": true,
+      "elapsed_sec": 5.205868482589722,
+      "passed_count": null,
+      "failed_count": null,
+      "total_count": null,
       "timed_out": false,
       "error": ""
     }

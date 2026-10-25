@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-test_cognitive_and_control_systems.py — Kiểm tra toàn diện Bộ Điều Khiển Hệ Thống và Đồ Thị Tri Thức Tiêu Chuẩn
+test_cognitive_and_control_systems.py — Kiểm tra toàn diện Bộ Điều Khiển Hệ Thống và Đồ Thị Tri Thức Tiêu Chuẩn (v2.0)
 Bao gồm:
-1. Circuit Breaker (Cầu dao tự ngắt bảo vệ phần mềm)
+1. Circuit Breaker (Cầu dao tự ngắt bảo vệ phần mềm + tự phát sinh TraceSpan TRIP_CIRCUIT / CIRCUIT_RECOVERED)
 2. Execution Guard (Hàng rào an toàn phân quyền)
 3. Loop Breaker (Chống lặp vô tận và ping-pong tác tử)
-4. Blackbox Trace Recorder (Hộp đen hành trình)
-5. Standards Graph (Đồ thị tri thức tiêu chuẩn TCVN trên SQLite CTEs)
+4. Blackbox Trace Recorder (Hộp đen hành trình + Xoay vòng trace rotation)
+5. Standards Graph v2.0 (SQLite CTEs, WAL Checkpoint, Truy vấn ngược query_standard_impact, Phát hiện xung đột E004, Bourbon Steel nodes)
 6. Lessons Learned Repository (Ký ức kinh nghiệm liên dự án Mem0 style)
 """
 
@@ -65,7 +65,7 @@ class TestSystemController(unittest.TestCase):
 
     def test_execution_guard_forbidden_commands(self):
         guard = ExecutionGuard(mode="SAFE")
-        
+
         # Lệnh bình thường -> ALLOW
         res_ok = guard.evaluate_tool_call("calc_beam", {"command": "python calc.py"})
         self.assertEqual(res_ok["decision"], GuardDecision.ALLOW.value)
@@ -76,7 +76,7 @@ class TestSystemController(unittest.TestCase):
 
     def test_execution_guard_read_only_mode(self):
         guard_ro = ExecutionGuard(mode="READ_ONLY")
-        
+
         # Tool đọc -> ALLOW
         res_read = guard_ro.evaluate_tool_call("revit_read_properties")
         self.assertEqual(res_read["decision"], GuardDecision.ALLOW.value)
@@ -87,7 +87,7 @@ class TestSystemController(unittest.TestCase):
 
     def test_loop_breaker_ping_pong_detection(self):
         lb = LoopBreaker(max_hops=6)
-        
+
         # Chuỗi bình thường A -> B -> C -> D
         r1 = lb.record_hop("Agent_A")
         r2 = lb.record_hop("Agent_B")
@@ -109,12 +109,12 @@ class TestSystemController(unittest.TestCase):
         self.assertTrue(trace_id.startswith("TRC-"))
 
         span = recorder.start_span(trace_id, actor="Structural_Design_Engineer", action="calculate_beam")
-        time.sleep(0.01) # tạo độ trễ nhỏ
+        time.sleep(0.01)  # tạo độ trễ nhỏ
         recorder.end_span(span, status="SUCCESS", metadata={"element": "D1"})
 
         self.assertEqual(span.status, "SUCCESS")
         self.assertGreater(span.duration_ms, 0)
-        
+
         summary = recorder.export_summary()
         self.assertGreaterEqual(summary["success_count"], 1)
 
@@ -128,7 +128,7 @@ class TestStandardsGraph(unittest.TestCase):
         import tempfile
         self._tmp = tempfile.TemporaryDirectory()
         self.db_path = Path(self._tmp.name) / "standards_graph_test.db"
-        self.sg = StandardsGraph(db_path=self.db_path)
+        self.sg = StandardsGraph(db_path=self.db_path, auto_checkpoint_on_exit=False)
 
     def tearDown(self):
         self._tmp.cleanup()
@@ -155,6 +155,54 @@ class TestStandardsGraph(unittest.TestCase):
         node = sg.get_node("CUSTOM_CHECK_DEFLECTION")
         self.assertIsNotNone(node)
         self.assertEqual(node["threshold"], "<= L/100")
+
+    def test_v2_wal_checkpoint_execution(self):
+        """Roadmap v2.0 §2.1.A: Kiểm tra thực thi PRAGMA wal_checkpoint(TRUNCATE) và bắt lỗi mode sai."""
+        res = self.sg.checkpoint("TRUNCATE")
+        self.assertEqual(res["mode"], "TRUNCATE")
+        self.assertEqual(res["status"], "OK")
+        with self.assertRaises(ValueError):
+            self.sg.checkpoint("INVALID_MODE")
+
+    def test_v2_query_standard_impact_bidirectional(self):
+        """Roadmap v2.0 §2.1.B: Kiểm tra truy vấn ngược từ Tiêu chuẩn -> Cấu kiện, Điều khoản, Phép kiểm & Bản cũ."""
+        impact = self.sg.query_standard_impact("TCVN 5574:2018")
+        self.assertNotIn("error", impact)
+        elem_ids = {e["id"] for e in impact["affected_elements"]}
+        self.assertIn("ELEMENT_BEAM", elem_ids)
+        self.assertIn("ELEMENT_COLUMN", elem_ids)
+        self.assertIn("ELEMENT_SLAB", elem_ids)
+        self.assertGreaterEqual(impact["impact_summary"]["clauses_count"], 3)
+        self.assertGreaterEqual(impact["impact_summary"]["checks_count"], 2)
+        # Phải phát hiện bản cũ TCVN 5574:2012 đang gắn cạnh CONFLICT_WITH
+        conflict_ids = {c["id"] for c in impact["conflicting_or_legacy_standards"]}
+        self.assertIn("TCVN_5574_2012", conflict_ids)
+
+    def test_v2_standard_conflict_detector_e004(self):
+        """Roadmap v2.0 §2.1.C: Tự động phát hiện tiêu chuẩn hết hiệu lực và dùng lẫn lộn 2 phiên bản (E004)."""
+        # Trường hợp 1: Dùng tiêu chuẩn cũ và trộn 2 phiên bản TCVN 5574
+        res_bad = self.sg.detect_standard_conflicts(["TCVN 5574:2018", "TCVN 5574:2012", "TCVN 5575:2012"])
+        self.assertTrue(res_bad["has_conflict"])
+        self.assertEqual(res_bad["error_code"], "E004")
+        types = {c["conflict_type"] for c in res_bad["conflicts"]}
+        self.assertIn("DEPRECATED_STANDARD_USED", types)
+        self.assertIn("MIXED_VERSIONS_IN_PROJECT", types)
+
+        # Trường hợp 2: Bộ tiêu chuẩn hoàn toàn hợp lệ theo STANDARDS_LOCK v3.1.0
+        res_ok = self.sg.detect_standard_conflicts(["TCVN 2737:2023", "TCVN 5574:2018", "TCVN 5575:2024", "Thông tư 34/2026/TT-BXD"])
+        self.assertFalse(res_ok["has_conflict"])
+        self.assertIsNone(res_ok["error_code"])
+
+    def test_v2_bourbon_industrial_steel_nodes(self):
+        """Kiểm tra các node tri thức Nhà thép Tiền chế & Xà gồ Z (Bourbon Project: MBMA 2012, AISC 360-10, AISI S100)."""
+        peb = self.sg.query_element_requirements("ELEMENT_PEB_PORTAL_FRAME")
+        self.assertIn("MBMA 2012", peb["connected_standards"])
+        self.assertIn("AISC 360-10", peb["connected_standards"])
+        self.assertIn("TCVN 5575:2024", peb["connected_standards"])
+
+        purlin = self.sg.query_element_requirements("ELEMENT_CFS_PURLIN")
+        self.assertIn("AISI S100-2007", purlin["connected_standards"])
+        self.assertTrue(any(c["id"] == "CHECK_PURLIN_DEFLECTION" for c in purlin["verification_checks"]))
 
 
 class TestLessonsLearnedRepository(unittest.TestCase):
@@ -210,7 +258,7 @@ class TestRegressionClaudeReview(unittest.TestCase):
         """BUG-001: traverse(direction='both') ném ProgrammingError do sai số binding."""
         import tempfile
         with tempfile.TemporaryDirectory() as td:
-            sg = StandardsGraph(db_path=Path(td) / "g.db")
+            sg = StandardsGraph(db_path=Path(td) / "g.db", auto_checkpoint_on_exit=False)
             res = sg.traverse("ELEMENT_BEAM", direction="both", max_depth=2)
             self.assertIsInstance(res, list)
             self.assertGreater(len(res), 0)
@@ -219,7 +267,7 @@ class TestRegressionClaudeReview(unittest.TestCase):
         """BUG-002: mỗi hàm phải đóng connection SQLite, không rò rỉ file handle."""
         import tempfile
         with tempfile.TemporaryDirectory() as td:
-            sg = StandardsGraph(db_path=Path(td) / "g.db")
+            sg = StandardsGraph(db_path=Path(td) / "g.db", auto_checkpoint_on_exit=False)
             for d in ("outbound", "inbound", "both"):
                 sg.traverse("ELEMENT_BEAM", direction=d, max_depth=2)
             # Trên Windows, file đã đóng thì mới xoá được.
@@ -231,7 +279,7 @@ class TestRegressionClaudeReview(unittest.TestCase):
         import sqlite3
         with tempfile.TemporaryDirectory() as td:
             db = Path(td) / "g.db"
-            sg = StandardsGraph(db_path=db)
+            sg = StandardsGraph(db_path=db, auto_checkpoint_on_exit=False)
             sg.upsert_edge("ELEMENT_BEAM", "CLAUSE_5574_MOMENT", "governed_by")
             sg.upsert_edge("ELEMENT_BEAM", "CLAUSE_5574_MOMENT", "governed_by")
             conn = sqlite3.connect(str(db))
@@ -254,9 +302,9 @@ class TestRegressionClaudeReview(unittest.TestCase):
         lb.record_hop("A")
         lb.record_hop("B")
         lb.record_hop("A")
-        self.assertFalse(lb.record_hop("B")["is_loop"])   # 4 hop: mới 2 chu kỳ
-        self.assertFalse(lb.record_hop("A")["is_loop"])   # 5 hop
-        self.assertTrue(lb.record_hop("B")["is_loop"])    # 6 hop: đủ 3 chu kỳ
+        self.assertFalse(lb.record_hop("B")["is_loop"])  # 4 hop: mới 2 chu kỳ
+        self.assertFalse(lb.record_hop("A")["is_loop"])  # 5 hop
+        self.assertTrue(lb.record_hop("B")["is_loop"])   # 6 hop: đủ 3 chu kỳ
 
         # max_cycle_repeats=2 -> trip sớm hơn, ở 4 hop
         lb2 = LoopBreaker(max_hops=20, max_cycle_repeats=2)
@@ -488,7 +536,7 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             rec = BlackboxRecorder(log_dir=Path(td))
             cb = CircuitBreaker("etabs_test", failure_threshold=2, recovery_timeout=0.1, recorder=rec)
-            
+
             # Thất bại lần 1: chưa trip
             cb.record_failure()
             self.assertEqual(len(rec.traces), 0)
@@ -558,6 +606,6 @@ class TestRegressionClaudeReview(unittest.TestCase):
 
 if __name__ == '__main__':
     print("=" * 80)
-    print("  CHẠY BỘ KIỂM THỬ: HỆ THỐNG KIỂM SOÁT VẬN HÀNH & ĐỒ THỊ TRI THỨC")
+    print(" CHẠY BỘ KIỂM THỬ: HỆ THỐNG KIỂM SOÁT VẬN HÀNH & ĐỒ THỊ TRI THỨC (v2.0)")
     print("=" * 80)
     unittest.main(verbosity=2)

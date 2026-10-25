@@ -33,12 +33,12 @@ SUITES = [
     ("13. Sprint 5 Comprehensive Verification & Reporting (16 tests)", [sys.executable, str(TESTS_DIR / "test_suite13_verification.py")]),
     ("14. Policy Engine & Multi-Trigger Rules (55 tests)", [sys.executable, str(TESTS_DIR / "test_policy_engine.py")]),
     ("15. Sync Report System Consistency (14 tests)", [sys.executable, str(TESTS_DIR / "test_sync_report.py")]),
-    ("16. Cognitive & System Control Engine (27 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
+    ("16. Cognitive & System Control Engine (31 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
 ]
 
 def main():
     print("=" * 80)
-    print("  RUN ALL TESTS — BỘ KIỂM TRA TOÀN DIỆN HỆ SINH THÁI .AGENTS")
+    print(" RUN ALL TESTS — BỘ KIỂM TRA TOÀN DIỆN HỆ SINH THÁI .AGENTS")
     print("=" * 80)
 
     total_start = time.time()
@@ -53,27 +53,27 @@ def main():
         passed = (p.returncode == 0)
         results.append((name, passed, elapsed))
         if passed:
-            print(f"  ✅ ĐẠT ({elapsed:.2f}s)")
+            print(f" ✅ ĐẠT ({elapsed:.2f}s)")
         else:
-            print(f"  ❌ THẤT BẠI ({elapsed:.2f}s)")
-            print("  --- Chi tiết lỗi ---")
+            print(f" ❌ THẤT BẠI ({elapsed:.2f}s)")
+            print(" --- Chi tiết lỗi ---")
             print(p.stderr or p.stdout)
             all_passed = False
 
     print("\n" + "=" * 80)
-    print("  TỔNG KẾT BỘ KIỂM TRA")
+    print(" TỔNG KẾT BỘ KIỂM TRA")
     print("=" * 80)
     for name, passed, elapsed in results:
         status = "✅ PASS" if passed else "❌ FAIL"
-        print(f"  {status} | {name:<50s} ({elapsed:.2f}s)")
+        print(f" {status} | {name:<50s} ({elapsed:.2f}s)")
 
     total_elapsed = time.time() - total_start
     print("-" * 80)
     if all_passed:
-        print(f"  🎉 TẤT CẢ TEST SUITES ĐỀU VƯỢT QUA! (Tổng thời gian: {total_elapsed:.2f}s)")
+        print(f" 🎉 TẤT CẢ TEST SUITES ĐỀU VƯỢT QUA! (Tổng thời gian: {total_elapsed:.2f}s)")
         return 0
     else:
-        print(f"  ⚠️ CÓ TEST SUITE THẤT BẠI. (Tổng thời gian: {total_elapsed:.2f}s)")
+        print(f" ⚠️ CÓ TEST SUITE THẤT BẠI. (Tổng thời gian: {total_elapsed:.2f}s)")
         return 1
 
 if __name__ == "__main__":
