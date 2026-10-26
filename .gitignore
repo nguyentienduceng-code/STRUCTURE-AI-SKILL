@@ -36,3 +36,6 @@ Desktop.ini
 *.gdoc
 *.gsheet
 *.gslides
+
+# Old backup files
+*_OLD.*
