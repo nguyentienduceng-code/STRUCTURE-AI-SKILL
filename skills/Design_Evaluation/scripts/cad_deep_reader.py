@@ -415,11 +415,72 @@ class DWGHeadlessBridge:
 
     @classmethod
     def detect_available_converters(cls) -> Dict[str, Optional[str]]:
+        accore = shutil.which("accoreconsole") or shutil.which("accoreconsole.exe")
+        if not accore:
+            import glob
+            acad_dirs = sorted(glob.glob(r"C:\Program Files\Autodesk\AutoCAD*\accoreconsole.exe"), reverse=True)
+            if acad_dirs:
+                accore = acad_dirs[0]
+
+        oda = shutil.which("ODAFileConverter") or shutil.which("ODAFileConverter.exe")
+        if not oda:
+            import glob
+            oda_dirs = sorted(glob.glob(r"C:\Program Files*\ODA\*\ODAFileConverter.exe"), reverse=True)
+            if oda_dirs:
+                oda = oda_dirs[0]
+
         return {
-            "accoreconsole": shutil.which("accoreconsole") or shutil.which("accoreconsole.exe"),
-            "ODAFileConverter": shutil.which("ODAFileConverter") or shutil.which("ODAFileConverter.exe"),
+            "accoreconsole": accore,
+            "ODAFileConverter": oda,
             "dwg2dxf": shutil.which("dwg2dxf"),
         }
+
+    @classmethod
+    def convert_dwg_to_dxf(cls, dwg_path: str, output_dxf: Optional[str] = None, timeout_sec: int = 120) -> str:
+        """
+        Chuyển đổi tự động file DWG sang DXF R2018 bằng engine khả dụng nhất trên hệ thống.
+        Tự động Bind đệ quy toàn bộ External References (Xrefs).
+        """
+        if not os.path.exists(dwg_path):
+            raise FileNotFoundError(f"Không tìm thấy file DWG: {dwg_path}")
+
+        converters = cls.detect_available_converters()
+        accore = converters.get("accoreconsole")
+
+        if not output_dxf:
+            base, _ = os.path.splitext(dwg_path)
+            output_dxf = f"{base}_converted.dxf"
+
+        # Đảm bảo đường dẫn DXF dùng dấu gạch chéo xuôi cho AutoLISP
+        dxf_lisp = output_dxf.replace("\\", "/")
+
+        if accore and os.path.exists(accore):
+            # Tạo script AutoLISP tạm thời
+            import tempfile
+            scr_file = os.path.join(tempfile.gettempdir(), f"cad_deep_reader_{os.getpid()}.scr")
+            scr_content = cls.AUTOLISP_BIND_AND_EXPORT_TEMPLATE.format(output_dxf=dxf_lisp)
+
+            with open(scr_file, "w", encoding="ascii", errors="ignore") as f:
+                f.write(scr_content)
+
+            try:
+                cmd = [accore, "/i", dwg_path, "/s", scr_file, "/l", "en-US"]
+                proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout_sec)
+                if os.path.exists(output_dxf) and os.path.getsize(output_dxf) > 0:
+                    return output_dxf
+                else:
+                    raise RuntimeError(f"accoreconsole chạy nhưng không sinh file DXF: {proc.stderr[:300]}")
+            finally:
+                if os.path.exists(scr_file):
+                    try:
+                        os.remove(scr_file)
+                    except Exception:
+                        pass
+        else:
+            raise RuntimeError(
+                "Không tìm thấy bộ chuyển đổi DWG khả dụng (cần accoreconsole.exe, ODAFileConverter hoặc dwg2dxf). "
+                "Vui lòng cung cấp file DXF hoặc cài đặt ODA File Converter."
+            )
 
 
 # ==============================================================================
