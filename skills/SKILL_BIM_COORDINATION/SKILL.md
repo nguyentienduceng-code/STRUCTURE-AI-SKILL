@@ -1,6 +1,6 @@
 ---
 name: SKILL_BIM_COORDINATION
-version: 1.3.0
+version: 1.4.0
 updated: 2026-10-25
 status: PRODUCTION_READY
 description: >
@@ -8,7 +8,7 @@ description: >
   (Kiến trúc ↔ Mặt bằng Kết cấu ↔ Mặt cắt ↔ Chi tiết cấu kiện).
 ---
 
-# SKILL_BIM_COORDINATION — ĐỐI SOÁT HÌNH HỌC, KHÔNG GIAN & XUNG ĐỘT BẢN VẼ (v1.3.0)
+# SKILL_BIM_COORDINATION — ĐỐI SOÁT HÌNH HỌC, KHÔNG GIAN & XUNG ĐỘT BẢN VẼ (v1.4.0)
 
 ## 1. QUY TRÌNH RÀ SOÁT XUNG ĐỘT 3 LỚP HÌNH HỌC (3-TIER GEOMETRIC & DRAWING CLASH AUDIT)
 
@@ -43,3 +43,19 @@ description: >
 1. **Cắt sát vùng cấu kiện (Tight CAD Bounding-Box Crop):** Loại bỏ toàn bộ khoảng trắng thừa bên trái/bên phải khung bản vẽ; đối với ảnh ghép 2 khung đối chứng (ví dụ: Mặt bằng vs Mặt cắt, hoặc Bản vẽ Kiến trúc vs Bản vẽ Kết cấu), đặt 2 khung cạnh nhau với khoảng cách chuẩn `18px` trên nền Xanh Băng `#F0F4F8`, viền ngoài `#1B365D` dày `2px`.
 2. **Cấm vẽ trùng lặp Banner & Hộp chữ trong ảnh PNG (`Zero Box-in-Box`):** Không vẽ thanh tiêu đề đen ở đỉnh ảnh và không vẽ hộp thoại 4 dòng ở đáy ảnh PNG; toàn bộ thuyết minh 6 mục do bảng Word bên dưới đảm nhận.
 3. **Thanh tiêu đề khung bản vẽ chuẩn Serif tiếng Việt:** Trên đỉnh mỗi khung cắt bản vẽ, vẽ thanh tiêu đề cao `34px` nền Xanh Navy `#1B365D`, chữ trắng dùng phông Serif đầy đủ dấu tiếng Việt (`LiberationSerif-Bold` / `NotoSerif-Bold`), căn giữa và tự động co cỡ chữ (`fit_subheader_font`) để không bao giờ tràn khỏi khung.
+
+
+## 3. MODULE `CAD_DEEP_READER` — QUY TRÌNH 6 TẦNG BÓC TÁCH BẢN VẼ `.DWG / .DXF` (`scripts/cad_deep_reader.py` v1.1.0)
+1. **Tầng 1 — Cầu nối Giải mã DWG Đa Engine & Tự động Bind Xref (`DWGHeadlessBridge`):**
+   - Ưu tiên 1 (Máy trạm có AutoCAD): Gọi `accoreconsole.exe` chạy ngầm kèm script AutoLISP tự động thực thi `(-XREF "_Bind" "*")` với `BINDTYPE = 1`, `AUDIT` và xuất `DXF R2018`.
+   - Ưu tiên 2 (Server/Cloud độc lập): Gọi `ODAFileConverter` CLI kết hợp `ezdxf.addons.odafc` và `ezdxf.xref` nạp đệ quy toàn bộ file tham chiếu ngoại vi.
+2. **Tầng 2 — Phẳng hóa Tọa độ Không gian Đa tầng bằng Ma trận $4\times 4$ (`Matrix4x4` & `virtual_entities()`):**
+   - Phân rã đệ quy mọi cấp Block lồng nhau (Nested Blocks) và Khối động ẩn danh (`*U123`, `*D123`) kèm thuộc tính `ATTRIB` về Hệ tọa độ Thế giới (WCS):
+     $$\mathbf{M}_{\text{WCS}} = \mathbf{M}_{\text{parent}} \cdot \mathbf{T}(\mathbf{P}_{\text{ins}}) \cdot \mathbf{R}_{\text{OCS}\to\text{WCS}}(\mathbf{N}_z) \cdot \mathbf{R}_z(\theta) \cdot \mathbf{S}(s_x, s_y, s_z) \cdot \mathbf{T}(-\mathbf{P}_{\text{base}})$$
+   - Bảo toàn chính xác dấu tọa độ khi kỹ sư dùng lệnh `MIRROR` ($s_x = -1.0$).
+3. **Tầng 3 — Bộ Giải mã Tiếng Việt Đa Bảng mã (`VietnameseCADTextDecoder`):**
+   - Tự động nhận diện và chuyển đổi theo từ (Token-aware) bảng mã 1-byte `TCVN3 (ABC)` (`.VnTime`, `tc.shx`, `vni-abc.shx`) và bảng mã 2-byte `VNI-Windows` (`VNI-Helve`, `vn_vni.shx`) sang chuẩn `Unicode UTF-8`.
+   - Chuẩn hóa toàn bộ mã điều khiển AutoCAD (`%%c` $\to$ `Ø`, `%%d` $\to$ `°`, `%%p` $\to$ `±`, `\U+00D8` $\to$ `Ø`) và phục hồi chữ SHX bị phá khối (`TXTEXP`) qua thuật toán gom cụm đồ thị nét (`Stroke-Graph Spatial Clustering`).
+4. **Tầng 4 & 5 — Phân loại Layer Ngữ nghĩa 7 Nhóm (`SemanticLayerClassifier`) & Bắt lỗi Sửa Số Dim Giả (`check_dimension_override`):**
+   - Ánh xạ mọi tên Layer tùy tiện của TVTK về 07 nhóm chuẩn: `GRID_AXIS`, `FOUNDATION`, `COLUMN_WALL`, `BEAM_SLAB`, `STEEL_PURLIN_BRACE`, `REBAR_TAG`, `DIMENSION_TEXT`.
+   - Kiểm tra chéo khoảng cách hình học thực tế (`actual_measurement` — mã DXF 42) với chuỗi chữ hiển thị trên đường kích thước (`dim_text` — mã DXF 1); báo động `CRITICAL` ngay khi phát hiện sửa số kích thước giả lệch $> 2\%$.
