@@ -159,26 +159,64 @@ class MarkdownParser:
                 run._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
 
     def parse_list(self, line: str) -> None:
-        """Parse list item"""
-        para = self.doc.add_paragraph(style='List Bullet')
-        # Remove leading bullet/dash
-        text = re.sub(r'^[\-\*]\s*', '', line)
-        para.add_run(text).font.name = NORMAL_FONT
-        for run in para.runs:
-            run.font.size = NORMAL_SIZE
-            run._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+        """Parse list item - Anti Double Bullet and Clean Math (Rule 12c)"""
+        clean_line = re.sub(r'^[\-\*•–—\s]+', '', line).strip()
+        enum_m = re.match(r'^(\d+[\.\)]|[a-zA-Z][\.\)])\s*(.*)$', clean_line)
+        if enum_m:
+            para = self.doc.add_paragraph()
+            para.paragraph_format.left_indent = Inches(0.25)
+            r_num = para.add_run(enum_m.group(1) + ' ')
+            r_num.font.name = NORMAL_FONT
+            r_num.font.size = NORMAL_SIZE
+            r_num.bold = True
+            r_num._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+            self._add_math_runs(para, enum_m.group(2))
+        else:
+            para = self.doc.add_paragraph(style='List Bullet')
+            self._add_math_runs(para, clean_line)
+
+    def _add_math_runs(self, para, text: str) -> None:
+        """Thêm runs có hỗ trợ chỉ số dưới / chỉ số trên và khử $ raw LaTeX"""
+        clean_text = text.replace('$', '')
+        pat = re.compile(r'([A-Za-zα-ωΑ-ΩΔ0-9]+)([_^])(?:\{([^}]+)\}|([A-Za-z0-9,]+))')
+        last_idx = 0
+        for m in pat.finditer(clean_text):
+            start, end = m.span()
+            if start > last_idx:
+                r = para.add_run(clean_text[last_idx:start].replace('}', ''))
+                r.font.name = NORMAL_FONT
+                r.font.size = NORMAL_SIZE
+                r._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+            base = m.group(1)
+            char = m.group(2)
+            val = m.group(3) if m.group(3) is not None else m.group(4)
+            r_base = para.add_run(base)
+            r_base.font.name = NORMAL_FONT
+            r_base.font.size = NORMAL_SIZE
+            r_base._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+            r_val = para.add_run(val)
+            r_val.font.name = NORMAL_FONT
+            r_val.font.size = NORMAL_SIZE
+            r_val._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+            if char == '_':
+                r_val.font.subscript = True
+            else:
+                r_val.font.superscript = True
+            last_idx = end
+        if last_idx < len(clean_text):
+            r = para.add_run(clean_text[last_idx:].replace('}', ''))
+            r.font.name = NORMAL_FONT
+            r.font.size = NORMAL_SIZE
+            r._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
 
     def parse_horizontal_rule(self) -> None:
         """Parse horizontal rule"""
         self.doc.add_paragraph('─' * 50)
 
     def parse_paragraph(self, text: str) -> None:
-        """Parse regular paragraph"""
+        """Parse regular paragraph with math runs"""
         para = self.doc.add_paragraph()
-        para.add_run(text).font.name = NORMAL_FONT
-        for run in para.runs:
-            run.font.size = NORMAL_SIZE
-            run._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
+        self._add_math_runs(para, text)
 
 
 class DOCXGenerator:

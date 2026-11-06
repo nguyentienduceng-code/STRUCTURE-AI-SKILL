@@ -518,12 +518,7 @@ class SystemController:
 
     def preflight_check(self, agent_name: str, tool_name: str, payload: Optional[Dict] = None) -> Dict[str, Any]:
         """Kiểm tra toàn diện trước khi thực thi bất kỳ công cụ nào."""
-        # 0. Nếu thao tác đã được User duyệt -> bỏ qua nhánh PENDING_APPROVAL
-        if self.is_approved(tool_name):
-            with self._lock:
-                self._pending_approvals.discard(tool_name)
-
-        # 1. Kiểm tra vòng lặp tác tử
+        # 1. Kiểm tra vòng lặp tác tử trước tiên (không làm mất vé approve nếu bị chặn loop)
         loop_res = self.loop_breaker.record_hop(agent_name)
         if loop_res["is_loop"]:
             return {
@@ -541,12 +536,18 @@ class SystemController:
                 "status": "GUARD_BLOCKED",
                 "reason": guard_res["reason"]
             }
-        if guard_res["decision"] == GuardDecision.PENDING_APPROVAL.value and not self.is_approved(tool_name):
-            return {
-                "allowed": False,
-                "status": "PENDING_APPROVAL",
-                "reason": guard_res["reason"]
-            }
+        if guard_res["decision"] == GuardDecision.PENDING_APPROVAL.value:
+            with self._lock:
+                was_approved = tool_name in self._pending_approvals
+                if was_approved:
+                    # Tiêu thụ vé phê duyệt đúng 1 lần (one-time approval token)
+                    self._pending_approvals.discard(tool_name)
+            if not was_approved:
+                return {
+                    "allowed": False,
+                    "status": "PENDING_APPROVAL",
+                    "reason": guard_res["reason"]
+                }
 
         # 3. Kiểm tra Cầu dao dịch vụ nếu công cụ phụ thuộc service bên ngoài
         service_map = {

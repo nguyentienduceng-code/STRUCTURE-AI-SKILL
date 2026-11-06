@@ -11,10 +11,36 @@ from openpyxl.utils import get_column_letter
 if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
+# [Anti-[Repaired] Guard] Bộ cứu hỏa sheetViews của hệ .agents (tools/xlsx_view_sanity.py):
+# sanitize_workbook() trả thẻ <sheetViews> về XML ECMA-376 hợp lệ trước khi save
+# (chống openpyxl để lại <selection pane="bottomRight"> rác khi freeze_panes đổi chiều
+# giữa C3/xSplit và A3/1 chiều, chống mở file nhảy tụt dòng do round-trip topLeftCell).
+# Import thất bại KHÔNG làm nổ module (fallback: chạy như cũ).
+def _find_tools_dir():
+    """Tìm .agents/tools bằng cách đi lên từng cấp (không phụ thuộc độ sâu thư mục skill)."""
+    cur = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
+    for _ in range(8):
+        cand = os.path.join(cur, "tools")
+        if os.path.isdir(cand):
+            return cand
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            break
+        cur = parent
+    return None
+
+try:
+    _TOOLS_DIR = _find_tools_dir()
+    if _TOOLS_DIR and _TOOLS_DIR not in sys.path:
+        sys.path.insert(0, _TOOLS_DIR)
+    import xlsx_view_sanity as _xvs
+except Exception:  # pragma: no cover
+    _xvs = None
+
 # =============================================================================
 # export_geotech_report.py — MODULE 10: Xuất Thuyết minh & Bảng tính Plaxis
 # =============================================================================
-# Version: 2.3.1
+# Version: 2.4.0 (Natural Mineral Palette v4.2 — Anti-AI Styling)
 # Chuẩn: TCVN 9351:2012, CIRIA C760, Eurocode 7, Plaxis Material Models Manual
 # Output: Excel đầy đủ 12 sheets + Markdown Thuyết minh mẫu
 # Sheet mới: Sheet 12 "Phu luc Giai trinh" — Giải trình từng bước công thức
@@ -22,9 +48,9 @@ if sys.stdout.encoding != 'utf-8':
 
 # ─── STYLE HELPERS ──────────────────────────────────────────────────────────
 
-def _header_style(ws, row_idx, n_cols, bg="1F4E79"):
+def _header_style(ws, row_idx, n_cols, bg="DCE4EC"):
     fill = PatternFill("solid", fgColor=bg)
-    font = Font(color="FFFFFF", bold=True, size=10, name="Calibri")
+    font = Font(color="1E3246", bold=True, size=10, name="Arial")
     align = Alignment(horizontal="center", vertical="center", wrap_text=True)
     thin = Side(style="thin")
     border = Border(left=thin, right=thin, top=thin, bottom=thin)
@@ -35,9 +61,9 @@ def _header_style(ws, row_idx, n_cols, bg="1F4E79"):
         cell.alignment = align
         cell.border = border
 
-def _subheader_style(ws, row_idx, n_cols, bg="BDD7EE"):
+def _subheader_style(ws, row_idx, n_cols, bg="E6E2DA"):
     fill = PatternFill("solid", fgColor=bg)
-    font = Font(bold=True, size=9, name="Calibri")
+    font = Font(bold=True, size=10, name="Arial")
     align = Alignment(horizontal="center", vertical="center", wrap_text=True)
     thin = Side(style="thin")
     border = Border(left=thin, right=thin, top=thin, bottom=thin)
@@ -55,8 +81,8 @@ def _data_style(ws, row_idx, n_cols, even=False, alert=False, warning=False):
         bg = "FFFACD"
     else:
         bg = "E8F0FE" if even else "FFFFFF"
-    font_color = "CC0000" if alert else ("8B6914" if warning else "000000")
-    font = Font(size=9, name="Calibri", color=font_color)
+    font_color = "8C261E" if alert else ("8F5314" if warning else "1C1E21")
+    font = Font(size=10, name="Arial", color=font_color)
     align = Alignment(horizontal="center", vertical="center", wrap_text=True)
     thin = Side(style="thin")
     border = Border(left=thin, right=thin, top=thin, bottom=thin)
@@ -80,7 +106,7 @@ def _row(ws, row_idx, values):
 
 def sheet_ksdc(wb, soil_layers):
     ws = wb.create_sheet("1_Ket qua KSDC")
-    ws.sheet_properties.tabColor = "4472C4"
+    ws.sheet_properties.tabColor = "1E3246"
 
     headers = [
         "Lop", "Mo ta dia tang", "Cao do",
@@ -128,7 +154,7 @@ def sheet_ksdc(wb, soil_layers):
 
 def sheet_plaxis_params(wb, soil_layers):
     ws = wb.create_sheet("2_Thong so Dat Plaxis")
-    ws.sheet_properties.tabColor = "70AD47"
+    ws.sheet_properties.tabColor = "1E5631"
 
     headers_row1 = [
         "Thong so", "Don vi",
@@ -180,7 +206,7 @@ def sheet_plaxis_params(wb, soil_layers):
 
 def sheet_stress_profile(wb, stress_data, gwl_depth=-2.0):
     ws = wb.create_sheet("3_Ung suat Huu hieu")
-    ws.sheet_properties.tabColor = "FFC000"
+    ws.sheet_properties.tabColor = "8F5314"
 
     headers = [
         "Cao do (m)", "Chieu sau z (m)", "Ranh gioi",
@@ -267,7 +293,7 @@ def sheet_boundary_stress(wb, boundary_stress, gwl_depth=-2.0):
 
 def sheet_structural(wb, structural_elements):
     ws = wb.create_sheet("5_Thong so Ket cau")
-    ws.sheet_properties.tabColor = "5B9BD5"
+    ws.sheet_properties.tabColor = "2E4A62"
 
     headers = [
         "Loai", "Ten phan tu", "Be day/Kieu",
@@ -466,7 +492,7 @@ def sheet_sls_check(wb, sls_checks):
                 eta_cell.fill = PatternFill("solid", fgColor="FF9900")
             else:
                 eta_cell.fill = PatternFill("solid", fgColor="FF4444")
-                eta_cell.font = Font(bold=True, color="FFFFFF")
+                eta_cell.font = Font(bold=True, color="1E3246")
         except (TypeError, ValueError):
             pass
 
@@ -545,7 +571,7 @@ def sheet_ground_truth(wb, soil_layers):
 
 def sheet_calc_logs(wb, soil_layers, calc_logs=None):
     ws = wb.create_sheet("10_Calc Logs")
-    ws.sheet_properties.tabColor = "ED7D31"
+    ws.sheet_properties.tabColor = "A67C37"
 
     headers = ["Lop", "Buoc", "Cong thuc", "Thay so", "Ket qua", "Nguon", "Trang thai"]
     _row(ws, 1, headers)
@@ -674,14 +700,14 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
 
     # Title
     ws.cell(row=1, column=1, value="PHỤ LỤC GIẢI TRÌNH TÍNH TOÁN CHI TIẾT")
-    _header_style(ws, 1, 1, bg="1F4E79")
+    _header_style(ws, 1, 1, bg="DCE4EC")
     ws.merge_cells("A1:G1")
-    ws.cell(row=1, column=1).font = Font(color="FFFFFF", bold=True, size=13)
+    ws.cell(row=1, column=1).font = Font(color="1E3246", bold=True, size=13)
 
     # Disclaimer
     ws.cell(row=2, column=1,
             value="Theo yêu cầu Rule 7.1 — Mọi kết quả quy đổi BẮT BUỘC đi kèm giải trình công thức gốc.")
-    ws.cell(row=2, column=1).font = Font(italic=True, size=9, color="C00000")
+    ws.cell(row=2, column=1).font = Font(italic=True, size=10, color="C00000")
     ws.merge_cells("A2:G2")
 
     row = 4
@@ -702,7 +728,7 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
 
         # ── Section: Co so ly thuyet ──
         ws.cell(row=row, column=1, value="I. CƠ SỞ LÝ THUYẾT")
-        _subheader_style(ws, row, 7, bg="BDD7EE")
+        _subheader_style(ws, row, 7, bg="E6E2DA")
         ws.merge_cells(f"A{row}:G{row}")
         row += 1
 
@@ -714,7 +740,7 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
 
         # ── Section: Cong thuc tong quat ──
         ws.cell(row=row, column=1, value="II. CÔNG THỨC TỔNG QUÁT")
-        _subheader_style(ws, row, 7, bg="BDD7EE")
+        _subheader_style(ws, row, 7, bg="E6E2DA")
         ws.merge_cells(f"A{row}:G{row}")
         row += 1
 
@@ -746,14 +772,14 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
 
         for line in formula_lines:
             ws.cell(row=row, column=1, value=line)
-            ws.cell(row=row, column=1).font = Font(name="Courier New", size=9)
+            ws.cell(row=row, column=1).font = Font(name="Courier New", size=10)
             ws.merge_cells(f"A{row}:G{row}")
             row += 1
         row += 1
 
         # ── Section: The so va tinh toan ──
         ws.cell(row=row, column=1, value="III. THẾ SỐ VÀ TÍNH TOÁN")
-        _subheader_style(ws, row, 7, bg="BDD7EE")
+        _subheader_style(ws, row, 7, bg="E6E2DA")
         ws.merge_cells(f"A{row}:G{row}")
         row += 1
 
@@ -767,25 +793,25 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
                 source = log.get("source", "")
 
                 ws.cell(row=row, column=1, value=step)
-                ws.cell(row=row, column=1).font = Font(bold=True, size=9)
+                ws.cell(row=row, column=1).font = Font(bold=True, size=10)
                 ws.merge_cells(f"A{row}:G{row}")
                 row += 1
 
                 if formula:
                     ws.cell(row=row, column=1, value=f"  Công thức: {formula}")
-                    ws.cell(row=row, column=1).font = Font(name="Courier New", size=9)
+                    ws.cell(row=row, column=1).font = Font(name="Courier New", size=10)
                     ws.merge_cells(f"A{row}:G{row}")
                     row += 1
 
                 if result:
                     ws.cell(row=row, column=1, value=f"  Kết quả: {result}")
-                    ws.cell(row=row, column=1).font = Font(name="Courier New", size=9, bold=True)
+                    ws.cell(row=row, column=1).font = Font(name="Courier New", size=10, bold=True)
                     ws.merge_cells(f"A{row}:G{row}")
                     row += 1
 
                 if source:
                     ws.cell(row=row, column=1, value=f"  Nguồn: {source}")
-                    ws.cell(row=row, column=1).font = Font(italic=True, size=9)
+                    ws.cell(row=row, column=1).font = Font(italic=True, size=10)
                     ws.merge_cells(f"A{row}:G{row}")
                     row += 1
 
@@ -797,20 +823,20 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
                 Su = layer.get("Su_kpa", "?")
                 ws.cell(row=row, column=1,
                         value=f"Bước 1: E50ref = Ke × Su = {Ke} × {Su} = {e50} kPa")
-                ws.cell(row=row, column=1).font = Font(name="Courier New", size=9)
+                ws.cell(row=row, column=1).font = Font(name="Courier New", size=10)
                 ws.merge_cells(f"A{row}:G{row}")
                 row += 1
             elif not is_cohesive and Alpha_data:
                 alpha = Alpha_data.get("recommended", "?")
                 ws.cell(row=row, column=1,
                         value=f"Bước 1: E50ref = α × N_SPT = {alpha} × {spt} = {e50} kPa")
-                ws.cell(row=row, column=1).font = Font(name="Courier New", size=9)
+                ws.cell(row=row, column=1).font = Font(name="Courier New", size=10)
                 ws.merge_cells(f"A{row}:G{row}")
                 row += 1
 
         # ── Section: Ket qua ──
         ws.cell(row=row, column=1, value="IV. KẾT QUẢ QUY ĐỔI — THÔNG SỐ ĐẦU VÀO PLAXIS")
-        _subheader_style(ws, row, 7, bg="BDD7EE")
+        _subheader_style(ws, row, 7, bg="E6E2DA")
         ws.merge_cells(f"A{row}:G{row}")
         row += 1
 
@@ -840,7 +866,7 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
         if gt and gt.get("status") != "NO_MATCH":
             row += 1
             ws.cell(row=row, column=1, value="V. KIỂM CHỨNG GROUND TRUTH")
-            _subheader_style(ws, row, 7, bg="BDD7EE")
+            _subheader_style(ws, row, 7, bg="E6E2DA")
             ws.merge_cells(f"A{row}:G{row}")
             row += 1
 
@@ -865,7 +891,7 @@ def sheet_appendix(wb, soil_layers, calc_steps=None):
     # Footer disclaimer
     ws.cell(row=row, column=1,
             value="> Kết quả tính toán mang tính tham khảo. Kỹ sư CCHN phải rà soát trước khi sử dụng.")
-    ws.cell(row=row, column=1).font = Font(italic=True, size=9, color="7F7F7F")
+    ws.cell(row=row, column=1).font = Font(italic=True, size=10, color="7F7F7F")
     ws.merge_cells(f"A{row}:G{row}")
 
     _set_widths(ws, [20, 16, 12, 12, 12, 12, 12])
@@ -902,8 +928,16 @@ def generate_excel(data, out_xlsx):
     sheet_guide(wb)
     sheet_appendix(wb, soil_layers)  # Sheet 12: Phu luc Giai trinh (v2.3.1)
 
+    # [Anti-[Repaired] Guard] — sanitize sheetViews TRƯỚC KHI save
+    if _xvs is not None:
+        _xvs.sanitize_workbook(wb, zoom=100)
     wb.save(out_xlsx)
     print(f"-> Generated Excel: {out_xlsx}")
+    # [Anti-[Repaired] Guard] — xác nhận file sau save
+    if _xvs is not None:
+        _ok, _issues = _xvs.validate_xlsx_file(out_xlsx)
+        if not _ok:
+            print(f"[WARN xlsx_view_sanity] {out_xlsx}: {len(_issues)} thẻ sheetViews chưa hợp lệ -> {_issues[:3]}")
     return out_xlsx
 
 
@@ -1062,19 +1096,19 @@ def generate_markdown_report(data, out_md):
             eta = check.get('eta', '')
             status = check.get('status', '')
             if status in ('PASSED', 'ĐẠT'):
-                status_d = '🟢 ĐẠT'
+                status_d = '[ĐẠT — DƯ TẢI] ĐẠT'
             elif status in ('FAILED', 'KHÔNG ĐẠT'):
-                status_d = '🔴 KHÔNG ĐẠT'
+                status_d = '[VƯỢT NGƯỠNG] KHÔNG ĐẠT'
             elif 'Lưu ý' in status:
-                status_d = '🟠 Lưu ý'
+                status_d = '[ĐẠT — SÁT NGƯỠNG] Lưu ý'
             else:
                 status_d = status
             try:
                 ev = float(eta)
-                if ev <= 0.70: ed = f'🟢 **{ev:.2f}**'
-                elif ev <= 0.90: ed = f'🟡 **{ev:.2f}**'
-                elif ev <= 1.00: ed = f'🟠 **{ev:.2f}**'
-                else: ed = f'🔴 **{ev:.2f}**'
+                if ev <= 0.70: ed = f'[ĐẠT — DƯ TẢI] **{ev:.2f}**'
+                elif ev <= 0.90: ed = f'[ĐẠT — TỐI ƯU] **{ev:.2f}**'
+                elif ev <= 1.00: ed = f'[ĐẠT — SÁT NGƯỠNG] **{ev:.2f}**'
+                else: ed = f'[VƯỢT NGƯỠNG] **{ev:.2f}**'
             except: ed = f'**{eta}**'
             lines.append(
                 f"| {i} | {check.get('name','')} | {check.get('calculated','')} | "

@@ -1,116 +1,35 @@
 ---
 name: Technical_Illustrator
-version: 1.3.0
-last_updated: 2026-09-27
-description: "Kỹ sư Minh họa Kỹ thuật AI chuyên sinh ảnh mô phỏng thực tế (AI Render) và bản vẽ mặt cắt 2D chính xác (Python) cho các phương án kết cấu. Kích hoạt khi nhắc đến các keyword: vẽ minh họa, tạo ảnh phương án, render phối cảnh, vẽ mặt cắt, vẽ chi tiết thép, sơ đồ biện pháp thi công, trực quan hóa kết cấu."
+version: 1.4.0
+last_updated: 2026-11-03
+description: "Kỹ sư Minh họa Kỹ thuật & Tiến độ PMO AI chuyên sinh bản vẽ mặt cắt 2D chính xác (Python), Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI Split View 8 cột + CPM + Landscape Word Section Break) và ảnh mô phỏng 3D (AI Render). Kích hoạt khi nhắc đến: vẽ minh họa, vẽ mặt cắt, vẽ chi tiết thép, vẽ biểu đồ tiến độ, sơ đồ Gantt, timeline dự án, sơ đồ biện pháp thi công."
 ---
-# Technical Illustrator — SKILL Entry Point
+# Technical Illustrator — SKILL Entry Point (v1.4.0)
 
 ## Tổng quan
 
-**Technical_Illustrator** là Trợ lý AI chuyên **trực quan hóa** các phương án kết cấu và biện pháp thi công bằng hình ảnh trực quan, giúp hồ sơ chuyên nghiệp và thuyết phục hơn.
+**Technical_Illustrator** là Trợ lý AI chuyên **trực quan hóa kỹ thuật & quản trị dự án** bằng hệ thống script Python chuẩn xác (MODE 2D — Mặc định) và mô phỏng phối cảnh (MODE 3D).
 
-> **Nguồn sự thật duy nhất về thư viện script:** `scripts/registry.json` (registry v2.0.0).
-> Tra cứu nhanh tình huống → script: xem `scripts/REGISTRY_INDEX.md` (tạo riêng nếu chưa có).
+> **Nguồn sự thật duy nhất về thư viện script:** `scripts/registry.json` (registry v2.2.0 — 12 Active Parametric Scripts).
+> Tra cứu nhanh tình huống → script: xem `scripts/REGISTRY_INDEX.md`.
 
-## ⚡ Image Output Guarantee (Quy tắc TUYỆT ĐỐI)
-
-Mọi ảnh tạo ra **PHẢI** tuân thủ:
+## ⚡ Image Output Guarantee & Zero White Text Lock (Quy tắc TUYỆT ĐỐI)
 
 1. Xác định đường dẫn output **TUYỆT ĐỐI** trước khi vẽ.
-2. Tạo ảnh bằng công cụ phù hợp.
-3. **Xác nhận** file ảnh tồn tại (dùng `list_dir` / `view_file`).
-4. Nhúng ảnh bằng **đường dẫn tuyệt đối** — KHÔNG BAO GIỜ dùng relative path.
-5. Nếu chèn vào artifact → **copy** file vào thư mục artifacts trước.
-
-## ⚠️ Phân biệt Vai trò MODE 3D vs MODE 2D (Quan trọng)
-
-**MODE 3D (AI Render) = MINH HỌA** — không có giá trị kỹ thuật chính xác.
-
-- Model tạo ảnh KHÔNG hiểu số liệu kỹ thuật thật, có thể vẽ sai số lượng bulong, sai tỷ lệ tiết diện, sai chi tiết liên kết so với JSON gốc.
-- Mọi ảnh MODE 3D khi đưa vào báo cáo PHẢI có caption cảnh báo (xem SKILL_REPORT.md Rule 7).
-- KHÔNG dùng ảnh MODE 3D làm căn cứ thi công hoặc thẩm tra kỹ thuật.
-
-**MODE 2D (Python script) = BẢN VẼ KỸ THUẬT** — có giá trị chính thức.
-
-- Vẽ chính xác theo số liệu input, dùng được cho thuyết minh tính toán, hồ sơ thiết kế chính thức.
-
-Nếu User yêu cầu "vẽ minh họa cho đẹp" nhưng nội dung thực chất là chi tiết kỹ thuật cần chính xác (mặt cắt, liên kết, bố trí thép) → phải hỏi lại hoặc đề xuất dùng MODE 2D thay vì làm theo yêu cầu MODE 3D.
+2. Tạo ảnh bằng script Python tham số hóa (`300 DPI`).
+3. **Xác nhận** file ảnh tồn tại trước khi nhúng vào báo cáo.
+4. **ZERO WHITE TEXT LOCK (Điều 12b AGENTS.md)**: Tuyệt đối không dùng chữ màu trắng trên nền tối trong bảng biểu hoặc nhãn biểu đồ để bảo vệ chất lượng in ấn đen trắng.
 
 ## Phân luồng Nhiệm vụ (Dispatcher Logic)
 
-Khi nhận yêu cầu "vẽ" hoặc "minh họa", hệ thống **MẶC ĐỊNH SỬ DỤNG MODE 2D** để đảm bảo tính kỹ thuật:
-
-### → MODE 2D (2D Technical Drawing) — Đọc `references/MODE_2D_GUIDE.md` (MẶC ĐỊNH)
-
-- *Công cụ*: Script Python (`matplotlib`) chạy nội bộ.
-- *Mục đích*: Mặt cắt chính xác, chi tiết cốt thép, liên kết bu lông, biểu đồ so sánh.
-- *Thư viện*: **11 scripts vẽ có sẵn** — xem bảng bên dưới.
-- *Lưu ý*: Luôn ưu tiên dùng script để ra bản vẽ kỹ thuật thay vì sinh ảnh AI.
-
-### → MODE 3D (Realistic AI Rendering) — Đọc `references/MODE_3D_GUIDE.md` (CHỈ KHI YÊU CẦU RÕ)
-
-- *Công cụ*: `generate_image`.
-- *Mục đích*: Phối cảnh 3D, ý tưởng kiến trúc/kết cấu.
-- *Kích hoạt*: CHỈ sử dụng khi User có từ khóa cực kỳ rõ ràng như "render 3D", "phối cảnh 3D", "vẽ AI". Nếu không có các từ khóa này, tuyệt đối dùng MODE 2D.
-- *Templates*: 8 Prompt Templates — xem `references/PROMPT_TEMPLATES.md`.
-
-## Cấu trúc Thư mục
-
-```
-Technical_Illustrator/
-├── SKILL.md                      ← BẠN ĐANG Ở ĐÂY (Entry Point)
-├── references/
-│   ├── MODE_3D_GUIDE.md          ← Image Guarantee + MODE 3D rules
-│   ├── MODE_2D_GUIDE.md          ← Script library + Python rules + Error Handling
-│   ├── PROMPT_TEMPLATES.md       ← 8 prompt templates cho MODE 3D
-│   ├── SCENE_EXAMPLE.md          ← Ví dụ đầy đủ Scene Replacement
-│   └── REGISTRY_INDEX.md         ← Tra nhanh: tình huống → script
-├── scripts/
-│   ├── registry.json             ← Nguồn sự thật DUY NHẤT về script
-│   ├── draw_2d_section.py       ← ✅ Parametric: Mặt cắt dầm thép
-│   ├── draw_bolt_connection.py  ← ✅ Parametric: Chi tiết bu lông
-│   ├── draw_rc_column.py        ← ✅ Parametric: Cột BTCT
-│   ├── draw_foundation.py       ← ✅ Parametric: Móng đơn/băng
-│   ├── draw_slab_rebar.py       ← ✅ Parametric: Bố trí thép sàn
-│   ├── draw_comparison_chart.py ← ✅ Parametric: Biểu đồ so sánh
-│   ├── draw_rc_beam_full.py     ← ✅ Parametric: Dầm BTCT đầy đủ
-│   ├── draw_rc_wall.py          ← ✅ Parametric: Tường chắn BTCT
-│   ├── draw_pile_cap.py         ← ✅ Parametric: Đài cọc
-│   ├── draw_weld_detail.py      ← ✅ Parametric: Chi tiết hàn
-│   ├── cad_integration/         ← Tích hợp CAD
-│   │   ├── dce_dxf_generator.py
-│   │   └── analyze_dxf.py
-│   └── _deprecated/             ← ⚠️ DEPRECATED — KHÔNG sử dụng
-│       ├── draw_ap_luc_dat_bo_ke.py
-│       ├── draw_ke_buy_dung.py
-│       ├── draw_ke_pi_gieng.py
-│       ├── draw_pi_gieng_composite.py
-│       └── draw_tham_da.py
-```
-
-> **Tra cứu nhanh:** Xem `SKILL_INDEX.md` để biết mapping tình huống → script đầy đủ.
-
-## Bảng Tóm tắt Script
-
-> **Nguồn sự thật đầy đủ** (kèm `cli_args` từng script): `scripts/registry.json`.
-
-### Nhóm THAM SỐ HÓA — nhận số liệu thực của dự án ✅
+### → MODE 2D (2D Technical Drawing & PMO Gantt Chart) — MẶC ĐỊNH
+- **Công cụ**: Script Python (`matplotlib`) chạy nội bộ, xuất ảnh `300 DPI`.
+- **Thư viện 12 Scripts Tham Số Hóa Đang Hoạt Động**:
 
 | Script | Loại | Input chính | Output |
 |---|---|---|---|
-| `draw_2d_section.py` | Mặt cắt | `--h --b --tw --tf` | Dầm thép I |
-| `draw_bolt_connection.py` | Chi tiết | `--bolt_d --bolt_grade --n_rows --n_cols` | Liên kết bu lông |
-| `draw_rc_column.py` | Mặt cắt | `--type rect\|circular --width --depth --main_dia` | Cột BTCT |
-| `draw_foundation.py` | Mặt cắt | `--type single\|strip --L --B --H` | Móng đơn/băng |
-| `draw_slab_rebar.py` | Bố trí | `--Lx --Ly --slab_t` | Sàn BTCT |
-| `draw_comparison_chart.py` | Biểu đồ | `--json` | Radar + Bar chart |
-
-### Nhóm THAM SỐ HÓA MỞ RỘNG — ✅ HOẠT ĐỘNG
-
-| Script | Loại | Input chính | Output |
-|--------|------|-------------|--------|
-| `draw_2d_section.py` | Mặt cắt | `--h --b --tw --tf` | Dầm thép I |
+| `ms_project_gantt.py` | **Tiến độ PMO** | `--input-json --output --docx-out --title` | **Biểu đồ Tiến độ chuẩn MS Project (Split View 8 cột WBS + Gantt CPM 300 DPI + Landscape DOCX)** |
+| `draw_2d_section.py` | Mặt cắt | `--h --b --tw --tf` | Dầm thép chữ I |
 | `draw_bolt_connection.py` | Chi tiết | `--bolt_d --bolt_grade --n_rows --n_cols` | Liên kết bu lông |
 | `draw_rc_column.py` | Mặt cắt | `--type rect\|circular --width --depth --main_dia` | Cột BTCT |
 | `draw_foundation.py` | Mặt cắt | `--type single\|strip --L --B --H` | Móng đơn/băng |
@@ -120,41 +39,22 @@ Technical_Illustrator/
 | `draw_rc_wall.py` | Bố trí | `--type --t --rebar_dia --spacing` | Tường chắn BTCT |
 | `draw_pile_cap.py` | Mặt cắt | `--type --L --B --H --pile_d --n_piles` | Đài cọc |
 | `draw_weld_detail.py` | Chi tiết | `--type --plate_t --weld_type` | Chi tiết hàn |
+| `draw_moment_diagram.py` | Biểu đồ | `--input --output` | Biểu đồ nội lực M, V, N |
 
-### Nhóm _DEPRECATED — ⚠️ KHÔNG SỬ DỤNG
+## Hướng dẫn Gọi Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py`)
 
-**5 script dưới đây đã được DI CHUYỂN sang `scripts/_deprecated/`.** Chúng không nhận tham số hình học và chỉ dùng cho dự án gốc.
-
-| Script cũ | Output | Lý do | Hành động |
-|-----------|--------|-------|------------|
-| `draw_ap_luc_dat_bo_ke.py` | Biểu đồ áp lực đất | Fixed geometry | Viết lại parametric |
-| `draw_ke_buy_dung.py` | Mặt cắt kè bu dựng | Fixed geometry | Viết lại parametric |
-| `draw_ke_pi_gieng.py` | Mặt cắt kè pi giếng | Fixed geometry | Viết lại parametric |
-| `draw_pi_gieng_composite.py` | Pi giếng composite | Fixed geometry | Viết lại parametric |
-| `draw_tham_da.py` | Tường chắn rọ đá | Fixed geometry | Viết lại parametric |
-
-> **Từ 2026-08-25:** KHÔNG sử dụng script trong `_deprecated/`. Cần viết lại thành parametric scripts mới.
-
-## Quy ước đặt tên File Output
-
+Khi người dùng hoặc các Skill (`Project_Manager`, `SKILL_PHULUC`, `Design_Evaluation`) yêu cầu vẽ biểu đồ tiến độ dự án (Master Schedule / Timeline / Gantt Chart), **tuyệt đối cấm vẽ horizontal bar chart đơn giản**. Bắt buộc gọi `scripts/ms_project_gantt.py` (v1.1.0) với đủ 8 đặc tính chuẩn Microsoft Project:
+```bash
+python ".agents/skills/Technical_Illustrator/scripts/ms_project_gantt.py" \
+  --demo yen_quang \
+  --output "MS_Project_Schedule_300DPI.png" \
+  --docx-out "Bao_Cao_Tien_Do_Landscape.docx"
 ```
-{ProjectCode}_{Element}_{View}_{Rev}.png
-Ví dụ: PROJ01_DAM_A-A_01.png
-```
-
-## Hướng dẫn tương tác với `Design_Evaluation`
-
-**Quy trình liên kết:**
-
-```
-SKILLKC phân tích → Gọi Technical_Illustrator vẽ ảnh →
-Xác nhận ảnh tồn tại → SKILL_REPORT chèn ảnh vào báo cáo
-```
+- Khi nhúng vào báo cáo Word (`.docx`), gọi hàm `embed_gantt_in_docx_landscape(doc, image_path)` để tự động ngắt `Section Break` sang **01 trang A4 Xoay Ngang (Landscape `29.7 x 21.0 cm`)** nhúng ảnh 300 DPI sắc nét, sau đó tự động trả về khổ **A4 Dọc (Portrait `21.0 x 29.7 cm`)**.
 
 ## Changelog
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.2.0 | 2026-08-25 | Di chuyển 5 deprecated scripts sang `_deprecated/`; cập nhật cấu trúc thư mục; bổ sung 4 scripts mới (rc_beam, rc_wall, pile_cap, weld_detail) |
-| 1.1.0 | 2026-08-18 | Xóa block trùng lặp ~200 dòng; thêm version metadata; bổ sung trạng thái DEPRECATED cho 5 fixed-geometry scripts; thêm quy ước đặt tên file output |
-| 1.0.0 | 2026-07-28 | Initial release |
+| **1.4.0** | **2026-11-03** | Tích hợp chính thức Engine Biểu đồ Tiến độ chuẩn Microsoft Project (`scripts/ms_project_gantt.py` v1.1.0) với 8 đặc tính PMO và cơ chế nhúng tự động trang A4 Landscape 300 DPI vào Word (`.docx`). |
+| 1.3.0 | 2026-09-27 | Đồng bộ `registry.json` v2.1.0 và hướng dẫn MODE 2D/3D. |

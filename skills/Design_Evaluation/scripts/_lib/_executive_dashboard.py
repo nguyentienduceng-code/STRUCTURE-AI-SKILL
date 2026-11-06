@@ -53,18 +53,18 @@ def render_executive_dashboard_md(data: dict) -> str:
     risks = data.get('top_risks', [])
     cta = data.get('call_to_action', '')
 
-    status_emojis = {
-        'ON_TRACK': '✅',
-        'AT_RISK': '⚠️',
-        'DELAYED': '🟠',
-        'CRITICAL': '🔴',
+    status_labels = {
+        'ON_TRACK': '[ĐÚNG TIẾN ĐỘ]',
+        'AT_RISK': '[CẢNH BÁO RỦI RO]',
+        'DELAYED': '[CHẬM TIẾN ĐỘ]',
+        'CRITICAL': '[NGHIÊM TRỌNG / HOLD POINT]',
     }
 
     md = []
-    md.append('# 📊 EXECUTIVE DASHBOARD')
+    md.append('# TỔNG QUAN ĐIỀU HÀNH KỸ THUẬT (EXECUTIVE DASHBOARD)')
     md.append(f'**{project_name}** | Ngày: {date_str}')
     md.append('')
-    md.append(f'## Trạng thái: {status_emojis.get(status, "❓")} {status}')
+    md.append(f'## Trạng thái: {status_labels.get(status, "[ĐANG RÀ SOÁT]")} {status}')
     md.append('')
 
     md.append('## Chỉ số Quan trọng (KPI)')
@@ -98,7 +98,7 @@ def render_executive_dashboard_md(data: dict) -> str:
     md.append('')
 
     if risks:
-        md.append('## 🎯 Top 3 Rủi ro')
+        md.append('## Trọng tâm Kiểm soát Rủi ro (Top Risks)')
         md.append('')
         for i, risk in enumerate(risks[:3], 1):
             md.append(f'{i}. {risk}')

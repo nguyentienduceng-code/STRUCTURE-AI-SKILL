@@ -1,68 +1,119 @@
 ---
 name: Project_Manager
-version: 0.6.0
-last_updated: 2026-10-21
-description: "Kỹ sư Quản lý Dự án AI: Phân cấp công trình chuẩn Thông tư 34/2026/TT-BXD (và TT 06/2021/TT-BXD) kèm QCVN 03:2022/BXD, quản lý vòng đời dự án, theo dõi tiến độ & milestone, kiểm soát lộ trình pháp lý, ma trận rủi ro (Risk Register), ĐTM và PCCC. Kích hoạt khi: phân cấp công trình, lập tiến độ, theo dõi milestone, quản lý rủi ro, tài liệu pháp lý, risk matrix, legal checklist."
-status: ACTIVE
-roadmap: "v0.6.0 — Updated Legal Grading Engine (TT 34/2026/TT-BXD & QCVN 03:2022/BXD)"
+version: 2.0.0
+last_updated: 2026-11-03
+description: "Giám đốc Quản lý Dự án Đầu tư Xây dựng (PMO Director). Chuyên lập Kế hoạch Tổng thể (Master Schedule), vẽ Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI Split View 8 cột + CPM + Landscape Word Section Break), xuất/nhập file dữ liệu tiến độ chuẩn Microsoft Project XML (msproject_xml_engine.py MSPDI Schema) và chuyển đổi sang .mpp, phân cấp công trình (TT 06/2021), tính toán EVM/CPM, kiểm soát hồ sơ QLTK và KPI ISO 9001:2015."
 ---
 
-# Project_Manager — Quản Lý Dự Án, Phân Cấp Công Trình & Lộ Trình Pháp Lý
+# Project_Manager — Giám đốc Quản lý Dự án Đầu tư Xây dựng (v2.0.0 — Unified Microsoft Project Ecosystem)
 
-> **Phiên bản:** v0.6.0 (Active)
-> **Mục đích:** Phân cấp công trình chính xác theo quy định mới nhất, quản lý vòng đời dự án, milestone tiến độ, ma trận rủi ro và hồ sơ pháp lý dự án
-> **Cập nhật:** 2026-10-21 — v0.6.0 (Cập nhật `project_grading.py` theo Thông tư 34/2026/TT-BXD, Thông tư 06/2021/TT-BXD & QCVN 03:2022/BXD)
-
----
-
-## 1. TỔNG QUAN
-
-**Project_Manager** là skill quản lý dự án toàn diện — phối hợp các skill kỹ thuật và quản lý vòng đời dự án xây dựng từ giai đoạn concept đến hoàn công.
-
-### 1.1 Phạm vi hoạt động
-
-| Phạm vi | Trạng thái | Ghi chú |
-|----------|------------|---------|
-| Phân cấp công trình & Thẩm quyền pháp lý | ✅ ACTIVE (v0.6) | Xét đủ 6 tiêu chí quy mô kết cấu (Bảng 2 PL II TT 34/2026 & TT 06/2021) + Cấp hậu quả C1–C3 & Tuổi thọ thiết kế (QCVN 03:2022/BXD) |
-| Quản lý tiến độ & Milestone | ✅ ACTIVE | Theo dõi các giai đoạn TKCS → TKKT → BVTC → Nghiệm thu |
-| Quản lý rủi ro (Risk Matrix) | ✅ ACTIVE | Phân loại rủi ro kỹ thuật, tiến độ, chi phí, pháp lý |
-| Lộ trình pháp lý & Giấy phép | ✅ ACTIVE | Checklist GPXD, ĐTM, thẩm duyệt PCCC, thông báo khởi công |
+## 1. Vai trò & Năng lực Cốt lõi
+**Project_Manager** đóng vai trò **Giám đốc Quản lý Dự án (PMO Director)** & **Trưởng Ban Quản lý Thiết kế (QLTK)**, vận hành trên 6 trụ cột:
+1. **Engine Dữ liệu Tiến độ Microsoft Project XML & MPP (`scripts/msproject_xml_engine.py` v1.0.0)**:
+   - Xuất dữ liệu tiến độ sang chuẩn mở quốc tế **MSPDI XML (Microsoft Project Data Interchange Schema)**, tương thích 100% với Microsoft Project 2016, 2019, 2021 và Microsoft 365.
+   - Hỗ trợ đầy đủ: Lịch làm việc chuẩn Standard Vietnam (8h/ngày), cấu trúc phân rã WBS đa cấp, quan hệ tiền nhiệm phụ thuộc (FS, SS, FF, SF), tính toán đường găng Critical Path, mốc bàn giao Milestone, và dải ngoại lệ nghỉ Lễ/Tết Nguyên Đán.
+   - Hỗ trợ đọc ngược file XML cập nhật từ MS Project để phân tích phương sai tiến độ (Schedule Slippage) và tái kết xuất báo cáo tự động.
+2. **Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py` v1.1.0)**:
+   - Xuất bản biểu đồ tiến độ 300 DPI với giao diện đôi (Split View: Bảng WBS 8 cột bên trái + Gantt Canvas 2 tầng thời gian bên phải), thanh tổng hợp Summary Brackets (`#1E3246`), đường găng CPM (`#D32F2F`), mũi tên liên kết phụ thuộc zic-zac (`FS/SS`), mốc kiểm soát Milestone (`0d`), dải cách ly nghỉ lễ (`#FFEBEE`) và cơ chế tự động ngắt Section Break sang trang **A4 Xoay Ngang (Landscape)** khi nhúng vào văn bản Word (`.docx`).
+3. **Kiểm toán Tiến độ & Giá trị Thu được (`scripts/evm_cpm_calculator.py`)**: Tính toán định lượng `CPI`, `SPI`, `EAC`, `VAC`, `TCPI` và đường găng `CPM`.
+4. **Phân cấp Công trình & Lộ trình Pháp lý (`scripts/project_grading.py` & `scripts/project_roadmap.py`)**: Phân cấp theo Thông tư 06/2021/TT-BXD, Luật Xây dựng và Nghị định 175/2024/NĐ-CP.
+5. **Chuẩn hóa Báo cáo Tracking Hồ sơ Thiết kế (`scripts/qltk_tracking_exporter.py` v2.1)**: Tái cấu trúc bảng Tracking/Pendinglist QLTK theo chuẩn in ấn kỹ thuật.
+6. **Chuẩn hóa Biểu mẫu KPI ISO 9001:2015 (`scripts/iso_kpi_exporter.py` v1.1)**: Liên kết công thức sống `SUM` giữa kế hoạch và kết quả thực hiện.
 
 ---
 
-## 2. CÁC CÔNG CỤ CLI ĐÃ KÍCH HOẠT (ACTIVE CLI TOOLS)
+## 2. Hướng dẫn Sử dụng Động cơ Xuất / Nhập File Microsoft Project XML (`scripts/msproject_xml_engine.py`)
 
-### 2.1 Xác định Cấp Công trình & Cấp Hậu quả (`project_grading.py` v2.0)
-Xác định cấp công trình phục vụ quản lý hoạt động xây dựng theo **Bảng 2 Phụ lục II Thông tư 34/2026/TT-BXD** (hiệu lực từ 01/07/2026, đối chiếu chuyển tiếp **Thông tư 06/2021/TT-BXD**), đồng thời xác định **Cấp hậu quả (`C1, C2, C3`)**, hệ số tầm quan trọng $\gamma_n$ và **Thời hạn sử dụng theo thiết kế (`Mức 1–4`)** theo **QCVN 03:2022/BXD** và **TCVN 2737:2023 (Bảng H.1)**.
+### 2.1. Cú pháp Xuất File Dữ liệu Tiến độ XML
+```python
+from msproject_xml_engine import export_to_msproject_xml
 
-```bash
-# Ví dụ Dự án Tổ hợp Thương mại SS1: 9 tầng nổi, cao 40m, GFA = 450,189.56 m², 1 hầm sâu 6.0m
-python scripts/project_grading.py --type civil --height 40 --stories 9 --gfa 450189.56 --underground_depth 6.0 --underground_stories 1 --commercial_area 125049
+# Xuất danh sách công việc sang file XML chuẩn Microsoft Project
+export_to_msproject_xml(
+    tasks=tasks_data,
+    output_xml_path=r"g:\My Drive\Google AI Studio\01_Projects\HO YEN QUANG\04_Deliverables_ToTrinh\YenQuang_TienDo_MSProject.xml",
+    project_name="TIẾN ĐỘ THỰC HIỆN CÁC GÓI TƯ VẤN - DỰ ÁN HỒ YÊN QUANG",
+    company_name="TẬP ĐOÀN C.T GROUP",
+    start_date="2026-11-10",
+    finish_date="2027-05-31",
+    holidays=[
+        {"start": "2027-01-26", "end": "2027-02-05", "label": "Nghỉ Tết Nguyên Đán Đinh Mùi 2027"}
+    ]
+)
 ```
 
-**Tham số đầy đủ (Xét trọn vẹn 6 tiêu chí tại Mục 2.1.1 Bảng 2 Phụ lục II):**
-- `--type`: Loại công trình (`civil` hoặc `marine`, mặc định `civil`)
-- `--height`: Chiều cao công trình (m) — Đặc biệt `>200m (hoặc H*=150m)`, Cấp I `>75÷200m`, Cấp II `>28÷75m`, Cấp III `>6÷28m`, Cấp IV `≤6m`
-- `--stories`: Số tầng cao trên mặt đất — Đặc biệt `>50`, Cấp I `25÷50`, Cấp II `8÷24`, Cấp III `2÷7`, Cấp IV `1`
-- `--gfa`: Tổng diện tích sàn xây dựng kể cả hầm (m²) — **Cấp I `> 30,000 m²`**, Cấp II `> 10,000 ÷ 30,000 m²`, Cấp III `1,000 ÷ 10,000 m²`, Cấp IV `< 1,000 m²`
-- `--span`: Nhịp kết cấu lớn nhất (m) — Đặc biệt `>200m`, Cấp I `100÷200m`, Cấp II `50÷<100m`, Cấp III `15÷<50m`, Cấp IV `<15m`
-- `--underground_depth`: Độ sâu ngầm tính từ mặt đất đặt công trình tới **mặt trên của sàn tầng hầm sâu nhất** (m) — Cấp I `>18m`, Cấp II `6÷18m`, Cấp III `<6m`
-- `--underground_stories`: Số tầng ngầm — Cấp I `≥5`, Cấp II `2÷4`, Cấp III `1`
-- `--commercial_area`: Diện tích sàn kinh doanh thương mại (m²) — nếu `> 30,000 m²` thì thuộc Cấp hậu quả **`C3`** theo Mục A.1.1.3 Phụ lục A QCVN 03:2022/BXD
-- `--iconic`: Cờ đánh dấu công trình có kiến trúc độc đáo / biểu tượng quốc gia (áp dụng Tuổi thọ thiết kế Mức 4 `≥ 100 năm`; mặc định công trình dân dụng/công nghiệp thông thường thuộc **Mức 3 `≥ 50 năm`** theo Bảng 1 Mục 2.2.2 QCVN 03:2022/BXD)
+### 2.2. Cú pháp Đọc Ngược File XML từ Microsoft Project vào AI
+```python
+from msproject_xml_engine import import_from_msproject_xml
 
-### 2.2 Sinh Biểu đồ Lộ trình Dự án (`project_roadmap.py`)
-Sinh mã biểu đồ Mermaid cho Lộ trình Pháp lý Dự án theo Luật Xây dựng Việt Nam.
-
-```bash
-python scripts/project_roadmap.py --type private --grade I
+# Đọc file XML đã được PM / Kỹ sư cập nhật trên phần mềm MS Project
+tasks_updated = import_from_msproject_xml(r"g:\My Drive\Google AI Studio\01_Projects\DuAn\tiendo_capnhat.xml")
+for t in tasks_updated:
+    print(f"Task {t['wbs']}: {t['name']} - % Xong: {t.get('percent_complete', 0)}%")
 ```
 
 ---
 
-## VERSION HISTORY
+## 3. Hướng dẫn Gọi Lệnh Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py` v1.1.0)
 
-| Version | Date | Changes |
-|---------|------|---------|
-| **0.6.0** | **2026-10-21** | Cập nhật `project_grading.py` và `SKILL.md` theo Thông tư 34/2026/TT-BXD (hiệu lực 01/07/2026), bổ sung đầy đủ tiêu chí Tổng diện tích sàn GFA (`> 30,000 m²` Cấp I), Độ sâu ngầm, Số tầng ngầm (Mục 2.1.1 Bảng 2 Phụ lục II), và tích hợp Cấp hậu quả `C1–C3` + Thời hạn sử dụng `Mức 1–4` theo QCVN 03:2022/BXD & TCVN 2737:2023. |
-| 0.5.0 | 2026-10-17 | Kích hoạt module theo dõi tiến độ milestone, ma trận rủi ro và legal checklist. |
+### 3.1. Cú pháp dòng lệnh (CLI)
+```bash
+# 1. Chạy Demo chuẩn PMO xuất ảnh 300 DPI và tự động nhúng vào trang A4 Landscape Word (.docx)
+python ".agents/skills/Project_Manager/scripts/ms_project_gantt.py" \
+  --demo yen_quang \
+  --output "MS_Project_Master_Schedule_PMO.png" \
+  --docx-out "Ke_Hoach_Tien_Do_PMO.docx"
+
+# 2. Vẽ biểu đồ tiến độ từ dữ liệu JSON dự án thực tế
+python ".agents/skills/Project_Manager/scripts/ms_project_gantt.py" \
+  --input-json "project_schedule_wbs.json" \
+  --output "Project_Schedule_MSProject_300DPI.png" \
+  --title "TIẾN ĐỘ TỔNG THỂ DỰ ÁN (MASTER SCHEDULE)" \
+  --subtitle "Giai đoạn Thiết kế & Thi công — Kiểm soát Đường găng CPM"
+```
+
+### 3.2. Cú pháp gọi trực tiếp trong Python & Nhúng vào Word (`.docx`)
+```python
+from ms_project_gantt import draw_ms_project_gantt, embed_gantt_in_docx_landscape
+
+# Bước 1: Kết xuất biểu đồ tiến độ chuẩn MS Project (300 DPI)
+draw_ms_project_gantt(
+    tasks=tasks_list,
+    output_path="schedule_ms_project.png",
+    title="KẾ HOẠCH TIẾN ĐỘ TỔNG THỂ DỰ ÁN",
+    subtitle="Phân tích Đường găng CPM & Kiểm soát Mốc Bàn giao",
+    holidays=[("2027-01-26", "2027-02-05", "Nghỉ Tết Nguyên Đán 2027")],
+    status_date="2026-12-25",
+    dpi=300,
+)
+
+# Bước 2: Nhúng thông minh vào trang A4 Xoay Ngang (Landscape Section Break) rồi tự trả về A4 Dọc
+embed_gantt_in_docx_landscape(
+    doc=doc,
+    image_path="schedule_ms_project.png",
+    section_title="BIỂU ĐỒ TIẾN ĐỘ TỔNG THỂ DỰ ÁN (CHUẨN MICROSOFT PROJECT — 300 DPI)",
+    figure_caption="Hình 1: Biểu đồ Tiến độ Tổng thể (Split View 8 cột WBS & Đường găng CPM)",
+    width_cm=25.4,
+    restore_portrait=True,
+)
+```
+
+---
+
+## 4. 08 Đặc tính Kỹ thuật Bắt buộc của `ms_project_gantt.py`
+1. **Giao diện đôi (Split View)**: Nửa trái là Bảng Task Sheet 8 cột (`ID` | `WBS` | `Tên công việc thụt lề theo cấp bậc` | `Thời lượng (d)` | `Bắt đầu` | `Kết thúc` | `Tiền nhiệm (Pred)` | `Tài nguyên/Đơn vị (Resources)`); nửa phải là Biểu đồ Gantt Canvas đồng bộ 100% cao độ Y.
+2. **Thanh Tổng hợp Tiến độ (Summary Brackets)**: Thanh bao bọc màu than sẫm `#1E3246` có hai mỏ neo tam giác chúc xuống ở 2 đầu.
+3. **Phân tầng Đường găng CPM**: Công tác găng tô màu Đỏ Găng (`#D32F2F`); công tác thường tô màu xanh chuyên ngành (`#1976D2`, `#0288D1`, `#2E7D32`).
+4. **Mũi tên Liên kết Phụ thuộc (`FS` / `SS` Stepped Arrows)**: Đường zic-zac vuông góc kèm đầu mũi tên chỉ hướng.
+5. **Mốc Kiểm soát (Milestones)**: Hình thoi đặc (Diamond marker) kèm nhãn ngày tháng tại thời lượng `0d`.
+6. **Thước đo Thời gian 2 Tầng (Dual-tier Timescale at Top)**: Đặt tại đỉnh biểu đồ ngang hàng Header bảng Task Sheet, hiển thị Tháng/Năm (Tầng 1 — nền `#DCE4EC` chữ `#1E3246`) và Tuần/Ngày đầu tuần (Tầng 2 — nền `#EAE6DF` chữ `#1E3246`).
+7. **Dải Cách ly Ngày Nghỉ Lễ**: Dải sọc chéo hồng nhạt `#FFEBEE` viền `#EF9A9A`.
+8. **Nhúng Thông minh vào Trang A4 Landscape Word (`.docx`)**: Tự động ngắt Section Break sang 01 trang A4 Xoay Ngang (`29.7 x 21.0 cm`) riêng biệt để nhúng ảnh 300 DPI, sau đó tự động trả về khổ A4 Dọc (`21.0 x 29.7 cm`).
+
+---
+
+## 5. Quy tắc Trình bày Bảng biểu In ấn Tự nhiên (Natural Print Palette — Điều 12b AGENTS.md)
+- **ZERO WHITE TEXT LOCK**: Tuyệt đối không dùng chữ màu trắng trong bất kỳ bảng biểu Word (`.docx`), bảng tính Excel (`.xlsx`) hay nhãn biểu đồ nào.
+- **Header Bảng**: Nền Xanh Đá Phiến Sương Nhạt (`#DCE4EC`) hoặc Đá Vôi Sáng (`#EAE6DF`), chữ đậm Xanh Thép Trầm (`#1E3246`).
+- **Dòng dữ liệu**: Chữ Mực Than Chì (`#1C1E21`), nền xen kẽ Trắng và Ngà Giấy Tự Nhiên (`#F8F7F4`).
+- **Dòng Tổng kết**: Chữ đậm `#1E3246`, nền Xám Khoáng Ấm (`#F2EFE9`) hoặc Xô Thơm Nhạt (`#EBF3ED`).

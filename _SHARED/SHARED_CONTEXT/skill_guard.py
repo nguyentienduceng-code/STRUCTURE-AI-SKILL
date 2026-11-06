@@ -312,3 +312,40 @@ if __name__ == '__main__':
 
     ok, why = preflight("Global_Dispatcher", "run_shell", {"command": "rm -rf /"})
     print("DANGEROUS case:", ok, "|", why)
+
+
+# ==============================================================================
+# 5. CHỐT CHẶN KIỂM ĐỊNH CHẤT LƯỢNG & THẨM MỸ ĐẦU RA (PRE-DELIVERY QUALITY GATE v2.0)
+# ==============================================================================
+def verify_deliverable_quality(file_path: str) -> dict:
+    """
+    Kiểm tra tự động mọi tệp .xlsx trước khi bàn giao:
+      1. Không có lỗi XML <sheetViews> gây báo [Repaired].
+      2. Không chứa Emoji trò chuyện (🟢, 🔴, 🟡, ⏳) trong ô dữ liệu.
+      3. Không có mâu thuẫn logic chéo (PDF vs CAD, TRỐNG vs Đã phát hành).
+    """
+    import os, sys
+    if not os.path.exists(file_path):
+        return {"passed": False, "reason": f"File not found: {file_path}"}
+    ext = os.path.splitext(file_path)[1].lower()
+    if ext == ".xlsx":
+        try:
+            curr = os.path.dirname(os.path.abspath(__file__))
+            tools_dir = os.path.abspath(os.path.join(curr, "..", "..", "tools"))
+            if tools_dir not in sys.path:
+                sys.path.insert(0, tools_dir)
+            import xlsx_view_sanity as xvs
+            ok_xml, xml_issues = xvs.validate_xlsx_file(file_path)
+            aes = xvs.audit_excel_aesthetics(file_path)
+            passed = ok_xml and (aes.get("emoji_cells", 0) == 0) and (len(aes.get("logic_contradictions", [])) == 0)
+            return {
+                "passed": passed,
+                "xml_valid": ok_xml,
+                "xml_issues": xml_issues,
+                "emoji_cells": aes.get("emoji_cells", 0),
+                "logic_contradictions": aes.get("logic_contradictions", []),
+            }
+        except Exception as e:
+            return {"passed": False, "reason": str(e)}
+    return {"passed": True, "ext": ext}
+

@@ -64,30 +64,80 @@ def _set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr.append(tcMar)
 
 
-def _format_header_row(row, fill_hex="1F4E79", text_color="FFFFFF"):
-    """Format hàng tiêu đề của bảng."""
+def _lock_run_font(run, font_name="Times New Roman", size_pt=11.0, bold=False, italic=False, color_hex="1C1E21"):
+    """Khóa cứng phông chữ Times New Roman (cả ascii, hAnsi, eastAsia, cs) và màu mực tự nhiên."""
+    run.font.name = font_name
+    run.font.size = Pt(size_pt)
+    run.font.bold = bold
+    run.font.italic = italic
+    if color_hex:
+        run.font.color.rgb = RGBColor.from_string(color_hex)
+    rPr = run._element.get_or_add_rPr()
+    rFonts = rPr.find(qn("w:rFonts"))
+    if rFonts is None:
+        rFonts = OxmlElement("w:rFonts")
+        rPr.insert(0, rFonts)
+    for attr in ("w:ascii", "w:hAnsi", "w:eastAsia", "w:cs"):
+        rFonts.set(qn(attr), font_name)
+
+
+def _set_natural_table_borders(table, outer_color="1E3246", inner_color="D0CEC7"):
+    """Viền bảng chuẩn ấn phẩm kỹ thuật: đỉnh và đáy đậm 1.0pt (#1E3246), lưới trong mảnh 0.5pt (#D0CEC7)."""
+    tblPr = table._tbl.tblPr
+    borders = parse_xml(
+        f'<w:tblBorders {nsdecls("w")}>'
+        f'<w:top w:val="single" w:sz="8" w:space="0" w:color="{outer_color}"/>'
+        f'<w:bottom w:val="single" w:sz="8" w:space="0" w:color="{outer_color}"/>'
+        f'<w:left w:val="single" w:sz="4" w:space="0" w:color="{inner_color}"/>'
+        f'<w:right w:val="single" w:sz="4" w:space="0" w:color="{inner_color}"/>'
+        f'<w:insideH w:val="single" w:sz="4" w:space="0" w:color="{inner_color}"/>'
+        f'<w:insideV w:val="single" w:sz="4" w:space="0" w:color="{inner_color}"/>'
+        f'</w:tblBorders>'
+    )
+    tblPr.append(borders)
+
+
+def _format_header_row(row, fill_hex="DCE4EC", text_color="1E3246"):
+    """Format hàng tiêu đề của bảng theo Natural Print Palette (nền #DCE4EC, chữ đậm #1E3246 — Điều 12b AGENTS.md)."""
     for cell in row.cells:
         _set_cell_background(cell, fill_hex)
-        _set_cell_margins(cell, top=140, bottom=140, left=160, right=160)
+        _set_cell_margins(cell, top=120, bottom=120, left=140, right=140)
         cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
         for p in cell.paragraphs:
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             for run in p.runs:
-                run.font.bold = True
-                run.font.color.rgb = RGBColor.from_string(text_color)
-                run.font.size = Pt(9.5)
+                _lock_run_font(run, "Times New Roman", 10.0, bold=True, color_hex=text_color)
 
 
-def _format_data_row(row, is_even=False, fill_even="F2F5F8"):
-    """Format hàng dữ liệu của bảng."""
+def _format_data_row(row, is_even=False, fill_even="F8F7F4"):
+    """Format hàng dữ liệu của bảng với nền giấy ngà tự nhiên (#F8F7F4) và cỡ chữ sàn 10.0pt."""
     for cell in row.cells:
         if is_even:
             _set_cell_background(cell, fill_even)
-        _set_cell_margins(cell, top=100, bottom=100, left=140, right=140)
+        _set_cell_margins(cell, top=90, bottom=90, left=130, right=130)
         cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
         for p in cell.paragraphs:
             for run in p.runs:
-                run.font.size = Pt(9.0)
+                _lock_run_font(run, "Times New Roman", 10.0, color_hex="1C1E21")
+
+
+
+def sanitize_docx_table_colors(doc):
+    """Auto-Linter (Điều 12b AGENTS.md): Quét 100% run trong bảng biểu, ghi đè mọi màu trắng về #1E3246/#1C1E21."""
+    for tbl in doc.tables:
+        for r_i, row in enumerate(tbl.rows):
+            for cell in row.cells:
+                tcPr = cell._tc.find(qn("w:tcPr"))
+                if tcPr is not None:
+                    for shd in tcPr.findall(qn("w:shd")):
+                        fv = (shd.get(qn("w:fill")) or "").strip().upper()
+                        if fv in ("1E3246", "1F4E78", "1F4E79", "002060", "2F4858"):
+                            shd.set(qn("w:fill"), "DCE4EC")
+                for p in cell.paragraphs:
+                    for run in p.runs:
+                        if run.font and run.font.color and run.font.color.rgb:
+                            if str(run.font.color.rgb).upper() in ("FFFFFF", "FEFEFE"):
+                                run.font.color.rgb = RGBColor(0x1E, 0x32, 0x46) if (run.bold or r_i == 0) else RGBColor(0x1C, 0x1E, 0x21)
 
 
 def build_docx_report(
@@ -104,13 +154,18 @@ def build_docx_report(
 
     doc = docx.Document()
 
-    # Cấu hình lề trang tiêu chuẩn văn bản kỹ thuật: 20mm (0.79 in)
-    sections = doc.sections
-    for sec in sections:
-        sec.top_margin = Inches(0.8)
-        sec.bottom_margin = Inches(0.8)
-        sec.left_margin = Inches(0.8)
-        sec.right_margin = Inches(0.8)
+    # Cấu hình khổ giấy A4 & lề đóng gáy chuẩn Hồ sơ Kỹ thuật Việt Nam (Trái 2.8cm, Phải 1.8cm, Trên 2.0cm, Dưới 1.8cm)
+    normal_style = doc.styles["Normal"]
+    normal_style.font.name = "Times New Roman"
+    normal_style.font.size = Pt(13.0)
+    normal_style.font.color.rgb = RGBColor(0x1C, 0x1E, 0x21)
+    for sec in doc.sections:
+        sec.page_width = Inches(8.27)
+        sec.page_height = Inches(11.69)
+        sec.top_margin = Inches(0.79)     # 2.0 cm
+        sec.bottom_margin = Inches(0.79)  # 2.0 cm
+        sec.left_margin = Inches(1.18)    # 3.0 cm (chừa gáy đóng hồ sơ)
+        sec.right_margin = Inches(0.71)   # 1.8 cm
 
     # ─────────────────────────────────────────────────────────────────────────
     # 1. TIÊU ĐỀ BÁO CÁO & HEADER BOX
@@ -118,18 +173,12 @@ def build_docx_report(
     title_p = doc.add_paragraph()
     title_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     title_run = title_p.add_run(title.upper())
-    title_run.font.name = "Calibri"
-    title_run.font.size = Pt(17)
-    title_run.font.bold = True
-    title_run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+    _lock_run_font(title_run, "Times New Roman", 16.0, bold=True, color_hex="1E3246")
 
     sub_p = doc.add_paragraph()
     sub_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     sub_run = sub_p.add_run("BỘ CÔNG CỤ TỰ ĐỘNG HÓA THẨM TRA HỒ SƠ & PHÁT HIỆN XUNG ĐỘT KẾT CẤU")
-    sub_run.font.name = "Calibri"
-    sub_run.font.size = Pt(10)
-    sub_run.font.italic = True
-    sub_run.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
+    _lock_run_font(sub_run, "Times New Roman", 10.5, italic=True, color_hex="5A626A")
 
     doc.add_paragraph()  # khoảng trống
 
@@ -153,18 +202,17 @@ def build_docx_report(
         cell_lbl, cell_val = row.cells[0], row.cells[1]
         cell_lbl.width = Inches(2.2)
         cell_val.width = Inches(4.8)
-        _set_cell_background(cell_lbl, "EBF1F5")
+        _set_cell_background(cell_lbl, "F2EFE9")
         _set_cell_margins(cell_lbl, 80, 80, 120, 120)
         _set_cell_margins(cell_val, 80, 80, 120, 120)
 
         p_lbl = cell_lbl.paragraphs[0]
         r1 = p_lbl.add_run(k)
-        r1.font.bold = True
-        r1.font.size = Pt(9.5)
+        _lock_run_font(r1, "Times New Roman", 10.0, bold=True, color_hex="1E3246")
 
         p_val = cell_val.paragraphs[0]
         r2 = p_val.add_run(v)
-        r2.font.size = Pt(9.5)
+        _lock_run_font(r2, "Times New Roman", 10.0, color_hex="1C1E21")
 
     doc.add_paragraph()
 
@@ -172,7 +220,7 @@ def build_docx_report(
     # 2. ĐÁNH GIÁ TỔNG QUAN & BẢNG KẾT QUẢ XUNG ĐỘT
     # ─────────────────────────────────────────────────────────────────────────
     h1 = doc.add_heading("1. TỔNG QUAN KẾT QUẢ THẨM TRA", level=1)
-    h1.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+    h1.runs[0].font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     summary_text = "Hệ thống đã hoàn tất đọc và rà soát chéo toàn bộ dữ liệu kỹ thuật từ hồ sơ thiết kế."
     if conflict_res:
@@ -184,7 +232,7 @@ def build_docx_report(
         conf_summary_tbl = doc.add_table(rows=1, cols=5)
         conf_summary_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
         _format_header_row(conf_summary_tbl.rows[0])
-        headers = ["Tổng số vấn đề", "🔴 CRITICAL", "🟠 HIGH", "🟡 MEDIUM", "✅ PASS"]
+        headers = ["Tổng số vấn đề", "CRITICAL (Nghiêm trọng)", "HIGH (Cao)", "MEDIUM (Trung bình)", "ĐẠT (PASS)"]
         for idx, text in enumerate(headers):
             conf_summary_tbl.rows[0].cells[idx].paragraphs[0].text = text
         _format_header_row(conf_summary_tbl.rows[0])
@@ -206,11 +254,11 @@ def build_docx_report(
 
         # Highlight cell critical nếu > 0
         if cs.get("CRITICAL", 0) > 0:
-            _set_cell_background(row_vals.cells[1], "F8CBAD")
-            row_vals.cells[1].paragraphs[0].runs[0].font.color.rgb = RGBColor(0xC0, 0x00, 0x00)
+            _set_cell_background(row_vals.cells[1], "F9EBE8")
+            row_vals.cells[1].paragraphs[0].runs[0].font.color.rgb = RGBColor(0x8C, 0x26, 0x1E)
         if cs.get("HIGH", 0) > 0:
-            _set_cell_background(row_vals.cells[2], "FCE4D6")
-            row_vals.cells[2].paragraphs[0].runs[0].font.color.rgb = RGBColor(0xC6, 0x59, 0x11)
+            _set_cell_background(row_vals.cells[2], "FBF3E4")
+            row_vals.cells[2].paragraphs[0].runs[0].font.color.rgb = RGBColor(0x8F, 0x53, 0x14)
 
         doc.add_paragraph()
 
@@ -239,7 +287,7 @@ def build_docx_report(
                 _format_data_row(row, is_even=(i % 2 == 1))
 
                 sev = cf.get("severity", "LOW")
-                sev_color = {"CRITICAL": "F8CBAD", "HIGH": "FCE4D6", "MEDIUM": "FFF2CC", "LOW": "E2EFDA"}.get(sev, "FFFFFF")
+                sev_color = {"CRITICAL": "F9EBE8", "HIGH": "FBF3E4", "MEDIUM": "EDF3F5", "LOW": "EBF3ED"}.get(sev, "F8F7F4")
                 _set_cell_background(row.cells[1], sev_color)
 
                 row.cells[0].paragraphs[0].text = f"[{cf['id']}]\n{cf.get('type','')}"
@@ -263,7 +311,7 @@ def build_docx_report(
     # ─────────────────────────────────────────────────────────────────────────
     if rebar_res:
         h2 = doc.add_heading("2. KIỂM TRA KHẢ NĂNG BỐ TRÍ CỐT THÉP", level=1)
-        h2.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+        h2.runs[0].font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
         doc.add_paragraph("So sánh diện tích cốt thép yêu cầu tính toán từ nội lực (As_required) và cốt thép thực tế bố trí (As_provided):")
 
@@ -280,7 +328,7 @@ def build_docx_report(
 
             status = rb.get("status", "OK")
             is_ok = status == "OK"
-            stat_color = "E2EFDA" if is_ok else "F8CBAD"
+            stat_color = "EBF3ED" if is_ok else "F9EBE8"
             _set_cell_background(row.cells[5], stat_color)
 
             row.cells[0].paragraphs[0].text = rb.get("element", "")
@@ -291,9 +339,8 @@ def build_docx_report(
 
             p_st = row.cells[5].paragraphs[0]
             p_st.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            r_st = p_st.add_run("✅ ĐẠT" if is_ok else "❌ THIẾU")
-            r_st.font.bold = True
-            r_st.font.color.rgb = RGBColor(0x38, 0x57, 0x23) if is_ok else RGBColor(0xC0, 0x00, 0x00)
+            r_st = p_st.add_run("[ĐẠT]" if is_ok else "[THIẾU THÉP]")
+            _lock_run_font(r_st, "Times New Roman", 10.0, bold=True, color_hex="1E5631" if is_ok else "8C261E")
 
         doc.add_paragraph()
 
@@ -302,7 +349,7 @@ def build_docx_report(
     # ─────────────────────────────────────────────────────────────────────────
     if calc_res:
         h3 = doc.add_heading("3. KẾT QUẢ TÍNH TOÁN THẨM TRA ĐỘC LẬP", level=1)
-        h3.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+        h3.runs[0].font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
         elem_name = calc_res.get("element", "Cấu kiện tính toán")
         std = calc_res.get("Standard_Method", "TCVN 5574:2018")
@@ -328,13 +375,13 @@ def build_docx_report(
             _format_data_row(row, is_even=(i % 2 == 1))
 
             if eta_val <= 0.70:
-                color, text_eval = "E2EFDA", "🟢 ĐẠT (Có dự trữ)"
+                color, text_eval = "EBF3ED", "[ĐẠT — DƯ TẢI]"
             elif eta_val <= 0.90:
-                color, text_eval = "FFF2CC", "🟡 ĐẠT (Tối ưu)"
+                color, text_eval = "EDF3F5", "[ĐẠT — TỐI ƯU]"
             elif eta_val <= 1.00:
-                color, text_eval = "FCE4D6", "🟠 ĐẠT (Sát ngưỡng)"
+                color, text_eval = "FBF3E4", "[ĐẠT — SÁT NGƯỠNG]"
             else:
-                color, text_eval = "F8CBAD", "🔴 KHÔNG ĐẠT"
+                color, text_eval = "F9EBE8", "[KHÔNG ĐẠT]"
 
             _set_cell_background(row.cells[3], color)
 
@@ -359,7 +406,7 @@ def build_docx_report(
 
     if sections_list or loads_list:
         h4 = doc.add_heading("4. BẢNG DỮ LIỆU ĐẦU VÀO TRÍCH XUẤT TỰ ĐỘNG", level=1)
-        h4.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+        h4.runs[0].font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
         if sections_list:
             doc.add_paragraph("Danh mục tiết diện hình học cấu kiện phát hiện:")
@@ -383,7 +430,7 @@ def build_docx_report(
     # 6. BẢNG PHÂN ĐỊNH TRÁCH NHIỆM & TUYÊN BỐ MIỄN TRỪ PHÁP LÝ (AGENTS.md §8)
     # ─────────────────────────────────────────────────────────────────────────
     h5 = doc.add_heading("5. PHÂN ĐỊNH TRÁCH NHIỆM & KÝ DUYỆT", level=1)
-    h5.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+    h5.runs[0].font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     sign_tbl = doc.add_table(rows=3, cols=3)
     sign_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -415,12 +462,13 @@ def build_docx_report(
         "trước khi sử dụng cho hồ sơ thiết kế, thi công hoặc thẩm tra."
     )
     disc_run.font.italic = True
-    disc_run.font.size = Pt(8.5)
+    disc_run.font.size = Pt(10.5)
     disc_run.font.color.rgb = RGBColor(0x7F, 0x7F, 0x7F)
 
     # Lưu file
     abs_out = os.path.abspath(output_path)
     os.makedirs(os.path.dirname(abs_out), exist_ok=True)
+    sanitize_docx_table_colors(doc)
     doc.save(abs_out)
     print(f"  [DOCX] ✅ Đã xuất file Word chuyên nghiệp: {abs_out}")
     return abs_out

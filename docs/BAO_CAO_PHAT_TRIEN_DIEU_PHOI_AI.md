@@ -1,61 +1,60 @@
 # BÁO CÁO KỸ THUẬT TỔNG HỢP HỆ THỐNG AGENTIC
 # *(Auto-generated bởi `tools/sync_report.py`)*
 
-> **Phiên bản tài liệu:** v2026-10-25T10:50:38  
+> **Phiên bản tài liệu:** v2026-11-04T11:44:11  
 > **Cơ sở hệ thống:** `.agents/`  
 > **Cách tái tạo:** `python tools/sync_report.py [--dry-run]`
 
 ## 1. TỔNG QUAN
 
-- **Skills:** 13 (11 production + 2 placeholder v0.1.0)
-- **Test suites:** 16 — Grand total: 397 passed / 0 failed
+- **Skills:** 13 (13 production + 0 placeholder v0.1.0)
+- **Test suites:** 17 — Grand total: 444 passed / 0 failed
 - **Tiêu chuẩn locked:** 21
-- **Calculator scripts:** 100
-- **Changelog mới nhất:** v6.4 (2026-10-15)
+- **Calculator scripts:** 111
+- **Changelog mới nhất:** v7.1 (2026-11-02)
 - **Policy Engine:** Phase C (Full Suite) (36 rules active: VE/Repair, 15 triggers, 18 red flags, RFI priority)
 
 ## 2. SKILL INVENTORY
 
 | # | Skill | Version | Last Updated | Status |
 |---|---|---|---|---|
-| 1 | Cost_Estimator | 1.2.0 | 2026-09-27 | 🟢 production |
-| 2 | Design_Evaluation | 2.2.0 | 2026-09-27 | 🟢 production |
+| 1 | Cost_Estimator | 1.4.0 | 2026-11-02 | 🟢 production |
+| 2 | Design_Evaluation | 3.4.0 | 2026-11-02 | 🟢 production |
 | 3 | Global_Dispatcher | 1.0.0 | 2026-10-12 | 🟢 production |
-| 4 | Project_Manager | 0.6.0 | 2026-10-21 | 🟡 placeholder |
-| 5 | SKILL_BIM_COORDINATION | 0.5.0 | 2026-10-17 | 🟡 placeholder |
+| 4 | Project_Manager | 2.0.0 | 2026-11-03 | 🟢 production |
+| 5 | SKILL_BIM_COORDINATION | 1.4.0 | 2026-10-25 | 🟢 production |
 | 6 | SKILL_FORENSIC | 1.2.0 | 2026-09-27 | 🟢 production |
 | 7 | SKILL_GEOTECH | 3.1.0 | 2026-10-21 | 🟢 production |
-| 8 | SKILL_PHULUC | 2.0.0 | 2026-10-21 | 🟢 production |
-| 9 | SKILL_RFI | 1.2.0 | 2026-09-27 | 🟢 production |
+| 8 | SKILL_PHULUC | 2.3.0 | 2026-11-02 | 🟢 production |
+| 9 | SKILL_RFI | 1.4.0 | 2026-10-26 | 🟢 production |
 | 10 | SKILL_TEMPWORKS | 1.0.0 | 2026-10-18 | 🟢 production |
-| 11 | SKILL_VERIFY | 1.2.0 | 2026-09-27 | 🟢 production |
+| 11 | SKILL_VERIFY | 3.2.0 | 2026-10-25 | 🟢 production |
 | 12 | Structural_Design_Engineer | 1.3.0 | 2026-09-27 | 🟢 production |
-| 13 | Technical_Illustrator | 1.3.0 | 2026-09-27 | 🟢 production |
+| 13 | Technical_Illustrator | 1.4.0 | 2026-11-03 | 🟢 production |
 
 ## 3. KẾT QUẢ TEST SUITES
 
 | # | Suite | Passed/Total | Failed | Time (s) | Status |
 |---|---|---|---|---|---|
-| 1 | 1. Integration Test (62 checks) | 62/62 | 0 | 0.27 | ✅ |
-| 2 | 2. Regression Calculator Test (13 calculators) | 13/13 | 0 | 0.29 | ✅ |
-| 3 | 3. Pre-Execution Approval Gate (32 tests) | 32/32 | 0 | 0.26 | ✅ |
-| 4 | 4. Intent Classifier Benchmark (17 tests) | 17/17 | 0 | 0.17 | ✅ |
-| 5 | 5. E2E Pipeline Workflow | 5/5 | 0 | 0.23 | ✅ |
-| 6 | 6. DE Calculators Unit Tests (10 tests) | 10/10 | 0 | 0.23 | ✅ |
-| 7 | 7. Sprint 1 Reporting & TCVN Tests (4 tests) | 4/4 | 0 | 1.27 | ✅ |
-| 8 | 8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests) | 3/3 | 0 | 0.20 | ✅ |
-| 9 | 9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests) | 61/61 | 0 | 0.22 | ✅ |
-| 10 | 10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests) | 19/19 | 0 | 0.81 | ✅ |
-| 11 | 11. Sprint 3.4 DCE Deep Integration Tests (11 tests) | 16/16 | 0 | 1.20 | ✅ |
-| 12 | 12. Sprint 4 Document Intelligence & Conflict Detection (70 tests) | 70/70 | 0 | 1.75 | ✅ |
-| 13 | 13. Sprint 5 Comprehensive Verification & Reporting (16 tests) | 16/16 | 0 | 17.62 | ✅ |
-| 14 | 14. Policy Engine & Multi-Trigger Rules (55 tests) | 55/55 | 0 | 2.44 | ✅ |
-| 15 | 15. Sync Report System Consistency (14 tests) | 14/14 | 0 | 0.80 | ✅ |
-| 16 | 16. Cognitive & System Control Engine (31 tests) | — | — | 5.21 | ⛔ UNPARSED |
+| 1 | 1. Integration Test (62 checks) | 62/62 | 0 | 0.16 | ✅ |
+| 2 | 2. Regression Calculator Test (13 calculators) | 13/13 | 0 | 0.18 | ✅ |
+| 3 | 3. Pre-Execution Approval Gate (32 tests) | 32/32 | 0 | 0.17 | ✅ |
+| 4 | 4. Intent Classifier Benchmark (17 tests) | 17/17 | 0 | 0.09 | ✅ |
+| 5 | 5. E2E Pipeline Workflow | 5/5 | 0 | 0.11 | ✅ |
+| 6 | 6. DE Calculators Unit Tests (10 tests) | 10/10 | 0 | 0.13 | ✅ |
+| 7 | 7. Sprint 1 Reporting & TCVN Tests (4 tests) | 4/4 | 0 | 0.93 | ✅ |
+| 8 | 8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests) | 3/3 | 0 | 0.11 | ✅ |
+| 9 | 9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests) | 61/61 | 0 | 0.13 | ✅ |
+| 10 | 10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests) | 19/19 | 0 | 0.48 | ✅ |
+| 11 | 11. Sprint 3.4 DCE Deep Integration Tests (11 tests) | 16/16 | 0 | 0.75 | ✅ |
+| 12 | 12. Sprint 4 Document Intelligence & Conflict Detection (70 tests) | 70/70 | 0 | 1.19 | ✅ |
+| 13 | 13. Sprint 5 Comprehensive Verification & Reporting (16 tests) | 16/16 | 0 | 16.89 | ✅ |
+| 14 | 14. Policy Engine & Multi-Trigger Rules (55 tests) | 55/55 | 0 | 1.74 | ✅ |
+| 15 | 15. Sync Report System Consistency (14 tests) | 14/14 | 0 | 0.44 | ✅ |
+| 16 | 16. Cognitive & System Control Engine (32 tests) | 32/32 | 0 | 4.38 | ✅ |
+| 17 | 17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell) | 15/15 | 0 | 0.35 | ✅ |
 
-**Grand total:** 397 passed / 0 failed trong 32.97s
-
-⚠️ **Unparsed suites:** 16. Cognitive & System Control Engine (31 tests)
+**Grand total:** 444 passed / 0 failed trong 28.23s
 
 ## 4. KEYWORD DATABASE
 
@@ -111,26 +110,26 @@
 
 ## 6. CALCULATOR INVENTORY
 
-**Tổng:** 100 scripts trong 12 skills
+**Tổng:** 111 scripts trong 12 skills
 
 | Skill | Số scripts |
 |---|---|
-| Cost_Estimator | 7 |
-| Design_Evaluation | 16 |
+| Cost_Estimator | 8 |
+| Design_Evaluation | 18 |
 | Global_Dispatcher | 5 |
-| Project_Manager | 2 |
+| Project_Manager | 8 |
 | SKILL_BIM_COORDINATION | 1 |
 | SKILL_FORENSIC | 5 |
 | SKILL_GEOTECH | 20 |
 | SKILL_RFI | 5 |
 | SKILL_TEMPWORKS | 4 |
-| SKILL_VERIFY | 9 |
+| SKILL_VERIFY | 10 |
 | Structural_Design_Engineer | 14 |
-| Technical_Illustrator | 12 |
+| Technical_Illustrator | 13 |
 
 ## 7. CHANGELOG MỚI NHẤT
 
-**v6.4** (2026-10-15) — Tối Ưu Hóa & Đồng Bộ Toàn Bộ Hệ Thống (System Optimization & Sync)
+**v7.1** (2026-11-02) — Kiểm Định Toàn Diện & Bản Vá Hệ Thống Cấp Enterprise (Patch F01–F06)
 
 - 6 bullets trong entry này
 

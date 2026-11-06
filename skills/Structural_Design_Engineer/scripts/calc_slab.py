@@ -190,7 +190,7 @@ def get_boundary_coefficients(boundary: str) -> dict:
         return {"m1_pos": 1/11, "m2_pos": 1/16, "m1_neg": -1/11, "m2_neg": -1/16, "k": 0.8}
     elif boundary == "fixed_one":
         return {"m1_pos": 1/14, "m2_pos": 1/20, "m1_neg": -1/11, "m2_neg": -1/14, "k": 0.85}
-    elif boundary == "fixed_all":
+    elif boundary in ("fixed_all", "all_fixed", "four_edges_fixed", "4_edges_fixed"):
         return {"m1_pos": 1/16, "m2_pos": 1/22, "m1_neg": -1/14, "m2_neg": -1/16, "k": 0.9}
     else:
         raise ValueError(f"Boundary condition không hợp lệ: {boundary}")
@@ -298,7 +298,7 @@ def calculate_reinforcement(
 
 
 def select_rebar(As_required: float, direction: str = "x") -> Tuple[str, float]:
-    diameters = [6, 8, 10, 12]
+    diameters = [8, 10, 12]
     best_choice = None
     min_waste = float('inf')
 
@@ -336,11 +336,8 @@ def calculate_deflection(
     I_cr = b * h ** 3 / 12 * 0.7
     coef = 5.0 / 384.0
 
-    # q_sls: kN/m² (áp phẳng). Quy đổi sang tải tuyến w [N/mm]:
-    #   w = q_sls [kN/m²] × b_m [m] = kN/m = N/mm  (b ở đây tính bằng mm)
-    # Nếu thiếu nhân b, kết quả độ võng bị nhỏ hơn thực tế ~b lần.
-    w_Nmm = q_sls * b / 1000.0
-    f_inst = coef * (w_Nmm * L_short ** 4) / (E * I_cr)
+    q_sls_Nmm2 = q_sls * 1e-3
+    f_inst = coef * (q_sls_Nmm2 * L_short ** 4) / (E * I_cr)
     phi = 2.0
     f_calc = f_inst * (1 + phi)
     f_allow = L_short / 250.0

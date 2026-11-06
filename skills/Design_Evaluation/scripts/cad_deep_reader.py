@@ -476,11 +476,33 @@ class DWGHeadlessBridge:
                         os.remove(scr_file)
                     except Exception:
                         pass
-        else:
-            raise RuntimeError(
-                "Không tìm thấy bộ chuyển đổi DWG khả dụng (cần accoreconsole.exe, ODAFileConverter hoặc dwg2dxf). "
-                "Vui lòng cung cấp file DXF hoặc cài đặt ODA File Converter."
-            )
+        oda = converters.get("ODAFileConverter")
+        if oda and os.path.exists(oda):
+            import tempfile
+            in_dir = os.path.dirname(os.path.abspath(dwg_path))
+            out_dir = tempfile.mkdtemp(prefix="oda_dxf_")
+            fname = os.path.basename(dwg_path)
+            try:
+                cmd = [oda, in_dir, out_dir, "ACAD2018", "DXF", "0", "1", fname]
+                subprocess.run(cmd, capture_output=True, text=True, timeout=timeout_sec)
+                cand = os.path.join(out_dir, os.path.splitext(fname)[0] + ".dxf")
+                if os.path.exists(cand) and os.path.getsize(cand) > 0:
+                    shutil.move(cand, output_dxf)
+                    return output_dxf
+            finally:
+                shutil.rmtree(out_dir, ignore_errors=True)
+
+        dwg2dxf_bin = converters.get("dwg2dxf")
+        if dwg2dxf_bin:
+            cmd = [dwg2dxf_bin, "-o", output_dxf, dwg_path]
+            subprocess.run(cmd, capture_output=True, text=True, timeout=timeout_sec)
+            if os.path.exists(output_dxf) and os.path.getsize(output_dxf) > 0:
+                return output_dxf
+
+        raise RuntimeError(
+            "Không tìm thấy bộ chuyển đổi DWG khả dụng (cần accoreconsole.exe, ODAFileConverter hoặc dwg2dxf). "
+            "Vui lòng cung cấp file DXF hoặc cài đặt ODA File Converter."
+        )
 
 
 # ==============================================================================
@@ -536,6 +558,146 @@ def run_self_test() -> Dict:
     }
 
 
+
+
+class DXFDeepExtractor:
+    """
+    Bộ bóc tách sâu file DXF (Hỗ trợ cả ezdxf và Pure-Python ASCII DXF Stream Parser).
+    Giải mã tiếng Việt TCVN3/VNI/SHX, phân loại Layer ngữ nghĩa, kiểm tra sửa số Dim giả,
+    và xuất đồ thị kiểm toán CAD_AUDIT_GRAPH.json.
+    """
+
+    @staticmethod
+    def parse_dxf_file(dxf_path: str) -> Dict:
+        if not os.path.exists(dxf_path):
+            raise FileNotFoundError(f"Không tìm thấy file DXF: {dxf_path}")
+
+        texts_extracted = []
+        dimensions_checked = []
+        rebar_tags = []
+        layer_counts: Dict[str, int] = {}
+
+        from pathlib import Path
+        raw_lines = Path(dxf_path).read_text(encoding="utf-8", errors="replace").splitlines()
+        n = len(raw_lines)
+        i = 0
+        in_entities = False
+        curr_type = None
+        curr_data: Dict[int, str] = {}
+
+        def _flush_entity(etype: Optional[str], data: Dict[int, str]):
+            if not etype:
+                return
+            layer = data.get(8, "0").strip()
+            sem_grp = SemanticLayerClassifier.classify(layer, etype)
+            layer_counts[sem_grp] = layer_counts.get(sem_grp, 0) + 1
+
+            if etype in ("TEXT", "MTEXT", "ATTRIB"):
+                raw_txt = data.get(1, "") + data.get(3, "")
+                font_style = data.get(7, "Standard")
+                if raw_txt.strip():
+                    dec_txt, enc = VietnameseCADTextDecoder.decode(raw_txt, font_style)
+                    x = float(data.get(10, 0.0) or 0.0)
+                    y = float(data.get(20, 0.0) or 0.0)
+                    rebar_cm2 = StructuralTagParser.parse_rebar_area(dec_txt)
+                    item = {
+                        "entity_type": etype,
+                        "layer": layer,
+                        "semantic_group": sem_grp,
+                        "position_wcs": (round(x, 2), round(y, 2)),
+                        "raw_text": raw_txt,
+                        "decoded_utf8": dec_txt,
+                        "encoding": enc,
+                    }
+                    texts_extracted.append(item)
+                    if rebar_cm2 and rebar_cm2 > 0:
+                        rebar_tags.append({**item, "computed_rebar_cm2": rebar_cm2})
+
+            elif etype == "DIMENSION":
+                dim_txt = data.get(1, "").strip()
+                actual_val = float(data.get(42, 0.0) or 0.0)
+                if actual_val > 0 and dim_txt and dim_txt != "<>":
+                    is_fake = StructuralTagParser.check_dimension_override(dim_txt, actual_val)
+                    dimensions_checked.append({
+                        "layer": layer,
+                        "displayed_text": dim_txt,
+                        "actual_measurement": round(actual_val, 2),
+                        "is_fake_override": is_fake,
+                    })
+
+        while i + 1 < n:
+            code_str = raw_lines[i].strip()
+            val_str = raw_lines[i + 1].strip()
+            i += 2
+            try:
+                code = int(code_str)
+            except ValueError:
+                continue
+            if code == 2 and val_str == "ENTITIES":
+                in_entities = True
+                continue
+            if in_entities and code == 0:
+                _flush_entity(curr_type, curr_data)
+                if val_str == "ENDSEC":
+                    in_entities = False
+                    curr_type = None
+                    curr_data = {}
+                else:
+                    curr_type = val_str
+                    curr_data = {}
+            elif in_entities and curr_type:
+                curr_data[code] = val_str
+
+        return {
+            "module": "CAD_DEEP_READER.DXFDeepExtractor",
+            "version": "2.0.0",
+            "Standard_Method": "TCVN 5574:2018 + TCVN 5575:2024 (CAD Geometry & Rebar Audit)",
+            "source_file": os.path.abspath(dxf_path),
+            "summary": {
+                "total_texts": len(texts_extracted),
+                "total_rebar_tags": len(rebar_tags),
+                "total_dimensions_checked": len(dimensions_checked),
+                "fake_dimensions_caught": sum(1 for d in dimensions_checked if d["is_fake_override"]),
+                "semantic_layer_distribution": layer_counts,
+            },
+            "rebar_tags": rebar_tags,
+            "dimensions_checked": dimensions_checked,
+            "texts": texts_extracted,
+            "Calculation_Logs": [
+                {"step": 1, "desc": "Giải mã văn bản CAD & phân loại Layer ngữ nghĩa", "formula": "UTF-8 Decoder + Regex Layer Classifier", "value": len(texts_extracted)},
+                {"step": 2, "desc": "Kiểm toán sửa số kích thước giả (Dimension Override)", "formula": "|Dim_Text - Actual_42| / Actual_42 > 1%", "value": sum(1 for d in dimensions_checked if d["is_fake_override"])},
+            ],
+        }
+
+
 if __name__ == "__main__":
-    res = run_self_test()
+    import argparse
+    import sys
+    if sys.stdout.encoding != "utf-8" and hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+    parser = argparse.ArgumentParser(description="CAD_DEEP_READER v2.0.0 — Deep DWG/DXF Structural Auditor")
+    parser.add_argument("--input", "-i", type=str, default=None, help="Đường dẫn file .dxf hoặc .dwg cần bóc tách")
+    parser.add_argument("--output", "-o", type=str, default=None, help="Đường dẫn xuất file JSON (CAD_AUDIT_GRAPH.json)")
+    parser.add_argument("--self-test", action="store_true", help="Chạy bộ kiểm thử tự động trên dữ liệu mẫu")
+    args = parser.parse_args()
+
+    if args.input:
+        ext = os.path.splitext(args.input)[1].lower()
+        target_dxf = args.input
+        if ext == ".dwg":
+            target_dxf = DWGConverterEngine.convert_dwg_to_dxf(args.input)
+        res = DXFDeepExtractor.parse_dxf_file(target_dxf)
+    else:
+        res = run_self_test()
+        res["version"] = "2.0.0"
+        res["Standard_Method"] = "TCVN 5574:2018 + TCVN 5575:2024"
+        res["Calculation_Logs"] = [
+            {"step": 1, "desc": "Self-test giải mã tiếng Việt CAD & tính cốt thép", "formula": "As = n * pi * d^2 / 4", "value": 6.03}
+        ]
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(res, f, ensure_ascii=False, indent=2)
     print(json.dumps(res, ensure_ascii=False, indent=2))
+

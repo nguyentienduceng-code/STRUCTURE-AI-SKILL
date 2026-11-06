@@ -1,7 +1,7 @@
 ---
 name: Cost_Estimator
-version: 1.2.0
-last_updated: 2026-09-27
+version: 1.4.0
+last_updated: 2026-11-02
 description: "Kỹ sư Định giá AI: Tính toán chi phí vật tư từ BOQ, so sánh chi phí giữa các phương án kết cấu (BTCT/Thép/Tiền chế), tính hàm lượng Carbon (Embodied Carbon), phân tích tác động tiến độ và chi phí lãi vay ẩn. Kích hoạt khi nhắc đến: Value Engineering, so sánh chi phí, tối ưu ngân sách, giảm hàm lượng thép, phân tích CAPEX, embodied carbon, ROI phương án."
 ---
 
@@ -201,8 +201,8 @@ Mọi đề xuất tiết kiệm phải nêu rõ:
 
 **Ví dụ:**
 ```
-✅ Tiết kiệm: 45M VNĐ (7.2%)
-⚠️ Đánh đổi:
+[ĐẠT HIỆU QUẢ VE] Tiết kiệm: 45M VNĐ (7.2%)
+[LƯU Ý ĐÁNH ĐỔI KỸ THUẬT]:
   - η tăng từ 68% → 82% (vẫn an toàn nhưng giảm dự trữ)
   - Không có dư lượng cho thay đổi thiết kế sau này
   - Tăng 2 ngày thời gian cốt thép (phức tạp hơn)
@@ -211,7 +211,7 @@ Mọi đề xuất tiết kiệm phải nêu rõ:
 ### Rule 2: Budget Variance Alert (Cảnh báo Vượt ngân sách)
 Nếu tổng chi phí vượt Budget > 5% → **BẮT BUỘC** cảnh báo:
 ```
-🚨 BUDGET ALERT: Chi phí ước tính 520M vượt ngân sách duyệt 480M (+8.3%)
+[CẢNH BÁO VƯỢT NGÂN SÁCH — BUDGET ALERT]: Chi phí ước tính 520M vượt ngân sách duyệt 480M (+8.3%)
 → Yêu cầu:
    1. Phê duyệt bổ sung 40M, HOẶC
    2. Áp dụng VE để giảm xuống ≤ 500M (cho phép +5%)
@@ -232,6 +232,13 @@ Khi so sánh ≥ 3 phương án, xuất **Decision Matrix** (bảng điểm đa 
 | **Tổng điểm** | | **7.05** | **6.30** | **7.55** |
 
 → **Khuyến nghị: Phương án C** (điểm cao nhất, cân bằng tốt nhất)
+
+---
+
+
+### Rule 5: Xuất Bảng Tính BOQ, Value Engineering & Carbon Bằng `scripts/boq_ve_excel_exporter.py` (v1.0) & `excel_theme_engine.py` (v1.0)
+- Mọi bảng tính Excel (`.xlsx`) xuất từ `Cost_Estimator` bắt buộc nạp bảng màu khoáng vật tự nhiên từ `_SHARED/SHARED_CONTEXT/design_tokens.py` (`#1E3246` Prussian Slate Header, `#E6E2DA` Section Divider, `#1C1E21` Single-Ink Body, phông `Arial 10pt`) và chạy `tools/xlsx_view_sanity.py` (`sanitize_workbook`) trước khi lưu.
+- Cấm dùng Emoji (`✅`, `⚠️`, `🚨`, `🟢`, `🔴`) trong ô dữ liệu Excel hoặc bảng báo cáo Word.
 
 ---
 

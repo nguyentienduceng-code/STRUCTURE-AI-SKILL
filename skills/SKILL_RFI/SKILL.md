@@ -1,6 +1,7 @@
 ---
 name: SKILL_RFI
 version: 1.4.0
+last_updated: 2026-10-26
 updated: 2026-10-26
 status: PRODUCTION_READY
 description: >

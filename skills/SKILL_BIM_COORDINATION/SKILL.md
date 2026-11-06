@@ -1,6 +1,7 @@
 ---
 name: SKILL_BIM_COORDINATION
 version: 1.4.0
+last_updated: 2026-10-25
 updated: 2026-10-25
 status: PRODUCTION_READY
 description: >

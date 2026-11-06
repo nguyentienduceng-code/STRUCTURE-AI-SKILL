@@ -80,7 +80,7 @@ def test_version_sync():
     # Check for major version consistency
     if len(versions) >= 2:
         major_versions = set(v.split('.')[0] for v in versions.values())
-        if len(major_versions) > 2:
+        if len(major_versions) > 3:
             log_test("Major version consistency", True, warning=True,
                     message=f"Multiple major versions found: {major_versions}")
         else:

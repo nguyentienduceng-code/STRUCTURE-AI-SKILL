@@ -1,7 +1,7 @@
 ---
 name: SKILL_PHULUC
-version: 2.0.0
-last_updated: 2026-10-21
+version: 2.3.0
+last_updated: 2026-11-02
 description: "Lap Thuyet minh Tinh toan Ket cau, Dia ky thuat, Bien phap Thi cong (BPTC) va Phu luc Tinh toan chi tiet step-by-step theo TCVN, xuat file Word (.docx) theo 2 Bo Chuan (Bo 1 BKTECHS hoac Bo 2 TVTK Da Hang Muc). Kich hoat khi nguoi dung yeu cau lap, gop, hoac xuat thuyet minh tinh toan, phu luc tinh toan, bao cao tham tra ket cau, bien phap thi cong, hoac calculation sheet."
 ---
 # Skill Phu Luc va Thuyet Minh Tinh Toan Ket Cau (SKILL_PHULUC v2.0)
@@ -22,14 +22,14 @@ Moi khi xuat ho so thuyet minh, ho tro 2 bo chuan trinh bay (mac dinh uu tien **
 
 - **Ung dung**: Thuyet minh tinh toan chuyen sau 1 den 2 hang muc (Be nuoc ngam, Be tu hoai, Mong coc, Tuong chan, Bien phap thi cong ho dao, Gia cuong CFRP) va Bao cao tham tra ket cau.
 - **Bo cuc Section 0 (Bia doi + Muc luc)**:
-  - **Trang 1 (Bia chinh)**: Tieu de Truong DH Bach Khoa / BKTECHS, dai bang xanh Navy (`#002060`), Logo luc giac BKTECHS o giua, ten ho so co lon (`24pt`), va bang thong tin Du an / Hang muc / Chu dau tu. Khong hien thi Header/Footer tren Trang 1 (`different_first_page_header_footer = True`).
+  - **Trang 1 (Bia chinh)**: Tieu de Truong DH Bach Khoa / BKTECHS, dai bang xanh Navy (`#1E3246`), Logo luc giac BKTECHS o giua, ten ho so co lon (`24pt`), va bang thong tin Du an / Hang muc / Chu dau tu. Khong hien thi Header/Footer tren Trang 1 (`different_first_page_header_footer = True`).
   - **Trang 2 (Bia phu ky duyet)**: Bang kiem soat chat luong 3 cot (`Thuc hien` - `Kiem tra` - `Chu tri` kem hoc vi va so CCHN) va khoi ky dong dau Chu dau tu / Don vi tu van.
   - **Trang 3 (Muc luc tu dong)**: Truong `TOC \o "1-3" \h \z \u` tu dong cap nhat kem bang tom tat cau truc chuong muc.
 - **Bo cuc Section 1 (Noi dung chinh)**:
   - Ngat Section moi va khoi dong lai so trang tu `Trang 1 / N`.
-  - **Header**: Ten don vi mau xanh (`#003399`) + Ten Du an/Hang muc phia tren duong ke ngang mau **vang cam (`#FFC000`)**.
+  - **Header**: Ten don vi mau xanh (`#1E3246`) + Ten Du an/Hang muc phia tren duong ke ngang mau **Dong Thau Tram (`#A67C37` Bronze Ochre)**.
   - **Footer**: `BKTECHS || Dia chi | Lien he || Trang 1 / N` voi vach doi `||` mau vang cam.
-  - **Typography & Mau sac**: Font `Times New Roman` (`12pt` body, `10.5pt` table). `Heading 1` (`1.`): `14pt` Bold IN HOA mau Xanh Navy (`#002060`); `Heading 2` (`1.1.`): `13pt` Bold mau Xanh lam sang (`#0070C0`); `Heading 3` (`1.1.1.`): `12pt` Bold Italic mau `#1F4E79`. Bang bieu co header nen `#002060` chu trang va dong **Ket luan / Kiem tra (`DAT / OK`)** to nen vang nhat (`#FFF2CC`).
+  - **Typography & Mau sac**: Font `Times New Roman` (`12pt` body, `10.5pt` table). `Heading 1` (`1.`): `14pt` Bold IN HOA mau Xanh Navy (`#1E3246`); `Heading 2` (`1.1.`): `13pt` Bold mau Xanh lam sang (`#2E4A62`); `Heading 3` (`1.1.1.`): `12pt` Bold Italic mau `#4A5D6E`. Bang bieu co header nen Xanh Da Phien Suong Nhat (`#DCE4EC`) chu Xanh Da Phien Dam (`#1E3246`) — cam dung chu trang tren nen toi va dong **Ket luan / Kiem tra (`DAT / OK`)** to nen vang nhat (`#EBF3ED`).
 - **Cau truc 6 Chuong Trong tam (Danh so truc tiep `1.`, `2.`, khong ghi chu `CHUONG`)**:
   1. `1. CO SO THIET KE, TIEU CHUAN AP DUNG & TAI LIEU THAM KHAO`
   2. `2. TONG QUAN HANG MUC & DAC TRUNG CO LY VAT LIEU`
@@ -42,11 +42,11 @@ Moi khi xuat ho so thuyet minh, ho tro 2 bo chuan trinh bay (mac dinh uu tien **
 
 - **Ung dung**: Ho so Thiet ke Ky thuat (TKKT) hoac Ban ve Thi cong (BVTC) tong hop nhieu hang muc cong trinh trong cung mot du an.
 - **Bo cuc Section 0 (Bia doi Phap ly + Muc luc)**:
-  - **Trang 1 (Bia ngoai)**: Khung vien doi (`Double-line Box Border #002060`), thong tin cong ty TVTK o dau trang, ten cong trinh/hang muc o giua.
+  - **Trang 1 (Bia ngoai)**: Khung vien doi (`Double-line Box Border #1E3246`), thong tin cong ty TVTK o dau trang, ten cong trinh/hang muc o giua.
   - **Trang 2 (Bia lot Phap ly)**: Quoc hieu `CONG HOA XA HOI CHU NGHIA VIET NAM` va bang ky dong dau 2 cot can xung (`CHU DAU TU` - `DON VI TU VAN THIET KE`).
   - **Trang 3 (Muc luc tu dong)**: Truong `TOC \o "1-3"` 3 cap (`1`, `1.1`, `1.1.1`).
 - **Bo cuc Section 1 (Noi dung chinh)**:
-  - Font `Arial` (`11pt` body, `10pt` table), header bang to nen **Xanh lam nhat (`#B4C6E7`)** chu den dam, dong ket luan to nen xanh la nhat (`#E2EFDA`).
+  - Font `Arial` (`11pt` body, `10pt` table), header bang to nen **Xanh lam nhat (`#E6E2DA`)** chu den dam, dong ket luan to nen xanh la nhat (`#EBF3ED`).
 - **Cau truc `9 Chuong Co so Chung + N Chuong Phu luc Hang muc`**:
   - **Phan I (Chuong 1 den Chuong 9)**: `1 QUY CHUAN VA TIEU CHUAN THIET KE` -> `2 CAC TIEU CHI KIEM TRA ON DINH TONG THE` -> `3 DO VONG VA BE RONG VET NUT CHO PHEP` -> `4 DO LUN CUA MONG` -> `5 CAC YEU CAU VE CHONG THAM` -> `6 PHAN MEM PHAN TICH VA TINH TOAN` -> `7 TAI TRONG VA TO HOP TAI TRONG` -> `8 VAT LIEU KET CAU` -> `9 CHIEU DAY LOP BE TONG BAO VE`.
   - **Phan II (Chuong 10 tro di)**: Moi hang muc la 1 chuong `Heading 1` noi tiep (`10 PHU LUC TINH TOAN HANG MUC 01...`, `11 PHU LUC TINH TOAN HANG MUC 02...`), ben trong gom `.1 Mo hinh tinh toan`, `.2 Tai trong tac dung`, `.3 Tinh toan nen mong`, `.4 Tinh toan ket cau phan than`.
@@ -102,7 +102,7 @@ python "g:/My Drive/Google AI Studio/.agents/skills/SKILL_PHULUC/docx_generator_
   - Định dạng chuẩn xuất bản: Dòng chấm dot leader căn lề phải tại `9072 twips` (`w:leader="dot"`), thụt lề cấp bậc rõ ràng (Phần: `0 cm`, Chương/Phụ lục: `0.4 cm`, Mục con: `0.85 cm`), số trang ước tính thông minh (`1, 2...` và `P1-1, P2-1...`).
   - Tích hợp Hyperlinks nội bộ (`w:hyperlink w:anchor="TOC_NAV_{n}"` / `w:anchor="PHU_LUC_{n}"`) cho phép click nhảy trực tiếp tới đề mục tương ứng.
   - Bảo lưu trường mã TOC động của Word (`TOC \o "1-3" \h \z \u`) và cờ `w:updateFields="true"`, cho phép người dùng nhấn F9 trong MS Word để cập nhật số trang vật lý chính xác bất kỳ lúc nào.
-- **Khung Ghi chu / Luu y (`> text`)**: Tu dong tao khung trich dan vien trai mau Xanh Navy, nen xam sang `#F2F5F9`, chu nghiêng thanh lich.
+- **Khung Ghi chu / Luu y (`> text`)**: Tu dong tao khung trich dan vien trai mau Xanh Navy, nen xam sang `#F4F1EA`, chu nghiêng thanh lich.
 - **Chen Hinh anh Markdown (`![caption](path)`)**: Tu dong nhung truc tiep anh vao file Word can giua trang kem dong caption in nghieng mau xam dam.
 
 ## Quy tac Bat buoc ve He thong Tieu chuan, Phan cap Cong trinh & Dia ky thuat (STANDARDS_LOCK v3.1.0)
@@ -119,3 +119,19 @@ python "g:/My Drive/Google AI Studio/.agents/skills/SKILL_PHULUC/docx_generator_
    - Mong coc: **TCVN 10304:2025** (thay the TCVN 10304:2014).
    - Thi nghiem SPT: **TCVN 9351:2022** (thay the TCVN 9351:2012).
    - Danh gia an mon nuoc ngam doi voi BTCT: **TCVN 12041:2017** va **TCVN 9346:2012** (thay the `TCVN 3994:1985` da het hieu luc).
+
+
+## Phân Luồng Rạch Ròi Giữa Thuyết Minh Word (.docx) và Bảng Tính Điều Phối Tiến Độ Excel (.xlsx)
+
+- **Phạm vi của `SKILL_PHULUC`**: Chỉ áp dụng cho **Thuyết minh Tính toán, Báo cáo Thẩm tra, Biện pháp Thi công và Phụ lục Tính toán** xuất ra định dạng **Word (`.docx`)** (sử dụng phông `Times New Roman 11.5–12pt` và Hệ màu Khoáng vật Tự nhiên `#1E3246`, `#2E4A62`, `#4A5D6E`, `#A67C37` từ `_SHARED/SHARED_CONTEXT/design_tokens.py`).
+- **Cấm áp đặt sang Bảng điều phối Excel (`.xlsx`)**: Tuyệt đối KHÔNG lấy phông `Times New Roman 9.5pt` hoặc tô nhiều màu chữ khác nhau trên cùng một dòng cho các bảng **Tracking Tiến độ, Checklist Hồ sơ, Pending List QLTK hoặc BOQ** trên Excel. Khi xử lý bảng theo dõi tiến độ / QLTK Tracking Excel (`.xlsx`), bắt buộc chuyển luồng sang **`Project_Manager` (`scripts/qltk_tracking_exporter.py`)** sử dụng phông `Arial 9.5–10pt`, mực đơn sắc `#1C1E21`, xóa bỏ 100% Emoji (`🟢`, `🔴`, `⏳`) và chuẩn hóa câu chữ thường từ các đoạn IN HOA toàn bộ.
+
+
+## Khóa Cứng Quy tắc Trình bày Văn bản & Typography (Rule 12c — Clean Typography & Math Lock v4.3)
+
+1. **Chống Double Bullet (•  • )**:
+   - Khi render danh sách List Bullet, bộ parser tự động strip sạch ký tự •, -, –, —, * khỏi 	ext_content để không bị trùng lặp bullet glyph của Word.
+2. **Tách biệt Danh sách Thứ tự & Chữ cái**:
+   - Danh sách đánh số (1., 2.) hoặc chữ cái (), b)) bắt buộc dùng paragraph thường với thụt lề đầu dòng (left_indent = Inches(0.25) / Cm(0.6)), tuyệt đối không gán style='List Bullet' làm xuất hiện dấu chấm tròn trước số.
+3. **Triệt tiêu 100% Mã thô LaTeX trong Word**:
+   - Mọi ký hiệu toán học / thủy văn ({max}, H_{tb}, H_{min}, R_b, f_{cd}, \Delta u, m^2, m^3$) tự động được chuyển đổi sang chỉ số dưới (subscript=True), chỉ số trên (superscript=True) hoặc ký hiệu Unicode toán học. Tuyệt đối cấm để lộ ký tự $ trong tài liệu Word.

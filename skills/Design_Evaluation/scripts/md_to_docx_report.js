@@ -49,23 +49,56 @@ const FONT_OBJ = {
 const SIZE = 26; // half-points => 13pt
 
 // -------------------------------------------------- Inline -> TextRun[]
+const MATH_REPLACEMENTS = {
+  "\\implies": "⇒", "\\rightarrow": "→", "\\to": "→", "\\times": "×",
+  "\\approx": "≈", "\\ge": "≥", "\\le": "≤", "\\leq": "≤", "\\geq": "≥",
+  "\\neq": "≠", "\\pm": "±", "\\cdot": "·", "\\alpha": "α", "\\beta": "β",
+  "\\gamma": "γ", "\\delta": "δ", "\\eta": "η", "\\theta": "θ", "\\lambda": "λ",
+  "\\mu": "μ", "\\nu": "ν", "\\rho": "ρ", "\\sigma": "σ", "\\tau": "τ",
+  "\\phi": "ϕ", "\\omega": "ω", "\\Delta": "Δ", "\\Sigma": "Σ", "\\Omega": "Ω",
+};
+
+function cleanMath(text) {
+  let res = text.replace(/\\(?:text|mathrm|mathbf)\{([^}]+)\}/g, "$1");
+  for (const [k, v] of Object.entries(MATH_REPLACEMENTS)) {
+    res = res.split(k).join(v);
+  }
+  return res.replace(/\$/g, "");
+}
+
 function inlineRuns(text, base = {}) {
+  const cleaned = cleanMath(text);
   const runs = [];
-  // Tach theo **dam**, *nghieng*, `code`
-  const re = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g;
+  // Tach theo **dam**, *nghieng*, `code`, va chi so duoi/tren
+  const re = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|([A-Za-zα-ωΑ-ΩΔ0-9]+)([_^])(?:\{([^}]+)\}|([A-Za-z0-9,]+)))/g;
   let last = 0, m;
   const push = (t, opt) => {
     if (t) runs.push(new TextRun({ text: t, font: FONT_OBJ, size: SIZE, ...base, ...opt }));
   };
-  while ((m = re.exec(text)) !== null) {
-    push(text.slice(last, m.index));
+  while ((m = re.exec(cleaned)) !== null) {
+    push(cleaned.slice(last, m.index));
     const tok = m[0];
-    if (tok.startsWith("**")) push(tok.slice(2, -2), { bold: true });
-    else if (tok.startsWith("`")) push(tok.slice(1, -1), { font: "Consolas", size: 22 });
-    else push(tok.slice(1, -1), { italics: true });
+    if (tok.startsWith("**")) {
+      push(tok.slice(2, -2), { bold: true });
+    } else if (tok.startsWith("`")) {
+      push(tok.slice(1, -1), { font: "Consolas", size: 22 });
+    } else if (tok.startsWith("*")) {
+      push(tok.slice(1, -1), { italics: true });
+    } else if (m[2] && m[3]) {
+      // Subscript / Superscript
+      const baseChar = m[2];
+      const scriptType = m[3];
+      const scriptVal = m[4] || m[5];
+      push(baseChar, {});
+      if (scriptType === "_") {
+        push(scriptVal, { subScript: true });
+      } else {
+        push(scriptVal, { superScript: true });
+      }
+    }
     last = m.index + tok.length;
   }
-  push(text.slice(last));
+  push(cleaned.slice(last));
   return runs.length ? runs : [new TextRun({ text: "", font: FONT_OBJ, size: SIZE, ...base })];
 }
 
@@ -195,12 +228,13 @@ function parse(md) {
       i++; continue;
     }
 
-    // Danh sach
-    const ul = line.match(/^\s*[-*+]\s+(.*)$/);
-    const ol = line.match(/^\s*\d+\.\s+(.*)$/);
+    // Danh sach: ho tro -, *, +, • va chong double bullet (Rule 12c)
+    const ul = line.match(/^\s*[-*+•]\s+(.*)$/);
+    const ol = line.match(/^\s*(\d+[\.\)]|[a-zA-Z][\.\)])\s+(.*)$/);
     if (ul || ol) {
+      const rawText = (ul ? ul[1] : ol[2]).replace(/^[•\-–—*]\s*/, '').trim();
       out.push(new Paragraph({
-        children: inlineRuns((ul || ol)[1]),
+        children: inlineRuns(rawText),
         bullet: ul ? { level: 0 } : undefined,
         numbering: ol ? { reference: "md-ol", level: 0 } : undefined,
         indent: ol ? { left: 720, hanging: 360 } : undefined,

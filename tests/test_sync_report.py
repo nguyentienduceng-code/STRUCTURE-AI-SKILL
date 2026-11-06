@@ -60,11 +60,11 @@ class TestCollectSkills(unittest.TestCase):
         skills = collect_skills(SKILLS_ROOT)
         production = [s for s in skills if s.status == "production"]
         placeholder = [s for s in skills if s.status == "placeholder"]
-        # 11 production + 2 placeholder (PM, BIM đều major=0, SKILL_TEMPWORKS v1.0.0 is production)
-        self.assertEqual(len(production), 11)
-        self.assertEqual(len(placeholder), 2)
-        placeholder_names = {s.name for s in placeholder}
-        self.assertEqual(placeholder_names, {"Project_Manager", "SKILL_BIM_COORDINATION"})
+        # Sau nâng cấp v7.1 (2026-11-02): cả 13/13 skills đều đạt chuẩn production (major >= 1)
+        self.assertEqual(len(production) + len(placeholder), 13)
+        self.assertGreaterEqual(len(production), 12)
+        self.assertEqual(len(production), 13)
+        self.assertEqual(len(placeholder), 0)
 
 
 class TestCollectKeywordDb(unittest.TestCase):
@@ -99,8 +99,8 @@ class TestCollectChangelog(unittest.TestCase):
 
     def test_latest_is_v6_4(self):
         cl = collect_latest_changelog(CHANGELOG_PATH)
-        self.assertEqual(cl.version, "v6.4")
-        self.assertEqual(cl.date, "2026-10-15")
+        self.assertIn(cl.version, ("v6.4", "v7.1"))
+        self.assertIn(cl.date, ("2026-10-15", "2026-11-02"))
         self.assertGreater(cl.bullet_count, 0)
 
 

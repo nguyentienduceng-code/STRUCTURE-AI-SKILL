@@ -239,7 +239,7 @@ def _extract_engineering_data(text: str, source_hint: str = "", span_map: Option
                     sections.append({"element": f"Thép hình {sec_str}", "profile": sec_str, "source_hint": source_hint})
             else:
                 # Tiết diện BxH thông thường
-                if not (50 <= val1 <= 4000 and 50 <= val1 <= 4000):
+                if not (50 <= val1 <= 4000 and 50 <= val2 <= 4000):
                     continue
                 key = (val1, val2)
                 if key in seen_secs:

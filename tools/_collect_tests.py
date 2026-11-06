@@ -146,7 +146,18 @@ def _parse_phase2(stdout: str) -> Optional[tuple[int, int, int]]:
 
 
 # Map suite name (substring) → parser
+def _parse_suite17(stdout: str) -> Optional[tuple[int, int, int]]:
+    # "SUITE 17 KẾT QUẢ: 15 pass, 0 fail"
+    m = re.search(r"SUITE 17 KẾT QUẢ:\s+(\d+)\s+pass,\s+(\d+)\s+fail", stdout, re.IGNORECASE)
+    if not m:
+        return None
+    passed = int(m.group(1))
+    failed = int(m.group(2))
+    return passed, failed, passed + failed
+
+
 PARSER_BY_HINT = [
+    ("XLSX View Sanity", _parse_suite17),
     ("Sprint 5", _parse_unittest),
     ("Sprint 4", _parse_unittest),
     ("Sprint 3.4", _parse_unittest),
@@ -156,6 +167,7 @@ PARSER_BY_HINT = [
     ("Sprint 1", _parse_unittest),
     ("Policy Engine", _parse_unittest),
     ("Sync Report", _parse_unittest),
+    ("Cognitive & System Control", _parse_unittest),
     ("1. Integration Test", _parse_integration),
     ("Integration Test", _parse_integration),
     ("Regression Calculator", _parse_regression),

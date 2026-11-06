@@ -110,13 +110,17 @@ def collect_skills(skills_root: Path) -> list[Skill]:
                     f"missing 'version' trong frontmatter của {skill_md}"
                 )
             version = fm["version"]
-            last_updated = fm.get("last_updated", "unknown")
+            last_updated = fm.get("last_updated") or fm.get("updated", "unknown")
             description = fm.get("description", "")
-            # Validate: name phải khớp thư mục
+            alias = fm.get("alias", "")
+            # Validate: name phải khớp thư mục (hoặc khớp qua alias chuẩn hóa)
             if name != entry.name:
-                raise SkillFrontmatterError(
-                    f"name '{name}' != folder '{entry.name}' in {skill_md}"
-                )
+                if alias == entry.name or name.lower().replace("-", "_") == entry.name.lower().replace("-", "_"):
+                    name = entry.name
+                else:
+                    raise SkillFrontmatterError(
+                        f"name '{name}' != folder '{entry.name}' in {skill_md}"
+                    )
             if not re.match(r"^\d+\.\d+\.\d+$", version):
                 raise SkillFrontmatterError(
                     f"version '{version}' không đúng định dạng X.Y.Z in {skill_md}"

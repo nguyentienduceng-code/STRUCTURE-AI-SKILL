@@ -91,7 +91,7 @@ def generate_comparison_chart(categories: List[str], plans: Dict[str, List[float
         _draw_grouped_bar(ax, categories, plans)
 
     if title:
-        ax.set_title(title, fontsize=14, fontweight='bold', color='#1C3557', pad=15)
+        ax.set_title(title, fontsize=14, fontweight='bold', color='#1E3246', pad=15)
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=300, bbox_inches='tight', facecolor='white')
@@ -116,7 +116,7 @@ def _draw_radar(ax, categories, plans):
                color='grey', size=8)
     plt.ylim(0, 100)
 
-    colors = ['#1C3557', '#E74C3C', '#27AE60', '#F39C12', '#9B59B6']
+    colors = ['#1E3246', '#8C261E', '#2A6246', '#9A6324', '#3B6978', '#6E5773']
 
     for i, (name, values) in enumerate(plans.items()):
         vals = values + values[:1]
@@ -133,7 +133,7 @@ def _draw_grouped_bar(ax, categories, plans):
     x = np.arange(len(categories))
     width = 0.8 / max(n_plans, 1)
 
-    colors = ['#1C3557', '#E74C3C', '#27AE60', '#F39C12', '#9B59B6']
+    colors = ['#1E3246', '#8C261E', '#2A6246', '#9A6324', '#3B6978', '#6E5773']
 
     for i, (name, values) in enumerate(plans.items()):
         offset = (i - (n_plans - 1) / 2) * width
@@ -164,9 +164,9 @@ def generate_progress_chart(items: List[Dict], out_path: str, title: str = ''):
     names = [item.get('name', '') for item in items]
     progresses = [item.get('progress', 0) for item in items]
     colors_map = {
-        'green': '#27AE60', 'yellow': '#F39C12', 'red': '#E74C3C',
-        'complete': '#27AE60', 'in-progress': '#F39C12', 'pending': '#95A5A6',
-        'critical': '#E74C3C'
+        'green': '#2A6246', 'yellow': '#9A6324', 'red': '#8C261E',
+        'complete': '#2A6246', 'in-progress': '#2E4A62', 'pending': '#8C8980',
+        'critical': '#8C261E'
     }
     bar_colors = [colors_map.get(
         item.get('color', item.get('status', 'pending')).lower(),
@@ -189,7 +189,7 @@ def generate_progress_chart(items: List[Dict], out_path: str, title: str = ''):
                 f'{prog:.0f}%', va='center', fontsize=9)
 
     if title:
-        ax.set_title(title, fontsize=14, fontweight='bold', color='#1C3557', pad=15)
+        ax.set_title(title, fontsize=14, fontweight='bold', color='#1E3246', pad=15)
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=300, bbox_inches='tight', facecolor='white')
@@ -215,7 +215,9 @@ def generate_eta_heatmap(items: List[Dict], out_path: str, title: str = 'η Heat
 
     fig, ax = plt.subplots(figsize=(10, max(4, len(items) * 0.4)), dpi=300)
 
-    im = ax.imshow(data, cmap='RdYlGn_r', aspect='auto', vmin=0, vmax=1.2)
+    from matplotlib.colors import LinearSegmentedColormap
+    mineral_cmap = LinearSegmentedColormap.from_list('mineral_eta', ['#EBF3ED', '#EDF3F5', '#FBF3E4', '#E5B89B', '#8C261E'])
+    im = ax.imshow(data, cmap=mineral_cmap, aspect='auto', vmin=0, vmax=1.2)
 
     ax.set_xticks(np.arange(len(eta_keys)))
     ax.set_xticklabels([k.replace('eta_', 'η_') for k in eta_keys])
@@ -230,7 +232,7 @@ def generate_eta_heatmap(items: List[Dict], out_path: str, title: str = 'η Heat
             ax.text(j, i, f'{value:.2f}', ha='center', va='center',
                     color=color, fontsize=9)
 
-    ax.set_title(title, fontsize=14, fontweight='bold', color='#1C3557', pad=15)
+    ax.set_title(title, fontsize=14, fontweight='bold', color='#1E3246', pad=15)
     plt.colorbar(im, ax=ax, label='η (utilization)')
 
     plt.tight_layout()
@@ -255,7 +257,8 @@ def generate_cost_breakdown_chart(items: List[Dict], out_path: str,
                                     gridspec_kw={'width_ratios': [1, 1.2]})
 
     # Pie chart
-    colors = plt.cm.Set3(np.linspace(0, 1, len(categories)))
+    palette_base = ['#1E3246', '#2E4A62', '#8C261E', '#9A6324', '#2A6246', '#4A6B82', '#6E5773', '#8C8980']
+    colors = [palette_base[i % len(palette_base)] for i in range(len(categories))]
     wedges, texts, autotexts = ax1.pie(
         amounts, labels=categories, autopct='%1.1f%%',
         colors=colors, startangle=90, pctdistance=0.85
@@ -287,7 +290,7 @@ def generate_cost_breakdown_chart(items: List[Dict], out_path: str,
 
     ax2.set_title('Chi tiết Chi phí', fontsize=12, fontweight='bold')
 
-    fig.suptitle(title, fontsize=14, fontweight='bold', color='#1C3557')
+    fig.suptitle(title, fontsize=14, fontweight='bold', color='#1E3246')
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=300, bbox_inches='tight', facecolor='white')

@@ -25,7 +25,7 @@ import os
 import re
 import zipfile
 import docx
-from docx.enum.section import WD_SECTION
+from docx.enum.section import WD_SECTION, WD_ORIENT
 from docx.enum.table import WD_ALIGN_VERTICAL, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement, parse_xml
@@ -38,39 +38,39 @@ from docx.shared import Cm, Inches, Pt, RGBColor
 # ==============================================================================
 STYLE_CONFIGS = {
     "bktechs": {
-        "name": "BỘ CHUẨN 1 — PHONG CÁCH BKTECHS (VIỆN - TRƯỜNG / CHUYÊN SÂU)",
+        "name": "BỘ CHUẨN 1 — PHONG CÁCH BKTECHS (VIỆN NGHIÊN CỨU / THẨM TRA CHUYÊN SÂU — NATURAL PRINT v2.2)",
         "font_family": "Times New Roman",
-        "body_size": 12,
+        "body_size": 12.5,
         "h1_size": 14,
-        "h2_size": 13,
-        "h3_size": 12,
-        "table_size": 10.5,
-        "h1_color": RGBColor(0x00, 0x20, 0x60),      # Xanh Navy đậm (#002060)
-        "h2_color": RGBColor(0x00, 0x70, 0xC0),      # Xanh Lam sáng (#0070C0)
-        "h3_color": RGBColor(0x1F, 0x4E, 0x79),      # Xanh đậm (#1F4E79)
-        "body_color": RGBColor(0x1A, 0x1A, 0x1A),
-        "table_header_fill": "002060",               # Nền xanh Navy đậm, chữ trắng
-        "table_header_text": RGBColor(0xFF, 0xFF, 0xFF),
-        "table_alt_fill": "F4F7FA",
-        "table_highlight_fill": "FFF2CC",            # Vàng nhạt cho dòng Tổng kết bảng
+        "h2_size": 13.5,
+        "h3_size": 12.5,
+        "table_size": 11.0,
+        "h1_color": RGBColor(0x1E, 0x32, 0x46),      # Mực Xanh Thép Trầm — Prussian Slate (#1E3246)
+        "h2_color": RGBColor(0x2E, 0x4A, 0x62),      # Xanh Đá Phiến — Muted Steel Blue (#2E4A62, thay #0070C0 chói)
+        "h3_color": RGBColor(0x4A, 0x5D, 0x6E),      # Xám Chì Ấm — Warm Pewter (#4A5D6E)
+        "body_color": RGBColor(0x1C, 0x1E, 0x21),    # Mực Than Chì (#1C1E21)
+        "table_header_fill": "DCE4EC",               # Nền Xanh Đá Phiến Sương Nhạt (#DCE4EC), chữ Xanh Thép Trầm (#1E3246)
+        "table_header_text": RGBColor(0x1E, 0x32, 0x46), # ZERO WHITE TEXT LOCK (Điều 12b AGENTS.md)
+        "table_alt_fill": "F8F7F4",                  # Nền Ngà Giấy Tự Nhiên (#F8F7F4)
+        "table_highlight_fill": "F2EFE9",            # Xám Giấy Khoáng Ấm (#F2EFE9) cho dòng Tổng kết / Kết luận
         "dot_after_number": True,                    # 1. / 1.1. / 1.1.1.
     },
     "tvtk": {
-        "name": "BỘ CHUẨN 2 — PHONG CÁCH TVTK ĐA HẠNG MỤC (TKKT / BVTC TỔNG HỢP)",
-        "font_family": "Arial",
-        "body_size": 11,
-        "h1_size": 13,
-        "h2_size": 11.5,
-        "h3_size": 11,
-        "table_size": 10,
-        "h1_color": RGBColor(0x00, 0x20, 0x60),      # Xanh đậm (#002060)
-        "h2_color": RGBColor(0x00, 0x70, 0xC0),      # Xanh lam (#0070C0)
-        "h3_color": RGBColor(0x1F, 0x4E, 0x79),
-        "body_color": RGBColor(0x1A, 0x1A, 0x1A),
-        "table_header_fill": "B4C6E7",               # Nền xanh lam nhạt chuẩn mẫu TVTK
-        "table_header_text": RGBColor(0x00, 0x20, 0x60),
-        "table_alt_fill": "F9FAFC",
-        "table_highlight_fill": "E2EFDA",            # Xanh lá nhạt cho dòng Tổng kết bảng
+        "name": "BỘ CHUẨN 2 — PHONG CÁCH TVTK ĐA HẠNG MỤC (TKKT / BVTC TỔNG HỢP — NATURAL PRINT v2.2)",
+        "font_family": "Times New Roman",
+        "body_size": 12.0,
+        "h1_size": 14.0,
+        "h2_size": 13.0,
+        "h3_size": 12.0,
+        "table_size": 10.5,
+        "h1_color": RGBColor(0x1E, 0x32, 0x46),      # Mực Xanh Thép Trầm (#1E3246)
+        "h2_color": RGBColor(0x2E, 0x4A, 0x62),      # Xanh Đá Phiến (#2E4A62)
+        "h3_color": RGBColor(0x4A, 0x5D, 0x6E),      # Xám Chì Ấm (#4A5D6E)
+        "body_color": RGBColor(0x1C, 0x1E, 0x21),
+        "table_header_fill": "EAE6DF",               # Nền Đá Vôi Sáng (#EAE6DF) đi kèm chữ Xanh Thép Trầm
+        "table_header_text": RGBColor(0x1E, 0x32, 0x46),
+        "table_alt_fill": "F8F7F4",
+        "table_highlight_fill": "EBF3ED",            # Nền Xô Thơm Nhạt (#EBF3ED) cho dòng Tổng kết đạt
         "dot_after_number": False,                   # 1 / 1.1 / 1.1.1
     },
 }
@@ -78,15 +78,211 @@ STYLE_CONFIGS = {
 # Khổ giấy A4 chuẩn ISO 216 (21.00 x 29.70 cm) & Lề đóng gáy Hồ sơ Kỹ thuật Việt Nam
 A4_WIDTH_CM = 21.0
 A4_HEIGHT_CM = 29.7
-MARGIN_LEFT_CM = 2.80    # Chừa gáy đóng hồ sơ 2.80 cm
+MARGIN_LEFT_CM = 3.00    # Chừa gáy đóng hồ sơ 2.80 cm
 MARGIN_RIGHT_CM = 1.80   # Lề phải 1.80 cm -> Bề rộng vùng in thực tế = 16.40 cm (9298 twips)
-PRINT_WIDTH_TWIPS = 9298
+PRINT_WIDTH_TWIPS = 9185
 
 
 # ==============================================================================
 # CÁC HÀM TIỆN ÍCH OPENXML (BORDERS, SHADING, PAGE FIELDS, A4 GEOMETRY)
 # ==============================================================================
-def apply_a4_geometry(section, top_cm=2.4, bottom_cm=1.8, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM):
+
+
+def _hex_luma_val(hex_str: str) -> float:
+    clean = str(hex_str or "").strip().lstrip("#").upper()
+    if len(clean) == 8:
+        clean = clean[-6:]
+    if len(clean) != 6:
+        return 255.0
+    try:
+        r, g, b = int(clean[0:2], 16), int(clean[2:4], 16), int(clean[4:6], 16)
+        return 0.299 * r + 0.587 * g + 0.114 * b
+    except Exception:
+        return 255.0
+
+
+def _iter_all_tables_in_doc(parent):
+    for tbl in getattr(parent, "tables", []):
+        yield tbl
+        for row in tbl.rows:
+            for cell in row.cells:
+                yield from _iter_all_tables_in_doc(cell)
+
+
+def sanitize_docx_table_colors(doc) -> dict:
+    """
+    AUTO-LINTER BẢNG BIỂU WORD (ĐIỀU 12B AGENTS.MD — ZERO WHITE TEXT LOCK):
+    Trước khi thực hiện `doc.save()`, tự động quét 100% các `run` và ô trong toàn bộ bảng biểu.
+    Nếu phát hiện `run` có màu chữ trắng (`FFFFFF` / `(255, 255, 255)`) -> Tự động ghi đè về `#1E3246`
+    (hoặc `#1C1E21`). Nếu phát hiện ô có nền tối (`Luminance < 140`) -> Chuyển về `#DCE4EC`.
+    """
+    stats = {"white_runs_fixed": 0, "dark_cells_fixed": 0, "tables_scanned": 0}
+    seen_tc = set()
+    containers = [doc]
+    for sec in getattr(doc, "sections", []):
+        for hf_attr in ("header", "footer", "first_page_header", "first_page_footer"):
+            hf = getattr(sec, hf_attr, None)
+            if hf is not None:
+                containers.append(hf)
+
+    for container in containers:
+        for tbl in _iter_all_tables_in_doc(container):
+            stats["tables_scanned"] += 1
+            for r_idx, row in enumerate(tbl.rows):
+                for cell in row.cells:
+                    tc_id = id(cell._tc)
+                    if tc_id not in seen_tc:
+                        seen_tc.add(tc_id)
+                        tcPr = cell._tc.find(qn("w:tcPr"))
+                        if tcPr is not None:
+                            for shd in tcPr.findall(qn("w:shd")):
+                                fill_val = (shd.get(qn("w:fill")) or "").strip().upper()
+                                if fill_val and fill_val not in ("AUTO", "NONE") and _hex_luma_val(fill_val) < 140.0:
+                                    shd.set(qn("w:fill"), "DCE4EC")
+                                    stats["dark_cells_fixed"] += 1
+
+                    for p in cell.paragraphs:
+                        for run in p.runs:
+                            is_white = False
+                            try:
+                                if run.font and run.font.color and run.font.color.rgb:
+                                    if str(run.font.color.rgb).upper() in ("FFFFFF", "FEFEFE", "FDFDFD"):
+                                        is_white = True
+                            except Exception:
+                                pass
+                            rPr = run._r.find(qn("w:rPr"))
+                            if rPr is not None:
+                                c_elem = rPr.find(qn("w:color"))
+                                if c_elem is not None and (c_elem.get(qn("w:val")) or "").strip().upper() in ("FFFFFF", "FEFEFE"):
+                                    is_white = True
+                            if is_white:
+                                run.font.color.rgb = RGBColor(0x1E, 0x32, 0x46) if (run.bold or r_idx == 0) else RGBColor(0x1C, 0x1E, 0x21)
+                                stats["white_runs_fixed"] += 1
+
+                        for r_elem in p._p.iter(qn("w:r")):
+                            rPr = r_elem.find(qn("w:rPr"))
+                            if rPr is not None:
+                                c_elem = rPr.find(qn("w:color"))
+                                if c_elem is not None and (c_elem.get(qn("w:val")) or "").strip().upper() in ("FFFFFF", "FEFEFE"):
+                                    c_elem.set(qn("w:val"), "1E3246" if r_idx == 0 else "1C1E21")
+                                    stats["white_runs_fixed"] += 1
+    return stats
+
+
+def insert_landscape_gantt_section(doc, clean_path: str, cap: str, font_name: str = "Times New Roman", style_key: str = "bktechs"):
+    """
+    [ĐẶC TÍNH 8] Tự động tạo Section Break ngắt sang 01 trang A4 Xoay Ngang (Landscape: 29.7 x 21.0 cm)
+    để nhúng biểu đồ tiến độ MS Project 300 DPI với chiều rộng 25.2 cm (đảm bảo sắc nét 100%, không bị co chữ),
+    sau đó tự động ngắt Section Break trả về khổ A4 Dọc (Portrait: 21.0 x 29.7 cm) cho các trang tiếp theo.
+    """
+    sec_land = doc.add_section(WD_SECTION.NEW_PAGE)
+    sec_land.orientation = WD_ORIENT.LANDSCAPE
+    sec_land.page_width = Cm(29.7)
+    sec_land.page_height = Cm(21.0)
+    sec_land.top_margin = Cm(1.5)
+    sec_land.bottom_margin = Cm(1.5)
+    sec_land.left_margin = Cm(2.2)
+    sec_land.right_margin = Cm(2.0)
+
+    p_img = doc.add_paragraph()
+    p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_img.paragraph_format.space_before = Pt(4)
+    p_img.paragraph_format.space_after = Pt(2)
+    p_img.paragraph_format.keep_with_next = True
+    p_img.add_run().add_picture(clean_path, width=Cm(25.2))
+
+    if cap:
+        p_cap = doc.add_paragraph()
+        p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_cap.paragraph_format.space_before = Pt(2)
+        p_cap.paragraph_format.space_after = Pt(6)
+        r_cap = p_cap.add_run(normalize_engineering_symbols(cap))
+        r_cap.font.name = font_name
+        r_cap.font.size = Pt(10.5)
+        r_cap.font.italic = True
+        r_cap.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
+        set_east_asia_font(r_cap, font_name)
+
+    sec_port = doc.add_section(WD_SECTION.NEW_PAGE)
+    sec_port.orientation = WD_ORIENT.PORTRAIT
+    apply_a4_geometry(
+        sec_port,
+        top_cm=2.2 if style_key == "tvtk" else 2.4,
+        bottom_cm=2.0,
+        left_cm=MARGIN_LEFT_CM,
+        right_cm=MARGIN_RIGHT_CM,
+    )
+
+
+
+
+def _hex_luma_val(hex_str: str) -> float:
+    clean = str(hex_str or "").strip().lstrip("#").upper()
+    if len(clean) == 8:
+        clean = clean[-6:]
+    if len(clean) != 6:
+        return 255.0
+    try:
+        r, g, b = int(clean[0:2], 16), int(clean[2:4], 16), int(clean[4:6], 16)
+        return 0.299 * r + 0.587 * g + 0.114 * b
+    except Exception:
+        return 255.0
+
+
+def _iter_all_tables_in_doc(parent):
+    for tbl in getattr(parent, "tables", []):
+        yield tbl
+        for row in tbl.rows:
+            for cell in row.cells:
+                yield from _iter_all_tables_in_doc(cell)
+
+
+def insert_landscape_gantt_section(doc, clean_path: str, cap: str, font_name: str = "Times New Roman", style_key: str = "bktechs"):
+    """
+    [ĐẶC TÍNH 8] Tự động tạo Section Break ngắt sang 01 trang A4 Xoay Ngang (Landscape: 29.7 x 21.0 cm)
+    để nhúng biểu đồ tiến độ MS Project 300 DPI với chiều rộng 25.2 cm (đảm bảo sắc nét 100%, không bị co chữ),
+    sau đó tự động ngắt Section Break trả về khổ A4 Dọc (Portrait: 21.0 x 29.7 cm) cho các trang tiếp theo.
+    """
+    sec_land = doc.add_section(WD_SECTION.NEW_PAGE)
+    sec_land.orientation = WD_ORIENT.LANDSCAPE
+    sec_land.page_width = Cm(29.7)
+    sec_land.page_height = Cm(21.0)
+    sec_land.top_margin = Cm(1.5)
+    sec_land.bottom_margin = Cm(1.5)
+    sec_land.left_margin = Cm(2.2)
+    sec_land.right_margin = Cm(2.0)
+
+    p_img = doc.add_paragraph()
+    p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_img.paragraph_format.space_before = Pt(4)
+    p_img.paragraph_format.space_after = Pt(2)
+    p_img.paragraph_format.keep_with_next = True
+    p_img.add_run().add_picture(clean_path, width=Cm(25.2))
+
+    if cap:
+        p_cap = doc.add_paragraph()
+        p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_cap.paragraph_format.space_before = Pt(2)
+        p_cap.paragraph_format.space_after = Pt(6)
+        r_cap = p_cap.add_run(normalize_engineering_symbols(cap))
+        r_cap.font.name = font_name
+        r_cap.font.size = Pt(10.5)
+        r_cap.font.italic = True
+        r_cap.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
+        set_east_asia_font(r_cap, font_name)
+
+    sec_port = doc.add_section(WD_SECTION.NEW_PAGE)
+    sec_port.orientation = WD_ORIENT.PORTRAIT
+    apply_a4_geometry(
+        sec_port,
+        top_cm=2.2 if style_key == "tvtk" else 2.4,
+        bottom_cm=2.0,
+        left_cm=MARGIN_LEFT_CM,
+        right_cm=MARGIN_RIGHT_CM,
+    )
+
+
+def apply_a4_geometry(section, top_cm=2.4, bottom_cm=2.0, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM):
     """Áp đặt chuẩn khổ giấy ISO A4 (21.0 x 29.7 cm) và khoảng cách Header/Footer chuẩn in ấn."""
     section.page_width = Cm(A4_WIDTH_CM)
     section.page_height = Cm(A4_HEIGHT_CM)
@@ -127,7 +323,7 @@ def set_cell_margins(cell, top=90, bottom=90, left=130, right=130):
     tcPr.append(tcMar)
 
 
-def set_table_borders(table, color="BFBFBF", sz="4", val="single"):
+def set_table_borders(table, color="D0CEC7", sz="4", val="single"):
     tblPr = table._tbl.tblPr
     borders = parse_xml(
         f'<w:tblBorders {nsdecls("w")}>'
@@ -153,7 +349,7 @@ def set_table_full_width(table, width_twips=PRINT_WIDTH_TWIPS):
     tblW.set(qn("w:type"), "dxa")
 
 
-def set_paragraph_bottom_border(paragraph, color_hex="FFC000", sz="12", val="single"):
+def set_paragraph_bottom_border(paragraph, color_hex="A67C37", sz="12", val="single"):
     pPr = paragraph._p.get_or_add_pPr()
     pBdr = parse_xml(
         f'<w:pBdr {nsdecls("w")}>'
@@ -173,7 +369,7 @@ def set_paragraph_top_border(paragraph, color_hex="BFBFBF", sz="6", val="single"
     pPr.append(pBdr)
 
 
-def set_paragraph_left_border(paragraph, color_hex="002060", sz="18", val="single"):
+def set_paragraph_left_border(paragraph, color_hex="1E3246", sz="18", val="single"):
     pPr = paragraph._p.get_or_add_pPr()
     pBdr = parse_xml(
         f'<w:pBdr {nsdecls("w")}>'
@@ -767,7 +963,7 @@ def insert_auto_toc(doc, font_name="Times New Roman", toc_items: list = None, st
         is_bold = (is_part or is_app or lvl == 1)
         is_italic = (lvl == 3)
         font_size_half_pt = 22 if is_part else (21 if (lvl == 1 or is_app) else 20)
-        text_color = "002060" if is_part else ("003399" if (lvl == 1 or is_app) else "1A1A1A")
+        text_color = "1E3246" if is_part else ("003399" if (lvl == 1 or is_app) else "1A1A1A")
 
         r_title_xml = parse_xml(
             r'<w:r %s><w:rPr><w:rFonts w:ascii="%s" w:hAnsi="%s" w:eastAsia="%s"/><w:sz w:val="%d"/>%s%s<w:color w:val="%s"/></w:rPr><w:t>%s</w:t></w:r>'
@@ -793,7 +989,7 @@ def insert_auto_toc(doc, font_name="Times New Roman", toc_items: list = None, st
             fld_pageref = parse_xml(
                 r'<w:r %s><w:rPr><w:rFonts w:ascii="%s" w:hAnsi="%s" w:eastAsia="%s"/><w:sz w:val="%d"/>%s<w:color w:val="%s"/></w:rPr>'
                 r'<w:fldChar w:fldCharType="begin"/></w:r>'
-                % (nsdecls("w"), font_name, font_name, font_name, 22 if is_bold else 21, r"<w:b/>" if is_bold else "", "002060" if is_bold else "333333")
+                % (nsdecls("w"), font_name, font_name, font_name, 22 if is_bold else 21, r"<w:b/>" if is_bold else "", "1E3246" if is_bold else "333333")
             )
             fld_instr = parse_xml(
                 r'<w:r %s><w:instrText xml:space="preserve"> PAGEREF %s \h </w:instrText></w:r>' % (nsdecls("w"), anchor)
@@ -801,7 +997,7 @@ def insert_auto_toc(doc, font_name="Times New Roman", toc_items: list = None, st
             fld_sep = parse_xml(r'<w:r %s><w:fldChar w:fldCharType="separate"/></w:r>' % nsdecls("w"))
             fld_val = parse_xml(
                 r'<w:r %s><w:rPr><w:rFonts w:ascii="%s" w:hAnsi="%s" w:eastAsia="%s"/><w:sz w:val="%d"/>%s<w:color w:val="%s"/></w:rPr><w:t>%s</w:t></w:r>'
-                % (nsdecls("w"), font_name, font_name, font_name, 22 if is_bold else 21, r"<w:b/>" if is_bold else "", "002060" if is_bold else "333333", html.escape(str(page_str)))
+                % (nsdecls("w"), font_name, font_name, font_name, 22 if is_bold else 21, r"<w:b/>" if is_bold else "", "1E3246" if is_bold else "333333", html.escape(str(page_str)))
             )
             fld_end = parse_xml(r'<w:r %s><w:fldChar w:fldCharType="end"/></w:r>' % nsdecls("w"))
             hl.append(fld_pageref)
@@ -819,7 +1015,7 @@ def insert_auto_toc(doc, font_name="Times New Roman", toc_items: list = None, st
                     font_name,
                     22 if is_bold else 21,
                     r"<w:b/>" if is_bold else "",
-                    "002060" if is_bold else "333333",
+                    "1E3246" if is_bold else "333333",
                     html.escape(str(page_str)),
                 )
             )
@@ -879,23 +1075,23 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     set_paragraph_top_border(fp0, color_hex="BFBFBF", sz="6")
     r_org = fp0.add_run(meta.get("org_short", "BKTECHS"))
     r_org.font.name = font_name
-    r_org.font.size = Pt(9.5)
+    r_org.font.size = Pt(10.0)
     r_org.font.bold = True
-    r_org.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+    r_org.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
     r_sep1 = fp0.add_run("  ||  ")
     r_sep1.font.name = font_name
-    r_sep1.font.size = Pt(9.5)
+    r_sep1.font.size = Pt(10.0)
     r_sep1.font.bold = True
-    r_sep1.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+    r_sep1.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
     r_addr = fp0.add_run(meta.get("org_footer", "268 Lý Thường Kiệt, P.14, Q.10, TP.HCM  |  Tel: (028) 3864 7256"))
     r_addr.font.name = font_name
-    r_addr.font.size = Pt(9.5)
+    r_addr.font.size = Pt(10.0)
     r_addr.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
     r_sep2 = fp0.add_run("  ||")
     r_sep2.font.name = font_name
-    r_sep2.font.size = Pt(9.5)
+    r_sep2.font.size = Pt(10.0)
     r_sep2.font.bold = True
-    r_sep2.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+    r_sep2.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
     # --- TRANG 1: BÌA CHÍNH CHUẨN BKTECHS ---
     p_top1 = doc.add_paragraph()
@@ -915,22 +1111,23 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     r2.font.name = font_name
     r2.font.size = Pt(12.5)
     r2.font.bold = True
-    r2.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+    r2.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     # Thanh ribbon xanh đậm phía trên
     ribbon_top = doc.add_table(rows=1, cols=1)
     ribbon_top.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(ribbon_top)
     c_rt = ribbon_top.cell(0, 0)
-    set_cell_shading(c_rt, "002060")
+    set_cell_shading(c_rt, "DCE4EC")
+    set_table_borders(ribbon_top, color="1E3246", sz="8")
     set_cell_margins(c_rt, top=45, bottom=45, left=80, right=80)
     p_rt = c_rt.paragraphs[0]
     p_rt.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r_rt = p_rt.add_run("STRUCTURAL & GEOTECHNICAL ENGINEERING CONSULTANCY")
     r_rt.font.name = font_name
-    r_rt.font.size = Pt(9.5)
+    r_rt.font.size = Pt(10.0)
     r_rt.font.bold = True
-    r_rt.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+    r_rt.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
     # Logo trung tâm
     if logo_path and os.path.exists(logo_path):
@@ -948,7 +1145,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
         rl.font.name = font_name
         rl.font.size = Pt(12)
         rl.font.bold = True
-        rl.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+        rl.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     # Tên loại hồ sơ cỡ lớn
     p_title = doc.add_paragraph()
@@ -964,7 +1161,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     p_sub = doc.add_paragraph()
     p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sub.paragraph_format.space_after = Pt(20)
-    set_paragraph_bottom_border(p_sub, color_hex="FFC000", sz="18")
+    set_paragraph_bottom_border(p_sub, color_hex="A67C37", sz="18")
     rsub = p_sub.add_run(f"GIAI ĐOẠN: {meta.get('phase', 'THIẾT KẾ BẢN VẼ THI CÔNG (BVTC)')}")
     rsub.font.name = font_name
     rsub.font.size = Pt(13)
@@ -1007,7 +1204,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
         r1_val.font.size = Pt(11.5)
         r1_val.font.bold = (idx in (0, 1))
         r1_val.font.italic = (idx == 1)
-        r1_val.font.color.rgb = RGBColor(0x00, 0x33, 0x99) if idx == 0 else RGBColor(0x1A, 0x1A, 0x1A)
+        r1_val.font.color.rgb = RGBColor(0x1E, 0x32, 0x46) if idx == 0 else RGBColor(0x1A, 0x1A, 0x1A)
 
     # Chân bìa Trang 1
     p_city = doc.add_paragraph()
@@ -1024,15 +1221,16 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     ribbon_bot.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(ribbon_bot)
     c_rb = ribbon_bot.cell(0, 0)
-    set_cell_shading(c_rb, "002060")
+    set_cell_shading(c_rb, "DCE4EC")
+    set_table_borders(ribbon_bot, color="1E3246", sz="8")
     set_cell_margins(c_rb, top=40, bottom=40, left=80, right=80)
     p_rb = c_rb.paragraphs[0]
     p_rb.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r_rb = p_rb.add_run("BACH KHOA HO CHI MINH CITY SCIENCE TECHNOLOGY JSC — QUALITY & RELIABILITY")
     r_rb.font.name = font_name
-    r_rb.font.size = Pt(9.5)
+    r_rb.font.size = Pt(10.0)
     r_rb.font.bold = True
-    r_rb.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+    r_rb.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     # --- TRANG 2: BÌA PHỤ / TỜ KÝ DUYỆT TRÁCH NHIỆM CHUYÊN MÔN CHUẨN BKTECHS ---
     doc.add_page_break()
@@ -1050,12 +1248,12 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     p_sub2 = doc.add_paragraph()
     p_sub2.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sub2.paragraph_format.space_after = Pt(14)
-    set_paragraph_bottom_border(p_sub2, color_hex="FFC000", sz="12")
+    set_paragraph_bottom_border(p_sub2, color_hex="A67C37", sz="12")
     rs2 = p_sub2.add_run(meta.get("company_name", "CÔNG TY CỔ PHẦN KHOA HỌC CÔNG NGHỆ BÁCH KHOA TP.HCM - BKTECHS"))
     rs2.font.name = font_name
     rs2.font.size = Pt(12)
     rs2.font.bold = True
-    rs2.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+    rs2.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     p_stitle = doc.add_paragraph()
     p_stitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -1089,11 +1287,11 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     sig_tbl = doc.add_table(rows=4, cols=3)
     sig_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(sig_tbl)
-    set_table_borders(sig_tbl, color="002060", sz="6")
+    set_table_borders(sig_tbl, color="1E3246", sz="6")
     headers_sig = ["THỰC HIỆN TÍNH TOÁN\n(Prepared by)", "KIỂM TRA KỸ THUẬT\n(Checked by)", "CHỦ TRÌ THIẾT KẾ / THẨM TRA\n(Approved by)"]
     for idx, htext in enumerate(headers_sig):
         c = sig_tbl.cell(0, idx)
-        set_cell_shading(c, "002060")
+        set_cell_shading(c, "DCE4EC")
         set_cell_margins(c, top=100, bottom=100, left=100, right=100)
         p = c.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -1101,7 +1299,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
         r.font.name = font_name
         r.font.size = Pt(10.5)
         r.font.bold = True
-        r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        r.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     for idx in range(3):
         c = sig_tbl.cell(1, idx)
@@ -1159,7 +1357,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     rep_tbl = doc.add_table(rows=2, cols=2)
     rep_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(rep_tbl)
-    set_table_borders(rep_tbl, color="BFBFBF", sz="6")
+    set_table_borders(rep_tbl, color="D0CEC7", sz="6")
     for idx, title in enumerate(["ĐẠI DIỆN CHỦ ĐẦU TƯ", "ĐẠI DIỆN ĐƠN VỊ TƯ VẤN (BKTECHS)"]):
         c = rep_tbl.cell(0, idx)
         set_cell_shading(c, "D9E1F2")
@@ -1201,7 +1399,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     # SECTION 1: NỘI DUNG THUYẾT MINH CHÍNH (ĐÁNH SỐ TRANG LẠI TỪ Trang 1)
     # --------------------------------------------------------------------------
     sec1 = doc.add_section(WD_SECTION.NEW_PAGE)
-    apply_a4_geometry(sec1, top_cm=2.4, bottom_cm=1.8, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
+    apply_a4_geometry(sec1, top_cm=2.4, bottom_cm=2.0, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
     sec1.different_first_page_header_footer = False
     sec1.header.is_linked_to_previous = False
     sec1.footer.is_linked_to_previous = False
@@ -1211,19 +1409,19 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     h1 = sec1.header
     hp1 = h1.paragraphs[0]
     hp1.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    set_paragraph_bottom_border(hp1, color_hex="FFC000", sz="12")
+    set_paragraph_bottom_border(hp1, color_hex="A67C37", sz="12")
     rh_org = hp1.add_run(
         f"{meta.get('company_name', 'BACH KHOA HO CHI MINH CITY SCIENCE TECHNOLOGY JSC - BKTECHS')}\n"
     )
     rh_org.font.name = font_name
-    rh_org.font.size = Pt(9.5)
+    rh_org.font.size = Pt(10.0)
     rh_org.font.bold = True
-    rh_org.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+    rh_org.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
     rh_proj = hp1.add_run(
         f"Dự án: {meta.get('project_name', '[Tên Dự án]')}  —  Hạng mục: {meta.get('item_name', '[Tên Hạng mục]')}"
     )
     rh_proj.font.name = font_name
-    rh_proj.font.size = Pt(9.5)
+    rh_proj.font.size = Pt(10.0)
     rh_proj.font.italic = True
     rh_proj.font.color.rgb = RGBColor(0x00, 0x70, 0xC0)
 
@@ -1237,27 +1435,27 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
 
     rf1 = fp1.add_run(meta.get("org_short", "BKTECHS"))
     rf1.font.name = font_name
-    rf1.font.size = Pt(9.5)
+    rf1.font.size = Pt(10.0)
     rf1.font.bold = True
-    rf1.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+    rf1.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
     rf2 = fp1.add_run("  ||  ")
     rf2.font.name = font_name
-    rf2.font.size = Pt(9.5)
+    rf2.font.size = Pt(10.0)
     rf2.font.bold = True
-    rf2.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+    rf2.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
     rf3 = fp1.add_run(meta.get("org_footer", "268 Lý Thường Kiệt, P.14, Q.10, TP.HCM  |  Tel: (028) 3864 7256"))
     rf3.font.name = font_name
-    rf3.font.size = Pt(9.5)
+    rf3.font.size = Pt(10.0)
     rf3.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
     fp1.add_run("\t")
     rf4 = fp1.add_run("||  Trang ")
     rf4.font.name = font_name
-    rf4.font.size = Pt(9.5)
+    rf4.font.size = Pt(10.0)
     rf4.font.bold = True
-    rf4.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+    rf4.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
     add_field(fp1, "PAGE", default_val="1", font_name=font_name, font_size=9.5, bold=True, color=RGBColor(0x00, 0x20, 0x60))
 
@@ -1301,21 +1499,21 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     # SECTION 0: BÌA KHUNG VIỀN ĐÔI (TRANG 1) + BÌA LÓT PHÁP LÝ (TRANG 2) + MỤC LỤC (TRANG 3)
     # --------------------------------------------------------------------------
     sec0 = doc.sections[0]
-    apply_a4_geometry(sec0, top_cm=1.8, bottom_cm=1.8, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
+    apply_a4_geometry(sec0, top_cm=1.8, bottom_cm=2.0, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
     sec0.different_first_page_header_footer = True
 
     # --- TRANG 1: BÌA NGOÀI KHUNG VIỀN ĐÔI (DOUBLE-LINE BOX) ---
     outer_box = doc.add_table(rows=1, cols=1)
     outer_box.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(outer_box)
-    set_table_borders(outer_box, color="002060", sz="18", val="double")
+    set_table_borders(outer_box, color="1E3246", sz="18", val="double")
     c_box = outer_box.cell(0, 0)
     set_cell_margins(c_box, top=280, bottom=280, left=260, right=260)
 
     p_c1 = c_box.paragraphs[0]
     p_c1.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p_c1.paragraph_format.space_after = Pt(4)
-    set_paragraph_bottom_border(p_c1, color_hex="002060", sz="12")
+    set_paragraph_bottom_border(p_c1, color_hex="1E3246", sz="12")
     rc1 = p_c1.add_run(
         f"{meta.get('company_name', 'CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG [TÊN ĐƠN VỊ TVTK]')}\n"
     )
@@ -1328,7 +1526,7 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
         meta.get("org_footer", "Địa chỉ: [Địa chỉ Công ty Tư vấn Thiết kế]  |  Điện thoại: [Số ĐT]  |  Email: [Email]")
     )
     rc2.font.name = font_name
-    rc2.font.size = Pt(9.5)
+    rc2.font.size = Pt(10.0)
     rc2.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
     p_type = c_box.add_paragraph()
@@ -1425,7 +1623,7 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     sign_2col = doc.add_table(rows=3, cols=2)
     sign_2col.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(sign_2col)
-    set_table_borders(sign_2col, color="002060", sz="6")
+    set_table_borders(sign_2col, color="1E3246", sz="6")
 
     for idx, header_txt in enumerate(["CHỦ ĐẦU TƯ", "ĐƠN VỊ TƯ VẤN THIẾT KẾ"]):
         c = sign_2col.cell(0, idx)
@@ -1475,7 +1673,7 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     team_tbl = doc.add_table(rows=4, cols=3)
     team_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(team_tbl)
-    set_table_borders(team_tbl, color="BFBFBF", sz="4")
+    set_table_borders(team_tbl, color="D0CEC7", sz="4")
     for idx, htxt in enumerate(["Chức danh", "Họ và tên / Số CCHN", "Chữ ký"]):
         c = team_tbl.cell(0, idx)
         set_cell_shading(c, "D9E1F2")
@@ -1522,7 +1720,7 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     # SECTION 1: NỘI DUNG CHÍNH (ĐÁNH SỐ LẠI TỪ Trang 1)
     # --------------------------------------------------------------------------
     sec1 = doc.add_section(WD_SECTION.NEW_PAGE)
-    apply_a4_geometry(sec1, top_cm=2.2, bottom_cm=1.8, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
+    apply_a4_geometry(sec1, top_cm=2.2, bottom_cm=2.0, left_cm=MARGIN_LEFT_CM, right_cm=MARGIN_RIGHT_CM)
     sec1.different_first_page_header_footer = False
     sec1.header.is_linked_to_previous = False
     sec1.footer.is_linked_to_previous = False
@@ -1531,12 +1729,12 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     h1 = sec1.header
     hp1 = h1.paragraphs[0]
     hp1.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    set_paragraph_bottom_border(hp1, color_hex="002060", sz="8")
+    set_paragraph_bottom_border(hp1, color_hex="1E3246", sz="8")
     rh = hp1.add_run(
         f"{meta.get('report_type', 'THUYẾT MINH TÍNH TOÁN KẾT CẤU')}  |  {meta.get('project_name', '[Tên Công trình]')}"
     )
     rh.font.name = font_name
-    rh.font.size = Pt(9.5)
+    rh.font.size = Pt(10.0)
     rh.font.italic = True
     rh.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
@@ -1546,7 +1744,7 @@ def setup_tvtk_template(doc, meta: dict, preview_toc_items: list = None):
     set_paragraph_top_border(fp1, color_hex="BFBFBF", sz="6")
     rf = fp1.add_run("Trang ")
     rf.font.name = font_name
-    rf.font.size = Pt(9.5)
+    rf.font.size = Pt(10.0)
     rf.font.italic = True
     add_field(fp1, "PAGE", default_val="1", font_name=font_name, font_size=9.5, italic=True)
 
@@ -1623,7 +1821,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
                 tbl = doc.add_table(rows=len(table_lines), cols=ncols)
                 tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
                 set_table_full_width(tbl)
-                set_table_borders(tbl, color="BFBFBF", sz="4")
+                set_table_borders(tbl, color="D0CEC7", sz="4")
 
                 # Lặp lại header bảng khi qua trang + cố định chiều cao tối thiểu 380 twips
                 header_tr = tbl.rows[0]._tr.get_or_add_trPr()
@@ -1785,12 +1983,12 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
                 p.paragraph_format.space_before = Pt(8 if not has_rendered_any_body else 14)
                 p.paragraph_format.space_after = Pt(8)
                 set_paragraph_shading(p, color_hex="D9E1F2" if style_key == "tvtk" else "E8EEF5")
-                set_paragraph_left_border(p, color_hex="002060", sz="24")
-                set_paragraph_bottom_border(p, color_hex="002060", sz="8")
+                set_paragraph_left_border(p, color_hex="1E3246", sz="24")
+                set_paragraph_bottom_border(p, color_hex="1E3246", sz="8")
             elif is_app:
                 p.paragraph_format.space_before = Pt(12)
                 p.paragraph_format.space_after = Pt(6)
-                set_paragraph_bottom_border(p, color_hex="FFC000" if style_key == "bktechs" else "0070C0", sz="12")
+                set_paragraph_bottom_border(p, color_hex="A67C37" if style_key == "bktechs" else "0070C0", sz="12")
             else:
                 p.paragraph_format.space_before = Pt(14 if level == 1 else (10 if level == 2 else 6))
                 p.paragraph_format.space_after = Pt(6 if level == 1 else 4)
@@ -1836,23 +2034,27 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
                 clean_path = clean_path[8:]
             clean_path = os.path.normpath(clean_path)
             if os.path.exists(clean_path):
-                p_img = doc.add_paragraph()
-                p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                p_img.paragraph_format.space_before = Pt(8)
-                p_img.paragraph_format.space_after = Pt(2)
-                p_img.paragraph_format.keep_with_next = True
-                p_img.add_run().add_picture(clean_path, width=Cm(14.5))
-                if cap:
-                    p_cap = doc.add_paragraph()
-                    p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                    p_cap.paragraph_format.space_before = Pt(2)
-                    p_cap.paragraph_format.space_after = Pt(8)
-                    r_cap = p_cap.add_run(normalize_engineering_symbols(cap))
-                    r_cap.font.name = font_name
-                    r_cap.font.size = Pt(10)
-                    r_cap.font.italic = True
-                    r_cap.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
-                    set_east_asia_font(r_cap, font_name)
+                is_gantt_wide = any(k in (cap + " " + os.path.basename(clean_path)).lower() for k in ("gantt", "msproject", "ms_project", "tiến độ", "tien_do", "timeline", "landscape"))
+                if is_gantt_wide:
+                    insert_landscape_gantt_section(doc, clean_path, cap, font_name=font_name, style_key=style_key)
+                else:
+                    p_img = doc.add_paragraph()
+                    p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                    p_img.paragraph_format.space_before = Pt(8)
+                    p_img.paragraph_format.space_after = Pt(2)
+                    p_img.paragraph_format.keep_with_next = True
+                    p_img.add_run().add_picture(clean_path, width=Cm(14.5))
+                    if cap:
+                        p_cap = doc.add_paragraph()
+                        p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                        p_cap.paragraph_format.space_before = Pt(2)
+                        p_cap.paragraph_format.space_after = Pt(8)
+                        r_cap = p_cap.add_run(normalize_engineering_symbols(cap))
+                        r_cap.font.name = font_name
+                        r_cap.font.size = Pt(10.5)
+                        r_cap.font.italic = True
+                        r_cap.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
+                        set_east_asia_font(r_cap, font_name)
             else:
                 p_err = doc.add_paragraph()
                 p_err.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -1882,7 +2084,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
             p_q.paragraph_format.space_before = Pt(6)
             p_q.paragraph_format.space_after = Pt(8)
             p_q.paragraph_format.line_spacing = 1.2
-            set_paragraph_left_border(p_q, color_hex="002060" if style_key == "bktechs" else "0070C0", sz="18")
+            set_paragraph_left_border(p_q, color_hex="1E3246" if style_key == "bktechs" else "0070C0", sz="18")
             set_paragraph_shading(p_q, color_hex="F2F5F9")
             _add_formatted_runs(p_q, full_quote, font_name, cfg["body_size"] - 0.5, cfg["body_color"], force_italic=True)
             has_rendered_any_body = True
@@ -1893,7 +2095,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
         m_plus = re.match(r"^(\s*)\+\s+(.*)$", line)
         m_sub_dash = re.match(r"^(\s{2,})[\-\*]\s+(.*)$", line)
         if m_plus or m_sub_dash:
-            text_content = m_plus.group(2) if m_plus else m_sub_dash.group(2)
+            text_content = (m_plus.group(2) if m_plus else m_sub_dash.group(2)).lstrip("•-–—*+ \t")
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p.paragraph_format.left_indent = Cm(1.30)
@@ -1917,7 +2119,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
         m_dot = re.match(r"^(\s*)•\s+(.*)$", line)
         m_sub3 = re.match(r"^(\s{4,})[\-\*\+]\s+(.*)$", line)
         if m_dot or m_sub3:
-            text_content = m_dot.group(2) if m_dot else m_sub3.group(2)
+            text_content = (m_dot.group(2) if m_dot else m_sub3.group(2)).lstrip("•-–—* \t")
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p.paragraph_format.left_indent = Cm(1.95)
@@ -1940,7 +2142,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
         # CẤP 1 DANH SÁCH: Gạch đầu dòng (-) hoặc (*)
         m_dash = re.match(r"^(\s*)[\-\*–—]\s+(.*)$", line)
         if m_dash:
-            text_content = m_dash.group(2)
+            text_content = m_dash.group(2).lstrip("•-–—* \t")
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p.paragraph_format.left_indent = Cm(0.65)
@@ -1964,7 +2166,7 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
         m_enum = re.match(r"^(\s*)(\d+[\.\)]|[a-zA-Z][\.\)])\s+(.*)$", line)
         if m_enum:
             prefix = m_enum.group(2)
-            text_content = m_enum.group(3)
+            text_content = m_enum.group(3).lstrip("•-–—* \t")
             indent_len = len(m_enum.group(1))
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -2201,7 +2403,7 @@ def build_report_from_markdown(
             apply_a4_geometry(
                 sec_app,
                 top_cm=2.2 if style_key == "tvtk" else 2.4,
-                bottom_cm=1.8,
+                bottom_cm=2.0,
                 left_cm=MARGIN_LEFT_CM,
                 right_cm=MARGIN_RIGHT_CM,
             )
@@ -2217,28 +2419,28 @@ def build_report_from_markdown(
             hpa = ha.paragraphs[0]
             hpa.alignment = WD_ALIGN_PARAGRAPH.LEFT
             if style_key == "bktechs":
-                set_paragraph_bottom_border(hpa, color_hex="FFC000", sz="12")
+                set_paragraph_bottom_border(hpa, color_hex="A67C37", sz="12")
                 rha1 = hpa.add_run(
                     f"{meta.get('company_name', 'BACH KHOA HO CHI MINH CITY SCIENCE TECHNOLOGY JSC - BKTECHS')}\n"
                 )
                 rha1.font.name = font_name
-                rha1.font.size = Pt(9.5)
+                rha1.font.size = Pt(10.0)
                 rha1.font.bold = True
-                rha1.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+                rha1.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
                 rha2 = hpa.add_run(
                     f"Dự án: {meta.get('project_name', '[Tên Dự án]')}  —  {app_title}"
                 )
                 rha2.font.name = font_name
-                rha2.font.size = Pt(9.5)
+                rha2.font.size = Pt(10.0)
                 rha2.font.italic = True
                 rha2.font.color.rgb = RGBColor(0x00, 0x70, 0xC0)
             else:
-                set_paragraph_bottom_border(hpa, color_hex="002060", sz="8")
+                set_paragraph_bottom_border(hpa, color_hex="1E3246", sz="8")
                 rha = hpa.add_run(
                     f"{app_title}  |  {meta.get('project_name', '[Tên Công trình]')}"
                 )
                 rha.font.name = font_name
-                rha.font.size = Pt(9.5)
+                rha.font.size = Pt(10.0)
                 rha.font.italic = True
                 rha.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
@@ -2253,27 +2455,27 @@ def build_report_from_markdown(
 
                 rfa1 = fpa.add_run(meta.get("org_short", "BKTECHS"))
                 rfa1.font.name = font_name
-                rfa1.font.size = Pt(9.5)
+                rfa1.font.size = Pt(10.0)
                 rfa1.font.bold = True
-                rfa1.font.color.rgb = RGBColor(0x00, 0x33, 0x99)
+                rfa1.font.color.rgb = RGBColor(0x1E, 0x32, 0x46)
 
                 rfa2 = fpa.add_run("  ||  ")
                 rfa2.font.name = font_name
-                rfa2.font.size = Pt(9.5)
+                rfa2.font.size = Pt(10.0)
                 rfa2.font.bold = True
-                rfa2.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+                rfa2.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
                 rfa3 = fpa.add_run(meta.get("org_footer", "268 Lý Thường Kiệt, P.14, Q.10, TP.HCM  |  Tel: (028) 3864 7256"))
                 rfa3.font.name = font_name
-                rfa3.font.size = Pt(9.5)
+                rfa3.font.size = Pt(10.0)
                 rfa3.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
                 fpa.add_run("\t")
                 rfa4 = fpa.add_run(f"||  Phụ lục {idx} — Trang ")
                 rfa4.font.name = font_name
-                rfa4.font.size = Pt(9.5)
+                rfa4.font.size = Pt(10.0)
                 rfa4.font.bold = True
-                rfa4.font.color.rgb = RGBColor(0xFF, 0xC0, 0x00)
+                rfa4.font.color.rgb = RGBColor(0xA6, 0x7C, 0x37)
 
                 add_field(fpa, "PAGE", default_val="1", font_name=font_name, font_size=9.5, bold=True, color=RGBColor(0x00, 0x20, 0x60))
             else:
@@ -2281,7 +2483,7 @@ def build_report_from_markdown(
                 set_paragraph_top_border(fpa, color_hex="BFBFBF", sz="6")
                 rfa = fpa.add_run(f"Phụ lục {idx} — Trang ")
                 rfa.font.name = font_name
-                rfa.font.size = Pt(9.5)
+                rfa.font.size = Pt(10.0)
                 rfa.font.italic = True
                 add_field(fpa, "PAGE", default_val="1", font_name=font_name, font_size=9.5, italic=True)
 
@@ -2289,6 +2491,7 @@ def build_report_from_markdown(
             nav_counter = render_markdown_content(doc, app_body_md, style_key=style_key, nav_counter_start=nav_counter)
 
     os.makedirs(os.path.dirname(os.path.abspath(output_docx_path)), exist_ok=True)
+    sanitize_docx_table_colors(doc)
     doc.save(output_docx_path)
     return output_docx_path
 

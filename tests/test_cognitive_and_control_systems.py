@@ -386,6 +386,146 @@ class TestRegressionClaudeReview(unittest.TestCase):
             self.assertTrue(l3.acquire())
             l3.release()
 
+    def test_sync_bus_normalize_path(self):
+        """v2.0: Chuẩn hóa đường dẫn ổ đĩa H:\ cũ sang workspace root hiện tại."""
+        import sync_bus
+        fake_root = Path(r"G:\My Drive\Google AI Studio")
+        old_path = r"H:\My Drive\AI AGENT\SKILL\test.json"
+        norm = sync_bus.normalize_path(old_path, fake_root)
+        self.assertEqual(norm, str(fake_root / "SKILL" / "test.json"))
+
+    def test_sync_bus_validate_payload(self):
+        """v2.0: Schema validation chặn payload thiếu trường bắt buộc."""
+        import sync_bus
+        invalid_payload = {"last_updated_by": "GEMINI"}
+        is_valid, reason = sync_bus.validate_bus_payload(invalid_payload)
+        self.assertFalse(is_valid)
+        self.assertIn("Thiếu trường", reason)
+
+        valid_payload = {
+            "last_updated_by": "GEMINI",
+            "timestamp": "2026-11-04T12:00:00+07:00",
+            "summary": "Đã hoàn thành kiểm toán",
+            "artifacts_modified": ["file1.py"],
+            "next_action_for_partner": {
+                "target_agent": "CLAUDE",
+                "command": "Kiểm tra chéo"
+            },
+            "Verification_Status": "CONFIRMED_AND_HANDED_OFF"
+        }
+        is_valid, reason = sync_bus.validate_bus_payload(valid_payload)
+        self.assertTrue(is_valid)
+
+    def test_sync_bus_auto_handoff_and_memo(self):
+        """v2.0: auto_handoff tự động ghi bus và sinh DUAL_AGENT_HANDOFF_MEMO.md."""
+        import tempfile
+        from unittest import mock
+        import sync_bus
+        with tempfile.TemporaryDirectory() as td:
+            tmp_bus = Path(td) / "bus.json"
+            tmp_memo = Path(td) / "memo.md"
+            with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                res = sync_bus.auto_handoff(
+                    sender="GEMINI",
+                    target="CLAUDE",
+                    summary="Test summary",
+                    next_cmd="Test command",
+                    project_code="01_MONTALP",
+                    project_purpose="Kiểm toán gió",
+                    role_distribution="Gemini thiết kế, Claude kiểm toán",
+                    files=["dummy.py"],
+                    auto_detect_files=False,
+                    confirmed=True
+                )
+                self.assertTrue(tmp_bus.exists())
+                self.assertTrue(tmp_memo.exists())
+                memo_text = tmp_memo.read_text(encoding="utf-8")
+                self.assertIn("01_MONTALP", memo_text)
+                self.assertIn("CONFIRMED_AND_HANDED_OFF", memo_text)
+                self.assertIn("Gemini thiết kế, Claude kiểm toán", memo_text)
+
+    def test_sync_bus_v3_to_relative_path(self):
+        """v3.0: Chuẩn hóa đường dẫn tương đối POSIX, tiết kiệm token và tránh escape JSON."""
+        import sync_bus
+        fake_root = Path(r"G:\My Drive\Google AI Studio")
+        p_abs = r"G:\My Drive\Google AI Studio\.agents\tools\sync_bus.py"
+        rel = sync_bus.to_relative_path(p_abs, fake_root)
+        self.assertEqual(rel, ".agents/tools/sync_bus.py")
+        self.assertNotIn("\\", rel)
+
+    def test_sync_bus_v3_handoff_lifecycle_and_claim(self):
+        """v3.0: Vòng đời ca trực PENDING -> IN_PROGRESS (claim) -> COMPLETED."""
+        import tempfile
+        import json
+        from unittest import mock
+        import sync_bus
+        with tempfile.TemporaryDirectory() as td:
+            tmp_bus = Path(td) / "bus.json"
+            tmp_memo = Path(td) / "memo.md"
+            with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                # 1. Handoff tạo PENDING
+                sync_bus.auto_handoff(
+                    sender="GEMINI",
+                    target="CLAUDE",
+                    summary="Khởi tạo ca trực",
+                    task_description="Xử lý công việc",
+                    acceptance_criteria=["Tiêu chí 1", "Tiêu chí 2"],
+                    confirmed=True
+                )
+                data = json.loads(tmp_bus.read_text(encoding="utf-8"))
+                self.assertEqual(data["handoff_status"], "PENDING")
+
+                # 2. Claude claim -> IN_PROGRESS
+                sync_bus.claim_task("CLAUDE")
+                data = json.loads(tmp_bus.read_text(encoding="utf-8"))
+                self.assertEqual(data["handoff_status"], "IN_PROGRESS")
+                self.assertEqual(data["current_holder"], "CLAUDE")
+
+                # 3. Claude complete -> COMPLETED
+                sync_bus.complete_task("CLAUDE", summary="Đã xong hoàn tất")
+                data = json.loads(tmp_bus.read_text(encoding="utf-8"))
+                self.assertEqual(data["handoff_status"], "COMPLETED")
+                self.assertEqual(data["current_holder"], "IDLE")
+
+    def test_sync_bus_v3_acceptance_criteria_and_checklist(self):
+        """v3.0: acceptance_criteria được cấu trúc và sinh checklist trong memo."""
+        import tempfile
+        from unittest import mock
+        import sync_bus
+        with tempfile.TemporaryDirectory() as td:
+            tmp_bus = Path(td) / "bus.json"
+            tmp_memo = Path(td) / "memo.md"
+            with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                sync_bus.auto_handoff(
+                    sender="GEMINI",
+                    target="CLAUDE",
+                    summary="Test task",
+                    task_description="Kiểm tra chéo và chuẩn hóa",
+                    acceptance_criteria=["Không còn file (1)", "Line ending chuẩn"],
+                    confirmed=True
+                )
+                memo_text = tmp_memo.read_text(encoding="utf-8")
+                self.assertIn("- [ ] Không còn file (1)", memo_text)
+                self.assertIn("- [ ] Line ending chuẩn", memo_text)
+                self.assertIn("Kiểm tra chéo và chuẩn hóa", memo_text)
+
+    def test_sync_bus_v3_gdrive_conflict_detection(self):
+        """v3.0: Quét và phát hiện file xung đột Google Drive (1), (2)."""
+        import tempfile
+        import sync_bus
+        with tempfile.TemporaryDirectory() as td:
+            base_file = Path(td) / "sketcher.py"
+            base_file.write_text("print('old')", encoding="utf-8")
+            dup_file = Path(td) / "sketcher (1).py"
+            dup_file.write_text("print('new')", encoding="utf-8")
+
+            confs = sync_bus.scan_gdrive_conflicts(Path(td))
+            self.assertEqual(len(confs), 1)
+            self.assertEqual(Path(confs[0]["dup_path"]).name, "sketcher (1).py")
+
     def test_skill_guard_preflight_blocks_dangerous_shell(self):
         """BUG-011: skill_guard phải chặn lệnh shell nguy hiểm."""
         sys.path.insert(0, str(AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT"))
@@ -588,6 +728,29 @@ class TestRegressionClaudeReview(unittest.TestCase):
             removed_all = rec.rotate_traces(max_files=10, max_age_days=0.00001)
             self.assertEqual(len(removed_all), 3)
             self.assertEqual(len(list(trace_dir.glob("trace_*.jsonl"))), 0)
+
+    def test_approve_unlocks_pending_approval_once(self):
+        """Kiểm tra luồng approve(tool_name) mở khóa PENDING_APPROVAL đúng 1 lần (Fix Bug F01)."""
+        ctrl = SystemController()
+        ctrl.set_mode("SAFE")
+        ctrl.loop_breaker.reset()
+        # Lần 1: Chưa approve -> bị chặn PENDING_APPROVAL
+        res1 = ctrl.preflight_check("AgentX", "delete_element", {"id": 101})
+        self.assertFalse(res1["allowed"])
+        self.assertEqual(res1["status"], "PENDING_APPROVAL")
+
+        # User gọi approve -> Lần 2 được phép chạy (ALLOWED) và tiêu thụ vé
+        ctrl.approve("delete_element")
+        self.assertTrue(ctrl.is_approved("delete_element"))
+        res2 = ctrl.preflight_check("AgentY", "delete_element", {"id": 101})
+        self.assertTrue(res2["allowed"])
+        self.assertEqual(res2["status"], "ALLOWED")
+        self.assertFalse(ctrl.is_approved("delete_element"))
+
+        # Lần 3: Gọi lại mà không approve mới -> phải chặn lại PENDING_APPROVAL
+        res3 = ctrl.preflight_check("AgentZ", "delete_element", {"id": 102})
+        self.assertFalse(res3["allowed"])
+        self.assertEqual(res3["status"], "PENDING_APPROVAL")
 
     def test_lessons_repository_does_not_pollute_production_file(self):
         """BUG-012: test không được ghi vào file bài học production."""

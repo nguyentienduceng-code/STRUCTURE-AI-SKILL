@@ -46,22 +46,25 @@ if sys.stdout.encoding != 'utf-8':
 # ==============================================================================
 # BẢNG MÀU FORM THUYẾT MINH CHUẨN HÓA (SKILL_REPORT v3.3.0)
 # ==============================================================================
-NAVY_PRIMARY  = "1B365D"  # Deep Corporate Navy (Headers & Primary Titles)
-ICE_BLUE_LBL  = "EAF0F6"  # Soft Ice Blue (Left Label Column — replaces heavy dark fill)
-TEXT_DARK     = "0F172A"  # Slate 900 Body Text
-TEXT_MUTED    = "475569"  # Slate 600 Captions & Subtitles
-BORDER_COLOR  = "CBD5E1"  # Slate 300 Subtle Grid Border
-ZEBRA_ROW     = "F8FAFC"  # Slate 50 Alternating Row
-WHITE         = "FFFFFF"
+NAVY_PRIMARY  = "1E3246"  # Deep Prussian Slate (Mực Xanh Thép Trầm — Chuẩn Ấn Phẩm Kỹ Thuật v3.4.0)
+ICE_BLUE_LBL  = "F2EFE9"  # Warm Alabaster Paper (Nền Xám Giấy Khoáng Ấm cho Cột Nhãn Trái)
+TEXT_DARK     = "1C1E21"  # Charcoal Print Ink (Mực Than Chì dịu mắt, tự nhiên)
+TEXT_MUTED    = "5A626A"  # Warm Slate Grey (Chú thích & Phụ đề)
+BORDER_COLOR  = "D0CEC7"  # Warm Stone Grid Rule (Đường kẻ lưới mảnh tự nhiên)
+ZEBRA_ROW     = "F8F7F4"  # Natural Ivory Tint (Dòng chẵn tiệp màu giấy in)
+SURFACE_LIGHT = "F8F7F4"
 
-CRITICAL_RED  = "991B1B"  # Refined Deep Crimson
-CRITICAL_BG   = "FEF2F2"  # Soft Red Badge Fill
-MAJOR_AMBER   = "B45309"  # Refined Deep Amber
-MAJOR_BG      = "FFFBEB"  # Soft Amber Badge Fill
-MINOR_BLUE    = "1E40AF"  # Refined Royal Blue (Harmonious with Navy)
-MINOR_BG      = "EFF6FF"  # Soft Blue Badge Fill
+CRITICAL_RED  = "8C261E"  # Carmine Brick Red (Đỏ Gạch Nung trầm — thay cho đỏ tươi/hồng phấn)
+CRITICAL_BG   = "F9EBE8"  # Warm Terracotta Tint (Nền Đất Nung Nhạt)
+MAJOR_AMBER   = "8F5314"  # Raw Umber Ochre (Nâu Hổ Phách Đất)
+MAJOR_BG      = "FBF3E4"  # Warm Sand Tint (Nền Cát Ấm)
+MINOR_BLUE    = "1F4E5B"  # Deep Slate Teal (Xanh Lam Khoáng)
+MINOR_BG      = "EDF3F5"  # Mineral Ice Tint (Nền Sương Đá)
 
 SERIF_BOLD_PATHS = [
+    "C:/Windows/Fonts/timesbd.ttf",
+    "C:/Windows/Fonts/arialbd.ttf",
+    "C:/Windows/Fonts/tahomabd.ttf",
     "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf",
     "/usr/share/fonts/truetype/noto/NotoSerif-Bold.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
@@ -142,30 +145,30 @@ def sanitize_and_reheader_redline_image(img_path: str, subheaders: list, out_pat
     total_w = sum(c.width for c in crops) + gap * (len(crops) - 1) + 2 * pad_x
     canvas_h = pad_top + hdr_h + target_h + pad_bot
 
-    canvas = Image.new("RGB", (total_w, canvas_h), (240, 244, 248))  # #F0F4F8
+    canvas = Image.new("RGB", (total_w, canvas_h), (244, 243, 239))  # #F0F4F8
     draw = ImageDraw.Draw(canvas)
-    draw.rectangle([0, 0, total_w - 1, canvas_h - 1], outline=(27, 54, 93), width=2)
+    draw.rectangle([0, 0, total_w - 1, canvas_h - 1], outline=(30, 50, 70), width=2)
 
     cur_x = pad_x
     for idx_p, c_img in enumerate(crops):
         pw, ph = c_img.width, c_img.height
-        draw.rectangle([cur_x, pad_top, cur_x + pw - 1, pad_top + hdr_h], fill=(27, 54, 93), outline=(27, 54, 93))
+        draw.rectangle([cur_x, pad_top, cur_x + pw - 1, pad_top + hdr_h], fill=(30, 50, 70), outline=(30, 50, 70))
         h_txt = subheaders[idx_p] if idx_p < len(subheaders) else subheaders[0]
         f_hdr = fit_subheader_font(draw, h_txt, pw)
         tb = draw.textbbox((0, 0), h_txt, font=f_hdr)
         tx = cur_x + (pw - (tb[2] - tb[0])) // 2
         ty = pad_top + (hdr_h - (tb[3] - tb[1])) // 2 - 2
-        draw.text((tx, ty), h_txt, fill=(255, 255, 255), font=f_hdr)
+        draw.text((tx, ty), h_txt, fill=(30, 50, 70), font=f_hdr)
 
         canvas.paste(c_img, (cur_x, pad_top + hdr_h))
-        draw.rectangle([cur_x, pad_top + hdr_h, cur_x + pw - 1, pad_top + hdr_h + ph - 1], outline=(27, 54, 93), width=2)
+        draw.rectangle([cur_x, pad_top + hdr_h, cur_x + pw - 1, pad_top + hdr_h + ph - 1], outline=(30, 50, 70), width=2)
         cur_x += pw + gap
 
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     canvas.save(out_path, optimize=True)
     return out_path
 
-def set_font_run(run, font_name="Times New Roman", size_pt=10.0, bold=False, italic=False, color_hex=None):
+def set_font_run(run, font_name="Times New Roman", size_pt=11.0, bold=False, italic=False, color_hex=None):
     run.font.name = font_name
     run.font.size = Pt(size_pt)
     run.bold = bold
@@ -251,9 +254,9 @@ def generate_dossier(matrix_path, img_dir, output_docx, project_name, location, 
     section = doc.sections[0]
     section.page_width = Cm(21.0)
     section.page_height = Cm(29.7)
-    section.top_margin = Cm(1.6)
-    section.bottom_margin = Cm(1.5)
-    section.left_margin = Cm(2.2)
+    section.top_margin = Cm(2.0)
+    section.bottom_margin = Cm(2.0)
+    section.left_margin = Cm(3.0)
     section.right_margin = Cm(1.8)
     section.header_distance = Cm(0.8)
     section.footer_distance = Cm(0.8)
@@ -280,20 +283,20 @@ def generate_dossier(matrix_path, img_dir, output_docx, project_name, location, 
 
         p_b1 = c_b1.paragraphs[0]
         p_b1.paragraph_format.line_spacing = 1.1
-        set_font_run(p_b1.add_run(f"PHIẾU THẨM TRA BẢN VẼ SỐ {idx_ex:02d} — MÃ LỖI: {c.get('clash_id', '')}\n"), size_pt=10.0, bold=True, color_hex=WHITE)
-        set_font_run(p_b1.add_run(c.get('description', c.get('source_a_ref', ''))), size_pt=9.5, bold=True, color_hex=WHITE)
+        set_font_run(p_b1.add_run(f"PHIẾU THẨM TRA BẢN VẼ SỐ {idx_ex:02d} — MÃ LỖI: {c.get('clash_id', '')}\n"), size_pt=11.0, bold=True, color_hex="1E3246")
+        set_font_run(p_b1.add_run(c.get('description', c.get('source_a_ref', ''))), size_pt=10.5, bold=True, color_hex="1E3246")
 
         p_b2 = c_b2.paragraphs[0]
         p_b2.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_b2.paragraph_format.line_spacing = 1.1
-        set_font_run(p_b2.add_run(f"MỨC ĐỘ\n{sev}"), size_pt=9.5, bold=True, color_hex=WHITE)
+        set_font_run(p_b2.add_run(f"MỨC ĐỘ\n{sev}"), size_pt=10.5, bold=True, color_hex="1E3246")
 
         p_ref = doc.add_paragraph()
         p_ref.paragraph_format.space_before = Pt(2)
         p_ref.paragraph_format.space_after = Pt(2)
-        set_font_run(p_ref.add_run("Vị trí bản vẽ kiểm tra: "), size_pt=9.5, bold=True, color_hex=NAVY_PRIMARY)
-        set_font_run(p_ref.add_run(f"{c.get('source_a_ref', '')} | "), size_pt=9.5, color_hex=TEXT_DARK)
-        set_font_run(p_ref.add_run(f"Chế tài áp dụng: {c.get('linked_rfi_ncr', '')}"), size_pt=9.5, bold=True, color_hex=CRITICAL_RED)
+        set_font_run(p_ref.add_run("Vị trí bản vẽ kiểm tra: "), size_pt=10.5, bold=True, color_hex=NAVY_PRIMARY)
+        set_font_run(p_ref.add_run(f"{c.get('source_a_ref', '')} | "), size_pt=10.5, color_hex=TEXT_DARK)
+        set_font_run(p_ref.add_run(f"Chế tài áp dụng: {c.get('linked_rfi_ncr', '')}"), size_pt=10.5, bold=True, color_hex=CRITICAL_RED)
 
         # Tự động làm sạch ảnh và nhúng với trần chiều cao khóa cứng (1-Page-Per-Exhibit)
         img_name = c.get('screenshot_file', '')
@@ -318,7 +321,7 @@ def generate_dossier(matrix_path, img_dir, output_docx, project_name, location, 
             p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
             p_cap.paragraph_format.space_before = Pt(1)
             p_cap.paragraph_format.space_after = Pt(2)
-            set_font_run(p_cap.add_run(f"Hình {idx_ex:02d}: Vùng bản vẽ trích xuất thực tế (Khoanh đỏ đối soát xung đột kỹ thuật)"), size_pt=9.0, italic=True, color_hex=NAVY_PRIMARY)
+            set_font_run(p_cap.add_run(f"Hình {idx_ex:02d}: Vùng bản vẽ trích xuất thực tế (Khoanh đỏ đối soát xung đột kỹ thuật)"), size_pt=10.5, italic=True, color_hex=NAVY_PRIMARY)
 
         # Bảng Phân tích 6 Điểm — Cột trái nền Xanh Băng #EAF0F6 chữ Navy đậm #1B365D
         tbl_ex = doc.add_table(rows=6, cols=2)
@@ -344,7 +347,7 @@ def generate_dossier(matrix_path, img_dir, output_docx, project_name, location, 
             c_lbl.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
             c_val.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
             set_cell_background(c_lbl, ICE_BLUE_LBL)
-            set_cell_background(c_val, ZEBRA_ROW if r_i % 2 == 1 else WHITE)
+            set_cell_background(c_val, ZEBRA_ROW if r_i % 2 == 1 else SURFACE_LIGHT)
             set_cell_margins(c_lbl, top=pad_v, bottom=pad_v, left=65, right=65)
             set_cell_margins(c_val, top=pad_v, bottom=pad_v, left=75, right=75)
 

@@ -36,11 +36,11 @@ def format_eta(value: Optional[float], decimals: int = 2) -> str:
         return 'η = N/A'
     formatted = f'{value:.{decimals}f}'
     if value > 1.0:
-        return f'η = {formatted} ❌'
-    elif value > 0.95:
-        return f'η = {formatted} ⚠️'
+        return f'η = {formatted} [KHÔNG ĐẠT]'
+    elif value > 0.90:
+        return f'η = {formatted} [SÁT NGƯỠNG]'
     else:
-        return f'η = {formatted} ✅'
+        return f'η = {formatted} [ĐẠT]'
 
 
 def format_eta_percent(value: Optional[float], decimals: int = 1) -> str:

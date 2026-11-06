@@ -156,11 +156,22 @@ class StandardsGraph:
 
     def _init_db(self):
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        conn = self._get_conn()
         try:
-            conn.executescript(SCHEMA_SQL)
-        finally:
-            conn.close()
+            conn = self._get_conn()
+            try:
+                conn.executescript(SCHEMA_SQL)
+            finally:
+                conn.close()
+        except sqlite3.OperationalError:
+            import tempfile
+            fallback_dir = Path(tempfile.gettempdir()) / "GoogleAIStudio_standards"
+            fallback_dir.mkdir(parents=True, exist_ok=True)
+            self.db_path = fallback_dir / self.db_path.name
+            conn = self._get_conn()
+            try:
+                conn.executescript(SCHEMA_SQL)
+            finally:
+                conn.close()
         self._seed_default_standards()
 
     # ==========================================================================

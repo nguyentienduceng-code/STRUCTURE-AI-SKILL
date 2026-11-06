@@ -1,7 +1,9 @@
 ---
-name: design-evaluation-audit
+name: Design_Evaluation
+alias: design-evaluation-audit
 version: 3.4.0
-updated: 2026-10-27
+last_updated: 2026-11-02
+updated: 2026-11-02
 status: PRODUCTION_READY
 description: Tham tra Thiet ke Ket cau va Da bo mon cap Chu tri (Ban Xay dung Cao cap - 7 Cong Kiem soat & 6 Module Chuyen sau v3.4.0, tich hop Module CAD_DEEP_READER doc/boc tach file .DWG/.DXF) theo TCVN 2737:2023, TCVN 5575:2024, TCVN 5574:2018, TCVN 9362:2012, TCVN 9386:2025, TT 34/2026/TT-BXD, QCVN 03:2022/BXD va QCVN 06:2022/BXD. Kich hoat khi nguoi dung yeu cau tham tra thiet ke, ra soat ban ve CAD (.dwg/.dxf) hoac PDF ket cau/kien truc, phan tich tai trong, to hop tai trong, duong truyen luc, kiem tra mo hinh ETABS/SAP2000, phat hanh phieu RFI/NCR, hoac xuat Bao cao Tham tra & Ho so Khoanh loi.
 ---
@@ -75,6 +77,6 @@ Doc chi tiet trong `references/SKILL_REPORT.md` va chay `scripts/generate_clash_
 
 - **Task 6.1 & 6.2**: Ve bo bieu do dinh luong 300 DPI (`Noto Serif / Liberation Serif` day du dau tieng Viet) va xuat Bao cao Tham tra `.docx` chuan Ban Xay dung Cao cap (`Body >= 11pt`, `Table >= 10pt`, `w:cantSplit`, `w:tblHeader`).
 - **Task 6.3 (Xuat Ho so Khoanh Loi Xung Dot Ban ve Chuan v3.3.0 - `scripts/generate_clash_dossier.py`)**:
-  - Dong bo 100% bang mau voi Form Thuyet minh chuan: Header ngang Xanh Navy (`#1B365D`) chu trang; cot nhan ben trai (6 muc) to nen Xanh Bang nhat (`#EAF0F6`) chu Navy dam (`#1B365D`); badge muc do tram (`#991B1B` Critical, `#B45309` Major, `#1E40AF` Minor).
+  - Dong bo 100% bang mau voi Form Thuyet minh chuan: Header ngang Xanh Da Phien Suong Nhat (`#DCE4EC`) chu Xanh Da Phien Dam (`#1E3246`); cot nhan ben trai (6 muc) to nen Xanh Bang nhat (`#F2EFE9`) chu Navy dam (`#1E3246`); badge muc do tram (`#8C261E` Critical, `#8F5314` Major, `#1F4E5B` Minor).
   - Tu dong lam sach anh PNG (`sanitize_and_reheader_redline_image`): cat bo banner den va hop chu 4 dong trung lap trong anh PNG, ve thanh tieu de khung ban ve bang phong Serif day du dau tieng Viet (`LiberationSerif-Bold`) tu dong co vua khung (0% tran chu).
   - Khoa cung bo cuc **"1 Phieu = 1 Trang A4 Khep Kin"** (`max_h_cm <= 7.6 cm`, 0 dong mo coi rot sang trang sau, 0 trang trang) va khoa nguon du lieu don nhat (`SSOT Anti-Drift Lock`).

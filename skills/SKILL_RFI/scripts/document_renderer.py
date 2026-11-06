@@ -53,6 +53,21 @@ DATA_DIR = SCRIPT_DIR.parent / 'data'
 # DATA LOADING
 # ════════════════════════════════════════════════════════════════════════════
 
+
+def sanitize_docx_table_colors(doc):
+    """Auto-Linter (Điều 12b AGENTS.md): Đảm bảo 0% chữ trắng trong mọi bảng biểu RFI/NCR/Submittal."""
+    from docx.shared import RGBColor
+    from docx.oxml.ns import qn
+    for tbl in doc.tables:
+        for r_i, row in enumerate(tbl.rows):
+            for cell in row.cells:
+                for p in cell.paragraphs:
+                    for run in p.runs:
+                        if run.font and run.font.color and run.font.color.rgb:
+                            if str(run.font.color.rgb).upper() in ("FFFFFF", "FEFEFE"):
+                                run.font.color.rgb = RGBColor.from_string("1E3246" if (run.bold or r_i == 0) else "1C1E21")
+
+
 def load_registry(path: str) -> dict:
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
@@ -103,7 +118,7 @@ def render_rfi_docx(doc_dict: dict, output_path: str):
     r = p.add_run('REQUEST FOR INFORMATION (RFI)')
     r.font.size = Pt(18)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string('1C3557')
+    r.font.color.rgb = RGBColor.from_string('1E3246')
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -121,7 +136,7 @@ def render_rfi_docx(doc_dict: dict, output_path: str):
     r = p.add_run(f'Mã: {doc_dict.get("Doc_Code", "—")}')
     r.font.size = Pt(13)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string('C0392B' if doc_dict.get('Priority') == 'CRITICAL' else '1C3557')
+    r.font.color.rgb = RGBColor.from_string('8C261E' if doc_dict.get('Priority') == 'CRITICAL' else '1E3246')
 
     # Info table
     info_table = doc.add_table(rows=6, cols=2)
@@ -180,7 +195,8 @@ def render_rfi_docx(doc_dict: dict, output_path: str):
     if doc_dict.get('Drawings'):
         doc.add_heading('5. Bản vẽ/Tài liệu liên quan', level=1)
         for d in doc_dict['Drawings']:
-            doc.add_paragraph(f'• {d}', style='List Bullet')
+            clean_d = str(d).lstrip('•-–—* \t')
+            doc.add_paragraph(clean_d, style='List Bullet')
 
     # History
     history = doc_dict.get('Tracking', {}).get('History', [])
@@ -192,16 +208,17 @@ def render_rfi_docx(doc_dict: dict, output_path: str):
             action = h.get('action', '')
             by = h.get('by', '')
             r = p.add_run(f'[{date}] {action} - {by}')
-            r.font.size = Pt(10)
+            r.font.size = Pt(11.0)
 
     # Approval
     doc.add_paragraph()
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     r = p.add_run(f'Ngày tạo: {doc_dict.get("Tracking", {}).get("Created_Date", datetime.now().strftime("%d/%m/%Y"))}')
-    r.font.size = Pt(10)
+    r.font.size = Pt(11.0)
     r.italic = True
 
+    sanitize_docx_table_colors(doc)
     doc.save(output_path)
     return output_path
 
@@ -222,9 +239,9 @@ def render_ncr_docx(doc_dict: dict, output_path: str):
     # Banner với màu theo severity
     severity = doc_dict.get('NCR_Classification', 'MINOR')
     severity_colors = {
-        'CRITICAL': 'C0392B',
+        'CRITICAL': '8C261E',
         'MAJOR': 'E67E22',
-        'MINOR': 'F39C12',
+        'MINOR': '8F5314',
     }
 
     p = doc.add_paragraph()
@@ -232,14 +249,14 @@ def render_ncr_docx(doc_dict: dict, output_path: str):
     r = p.add_run('NON-CONFORMANCE REPORT (NCR)')
     r.font.size = Pt(18)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string('1C3557')
+    r.font.color.rgb = RGBColor.from_string('1E3246')
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(f'PHIẾU BÁO CÁO KHÔNG PHÙ HỢP — {severity}')
     r.font.size = Pt(14)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string(severity_colors.get(severity, '1C3557'))
+    r.font.color.rgb = RGBColor.from_string(severity_colors.get(severity, '1E3246'))
 
     doc.add_paragraph()
 
@@ -290,9 +307,10 @@ def render_ncr_docx(doc_dict: dict, output_path: str):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     r = p.add_run('Ngày tạo: ' + doc_dict.get('Tracking', {}).get('Created_Date', '—'))
-    r.font.size = Pt(10)
+    r.font.size = Pt(11.0)
     r.italic = True
 
+    sanitize_docx_table_colors(doc)
     doc.save(output_path)
     return output_path
 
@@ -315,7 +333,7 @@ def render_submittal_docx(doc_dict: dict, output_path: str):
     r = p.add_run('SUBMITTAL LOG')
     r.font.size = Pt(18)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string('1C3557')
+    r.font.color.rgb = RGBColor.from_string('1E3246')
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -360,12 +378,14 @@ def render_submittal_docx(doc_dict: dict, output_path: str):
     if doc_dict.get('Drawings'):
         doc.add_heading('3. Bản vẽ/Tài liệu đính kèm', level=1)
         for d in doc_dict['Drawings']:
-            doc.add_paragraph(f'• {d}', style='List Bullet')
+            clean_d = str(d).lstrip('•-–—* \t')
+            doc.add_paragraph(clean_d, style='List Bullet')
 
     if doc_dict.get('Reviewer_Comments'):
         doc.add_heading('4. Ý kiến của Reviewer', level=1)
         doc.add_paragraph(doc_dict['Reviewer_Comments'])
 
+    sanitize_docx_table_colors(doc)
     doc.save(output_path)
     return output_path
 
@@ -395,7 +415,7 @@ def render_generic_docx(doc_dict: dict, output_path: str, doc_type: str = 'DOCUM
     r = p.add_run(f'{type_name}')
     r.font.size = Pt(18)
     r.bold = True
-    r.font.color.rgb = RGBColor.from_string('1C3557')
+    r.font.color.rgb = RGBColor.from_string('1E3246')
 
     doc.add_paragraph()
     p = doc.add_paragraph()
@@ -437,6 +457,7 @@ def render_generic_docx(doc_dict: dict, output_path: str, doc_type: str = 'DOCUM
         doc.add_heading('4. Ảnh hưởng', level=1)
         doc.add_paragraph(doc_dict['Impact'])
 
+    sanitize_docx_table_colors(doc)
     doc.save(output_path)
     return output_path
 

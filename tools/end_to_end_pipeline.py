@@ -34,7 +34,6 @@ for p in [
     AGENTS_ROOT / "tools",
     AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT",
     AGENTS_ROOT / "skills" / "Structural_Design_Engineer" / "scripts",
-    Path("/working_dir/c_ff2fc9e4f2fbff34/downloads"),
 ]:
     if p.exists() and str(p) not in sys.path:
         sys.path.insert(0, str(p))

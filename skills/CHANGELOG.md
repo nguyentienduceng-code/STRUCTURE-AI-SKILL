@@ -1,7 +1,43 @@
 # CHANGELOG — Toan bo Bo Skills Ky Nang Ket Cau
 
 > **Pham vi:** Ghi nhan thay doi cua **MOI skill** trong `.agents/skills/`.
-> **Cap nhat lon nhat:** 2026-10-13 (v6.3 / Clean Architecture & De-clutter)
+> **Cap nhat lon nhat:** 2026-11-02 (v7.1 / Enterprise Audit & Patch F01–F06)
+
+---
+
+---
+
+## 2026-11-05 — v7.2: Rà Soát Toàn Diện & Chuẩn Hóa Typography, Double Bullet & Math Engine (Rule 12c)
+
+### Tổng quan
+
+Nâng cấp triệt để hạ tầng sinh văn bản Word (.docx) và xử lý hiển thị ký hiệu kỹ thuật trên toàn bộ hệ thống SKILL:
+1. **Triệt tiêu 100% Lỗi Double Bullet (•  •  — Trùng lặp 2 dấu chấm đầu dòng)**:
+   - Nâng cấp thư viện lõi Design_Evaluation/scripts/_lib/_docx_helpers.py (dd_bullet): Tự động strip sạch ký tự •, -, –, —, * khỏi đầu chuỗi prefix và text.
+   - Sửa 2 điểm lỗi cứng gán '• {d}' vào List Bullet trong SKILL_RFI/scripts/document_renderer.py (dòng 198 và dòng 380).
+   - Nâng cấp SKILL_PHULUC/docx_generator_v2.py và SKILL_PHULUC/docx_generator.py để tự động làm sạch ký tự bullet khi render danh sách Markdown.
+   - Nâng cấp parser danh sách Design_Evaluation/scripts/md_to_docx_report.js để tự động khử bỏ bullet glyph thừa.
+2. **Tách biệt Hoàn toàn Danh sách Đánh số & Chữ cái khỏi List Bullet**:
+   - Bổ sung hàm chuyên dụng dd_item() vào _docx_helpers.py sử dụng paragraph thường với thụt lề đầu dòng chuẩn (left_indent = Cm(0.6) / irst_line_indent = -Cm(0.4)), loại bỏ hoàn toàn việc gán List Bullet cho các mục số 1., 2. hoặc chữ cái ), b).
+   - Cơ chế tự động phát hiện số/chữ cái trong dd_bullet(): Nếu dữ liệu đầu vào bắt đầu bằng 1. hay ), hàm tự động chuyển hướng sang dd_item() để bảo vệ bố cục.
+3. **Triệt tiêu 100% Lộ Mã Nguồn Raw LaTeX trong Word ($H_{max}, H_{tb}, H_{min}$)**:
+   - Tích hợp bộ chuyển đổi toán học clean_math_symbols(), parse_inline_math_and_scripts() và dd_formatted_runs_to_paragraph() vào _docx_helpers.py (tự động áp dụng cho dd_p, dd_bullet, dd_item và ô bảng uild_table).
+   - Tự động chuyển đổi các ký hiệu chỉ số dưới (subscript=True), chỉ số trên (superscript=True), quy đổi các macro LaTeX (\implies, \times, \ge, \le, \approx, \Delta...) sang ký tự Unicode tương ứng (⇒, ×, ≥, ≤, ≈, Δ...) và xóa bỏ hoàn toàn dấu $ thô.
+   - Tương thích đồng bộ trên cả Python (python-docx) và JavaScript (docx.js).
+4. **Khóa Cứng Pháp Lý & Chuẩn Hóa Tài Liệu Quy Phạm**:
+   - Bổ sung **Mục 7 (Rule 12c — Clean Typography & Math Lock v4.3)** vào STANDARDS_LOCK.md.
+   - Bổ sung Mục Quy tắc Typography vào SKILL_PHULUC/SKILL.md.
+
+## 2026-11-02 — v7.1: Kiểm Định Toàn Diện & Bản Vá Hệ Thống Cấp Enterprise (Patch F01–F06)
+
+### Tong quan
+
+- **Vá lỗi tự hủy phê duyệt `PENDING_APPROVAL` (Bug F01):** Sửa hàm `SystemController.preflight_check()` trong `tools/system_controller.py` để chỉ tiêu thụ vé phê duyệt tại nhánh kiểm tra Guard và bổ sung unit test `test_approve_unlocks_pending_approval_once` (Suite 16 đạt 32/32 tests).
+- **Khôi phục & Hợp nhất SSOT `AGENTS.md` v7.1 & `STANDARDS_LOCK.md` v3.3.0 (Bug F02 & F03):** Hợp nhất toàn vẹn các quy tắc quản trị nền tảng v6.1 với 7 Cổng Kiểm soát (Gate 0–6) của v7.0; khôi phục đủ 21 tiêu chuẩn pháp lý/kỹ thuật kèm bảng Known Gap và 20 Hard-Rules.
+- **Nâng cấp Động cơ Kiểm chứng Động (Bug F04):** Nâng cấp `drawing_calc_crosscheck.py` lên v3.0.0 (bổ sung `audit_dynamic_project_data` và CLI `--input`/`--rebar-tag`) và `cad_deep_reader.py` lên v2.0.0 (bổ sung fallback `ODAFileConverter`/`dwg2dxf` và `DXFDeepExtractor`).
+- **Hoàn thiện 13/13 Production Skills:** Nâng cấp `Project_Manager` lên `v1.0.0` kèm công cụ tính toán tất định `evm_cpm_calculator.py` (EVM & Đường găng CPM), chuẩn hóa frontmatter `Design_Evaluation`, `SKILL_VERIFY`, `SKILL_BIM_COORDINATION`, `SKILL_RFI`.
+- **Vá lỗi Kỹ thuật & Đa nền tảng (Bug F05 & F06):** Sửa lỗi kiểm tra kích thước `val2` tại `tools/doc_reader.py`, xóa đường dẫn container tạm trong `tools/end_to_end_pipeline.py`, bổ sung font Windows/tempdir cho `generate_clash_dossier.py`, bổ sung parser Suite 16 vào `tools/_collect_tests.py` và cơ chế fallback SQLite trên ổ mạng Google Drive cho `standards_graph.py`.
+- **Chuẩn hóa `DUAL_AGENT_BUS.json`:** Khôi phục đúng schema của `tools/sync_bus.py` tại `memory/DUAL_AGENT_BUS.json` và tách riêng `memory/STRUCTURE_HUB_BUS.json`.
 
 ---
 
