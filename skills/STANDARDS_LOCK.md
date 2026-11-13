@@ -1,6 +1,6 @@
 # STANDARDS_LOCK.md — Nguồn Sự thật Duy nhất về Phiên bản Tiêu chuẩn & 20 Quy tắc Kiểm toán Cứng
 
-> **Bắt buộc theo `AGENTS.md` v7.1 (điều 1, điều 7 và điều 10).**
+> **Bắt buộc theo `AGENTS.md` v7.4 (điều 1, điều 7 và điều 10).**
 > Mọi skill, mọi script, mọi báo cáo PHẢI lấy phiên bản tiêu chuẩn từ bảng này.
 > Không file nào khác được tự khai báo phiên bản riêng.
 >
@@ -19,6 +19,7 @@
 | Khối xây | **TCVN 5573:2025** | TCVN 5573:2011 | `TCVN/12. TCVN 5573 2025_...pdf` |
 | Móng cọc | **TCVN 10304:2025** | TCVN 10304:2014 | `TCVN/6. TCVN 10304 2025_...pdf` |
 | Nền nhà & công trình | **TCVN 9362:2012** | — | `TCVN/5. TCVN 9362-2012_...pdf` |
+| Công tác đất & Đào đắp đầm nén | **TCVN 4447:2012** + **TCVN 9436:2012** | — | Quy chuẩn thi công và nghiệm thu đầm chặt K95/K98, kiểm tra dung trọng đắp |
 | Khảo sát ĐKT nhà cao tầng | **TCVN 9363:2012** | TCXDVN 194:2006 | `TCVN/4.TCVN 9363-2012_...pdf` (Tên đúng: *Khảo sát cho xây dựng - Khảo sát địa kỹ thuật cho nhà cao tầng*) |
 | Khảo sát xây dựng (Nguyên tắc) | **TCVN 4419:1987** | — | Phân 3 cấp mức độ phức tạp ĐCCT (Cấp I, II, III) tại Điều 3.5 & Phụ lục 2; bố trí điểm thăm dò tại Điều 3.19 |
 | Khảo sát ĐCCT & Thí nghiệm SPT | **TCVN 9351:2022** + **BS/ASTM** | TCVN 9351:2012 | `TCVN/6b.TCVN9351-2022_...pdf` |
@@ -162,23 +163,24 @@ Các thư viện Python bắt buộc cho việc xuất báo cáo (Reporting Upgr
 
 ---
 
-## 7. Khóa Cứng Quy tắc Trình bày Văn bản & Typography (Rule 12c — Clean Typography & Math Lock v4.3)
+## 7. Khóa Cứng Quy tắc Trình bày Văn bản & Typography (Điều 12e AGENTS.md — Clean Typography & Math Lock v4.3)
 
-> **Bắt buộc áp dụng cho mọi Skill, Script, Generator (python-docx, docxtpl, docx.js) xuất hồ sơ Word (.docx):**
+> **Bắt buộc theo `AGENTS.md` v7.4 (Điều 12e — trước đây từng gọi là Rule 12c typography; tách riêng khỏi Điều 12c Concrete Grade Realism).**
+> **Áp dụng cho mọi Skill, Script, Generator (`python-docx`, `docxtpl`, `docx.js`) xuất hồ sơ Word (`.docx`):**
 
-1. **Cấm tuyệt đối Double Bullet (•  •  — Trùng lặp 2 dấu chấm đầu dòng)**:
-   - Trong python-docx và docx.js, khi một đoạn văn được gán style='List Bullet' hoặc ullet: { level: 0 }, Microsoft Word tự động render 1 bullet glyph •.
-   - Mọi generator và helper (_docx_helpers.py, docx_generator_v2.py, document_renderer.py, md_to_docx_report.js) bắt buộc phải auto-strip sạch toàn bộ ký tự •, -, –, —, * khỏi đầu chuỗi văn bản (	ext.lstrip('•-–—* \t')).
-   - Tuyệt đối cấm viết doc.add_paragraph(f'• {text}', style='List Bullet') hoặc dd_bullet(text, bp='• ').
+1. **Cấm tuyệt đối Double Bullet (`•  •` — Trùng lặp 2 dấu chấm đầu dòng)**:
+   - Trong `python-docx` và `docx.js`, khi một đoạn văn được gán `style='List Bullet'` hoặc `bullet: { level: 0 }`, Microsoft Word tự động render 1 bullet glyph `•`.
+   - Mọi generator và helper (`_docx_helpers.py`, `docx_generator.py`, `docx_generator_v2.py`, `document_renderer.py`, `md_to_docx_report.js`) bắt buộc phải auto-strip sạch toàn bộ ký tự `•, -, –, —, *` khỏi đầu chuỗi văn bản (`text.lstrip('•-–—* \t')`).
+   - Tuyệt đối cấm viết `doc.add_paragraph(f'• {text}', style='List Bullet')` hoặc `add_bullet(text, bp='• ')`.
 
 2. **Tách biệt hoàn toàn Danh sách Thứ tự & Chữ cái khỏi List Bullet**:
-   - Các danh sách đánh số (1., 2., 3.) hoặc tiểu mục chữ cái (), b), c)) bắt buộc sử dụng paragraph thông thường kèm thuộc tính thụt lề đầu dòng (left_indent = Inches(0.25) hoặc Cm(0.6)).
-   - Nghiêm cấm gán style='List Bullet' cho các mục có số/chữ cái để không làm xuất hiện dấu chấm tròn vô duyên đè trước số (•  1., •  a)). Sử dụng hàm chuẩn dd_item(doc, text, prefix='1. ').
+   - Các danh sách đánh số (`1., 2., 3.`) hoặc tiểu mục chữ cái (`a), b), c)`) bắt buộc sử dụng paragraph thông thường kèm thuộc tính thụt lề đầu dòng (`left_indent = Inches(0.25)` hoặc `Cm(0.6)`).
+   - Nghiêm cấm gán `style='List Bullet'` cho các mục có số/chữ cái để không làm xuất hiện dấu chấm tròn vô duyên đè trước số (`•  1., •  a)`). Sử dụng hàm chuẩn `add_item(doc, text, prefix='1. ')`.
 
-3. **Cấm tuyệt đối để lộ mã thô LaTeX trong Word ($H_{max}$, {tb}$, {min}$)**:
-   - Microsoft Word không tự động biên dịch cú pháp LaTeX dạng kẹp dấu $.
-   - Toàn bộ công thức, ký hiệu thủy văn và cơ học kết cấu ({\max}$, {\text{tb}}$, {\min}$, $, {cd}$, $\gamma_f$, {s,req}$, ^2$, ^3$) bắt buộc phải được quy đổi qua parser:
-     - Hạ chỉ số dưới tự nhiên (subscript=True trong python-docx hoặc subScript: true trong docx.js).
-     - Nâng chỉ số trên tự nhiên (superscript=True hoặc superScript: true).
-     - Quy đổi các macro LaTeX (\implies, \times, \ge, \le, \approx, \Delta...) sang ký tự Unicode chuẩn (⇒, ×, ≥, ≤, ≈, Δ...).
-     - Triệt tiêu 100% các ký tự $ thô trước khi ghi vào file Word.
+3. **Cấm tuyệt đối để lộ mã thô LaTeX trong Word (`$H_{max}$`, `$H_{tb}$`, `$H_{min}$`)**:
+   - Microsoft Word không tự động biên dịch cú pháp LaTeX dạng kẹp dấu `$`.
+   - Toàn bộ công thức, ký hiệu thủy văn và cơ học kết cấu (`$H_{max}$`, `$H_{tb}$`, `$H_{min}$`, `$Q_{cd}$`, `$\gamma_f$`, `$A_{s,req}$`, `m^2`, `m^3`) bắt buộc phải được quy đổi qua parser:
+     - Hạ chỉ số dưới tự nhiên (`subscript=True` trong `python-docx` hoặc `subScript: true` trong `docx.js`).
+     - Nâng chỉ số trên tự nhiên (`superscript=True` hoặc `superScript: true`).
+     - Quy đổi các macro LaTeX (`\implies`, `\times`, `\ge`, `\le`, `\approx`, `\Delta`...) sang ký tự Unicode chuẩn (`⇒`, `×`, `≥`, `≤`, `≈`, `Δ`...).
+     - Triệt tiêu 100% các ký tự `$` thô trước khi ghi vào file Word.

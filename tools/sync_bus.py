@@ -170,11 +170,26 @@ class FileLock:
 
 def find_workspace_root() -> Path:
     """Tự động dò tìm thư mục gốc workspace chứa .agents và memory."""
+    env_ws = os.environ.get("DUAL_AGENT_WORKSPACE")
+    if env_ws and Path(env_ws).is_dir():
+        return Path(env_ws).resolve()
+
+    cwd = Path.cwd()
+    if (cwd / "memory").is_dir() and (cwd / ".agents").is_dir():
+        return cwd
+
     curr = Path(__file__).resolve().parent
-    for _ in range(5):
+    for _ in range(6):
         if (curr / ".agents").is_dir() and (curr / "memory").is_dir():
             return curr
         curr = curr.parent
+
+    curr = Path(__file__).resolve().parent
+    for _ in range(6):
+        if (curr / "memory").is_dir() or (curr / ".agents").is_dir():
+            return curr
+        curr = curr.parent
+
     # Fallback chuẩn: .agents/tools -> parents[2]
     return Path(__file__).resolve().parents[2]
 
@@ -903,8 +918,11 @@ def resolve_gdrive_conflicts(
                 dup.unlink()
                 results.append(f"[UPGRADED_BASE] {base.name} được cập nhật từ {dup.name} mới hơn (đã backup: {backup_file.name})")
             elif action == "KEEP_BASE_DELETE_DUPLICATE":
+                backup_dir.mkdir(parents=True, exist_ok=True)
+                backup_file = backup_dir / f"{dup.stem}_dup_backup_{int(time.time())}{dup.suffix}"
+                shutil.copy2(dup, backup_file)
                 dup.unlink()
-                results.append(f"[DELETED_OLDER_DUP] Bản gốc mới hơn, đã xóa {dup.name}")
+                results.append(f"[DELETED_OLDER_DUP] Bản gốc mới hơn, đã xóa {dup.name} (đã an toàn sao lưu: {backup_file.name})")
             elif action == "RENAME_TO_BASE":
                 dup.rename(base)
                 results.append(f"[RENAMED] Đã đổi {dup.name} thành {base.name}")

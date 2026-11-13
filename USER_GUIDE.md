@@ -1,6 +1,6 @@
 # 🎯 HƯỚNG DẪN SỬ DỤNG HỆ THỐNG SKILLS KỸ SƯ KẾT CẤU
 
-> **Phiên bản:** 1.0 — Cập nhật: 2026-10-13
+> **Phiên bản:** 2.0 — Cập nhật: 2026-11-11
 > **Dành cho:** Kỹ sư kết cấu, Quản lý dự án, Chủ đầu tư, Nhà thầu
 
 ---
@@ -92,8 +92,8 @@
 │   ├── Design_Evaluation/       ← Review, thẩm tra, tờ trình
 │   ├── Structural_Design_Engineer/ ← Tính toán kết cấu
 │   ├── SKILL_GEOTECH/           ← Địa kỹ thuật
-│   ├── Technical_Illustrator/    ← Vẽ kỹ thuật
-│   └── [8 skills khác...]
+│   ├── Technical_Illustrator/    ← Vẽ kỹ thuật & CAD DCE Pro
+│   └── [9 skills khác...]
 ├── _archive/                    ← Lưu trữ file cũ
 └── docs/                        ← Tài liệu hệ thống
 ```
@@ -151,8 +151,9 @@
 | **SKILL_FORENSIC** | Giám định sự cố | Điều tra nguyên nhân nứt, hư hỏng, back-calculation |
 | **SKILL_PHULUC** | Phụ lục tính toán | Tạo phụ lục step-by-step cho tư vấn thiết kế |
 | **SKILL_RFI** | Quản lý giao dịch | Quản lý RFI, NCR, Submittal, Change Order |
-| **Project_Manager** | Quản lý dự án | Theo dõi tiến độ, resource allocation |
-| **SKILL_BIM_COORDINATION** | BIM Coordination | Clash detection, model review |
+| **Project_Manager** | Quản lý dự án | Master Schedule MS Project (Gantt/XML), phân cấp TT 34/2026, EVM/CPM, KPI ISO |
+| **SKILL_BIM_COORDINATION** | BIM Coordination | Clash detection 3D/2D, kiểm tra thông thủy, rà soát lưới trục & CAD |
+| **SKILL_DUAL_AGENT_BRIDGE** | Cầu nối liên tác tử | Điều phối bàn giao & thẩm tra đối kháng Gemini ↔ Claude qua `DUAL_AGENT_BUS.json` |
 
 ---
 
@@ -334,5 +335,5 @@ AI Flow:
 
 ---
 
-**Cập nhật lần cuối:** 2026-10-13
-**Phiên bản hệ thống:** v6.1
+**Cập nhật lần cuối:** 2026-11-11
+**Phiên bản hệ thống:** v7.4

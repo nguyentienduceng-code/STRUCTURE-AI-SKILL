@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "1.1.0",
-    "last_updated": "2026-10-18",
-    "total_keywords": 417,
+    "version": "1.2.0",
+    "last_updated": "2026-11-11",
+    "total_keywords": 442,
     "description": "Keyword database cho Intent Classifier — mapping prompt keywords → skill"
   },
   "skills": {
@@ -160,9 +160,9 @@
       "skill_id": "PL",
       "display_name": "SKILL_PHULUC (Phụ lục Tính toán)",
       "entry_points": [
-        "TMTT_FULL.md",
-        "PARTIAL_BE_TONG.md",
-        "PARTIAL_THEP.md"
+        "templates/TMTT_FULL.md",
+        "templates/PARTIAL_BE_TONG.md",
+        "templates/PARTIAL_THEP.md"
       ],
       "role": "Phụ lục tính toán step-by-step đầy đủ cho thẩm tra",
       "primary_keywords": [
@@ -572,9 +572,11 @@
     },
     "Project_Manager": {
       "skill_id": "PM",
-      "display_name": "Project Manager (Quản lý Dự án) [PLACEHOLDER]",
+      "display_name": "Project Manager (Quản lý Dự án & Tiến độ PMO)",
       "entry_points": [
-        "SKILL.md"
+        "SKILL.md",
+        "scripts/project_grading.py",
+        "scripts/msproject_bridge.py"
       ],
       "role": "Quản lý vòng đời dự án, lộ trình pháp lý, ĐTM, PCCC",
       "primary_keywords": [
@@ -587,7 +589,12 @@
         "ĐTM",
         "đánh giá tác động môi trường",
         "PCCC",
-        "phòng cháy chữa cháy"
+        "phòng cháy chữa cháy",
+        "Master Schedule",
+        "MS Project",
+        "phân cấp công trình",
+        "EVM",
+        "CPM"
       ],
       "secondary_keywords": [
         "risk register",
@@ -603,11 +610,11 @@
         "milestone|Gantt|WBS|critical path"
       ],
       "anti_keywords": [],
-      "is_placeholder": true
+      "is_placeholder": false
     },
     "SKILL_BIM_COORDINATION": {
       "skill_id": "BIM",
-      "display_name": "SKILL_BIM_COORDINATION (BIM) [PLACEHOLDER]",
+      "display_name": "SKILL_BIM_COORDINATION (BIM & CAD Clash Audit)",
       "entry_points": [
         "SKILL.md"
       ],
@@ -618,7 +625,10 @@
         "IFC analysis",
         "xung đột kỹ thuật",
         "BIM coordination",
-        "model review"
+        "model review",
+        "lỗ mở dầm",
+        "thông thủy",
+        "đối chiếu lưới trục"
       ],
       "secondary_keywords": [
         "IFC",
@@ -634,7 +644,43 @@
         "IFC\\s+(analysis|review|check)"
       ],
       "anti_keywords": [],
-      "is_placeholder": true
+      "is_placeholder": false
+    },
+    "SKILL_DUAL_AGENT_BRIDGE": {
+      "skill_id": "DAB",
+      "display_name": "SKILL_DUAL_AGENT_BRIDGE (Cầu nối Gemini ↔ Claude)",
+      "entry_points": [
+        "SKILL.md",
+        "scripts/quick_status.py",
+        "scripts/claim_task.py",
+        "scripts/handover_task.py"
+      ],
+      "role": "Điều phối bàn giao ca trực, khóa phân vùng và thẩm tra đối kháng giữa Gemini và Claude qua Bus v3.0",
+      "primary_keywords": [
+        "bàn giao Claude",
+        "bàn giao Gemini",
+        "phối hợp 2 AI",
+        "sync bus",
+        "handoff memo",
+        "DUAL_AGENT_BUS",
+        "thẩm tra đối kháng",
+        "bàn giao task",
+        "nhận ca",
+        "claim task"
+      ],
+      "secondary_keywords": [
+        "Red-Team Audit",
+        "bus IPC",
+        "kiểm toán bus",
+        "Dual-Agent",
+        "file_ipc"
+      ],
+      "regex_patterns": [
+        "(bàn giao|chuyển ca|phối hợp|kiểm toán)\\s+(?:task\\s+)?(?:cho\\s+)?(Claude|Gemini|2 AI|bus)",
+        "DUAL_AGENT_(BUS|HANDOFF)"
+      ],
+      "anti_keywords": [],
+      "is_placeholder": false
     }
   },
   "tie_breakers": {

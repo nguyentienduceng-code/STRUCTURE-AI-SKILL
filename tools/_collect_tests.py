@@ -156,7 +156,25 @@ def _parse_suite17(stdout: str) -> Optional[tuple[int, int, int]]:
     return passed, failed, passed + failed
 
 
+def _parse_rd_patches(stdout: str) -> Optional[tuple[int, int, int]]:
+    # "TỔNG KẾT KIỂM THỬ: 20 PASSED / 0 FAILED"
+    m = re.search(r"TỔNG KẾT KIỂM THỬ:\s+(\d+)\s+PASSED\s*/\s*(\d+)\s+FAILED", stdout)
+    if not m:
+        return None
+    passed = int(m.group(1))
+    failed = int(m.group(2))
+    return passed, failed, passed + failed
+
+
 PARSER_BY_HINT = [
+    ("Cognitive Architecture v2", _parse_unittest),
+    ("PDF Citation Grounding", _parse_unittest),
+    ("Nonlinear RC Fiber Section", _parse_unittest),
+    ("Project Data Adapter", _parse_unittest),
+    ("DCE CAD Compliance", _parse_unittest),
+    ("Dual-Agent Bridge", _parse_unittest),
+    ("Cognitive Brain", _parse_unittest),
+    ("Structural TCVN Regression Patches", _parse_rd_patches),
     ("XLSX View Sanity", _parse_suite17),
     ("Sprint 5", _parse_unittest),
     ("Sprint 4", _parse_unittest),

@@ -78,6 +78,11 @@ SHORTHAND_ALIASES = {
     "project_manager": "Project_Manager",
     "bim": "SKILL_BIM_COORDINATION",
     "skill_bim_coordination": "SKILL_BIM_COORDINATION",
+    "dab": "SKILL_DUAL_AGENT_BRIDGE",
+    "bridge": "SKILL_DUAL_AGENT_BRIDGE",
+    "bus": "SKILL_DUAL_AGENT_BRIDGE",
+    "dual_agent": "SKILL_DUAL_AGENT_BRIDGE",
+    "skill_dual_agent_bridge": "SKILL_DUAL_AGENT_BRIDGE",
 }
 
 DOMAIN_SEMANTIC_ONTOLOGY: Dict[str, Dict[str, List[str]]] = {
@@ -439,7 +444,7 @@ class IntentClassifier:
         ]
         return any(ind in prompt_lower or ind in prompt_ascii for ind in sls_indicators)
 
-    def classify(self, prompt: str, top_n: int = 3, verbose: bool = False) -> dict:
+    def classify(self, prompt: str, top_n: int = 3, verbose: bool = False, plan_workflow: bool = True) -> dict:
         mention_skill, working_prompt = self._extract_mention_override(prompt)
         prompt_lower = working_prompt.lower().strip()
         prompt_ascii = strip_vietnamese_accents(prompt_lower)
@@ -470,7 +475,7 @@ class IntentClassifier:
             ranked = [(mention_skill, 1.0)] + [(k, v) for k, v in ranked if k != mention_skill]
 
         pipeline_result = None
-        if not mention_skill:
+        if not mention_skill and plan_workflow:
             pipeline_result = self._detect_pipeline(prompt_lower, prompt_ascii, ranked, match_details)
             if pipeline_result and pipeline_result.get("skills"):
                 lead_skill = pipeline_result["skills"][0]
@@ -541,11 +546,16 @@ class IntentClassifier:
             "confidence_level": confidence_level,
             "reasoning": reasoning,
             "all_matches": all_matches,
-            "is_pipeline": pipeline_result is not None,
+            "is_pipeline": pipeline_result is not None and not pipeline_result.get("error"),
             "pipeline": pipeline_result,
+            "workflow": self._workflow_for(pipeline_result, prompt) if plan_workflow else None,
             "extracted_entities": extracted_entities,
             "suggestions": suggestions
         }
+
+        if pipeline_result and pipeline_result.get("error"):
+            result.update(confidence=0.0, confidence_level="LOW", requires_clarification=True,
+                          suggestions=pipeline_result["error"])
 
         if verbose:
             result["debug"] = {
@@ -626,7 +636,26 @@ class IntentClassifier:
 
         return max(score, 0.0), details
 
+    def _workflow_for(self, pipeline, prompt):
+        if not pipeline:
+            return None
+        if pipeline.get("graph_type") == "DAG" or pipeline.get("error"):
+            return pipeline
+        from pipeline_builder import PipelineBuilder
+        return PipelineBuilder(self.db_path).build(pipeline["skills"], context=prompt)
+
     def _detect_pipeline(self, prompt_lower: str, prompt_ascii: str, ranked: list, match_details: dict) -> Optional[dict]:
+        if re.search(r"\b(roi|sau do|tiep theo|neu|song song|dong thoi|then|if|in parallel)\b|;|\n", prompt_ascii):
+            from pipeline_builder import PipelineBuilder
+            try:
+                plan = PipelineBuilder(self.db_path).plan(
+                    prompt_lower, lambda text: self.classify(text, plan_workflow=False))
+                if len(plan['stages']) > 1:
+                    return plan
+            except ValueError as error:
+                # Do not silently turn an unresolved conditional into an unconditional chain.
+                return {"skills": [], "error": str(error), "requires_clarification": True,
+                        "stages": [], "template": "unresolved_workflow"}
         has_multi_connector = bool(re.search(
             r'\b(rồi|roi|sau đó|sau do|tiếp theo|tiep theo|xong|xong rồi|và lập|va lap|và xuất|va xuat)\b',
             prompt_lower
@@ -779,7 +808,7 @@ class IntentClassifier:
             parts.append("(Độ tin cậy THẤP — nên hỏi lại User)")
 
         if pipeline:
-            parts.append(f"\n→ Pipeline phát hiện: {' → '.join(pipeline['skills'])}")
+            parts.append(f"\n→ Pipeline phát hiện: {' → '.join(pipeline.get('skills', []))}")
 
         return " ".join(parts)
 
@@ -790,7 +819,7 @@ class IntentClassifier:
         elif confidence_level == "MEDIUM":
             return f"XÁC NHẬN: 'Tôi sẽ dùng {primary} để xử lý yêu cầu này. Anh/chị đồng ý không?'"
         elif pipeline:
-            skills = " → ".join(pipeline["skills"])
+            skills = " → ".join(pipeline.get("skills", []))
             return f"CHẠY PIPELINE: {skills}"
         else:
             return f"TIẾN HÀNH: Đọc SKILL.md của {primary} và thực thi."

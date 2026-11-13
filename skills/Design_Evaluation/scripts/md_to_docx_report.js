@@ -130,6 +130,9 @@ function cell(text, isHeader) {
 function parse(md) {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out = [];
+  const olRefs = [];
+  let olCounter = 0;
+  let inOlNum = false;
   let i = 0, inCode = false, codeBuf = [];
   let missingImages = 0;
 
@@ -228,21 +231,51 @@ function parse(md) {
       i++; continue;
     }
 
-    // Danh sach: ho tro -, *, +, • va chong double bullet (Rule 12c)
+    // Danh sach: ho tro -, *, +, • va chong double bullet (Điều 12e)
     const ul = line.match(/^\s*[-*+•]\s+(.*)$/);
-    const ol = line.match(/^\s*(\d+[\.\)]|[a-zA-Z][\.\)])\s+(.*)$/);
-    if (ul || ol) {
-      const rawText = (ul ? ul[1] : ol[2]).replace(/^[•\-–—*]\s*/, '').trim();
+    const olNum = line.match(/^\s*(\d+[\.\)])\s+(.*)$/);
+    const olAlpha = line.match(/^\s*([a-zA-Z][\.\)])\s+(.*)$/);
+    if (ul) {
+      inOlNum = false;
+      const rawText = ul[1].replace(/^[•–—]\s*|^[*-]\s+/, '').trim();
       out.push(new Paragraph({
         children: inlineRuns(rawText),
-        bullet: ul ? { level: 0 } : undefined,
-        numbering: ol ? { reference: "md-ol", level: 0 } : undefined,
-        indent: ol ? { left: 720, hanging: 360 } : undefined,
+        bullet: { level: 0 },
+        spacing: { before: 40, after: 40 },
+      }));
+      i++; continue;
+    }
+    if (olNum) {
+      if (!inOlNum) {
+        olCounter += 1;
+        olRefs.push(`md-ol-${olCounter}`);
+        inOlNum = true;
+      }
+      const refName = `md-ol-${olCounter}`;
+      const rawText = olNum[2].replace(/^[•–—]\s*|^[*-]\s+/, '').trim();
+      out.push(new Paragraph({
+        children: inlineRuns(rawText),
+        numbering: { reference: refName, level: 0 },
+        indent: { left: 720, hanging: 360 },
+        spacing: { before: 40, after: 40 },
+      }));
+      i++; continue;
+    }
+    if (olAlpha) {
+      inOlNum = false;
+      const rawText = olAlpha[2].replace(/^[•–—]\s*|^[*-]\s+/, '').trim();
+      out.push(new Paragraph({
+        children: [
+          new TextRun({ text: `${olAlpha[1]} `, font: FONT_OBJ, size: SIZE }),
+          ...inlineRuns(rawText),
+        ],
+        indent: { left: 720, hanging: 360 },
         spacing: { before: 40, after: 40 },
       }));
       i++; continue;
     }
 
+    inOlNum = false;
     if (!line.trim()) { i++; continue; }
 
     out.push(new Paragraph({
@@ -253,19 +286,20 @@ function parse(md) {
     i++;
   }
   flushCode();
-  return { children: out, missingImages };
+  return { children: out, missingImages, olRefs };
 }
 
 // ------------------------------------------------------------ Xuat file
 (async () => {
-  const { children, missingImages } = parse(fs.readFileSync(inputMd, "utf8"));
+  const { children, missingImages, olRefs } = parse(fs.readFileSync(inputMd, "utf8"));
+  const numberingConfigs = (olRefs.length ? olRefs : ["md-ol-1"]).map((ref) => ({
+    reference: ref,
+    levels: [{ level: 0, format: "decimal", text: "%1.", alignment: AlignmentType.START }],
+  }));
 
   const doc = new Document({
     numbering: {
-      config: [{
-        reference: "md-ol",
-        levels: [{ level: 0, format: "decimal", text: "%1.", alignment: AlignmentType.START }],
-      }],
+      config: numberingConfigs,
     },
     styles: { default: { document: { run: { font: FONT_OBJ, size: SIZE } } } },
     sections: [{

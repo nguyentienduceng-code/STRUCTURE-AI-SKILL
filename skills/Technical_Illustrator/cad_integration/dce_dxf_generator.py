@@ -21,6 +21,7 @@ Usage:
 
 import sys
 import os
+from pathlib import Path
 
 # Setup UTF-8
 if sys.stdout.encoding != 'utf-8':
@@ -203,28 +204,39 @@ class DCEDXFGenerator:
         self.sheet = "1/1"
 
     def setup_document(self):
-        """Thiet lap tai lieu DXF."""
+        """Thiet lap tai lieu DXF ke thua tu Seed Template DCE Pro."""
         if not HAS_EZDXF:
             raise RuntimeError("ezdxf not installed")
 
-        # Create new document - R2018 for AutoCAD 2018+
-        self.doc = ezdxf.new('R2018')
-        self.msp = self.doc.modelspace()
+        # Uu tien nap Seed Template chua day du 46 Layer DCE_*, Linetypes *_DBIM, DimStyles, Blocks
+        template_candidates = [
+            Path(__file__).parent / "templates" / "DCE_Master_Seed_Template.dxf",
+            Path(r"g:\My Drive\Google AI Studio\.agents\skills\Technical_Illustrator\cad_integration\templates\DCE_Master_Seed_Template.dxf"),
+            Path(r"g:\My Drive\Google AI Studio\01_Projects\99_Archived\DuAn_Test\Dam_200x400_DCE.dxf")
+        ]
+        template_path = None
+        for cand in template_candidates:
+            if cand.is_file():
+                template_path = cand
+                break
 
-        # Setup layers
-        self._setup_layers()
-
-        # Setup linetypes
-        self._setup_linetypes()
-
-        # Setup text styles
-        self._setup_text_styles()
-
-        # Setup dimension styles
-        self._setup_dimstyles()
-
-        # Setup title block
-        self._setup_title_block()
+        if template_path:
+            self.doc = ezdxf.readfile(str(template_path))
+            self.msp = self.doc.modelspace()
+            # Xoa thuc the cu, giu nguyen 100% TABLES (Layers, Blocks, Dimstyles, Linetypes)
+            for e in list(self.msp):
+                self.msp.delete_entity(e)
+            self.doc.header['$INSUNITS'] = 4    # Millimeters
+            self.doc.header['$MEASUREMENT'] = 1 # Metric
+        else:
+            # Fallback neu khong tim thay file template
+            self.doc = ezdxf.new('R2018', setup=True)
+            self.msp = self.doc.modelspace()
+            self._setup_layers()
+            self._setup_linetypes()
+            self._setup_text_styles()
+            self._setup_dimstyles()
+            self._setup_title_block()
 
         return self
 
@@ -536,16 +548,21 @@ class DCEDXFGenerator:
     # =========================================================================
 
     def save(self, filename: str):
-        """Luu file DXF."""
+        """Luu file DXF co kiem toan audit."""
         if not self.doc:
             self.setup_document()
+
+        # Audit truoc khi luu de tranh loi drawing discarded
+        auditor = self.doc.audit()
+        if auditor.errors:
+            print(f"[WARN] Audit errors: {auditor.errors}")
 
         # Ensure directory exists
         os.makedirs(os.path.dirname(filename) or '.', exist_ok=True)
 
         # Save
         self.doc.saveas(filename)
-        print(f"[OK] Da luu: {filename}")
+        print(f"[OK] Da luu: {filename} (Audit fixes: {len(auditor.fixes)})")
 
         return filename
 

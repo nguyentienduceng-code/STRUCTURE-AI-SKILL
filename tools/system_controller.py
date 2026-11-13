@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-system_controller.py — Bộ Điều Khiển Giám Sát, Cầu Dao An Toàn & Hộp Đen Thực Thi (v1.1)
+system_controller.py — Bộ Điều Khiển Giám Sát, Cầu Dao An Toàn & Hộp Đen Thực Thi (v2.0)
 Lấy cảm hứng từ agent-circuit-breaker, aw1-breaker và SupervisorAgent.
 Zero-dependency, Pure Python, thiết kế Fail-Closed.
 
@@ -18,6 +18,7 @@ if sys.platform == 'win32' and hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8')
 
 import time
+import os
 import uuid
 import json
 import threading
@@ -51,16 +52,22 @@ class CircuitBreaker:
     """
     def __init__(self, name: str, failure_threshold: int = 3, recovery_timeout: float = 30.0,
                  recorder: Optional['BlackboxRecorder'] = None):
+        import math
+        if isinstance(failure_threshold, bool) or not isinstance(failure_threshold, int) or failure_threshold < 1:
+            raise ValueError('failure_threshold must be a positive integer')
+        if isinstance(recovery_timeout, bool) or not isinstance(recovery_timeout, (int, float)) or not math.isfinite(recovery_timeout) or recovery_timeout < 0:
+            raise ValueError('recovery_timeout must be finite and non-negative')
         self.name = name
         self.failure_threshold = failure_threshold
         self.recovery_timeout = recovery_timeout
         self.state = CircuitState.CLOSED
         self.failure_count = 0
+        self._generation = 0
         self.last_failure_time: Optional[float] = None
         self.success_count = 0
         self._lock = threading.RLock()
         self._half_open_probe_in_flight = False
-        self.recorder = recorder
+        self.recorder = recorder if recorder is not None else BlackboxRecorder()
 
     def record_success(self, trace_id: Optional[str] = None):
         with self._lock:
@@ -98,6 +105,8 @@ class CircuitBreaker:
             prev_state = self.state
             if self.failure_count >= self.failure_threshold:
                 self.state = CircuitState.OPEN
+                if prev_state != CircuitState.OPEN:
+                    self._generation += 1
                 if prev_state != CircuitState.OPEN and self.recorder:
                     try:
                         active_trace_id = trace_id or self.recorder.generate_trace_id()
@@ -136,7 +145,7 @@ class CircuitBreaker:
             if self.state == CircuitState.CLOSED:
                 return True
             if self.state == CircuitState.OPEN:
-                if self.last_failure_time and (time.time() - self.last_failure_time >= self.recovery_timeout):
+                if self.last_failure_time is not None and (time.time() - self.last_failure_time >= self.recovery_timeout):
                     self.state = CircuitState.HALF_OPEN
                     return True
                 return False
@@ -155,7 +164,7 @@ class CircuitBreaker:
             if self.state == CircuitState.CLOSED:
                 return True
             if self.state == CircuitState.OPEN:
-                if self.last_failure_time and (time.time() - self.last_failure_time >= self.recovery_timeout):
+                if self.last_failure_time is not None and (time.time() - self.last_failure_time >= self.recovery_timeout):
                     self.state = CircuitState.HALF_OPEN
                     self._half_open_probe_in_flight = True
                     return True
@@ -168,21 +177,33 @@ class CircuitBreaker:
             return False
 
     def call(self, func: Callable, *args, **kwargs) -> Any:
-        if not self._try_acquire_probe():
-            raise CircuitBreakerTripped(
-                f"[CIRCUIT_OPEN] Dịch vụ '{self.name}' đang bị ngắt mạch do {self.failure_count} lỗi liên tiếp. "
-                f"Vui lòng đợi hạ nhiệt hoặc dùng fallback."
-            )
+        return self.call_traced(None, func, *args, **kwargs)
+
+    def call_traced(self, trace_id, func, *args, **kwargs):
+        trace_id = trace_id or self.recorder.generate_trace_id()
+        with self._lock:
+            admitted = self._try_acquire_probe()
+            generation = self._generation
+        if not admitted:
+            span = self.recorder.start_span(trace_id, "CircuitBreaker", f"CIRCUIT_BLOCKED:{self.name}")
+            self.recorder.end_span(span, status="CIRCUIT_OPEN", metadata={"circuit_name": self.name})
+            raise CircuitBreakerTripped(f"[CIRCUIT_OPEN] Service '{self.name}' is open")
         try:
-            res = func(*args, **kwargs)
-            self.record_success()
-            return res
-        except Exception as e:
-            self.record_failure()
-            raise e
+            result = func(*args, **kwargs)
+        except Exception as error:
+            with self._lock:
+                if generation == self._generation:
+                    self.record_failure(trace_id=trace_id, error=repr(error))
+            raise
+        with self._lock:
+            # A success from an older CLOSED window must not close a newly tripped circuit.
+            if generation == self._generation:
+                self.record_success(trace_id=trace_id)
+        return result
 
     def reset(self):
         with self._lock:
+            self._generation += 1
             self.state = CircuitState.CLOSED
             self.failure_count = 0
             self.last_failure_time = None
@@ -279,59 +300,110 @@ class ExecutionGuard:
 # 3. BỘ CHỐNG LẮP VÀ PHÁT HIỆN CHU TRÌNH ĐA TÁC TỬ (LOOP BREAKER)
 # ==============================================================================
 
-class LoopBreaker:
-    """
-    Bộ đệm chống vòng lặp vô tận (Runaway Loop / Ping-Pong between Agents).
-    - Theo dõi lịch sử chuỗi tác tử gọi nhau (Trajectory).
-    - Ngắt mạch nếu vượt quá max_hops (mặc định 10).
-    - Phát hiện chu kỳ lặp A -> B -> A -> B lặp lại quá max_cycle_repeats.
-    """
-    def __init__(self, max_hops: int = 10, max_cycle_repeats: int = 2):
-        self.max_hops = max_hops
-        self.max_cycle_repeats = max_cycle_repeats
-        self.trajectory: List[str] = []
+class TokenBudget:
+    """Atomic admission accounting in tokens. Configure per session; no monetary estimates."""
+    def __init__(self, limit=None, throttle_ratio=0.8, throttle_fraction=0.1):
+        if limit is not None and (isinstance(limit, bool) or not isinstance(limit, int) or limit < 0):
+            raise ValueError('Token limit must be a non-negative integer or None')
+        if not 0 < throttle_ratio < 1 or not 0 < throttle_fraction <= 1:
+            raise ValueError('Invalid throttle ratios')
+        self.limit, self.used = limit, 0
+        self.throttle_ratio, self.throttle_fraction = throttle_ratio, throttle_fraction
         self._lock = threading.RLock()
 
-    def record_hop(self, agent_name: str) -> Dict[str, Any]:
+    def reserve(self, tokens=0):
+        if isinstance(tokens, bool) or not isinstance(tokens, int) or tokens < 0:
+            raise ValueError('Token cost must be a non-negative integer')
         with self._lock:
+            before = self.status()
+            allowed = self.limit is None or (before['remaining_tokens'] > 0 and
+                tokens <= before['remaining_tokens'] and tokens <= before['max_tokens_per_call'])
+            if allowed:
+                self.used += tokens
+            return {**self.status(), 'allowed': allowed, 'reserved_tokens': tokens if allowed else 0,
+                    'decision': 'ALLOWED' if allowed else
+                        ('BUDGET_THROTTLED' if before['state'] == 'THROTTLED' and
+                         tokens <= before['remaining_tokens'] else 'BUDGET_EXHAUSTED')}
+
+    def status(self):
+        with self._lock:
+            remaining = None if self.limit is None else max(0, self.limit-self.used)
+            state = 'NORMAL' if self.limit is None else ('EXHAUSTED' if remaining == 0 else
+                'THROTTLED' if self.used >= self.limit*self.throttle_ratio else 'NORMAL')
+            cap = remaining
+            if state == 'THROTTLED':
+                cap = min(remaining, max(1, int(self.limit*self.throttle_fraction)))
+            return {'state': state, 'used_tokens': self.used, 'limit_tokens': self.limit,
+                    'remaining_tokens': remaining, 'max_tokens_per_call': cap,
+                    'recommended_parallel_calls': 1 if state == 'THROTTLED' else None}
+
+
+class LoopBreaker:
+    """v2: repeated multi-agent suffixes, cycle evidence and a sticky hop/cycle breaker.
+
+    max_cycle_repeats preserves v1 semantics (ABAB trips at two periods).
+    ABCA already reports cycle_detected; ABCABC trips at two full periods.
+    Consecutive calls by a single actor are not treated as multi-agent loops.
+    """
+    def __init__(self, max_hops=10, max_cycle_repeats=2, token_budget=None):
+        for value in (max_hops, max_cycle_repeats):
+            if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+                raise ValueError('Hop/repeat limits must be positive integers')
+        self.max_hops, self.max_cycle_repeats = max_hops, max_cycle_repeats
+        self.trajectory = []
+        self.budget = TokenBudget(token_budget)
+        self._lock = threading.RLock()
+        self._tripped = None
+
+    def record_hop(self, agent_name, tokens_used=0):
+        if not isinstance(agent_name, str) or not agent_name.strip():
+            raise ValueError('Agent name must be non-empty')
+        if isinstance(tokens_used, bool) or not isinstance(tokens_used, int) or tokens_used < 0:
+            raise ValueError('Token cost must be a non-negative integer')
+        with self._lock:
+            if self._tripped:
+                return {**self._tripped, 'trajectory': list(self.trajectory)}
+            budget = self.budget.reserve(tokens_used)
+            if not budget['allowed']:
+                return {'is_loop': False, 'budget_blocked': True, 'budget': budget,
+                        'reason': budget['decision'], 'trajectory': list(self.trajectory)}
             self.trajectory.append(agent_name)
-            # 1. Kiểm tra độ dài tối đa
+            path = []
+            for previous in range(len(self.trajectory)-2, -1, -1):
+                if self.trajectory[previous] == agent_name:
+                    candidate = self.trajectory[previous:]
+                    if len(set(candidate)) > 1:
+                        path = candidate
+                    break
+            result = {'is_loop': False, 'current_hops': len(self.trajectory),
+                      'trajectory': list(self.trajectory), 'cycle_detected': bool(path),
+                      'cycle_path': path, 'budget': budget}
+            if path and self.max_cycle_repeats == 1:
+                result.update(is_loop=True, reason=f'Multi-agent cycle: {path}',
+                              code='MULTI_AGENT_CYCLE', cycle_length=len(path)-1, cycle_repeats=1)
             if len(self.trajectory) > self.max_hops:
-                return {
-                    "is_loop": True,
-                    "reason": f"Vượt quá giới hạn bước nhảy tối đa ({self.max_hops} hops). Dừng để tránh lãng phí token.",
-                    "trajectory": list(self.trajectory)
-                }
+                result.update(is_loop=True, reason=f'Maximum hops exceeded ({self.max_hops})', code='MAX_HOPS')
+            else:
+                repeats = max(2, self.max_cycle_repeats)
+                for size in range(2, len(self.trajectory)//repeats+1):
+                    tail = self.trajectory[-size*repeats:]
+                    unit = tail[:size]
+                    if len(set(unit)) > 1 and tail == unit*repeats:
+                        result.update(is_loop=True, cycle_detected=True,
+                            cycle_path=unit+[unit[0]], cycle_length=size, cycle_repeats=repeats,
+                            reason=f"Repeated {'ping-pong' if size == 2 else 'multi-agent'} cycle: {unit} ({repeats} periods)", code='MULTI_AGENT_CYCLE')
+                        break
+            if result['is_loop']:
+                self._tripped = dict(result)
+            return result
 
-            # 2. Phát hiện chu kỳ ping-pong 2 tác tử: [A, B, A, B, ...]
-            #    max_cycle_repeats = số lần lặp lại của chu kỳ 2 tác tử trước khi trip.
-            #    max_cycle_repeats=2 -> cần đuôi dài >= 4 dạng A,B,A,B.
-            cycle_len = 2
-            repeats = max(2, self.max_cycle_repeats)
-            if len(self.trajectory) >= cycle_len * repeats:
-                tail = self.trajectory[-cycle_len * repeats:]
-                a, b = tail[0], tail[1]
-                if a != b and all(
-                    tail[i] == (a if i % 2 == 0 else b) for i in range(len(tail))
-                ):
-                    return {
-                        "is_loop": True,
-                        "reason": (
-                            f"Phát hiện chu kỳ lặp ping-pong giữa '{a}' và '{b}' "
-                            f"({repeats} chu kỳ liên tiếp). Kích hoạt Review Gate."
-                        ),
-                        "trajectory": list(self.trajectory)
-                    }
-
-            return {
-                "is_loop": False,
-                "current_hops": len(self.trajectory),
-                "trajectory": list(self.trajectory)
-            }
-
-    def reset(self):
+    def reset(self, reset_budget=True):
         with self._lock:
             self.trajectory.clear()
+            self._tripped = None
+            if reset_budget:
+                self.budget = TokenBudget(self.budget.limit, self.budget.throttle_ratio,
+                                          self.budget.throttle_fraction)
 
 
 # ==============================================================================
@@ -352,6 +424,7 @@ class TraceSpan:
     error: Optional[str] = None
 
 class BlackboxRecorder:
+    _io_lock = threading.RLock()
     """
     Hộp đen máy bay giám sát toàn bộ luồng thực thi của các Agent.
     Sinh Trace ID duy nhất cho mỗi phiên làm việc, đo độ trễ và ghi log chuẩn.
@@ -363,6 +436,7 @@ class BlackboxRecorder:
         self.log_dir = Path(log_dir) if log_dir else (Path(__file__).resolve().parent.parent / "_SHARED" / "SHARED_CONTEXT")
         self.persist = persist
         self.max_trace_files = max_trace_files
+        self.persistence_errors: List[str] = []
         self.traces: List[TraceSpan] = []
         self._lock = threading.RLock()
         self._trace_dir = self.log_dir / "traces"
@@ -439,26 +513,31 @@ class BlackboxRecorder:
         return removed
 
     def _flush(self, span: TraceSpan):
-        """Ghi 1 span xuống JSONL (bỏ qua lỗi I/O — trace không được làm hỏng luồng chính)."""
+        """Serialize appends across recorder instances in this process; expose I/O errors."""
         if not self.persist:
             return
         try:
-            self._trace_dir.mkdir(parents=True, exist_ok=True)
-            today_str = datetime.now().strftime("%Y%m%d")
-            if self._last_rotation_date != today_str:
-                self._last_rotation_date = today_str
-                self.rotate_traces()
-            payload = asdict(span)
-            payload["logged_at"] = datetime.now().astimezone().isoformat()
-            with open(self._trace_file(span.trace_id), "a", encoding="utf-8") as f:
-                f.write(json.dumps(payload, ensure_ascii=False) + "\n")
-        except OSError:
-            pass
+            with self._io_lock:
+                self._trace_dir.mkdir(parents=True, exist_ok=True)
+                today = datetime.now().strftime("%Y%m%d")
+                if self._last_rotation_date != today:
+                    self._last_rotation_date = today
+                    self.rotate_traces()
+                payload = asdict(span)
+                payload["logged_at"] = datetime.now().astimezone().isoformat()
+                with open(self._trace_file(span.trace_id), "a", encoding="utf-8") as handle:
+                    handle.write(json.dumps(payload, ensure_ascii=False) + "\n")
+                    handle.flush()
+                    os.fsync(handle.fileno())
+        except OSError as error:
+            with self._lock:
+                self.persistence_errors.append(str(error))
 
     def export_summary(self) -> Dict[str, Any]:
         with self._lock:
             return {
                 "total_spans": len(self.traces),
+                "persistence_errors": list(self.persistence_errors),
                 "success_count": sum(1 for s in self.traces if s.status == "SUCCESS"),
                 "failure_count": sum(1 for s in self.traces if s.status != "SUCCESS"),
                 "spans": [asdict(s) for s in self.traces[-50:]]  # Giữ 50 span gần nhất trong memory
@@ -492,6 +571,8 @@ class SystemController:
         }
         self.guard = ExecutionGuard(mode="SAFE")
         self.loop_breaker = LoopBreaker(max_hops=10)
+        self._sessions = {}
+        self._default_trace_id = self.recorder.generate_trace_id()
         self._pending_approvals: Set[str] = set()
         self._lock = threading.RLock()
 
@@ -516,61 +597,95 @@ class SystemController:
         with self._lock:
             return tool_name in self._pending_approvals
 
-    def preflight_check(self, agent_name: str, tool_name: str, payload: Optional[Dict] = None) -> Dict[str, Any]:
-        """Kiểm tra toàn diện trước khi thực thi bất kỳ công cụ nào."""
-        # 1. Kiểm tra vòng lặp tác tử trước tiên (không làm mất vé approve nếu bị chặn loop)
-        loop_res = self.loop_breaker.record_hop(agent_name)
-        if loop_res["is_loop"]:
-            return {
-                "allowed": False,
-                "status": "LOOP_BLOCKED",
-                "reason": loop_res["reason"],
-                "trajectory": loop_res["trajectory"]
-            }
+    def start_session(self, session_id=None, token_budget=None, max_hops=100, max_cycle_repeats=2):
+        session_id = session_id or uuid.uuid4().hex
+        with self._lock:
+            if session_id in self._sessions:
+                raise ValueError('Session already exists')
+            loop = LoopBreaker(max_hops, max_cycle_repeats, token_budget)
+            self._sessions[session_id] = {'loop': loop, 'trace_id': self.recorder.generate_trace_id()}
+        return session_id
 
-        # 2. Kiểm tra Hàng rào thực thi (Execution Guard)
-        guard_res = self.guard.evaluate_tool_call(tool_name, payload)
-        if guard_res["decision"] == GuardDecision.BLOCK.value:
-            return {
-                "allowed": False,
-                "status": "GUARD_BLOCKED",
-                "reason": guard_res["reason"]
-            }
-        if guard_res["decision"] == GuardDecision.PENDING_APPROVAL.value:
-            with self._lock:
-                was_approved = tool_name in self._pending_approvals
-                if was_approved:
-                    # Tiêu thụ vé phê duyệt đúng 1 lần (one-time approval token)
-                    self._pending_approvals.discard(tool_name)
-            if not was_approved:
-                return {
-                    "allowed": False,
-                    "status": "PENDING_APPROVAL",
-                    "reason": guard_res["reason"]
-                }
+    def end_session(self, session_id):
+        with self._lock:
+            return self._sessions.pop(session_id, None) is not None
 
-        # 3. Kiểm tra Cầu dao dịch vụ nếu công cụ phụ thuộc service bên ngoài
-        service_map = {
-            "revit": "revit_mcp",
-            "etabs": "etabs_api",
-            "cad": "cad_bridge",
-            "dwg": "cad_bridge"
-        }
-        for key, srv in service_map.items():
+    def _session(self, session_id):
+        if session_id is None:
+            return {'loop': self.loop_breaker, 'trace_id': self._default_trace_id}
+        if session_id not in self._sessions:
+            raise ValueError('Unknown session; call start_session first')
+        return self._sessions[session_id]
+
+    @staticmethod
+    def _service(tool_name):
+        for key, service in [('revit', 'revit_mcp'), ('etabs', 'etabs_api'),
+                             ('cad', 'cad_bridge'), ('dwg', 'cad_bridge')]:
             if key in tool_name.lower():
-                breaker = self.get_breaker(srv)
-                if not breaker.allow_execution():
-                    return {
-                        "allowed": False,
-                        "status": "CIRCUIT_OPEN",
-                        "reason": f"Cầu dao '{srv}' đang mở do lỗi liên tiếp. Thao tác bị hoãn để bảo vệ hệ thống."
-                    }
+                return service
+        return None
 
-        return {
-            "allowed": True,
-            "status": "ALLOWED",
-            "reason": "Preflight kiểm tra an toàn 100%."
-        }
+    def _control_event(self, trace_id, action, status, metadata):
+        span = self.recorder.start_span(trace_id, 'SystemController', action)
+        self.recorder.end_span(span, status=status, metadata=metadata)
+
+    def preflight_check(self, agent_name, tool_name, payload=None, session_id=None,
+                        estimated_tokens=0, trace_id=None):
+        """Admission + token reservation are atomic; rejected requests keep approval tickets."""
+        with self._lock:
+            session = self._session(session_id)
+            trace_id = trace_id or session['trace_id']
+            loop = session['loop']
+            # Reject invalid token accounting before mutating any state.
+            if isinstance(estimated_tokens, bool) or not isinstance(estimated_tokens, int) or estimated_tokens < 0:
+                raise ValueError('estimated_tokens must be a non-negative integer')
+            def reject(status, reason, **extra):
+                self._control_event(trace_id, status, status,
+                    {'tool': tool_name, 'agent': agent_name, 'session_id': session_id,
+                     'reason': reason, **extra})
+                return {'allowed': False, 'status': status, 'reason': reason,
+                        'trace_id': trace_id, **extra}
+            guard = self.guard.evaluate_tool_call(tool_name, payload)
+            if guard['decision'] == GuardDecision.BLOCK.value:
+                return reject('GUARD_BLOCKED', guard['reason'])
+            if guard['decision'] == GuardDecision.PENDING_APPROVAL.value and tool_name not in self._pending_approvals:
+                return reject('PENDING_APPROVAL', guard['reason'])
+            service = self._service(tool_name)
+            if service and not self.get_breaker(service).allow_execution():
+                return reject('CIRCUIT_OPEN', f'Circuit {service} is open')
+            # A loop check with zero token cost does not spend a reservation twice.
+            outcome = loop.record_hop(agent_name)
+            if outcome['is_loop']:
+                return reject('LOOP_BLOCKED', outcome['reason'], trajectory=outcome['trajectory'])
+            if outcome.get('budget_blocked'):
+                return reject(outcome['budget']['decision'], outcome['reason'], budget=outcome['budget'])
+            budget = loop.budget.reserve(estimated_tokens)
+            if not budget['allowed']:
+                return reject(budget['decision'], 'Token admission denied', budget=budget)
+            if guard['decision'] == GuardDecision.PENDING_APPROVAL.value:
+                self._pending_approvals.discard(tool_name)
+            if budget['state'] == 'THROTTLED':
+                self._control_event(trace_id, 'BUDGET_THROTTLED', 'THROTTLED', budget)
+            return {'allowed': True, 'status': 'ALLOWED', 'reason': 'Preflight checks passed',
+                    'trace_id': trace_id, 'budget': budget}
+
+    def execute(self, agent_name, tool_name, func, *args, session_id=None,
+                estimated_tokens=0, payload=None, **kwargs):
+        """Integrated execution path. Reservations charge every admitted attempt, even failures."""
+        admission = self.preflight_check(agent_name, tool_name, payload, session_id, estimated_tokens)
+        if not admission['allowed']:
+            return admission
+        trace_id = admission['trace_id']
+        span = self.recorder.start_span(trace_id, agent_name, tool_name)
+        try:
+            service = self._service(tool_name)
+            result = self.get_breaker(service).call_traced(trace_id, func, *args, **kwargs) if service else func(*args, **kwargs)
+            self.recorder.end_span(span, status='SUCCESS', metadata={'reserved_tokens': estimated_tokens})
+            return {'allowed': True, 'status': 'SUCCESS', 'result': result, 'trace_id': trace_id}
+        except Exception as error:
+            self.recorder.end_span(span, status='FAILURE', error=repr(error))
+            raise
+
 
 
 # Global helper instance

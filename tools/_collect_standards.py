@@ -23,7 +23,7 @@ class StandardRow:
 
 # [FIX BUG-RD-02]: Mở rộng STD_REGEX để bắt đầy đủ TCVN, TCXDVN, QCVN, ACI, Thông tư (TT), Bowles, Robertson
 STD_REGEX = re.compile(
-    r"(TCVN|TCXDVN|QCVN|ACI|Thông\s+tư|TT|Bowles|Robertson)\s+([\w./\-()]+:?[\w./\-()]*)",
+    r"(TCVN|TCXDVN|QCVN|ACI|Thông\s+tư|TT|Bowles|Robertson)\s+(?:\([^)]+\)|[\w./\-()]+:?[\w./\-()]*)",
     re.IGNORECASE,
 )
 ROW_DELIM = re.compile(r"^\s*\|.*\|\s*$")

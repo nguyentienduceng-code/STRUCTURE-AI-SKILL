@@ -45,7 +45,7 @@ def collect_latest_changelog(changelog_path: Path) -> ChangelogLatest:
     body_start = m.end()
     next_heading = re.search(r"^##\s+", text[body_start:], re.MULTILINE)
     body = text[body_start : body_start + next_heading.start()] if next_heading else text[body_start:]
-    # Bullet = dòng bắt đầu bằng "- **" hoặc "- "
-    bullets = re.findall(r"^\s*-\s+\*\*", body, re.MULTILINE)
+    # Bullet = dòng bắt đầu bằng "- **" hoặc "1. **"
+    bullets = re.findall(r"^\s*(?:-\s+|\d+\.\s+)\*\*", body, re.MULTILINE)
     result.bullet_count = len(bullets)
     return result

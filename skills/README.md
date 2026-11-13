@@ -34,9 +34,10 @@
     ├── SKILL_FORENSIC/       <- Giam dinh su co
     ├── SKILL_PHULUC/         <- Phu luc tinh toan
     ├── SKILL_RFI/            <- Quan ly RFI, NCR
-    ├── Project_Manager/       <- Quan ly du an
-    ├── SKILL_BIM_COORDINATION/<- BIM Coordination
-    ├── AGENTS.md             <- Quy tac lien-skill
+    ├── Project_Manager/       <- Quan ly du an, MS Project Gantt & TT 34/2026
+    ├── SKILL_BIM_COORDINATION/<- BIM Coordination & CAD Clash Audit
+    ├── SKILL_DUAL_AGENT_BRIDGE/ <- Dieu phoi Dual-Agent Gemini <-> Claude
+    ├── AGENTS.md             <- Quy tac lien-skill SSOT (v7.4)
     ├── SKILL_INDEX.md        <- Chi muc tra cuu
     ├── STANDARDS_LOCK.md     <- Khoa tieu chuan
     ├── SKILL_BRIDGE.md       <- Giao thuc data
@@ -68,6 +69,9 @@
 | Phụ lục tính toán step-by-step | `SKILL_PHULUC` |
 | Địa kỹ thuật / SPT / CPT / Plaxis | `SKILL_GEOTECH` |
 | Thiết kế cốp pha / Ván khuôn | `SKILL_TEMPWORKS` |
+| Lập tiến độ MS Project Gantt & Phân cấp TT 34/2026 | `Project_Manager` |
+| Rà soát xung đột BIM / Lưới trục / Cao độ thông thủy | `SKILL_BIM_COORDINATION` |
+| Bàn giao ca & thẩm tra đối kháng Gemini ↔ Claude | `SKILL_DUAL_AGENT_BRIDGE` |
 
 ### 2. Luồng làm việc (Agentic Orchestration)
 
@@ -100,20 +104,18 @@ Global_Dispatcher (intent_classifier.py + pipeline_builder.py)
 ## 🔧 TOOLS HỖ TRỢ
 
 ```bash
-# Validate Technical_Illustrator registry
-cd Design_Evaluation/scripts
-python validate_registry.py
+# Chạy toàn bộ bộ kiểm thử tự động (.agents/tests/run_all_tests.py)
+python ../tests/run_all_tests.py
 
-# Validate SKILLKC JSON handoff
-python validate_handoff.py <file.json>
-
-# Standards MCP Server
-cd _SHARED/standards_mcp
-python server.py --test
+# Standards Graph & Lookup
+python ../_SHARED/standards/standards_graph.py --help
 
 # Project Memory
-cd _SHARED/memory
+cd ../_SHARED/memory
 python project_memory.py --project DUAN_A --action list
+
+# Đồng bộ báo cáo hệ sinh thái
+python ../tools/sync_report.py --dry-run
 ```
 
 ---
@@ -130,18 +132,23 @@ python project_memory.py --project DUAN_A --action list
 
 | File | Version |
 |------|---------|
-| USER_GUIDE.md | v1.0 |
-| AGENTS.md | v6.1 |
-| SKILL_INDEX.md | v2.0 |
-| STANDARDS_LOCK.md | v3.0.0 |
-| Design_Evaluation | v2.2.0 |
+| USER_GUIDE.md | v2.0 |
+| AGENTS.md | v7.4 |
+| SKILL_INDEX.md | v2.2 |
+| STANDARDS_LOCK.md | v3.3.0 |
+| Global_Dispatcher | v2.0.0 |
+| Design_Evaluation | v3.4.0 |
 | Structural_Design_Engineer | v1.3.0 |
-| Technical_Illustrator | v1.3.0 |
-| Cost_Estimator | v1.2.0 |
+| Technical_Illustrator | v1.4.0 |
+| Cost_Estimator | v1.4.0 |
 | SKILL_FORENSIC | v1.2.0 |
-| SKILL_VERIFY | v1.2.0 |
-| SKILL_RFI | v1.2.0 |
-| SKILL_PHULUC | v1.0.0 |
-| SKILL_GEOTECH | v3.0.0 |
+| SKILL_VERIFY | v3.3.0 |
+| SKILL_RFI | v1.4.0 |
+| SKILL_PHULUC | v3.1.0 |
+| SKILL_GEOTECH | v3.1.0 |
+| SKILL_TEMPWORKS | v1.0.0 |
+| Project_Manager | v2.0.0 |
+| SKILL_BIM_COORDINATION | v1.4.0 |
+| SKILL_DUAL_AGENT_BRIDGE | v3.1.0 |
 
-**Cập nhật:** 2026-10-13 — Cap truc khoa hoc hoan thanh
+**Cập nhật:** 2026-11-13 — Đồng bộ toàn diện 14 Production Skills (v7.5)

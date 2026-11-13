@@ -1,137 +1,157 @@
 ---
 name: SKILL_PHULUC
-version: 2.3.0
-last_updated: 2026-11-02
-description: "Lap Thuyet minh Tinh toan Ket cau, Dia ky thuat, Bien phap Thi cong (BPTC) va Phu luc Tinh toan chi tiet step-by-step theo TCVN, xuat file Word (.docx) theo 2 Bo Chuan (Bo 1 BKTECHS hoac Bo 2 TVTK Da Hang Muc). Kich hoat khi nguoi dung yeu cau lap, gop, hoac xuat thuyet minh tinh toan, phu luc tinh toan, bao cao tham tra ket cau, bien phap thi cong, hoac calculation sheet."
+version: 3.1.0
+last_updated: 2026-11-12
+description: "Master Engine Lập Thuyết minh Tính toán Kết cấu, Địa kỹ thuật, Biện pháp Thi công (BPTC) và Phụ lục Tính toán chi tiết step-by-step theo TCVN. Tự động biên dịch từ Calculator JSON sang Markdown & xuất file Word (.docx) chuẩn 2 Bộ Chuan (Bộ 1 BKTECHS hoặc Bộ 2 TVTK Đa Hạng mục). Tích hợp Thư viện Phụ lục Hiện đại và Cổng Kiểm toán Độc lập 8 Tiêu chí (audit_phuluc_docx.py)."
 ---
-# Skill Phu Luc va Thuyet Minh Tinh Toan Ket Cau (SKILL_PHULUC v2.0)
+# Skill Phụ Lục & Thuyết Minh Tính Toán Kỹ Thuật (SKILL_PHULUC v3.0 Master Engine)
 
-Tao ho so Thuyet minh Tinh toan Ket cau, Dia ky thuat, Gia cuong va Bien phap Thi cong (BPTC) chi tiet step-by-step theo tieu chuan TCVN va xuat ra file Word (`.docx`) voi day du Bia doi, Muc luc tu dong (`Auto-TOC`), phan cap Heading mau sac va Header/Footer chuyen nghiep.
+Tạo hồ sơ Thuyết minh Tính toán Kết cấu, Địa kỹ thuật, Gia cường và Biện pháp Thi công (BPTC) chi tiết step-by-step theo tiêu chuẩn TCVN và xuất ra file Word (`.docx`) với đầy đủ Bìa đôi, Mục lục tự động (`Auto-TOC`), phân cấp Heading màu sắc khoáng vật tự nhiên, công thức Office Math (`OMML`) và Header/Footer chuyên nghiệp.
 
-## Khi nao su dung Skill nay
+Tích hợp bộ ba công cụ cốt lõi:
+1. **`json_to_tmtt_compiler.py`**: Trình biên dịch tự động kết quả tính toán từ file JSON của bất kỳ Calculator nào thành Thuyết minh Markdown chuẩn 6 chương / 9 chương và tự động xuất Word DOCX.
+2. **Thư viện Template Phụ lục Chuyên sâu Mới**:
+   - `templates/APPENDIX_HOIST_CRANE.md`: Thuyết minh tính toán Vận thăng & Cẩu tháp xây dựng.
+   - `templates/APPENDIX_FORMWORK_SHORING.md`: Thuyết minh Ván khuôn sàn/cột/tường & Hệ giáo Shoring Ringlock/Nêm.
+   - `templates/APPENDIX_STEEL_PORTAL_FRAME.md`: Thuyết minh Khung nhà thép tiền chế & Liên kết bu lông TCVN 5575:2024.
+   - Cùng 7 template bê tông cốt thép & nền móng truyền thống: `APPENDIX_COLUMN_RC.md`, `APPENDIX_SLAB_RC.md`, `APPENDIX_PILE_FOUNDATION.md`, `APPENDIX_STAIR_RC.md`, `APPENDIX_WATER_TANK.md`, `APPENDIX_STRIP_FOUNDATION.md`, `APPENDIX_RETAINING_WALL.md`.
+3. **`audit_phuluc_docx.py` (Cổng Kiểm toán Độc lập 8 Tiêu chí)**: Tự động kiểm tra chất lượng file `.docx` sau khi xuất, triệt tiêu 100% chữ trắng trên nền tối (Rule 12b), bảo đảm sàn cỡ chữ $\ge 10\text{ pt}$ (Rule 12e), không mã thô LaTeX `$`, không double bullet `• •`, độ sâu diễn giải $\ge 800$ từ (Rule 13), và đầy đủ Approval Matrix & Disclaimer AI (Rule 8).
 
-- Khi nguoi dung yeu cau lap moi, gop, hoac chuan hoa **Thuyet minh Tinh toan Ket cau (TMTT)**, **Thuyet minh Bien phap Thi cong (BPTC)**, **Bao cao Tham tra Ket cau**, hoac **Phu luc Tinh toan chi tiet (Calculation Sheet)**.
-- Khi nguoi dung yeu cau xuat ho so thuyet minh theo **Bo 1 (Chuan BKTECHS)** hoac **Bo 2 (Chuan TVTK Da Hang Muc)**.
-- Khi can chuyen doi ban nhap Markdown (`.md`) hoac du lieu JSON tinh toan sang file `.docx` co dinh dang chuan phap ly xay dung Viet Nam.
+---
 
-## Lua chon 2 Bo Chuan Trinh Bay va Bo Tri Chapter
+## Khi Nào Sử Dụng Skill Này
 
-Moi khi xuat ho so thuyet minh, ho tro 2 bo chuan trinh bay (mac dinh uu tien **Bo 1 - BKTECHS** neu nguoi dung khong chi dinh khac):
+- Khi người dùng yêu cầu lập mới, gộp, hoặc chuẩn hóa **Thuyết minh Tính toán Kết cấu (TMTT)**, **Thuyết minh Biện pháp Thi công (BPTC)**, **Báo cáo Thẩm tra Kết cấu**, hoặc **Phụ lục Tính toán chi tiết (Calculation Sheet)**.
+- Khi người dùng yêu cầu xuất hồ sơ thuyết minh theo **Bộ 1 (Chuẩn BKTECHS)** hoặc **Bộ 2 (Chuẩn TVTK Đa Hạng Mục)**.
+- Khi cần chuyển đổi trực tiếp kết quả tính toán JSON từ các Calculator sang tài liệu Word `.docx` hoàn chỉnh phục vụ thẩm duyệt pháp lý.
+- Khi cần kiểm toán chất lượng hồ sơ `.docx` trước khi bàn giao cho Chủ đầu tư hoặc nộp Cơ quan Chuyên môn về Xây dựng.
 
-### 1. Bo Chuan 1: Phong cach `bktechs` (Mac dinh uu tien - Vien / Truong / Tham tra / Chuyen sau)
+---
 
-- **Ung dung**: Thuyet minh tinh toan chuyen sau 1 den 2 hang muc (Be nuoc ngam, Be tu hoai, Mong coc, Tuong chan, Bien phap thi cong ho dao, Gia cuong CFRP) va Bao cao tham tra ket cau.
-- **Bo cuc Section 0 (Bia doi + Muc luc)**:
-  - **Trang 1 (Bia chinh)**: Tieu de Truong DH Bach Khoa / BKTECHS, dai bang xanh Navy (`#1E3246`), Logo luc giac BKTECHS o giua, ten ho so co lon (`24pt`), va bang thong tin Du an / Hang muc / Chu dau tu. Khong hien thi Header/Footer tren Trang 1 (`different_first_page_header_footer = True`).
-  - **Trang 2 (Bia phu ky duyet)**: Bang kiem soat chat luong 3 cot (`Thuc hien` - `Kiem tra` - `Chu tri` kem hoc vi va so CCHN) va khoi ky dong dau Chu dau tu / Don vi tu van.
-  - **Trang 3 (Muc luc tu dong)**: Truong `TOC \o "1-3" \h \z \u` tu dong cap nhat kem bang tom tat cau truc chuong muc.
-- **Bo cuc Section 1 (Noi dung chinh)**:
-  - Ngat Section moi va khoi dong lai so trang tu `Trang 1 / N`.
-  - **Header**: Ten don vi mau xanh (`#1E3246`) + Ten Du an/Hang muc phia tren duong ke ngang mau **Dong Thau Tram (`#A67C37` Bronze Ochre)**.
-  - **Footer**: `BKTECHS || Dia chi | Lien he || Trang 1 / N` voi vach doi `||` mau vang cam.
-  - **Typography & Mau sac**: Font `Times New Roman` (`12pt` body, `10.5pt` table). `Heading 1` (`1.`): `14pt` Bold IN HOA mau Xanh Navy (`#1E3246`); `Heading 2` (`1.1.`): `13pt` Bold mau Xanh lam sang (`#2E4A62`); `Heading 3` (`1.1.1.`): `12pt` Bold Italic mau `#4A5D6E`. Bang bieu co header nen Xanh Da Phien Suong Nhat (`#DCE4EC`) chu Xanh Da Phien Dam (`#1E3246`) — cam dung chu trang tren nen toi va dong **Ket luan / Kiem tra (`DAT / OK`)** to nen vang nhat (`#EBF3ED`).
-- **Cau truc 6 Chuong Trong tam (Danh so truc tiep `1.`, `2.`, khong ghi chu `CHUONG`)**:
-  1. `1. CO SO THIET KE, TIEU CHUAN AP DUNG & TAI LIEU THAM KHAO`
-  2. `2. TONG QUAN HANG MUC & DAC TRUNG CO LY VAT LIEU`
-  3. `3. TAI TRONG TAC DUNG & TO HOP TAI TRONG TINH TOAN`
-  4. `4. MO HINH HOA & PHUONG PHAP PHAN TICH NOI LUC`
-  5. `5. TINH TOAN & KIEM TRA KHA NANG CHIU LUC CAU KIEN DIEN HINH`
-  6. `6. TONG HOP KET QUA KIEM TRA, KET LUAN & KIEN NGHI KY THUAT`
+## Lựa Chọn 2 Bộ Chuẩn Trình Bày và Bố Trí Chapter
 
-### 2. Bo Chuan 2: Phong cach `tvtk` (TVTK Da Hang Muc - 9 Chuong Co so + N Chuong Hang muc)
+Mỗi khi xuất hồ sơ thuyết minh, hỗ trợ 2 bộ chuẩn trình bày (mặc định ưu tiên **Bộ 1 - BKTECHS** nếu người dùng không chỉ định khác):
 
-- **Ung dung**: Ho so Thiet ke Ky thuat (TKKT) hoac Ban ve Thi cong (BVTC) tong hop nhieu hang muc cong trinh trong cung mot du an.
-- **Bo cuc Section 0 (Bia doi Phap ly + Muc luc)**:
-  - **Trang 1 (Bia ngoai)**: Khung vien doi (`Double-line Box Border #1E3246`), thong tin cong ty TVTK o dau trang, ten cong trinh/hang muc o giua.
-  - **Trang 2 (Bia lot Phap ly)**: Quoc hieu `CONG HOA XA HOI CHU NGHIA VIET NAM` va bang ky dong dau 2 cot can xung (`CHU DAU TU` - `DON VI TU VAN THIET KE`).
-  - **Trang 3 (Muc luc tu dong)**: Truong `TOC \o "1-3"` 3 cap (`1`, `1.1`, `1.1.1`).
-- **Bo cuc Section 1 (Noi dung chinh)**:
-  - Font `Arial` (`11pt` body, `10pt` table), header bang to nen **Xanh lam nhat (`#E6E2DA`)** chu den dam, dong ket luan to nen xanh la nhat (`#EBF3ED`).
-- **Cau truc `9 Chuong Co so Chung + N Chuong Phu luc Hang muc`**:
-  - **Phan I (Chuong 1 den Chuong 9)**: `1 QUY CHUAN VA TIEU CHUAN THIET KE` -> `2 CAC TIEU CHI KIEM TRA ON DINH TONG THE` -> `3 DO VONG VA BE RONG VET NUT CHO PHEP` -> `4 DO LUN CUA MONG` -> `5 CAC YEU CAU VE CHONG THAM` -> `6 PHAN MEM PHAN TICH VA TINH TOAN` -> `7 TAI TRONG VA TO HOP TAI TRONG` -> `8 VAT LIEU KET CAU` -> `9 CHIEU DAY LOP BE TONG BAO VE`.
-  - **Phan II (Chuong 10 tro di)**: Moi hang muc la 1 chuong `Heading 1` noi tiep (`10 PHU LUC TINH TOAN HANG MUC 01...`, `11 PHU LUC TINH TOAN HANG MUC 02...`), ben trong gom `.1 Mo hinh tinh toan`, `.2 Tai trong tac dung`, `.3 Tinh toan nen mong`, `.4 Tinh toan ket cau phan than`.
+### 1. Bộ Chuẩn 1: Phong cách `bktechs` (Mặc định Ưu tiên — Viện / Trường / Thẩm tra / Chuyên sâu)
 
-## Quy trinh Thuc thi (Workflow)
+- **Ứng dụng**: Thuyết minh tính toán chuyên sâu 1 đến 2 hạng mục (Bể nước ngầm, Bể tự hoại, Móng cọc, Tường chắn, Biện pháp thi công hố đào, Vận thăng & Cẩu tháp, Cốp pha shoring, Gia cường CFRP) và Báo cáo thẩm tra kết cấu.
+- **Bố cục Section 0 (Bìa đôi + Mục lục)**:
+  - **Trang 1 (Bìa chính)**: Tiêu đề Trường ĐH Bách Khoa / BKTECHS, dải băng xanh Navy (`#1E3246`), Logo lục giác BKTECHS ở giữa, tên hồ sơ cỡ lớn (`24pt`), và bảng thông tin Dự án / Hạng mục / Chủ đầu tư. Không hiển thị Header/Footer trên Trang 1 (`different_first_page_header_footer = True`).
+  - **Trang 2 (Bìa phụ ký duyệt)**: Bảng kiểm soát chất lượng 3 cột (`Thực hiện` - `Kiểm tra` - `Chủ trì` kèm học vị và số CCHN) và khối ký đóng dấu Chủ đầu tư / Đơn vị tư vấn.
+  - **Trang 3 (Mục lục tự động)**: Trường `TOC \o "1-3" \h \z \u` tự động cập nhật kèm bảng tóm tắt cấu trúc chương mục.
+- **Bố cục Section 1 (Nội dung chính)**:
+  - Ngắt Section mới và khởi động lại số trang từ `Trang 1 / N`.
+  - **Header**: Tên đơn vị màu xanh (`#1E3246`) + Tên Dự án/Hạng mục phía trên đường kẻ ngang màu **Đồng Thau Trầm (`#A67C37` Bronze Ochre)**.
+  - **Footer**: `BKTECHS || Địa chỉ | Liên hệ || Trang 1 / N` với vạch đôi `||` màu vàng cam.
+  - **Typography & Màu sắc**: Font `Times New Roman` (`12pt` body, `10.5pt` table). `Heading 1` (`1.`): `14pt` Bold IN HOA màu Xanh Navy (`#1E3246`); `Heading 2` (`1.1.`): `13pt` Bold màu Xanh lam sáng (`#2E4A62`); `Heading 3` (`1.1.1.`): `12pt` Bold Italic màu `#4A5D6E`. Bảng biểu có header nền Xanh Đá Phiến Sương Nhạt (`#DCE4EC`) chữ Xanh Đá Phiến Đậm (`#1E3246`) — cấm dùng chữ trắng trên nền tối và dòng **Kết luận / Kiểm tra (`ĐẠT / OK`)** tô nền xanh lá nhạt (`#EBF3ED`).
+- **Cấu trúc 6 Chương Trọng tâm (Đánh số trực tiếp `1.`, `2.`, không ghi chữ `CHƯƠNG`)**:
+  1. `1. CƠ SỞ THIẾT KẾ, TIÊU CHUẨN ÁP DỤNG & TÀI LIỆU THAM KHẢO`
+  2. `2. TỔNG QUAN HẠNG MỤC & ĐẶC TRƯNG CƠ LÝ VẬT LIỆU`
+  3. `3. TẢI TRỌNG TÁC DỤNG & TỔ HỢP TẢI TRỌNG TÍNH TOÁN`
+  4. `4. MÔ HÌNH HÓA & PHƯƠNG PHÁP PHÂN TÍCH NỘI LỰC`
+  5. `5. TÍNH TOÁN & KIỂM TRA KHẢ NĂNG CHỊU LỰC CẤU KIỆN ĐIỂN HÌNH`
+  6. `6. TỔNG HỢP KẾT QUẢ KIỂM TRA, KẾT LUẬN & KIẾN NGHỊ KỸ THUẬT`
 
-1. **Xac dinh Bo Chuan & Thu thap Du lieu**:
-   - Xac dinh bo chuan nguoi dung yeu cau (`bktechs` la mac dinh, hoac `tvtk` khi lap ho so tong hop nhieu hang muc).
-   - Thu thap thong so dau vao: ten du an, ten hang muc, chu dau tu, dia diem, cap do ben be tong (`B20`, `B25`, `B30`...), nhom cot thep (`CB240-T`, `CB300-V`, `CB400-V`...), so lieu dia chat va noi luc.
+### 2. Bộ Chuẩn 2: Phong cách `tvtk` (TVTK Đa Hạng Mục — 9 Chương Cơ sở + N Chương Hạng mục)
 
-2. **Soan thao Noi dung Thuyet minh Step-by-Step (`.md`)**:
-   - Moi buoc tinh toan bat buoc trinh bay day du: **Gia thiet / Thong so dau vao** -> **Cong thuc & Trich dan dieu khoan TCVN** -> **The so trung gian** -> **Ket qua & Don vi** -> **Ket luan danh gia (`DAT / OK` voi he so su dung $\eta \le 1.00$ hoac $SF \ge [SF]$)**.
-   - Su dung `#` cho Heading 1, `##` cho Heading 2, `###` cho Heading 3 va bang Markdown chuan `| Cot 1 | Cot 2 |`.
+- **Ứng dụng**: Hồ sơ Thiết kế Kỹ thuật (TKKT) hoặc Bản vẽ Thi công (BVTC) tổng hợp nhiều hạng mục công trình trong cùng một dự án.
+- **Bố cục Section 0 (Bìa đôi Pháp lý + Mục lục)**:
+  - **Trang 1 (Bìa ngoài)**: Khung viền đôi (`Double-line Box Border #1E3246`), thông tin công ty TVTK ở đầu trang, tên công trình/hạng mục ở giữa.
+  - **Trang 2 (Bìa lót Pháp lý)**: Quốc hiệu `CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM` và bảng ký đóng dấu 2 cột cân xứng (`CHỦ ĐẦU TƯ` - `ĐƠN VỊ TƯ VẤN THIẾT KẾ`).
+  - **Trang 3 (Mục lục tự động)**: Trường `TOC \o "1-3"` 3 cấp (`1`, `1.1`, `1.1.1`).
+- **Bố cục Section 1 (Nội dung chính)**:
+  - Font `Arial` (`11pt` body, `10pt` table), header bảng tô nền **Xanh lam nhạt (`#E6E2DA`)** chữ đen đậm, dòng kết luận tô nền xanh lá nhạt (`#EBF3ED`).
+- **Cấu trúc `9 Chương Cơ sở Chung + N Chương Phụ lục Hạng mục`**:
+  - **Phần I (Chương 1 đến Chương 9)**: `1 QUY CHUẨN VÀ TIÊU CHUẨN THIẾT KẾ` -> `2 CÁC TIÊU CHÍ KIỂM TRA ỔN ĐỊNH TỔNG THỂ` -> `3 ĐỘ VÕNG VÀ BỀ RỘNG VẾT NỨT CHO PHÉP` -> `4 ĐỘ LÚN CỦA MÓNG` -> `5 CÁC YÊU CẦU VỀ CHỐNG THẤM` -> `6 PHẦN MỀM PHÂN TÍCH VÀ TÍNH TOÁN` -> `7 TẢI TRỌNG VÀ TỔ HỢP TẢI TRỌNG` -> `8 VẬT LIỆU KẾT CẤU` -> `9 CHIỀU DÀY LỚP BÊ TÔNG BẢO VỆ`.
+  - **Phần II (Chương 10 trở đi)**: Mỗi hạng mục là 1 chương `Heading 1` nối tiếp (`10 PHỤ LỤC TÍNH TOÁN HẠNG MỤC 01...`, `11 PHỤ LỤC TÍNH TOÁN HẠNG MỤC 02...`), bên trong gồm `.1 Mô hình tính toán`, `.2 Tải trọng tác dụng`, `.3 Tính toán nền móng`, `.4 Tính toán kết cấu phần thân`.
 
-3. **Chay Engine `docx_generator_v2.py` de Xuat File `.docx` (Ho tro Tich hop Phu luc & Dau dong Da cap)**:
-   - Goi script `docx_generator_v2.py` de bien dich file `.md` sang `.docx`, co the tich hop truc tiep cac file phu luc qua `--appendices`:
+---
+
+## Quy trình Thực thi Chuẩn hóa (Workflow v3.0)
+
+### Cách 1: Tự động Hóa Toàn tuyến qua Compiler JSON (`json_to_tmtt_compiler.py`) — KHUYẾN NGHỊ
+
+Khi đã có file JSON kết quả tính toán từ bất kỳ script Calculator nào:
+
+```bash
+python "g:/My Drive/Google AI Studio/.agents/skills/SKILL_PHULUC/calculators/json_to_tmtt_compiler.py" \
+  --input "du_an/results_calc.json" \
+  --output "du_an/TMTT_HOAN_CHINH.md" \
+  --style bktechs \
+  --project "Tên Dự án" \
+  --item "Tên Hạng mục" \
+  --client "Tên Chủ Đầu Tư" \
+  --location "Địa điểm" \
+  --appendices ".agents/skills/SKILL_PHULUC/templates/APPENDIX_HOIST_CRANE.md" \
+  --auto-docx
+```
+
+Compiler tự động:
+1. Bóc tách dữ liệu JSON thành 6 chương BKTECHS hoàn chỉnh.
+2. Trích xuất Step-by-Step các công thức và Citation Object đủ 6 trường.
+3. Ghép nối phụ lục chuyên sâu vào Section riêng biệt.
+4. Triệt tiêu toàn bộ mã thô LaTeX `$`, render công thức sang Native Office Math (`OMML`).
+5. Xuất file Word `.docx` hoàn chỉnh.
+
+### Cách 2: Soạn thảo Thủ công Markdown & Xuất DOCX qua Engine `docx_generator_v2.py`
+
+Khi người dùng tự soạn thảo nội dung thuyết minh Step-by-Step (`.md`):
 
 ```bash
 python "g:/My Drive/Google AI Studio/.agents/skills/SKILL_PHULUC/docx_generator_v2.py" \
   --input draft_tmtt.md \
-  --appendices templates/APPENDIX_PILE_FOUNDATION.md templates/APPENDIX_WATER_TANK.md \
+  --appendices templates/APPENDIX_FORMWORK_SHORING.md \
   --output TMTT_KET_CAU_HOAN_CHINH.docx \
   --style bktechs \
-  --project "Ten Du An" \
-  --item "Thuyet minh Tinh toan Ket cau kem Phu luc" \
-  --client "Ten Chu Dau Tu" \
-  --location "Dia diem xay dung"
+  --project "Tên Dự Án" \
+  --item "Thuyết minh Tính toán Kết cấu kèm Phụ lục" \
+  --client "Tên Chủ Đầu Tư" \
+  --location "Địa điểm xây dựng"
 ```
 
-4. **Kiem tra Chuyen doi PDF & Ban giao**:
-   - Chay `libreoffice --headless --convert-to pdf` hoac kiem tra file `.docx` truoc khi ban giao cho nguoi dung.
+### Cách 3: Kiểm toán Chất lượng Sau Xuất (`audit_phuluc_docx.py`)
 
-## Quy cach Trinh bay Dau dong & Ky hieu Ky thuat Chuan hoa
+Sau khi file `.docx` được tạo, chạy cổng kiểm toán độc lập:
 
-- **Quy cach Dau dong Da cap (Multi-level Indentation)**:
-  - **Cap 1 (Gach dau dong `- ` hoac `– `)**: Thut le trai `0.63 cm`, hien thi dau gach ngang `– ` dam net.
-  - **Cap 2 (Dau cong dau dong `+ ` hoac thut le 2 khoang trang)**: Thut le trai `1.27 cm`, hien thi dau cong `+ ` mau xanh Navy hoac chu dam.
-  - **Cap 3 (Dau cham tron `• ` hoac thut le >= 4 khoang trang)**: Thut le trai `1.90 cm`.
-  - **Khoan muc thu tu (`1. `, `1) `, `a) `, `b) `)**: Thut le trai `0.75 cm` / `1.27 cm`, giu nguyen so hoac chu cai.
-- **Tu dong Chuan hoa Ky hieu Ky thuat (Engineering Symbol Normalizer)**:
-  - Duong kinh cot thep: `%%c`, `Phi`, `phi`, `fi` truoc so -> Chuyen thanh `Φ` (VD: `Phi 20` -> `Φ20`).
-  - Toan hoc so sanh: `<=`, `=<` -> `≤`; `>=`, `=>` -> `≥`; `+-` -> `±`; `x` hoac `*` giua cac kich thuoc (`200x400` -> `200 × 400`).
-  - Don vi luy thua: `m2` -> `m²`, `m3` -> `m³`, `mm2` -> `mm²`, `cm2` -> `cm²`, `kN/m2` -> `kN/m²`, `daN/cm2` -> `daN/cm²`, `kNm` -> `kN.m`.
-  - Ky tu Hy Lap hay dung: `eta` -> `η`, `sigma` -> `σ`, `tau` -> `τ`, `gamma` -> `γ`, `alpha` -> `α`, `beta` -> `β`, `delta` -> `δ`, `Delta` -> `Δ`.
-  - Trang thai kiem tra: `[OK]`, `[DAT]` -> `[ĐẠT]`, `[FAIL]` -> `[KHÔNG ĐẠT]`.
-- **Chuyen doi Cong thuc Toan LaTeX sang Native Word OMML (`<m:oMath>`)**: Tu dong nhan dien ca cong thuc doc lap `$$...$$` va cong thuc inline `$math$`, bien dich qua `pylatexenc` sang Math XML chuan Office Math hien thi sac net tren moi phien ban Word/WPS (ho tro phan so `\frac`, can `\sqrt`, chi so duoi/tren `_{...}`, `^{...}`, ky tu Hy Lap `\alpha, \beta, \sigma, \tau, \eta, \phi...`, toan tu `\le, \ge, \pm, \times, \cdot`).
-- **Phan khu Section Break & Danh so Trang Doc lap cho tung Phu luc**: Moi phu luc khi truyen qua `--appendices` duoc tao Section Break (`WD_SECTION.NEW_PAGE`), Header/Footer duoc khoi tao rieng biet khong bi leak tu Thuyet minh chinh, va so trang duoc danh lai tu `Trang 1 / [SECTIONPAGES]`.
-- **Lien ket Cheo Noi bo Tu dong (Auto Cross-Reference Bookmarks & Hyperlinks)**: Tu dong gan Bookmark `PHU_LUC_{n}` tai cac tieu de Phu luc; dong thoi tu dong nhan dien cac cau dan chieu "Xem chi tiet tai Phu luc 1", "Xem Phu luc 2", "theo Phu luc 3" trong thuyet minh de tao the `w:hyperlink w:anchor` mau xanh co gach chan de nguoi doc click nhay truc tiep toi phu luc tuong ung.
-- **Bao ve Bang bieu Chong Rach trang (Table Layout Reinforcement)**: Khoi phuc do cao toi thieu Header Row `w:trHeight atLeast 360 twips` ket hop `w:tblHeader` lap lai tieu de tren moi trang va `w:cantSplit` cho toan bo cac hang du lieu de chong bi cat ngang khi in an.
-- **Tinh chinh Typography & Kiem soat Dong Co don (Widow/Orphan Control)**: Line spacing `1.2`, gian cach doan chuan `space_before 2pt`, `space_after 4-6pt`, bat che do `w:widowControl` toan tai lieu, phong chu bang bieu `10pt` can giua theo chieu doc.
-- **Trang Mục lục Tự động & Trực quan (Visual & Dynamic Auto-TOC Engine)**:
-  - Tự động trích xuất toàn bộ cấu trúc phân cấp (Phần I, II, III; Chương 1, 2, 3; Mục con 1.1, 1.2; Phụ lục 1, 2...) từ nội dung Markdown và danh sách `--appendices`.
-  - Định dạng chuẩn xuất bản: Dòng chấm dot leader căn lề phải tại `9072 twips` (`w:leader="dot"`), thụt lề cấp bậc rõ ràng (Phần: `0 cm`, Chương/Phụ lục: `0.4 cm`, Mục con: `0.85 cm`), số trang ước tính thông minh (`1, 2...` và `P1-1, P2-1...`).
-  - Tích hợp Hyperlinks nội bộ (`w:hyperlink w:anchor="TOC_NAV_{n}"` / `w:anchor="PHU_LUC_{n}"`) cho phép click nhảy trực tiếp tới đề mục tương ứng.
-  - Bảo lưu trường mã TOC động của Word (`TOC \o "1-3" \h \z \u`) và cờ `w:updateFields="true"`, cho phép người dùng nhấn F9 trong MS Word để cập nhật số trang vật lý chính xác bất kỳ lúc nào.
-- **Khung Ghi chu / Luu y (`> text`)**: Tu dong tao khung trich dan vien trai mau Xanh Navy, nen xam sang `#F4F1EA`, chu nghiêng thanh lich.
-- **Chen Hinh anh Markdown (`![caption](path)`)**: Tu dong nhung truc tiep anh vao file Word can giua trang kem dong caption in nghieng mau xam dam.
+```bash
+python "g:/My Drive/Google AI Studio/.agents/skills/SKILL_PHULUC/scripts/audit_phuluc_docx.py" \
+  "du_an/TMTT_KET_CAU_HOAN_CHINH.docx"
+```
 
-## Quy tac Bat buoc ve He thong Tieu chuan, Phan cap Cong trinh & Dia ky thuat (STANDARDS_LOCK v3.1.0)
+Cổng kiểm toán tự động quét 8 tiêu chí:
+- `12b: ZERO WHITE TEXT LOCK`: Không có chữ trắng trên nền tối.
+- `12e: SÀN CỠ CHỮ BẢNG >= 10.0pt`: Cỡ chữ bảng $\ge 10\text{ pt}$.
+- `12e: MATH LOCK`: Xóa sạch 100% mã thô `$`, render Math OMML.
+- `12e: CHỐNG DOUBLE BULLET`: Không có `•  •`.
+- `13: MINIMUM NARRATIVE DEPTH`: Thuyết minh $\ge 800$ từ.
+- `8: APPROVAL MATRIX & DISCLAIMER`: Đầy đủ bảng ký duyệt và câu miễn trừ AI.
+- `TABLE INTEGRITY LOCK`: Đầy đủ `w:tblHeader` lặp tiêu đề và `w:cantSplit` chống rách dòng.
 
-1. **Phan biet 3 He thong Phan cap Phap ly - Ky thuat (Cam nham lan)**:
-   - **Cap cong trinh (`Dac biet, Cap I, II, III, IV`)**: Xac dinh theo **Thong tu 06/2021/TT-BXD** va **Thong tu 34/2026/TT-BXD** (hieu luc tu 01/07/2026, thay the TT 06/2021 va TT 02/2025). Bat buoc xet dong thoi **6 tieu chi tai Muc 2.1.1 Bang 2 Phu luc II** va lay cap cao nhat: Chieu cao (`2.1.1.a`), So tang cao (`2.1.1.b`), **Tong dien tich san GFA (`2.1.1.c`: `> 30.000 m2` -> Cap I; `10.000 - 30.000 m2` -> Cap II)**, Nhip ket cau lon nhat (`2.1.1.d`), **Do sau ngam (`2.1.1.d`: tinh den mat tren san tang ham sau nhat; `6 - 18m` -> Cap II)**, **So tang ngam (`2.1.1.e`: `2 - 4 tang ham` -> Cap II; `1 tang ham` -> Cap III)**.
-   - **Cap hau qua (`C1, C2, C3`) va Tuoi tho thiet ke (`Bang 1`)**: Xac dinh theo **QCVN 03:2022/BXD** (Muc 2.1 Bang 1 va Phu luc A). Tuyet doi khong dung QCVN 03:2022/BXD de phan cap I-IV. Nha cao tang, TTTM, chung cu thong thuong thuoc **Muc 3: Toi thieu 50 nam** (`C2/C3`), tru khi Nhiem vu thiet ke cua CĐT yeu cau nang len 100 nam.
-   - **Cap phuc tap dieu kien ĐCCT (`Cap I, II, III`)**: Xac dinh theo **Dieu 3.5 va Phu luc 2 TCVN 4419:1987** (dan chieu tai Chu thich Dieu 5.2.4.1 TCVN 9363:2012; khong trich dan nham sang Dieu 4.2 TCVN 9363:2012).
-2. **Quy dinh Khao sat Dia ky thuat Nha cao tang (`TCVN 9363:2012`)**:
-   - **TKCS**: Khoang cach ho khoan **`50 m - 200 m`** (**Dieu 5.2.4.2**), chieu sau theo **Dieu 5.2.5 va Phu luc C**.
-   - **TKKT**: Khoang cach ho khoan **`20 m - 30 m`** (luoi `20m x 20m` den `30m x 30m` cho ĐCCT Cap III), chieu sau theo **Dieu 5.3.6 va Phu luc D (Muc D.1, Bang D.1)** (khong ghi nham la Dieu 5.2.2 va Bang 1).
-   - **Ty le Ho khoan Khong che**: Phai dat **toi thieu 1/3 (`>= 33.3%`) tong so diem tham do** (**Dieu 5.3.6.3 TCVN 9363:2012**).
-3. **Phien ban Tieu chuan Bat buoc Cap nhat**:
-   - Mong coc: **TCVN 10304:2025** (thay the TCVN 10304:2014).
-   - Thi nghiem SPT: **TCVN 9351:2022** (thay the TCVN 9351:2012).
-   - Danh gia an mon nuoc ngam doi voi BTCT: **TCVN 12041:2017** va **TCVN 9346:2012** (thay the `TCVN 3994:1985` da het hieu luc).
+---
 
+## Quy tắc Bắt buộc về Hệ thống Tiêu chuẩn & Địa kỹ thuật (STANDARDS_LOCK v3.3.0)
 
-## Phân Luồng Rạch Ròi Giữa Thuyết Minh Word (.docx) và Bảng Tính Điều Phối Tiến Độ Excel (.xlsx)
+1. **Phân biệt 3 Hệ thống Phân cấp Pháp lý - Kỹ thuật (Cấm nhầm lẫn)**:
+   - **Cấp công trình (`Đặc biệt, Cấp I, II, III, IV`)**: Xác định theo **Thông tư 06/2021/TT-BXD** và **Thông tư 34/2026/TT-BXD** (hiệu lực từ 01/07/2026, thay thế TT 06/2021 và TT 02/2025). Bắt buộc xét đồng thời **6 tiêu chí tại Mục 2.1.1 Bảng 2 Phụ lục II** và lấy cấp cao nhất: Chiều cao (`2.1.1.a`), Số tầng cao (`2.1.1.b`), **Tổng diện tích sàn GFA (`2.1.1.c`: `> 30.000 m2` -> Cấp I; `10.000 - 30.000 m2` -> Cấp II)**, Nhịp kết cấu lớn nhất (`2.1.1.d`), **Độ sâu ngầm (`2.1.1.d`: tính đến mặt trên sàn tầng hầm sâu nhất; `6 - 18m` -> Cấp II)**, **Số tầng ngầm (`2.1.1.e`: `2 - 4 tầng hầm` -> Cấp II; `1 tầng hầm` -> Cấp III)**.
+   - **Cấp hậu quả (`C1, C2, C3`) và Tuổi thọ thiết kế (`Bảng 1`)**: Xác định theo **QCVN 03:2022/BXD** (Mục 2.1 Bảng 1 và Phụ lục A). Tuyệt đối không dùng QCVN 03:2022/BXD để phân cấp I-IV. Nhà cao tầng, TTTM, chung cư thông thường thuộc **Mục 3: Tối thiểu 50 năm** (`C2/C3`), trừ khi Nhiệm vụ thiết kế của CĐT yêu cầu nâng lên 100 năm.
+   - **Cấp phức tạp điều kiện ĐCCT (`Cấp I, II, III`)**: Xác định theo **Điều 3.5 và Phụ lục 2 TCVN 4419:1987** (dẫn chiếu tại Chú thích Điều 5.2.4.1 TCVN 9363:2012).
+2. **Khảo sát Địa kỹ thuật Nhà cao tầng (`TCVN 9363:2012`)**:
+   - **TKCS**: Khoảng cách hố khoan **`50 m - 200 m`** (**Điều 5.2.4.2**).
+   - **TKKT**: Khoảng cách hố khoan **`20 m - 30 m`** (lưới `20m x 20m` đến `30m x 30m` cho ĐCCT Cấp III).
+   - **Tỷ lệ Hố khoan Khống chế**: Phải đạt **tối thiểu 1/3 (`>= 33.3%`) tổng số điểm thăm dò** (**Điều 5.3.6.3 TCVN 9363:2012**).
+3. **Tiêu chuẩn Bắt buộc Cập nhật**:
+   - Tải trọng & Tác động: **TCVN 2737:2023** (thay thế TCVN 2737:1995).
+   - Kết cấu bê tông: **TCVN 5574:2018** (B25–B35, tối đa B40 theo Điều 12c AGENTS.md).
+   - Kết cấu thép: **TCVN 5575:2024** (thay thế TCVN 5575:2012).
+   - Móng cọc: **TCVN 10304:2025** (thay thế TCVN 10304:2014).
+   - Công tác đất & Đào đắp đầm nén K95: **TCVN 4447:2012** & **TCVN 9436:2012**.
+   - Nền nhà & công trình: **TCVN 9362:2012**.
 
-- **Phạm vi của `SKILL_PHULUC`**: Chỉ áp dụng cho **Thuyết minh Tính toán, Báo cáo Thẩm tra, Biện pháp Thi công và Phụ lục Tính toán** xuất ra định dạng **Word (`.docx`)** (sử dụng phông `Times New Roman 11.5–12pt` và Hệ màu Khoáng vật Tự nhiên `#1E3246`, `#2E4A62`, `#4A5D6E`, `#A67C37` từ `_SHARED/SHARED_CONTEXT/design_tokens.py`).
-- **Cấm áp đặt sang Bảng điều phối Excel (`.xlsx`)**: Tuyệt đối KHÔNG lấy phông `Times New Roman 9.5pt` hoặc tô nhiều màu chữ khác nhau trên cùng một dòng cho các bảng **Tracking Tiến độ, Checklist Hồ sơ, Pending List QLTK hoặc BOQ** trên Excel. Khi xử lý bảng theo dõi tiến độ / QLTK Tracking Excel (`.xlsx`), bắt buộc chuyển luồng sang **`Project_Manager` (`scripts/qltk_tracking_exporter.py`)** sử dụng phông `Arial 9.5–10pt`, mực đơn sắc `#1C1E21`, xóa bỏ 100% Emoji (`🟢`, `🔴`, `⏳`) và chuẩn hóa câu chữ thường từ các đoạn IN HOA toàn bộ.
+## Khắc phục nghiệm thu v3.1
 
+- Cổng audit kiểm toàn bộ hàng cantSplit và chặn ô dữ liệu mẫu ___ trong hồ sơ phát hành.
+- Bộ đếm diễn giải loại bảng, heading, mục lục và disclaimer.
+- Chế độ --json trả đúng exit code; PASS chỉ xác nhận các tiêu chí tự động, không xác nhận pháp lý.
+- Generator bảo vệ bảng bìa/ký duyệt trước khi lưu; dùng phụ lục dự án đã điền, không phát hành template trống.
 
-## Khóa Cứng Quy tắc Trình bày Văn bản & Typography (Rule 12c — Clean Typography & Math Lock v4.3)
-
-1. **Chống Double Bullet (•  • )**:
-   - Khi render danh sách List Bullet, bộ parser tự động strip sạch ký tự •, -, –, —, * khỏi 	ext_content để không bị trùng lặp bullet glyph của Word.
-2. **Tách biệt Danh sách Thứ tự & Chữ cái**:
-   - Danh sách đánh số (1., 2.) hoặc chữ cái (), b)) bắt buộc dùng paragraph thường với thụt lề đầu dòng (left_indent = Inches(0.25) / Cm(0.6)), tuyệt đối không gán style='List Bullet' làm xuất hiện dấu chấm tròn trước số.
-3. **Triệt tiêu 100% Mã thô LaTeX trong Word**:
-   - Mọi ký hiệu toán học / thủy văn ({max}, H_{tb}, H_{min}, R_b, f_{cd}, \Delta u, m^2, m^3$) tự động được chuyển đổi sang chỉ số dưới (subscript=True), chỉ số trên (superscript=True) hoặc ký hiệu Unicode toán học. Tuyệt đối cấm để lộ ký tự $ trong tài liệu Word.
+- Compiler --auto-docx tự chạy cổng audit sau khi xuất và trả mã lỗi nếu hồ sơ chưa đạt.

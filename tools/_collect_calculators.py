@@ -26,6 +26,7 @@ KNOWN_CALC_DIRS: dict[str, list[str]] = {
     "Project_Manager": ["calculators", "scripts"],
     "SKILL_BIM_COORDINATION": ["calculators", "scripts"],
     "SKILL_PHULUC": ["calculators", "scripts"],
+    "SKILL_DUAL_AGENT_BRIDGE": ["scripts"],
 }
 
 EXCLUDE_PATTERNS = ("__init__.py",)

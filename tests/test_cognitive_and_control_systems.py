@@ -766,6 +766,60 @@ class TestRegressionClaudeReview(unittest.TestCase):
         after = prod.read_text(encoding="utf-8") if prod.exists() else None
         self.assertEqual(before, after)
 
+    def test_project_memory_schema_drift_tolerance(self):
+        """BUG-015: dict JSON có thêm trường lạ (phiên bản cũ/hơn) không được crash TypeError."""
+        import tempfile
+        import json as _json
+        from project_memory import ProjectMemory, DesignDecision
+        with tempfile.TemporaryDirectory() as td:
+            mem_dir = Path(td)
+            pm = ProjectMemory("TEST_SCHEMA_DRIFT", memory_dir=mem_dir)
+            ctx = pm.create_context("Dự án trôi schema", stage="TKKT")
+            # Giả lập scenario: bạn đồng nghiệp (Gemini) ghi file với trường mới
+            pm.context_file.write_text(_json.dumps({
+                "project_code": "TEST_SCHEMA_DRIFT",
+                "project_name": "Dự án trôi schema",
+                "created_date": "2026-01-01T00:00:00",
+                "last_modified": "2026-01-02T00:00:00",
+                "stage": "TKKT",
+                "standards_used": ["TCVN 5574:2018"],
+                "decisions": [],
+                "issues_log": [],
+                "metadata": {},
+                "future_field_from_v4": {"x": 1}  # trường lạ
+            }), encoding="utf-8")
+            loaded = pm.get_context()
+            self.assertIsNotNone(loaded)
+            self.assertEqual(loaded.stage, "TKKT")
+
+            # Decision có trường lạ
+            pm.decisions_file.write_text(_json.dumps([
+                {
+                    "decision_id": "D-1", "date": "2026-01-01",
+                    "description": "x", "approved_by": "User",
+                    "future_field": "y",
+                    "unknown_new_key": 42
+                }
+            ]), encoding="utf-8")
+            decs = pm.get_decisions()
+            self.assertEqual(len(decs), 1)
+            self.assertEqual(decs[0].decision_id, "D-1")
+
+            # LessonLearned có trường lạ
+            import project_memory as _pm
+            repo = _pm.LessonsLearnedRepository(storage_dir=mem_dir, seed=False)
+            repo.storage_file.write_text(_json.dumps([
+                {
+                    "lesson_id": "LL-X", "project_code": "P", "category": "BEAM",
+                    "issue_description": "a", "root_cause": "b", "preventive_solution": "c",
+                    "related_standards": [], "tags": [], "created_at": "2026-01-01T00:00:00",
+                    "new_version_field": True
+                }
+            ]), encoding="utf-8")
+            lessons = repo.find_lessons(category="BEAM")
+            self.assertEqual(len(lessons), 1)
+            self.assertEqual(lessons[0].lesson_id, "LL-X")
+
 
 if __name__ == '__main__':
     print("=" * 80)

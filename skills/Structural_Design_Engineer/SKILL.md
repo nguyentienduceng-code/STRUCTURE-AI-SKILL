@@ -100,8 +100,13 @@ Structural_Design_Engineer/
 
 1. **Hiển thị Công thức & Từng bước tính (Step-by-Step Calculation)**: Mọi kết quả phải có công thức tổng quát, thế số và kết quả. Không chỉ đưa ra kết luận chung chung.
 2. **Kiểm tra Hệ số Sử dụng ($\eta = S/R \le 1.0$)**: Mọi linh kiện/liên kết đều phải tính tỷ lệ sử dụng khả năng chịu lực $\eta$. Nếu $\eta > 1.0 \rightarrow$ Đánh giá Không Đạt và đề xuất phương án tăng cường.
-3. **Standards Citation Lock**: Trích dẫn chính xác Tiêu chuẩn (Mã - Năm - Điều/Bảng). Ví dụ: TCVN 5575:2012 Điều 5.2.1 hoặc Eurocode 3 EN 1993-1-8 Table 3.4.
+3. **Standards Citation Lock**: Trích dẫn chính xác Tiêu chuẩn (Mã - Năm - Điều/Bảng). Ví dụ: TCVN 5575:2024 Điều 5.2.1 hoặc TCVN 5574:2018 Bảng 6.
 4. **Tự động nhúng Bản vẽ 2D**: Mọi thuyết minh chi tiết liên kết BẮT BUỘC có hình vẽ 2D từ `Technical_Illustrator` minh họa vị trí bu lông, bản mã, đường hàn, bố trí thép.
+5. **ZERO WHITE TEXT LOCK (Điều 12b AGENTS.md)**: Tuyệt đối CẤM dùng chữ màu trắng (`#FFFFFF` hoặc `RGBColor(255, 255, 255)`) trên nền tối trong bất kỳ bảng biểu Word (`.docx`), bảng tính Excel (`.xlsx`) hay hình vẽ kỹ thuật nào. Header bảng bắt buộc dùng nền sáng gốc khoáng (`#DCE4EC` hoặc `#EAE6DF`) đi kèm chữ tối đậm (`#1E3246` hoặc `#1C1E21`).
+6. **Quy định Cấp độ Bền Bê tông Thực tế Thi công (Concrete Grade Realism Lock - Điều 12c AGENTS.md)**:
+   - Sàn & Dầm dân dụng cao tầng: Bê tông **B25 (M350)** đến **B30 (M400)**; sàn DƯL tối đa B35. Cấm dùng > B35 cho sàn dầm vì rủi ro co ngót và nứt nhiệt rất cao.
+   - Cột & Vách Nhà cao tầng (kể cả 30 - 45 tầng): Tầng hầm & tầng thấp (T1 - T10) dùng **B35 (M450, $R_b = 19.5\text{ MPa}$)** đến tối đa **B40 (M500, $R_b = 22.0\text{ MPa}$)**; Tầng thân / Tầng điển hình (T11 - T25) dùng **B30 (M400)** đến **B35 (M450)**; Tầng trên cao (T26 - T40) dùng **B25 - B30**.
+   - CẤM tự tiện gán cấp độ bền bê tông B45, B50, B60 cho nhà cao tầng dân dụng thông thường khi chưa có yêu cầu đặc thù bằng văn bản của CĐT. Khi lực dọc lớn, bắt buộc ưu tiên tăng tiết diện cột/vách, tăng cốt thép dọc $\mu = 2.0\% - 3.0\%$ (thép CB500-V), giải pháp cột vách dẹt (wall-columns) hoặc cột bọc thép hình (SRC/CFT) thay vì đẩy mác bê tông lên B50/B60.
 
 ---
 

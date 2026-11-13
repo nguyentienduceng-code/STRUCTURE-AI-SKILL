@@ -62,6 +62,7 @@ def test_version_sync():
         "Project_Manager": SKILLS_ROOT / "Project_Manager" / "SKILL.md",
         "SKILL_TEMPWORKS": SKILLS_ROOT / "SKILL_TEMPWORKS" / "SKILL.md",
         "SKILL_BIM_COORDINATION": SKILLS_ROOT / "SKILL_BIM_COORDINATION" / "SKILL.md",
+        "SKILL_DUAL_AGENT_BRIDGE": SKILLS_ROOT / "SKILL_DUAL_AGENT_BRIDGE" / "SKILL.md",
     }
 
     versions = {}
@@ -262,6 +263,16 @@ def test_dependencies():
             log_test(f"  {name}", True)
         else:
             log_test(f"  {name}", False)
+
+    # Verify SSOT byte-for-byte sync between .agents/AGENTS.md and .agents/skills/AGENTS.md
+    root_agents = SKILLS_ROOT.parent / "AGENTS.md"
+    skills_agents = SKILLS_ROOT / "AGENTS.md"
+    if root_agents.exists() and skills_agents.exists():
+        synced = (root_agents.read_bytes() == skills_agents.read_bytes())
+        log_test("  AGENTS.md SSOT byte-for-byte sync", synced,
+                 message="" if synced else "Drift detected between .agents/AGENTS.md and .agents/skills/AGENTS.md")
+    else:
+        log_test("  AGENTS.md SSOT byte-for-byte sync", False, message="Missing root or skills AGENTS.md")
 
 def main():
     global TESTS_PASSED, TESTS_FAILED, TESTS_WARNINGS

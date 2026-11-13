@@ -1,7 +1,7 @@
 # SKILL_INDEX.md — Chỉ mục Tổng hợp Toàn bộ Bộ Skills  
   
 > **Mục đích:** Nguồn sự thật DUY NHẤT về cấu trúc, modules, và dependencies của toàn bộ hệ thống skill.  
-> **Cập nhật:** 2026-10-21 — v2.1 (Synced with STANDARDS_LOCK v3.1.0 & TT 34/2026/TT-BXD) (Global Dispatcher & Central Orchestrator)  
+> **Cập nhật:** 2026-11-11 — v2.2 (Synced with AGENTS v7.4, STANDARDS_LOCK v3.3.0 & 14 Production Skills)  
 > **Thay thế:** Phần "Cấu trúc Thư mục" trong từng SKILL.md riêng lẻ.  
 > **Entry Point:** Xem `../README.md` trước!  
   
@@ -63,7 +63,7 @@ _SHARED/
   
 | File | Mục đích |  
 |------|---------|  
-| `Design_Evaluation/scripts/_lib/` | ð¦ **Foundation library** — DOCX helpers, charts, dashboard, audience profiles |  
+| `Design_Evaluation/scripts/_lib/` | 📦 **Foundation library** — DOCX helpers, charts, dashboard, audience profiles |  
 | `Design_Evaluation/scripts/report_dispatcher.py` | ⭐ **Unified CLI** — 1 JSON → nhiều format, audience-aware |  
 | `Design_Evaluation/scripts/xlsx_report.py` | Excel: BOQ/Calc/Comparison/Submittal |  
 | `SKILL_RFI/scripts/document_renderer.py` | SKILL_RFI DOCX/MD renderer |  
@@ -97,45 +97,38 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-## 1. TỔNG QUAN KIẾN TRÚC  
-  
-```  
-.agents/skills/  
-│  
-├── Global_Dispatcher/ ← ð¯ BỘ ĐIỀU PHỐI TRUNG TÂM (Luôn đón tiếp User)  
-│ ├── SKILL.md  
-│ └── scripts/  
-│ ├── intent_classifier.py  
-│ ├── keyword_database.json  
-│ └── pipeline_builder.py  
-│  
-├── AGENTS.md ← ð ĐỌC TRƯỚC: Quy tắc liên-skill toàn hệ thống  
-├── SKILL_INDEX.md ← Bản đồ điều phối & tra cứu nhanh (file này)  
-├── STANDARDS_LOCK.md ← Khóa cứng phiên bản tiêu chuẩn chuẩn  
-├── SKILL_BRIDGE.md ← Giao thức Data Contract & Handoff Schemas  
-├── INTER_SKILL_TRIGGERS.md ← Ma trận tự động kích hoạt liên-skill  
-│  
-├── _CORE_SKILLS/ ← ð§ SKILLS CHÍNH  
-│ ├── Design_Evaluation/ ← Review, QC/QA, Tờ trình  
-│ ├── Structural_Design_Engineer/ ← Tính toán, Thuyết minh  
-│ └── Technical_Illustrator/ ← Vẽ 2D  
-│  
-├── _SUPPORT_SKILLS/ ← ð§ SKILLS HỖ TRỢ  
-│ ├── Cost_Estimator/ ← So sánh chi phí, VE  
-│ ├── SKILL_FORENSIC/ ← Điều tra sự cố  
-│ ├── SKILL_VERIFY/ ← Kiểm chứng kết quả  
-│ ├── SKILL_RFI/ ← Quản lý RFI với nhà thầu  
-│ ├── SKILL_PHULUC/ ← Phụ lục tính toán chuyên nghiệp  
-│ ├── SKILL_GEOTECH/ ← Địa kỹ thuật & Thông số Plaxis  
-│ ├── SKILL_TEMPWORKS/ ← ð¢ Thiết kế Cốp pha sàn & Cây chống (v0.2.0)  
-│ ├── Project_Manager/ ← ð¡ Quản lý dự án (Placeholder)  
-│ └── SKILL_BIM_COORDINATION/ ← ð¡ BIM Coordination (Placeholder)  
-│  
-├── _SHARED/shared/ ← ð§ Shared utilities  
-│  
-└── CHANGELOG.md ← Lịch sử thay đổi  
-```  
-  
+## 1. TỔNG QUAN KIẾN TRÚC
+
+```text
+.agents/skills/
+│
+├── Global_Dispatcher/             ← 🎯 BỘ ĐIỀU PHỐI TRUNG TÂM (v2.0.0 Production)
+│   ├── SKILL.md
+│   └── scripts/ (intent_classifier.py, keyword_database.json, pipeline_builder.py, approval_gate.py)
+│
+├── AGENTS.md                      ← 📖 ĐỌC TRƯỚC: Quy tắc liên-skill SSOT (v7.4, đồng bộ với .agents/AGENTS.md)
+├── SKILL_INDEX.md                 ← Bản đồ điều phối & tra cứu nhanh (file này)
+├── STANDARDS_LOCK.md              ← Khóa cứng phiên bản tiêu chuẩn (v3.3.0)
+├── SKILL_BRIDGE.md                ← Giao thức Data Contract & Handoff Schemas
+├── INTER_SKILL_TRIGGERS.md        ← Ma trận tự động kích hoạt liên-skill
+│
+├── Design_Evaluation/             ← 🟢 Review, Thẩm tra 7 Cổng, Tờ trình (v3.4.0)
+├── Structural_Design_Engineer/    ← 🟢 Tính toán thiết kế, Thuyết minh (v1.3.0)
+├── Technical_Illustrator/         ← 🟢 Vẽ 2D/CAD DCE Pro & Gantt PMO (v1.4.0)
+├── Cost_Estimator/                ← 🟢 So sánh chi phí, VE, Carbon (v1.4.0)
+├── SKILL_FORENSIC/                ← 🟢 Điều tra sự cố kết cấu (v1.2.0)
+├── SKILL_VERIFY/                  ← 🟢 Kiểm chứng 8 tầng & CAD Audit (v3.3.0)
+├── SKILL_RFI/                     ← 🟢 Quản lý RFI / NCR / Submittal (v1.4.0)
+├── SKILL_PHULUC/                  ← 🟢 Phụ lục tính toán chuyên nghiệp (v3.1.0)
+├── SKILL_GEOTECH/                 ← 🟢 Địa kỹ thuật & Plaxis (v3.1.0)
+├── SKILL_TEMPWORKS/               ← 🟢 Thiết kế Cốp pha & Cây chống (v1.0.0)
+├── Project_Manager/               ← 🟢 Quản lý dự án, Master Schedule MS Project, Phân cấp TT 34/2026 (v2.0.0)
+├── SKILL_BIM_COORDINATION/        ← 🟢 BIM Coordination & CAD Clash Audit (v1.4.0)
+├── SKILL_DUAL_AGENT_BRIDGE/       ← 🟢 Điều phối Dual-Agent Gemini ↔ Claude qua Bus v3.0 (v3.1.0)
+│
+└── CHANGELOG.md                   ← Lịch sử thay đổi toàn hệ thống (v7.4)
+```
+
 ### Skill Flow:  
   
 ```  
@@ -194,7 +187,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ## 3. DANH MỤC ĐẦY ĐỦ CÁC SKILL  
   
-### 3.0 Global_Dispatcher (v1.0.0)  
+### 3.0 Global_Dispatcher (v2.0.0)  
   
 **Vai trò:** Bộ Điều phối Trung tâm (Central Orchestrator)  
   
@@ -209,7 +202,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.1 Design_Evaluation (v2.2.0)  
+### 3.1 Design_Evaluation (v3.4.0)  
   
 **Vai trò:** Quản lý Thiết kế / Đại diện Chủ đầu tư  
   
@@ -287,20 +280,21 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.3 Technical_Illustrator (v1.3.0)  
+### 3.3 Technical_Illustrator (v1.4.0)  
   
-**Vai trò:** Minh họa Kỹ thuật  
+**Vai trò:** Minh họa Kỹ thuật & Tiến độ PMO  
   
 **Entry Point:** `SKILL.md`  
   
 | Mode | Công cụ | Giá trị | Kích hoạt |  
 |------|---------|---------|------------|  
-| **MODE 2D** | Python/matplotlib | Bản vẽ kỹ thuật chính xác | MẶC ĐỊNH |  
+| **MODE 2D** | Python/matplotlib / ezdxf | Bản vẽ kỹ thuật chính xác & CAD chuẩn | MẶC ĐỊNH |  
 | **MODE 3D** | AI Render | Minh họa phối cảnh | CHỈ khi yêu cầu rõ |  
   
-**Scripts vẽ 2D (tham số hóa — hoạt động):**  
+**Scripts vẽ 2D & CAD (tham số hóa — hoạt động):**  
 | Script | Input chính | Output |  
 |--------|-------------|--------|  
+| `scripts/ms_project_gantt.py` | `--input-json --output --docx-out` | **Biểu đồ Tiến độ chuẩn MS Project (Split View 8 cột + CPM 300 DPI + Landscape DOCX)** |  
 | `draw_2d_section.py` | `--h --b --tw --tf` | Mặt cắt dầm thép |  
 | `draw_bolt_connection.py` | `--bolt_d --bolt_grade --n_rows --n_cols` | Chi tiết bu lông |  
 | `draw_rc_column.py` | `--type --width --depth --main_dia` | Mặt cắt cột BTCT |  
@@ -312,7 +306,8 @@ python SKILL_RFI/scripts/document_renderer.py \\
 | `draw_pile_cap.py` | `--type --L --B --H --pile_d --n_piles` | Đài cọc |  
 | `draw_weld_detail.py` | `--type --plate_t --weld_type` | Chi tiết hàn |  
 | `draw_moment_diagram.py` | `--input --output` | Biểu đồ nội lực (M, V, N) SVG/DXF |  
-| `cad_integration/dce_dxf_generator.py` | DXF template | Bản vẽ CAD |  
+| `cad_integration/cad_plan_engine.py` | `--output --template --pdf` | **Bản vẽ CAD Mặt bằng Cột Vách chuẩn DCE Pro A1 (Giải quyết trọn vẹn 7 Gaps)** |  
+| `cad_integration/dce_dxf_generator.py` | DXF template | Bản vẽ CAD dầm sàn |  
   
 **Deprecated (di chuyển sang `_deprecated/`):**  
 | Script | Lý do | Thay thế |  
@@ -333,7 +328,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.4 Cost_Estimator (v1.2.0)  
+### 3.4 Cost_Estimator (v1.4.0)  
   
 **Vai trò:** Value Engineering / Phân tích Chi phí  
   
@@ -387,20 +382,22 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.6 SKILL_VERIFY (v1.2.0)  
+### 3.6 SKILL_VERIFY (v3.3.0)  
   
-**Vai trò:** Quality Assurance / Kiểm chứng Chéo  
+**Vai trò:** Quality Assurance / Hệ thống Kiểm chứng Độc lập 8 Tầng  
   
 **Entry Point:** `SKILL.md`  
   
-| Loại | Script | Chức năng |  
-|------|--------|-----------|  
-| **Loại 1** | `inter_module_verify.py` | So sánh SKILLKC vs Structural_Design_Engineer |  
-| **Loại 2** | `standard_conflict_checker.py` | Phát hiện xung đột phiên bản tiêu chuẩn |  
-| **Loại 3** | `calculation_logs_checker.py` | Kiểm tra nhất quán calculation logs |  
-| **Loại 4** | `compare_with_etabs.py` | So sánh với ETABS/SAP2000 |  
-| **Loại 5** | `report_consistency_check.py` | Kiểm tra báo cáo vs JSON handoff |  
-| **UNIFIED** | `verify_all.py` | Chạy đồng thời cả 5 loại |  
+| Bộ lọc | Script / Công cụ | Chức năng Kiểm toán |  
+|--------|------------------|---------------------|  
+| **Bộ lọc 1** | `drawing_calc_crosscheck.py` (EMF Parser) | Trích xuất dữ liệu gốc từ bảng tính EMF/Vector trong Word (.docx) |  
+| **Bộ lọc 2** | `drawing_calc_crosscheck.py` | Kiểm toán tải trọng & tổ hợp tải trọng (gió TCVN 2737:2023, tải động đất) |  
+| **Bộ lọc 3** | `drawing_calc_crosscheck.py` | Kiểm toán sơ đồ tính & điều kiện biên (ngàm/khớp, sườn tăng cứng) |  
+| **Bộ lọc 4** | `drawing_calc_crosscheck.py` | Truy vết phản lực nút ETABS sang bảng tính móng (khử kéo đáy móng) |  
+| **Bộ lọc 5** | `drawing_calc_crosscheck.py` | Đối soát hàm lượng thép & kích thước hình học 4 chiều (Drawing-Tag-Calc) |  
+| **Bộ lọc 6** | `drawing_calc_crosscheck.py` | Quét lỗi công thức bảng tính (#VALUE!, #REF!, ô gộp mất liên kết) |  
+| **Bộ lọc 7** | `cad_deep_reader.py` (v1.1.0) | Kiểm chứng đồ thị không gian CAD, bắt lỗi Dimension Text Override > 2% |  
+| **Bộ lọc 8** | `dce_cad_compliance_checker.py` (v2.0) | Kiểm toán tuân thủ chuẩn CAD DCE Pro & Graphic Sanity Auditor (Điều 12d AGENTS.md) |  
   
 **Thresholds chuẩn:**  
 | Loại | Ngưỡng Warning | Ngưỡng Critical |  
@@ -408,10 +405,11 @@ python SKILL_RFI/scripts/document_renderer.py \\
 | Inter-module variance | 5% | 10% |  
 | Utilization ratio η | 3% | 5% |  
 | Diện tích cốt thép | 10% | 15% |  
+| Dimension Text Override | > 1.0% | > 2.0% |  
   
 ---  
   
-## 3.7 SKILL_RFI (v1.2.0)  
+## 3.7 SKILL_RFI (v1.4.0)  
   
 **Vai trò:** Quản lý giao dịch kỹ thuật (RFI/NCR/Submittal/CO) với tất cả các bên  
   
@@ -431,10 +429,10 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 | Mức | Ký hiệu | Trigger | Deadline |  
 |------|----------|---------|----------|  
-| ð´ URGENT | An toàn/Kết cấu | "sập", "nguy hiểm", "sai tiết diện" | 24h |  
-| ð  HIGH | Tiến độ/Cost | "chậm", "phát sinh", "thay đổi" | 3 ngày |  
-| ð¡ NORMAL | Kỹ thuật | "thiếu thông tin", "cần xác nhận" | 7 ngày |  
-| ð¢ LOW | Hành chính | "làm rõ", "bổ sung" | 14 ngày |  
+| 🔴 URGENT | An toàn/Kết cấu | "sập", "nguy hiểm", "sai tiết diện" | 24h |  
+| 🟠 HIGH | Tiến độ/Cost | "chậm", "phát sinh", "thay đổi" | 3 ngày |  
+| 🟡 NORMAL | Kỹ thuật | "thiếu thông tin", "cần xác nhận" | 7 ngày |  
+| 🟢 LOW | Hành chính | "làm rõ", "bổ sung" | 14 ngày |  
   
 **Integration với Design_Evaluation:**  
 ```  
@@ -449,7 +447,7 @@ Khi có phản hồi → Cập nhật vào phân tích
   
 ---  
   
-## 3.8 SKILL_PHULUC (v2.0.0)  
+## 3.8 SKILL_PHULUC (v3.1.0)  
   
 **Vai trò:** Phụ lục Tính toán Kết cấu Chuyên nghiệp  
   
@@ -521,14 +519,15 @@ Khi có phản hồi → Cập nhật vào phân tích
   
 ---  
   
-## 3.11 Các Skill Quản Lý & Phối Hợp (v0.6.0 Active)  
+## 3.11 Các Skill Quản Lý & Phối Hợp (Production v3.1.0)  
   
-**Vai trò:** Các module mở rộng quản lý dự án và phối hợp đa bộ môn  
+**Vai trò:** Các module mở rộng quản lý dự án, phối hợp BIM và cầu nối liên tác tử  
   
 | Skill | Trạng thái | Chức năng | Trigger |  
 |-------|------------|-----------|---------|  
-| **Project_Manager** | ✅ v0.6.0 Active | Quản lý dự án, milestone, ma trận rủi ro, lộ trình pháp lý, ĐTM, PCCC | "lập tiến độ", "quản lý rủi ro", "tài liệu pháp lý", "risk matrix", "milestone" |  
-| **SKILL_BIM_COORDINATION** | ✅ v0.5.0 Active | Clash detection giữa kết cấu và cơ điện, phân tích IFC, kiểm tra lỗ mở dầm | "clash detection", "BIM review", "xung đột kỹ thuật", "phối hợp MEP", "lỗ mở dầm" |  
+| **Project_Manager** | ✅ v2.0.0 Production | Quản lý dự án, Master Schedule MS Project (Gantt 8 cột + CPM 300 DPI, msproject_xml_engine), EVM/CPM, KPI ISO | "lập tiến độ", "quản lý rủi ro", "Master Schedule", "Gantt", "MS Project", "EVM" |  
+| **SKILL_BIM_COORDINATION** | ✅ v1.4.0 Production | Clash detection giữa kết cấu và kiến trúc/MEP, kiểm tra thông thủy, lỗ mở dầm, đối chiếu lưới trục | "clash detection", "BIM review", "xung đột kỹ thuật", "phối hợp MEP", "lỗ mở dầm" |  
+| **SKILL_DUAL_AGENT_BRIDGE** | ✅ v3.1.0 Production | Giao thức phối hợp liên tác tử Gemini ↔ Claude (Relay, Partitioned Parallel, Red-Team Audit) qua bus v3.0 | "bàn giao Claude", "phối hợp 2 AI", "thẩm tra đối kháng", "sync bus", "handoff memo" |  
   
 ---  
   
@@ -629,7 +628,7 @@ hypothesis_ranker → remedial_solution → Forensic Report
 ## 7. SHARED UTILITIES (Phase 2 — 2026-08-30)  
   
 ### 7.1 Standards MCP Server  
-**Vị trí:** `shared/standards_mcp/server.py`  
+**Vị trí:** `../_SHARED/standards/standards_graph.py`  
   
 **Chức năng:** Fast lookup cho tiêu chuẩn  
 - Search citation theo keyword  
@@ -643,7 +642,7 @@ python server.py --test
 ```  
   
 ### 7.2 Project Memory Layer  
-**Vị trí:** `shared/memory/project_memory.py`  
+**Vị trí:** `../_SHARED/memory/project_memory.py`  
   
 **Chức năng:** Lưu context dự án giữa các session  
 - Nhớ quyết định thiết kế đã duyệt  
@@ -652,13 +651,13 @@ python server.py --test
   
 **Cách dùng:**  
 ```bash  
-cd shared/memory  
+cd ../_SHARED/memory  
 python project_memory.py --project DUAN_A --action list  
 python project_memory.py --project DUAN_A --action create --name "Dự án A"  
 ```  
   
 ### 7.3 Parallel Review Workflow  
-**Vị trí:** `shared/workflows/parallel_review_workflow.py`  
+**Vị trí:** `../_SHARED/workflows/parallel_review_workflow.py`  
   
 **Chức năng:** Review song song nhiều phần hồ sơ  
 - Dầm, cột, móng review cùng lúc  
@@ -667,7 +666,7 @@ python project_memory.py --project DUAN_A --action create --name "Dự án A"
   
 **Cách dùng:**  
 ```bash  
-cd shared/workflows  
+cd ../_SHARED/workflows  
 python parallel_review_workflow.py --project DUAN_A --scope "beam,column" --output report.json  
 ```  
   
@@ -719,10 +718,12 @@ python parallel_review_workflow.py --project DUAN_A --scope "beam,column" --outp
   
 | Version | Date | Changes |  
 |---------|------|---------|  
+| 2.2 | 2026-11-11 | Synced all 14 production skills, fixed emoji UTF-8 & directory layout, added SKILL_DUAL_AGENT_BRIDGE v3.1.0 |
+| 2.1 | 2026-10-21 | Synced with STANDARDS_LOCK v3.1.0 & TT 34/2026/TT-BXD |
 | 1.9 | 2026-09-27 | Agentic Workflow Infrastructure P1 (Handoff Validation & Confidence Score) |  
 | 1.8 | 2026-09-26 | Agentic Workflow Infrastructure P0 + Added 3 placeholder skills |  
 | 1.7 | 2026-09-25 | Critical fixes: Version sync với SKILL.md thực tế, thêm Lazy Load, xóa deprecated references |  
 | 1.6 | 2026-09-20 | Added SKILL_PHULUC (v1.0.0) and SKILL_GEOTECH (v3.0.0); Updated dependency graph |  
 | 1.5 | 2026-08-31 | Reporting Upgrade v4.1 — Unified Dispatcher + 5 Audience Profiles |  
 | 1.1 | 2026-08-30 | Eurocode scripts moved to `_deprecated/`; Updated Standards Lock section; Added deprecated scripts table |  
-| 1.0 | 2026-08-25 | Initia
+| 1.0 | 2026-08-25 | Initial release |

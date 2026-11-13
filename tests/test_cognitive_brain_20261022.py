@@ -15,22 +15,15 @@ import tempfile
 import unittest
 from pathlib import Path
 
-_PATCHES_DIR = Path(__file__).resolve().parent.parent / "intermediate" / "patches"
-sys.path.insert(0, str(_PATCHES_DIR))
-
-import importlib.util
-for _mod_name in (
-    "intent_classifier", "approval_state", "approval_gate",
-    "review_gate_engine", "confidence_score",
-    "validate_handoff_schema", "handoff_manager", "project_memory"
-):
-    _mod_file = _PATCHES_DIR / f"{_mod_name}.py"
-    if _mod_name not in sys.modules and _mod_file.exists():
-        _spec = importlib.util.spec_from_file_location(_mod_name, str(_mod_file))
-        if _spec and _spec.loader:
-            _mod = importlib.util.module_from_spec(_spec)
-            sys.modules[_mod_name] = _mod
-            _spec.loader.exec_module(_mod)
+AGENTS_ROOT = Path(__file__).resolve().parent.parent
+_MODULE_DIRS = [
+    AGENTS_ROOT / "skills" / "Global_Dispatcher" / "scripts",
+    AGENTS_ROOT / "_SHARED" / "SHARED_CONTEXT",
+    AGENTS_ROOT / "_SHARED" / "memory",
+]
+for _d in _MODULE_DIRS:
+    if str(_d) not in sys.path:
+        sys.path.insert(0, str(_d))
 
 
 from intent_classifier import IntentClassifier, EntityExtractor, TEST_CASES, COGNITIVE_BENCHMARK_CASES
@@ -54,7 +47,9 @@ class TestCognitiveBrainV2(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.clf = IntentClassifier(db_path=str(_PATCHES_DIR / "keyword_database.json"))
+        cls.clf = IntentClassifier(
+            db_path=str(AGENTS_ROOT / "skills" / "Global_Dispatcher" / "scripts" / "keyword_database.json")
+        )
 
     def test_01_zero_score_guard_no_false_default_to_de(self):
         """BRAIN-BUG-01: Câu lệnh ngoài miền kỹ thuật phải trả về primary_skill=None, conf=0.0 thay vì gán nhầm Design_Evaluation."""

@@ -9,6 +9,9 @@
 | Tình huống cần vẽ | Script | Output | Ghi chú |
 |---|---|---|---|
 | **Biểu đồ Tiến độ Dự án chuẩn Microsoft Project (PMO)** | `ms_project_gantt.py` | **PNG 300 DPI + Landscape DOCX** | **Split View 8 cột WBS + Gantt CPM + Summary Brackets + FS Arrows + Nghỉ lễ** |
+| **Bản vẽ CAD Mặt bằng Kết cấu chuẩn DCE Pro A1 (KC-01/02/03)** | `../cad_integration/cad_plan_engine.py` | **DXF AC1021 chuẩn DCE Pro** | **40 tầng / Multi-sheet KC-01..03, 4 tầng dim, Solid Hatch, Schedule** |
+| **Sinh bản vẽ dầm BTCT DXF chuẩn DCE Pro** | `../cad_integration/dce_dxf_generator.py` | **DXF AC1021** | **Kế thừa Seed Template DCE_Master_Seed_Template.dxf** |
+| **Chuyển kết quả tính RC / Thép sang DXF** | `../cad_integration/calc_to_dxf.py` | **DXF AC1021** | **RCCalculatorToDXF & SteelCalculatorToDXF** |
 | **Dầm BTCT — mặt cắt + bố trí thép** | `draw_rc_beam_full.py` | PNG 300 DPI | Dầm đầy đủ: mặt cắt + cốt thép + đai |
 | **Dầm thép — mặt cắt** | `draw_2d_section.py` | PNG 300 DPI | I, H, kênh, hộp — tham số hóa |
 | **Cột BTCT — mặt cắt** | `draw_rc_column.py` | PNG 300 DPI | Vuông, tròn — tham số hóa |

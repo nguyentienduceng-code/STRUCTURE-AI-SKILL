@@ -61,8 +61,16 @@ Mã dự án: [Mã DA] | Giai đoạn: [TKCS / TKKT / BVTC] | Người tính: AI
 1. **Review Gate (`../AGENTS.md` điều 3 & 8)**:
    - Hiển thị tóm tắt bảng chỉ số sử dụng $\eta$, các công thức cốt lõi và hình vẽ 2D ra chat.
    - Hỏi User: *"Anh/chị có đồng ý xuất file Thuyết minh tính toán (.docx) không?"*
-2. **Xuất File Word (.docx)**:
+2. **ZERO WHITE TEXT LOCK & Định dạng Bảng biểu (Điều 12b AGENTS.md)**:
+   - Tuyệt đối CẤM dùng chữ màu trắng trên nền tối trong mọi bảng biểu của file Word (`.docx`).
+   - Header bảng: Bắt buộc dùng nền sáng gốc khoáng **Xanh Đá Phiến Sương Nhạt (`#DCE4EC`)** hoặc **Đá Vôi Sáng (`#EAE6DF`)**, chữ in đậm màu tối **Xanh Thép Trầm (`#1E3246`)** hoặc **Mực Than Chì (`#1C1E21`)**.
+   - Dòng dữ liệu: Chữ tối (`#1C1E21`), nền trắng hoặc xen kẽ `#F8F7F4`.
+3. **Quy định Cấp độ Bền Bê tông Thực tế Thi công (Điều 12c AGENTS.md)**:
+   - Sàn & Dầm: B25 (M350) - B30 (M400), tối đa B35 cho sàn DƯL.
+   - Cột & Vách: B35 (M450) - B40 (M500) cho tầng hầm/tầng thấp; B30 - B35 cho tầng điển hình; B25 - B30 cho tầng cao.
+   - CẤM tự ý đưa mác B45 - B60 vào thiết kế dân dụng khi chưa có chỉ đạo bằng văn bản của CĐT/TVTK.
+4. **Xuất File Word (.docx)**:
    - Dùng script `export_calc_sheet.py` hoặc `md_to_docx_report.js` để đóng gói thành file `.docx` chuyên nghiệp.
    - Đặt tên file theo chuẩn Version Control: `[MãDA]_ThuyetMinh_KC_v[N]_[YYYYMMDD].docx`.
-3. **Xác nhận File tồn tại**:
+5. **Xác nhận File tồn tại**:
    - Dùng `list_dir` hoặc `view_file` xác nhận file `.docx` đã được tạo thành công.

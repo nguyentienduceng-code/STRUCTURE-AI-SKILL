@@ -1,0 +1,31 @@
+{
+  "project_context": {
+    "project_code": "TEN_DU_AN",
+    "project_purpose": "Mô tả mục tiêu của dự án",
+    "role_distribution": "Phân chia vai trò linh hoạt giữa Gemini và Claude",
+    "action_type": "DYNAMIC"
+  },
+  "last_updated_by": "GEMINI",
+  "timestamp": "2026-11-07T10:00:00+07:00",
+  "handoff_status": "PENDING",
+  "current_holder": "IDLE",
+  "summary": "Tóm tắt tiến độ đã hoàn tất trong ca trực vừa qua",
+  "artifacts_modified": [
+    "path/to/modified_file1.py",
+    "path/to/modified_file2.ts"
+  ],
+  "next_action_for_partner": {
+    "target_agent": "CLAUDE",
+    "task_description": "Chỉ thị nhiệm vụ cụ thể cho Agent đối tác",
+    "target_files": [
+      "path/to/target_file1.ts"
+    ],
+    "acceptance_criteria": [
+      "Kiểm tra 100% tests PASS",
+      "Không có lỗi biên dịch",
+      "Xác nhận working tree sạch"
+    ],
+    "command": "Câu lệnh gợi ý đối tác bắt đầu nhanh"
+  },
+  "Verification_Status": "CONFIRMED_AND_HANDED_OFF"
+}

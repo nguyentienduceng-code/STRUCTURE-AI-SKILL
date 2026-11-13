@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -70,11 +70,19 @@ class PolicyDecision:
     rule_sources: list[str] = field(default_factory=list)
     standard_basis: Optional[Dict[str, Any]] = None
     standard_conflicts: Optional[List[str]] = None
+    input_provenance_audit: Optional[Dict[str, Any]] = None
+    input_provenance_status: str = 'NOT_PROVIDED'
+    input_risk_warnings: List[str] = field(default_factory=list)
 
     @property
     def is_safe(self) -> bool:
         """Kiểm tra kết cấu có đạt an toàn chịu lực hay không (η <= 1.00)."""
         return self.action in (Action.PASS, Action.TRIGGER_VE)
+
+    @property
+    def is_approved(self) -> bool:
+        """Structural safety alone does not approve an unverified input trail."""
+        return self.is_safe and self.input_provenance_status in ('PASS', 'ENGINEER_ASSUMED')
 
 
 def _extract_eta_values(
@@ -112,7 +120,7 @@ def _extract_eta_values(
     return extracted
 
 
-def decide_eta(
+def _decide_eta_structural(
     eta_input: Union[float, int, Dict[str, Any], List[Union[float, int]]]
 ) -> PolicyDecision:
     """
@@ -230,6 +238,85 @@ def decide_eta(
 #     đó là tín hiệu MÂU THUẪN cần báo cáo (không tự ý quyết định).
 #
 # Xem .agents/_SHARED/standards/standards_graph.py
+
+def _review_input_provenance(audit, inputs=None, provenance=None):
+    """Do not accept a naked PASS flag or a global ENGINEER_ASSUMED waiver."""
+    from input_provenance_guard import audit_inputs
+    if inputs is not None:
+        try:
+            audit = audit_inputs(inputs, provenance if provenance is not None else
+                                 (audit.get('provenance') if isinstance(audit, dict) else None))
+        except (ValueError, TypeError) as error:
+            return 'RISK', {'status': 'ERROR', 'error': str(error)}, ['INPUT_PROVENANCE_INVALID']
+    if audit is None:
+        return 'NOT_PROVIDED', None, ['INPUT_PROVENANCE_NOT_PROVIDED']
+    if not isinstance(audit, dict):
+        return 'RISK', None, ['INPUT_PROVENANCE_INVALID']
+    records = audit.get('provenance', [])
+    if not isinstance(records, list):
+        return 'RISK', audit, ['INPUT_PROVENANCE_INVALID']
+    valid_records = {}
+    for record in records:
+        if not isinstance(record, dict) or not isinstance(record.get('Parameter'), str):
+            return 'RISK', audit, ['INPUT_PROVENANCE_INVALID']
+        name = record['Parameter']
+        if name in valid_records:
+            return 'RISK', audit, ['INPUT_PROVENANCE_DUPLICATE']
+        # Validate each attestation with the same guard used by calculators.
+        # Without actual inputs this checks the upstream audit, not value truth.
+        local_record = dict(record, Parameter='value')
+        check = audit_inputs({'value': record.get('Value')}, [local_record])
+        if not check['allowed']:
+            return 'RISK', audit, ['UNANCHORED_VALUES: invalid provenance record '+name]
+        valid_records[name] = record
+    violations = audit.get('violations', [])
+    unanchored = audit.get('UNANCHORED_VALUES', [])
+    if not isinstance(violations, list) or not isinstance(unanchored, list):
+        return 'RISK', audit, ['INPUT_PROVENANCE_INVALID']
+    if any(not isinstance(v, dict) for v in violations):
+        return 'RISK', audit, ['INPUT_PROVENANCE_INVALID']
+    unanchored_names = [v.get('Parameter') for v in violations
+                        if v.get('Code') in ('UNANCHORED_VALUE', 'UNANCHORED_VALUES')]
+    unanchored_names.extend(unanchored)
+    other_errors = [v for v in violations if v.get('Code') not in ('UNANCHORED_VALUE', 'UNANCHORED_VALUES')]
+    waived = bool(unanchored_names) and all(
+        isinstance(name, str) and name in valid_records and
+        valid_records[name]['Source_Type'] == 'ENGINEER_ASSUMED' for name in unanchored_names)
+    total = audit.get('total_parameters')
+    complete = type(total) is int and total > 0 and len(valid_records) == total
+    if other_errors or (unanchored_names and not waived):
+        return 'RISK', audit, ['UNANCHORED_VALUES: input trail requires review']
+    if waived and complete:
+        return 'ENGINEER_ASSUMED', audit, ['ENGINEER_ASSUMED_INPUTS: explicit per-parameter attestations']
+    if not (complete and audit.get('status') == 'PASS' and audit.get('allowed') is True
+            and audit.get('anchored_parameters') == total and audit.get('coverage_percent') == 100):
+        return 'RISK', audit, ['INPUT_PROVENANCE_INCOMPLETE_OR_BLOCKED']
+    if any(r['Source_Type'] == 'ENGINEER_ASSUMED' for r in valid_records.values()):
+        return 'ENGINEER_ASSUMED', audit, ['ENGINEER_ASSUMED_INPUTS: explicit per-parameter attestations']
+    return 'PASS', audit, []
+
+
+def decide_eta(eta_input, input_provenance_audit=None, *, inputs=None, provenance=None) -> PolicyDecision:
+    """Classify eta and audit its input trail BEFORE granting is_approved.
+
+    Accept a numeric eta/mapping or {eta: ..., Input_Provenance_Audit: ...}.
+    Legacy is_safe classifies eta only. Use is_approved for a combined approval.
+    Passing inputs re-runs Input Provenance Guard and binds the actual values.
+    """
+    if isinstance(eta_input, dict) and 'Input_Provenance_Audit' in eta_input:
+        if input_provenance_audit is not None:
+            raise ValueError('Input_Provenance_Audit supplied twice')
+        input_provenance_audit = eta_input['Input_Provenance_Audit']
+        eta_input = {key: value for key, value in eta_input.items() if key != 'Input_Provenance_Audit'}
+    status, audit, warnings = _review_input_provenance(input_provenance_audit, inputs, provenance)
+    decision = _decide_eta_structural(eta_input)
+    risky = status == 'RISK'
+    return replace(decision, input_provenance_audit=audit, input_provenance_status=status,
+                   input_risk_warnings=warnings,
+                   reasons=decision.reasons + (warnings if status != 'NOT_PROVIDED' else []),
+                   message=('RỦI RO ĐẦU VÀO — CHƯA PHÊ DUYỆT. ' if risky else '') + decision.message,
+                   triggers=decision.triggers + (['INPUT_PROVENANCE_REVIEW'] if risky else []))
+
 
 import re as _re
 from pathlib import Path as _Path
@@ -429,6 +516,7 @@ def decide_eta_with_standards(
     element_id: Optional[str] = None,
     element_type: Optional[str] = None,
     graph: Any = None,
+    *, input_provenance_audit=None, inputs=None, provenance=None,
 ) -> PolicyDecision:
     """
     Quyết định hành động theo η, kèm CĂN CỨ TIÊU CHUẨN từ StandardsGraph.
@@ -443,7 +531,7 @@ def decide_eta_with_standards(
 
     Nếu đồ thị không khả dụng -> trả về đúng như `decide_eta()` (fail-safe).
     """
-    decision = decide_eta(eta_input)
+    decision = decide_eta(eta_input, input_provenance_audit, inputs=inputs, provenance=provenance)
 
     basis = resolve_standard_basis(element_id, element_type, graph)
     if not basis:

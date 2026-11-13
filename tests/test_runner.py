@@ -276,4 +276,7 @@ def run_tests():
 
 
 if __name__ == "__main__":
-    run_tests()
+    res = run_tests()
+    if res.get("failed", 0) + res.get("errors", 0) > 0:
+        sys.exit(1)
+    sys.exit(0)

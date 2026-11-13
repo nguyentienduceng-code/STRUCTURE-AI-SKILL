@@ -6,7 +6,7 @@ Triết lý thiết kế (Anti-AI-Cliché Architectural, Engineering & PMO Print
 1. ZERO WHITE TEXT LOCK (Điều 12b AGENTS.md):
    - Tuyệt đối cấm dùng chữ màu trắng (#FFFFFF / RGBColor(255, 255, 255)) trong mọi bảng biểu Word (.docx),
      bảng tính Excel (.xlsx) và biểu đồ kỹ thuật.
-2. TYPOGRAPHY & MARGIN FLOOR LOCK (Điều 12c AGENTS.md — Chuẩn Nghị định 30/2020/NĐ-CP & TCVN 7284/7285):
+2. TYPOGRAPHY & MARGIN FLOOR LOCK (Điều 12e AGENTS.md — Chuẩn Nghị định 30/2020/NĐ-CP & TCVN 7284/7285):
    - Phông chữ chuẩn văn bản pháp lý & thuyết minh kỹ thuật: `Times New Roman` (Unicode TCVN 6909:2001).
    - Định lề trang A4 Dọc (21.0 x 29.7 cm): Lề trái 3.0 cm (chừa gáy đóng hồ sơ), Lề phải 1.8 cm,
      Lề trên 2.0 cm, Lề dưới 2.0 cm (vùng in thực tế = 16.2 cm = 9185 twips).

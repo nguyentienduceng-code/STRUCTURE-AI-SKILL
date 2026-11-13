@@ -5,14 +5,26 @@ Bộ kiểm thử tự động (Automated Verification & Regression Test Suite)
 Kiểm chứng toàn bộ 16 tệp đã vá (R&D + Cơ học Kết cấu TCVN) của hệ thống .agents.
 """
 import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 import json
 import math
 import subprocess
 from pathlib import Path
 
-PATCH_DIR = Path("/working_dir/c_7dad3a9fa9593898/artifacts/file_generation/ttl=63d/intermediate/patches")
-DOWNLOAD_DIR = Path("/working_dir/c_7dad3a9fa9593898/downloads")
-sys.path.insert(0, str(PATCH_DIR))
+AGENTS_ROOT = Path(__file__).resolve().parent.parent
+SKILLS_ROOT = AGENTS_ROOT / "skills"
+DOWNLOAD_DIR = SKILLS_ROOT
+for _d in (
+    SKILLS_ROOT / "Project_Manager" / "scripts",
+    AGENTS_ROOT / "tools",
+    SKILLS_ROOT / "SKILL_VERIFY" / "scripts",
+    SKILLS_ROOT / "Structural_Design_Engineer" / "scripts",
+    SKILLS_ROOT / "Design_Evaluation" / "calculators",
+    SKILLS_ROOT / "SKILL_TEMPWORKS" / "calculators",
+):
+    if str(_d) not in sys.path:
+        sys.path.insert(0, str(_d))
 
 passed = 0
 failed = 0
@@ -52,8 +64,8 @@ import _collect_standards
 stds_data = _collect_standards.collect_standards_summary(DOWNLOAD_DIR / "STANDARDS_LOCK.md")
 codes_found = stds_data["current_codes"]
 assert_test(
-    "BUG-RD-02: _collect_standards.py nhận diện đầy đủ 21 dòng trong STANDARDS_LOCK.md v3.1.0 (gồm Thông tư 34/2026/TT-BXD)",
-    stds_data["total"] == 21 and any("34/2026/TT-BXD" in c for c in codes_found),
+    "BUG-RD-02: _collect_standards.py nhận diện đầy đủ tối thiểu 21 dòng trong STANDARDS_LOCK.md v3.1.0+ (gồm Thông tư 34/2026/TT-BXD)",
+    stds_data["total"] >= 21 and any("34/2026/TT-BXD" in c for c in codes_found),
     f"Collected {stds_data['total']} rows ({stds_data['distinct_current']} distinct codes), includes TT 34/2026/TT-BXD"
 )
 
@@ -174,7 +186,7 @@ assert_test(
 
 # Test 10: earthquake_load_calc.py (BUG-STR-08)
 out_eq = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "earthquake_load_calc.py"), "--building", "TowerA", "--height", "36", "--floors", "10", "--zone", "II", "--soil", "C", "--weight_kn", "80000"],
+    [sys.executable, str(SKILLS_ROOT / "Design_Evaluation" / "calculators" / "earthquake_load_calc.py"), "--building", "TowerA", "--height", "36", "--floors", "10", "--zone", "II", "--soil", "C", "--weight_kn", "80000"],
     text=True
 )
 eq_data = json.loads(out_eq)
@@ -186,7 +198,7 @@ assert_test(
 
 # Test 11: calc_isolated_footing.py & calc_continuous_beam.py (BUG-STR-06)
 out_foot = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_isolated_footing.py"), "-B", "2.0", "-L", "2.4", "-H", "0.6", "--ntc", "600", "--mtc", "60"],
+    [sys.executable, str(AGENTS_ROOT / "tools" / "calc_isolated_footing.py"), "-B", "2.0", "-L", "2.4", "-H", "0.6", "--ntc", "600", "--mtc", "60"],
     text=True
 )
 foot_data = json.loads(out_foot)
@@ -197,7 +209,7 @@ assert_test(
 )
 
 out_beam = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_continuous_beam.py"), "--spans", "5.0", "6.0", "5.0", "--qd", "12", "--ql", "8", "-b", "250", "-H", "500"],
+    [sys.executable, str(AGENTS_ROOT / "tools" / "calc_continuous_beam.py"), "--spans", "5.0", "6.0", "5.0", "--qd", "12", "--ql", "8", "-b", "250", "-H", "500"],
     text=True
 )
 beam_data = json.loads(out_beam)
@@ -209,7 +221,7 @@ assert_test(
 
 # Test 12: SKILL_TEMPWORKS 4 calculators (BUG-STR-07)
 out_fw_slab = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_formwork_slab.py"), "--thickness", "150", "--span", "6.0", "--json"],
+    [sys.executable, str(SKILLS_ROOT / "SKILL_TEMPWORKS" / "calculators" / "calc_formwork_slab.py"), "--thickness", "150", "--span", "6.0", "--json"],
     text=True
 )
 fw_slab_data = json.loads(out_fw_slab)
@@ -220,7 +232,7 @@ assert_test(
 )
 
 out_fw_col = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_formwork_column.py"), "--width", "500", "--depth", "500", "--height", "3.6", "--rate", "2.5", "--temp", "25", "--json"],
+    [sys.executable, str(SKILLS_ROOT / "SKILL_TEMPWORKS" / "calculators" / "calc_formwork_column.py"), "--width", "500", "--depth", "500", "--height", "3.6", "--rate", "2.5", "--temp", "25", "--json"],
     text=True
 )
 fw_col_data = json.loads(out_fw_col)
@@ -231,7 +243,7 @@ assert_test(
 )
 
 out_fw_wall = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_formwork_wall.py"), "--height", "3.6", "--length", "6.0", "--thickness", "250", "--rate", "2.0", "--temp", "25", "--json"],
+    [sys.executable, str(SKILLS_ROOT / "SKILL_TEMPWORKS" / "calculators" / "calc_formwork_wall.py"), "--height", "3.6", "--length", "6.0", "--thickness", "250", "--rate", "2.0", "--temp", "25", "--json"],
     text=True
 )
 fw_wall_data = json.loads(out_fw_wall)
@@ -242,7 +254,7 @@ assert_test(
 )
 
 out_shore = subprocess.check_output(
-    [sys.executable, str(PATCH_DIR / "calc_shoring_system.py"), "--height", "6.0", "--load", "20.0", "--system", "ringlock", "--json"],
+    [sys.executable, str(SKILLS_ROOT / "SKILL_TEMPWORKS" / "calculators" / "calc_shoring_system.py"), "--height", "6.0", "--load", "20.0", "--system", "ringlock", "--json"],
     text=True
 )
 shore_data = json.loads(out_shore)

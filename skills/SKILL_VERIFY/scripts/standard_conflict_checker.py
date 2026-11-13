@@ -92,7 +92,7 @@ def check_conflicts(element_standards, official_standards=None):
         "Conflicts": [],
         "Warnings": [],
         "Overall_Status": "PASS",
-        "Standard_Method": "STANDARDS_LOCK v3.1.0",
+        "Standard_Method": "STANDARDS_LOCK v3.3.0",
         "Calculation_Logs": []
     }
 

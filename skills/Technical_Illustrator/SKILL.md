@@ -40,6 +40,7 @@ description: "Kỹ sư Minh họa Kỹ thuật & Tiến độ PMO AI chuyên sin
 | `draw_pile_cap.py` | Mặt cắt | `--type --L --B --H --pile_d --n_piles` | Đài cọc |
 | `draw_weld_detail.py` | Chi tiết | `--type --plate_t --weld_type` | Chi tiết hàn |
 | `draw_moment_diagram.py` | Biểu đồ | `--input --output` | Biểu đồ nội lực M, V, N |
+| `cad_plan_engine.py` | **Mặt bằng CAD** | `cad_integration/cad_plan_engine.py` | **Bản vẽ CAD Mặt bằng Định vị Cột Vách chuẩn DCE Pro A1 (7 Gap)** |
 
 ## Hướng dẫn Gọi Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py`)
 

@@ -5,31 +5,35 @@
 > **Tham khảo nhanh:** Xem `skills/SKILL_INDEX.md` để biết mapping tình huống → skill → script.
 > **P0 Infrastructure:** Xem `skills/SKILL_BRIDGE.md` (data contracts) và `skills/INTER_SKILL_TRIGGERS.md` (auto-invocation).
 > **P1 Tools:** Xem `confidence_score.py`, `validate_handoff_schema.py`, `handoff_manager.py` trong `_SHARED/SHARED_CONTEXT/`.
-> **Cập nhật:** 2026-10-12 — v6.1 (Phase 1 Infrastructure + SKILL_TEMPWORKS)
+> **Cập nhật:** 2026-11-11 — v7.4 (Unified SSOT: 7-Gate Audit + 14 Production Skills + Rules 12b–12e)
 
 ---
 
 ## 0. Bảng Điều phối Liên-Skill (Dispatcher — ĐỌC TRƯỚC TIÊN)
 
 ### 0.1 Điều phối Tự động qua Global Dispatcher (Khuyến nghị)
+
 Khi nhận yêu cầu từ User bằng ngôn ngữ tự nhiên và chưa rõ dùng skill nào, chạy công cụ điều phối trung tâm:
+
 ```bash
 python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/scripts/intent_classifier.py" \
     --prompt "<YÊU CẦU CỦA USER>" --top 3
 ```
+
 - Nếu `confidence >= 0.85` (HIGH): Nạp `SKILL.md` của `primary_skill` và thực thi ngay.
 - Nếu `is_pipeline == true`: Sử dụng `pipeline_builder.py` để chuỗi hóa các skills theo đúng thứ tự handoff.
 - Nếu `confidence < 0.60` (LOW): Trình bày top 3 lựa chọn và hỏi User xác nhận.
 
 ### 0.2 Bảng Tra cứu Nhanh (Manual Dispatcher Table)
+
 Khi không cần chạy script phân loại, tra bảng này để xác định skill chính. **Không nạp 2 skill cùng lúc** trừ khi quy trình yêu cầu nối tiếp.
 
 | Câu hỏi phân xử | Trả lời | Skill kích hoạt | Entry point |
-|---|---|---|---|
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------- | ---------------------------------------------------------- |
 | User đưa yêu cầu chung, chưa rõ skill hoặc cần chuỗi hành động? | Có | **`Global_Dispatcher`** | SKILL.md / intent_classifier.py |
 | Đại diện Chủ đầu tư / QLTK — *review, thẩm tra, nghiệm thu, xử lý NCR, lập tờ trình, so sánh phương án, bóc khối lượng, đối chiếu tiêu chuẩn*? | Có | **`Design_Evaluation`** | SKILLKC.md / SKILL_REPORT.md |
 | Đóng vai đơn vị thiết kế — *tự tính ra tiết diện / cốt thép / bu lông / đường hàn, xuất Thuyết minh tính toán*? | Có | **`Structural_Design_Engineer`** | SKILL_CALC.md / SKILL_CONNECTION.md / SKILL_CALC_REPORT.md |
-| Tạo phụ lục tính toán chi tiết step-by-step đầy đủ cho đơn vị tư vấn thiết kế? | Có | **`SKILL_PHULUC`** | TMTT_FULL.md / PARTIAL_*.md |
+| Tạo phụ lục tính toán chi tiết step-by-step đầy đủ cho đơn vị tư vấn thiết kế? | Có | **`SKILL_PHULUC`** | templates/TMTT_FULL.md / templates/PARTIAL_*.md |
 | Yêu cầu **chỉ** là tạo hình ảnh / bản vẽ / biểu đồ? | Có | **`Technical_Illustrator`** | MODE 2D (default) / MODE 3D |
 | So sánh chi phí, Value Engineering, tính Carbon, tối ưu ngân sách? | Có | **`Cost_Estimator`** | MODULE 1–5 |
 | Điều tra sự cố / phân tích nguyên nhân hư hỏng, nứt nghiêm trọng, back-calculation? | Có | **`SKILL_FORENSIC`** | 7-step protocol |
@@ -37,6 +41,9 @@ Khi không cần chạy script phân loại, tra bảng này để xác định 
 | Quản lý giao dịch kỹ thuật RFI, NCR, Submittal, Change Order với các bên? | Có | **`SKILL_RFI`** | Document Lifecycle |
 | Phân tích ĐCCT, tính thông số Plaxis, tương quan SPT/CPT, ứng suất hữu hiệu, quy đổi DW/Strut? | Có | **`SKILL_GEOTECH`** | SKILL_SOIL_PARAMS.md |
 | Thiết kế cốp pha sàn, cốp pha cột, cốp pha tường, cây chống, hệ giằng, kiểm tra ổn định thi công? | Có | **`SKILL_TEMPWORKS`** | Phase 1: calc_formwork_slab.py |
+| Lập tiến độ Master Schedule MS Project (Gantt 8 cột + CPM + XML), phân cấp công trình (TT 34/2026), EVM/CPM, KPI ISO? | Có | **`Project_Manager`** | project_grading.py / msproject_bridge.py |
+| Rà soát xung đột lưới trục, cao độ thông thủy 3D và đối chiếu nội bộ bản vẽ KT ↔ KC ↔ MEP? | Có | **`SKILL_BIM_COORDINATION`** | 4-Tier Spatial & Blueprint Clash Audit |
+| Phối hợp, bàn giao ca hoặc thẩm tra đối kháng giữa Gemini và Claude qua `DUAL_AGENT_BUS.json`? | Có | **`SKILL_DUAL_AGENT_BRIDGE`** | sync_bus.py / claim_task.py / handover_task.py |
 
 **Tie-breaker (phá vỡ thế hòa):**
 
@@ -63,11 +70,13 @@ Khi không cần chạy script phân loại, tra bảng này để xác định 
 ## 2. Encoding UTF-8 trên Windows
 
 - Mọi script Python phải có ở đầu file:
+
   ```python
   import sys
   if sys.stdout.encoding != 'utf-8':
       sys.stdout.reconfigure(encoding='utf-8')
   ```
+
 - Khi chạy Node.js, đảm bảo file JSON input/output là UTF-8 BOM-free.
 
 ---
@@ -104,12 +113,12 @@ Khi không cần chạy script phân loại, tra bảng này để xác định 
 
 Mọi kiểm tra định lượng phải quy về `η = Tác động / Khả năng`:
 
-| η | Mã màu | Kết luận | Hành động |
-|---|---|---|---|
-| ≤ 0.70 | 🟢 | An toàn, có dư | Đạt — xem xét Value Engineering (Cost_Estimator) |
-| 0.70 – 0.90 | 🟡 | Đạt, hợp lý | Đạt — thiết kế tối ưu |
-| 0.90 – 1.00 | 🟠 | Đạt nhưng sát ngưỡng | Đạt — cảnh báo lưu ý |
-| > 1.00 | 🔴 | KHÔNG ĐẠT | Yêu cầu điều chỉnh tiết diện / giải pháp |
+| η           | Mã màu | Kết luận                 | Hành động                                         |
+| ------------ | -------- | -------------------------- | ---------------------------------------------------- |
+| ≤ 0.70      | 🟢       | An toàn, có dư          | Đạt — xem xét Value Engineering (Cost_Estimator) |
+| 0.70 – 0.90 | 🟡       | Đạt, hợp lý            | Đạt — thiết kế tối ưu                         |
+| 0.90 – 1.00 | 🟠       | Đạt nhưng sát ngưỡng | Đạt — cảnh báo lưu ý                          |
+| > 1.00       | 🔴       | KHÔNG ĐẠT               | Yêu cầu điều chỉnh tiết diện / giải pháp    |
 
 Cấm dùng tỷ số của các hệ số trung gian và gọi đó là η.
 
@@ -132,6 +141,7 @@ Cấm dùng tỷ số của các hệ số trung gian và gọi đó là η.
 - Mọi báo cáo/thuyết minh xuất ra PHẢI có bảng Trách nhiệm cuối văn bản, cột "Đề xuất" luôn ghi rõ: *"Trợ lý AI — cần kỹ sư có chứng chỉ hành nghề kiểm tra xác nhận trước khi ký"*.
 - Mọi file thuyết minh tính toán / tờ trình xuất ra phải chèn dòng cuối:
   > *Tài liệu do trợ lý AI lập tự động. Kết quả tính toán mang tính tham khảo, phải được kỹ sư có chứng chỉ hành nghề phù hợp kiểm tra và chịu trách nhiệm trước khi sử dụng cho hồ sơ thiết kế, thi công hoặc thẩm tra.*
+  >
 
 ---
 
@@ -159,6 +169,7 @@ Trước khi đưa nội dung qua Review Gate, nếu phát hiện số liệu hi
 ## 12. Văn phong Kỹ thuật Chuẩn hóa (Plain Engineering Language)
 
 Mọi output chính thức (báo cáo, tờ trình, thuyết minh) PHẢI tuân thủ:
+
 - Câu ngắn (≤ 25 từ), chủ ngữ là đối tượng kỹ thuật (dầm, cột, tải), không phải khái niệm trừu tượng.
 - Ưu tiên động từ hành động: "chịu", "vượt", "đạt", "cần tăng". Hạn chế bị động.
 - Mỗi kết luận PHẢI kèm ít nhất 1 con số định lượng (η, f/L, σ, kN, mm).
@@ -167,10 +178,85 @@ Mọi output chính thức (báo cáo, tờ trình, thuyết minh) PHẢI tuân 
 
 ---
 
+## 12b. ZERO WHITE TEXT LOCK & Hệ Màu Gốc Khoáng (Bắt buộc cho Word .docx, Excel .xlsx, Ảnh Kỹ thuật)
+
+> **Cơ sở pháp lý & In ấn**: Chuẩn in ấn đen trắng và photocopy hồ sơ kỹ thuật xây dựng Việt Nam. Nguồn sự thật duy nhất: `_SHARED/SHARED_CONTEXT/design_tokens.py`.
+
+- **CẤM TUYỆT ĐỐI**: Dùng chữ màu trắng (`#FFFFFF` hoặc `RGBColor(255, 255, 255)`) trên nền tối trong bất kỳ bảng biểu nào của file Word (`.docx`), bảng tính Excel (`.xlsx`), nhãn ghi chú hay bản vẽ kỹ thuật (`matplotlib`/ảnh render).
+- **Hệ quả khi vi phạm**: Khi in ấn mặc định trong Word (mặc định Word bỏ qua màu nền bảng/trang) hoặc photocopy đen trắng, chữ màu trắng trên nền tối sẽ biến thành **chữ trắng trên nền giấy trắng**, làm mất toàn bộ dữ liệu bảng biểu và thông số kỹ thuật.
+- **Quy cách bảng biểu bắt buộc**:
+  - **Header Bảng & Thanh Tiêu đề**: Nền sáng gốc khoáng **Xanh Đá Phiến Sương Nhạt (`#DCE4EC`)** hoặc **Đá Vôi Sáng (`#EAE6DF`)**, chữ in đậm màu tối **Xanh Thép Trầm (`#1E3246`)** hoặc **Mực Than Chì (`#1C1E21`)**.
+  - **Dòng dữ liệu (Data rows)**: Chữ tối (`#1C1E21`), nền xen kẽ Trắng (`#FFFFFF`) và **Ngà Giấy Tự Nhiên (`#F8F7F4`)**, đường kẻ lưới mảnh `#D0CEC7`.
+  - **Hình vẽ 2D / Biểu đồ**: Mọi nhãn text trong bounding box, callout hoặc pill tag phải dùng chữ tối màu (`#0F172A`, `#1E3246`, `#7F1D1D`) trên nền sáng (`#FEF08A`, `#FEE2E2`, `#F1F5F9`, `#FFFFFF`).
+
+---
+
+## 12c. Quy định Thực tế về Cấp độ Bền Bê tông tại Việt Nam (Concrete Grade Realism Lock)
+
+> **Cơ sở thực tiễn**: Năng lực trạm trộn bê tông thương phẩm (Ready-mix concrete), kiểm soát nứt do nhiệt thủy hóa và thực tế thi công của các tổng thầu Top 1 tại Việt Nam (Coteccons, Ricons, Newtecons, Delta, Hòa Bình) theo TCVN 5574:2018.
+
+- **Dầm & Sàn dân dụng cao tầng**:
+  - Phổ biến & tối ưu nhất: **B25 (M350, $R_b = 14.5\text{ MPa}$)** đến **B30 (M400, $R_b = 17.0\text{ MPa}$)**.
+  - Sàn ứng suất trước (PT slab): B30 đến tối đa B35.
+  - **CẤM**: Không dùng quá B35 cho dầm sàn vì nguy cơ co ngót và nứt nhiệt diện rộng rất cao.
+- **Cột & Vách Nhà cao tầng (kể cả 30 - 45 tầng)**:
+  - **Tầng hầm, móng & Khối đế / Tầng thấp (T1 - T10)**: Bê tông **B35 (M450, $R_b = 19.5\text{ MPa}$)** hoặc tối đa **B40 (M500, $R_b = 22.0\text{ MPa}$)**.
+  - **Tầng thân / Tầng điển hình (T11 - T25)**: Bê tông **B30 (M400, $R_b = 17.0\text{ MPa}$)** hoặc **B35 (M450, $R_b = 19.5\text{ MPa}$)**.
+  - **Tầng trên cao (T26 - T40)**: Bê tông **B25 (M350)** hoặc **B30 (M400)**.
+- **TUYỆT ĐỐI CẤM**:
+  - Tự tiện gán cấp độ bền bê tông B45, B50, B60 cho nhà cao tầng dân dụng thông thường khi chưa có yêu cầu đặc thù bằng văn bản của Chủ đầu tư / TVTK. Tại Việt Nam, bê tông > B40 đòi hỏi phụ gia đặc chủng, đá cường độ cao, kiểm soát bảo dưỡng ngặt nghèo và làm giá thành tăng vọt, rất khó đồng đều chất lượng tại hiện trường.
+  - Khi lực dọc nén uốn lớn: **Bắt buộc ưu tiên** giải pháp tăng kích thước tiết diện cột/vách, tăng hàm lượng thép dọc $\mu = 2.0\% - 3.0\%$ (thép CB500-V), áp dụng cột vách dẹt (wall-columns giấu trong tường ngăn) hoặc cột bọc thép hình (SRC/CFT) thay vì đẩy mác bê tông lên B50/B60!
+
+---
+
+## 12d. Quy chuẩn Đồ họa Bản vẽ Kỹ thuật CAD DCE Pro (CAD Drafting & Visual Quality Standards)
+
+> **Cơ sở kỹ thuật**: Chuẩn bản vẽ thi công xây dựng Việt Nam và quốc tế, kế thừa hệ thống Drawing Template DCE Pro (`DCE_Master_Seed_Template.dxf` / `Dam_200x400_DCE.dxf` AC1021). Nguồn thực thi: `cad_plan_engine.py` và Bộ lọc 8 `dce_cad_compliance_checker.py`.
+
+Mọi bản vẽ mặt bằng kết cấu (Mặt bằng định vị cột vách, Mặt bằng kết cấu dầm sàn) xuất ra tệp CAD (`.dxf` / `.dwg`) BẮT BUỘC tuân thủ 5 điều cấm và quy cách đồ họa sau:
+
+1. **Khóa phân đoạn dầm (No Continuous Beam Line Lock)**:
+   - Nghiêm cấm vẽ dầm chạy thẳng một mạch xuyên suốt toàn sàn qua các cột và lõi cứng. Dầm bắt buộc phân đoạn theo từng nhịp giữa 2 gối tựa (nút cột - vách).
+   - Trên **Mặt bằng Định vị Cột Vách**: Tuyệt đối **KHÔNG ghi nhãn dầm** (`DCE_Name`). Dầm chỉ được hiển thị làm nét mờ tham chiếu trên layer `DCE_NetThay` (linetype `HIDDEN_DBIM`) để tránh loạn thị giác. Nhãn dầm thuộc riêng bản vẽ Mặt bằng Kết cấu Dầm Sàn.
+2. **Khóa chống đè chữ & căn tâm cấu kiện (Anti-Collision & Centering Lock)**:
+   - Block `TenCauKien` (Tên cột và tiết diện) phải được căn đúng tâm cấu kiện trong hệ tọa độ bản vẽ (World Coordinates), triệt tiêu hoàn toàn độ lệch $700\text{ mm}$ do basepoint block.
+   - Nhãn ghi chú lõi cứng, buồng thang máy phải đặt trong không gian thông thoáng, không bao giờ đè ngang qua buồng thang hay lỗ kỹ thuật.
+3. **Khóa 4 tầng biên ngoài chuẩn xây dựng (4-Tier Exterior Dimension Hierarchy)**:
+   - Thứ tự từ mép công trình đi ra ngoài bắt buộc:
+     1. *Mép sàn / Công trình* $\rightarrow$
+     2. *Tầng 1*: Kích thước chi tiết cột & chuỗi neo định vị trắc đạc (`DCE_Setout`) $\rightarrow$
+     3. *Tầng 2*: Kích thước khoảng cách liên trục từng bước (`DCE_Dim`, DimStyle `Dce_100MV`) $\rightarrow$
+     4. *Tầng 3*: Kích thước phủ bì tổng thể công trình (`DCE_Dim`) $\rightarrow$
+     5. *Tầng 4*: Bong bóng trục ngoài cùng (`Dce_KhTenTruc`, text căn giữa, đường tim trục vươn xuyên qua các tầng dim).
+4. **Khóa Solid Hatch Bê tông (Solid Concrete Hatch Enforcer)**:
+   - 100% cột và vách BTCT phải có Solid Hatch màu xám kỹ thuật (`color = 8`, layer `DCE_Hatch`) với lệnh gọi `set_pattern_fill("SOLID")`. Cấm để cấu kiện rỗng ruột (hollow wireframe).
+5. **Khóa Khung bản vẽ tiêu chuẩn & Bảng thống kê (Drawing Frame & Schedule Table Lock)**:
+   - Mọi bản vẽ phải được đóng khung tiêu chuẩn A1 ($84100 \times 59400\text{ mm}$ ở 1:100) hoặc A0, có khung viền trong (lề gáy $25\text{ mm}$, lề khác $10\text{ mm}$) và Khung tên đồ án chuẩn DCE Pro (`DCE_Frame`) góc dưới phải.
+   - Bản vẽ định vị cột vách bắt buộc có **Bảng Thống kê Tiết diện & Cốt thép Cột Vách** (`DCE_Schedule`) đặt ở lề phải, liệt kê đầy đủ STT, Mã CK, Kích thước, Cấp bê tông B35, Thép dọc, Thép đai và Số lượng.
+   - Ô mở thang máy phải thể hiện nét cửa mở (`DCE_GapOpen`) có dầm lanh tô (`DCE_Lanh_To`); lỗ rỗng xuyên sàn thang bộ / MEP shaft phải có 2 nét gạch chéo X (`DCE_VoidX`).
+
+---
+
+## 12e. Khóa Cứng Quy tắc Trình bày Văn bản, Sàn Cỡ Chữ & Toán học Word/Excel (Clean Typography, Font Floor ≥ 10pt & Math Lock)
+
+> **Cơ sở chuẩn hóa**: Nghị định 30/2020/NĐ-CP & nguồn sự thật design tokens tại `_SHARED/SHARED_CONTEXT/design_tokens.py` (trước đây từng gọi là Rule 12c trong các bản nháp cũ; nay thống nhất mã hiệu là **Điều 12e** để tách biệt hoàn toàn với Điều 12c về Cấp độ bền bê tông).
+
+1. **Sàn cỡ chữ tối thiểu (Typography Floor Lock ≥ 10.0pt)**:
+   - Báo cáo `.docx` & bảng tính `.xlsx` bắt buộc đạt sàn cỡ chữ: thân bài $\ge 11\text{ pt}$ (hành chính $13\text{ pt}$), bảng biểu và chú thích $\ge 10\text{ pt}$. Tuyệt đối cấm dùng `Pt(7..9.5)` hoặc `Font(size < 10)` trong bảng dữ liệu Word/Excel (kiểm toán tự động bởi `tools/audit_zero_white_text.py`).
+2. **Cấm tuyệt đối Double Bullet (`•  •` — Trùng lặp 2 dấu chấm đầu dòng)**:
+   - Khi gán `style='List Bullet'` hoặc `bullet: { level: 0 }`, Word tự render 1 bullet glyph `•`. Mọi generator (`_docx_helpers.py`, `docx_generator.py`, `docx_generator_v2.py`, `document_renderer.py`, `md_to_docx_report.js`) bắt buộc auto-strip ký tự `•, -, –, —, *` đứng đầu mục danh sách trước khi xuất đoạn văn.
+3. **Tách biệt hoàn toàn Danh sách Thứ tự & Chữ cái khỏi List Bullet**:
+   - Danh sách đánh số (`1., 2., 3.`) hoặc chữ cái (`a), b), c)`) bắt buộc dùng paragraph thụt lề (`left_indent`) hoặc numbering riêng, nghiêm cấm gán `style='List Bullet'`.
+4. **Cấm tuyệt đối để lộ mã thô LaTeX trong Word**:
+   - Toàn bộ ký hiệu toán học/thủy văn (`$H_{max}$`, `$H_{tb}$`, `$H_{min}$`, `$Q_{cd}$`, `$A_{s,req}$`, `$\gamma_f$`, `m^2`, `m^3`) phải chuyển qua parser thành subscript/superscript thật hoặc Unicode (`⇒, ×, ≥, ≤, ≈, Δ`) và xóa 100% ký tự `$` thô trước khi ghi `.docx`.
+
+---
+
 ## 13. Minimum Narrative Depth (Độ sâu Diễn giải Tối thiểu)
 
 Mọi Tờ trình/Báo cáo chính thức (Mode 2: .docx, Mode 1: .md) khi xuất file PHẢI đạt tổng nội dung phần thuyết minh **≥ 800 từ** (không tính bảng, heading, caption, Approval Matrix).
 Nếu bản nháp dưới ngưỡng → AI phải tự bổ sung diễn giải theo thứ tự ưu tiên:
+
 1. Bối cảnh & Lý do trình duyệt (tại sao bây giờ?)
 2. Đánh giá hiện trạng chi tiết (cái gì hư? hư đến mức nào?)
 3. Phương án đã xem xét và loại bỏ (tại sao không chọn?)
@@ -181,6 +267,7 @@ Nếu bản nháp dưới ngưỡng → AI phải tự bổ sung diễn giải t
 ## 14. Mandatory Illustration Integration (Bắt buộc Hình ảnh Minh họa)
 
 Mọi Tờ trình chính thức BẮT BUỘC đính kèm tối thiểu **2 hình ảnh minh họa**:
+
 - **Hình 1**: Mặt cắt chi tiết 2D (MODE 2D — Python) hoặc ảnh hiện trạng.
 - **Hình 2**: Phối cảnh thiết kế 3D (MODE 3D — AI Render) hoặc biểu đồ so sánh phương án.
 - Mỗi hình phải có **số hiệu** (Hình 1, Hình 2...) và **caption** mô tả.
@@ -195,6 +282,7 @@ Quy tắc đặt tên file output chính thức:
 Ví dụ: `DuAnA_ToTrinh_BVTC_v2_20260625.docx`
 
 Khi xuất lại file đã tồn tại:
+
 - KHÔNG ghi đè file cũ — luôn tạo version mới (v1 → v2 → v3...)
 - Ghi 1 dòng vào file `_CHANGELOG.md` cùng thư mục, format:
   `[YYYY-MM-DD HH:MM] v[N] — [Lý do sửa] — [Người yêu cầu]`
@@ -204,6 +292,7 @@ Khi xuất lại file đã tồn tại:
 ## 16. Tiết kiệm Token — Lazy Load Protocol
 
 **Chỉ đọc file phụ khi thực sự cần thiết:**
+
 - Tra tiêu chuẩn: Dùng `grep_search` với từ khóa đặc thù trước khi đọc PDF lớn. Đọc `INDEX_QUICK.md` trước `INDEX.md`.
 - Vẽ MODE 3D: Đọc `MODE_3D_GUIDE.md` — KHÔNG đọc `MODE_2D_GUIDE.md`.
 - Vẽ MODE 2D: Đọc `MODE_2D_GUIDE.md` — KHÔNG đọc `MODE_3D_GUIDE.md`.
@@ -215,7 +304,7 @@ Khi xuất lại file đã tồn tại:
 ## 17. Hệ thống Mã Lỗi Chuẩn hóa (Error Code System)
 
 | Code | Ý nghĩa | Hành động |
-|---|---|---|
+| -------- | ------------------------------ | -------------------------------------------------------------------------------- |
 | `E001` | Input validation failed | Hiển thị usage + ví dụ tham số hợp lệ |
 | `E002` | Missing required data | Liệt kê các field còn thiếu, ghi `Data Missing:` |
 | `E003` | Calculation inconclusive | Ghi Scope Limitation, không kết luận ĐẠT |
@@ -234,7 +323,7 @@ Khi xuất lại file đã tồn tại:
 ## 17b. Confidence Level Handling
 
 | Level | Score Range | Meaning | Action |
-|-------|------------|---------|--------|
+| ---------- | ----------- | -------------------------- | --------------------------------------- |
 | `HIGH` | ≥ 0.85 | Đầy đủ data, validated | Tiếp tục bình thường |
 | `MEDIUM` | 0.60 - 0.84 | Thiếu một số data | AUTO gửi SKILL_VERIFY |
 | `LOW` | < 0.60 | Thiếu critical data | **BLOCK** xuất file, notify User |
@@ -244,8 +333,9 @@ Khi xuất lại file đã tồn tại:
 Tool: `_SHARED/SHARED_CONTEXT/confidence_score.py`
 
 **5 Factors trọng số:**
+
 | Factor | Weight | Check |
-|--------|--------|-------|
+| --------------------------- | ------ | ------------------------------------------- |
 | `data_completeness` | 25% | Required fields present |
 | `input_quality` | 20% | Material grades, dimensions in valid ranges |
 | `standard_compliance` | 20% | Standards properly cited |
@@ -253,6 +343,7 @@ Tool: `_SHARED/SHARED_CONTEXT/confidence_score.py`
 | `source_reliability` | 15% | Data source (measured/calculated/estimated) |
 
 **Usage:**
+
 ```bash
 python _SHARED/SHARED_CONTEXT/confidence_score.py \
     --input design_output.json \
@@ -261,6 +352,7 @@ python _SHARED/SHARED_CONTEXT/confidence_score.py \
 ```
 
 **Integration:**
+
 - Mọi skill output khi export phải ghi `confidence_level` vào JSON
 - Confidence được tự động check trước khi xuất file chính thức
 - LOW confidence → block export → notify User
@@ -381,6 +473,53 @@ SKILL_VERIFY receives handoff
                                  → Notify User
 ```
 
+### 18.6 Quy trình Thẩm tra 7 Cổng Kiểm soát Bắt buộc (7-Gate Interlocked Pipeline — Gate 0–6)
+
+Khi thực hiện nhiệm vụ **Thẩm tra Thiết kế Kết cấu & Đa bộ môn** (`Design_Evaluation`), nghiêm cấm nhảy cóc từ bước đọc lướt thuyết minh sang xuất báo cáo. Hệ thống bắt buộc đi qua tuần tự **7 Cổng Kiểm soát (Stage Gates 0–6)**:
+
+```text
+Hồ sơ Đầu vào (TMB, Bản vẽ KT, Bản vẽ KC, Thuyết minh TMKC .docx/.pdf, Mô hình ETABS, Báo giá .xlsx)
+ │
+ ▼
+[GATE 0] Design_Evaluation + STANDARDS_LOCK.md
+ │ • Bóc tách Bảng cân bằng đất trên TMB (tách GFA giai đoạn cấp phép vs toàn khu).
+ │ • Phân cấp công trình theo TT 34/2026/TT-BXD (max GFA, Nhịp L_max, Chiều cao H) & Cấp hậu quả QCVN 03:2022/BXD.
+ │ • Kiểm tra 02 Hold Points tiên quyết: (1) Báo cáo khảo sát ĐCCT có dấu pháp nhân; (2) Thuyết minh chịu lửa QCVN 06:2022/BXD.
+ ▼
+[GATE 1] SKILL_VERIFY (EMF Deep Parser) + SKILL_BIM_COORDINATION
+ │ • Giải nén word/media/image*.emf trong mọi file .docx -> Đọc 100% bản ghi UTF-16LE của bảng tính gốc.
+ │ • Render 100% trang PDF bản vẽ -> Kiểm đếm tờ bản vẽ bị thiếu theo từng hạng mục & quét lỗi #VALUE!, #REF!.
+ ▼
+[GATE 2] SKILLKC — Thẩm tra Chuyên sâu Tải trọng & Phân tích Tải (TCVN 2737:2023)
+ │ • Tĩnh tải: Tách D_permanent và D_Solar; truy vết 100% tải giàn thao tác treo / trần M&E / cầu trục trên bản vẽ (KC-12..15).
+ │ • Hoạt tải: Hoạt tải mái >= 0.30 kN/m² (γf=1.3); hoạt tải xe PCCC trên nắp bể ngầm 20–30 kPa (tải trục 100–120 kN).
+ │ • Tải gió: Tính Gf đúng Phụ lục E (nhà thép ζ=0.02, cấm công thức tự chế Gf=0.85+h/1010); bắt buộc tổ hợp ce với áp lực gió
+ │   bên trong nhà ci (+0.2/-0.3 đến +0.6 khi bung cửa); bắt buộc kiểm toán xà gồ dưới tải gió bốc ngược (Up, cấm nhập Gió=0).
+ │ • Áp lực đất tĩnh K0 = 1-sin(φ) tách rời áp lực nước ngầm; nhiệt độ & kháng chấn TCVN 9386:2025.
+ ▼
+[GATE 3] SKILLKC — Thẩm tra Tổ hợp Tải trọng Nghịch đảo & Cực đoan (ULS / SLS)
+ │ • Tổ hợp Gió bốc / Nhổ cột / Lật móng / Đẩy nổi: Bắt buộc dùng 0.90 * D_permanent (TUYỆT ĐỐI KHÔNG cộng tải Solar chưa lắp!).
+ │ • Tổ hợp Bể ngầm / Tầng hầm: Cấm gộp nước trong bể (HTN) và đất ngoài bể (TTĐ) tự triệt tiêu nhau; bắt buộc xét tổ hợp
+ │   'Bể rỗng bảo trì + Đầy đất & Nước ngầm + Xe PCCC chạy trên nắp'.
+ │ • Tổ hợp SLS: Xét từng hướng gió tiêu chuẩn (γf=1.0) riêng biệt, không dùng hàm bao ENVE.
+ ▼
+[GATE 4] SKILLKC — Phân tích Đường truyền lực 3D, Sơ đồ Tính & Ổn định Kết cấu
+ │ • Tương thích Sơ đồ Chân cột (Khớp/Ngàm) với độ cứng bản đế và sự tách rời đáy móng (σ_min < 0 gây xoay móng θ làm vọt độ võng
+ │   công son; khung mảnh μx > 2.0 phải xét hiệu ứng bậc 2 P-Delta).
+ │ • Kiểm tra chiều dài tự do thực tế Lef của cánh dưới chịu nén tại vùng mô men âm nách kèo (có Flange Stay trên bản vẽ không?).
+ │ • Kiểm tra độ mảnh bản bụng (λ_w, λ_uw) -> Bắt buộc vẽ sườn ngang và sườn dọc; kiểm tra đường truyền lực dọc nhà tại trục cột giữa
+ │   và kiểm toán chống đẩy nổi Archimedes (K_đn >= 1.15).
+ ▼
+[GATE 5] SKILL_BIM_COORDINATION + SKILL_VERIFY (drawing_calc_crosscheck.py) — Đối soát 4 Chiều
+ │ • Truy vết tọa độ nút chân cột trong bảng Joint Reactions của ETABS sang bảng tính móng (chống gán nhầm nút cột giữa/cột biên).
+ │ • Đo độ lệch tâm cổ cột e0 trên Mặt bằng móng so với Mặt cắt; tính diện tích thép bản vẽ As_drawing >= As,tt.
+ │ • Đối chiếu kích thước móng, cổ cột, dầm, xà gồ, số lượng cấu kiện và ký hiệu trục giữa KT ↔ MB ↔ MC/Chi tiết ↔ TMKC.
+ ▼
+[GATE 6] SKILL_RFI + SKILL_REPORT — Chế tài Kỹ thuật & Xuất bản Báo cáo Chuẩn Corporate
+   • Phát hành Phiếu RFI-DES-YYYYMMDD-NNN và Biên bản đình chỉ NCR-DES-YYYYMMDD-NNN.
+   • Kiểm toán công thức sống Excel (cấm gộp ô làm mất công thức liên kết) và xuất Báo cáo DOCX (Body >= 11pt, Table >= 10pt, 300 DPI).
+```
+
 ---
 
 ## 19. Version Control for Skills
@@ -391,15 +530,20 @@ Mỗi skill file (`SKILL.md`) phải có frontmatter version. Xem `CHANGELOG.md`
 
 ## Changelog
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 6.0 | 2026-10-12 | Master Central Orchestrator: Tích hợp Global_Dispatcher, intent_classifier.py, keyword_database.json (220+ keywords), pipeline_builder.py |
-| 5.9 | 2026-09-27 | P1: Handoff Validation & Confidence Score |
-| 5.8 | 2026-09-25 | **P0:** Agentic Workflow Infrastructure — SKILL_BRIDGE.md + INTER_SKILL_TRIGGERS.md |
-| 5.7 | 2026-09-26 | Critical fixes: Version sync, Encoding fixes, Lazy load standardization |
-| 5.6 | 2026-09-16 | Added SKILL_GEOTECH dispatcher rules |
-| 5.5 | 2026-09-15 | Master Unified Release: Tích hợp đầy đủ Bảng Dispatcher, Error Codes, Quy tắc tính toán, Minimum Narrative Depth, Mandatory Illustration và sửa lỗi công thức cơ học kết cấu. |
-| 5.4 | 2026-08-30 | Audit fixes: SKILL_INDEX v1.4 sync, REGISTRY_INDEX rewrite, registry.json v2.1.0; STANDARDS_LOCK v2.3.0 |
-| 5.3 | 2026-08-30 | Reorganized structure: _SYSTEM/, _CORE_SKILLS/, _SUPPORT_SKILLS/, _SHARED/; Created README.md entry point |
-| 5.0 | 2026-08-25 | Đồng bộ version skills, cập nhật deprecated scripts path |
-| 1.0 | 2026-06-01 | Initial release |
+| Version | Date       | Changes                                                                                                                                                                                          |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 7.4     | 2026-11-11 | Comprehensive Ecosystem Audit: Hợp nhất SSOT `.agents/AGENTS.md` ↔ `.agents/skills/AGENTS.md`, tách Điều 12e (Typography Floor & Math Lock), chuẩn hóa 14 skills & 18+ suites                     |
+| 7.3     | 2026-11-09 | CAD DCE Pro Graphic Standards (Điều 12d), Bộ lọc 8 Graphic Sanity Auditor, `cad_plan_engine.py` v3.0, `SKILL_DUAL_AGENT_BRIDGE` v3.1.0                                                             |
+| 7.2     | 2026-11-05 | Zero White Text Lock (Điều 12b), Concrete Grade Realism Lock (Điều 12c), Clean Typography & Math Lock (nay là Điều 12e)                                                                          |
+| 7.0–7.1 | 2026-11-02 | Master 7-Gate Interlocked Pipeline (Gate 0–6) & Enterprise Patches F01–F06                                                                                                                       |
+| 6.1     | 2026-10-18 | Phase 1 Infrastructure + SKILL_TEMPWORKS                                                                                                                                                         |
+| 6.0     | 2026-10-12 | Master Central Orchestrator: Tích hợp Global_Dispatcher, intent_classifier.py, keyword_database.json (220+ keywords), pipeline_builder.py                                                      |
+| 5.9     | 2026-09-27 | P1: Handoff Validation & Confidence Score                                                                                                                                                        |
+| 5.8     | 2026-09-25 | **P0:** Agentic Workflow Infrastructure — SKILL_BRIDGE.md + INTER_SKILL_TRIGGERS.md                                                                                                       |
+| 5.7     | 2026-09-26 | Critical fixes: Version sync, Encoding fixes, Lazy load standardization                                                                                                                          |
+| 5.6     | 2026-09-16 | Added SKILL_GEOTECH dispatcher rules                                                                                                                                                             |
+| 5.5     | 2026-09-15 | Master Unified Release: Tích hợp đầy đủ Bảng Dispatcher, Error Codes, Quy tắc tính toán, Minimum Narrative Depth, Mandatory Illustration và sửa lỗi công thức cơ học kết cấu. |
+| 5.4     | 2026-08-30 | Audit fixes: SKILL_INDEX v1.4 sync, REGISTRY_INDEX rewrite, registry.json v2.1.0; STANDARDS_LOCK v2.3.0                                                                                          |
+| 5.3     | 2026-08-30 | Reorganized structure: _SYSTEM/,_CORE_SKILLS/,_SUPPORT_SKILLS/,_SHARED/; Created README.md entry point                                                                                        |
+| 5.0     | 2026-08-25 | Đồng bộ version skills, cập nhật deprecated scripts path                                                                                                                                    |
+| 1.0     | 2026-06-01 | Initial release                                                                                                                                                                                  |

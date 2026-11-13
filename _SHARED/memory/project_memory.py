@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 """
-project_memory.py v2.0 — Project Context Memory Layer
+project_memory.py v3.1 — Project Context Memory Layer
+(v3.1 Claude fix BUG-015: dung sai schema drift — không crash khi dict có trường lạ.)
 """
 import sys
 if sys.stdout.encoding != 'utf-8':
@@ -9,6 +11,17 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, field, asdict
+
+
+def _dataclass_from_dict(cls, data: Dict[str, Any]):
+    """
+    Dựng dataclass từ dict, dung sai schema drift (BUG-015):
+    các trường không còn trong dataclass (phát sinh từ phiên bản cũ/hơn của
+    định dạng) được bỏ qua an toàn thay vì crash TypeError.
+    """
+    valid = {f.name for f in cls.__dataclass_fields__.values()}
+    filtered = {k: v for k, v in data.items() if k in valid}
+    return cls(**filtered)
 
 @dataclass
 class DesignDecision:
@@ -61,8 +74,8 @@ class ProjectMemory:
         if not data:
             return None
         if "decisions" in data and isinstance(data["decisions"], list):
-            data["decisions"] = [DesignDecision(**d) if isinstance(d, dict) else d for d in data["decisions"]]
-        return ProjectContext(**data)
+            data["decisions"] = [_dataclass_from_dict(DesignDecision, d) if isinstance(d, dict) else d for d in data["decisions"]]
+        return _dataclass_from_dict(ProjectContext, data)
     def save_context(self, context: ProjectContext):
         data = asdict(context)
         data['last_modified'] = datetime.now().isoformat()
@@ -79,7 +92,7 @@ class ProjectMemory:
         data = self._load_json(self.decisions_file)
         if not data:
             return []
-        return [DesignDecision(**d) for d in data]
+        return [_dataclass_from_dict(DesignDecision, d) for d in data if isinstance(d, dict)]
     def add_issue(self, issue: Dict):
         issues = self._load_json(self.issues_file) or []
         issue['logged_at'] = datetime.now().isoformat()
@@ -170,7 +183,7 @@ class LessonsLearnedRepository:
                 if kw not in text_blob:
                     match = False
             if match:
-                results.append(LessonLearned(**item))
+                results.append(_dataclass_from_dict(LessonLearned, item))
         return results
 
     def _seed_default_lessons(self):

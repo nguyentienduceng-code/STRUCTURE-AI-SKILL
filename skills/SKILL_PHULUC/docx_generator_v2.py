@@ -555,12 +555,17 @@ def _pure_latex_to_omml_inner(expr: str) -> str:
     out = []
     i = 0
 
-    def make_run(txt: str, normal_text: bool = False) -> str:
+    def make_run(txt: str, normal_text: bool = False, is_bold: bool = False) -> str:
         if not txt:
             return ""
         esc = html.escape(txt)
+        rpr_parts = []
         if normal_text:
-            return f"<m:r><m:rPr><m:nor/></m:rPr><m:t>{esc}</m:t></m:r>"
+            rpr_parts.append("<m:nor/>")
+        if is_bold:
+            rpr_parts.append("<m:b/>")
+        if rpr_parts:
+            return f"<m:r><m:rPr>{''.join(rpr_parts)}</m:rPr><m:t>{esc}</m:t></m:r>"
         return f"<m:r><m:t>{esc}</m:t></m:r>"
 
     while i < len(s):
@@ -596,9 +601,12 @@ def _pure_latex_to_omml_inner(expr: str) -> str:
                             i = end_b + 1
                     rad_s, i = _extract_braced_group(s, i)
                     node_xml = f"<m:rad>{deg_xml}<m:e>{_pure_latex_to_omml_inner(rad_s)}</m:e></m:rad>"
-                elif cmd in ("text", "mathrm", "operatorname", "mbox", "textbf"):
+                elif cmd in ("text", "mathrm", "operatorname", "mbox"):
                     txt_s, i = _extract_braced_group(s, i)
                     node_xml = make_run(txt_s, normal_text=True)
+                elif cmd in ("textbf", "mathbf", "boldsymbol", "pmb"):
+                    txt_s, i = _extract_braced_group(s, i)
+                    node_xml = make_run(txt_s, normal_text=True, is_bold=True)
                 elif cmd in GREEK_AND_MATH_SYMBOLS:
                     node_xml = make_run(GREEK_AND_MATH_SYMBOLS[cmd])
                 else:
@@ -1183,6 +1191,7 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     ]
     for idx, (label, val) in enumerate(cover_rows):
         row = info_tbl.rows[idx]
+        row._tr.get_or_add_trPr().append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
         c0, c1 = row.cells[0], row.cells[1]
         c0.width = Cm(5.2)
         c1.width = Cm(11.2)
@@ -1288,6 +1297,8 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     sig_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(sig_tbl)
     set_table_borders(sig_tbl, color="1E3246", sz="6")
+    for r in sig_tbl.rows:
+        r._tr.get_or_add_trPr().append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
     headers_sig = ["THỰC HIỆN TÍNH TOÁN\n(Prepared by)", "KIỂM TRA KỸ THUẬT\n(Checked by)", "CHỦ TRÌ THIẾT KẾ / THẨM TRA\n(Approved by)"]
     for idx, htext in enumerate(headers_sig):
         c = sig_tbl.cell(0, idx)
@@ -1358,6 +1369,8 @@ def setup_bktechs_template(doc, meta: dict, logo_path: str = None, preview_toc_i
     rep_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_full_width(rep_tbl)
     set_table_borders(rep_tbl, color="D0CEC7", sz="6")
+    for r in rep_tbl.rows:
+        r._tr.get_or_add_trPr().append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
     for idx, title in enumerate(["ĐẠI DIỆN CHỦ ĐẦU TƯ", "ĐẠI DIỆN ĐƠN VỊ TƯ VẤN (BKTECHS)"]):
         c = rep_tbl.cell(0, idx)
         set_cell_shading(c, "D9E1F2")
@@ -1823,15 +1836,15 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
                 set_table_full_width(tbl)
                 set_table_borders(tbl, color="D0CEC7", sz="4")
 
-                # Lặp lại header bảng khi qua trang + cố định chiều cao tối thiểu 380 twips
+                # Lặp lại header bảng khi qua trang + cố định chiều cao tối thiểu 380 twips + cantSplit
                 header_tr = tbl.rows[0]._tr.get_or_add_trPr()
                 header_tr.append(parse_xml(r"<w:tblHeader %s/>" % nsdecls("w")))
                 header_tr.append(parse_xml(r'<w:trHeight %s w:val="380" w:hRule="atLeast"/>' % nsdecls("w")))
+                header_tr.append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
 
                 for r_idx, row_vals in enumerate(table_lines):
                     row = tbl.rows[r_idx]
-                    if r_idx > 0:
-                        row._tr.get_or_add_trPr().append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
+                    row._tr.get_or_add_trPr().append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
 
                     first_cell_upper = (row_vals[0].strip().upper() if row_vals else "")
                     # Chỉ tô nền vàng nguyên dòng nếu là dòng Tổng cộng / Kết luận tổng hợp cuối bảng
@@ -1866,15 +1879,14 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
                             p.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
                         if r_idx == 0:
-                            clean_val = re.sub(r"\*\*(.*?)\*\*", r"\1", normalize_engineering_symbols(val))
-                            _emit_text_with_subscripts_and_badges(
+                            clean_val = re.sub(r"\*\*(.*?)\*\*", r"\1", val)
+                            _add_formatted_runs(
                                 p,
                                 clean_val,
                                 font_name,
                                 cfg["table_size"],
                                 cfg["table_header_text"],
-                                is_bold=True,
-                                is_italic=False,
+                                force_bold=True,
                             )
                         else:
                             _add_formatted_runs(
@@ -2166,7 +2178,9 @@ def render_markdown_content(doc, md_text: str, style_key: str = "bktechs", nav_c
         m_enum = re.match(r"^(\s*)(\d+[\.\)]|[a-zA-Z][\.\)])\s+(.*)$", line)
         if m_enum:
             prefix = m_enum.group(2)
-            text_content = m_enum.group(3).lstrip("•-–—* \t")
+            raw_text_content = m_enum.group(3)
+            # Chỉ strip bullet glyphs, KHÔNG strip dấu sao markdown bold '**'
+            text_content = re.sub(r"^[•\-–—\t ]+", "", raw_text_content)
             indent_len = len(m_enum.group(1))
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -2491,6 +2505,16 @@ def build_report_from_markdown(
             nav_counter = render_markdown_content(doc, app_body_md, style_key=style_key, nav_counter_start=nav_counter)
 
     os.makedirs(os.path.dirname(os.path.abspath(output_docx_path)), exist_ok=True)
+    # Apply to cover/signature tables as well as Markdown-rendered tables.
+    for table in _iter_all_tables_in_doc(doc):
+        for row in table.rows:
+            properties = row._tr.get_or_add_trPr()
+            if properties.find(qn("w:cantSplit")) is None:
+                properties.append(parse_xml(r"<w:cantSplit %s/>" % nsdecls("w")))
+        if len(table.rows) > 1:
+            properties = table.rows[0]._tr.get_or_add_trPr()
+            if properties.find(qn("w:tblHeader")) is None:
+                properties.append(parse_xml(r"<w:tblHeader %s/>" % nsdecls("w")))
     sanitize_docx_table_colors(doc)
     doc.save(output_docx_path)
     return output_docx_path

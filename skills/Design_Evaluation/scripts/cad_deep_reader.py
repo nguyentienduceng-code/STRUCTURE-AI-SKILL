@@ -686,7 +686,7 @@ if __name__ == "__main__":
         ext = os.path.splitext(args.input)[1].lower()
         target_dxf = args.input
         if ext == ".dwg":
-            target_dxf = DWGConverterEngine.convert_dwg_to_dxf(args.input)
+            target_dxf = DWGHeadlessBridge.convert_dwg_to_dxf(args.input)
         res = DXFDeepExtractor.parse_dxf_file(target_dxf)
     else:
         res = run_self_test()

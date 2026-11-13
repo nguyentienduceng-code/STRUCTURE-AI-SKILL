@@ -1,4 +1,7 @@
 import sys
+from pathlib import Path as _CitationPath
+sys.path.insert(0, str(_CitationPath(__file__).resolve().parents[3] / "tools"))
+from citation_grounding_auditor import normalize_citation
 import json
 import math
 
@@ -13,7 +16,7 @@ if sys.stdout.encoding != 'utf-8':
 # Reference: Tinh toan CU LARSEN.xls Sheet 'Tinh E',
 #            HLH-PKT Sheet 'Table LAB TEST',
 #            QUY TRÌNH TÍNH PLAXIS.docx
-# Hỗ trợ: TCVN 9351:2012 + BS/ASTM (tùy dự án)
+# Hỗ trợ: TCVN 9351:2022 + BS/ASTM (tùy dự án)
 # Tích hợp: Ground Truth Verification + Ke × Su correlation
 # =============================================================================
 
@@ -493,6 +496,20 @@ def correlate_spt(spt_value, soil_class=None, soil_description="",
         )
     except Exception:
         pass
+
+    # Preserve the actual empirical method. The SPT test standard does not
+    # independently establish E50/Su, Plaxis ratios or project database values.
+    sources = [('Stroud', '1974') if is_clay else ('Bowles', '1997'),
+               ('Plaxis Material Models Manual', ''), ('Database TP.HCM', '')]
+    for log, (source, year) in zip(calc_logs, sources):
+        log['Citation'] = normalize_citation({
+            'Ma_Tieu_Chuan': source, 'Nam_Ban_Hanh': year,
+            'Dieu_Bang_Muc': '', 'Ten_Bang_Hinh': '', 'Trang_So': '',
+            'Trich_Yeu': log['step'] + '; empirical/model reference, exact locator not verified'})
+        log['Supporting_Citations'] = [normalize_citation({
+            'Ma_Tieu_Chuan': 'TCVN 9351', 'Nam_Ban_Hanh': '2022',
+            'Dieu_Bang_Muc': '', 'Ten_Bang_Hinh': '', 'Trang_So': '',
+            'Trich_Yeu': 'SPT test procedure only; not evidence for the empirical correlation'})]
 
     result = {
         "soil_class": soil_class,

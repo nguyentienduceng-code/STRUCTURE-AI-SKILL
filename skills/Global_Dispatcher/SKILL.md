@@ -1,7 +1,7 @@
 ---
 name: Global_Dispatcher
-version: 1.0.0
-last_updated: 2026-10-12
+version: 2.0.0
+last_updated: 2026-11-12
 description: "Bộ điều phối trung tâm — Tự động phân loại yêu cầu người dùng và định tuyến đến đúng Skill phù hợp nhất. Giảm cognitive load cho User: chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên."
 triggers:
   - "Mọi yêu cầu mới từ User khi chưa rõ Skill nào"
@@ -13,7 +13,7 @@ triggers:
 
 > **Vai trò:** Entry point DUY NHẤT cho mọi yêu cầu kỹ thuật. Phân loại, định tuyến, và quản lý pipeline.  
 > **Nguyên tắc:** User chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên → Dispatcher tự xử lý phần còn lại.  
-> **Version:** 1.0.0 — 2026-10-12
+> **Version:** 2.0.0 — 2026-11-12
 
 ---
 
@@ -299,3 +299,12 @@ Global_Dispatcher/
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | 2026-10-12 | Initial release — Intent Classifier, Pipeline Builder, 200+ keywords |
+
+## Cognitive Architecture v2
+
+Yêu cầu nhiều bước có điều kiện được lập thành DAG thực với `PipelineBuilder.plan()`. Đọc [hướng dẫn tích hợp](docs/COGNITIVE_ARCHITECTURE_V2.md) để dùng scheduler, session token budget và JSONL tracing.
+
+- Giữ thứ tự nghiệp vụ của từng bước; không sắp xếp toàn bộ theo trọng số skill.
+- Điều kiện không hỗ trợ phải làm rõ hoặc cung cấp definitions; không tự bỏ điều kiện.
+- Chỉ thực thi nút scheduler trả về ready sau khi host kiểm tra Review Gate.
+- Bộ kiểm thử cognitive mới nằm trong suite 22 của runner chính thức.

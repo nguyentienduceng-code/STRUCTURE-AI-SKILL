@@ -6,6 +6,9 @@ Tiêu chuẩn: TCVN 4453:1995 / ACI 347-04 / EN 1993-1-1
 """
 
 import sys
+from pathlib import Path as _CitationPath
+sys.path.insert(0, str(_CitationPath(__file__).resolve().parents[3] / "tools"))
+from citation_grounding_auditor import normalize_citation
 import json
 import math
 import argparse
@@ -83,7 +86,9 @@ class ShoringSystemDesigner:
     def _log(self, step, formula, substitution, result, unit, citation=""):
         self.logs.append({
             "step": step, "formula": formula, "substitution": substitution,
-            "result": round(float(result), 4), "unit": unit, "citation": citation
+            "result": round(float(result), 4), "unit": unit, "citation": citation,
+            "Citation": normalize_citation(citation),
+            "Supporting_Citations": [normalize_citation(code) for code in ('TCVN 5575:2024', 'TCVN 4453:1995')]
         })
 
     def select_acrow_prop(self) -> Dict:

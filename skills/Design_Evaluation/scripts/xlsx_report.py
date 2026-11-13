@@ -38,6 +38,15 @@ from openpyxl.drawing.image import Image as OpenpyxlImage
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
+try:
+    _tools_dir = Path(__file__).resolve().parent.parent.parent.parent / "tools"
+    if str(_tools_dir) not in sys.path:
+        sys.path.insert(0, str(_tools_dir))
+    from xlsx_view_sanity import sanitize_workbook
+except Exception:
+    def sanitize_workbook(wb, zoom=100):
+        pass
+
 # ════════════════════════════════════════════════════════════════════════════
 # HỆ MÀU KHOÁNG CHẤT & MỰC IN KỸ THUẬT TỰ NHIÊN (DESIGN SYSTEM v4.0 / v5.0)
 # ════════════════════════════════════════════════════════════════════════════
@@ -573,6 +582,7 @@ def generate_boq_report(handoff: dict, output_path: str):
     populate_boq_sheet(ws, handoff)
     ws_ctrl = wb.create_sheet("00_Doc_Control", 0)
     populate_doc_control_sheet(ws_ctrl, handoff)
+    sanitize_workbook(wb)
     wb.save(output_path)
     return output_path
 
@@ -586,6 +596,7 @@ def generate_calc_sheet(handoff: dict, output_path: str):
     populate_eta_summary_sheet(ws_eta, handoff)
     ws_ctrl = wb.create_sheet("00_Doc_Control", 0)
     populate_doc_control_sheet(ws_ctrl, handoff)
+    sanitize_workbook(wb)
     wb.save(output_path)
     return output_path
 
@@ -597,6 +608,7 @@ def generate_comparison_matrix(handoff: dict, output_path: str):
     populate_comparison_sheet(ws, handoff)
     ws_ctrl = wb.create_sheet("00_Doc_Control", 0)
     populate_doc_control_sheet(ws_ctrl, handoff)
+    sanitize_workbook(wb)
     wb.save(output_path)
     return output_path
 
@@ -649,6 +661,7 @@ def generate_submittal_log(registry: dict, output_path: str):
     ws2["A5"] = f"Từ chối / Yêu cầu trình lại (Rejected): {len(submittals) - pending - approved}"
     ws2.column_dimensions["A"].width = 36
 
+    sanitize_workbook(wb)
     wb.save(output_path)
     return output_path
 
@@ -683,6 +696,7 @@ def generate_combined_report(
         ws_cmp = wb.create_sheet("04_So_Sanh_Phuong_An")
         populate_comparison_sheet(ws_cmp, handoff_or_registry)
 
+    sanitize_workbook(wb)
     wb.save(output_path)
     return output_path
 

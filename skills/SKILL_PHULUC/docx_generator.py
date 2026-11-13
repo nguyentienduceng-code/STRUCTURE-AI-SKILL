@@ -24,11 +24,28 @@ import re
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from docx import Document
-from docx.shared import Pt, Inches, Cm, Twips
+from docx.shared import Pt, Inches, Cm, Twips, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.oxml.ns import qn
-from docx.oxml import OxmlElement
+from docx.oxml.ns import qn, nsdecls
+from docx.oxml import OxmlElement, parse_xml
+
+def sanitize_docx_table_colors(doc):
+    """Auto-Linter (Điều 12b AGENTS.md): Quét 100% run trong bảng biểu, ghi đè mọi màu trắng về #1E3246/#1C1E21."""
+    for tbl in getattr(doc, 'tables', []):
+        for r_i, row in enumerate(tbl.rows):
+            for cell in row.cells:
+                tcPr = cell._tc.find(qn("w:tcPr"))
+                if tcPr is not None:
+                    for shd in tcPr.findall(qn("w:shd")):
+                        fv = (shd.get(qn("w:fill")) or "").strip().upper()
+                        if fv in ("1E3246", "1F4E78", "1F4E79", "002060", "2F4858", "000000"):
+                            shd.set(qn("w:fill"), "DCE4EC")
+                for p in cell.paragraphs:
+                    for run in p.runs:
+                        if run.font and run.font.color and run.font.color.rgb:
+                            if str(run.font.color.rgb).upper() in ("FFFFFF", "FEFEFE"):
+                                run.font.color.rgb = RGBColor(0x1E, 0x32, 0x46) if (run.bold or r_i == 0) else RGBColor(0x1C, 0x1E, 0x21)
 
 # =============================================================================
 # CONSTANTS
@@ -118,12 +135,16 @@ class MarkdownParser:
         for i, cell_text in enumerate(header):
             cell = header_row.cells[i]
             cell.text = cell_text
+            # Gán màu nền sáng gốc khoáng Xanh Đá Phiến Sương Nhạt (#DCE4EC) theo Điều 12b AGENTS.md
+            tcPr = cell._element.get_or_add_tcPr()
+            tcPr.append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="DCE4EC"/>'))
             for para in cell.paragraphs:
                 para.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 for run in para.runs:
                     run.font.name = NORMAL_FONT
                     run.font.size = TABLE_SIZE
                     run.font.bold = True
+                    run.font.color.rgb = RGBColor(0x1E, 0x32, 0x46) # Xanh Thép Trầm (#1E3246)
                     run._element.rPr.rFonts.set(qn('w:eastAsia'), NORMAL_FONT)
 
         # Add data rows
@@ -338,8 +359,10 @@ class DOCXGenerator:
             self.parser.parse_table(table_lines)
 
     def save(self, output_path: str) -> bool:
-        """Save DOCX file"""
+        """Save DOCX file co kiem toan Zero White Text Lock."""
         try:
+            # Quet va dam bao 100% khong co chu trang nen toi truoc khi ghi file
+            sanitize_docx_table_colors(self.doc)
             self.doc.save(output_path)
             print(f"SUCCESS: DOCX saved to {output_path}")
             return True

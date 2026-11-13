@@ -1,32 +1,93 @@
 # CHANGELOG — Toan bo Bo Skills Ky Nang Ket Cau
 
 > **Pham vi:** Ghi nhan thay doi cua **MOI skill** trong `.agents/skills/`.
-> **Cap nhat lon nhat:** 2026-11-02 (v7.1 / Enterprise Audit & Patch F01–F06)
+> **Cap nhat lon nhat:** 2026-11-13 (v7.5 / Master SKILL_PHULUC v3.1.0, Global_Dispatcher v2.0.0, Grounding & Suite #22–25)
 
 ---
 
 ---
 
-## 2026-11-05 — v7.2: Rà Soát Toàn Diện & Chuẩn Hóa Typography, Double Bullet & Math Engine (Rule 12c)
+## 2026-11-13 — v7.5: Nâng Cấp Master SKILL_PHULUC v3.1.0, Global_Dispatcher v2.0.0, Citation Grounding & Bộ Kiểm Thử 25 Suites
 
 ### Tổng quan
 
-Nâng cấp triệt để hạ tầng sinh văn bản Word (.docx) và xử lý hiển thị ký hiệu kỹ thuật trên toàn bộ hệ thống SKILL:
-1. **Triệt tiêu 100% Lỗi Double Bullet (•  •  — Trùng lặp 2 dấu chấm đầu dòng)**:
-   - Nâng cấp thư viện lõi Design_Evaluation/scripts/_lib/_docx_helpers.py (dd_bullet): Tự động strip sạch ký tự •, -, –, —, * khỏi đầu chuỗi prefix và text.
-   - Sửa 2 điểm lỗi cứng gán '• {d}' vào List Bullet trong SKILL_RFI/scripts/document_renderer.py (dòng 198 và dòng 380).
-   - Nâng cấp SKILL_PHULUC/docx_generator_v2.py và SKILL_PHULUC/docx_generator.py để tự động làm sạch ký tự bullet khi render danh sách Markdown.
-   - Nâng cấp parser danh sách Design_Evaluation/scripts/md_to_docx_report.js để tự động khử bỏ bullet glyph thừa.
+Nâng cấp toàn diện sau phiên kiểm toán và hoàn thiện liên tác tử (CODEX / GEMINI):
+1. **Nâng Cấp SKILL_PHULUC v3.1.0 (Master Engine)**:
+   - Tích hợp `json_to_tmtt_compiler.py`: Trình biên dịch tự động kết quả tính toán JSON từ các Calculator thành Thuyết minh Tính toán (Markdown -> Word .docx) với 2 bộ style (`bktechs` & `tvtk`).
+   - Cổng kiểm toán độc lập 8 tiêu chí `audit_phuluc_docx.py`: Tự động kiểm tra chất lượng file `.docx`, khóa chống rò rỉ ô placeholder `___`, kiểm tra `cantSplit` cho 100% hàng và `tblHeader` cho bảng nhiều hàng.
+   - Bổ sung 3 template chuyên sâu: `APPENDIX_HOIST_CRANE.md` (Vận thăng & cẩu tháp), `APPENDIX_FORMWORK_SHORING.md` (Ván khuôn sàn/cột/tường & shoring), `APPENDIX_STEEL_PORTAL_FRAME.md` (Khung nhà thép tiền chế TCVN 5575:2024).
+2. **Nâng Cấp Global_Dispatcher v2.0.0**:
+   - Dynamic conditional DAG planning, runtime dependency readiness, bảo vệ cycle evidence và session token throttling.
+3. **Bộ Công Cụ Kiểm Toán PDF & Chuỗi Cung Cấp Dữ Liệu Đầu Vào**:
+   - `tools/citation_grounding_auditor.py`: Kiểm toán trích dẫn đối chiếu trực tiếp với tệp PDF tiêu chuẩn địa phương (TCVN 5574:2018...).
+   - `tools/input_provenance_guard.py`: Khóa nguồn gốc tham số đầu vào (DOCUMENT_EXTRACTED, LAB_TESTED, ENGINEER_ASSUMPTION).
+   - `tools/project_data_pipeline.py` & `calc_rc_section_pm_3d.py`: Biểu đồ tương tác P-Mx-My phi tuyến sợi 3D.
+4. **Mở rộng Chuỗi Kiểm Thử (25 Test Suites / 660+ checks)**:
+   - Tích hợp Suite #22 (Cognitive Architecture v2 — 47 tests), Suite #23 (PDF Citation Grounding — 60 tests), Suite #24 (Nonlinear RC Fiber Section 3D — 23 tests), Suite #25 (Project Data Adapter & Batch Pipeline — 34 tests).
+   - Toàn bộ 25/25 suites đạt 100% PASS.
+
+---
+
+## 2026-11-11 — v7.4: Kiểm Toán Toàn Diện Hệ Sinh Thái `.agents`, Hợp Nhất SSOT & Vá Chuỗi Kiểm Thử
+
+### Tổng quan
+
+Thực hiện kiểm toán và chuẩn hóa đồng bộ toàn bộ hệ sinh thái `.agents` (14 production skills, 19+ test suites):
+1. **Hợp nhất SSOT `AGENTS.md` (v7.4) & Tách mã hiệu Điều 12e**:
+   - Đồng bộ byte-for-byte `.agents/AGENTS.md` và `.agents/skills/AGENTS.md`, kết hợp đầy đủ Điều 0–19 với Quy trình Thẩm tra 7 Cổng Kiểm soát (Gate 0–6).
+   - Tách riêng **Điều 12e** (Clean Typography, Font Floor ≥ 10pt & Math Lock) khỏi Điều 12c (Concrete Grade Realism Lock).
+   - Sửa sạch toàn bộ lỗi escape ký tự điều khiển (`\x07`, `\x08`, `\x0c`) và mojibake UTF-8 trong `STANDARDS_LOCK.md`, `CHANGELOG.md`, `SKILL_PHULUC/SKILL.md` và `SKILL_INDEX.md`.
+2. **Siết chặt Kiểm toán CAD & Công cụ Kiểm thử / Xuất bản**:
+   - Cập nhật `SKILL_VERIFY/scripts/dce_cad_compliance_checker.py`: bắt buộc `graphic_sanity` & `issues` quyết định trạng thái `FAIL/PASS`, bổ sung kiểm tra màu/pattern Solid Hatch (`color=8`, `SOLID`) và giao cắt dầm xuyên vùng thang máy/lỗ mở.
+   - Sửa `tools/audit_zero_white_text.py` (prune `.git`, `_ARCHIVE_*`, `references`, `.npm` và nhận diện đúng `CẤM` in hoa).
+   - Sửa `Design_Evaluation/scripts/md_to_docx_report.js`: chống mất dấu `*` đầu dòng italic trong bullet và hỗ trợ danh sách số/chữ cái độc lập restart numbering.
+   - Sửa đường dẫn import của `tests/test_cognitive_brain_20261022.py` và `tests/test_rd_structural_patches_20261022.py`; bổ sung Suite #19 (`SKILL_DUAL_AGENT_BRIDGE`) vào `run_all_tests.py` và parser Suite #18–19 vào `tools/_collect_tests.py`.
+3. **Khử trùng lặp Code & Đồng bộ Điều phối / Metrics**:
+   - Hợp nhất 3 cặp script trùng (`sync_bus.py`, `cad_bridge.py`, `ms_project_gantt.py`) về một nguồn chân lý duy nhất kèm wrapper tương thích ngược.
+   - Chuyển 3 file `*_OLD*` tồn đọng trong `skills/` về `_archive/`; cập nhật `keyword_database.json`, `pipeline_builder.py`, `registry.json`, `SKILL_INDEX.md`, `README.md`, `USER_GUIDE.md` cho đủ 14 production skills và chạy lại `run_collectors.py` + `sync_report.py`.
+
+---
+
+## 2026-11-09 — v7.3: Nâng Cấp Chuẩn Đồ Họa CAD DCE Pro, Bộ Lọc 8 Graphic Sanity Auditor, Engine cad_plan_engine.py v3.0 & Điều 12d AGENTS.md
+
+### Tổng quan
+
+Nâng cấp triệt để năng lực sinh bản vẽ CAD thi công và kiểm toán đồ họa kỹ thuật trên toàn bộ hệ thống SKILL:
+1. **Engine Sinh Bản Vẽ CAD Chuyên Sâu (`cad_plan_engine.py` v3.0 — Technical_Illustrator v1.4.0)**:
+   - Khắc phục trọn vẹn 7 Gaps kỹ thuật: (1) Chuỗi kích thước neo định vị trắc đạc `DCE_Setout` (52 entities); (2) Loại bỏ hoàn toàn nhãn dầm `DCE_Name` trên mặt bằng định vị cột vách (dầm hiển thị nét mờ tham chiếu `DCE_NetThay` `HIDDEN_DBIM` màu 8, phân đoạn theo nhịp gối tựa); (3) Sinh tự động Bảng Thống Kê Tiết Diện & Cốt Thép Cột Vách `DCE_Schedule` (97 entities) góc phải; (4) Chuẩn hóa 4 tầng biên ngoài: Mép sàn $\rightarrow$ Dim chi tiết cột $\rightarrow$ Dim liên trục ($-4500\text{ mm}$) $\rightarrow$ Dim tổng ($-7500\text{ mm}$) $\rightarrow$ Bong bóng trục ngoài cùng ($-10500\text{ mm}$); (5) Căn tâm tuyệt đối Block `TenCauKien` (triệt tiêu độ lệch $700\text{ mm}$ do basepoint); (6) Đóng khung A1 tiêu chuẩn ($84100 \times 59400\text{ mm}$ ở 1:100) có Khung tên đồ án `DCE_Frame` và tiêu đề `DCE_Plan header 1`; (7) Chi tiết buồng thang máy có cửa mở (`DCE_GapOpen`), dầm lanh tô (`DCE_Lanh_To`), nét gạch chéo X lỗ rỗng sàn (`DCE_VoidX`), xóa bỏ dòng text cắt ngang lõi thang.
+2. **Nâng Cấp Bộ Lọc 8 SKILL_VERIFY (`dce_cad_compliance_checker.py` v2.0 — SKILL_VERIFY v3.3.0)**:
+   - Tích hợp Graphic Sanity Auditor: Tự động kiểm tra xung đột dầm cắt xuyên buồng thang máy / lỗ mở sàn, kiểm tra Solid Hatch bê tông xám (`color=8`, `SOLID`), kiểm tra sự hiện diện của Khung A1 và Bảng thống kê.
+   - **Bỏ kiểm tra dầm $> 18\text{ m}$** theo đúng bản chất Bản vẽ Thiết kế Kết cấu (KC), phân biệt rạch ròi với Bản vẽ Cắt thép Gia công (Shop Drawing).
+3. **Quy Chuẩn Toàn Hệ Thống — Điều 12d trong `AGENTS.md`**:
+   - Ban hành 5 khóa cứng đồ họa bắt buộc cho mọi bản vẽ CAD mặt bằng kết cấu: (1) Khóa phân đoạn dầm; (2) Khóa chống đè chữ & căn tâm cấu kiện; (3) Khóa 4 tầng biên ngoài; (4) Khóa Solid Hatch bê tông; (5) Khóa Khung bản vẽ tiêu chuẩn & Bảng thống kê.
+4. **Bộ Kiểm Thử Suite #18 & Tổng Thể Toàn Hệ Thống**:
+   - Bổ sung `tests/test_dce_cad_compliance.py` (Suite #18: 6/6 tests PASS).
+   - Tích hợp vào `run_all_tests.py`: Toàn bộ 18/18 Test Suites ĐẠT PASS XANH 100% (47.07s).
+5. **Cập Nhật SKILL_DUAL_AGENT_BRIDGE (v3.1.0)**:
+   - Đăng ký chính thức vào danh mục Skills sản xuất với 3 kịch bản điều phối liên tác tử (Relay, Partitioned Parallel, Red-Team Audit) và schema bus v3.0.
+
+---
+
+## 2026-11-05 — v7.2: Rà Soát Toàn Diện & Chuẩn Hóa Typography, Double Bullet & Math Engine (Điều 12e)
+
+### Tổng quan
+
+Nâng cấp triệt để hạ tầng sinh văn bản Word (`.docx`) và xử lý hiển thị ký hiệu kỹ thuật trên toàn bộ hệ thống SKILL:
+1. **Triệt tiêu 100% Lỗi Double Bullet (`•  •` — Trùng lặp 2 dấu chấm đầu dòng)**:
+   - Nâng cấp thư viện lõi `Design_Evaluation/scripts/_lib/_docx_helpers.py` (`add_bullet`): Tự động strip sạch ký tự `•, -, –, —, *` khỏi đầu chuỗi prefix và text.
+   - Sửa 2 điểm lỗi cứng gán `f'• {d}'` vào List Bullet trong `SKILL_RFI/scripts/document_renderer.py` (dòng 198 và dòng 380).
+   - Nâng cấp `SKILL_PHULUC/docx_generator_v2.py` và `SKILL_PHULUC/docx_generator.py` để tự động làm sạch ký tự bullet khi render danh sách Markdown.
+   - Nâng cấp parser danh sách `Design_Evaluation/scripts/md_to_docx_report.js` để tự động khử bỏ bullet glyph thừa.
 2. **Tách biệt Hoàn toàn Danh sách Đánh số & Chữ cái khỏi List Bullet**:
-   - Bổ sung hàm chuyên dụng dd_item() vào _docx_helpers.py sử dụng paragraph thường với thụt lề đầu dòng chuẩn (left_indent = Cm(0.6) / irst_line_indent = -Cm(0.4)), loại bỏ hoàn toàn việc gán List Bullet cho các mục số 1., 2. hoặc chữ cái ), b).
-   - Cơ chế tự động phát hiện số/chữ cái trong dd_bullet(): Nếu dữ liệu đầu vào bắt đầu bằng 1. hay ), hàm tự động chuyển hướng sang dd_item() để bảo vệ bố cục.
-3. **Triệt tiêu 100% Lộ Mã Nguồn Raw LaTeX trong Word ($H_{max}, H_{tb}, H_{min}$)**:
-   - Tích hợp bộ chuyển đổi toán học clean_math_symbols(), parse_inline_math_and_scripts() và dd_formatted_runs_to_paragraph() vào _docx_helpers.py (tự động áp dụng cho dd_p, dd_bullet, dd_item và ô bảng uild_table).
-   - Tự động chuyển đổi các ký hiệu chỉ số dưới (subscript=True), chỉ số trên (superscript=True), quy đổi các macro LaTeX (\implies, \times, \ge, \le, \approx, \Delta...) sang ký tự Unicode tương ứng (⇒, ×, ≥, ≤, ≈, Δ...) và xóa bỏ hoàn toàn dấu $ thô.
-   - Tương thích đồng bộ trên cả Python (python-docx) và JavaScript (docx.js).
+   - Bổ sung hàm chuyên dụng `add_item()` vào `_docx_helpers.py` sử dụng paragraph thường với thụt lề đầu dòng chuẩn (`left_indent = Cm(0.6)` / `first_line_indent = -Cm(0.4)`), loại bỏ hoàn toàn việc gán List Bullet cho các mục số `1., 2.` hoặc chữ cái `a), b)`.
+   - Cơ chế tự động phát hiện số/chữ cái trong `add_bullet()`: Nếu dữ liệu đầu vào bắt đầu bằng `1.` hay `a)`, hàm tự động chuyển hướng sang `add_item()` để bảo vệ bố cục.
+3. **Triệt tiêu 100% Lộ Mã Nguồn Raw LaTeX trong Word (`$H_{max}$, $H_{tb}$, $H_{min}$`)**:
+   - Tích hợp bộ chuyển đổi toán học `clean_math_symbols()`, `parse_inline_math_and_scripts()` và `add_formatted_runs_to_paragraph()` vào `_docx_helpers.py` (tự động áp dụng cho `add_p`, `add_bullet`, `add_item` và ô bảng `build_table`).
+   - Tự động chuyển đổi các ký hiệu chỉ số dưới (`subscript=True`), chỉ số trên (`superscript=True`), quy đổi các macro LaTeX (`\implies`, `\times`, `\ge`, `\le`, `\approx`, `\Delta`...) sang ký tự Unicode tương ứng (`⇒`, `×`, `≥`, `≤`, `≈`, `Δ`...) và xóa bỏ hoàn toàn dấu `$` thô.
+   - Tương thích đồng bộ trên cả Python (`python-docx`) và JavaScript (`docx.js`).
 4. **Khóa Cứng Pháp Lý & Chuẩn Hóa Tài Liệu Quy Phạm**:
-   - Bổ sung **Mục 7 (Rule 12c — Clean Typography & Math Lock v4.3)** vào STANDARDS_LOCK.md.
-   - Bổ sung Mục Quy tắc Typography vào SKILL_PHULUC/SKILL.md.
+   - Bổ sung **Mục 7 (Điều 12e AGENTS.md — Clean Typography & Math Lock v4.3)** vào `STANDARDS_LOCK.md`.
+   - Bổ sung Mục Quy tắc Typography vào `SKILL_PHULUC/SKILL.md`.
 
 ## 2026-11-02 — v7.1: Kiểm Định Toàn Diện & Bản Vá Hệ Thống Cấp Enterprise (Patch F01–F06)
 

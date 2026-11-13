@@ -18,6 +18,9 @@ Usage:
 """
 
 import sys
+from pathlib import Path as _CitationPath
+sys.path.insert(0, str(_CitationPath(__file__).resolve().parents[3] / "tools"))
+from citation_grounding_auditor import normalize_citation
 import json
 import math
 import argparse
@@ -195,7 +198,9 @@ class SlabFormworkDesigner:
             "substitution": substitution,
             "result": round(result, 4),
             "unit": unit,
-            "citation": citation
+            "citation": citation,
+            "Citation": normalize_citation(citation),
+            "Supporting_Citations": [normalize_citation(code) for code in ('TCVN 4453:1995', 'ACI 347-04')]
         })
 
     def calculate_loads(self) -> Dict[str, float]:
@@ -497,6 +502,10 @@ class CalcLog:
     result: float
     unit: str
     standard: str
+    Citation: dict = None
+
+    def __post_init__(self):
+        self.Citation = normalize_citation(self.Citation if self.Citation is not None else self.standard)
 
 
 class SlabFormworkCalculator:
@@ -905,7 +914,8 @@ class SlabFormworkCalculator:
 
         recommended = self._find_recommended(results)
         results["recommended"] = recommended
-        results["calculation_logs"] = [asdict(log) for log in self.logs]
+        results["calculation_logs"] = [dict(asdict(log), Supporting_Citations=[
+            normalize_citation(code) for code in ('TCVN 4453:1995', 'ACI 347-04')]) for log in self.logs]
         results["Calculation_Logs"] = results["calculation_logs"]
         results["Standard_Method"] = "ACI 347-04 / TCVN 4453:1995"
         return results

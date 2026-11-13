@@ -365,6 +365,84 @@
         "moment_diagram",
         "shear_diagram"
       ]
+    },
+    {
+      "name": "cad_plan_engine.py",
+      "version": "3.0.0",
+      "parametric": true,
+      "status": "ACTIVE",
+      "description": "Sinh bộ bản vẽ CAD Mặt bằng Kết cấu chuẩn DCE Pro A1 (KC-01 Tổng MB, KC-02 Định vị Cột Vách 7 Gap, KC-03 Dầm Sàn)",
+      "dependencies": [
+        "ezdxf"
+      ],
+      "cli_args": [
+        "--output",
+        "--template",
+        "--pdf",
+        "--sheet",
+        "--input-json"
+      ],
+      "output": "DXF AC1021 file",
+      "tags": [
+        "cad",
+        "dxf",
+        "dce_pro",
+        "mặt bằng",
+        "cột vách",
+        "dầm sàn"
+      ],
+      "use_cases": [
+        "structural_plan_cad",
+        "column_wall_setting_out"
+      ]
+    },
+    {
+      "name": "dce_dxf_generator.py",
+      "version": "1.1.0",
+      "parametric": true,
+      "status": "ACTIVE",
+      "description": "Sinh bản vẽ dầm BTCT chuẩn DCE Pro kế thừa DCE_Master_Seed_Template.dxf",
+      "dependencies": [
+        "ezdxf"
+      ],
+      "cli_args": [
+        "--output"
+      ],
+      "output": "DXF AC1021 file",
+      "tags": [
+        "cad",
+        "dxf",
+        "dce_pro",
+        "dầm"
+      ],
+      "use_cases": [
+        "beam_detail_dxf"
+      ]
+    },
+    {
+      "name": "calc_to_dxf.py",
+      "version": "1.1.0",
+      "parametric": true,
+      "status": "ACTIVE",
+      "description": "Xuất kết quả tính toán BTCT & Kết cấu Thép sang DXF chuẩn DCE Pro",
+      "dependencies": [
+        "ezdxf"
+      ],
+      "cli_args": [
+        "--input",
+        "--output"
+      ],
+      "output": "DXF AC1021 file",
+      "tags": [
+        "cad",
+        "dxf",
+        "dce_pro",
+        "rc",
+        "steel"
+      ],
+      "use_cases": [
+        "calc_export_dxf"
+      ]
     }
   ]
 }

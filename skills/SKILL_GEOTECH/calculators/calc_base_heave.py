@@ -1,4 +1,7 @@
 import sys
+from pathlib import Path as _CitationPath
+sys.path.insert(0, str(_CitationPath(__file__).resolve().parents[3] / "tools"))
+from citation_grounding_auditor import normalize_citation
 import json
 import math
 
@@ -442,6 +445,18 @@ def calc_base_heave(excavation_data, layers, gamma_w=None, gwl_depth=-999.0,
             "eta_status": eta_status
         }
     ]
+
+    for index, log in enumerate(calc_logs):
+        source, year = ('Bjerrum & Eide', '1956') if index == 3 else ('Terzaghi', '1943')
+        log['Citation'] = normalize_citation({
+            'Ma_Tieu_Chuan': source, 'Nam_Ban_Hanh': year,
+            'Dieu_Bang_Muc': '', 'Ten_Bang_Hinh': '', 'Trang_So': '',
+            'Trich_Yeu': log['step'] + '; actual empirical method; exact locator not verified'})
+        log['Supporting_Citations'] = [normalize_citation({
+            'Ma_Tieu_Chuan': code, 'Nam_Ban_Hanh': edition,
+            'Dieu_Bang_Muc': '', 'Ten_Bang_Hinh': '', 'Trang_So': '',
+            'Trich_Yeu': 'Foundation design context; not verified as the source of this base-heave equation'})
+            for code, edition in [('TCVN 9362', '2012'), ('TCVN 10304', '2025')]]
 
     return {
         "excavation_data": {

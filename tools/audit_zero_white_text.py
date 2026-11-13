@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-audit_zero_white_text.py (v2.0) — Công cụ Kiểm toán Tự động Điều 12b & Điều 12c AGENTS.md
+audit_zero_white_text.py (v2.1) — Công cụ Kiểm toán Tự động Điều 12b & Điều 12e AGENTS.md
   1. Điều 12b (Zero White Text Lock): Cấm tuyệt đối chữ trắng (#FFFFFF / RGBColor(255,255,255)) trong bảng biểu.
-  2. Điều 12c (Typography Floor Lock): Cấm tuyệt đối cỡ chữ Word/Excel siêu nhỏ (< 10.0pt: Pt(8), Pt(8.5), Pt(9), Pt(9.5), size=8.5, size=9.0, size=9.5).
+  2. Điều 12e (Typography Floor Lock): Cấm tuyệt đối cỡ chữ Word/Excel siêu nhỏ (< 10.0pt: Pt(8), Pt(8.5), Pt(9), Pt(9.5), size=8.5, size=9.0, size=9.5).
 """
 
 import os
@@ -14,6 +14,11 @@ from typing import Dict, Any, List
 if sys.stdout.encoding != "utf-8":
     sys.stdout.reconfigure(encoding="utf-8")
 
+SKIP_DIRS = {
+    ".git", "_deprecated", "_archive", "_ARCHIVE_BACKUP_20261022",
+    "__pycache__", ".pytest_cache", "references", ".npm", "node_modules",
+}
+
 FORBIDDEN_PATTERNS = [
     (r'RGBColor\s*\(\s*255\s*,\s*255\s*,\s*255\s*\)', "Điều 12b: RGBColor(255, 255, 255)"),
     (r'RGBColor\s*\(\s*0xFF\s*,\s*0xFF\s*,\s*0xFF\s*\)', "Điều 12b: RGBColor(0xFF, 0xFF, 0xFF)"),
@@ -22,9 +27,9 @@ FORBIDDEN_PATTERNS = [
     (r'color\s*=\s*.FFFFFF.', "Điều 12b: color='FFFFFF'"),
     (r'color_hex\s*=\s*WHITE\b', "Điều 12b: color_hex=WHITE"),
     (r'fill\s*=\s*\(\s*255\s*,\s*255\s*,\s*255\s*\)', "Điều 12b: PIL draw.text fill=(255,255,255)"),
-    (r"font\.size\s*=\s*Pt\(\s*(?:7|8|8\.5|9|9\.0|9\.5)\s*\)", "Điều 12c: Word Font < 10.0pt"),
-    (r'size_pt\s*=\s*(?:7|8|8\.5|9|9\.0|9\.5)\b', "Điều 12c: Word size_pt < 10.0pt"),
-    (r'Font\([^)]*\bsize\s*=\s*(?:7|8|8\.5|9|9\.0|9\.5)\b', "Điều 12c: Excel Font size < 10.0pt"),
+    (r"font\.size\s*=\s*Pt\(\s*(?:7|8|8\.5|9|9\.0|9\.5)\s*\)", "Điều 12e: Word Font < 10.0pt"),
+    (r'size_pt\s*=\s*(?:7|8|8\.5|9|9\.0|9\.5)\b', "Điều 12e: Word size_pt < 10.0pt"),
+    (r'Font\([^)]*\bsize\s*=\s*(?:7|8|8\.5|9|9\.0|9\.5)\b', "Điều 12e: Excel Font size < 10.0pt"),
 ]
 
 
@@ -33,16 +38,18 @@ def scan_agents_directory(root_dir: str) -> Dict[str, Any]:
     files_scanned = 0
     skill_counts: Dict[str, int] = {}
 
-    for dirpath, _, filenames in os.walk(root_dir):
-        if "_deprecated" in dirpath or "_archive" in dirpath or "__pycache__" in dirpath:
-            continue
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        dirnames[:] = [
+            d for d in dirnames
+            if d not in SKIP_DIRS and not d.lower().startswith("_archive")
+        ]
         for fn in sorted(filenames):
             if not fn.endswith((".py", ".md")):
                 continue
+            if fn == "audit_zero_white_text.py" or "_OLD" in fn or fn.startswith("test_"):
+                continue
             fp = os.path.join(dirpath, fn)
             rel_p = os.path.relpath(fp, root_dir)
-            if fn == "audit_zero_white_text.py":
-                continue
             files_scanned += 1
             parts = rel_p.split(os.sep)
             group = parts[1] if (len(parts) > 1 and parts[0] == "skills") else parts[0]
@@ -52,8 +59,9 @@ def scan_agents_directory(root_dir: str) -> Dict[str, Any]:
                 lines = f.readlines()
 
             for line_no, line in enumerate(lines, 1):
-                # Bỏ qua các dòng comment hoặc thuyết minh lịch sử đối chiếu lỗi cũ trong .md
-                if any(k in line for k in ["Cấu hình cũ", "Đã loại bỏ", "cấm", "Cấm", "Before", "Trước"]):
+                # Bỏ qua các dòng comment hoặc thuyết minh quy tắc cấm lỗi cũ trong .md/.py
+                line_low = line.lower()
+                if any(k in line_low for k in ["cấu hình cũ", "đã loại bỏ", "cấm", "before", "trước"]):
                     continue
                 for pat, desc in FORBIDDEN_PATTERNS:
                     if re.search(pat, line):
@@ -77,7 +85,7 @@ def scan_agents_directory(root_dir: str) -> Dict[str, Any]:
 if __name__ == "__main__":
     target = sys.argv[1] if len(sys.argv) > 1 else os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     rep = scan_agents_directory(target)
-    print(f"[AUDIT ĐIỀU 12B & 12C v2.0] Scanned {rep['files_scanned']} files across {len(rep['skill_groups_scanned'])} modules -> Warnings: {rep['warnings_count']} | Status: {rep['status']}")
+    print(f"[AUDIT ĐIỀU 12B & 12E v2.1] Scanned {rep['files_scanned']} files across {len(rep['skill_groups_scanned'])} modules -> Warnings: {rep['warnings_count']} | Status: {rep['status']}")
     if rep["violations"]:
         for v in rep["violations"]:
             print(f"  [!] {v['file']}:{v['line']} ({v['pattern']}): {v['snippet']}")

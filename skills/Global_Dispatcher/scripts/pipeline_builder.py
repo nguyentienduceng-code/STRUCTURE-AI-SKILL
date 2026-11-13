@@ -23,6 +23,7 @@ if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 import json
+import re
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -50,6 +51,7 @@ EXECUTION_ORDER = {
     "SKILL_RFI": 55,
     "Project_Manager": 60,
     "SKILL_BIM_COORDINATION": 65,
+    "SKILL_DUAL_AGENT_BRIDGE": 70,
 }
 
 # Handoff schemas between skill pairs
@@ -92,7 +94,10 @@ PARALLEL_GROUPS = {
 class PipelineBuilder:
     """Xây dựng pipeline thực thi tự động từ danh sách skills."""
 
-    def __init__(self, db_path: str = None):
+    def __init__(self, db_path: str = None, max_stages: int = 64):
+        if isinstance(max_stages, bool) or not isinstance(max_stages, int) or max_stages < 1:
+            raise ValueError("max_stages must be a positive integer")
+        self.max_stages = max_stages
         self.db_path = db_path or str(KEYWORD_DB_PATH)
         self.db = self._load_database()
         self.templates = self.db.get("pipeline_templates", {})
@@ -132,7 +137,7 @@ class PipelineBuilder:
             }
 
         # Sort by execution order
-        sorted_skills = sorted(valid_skills, key=lambda s: EXECUTION_ORDER.get(s, 99))
+        sorted_skills = list(valid_skills)  # Explicit requested order is semantic, not a priority sort.
 
         # Build pipeline ID
         skill_ids = [s[:3].upper() for s in sorted_skills]
@@ -194,6 +199,9 @@ class PipelineBuilder:
             "execution_instructions": self._build_instructions(sorted_skills, review_gates)
         }
 
+        pipeline["skills"] = sorted_skills
+        pipeline.update(self._graph_metadata(stages))
+        pipeline["parallel_opportunities"] = []  # A linear plan has no runnable parallel branches.
         return pipeline
 
     def build_from_template(self, template_name: str) -> dict:
@@ -209,6 +217,244 @@ class PipelineBuilder:
             skills=template["skills"],
             context=template.get("description", "")
         )
+
+    @staticmethod
+    def _ascii(text):
+        import unicodedata
+        text = text.lower().replace('đ', 'd')
+        return ''.join(c for c in unicodedata.normalize('NFD', text)
+                       if unicodedata.category(c) != 'Mn')
+
+    @staticmethod
+    def _graph_metadata(stages):
+        """Kahn layers are executable dependency layers, not fixed skill priorities."""
+        ids = {s['stage'] for s in stages}
+        if len(ids) != len(stages):
+            raise ValueError('Duplicate stage identifiers')
+        remaining = {}
+        edges = []
+        for stage in stages:
+            deps = set(stage['depends_on'])
+            if not deps <= ids or stage['stage'] in deps:
+                raise ValueError('Unknown dependency or self-cycle')
+            condition = stage.get('condition')
+            if condition and condition['source_stage'] not in deps:
+                raise ValueError('Condition source must be a dependency')
+            remaining[stage['stage']] = deps
+            edges.extend({'from': dep, 'to': stage['stage']} for dep in sorted(deps))
+        layers, order = [], []
+        while remaining:
+            ready = sorted(k for k, deps in remaining.items() if not deps)
+            if not ready:
+                raise ValueError('Workflow contains a cycle')
+            layers.append(ready)
+            order.extend(ready)
+            remaining = {k: deps - set(ready) for k, deps in remaining.items() if k not in ready}
+        return {'schema_version': '2.0', 'graph_type': 'DAG', 'edges': edges,
+                'topological_order': order, 'execution_batches': layers}
+
+    def build_dag(self, definitions, context=''):
+        if not definitions:
+            raise ValueError('Workflow must contain at least one stage')
+        if len(definitions) > self.max_stages:
+            raise ValueError('Workflow exceeds max_stages')
+        skills = [s['skill'] for s in definitions]
+        if any(s not in EXECUTION_ORDER for s in skills):
+            raise ValueError('Unknown workflow skill')
+        result = self.build(skills, context)
+        for number, (stage, definition) in enumerate(zip(result['stages'], definitions), 1):
+            stage['depends_on'] = list(dict.fromkeys(definition.get('depends_on', [])))
+            stage['condition'] = definition.get('condition')
+            stage['join_policy'] = definition.get('join_policy', 'all_success')
+            stage['task'] = definition.get('task', '')
+            stage['node_id'] = number
+            condition = stage['condition']
+            if condition:
+                if condition.get('op') not in {'in', '>', '>=', '<', '<=', '==', '!='}:
+                    raise ValueError('Unsupported condition operator')
+                if condition.get('field') not in {'status', 'eta', 'confidence'}:
+                    raise ValueError('Unsupported condition field')
+                import math
+                expected = condition.get('value')
+                if condition['field'] == 'status':
+                    if condition['op'] != 'in' or not isinstance(expected, list) or not expected or any(not isinstance(x, str) for x in expected):
+                        raise ValueError('Status condition needs a non-empty string list')
+                elif condition['op'] == 'in' or isinstance(expected, bool) or not isinstance(expected, (int, float)) or not math.isfinite(expected):
+                    raise ValueError('Numeric condition needs a finite numeric value')
+                if not isinstance(condition.get('negate', False), bool):
+                    raise ValueError('Condition negate must be boolean')
+            if stage['join_policy'] not in {'all_success', 'all_terminal'}:
+                raise ValueError('Unsupported join policy')
+        result.update(self._graph_metadata(result['stages']))
+        result['parallel_opportunities'] = [
+            {'group': 'dag_batch', 'stages': batch,
+             'skills': [result['stages'][i-1]['skill'] for i in batch]}
+            for batch in result['execution_batches'] if len(batch) > 1]
+        # Handoffs follow actual graph edges, including fan-out and joins.
+        result['handoff_schemas'] = []
+        for edge in result['edges']:
+            source, target = (result['stages'][edge[key]-1]['skill'] for key in ('from', 'to'))
+            result['handoff_schemas'].append({**edge, 'from_skill': source, 'to_skill': target,
+                'schema_type': HANDOFF_SCHEMAS.get((source, target), 'generic_handoff'),
+                'auto_generate': True})
+        result['execution_instructions'] = (
+            'Use ready_stages(states); execute only returned ready nodes. '
+            'Persist SUCCESS/FAILURE/SKIPPED outputs. Unknown conditions remain pending. '
+            'Respect review_gates; parallel batches require disjoint output files.')
+        return result
+
+    @staticmethod
+    def _parse_condition(text, source):
+        text = text.strip(' ,:')
+        numeric = re.fullmatch(r'(eta|confidence)\s*(>=|<=|>|<|==|!=)\s*(\d+(?:\.\d+)?)', text)
+        if numeric:
+            return {'source_stage': source, 'field': numeric[1], 'op': numeric[2],
+                    'value': float(numeric[3]), 'negate': False}
+        success = {'dat', 'pass', 'thanh cong', 'kiem chung dat', 'ket qua dat', 'success'}
+        failure = {'khong dat', 'fail', 'that bai', 'kiem chung khong dat', 'failure'}
+        if text in success | failure:
+            return {'source_stage': source, 'field': 'status', 'op': 'in',
+                    'value': ['SUCCESS', 'PASS'] if text in success else ['FAILURE', 'FAIL', 'ERROR'],
+                    'negate': False}
+        raise ValueError(f'Unsupported condition: {text}')
+
+    def plan(self, prompt, classify=None):
+        """Bounded Vietnamese/English workflow grammar. Unresolved clauses fail closed."""
+        if not isinstance(prompt, str) or not prompt.strip():
+            raise ValueError('Prompt must be a non-empty string')
+        if classify is None:
+            from intent_classifier import IntentClassifier
+            classifier = IntentClassifier(self.db_path)
+            classify = lambda text: classifier.classify(text, plan_workflow=False)
+        text = self._ascii(prompt).replace("\n", ";")
+        token = re.compile(
+            r'(\b(?:neu|if)\b.*?\b(?:thi|then)\b|\bnguoc lai\b|\belse\b|'
+            r'\bsong song\b|\bdong thoi\b|\bin parallel\b|\broi\b|\bsau do\b|'
+            r'\btiep theo\b|\bthen\b|;|\n|\b(?:va|and)\b(?=\s+(?:tinh|ve|kiem|lap|xuat|thiet|phan|so|render|verify|calculate|export|estimate)))')
+        parts = token.split(text)
+        definitions, frontier, parallel, parallel_base = [], [], [], None
+        branch, condition = None, None
+        excluded = []
+        join_policy = 'all_success'
+        for part in parts:
+            part = part.strip(' ,:.')
+            if not part:
+                continue
+            if re.fullmatch(r'(?:neu|if)\b.*?\b(?:thi|then)', part):
+                if branch is not None or not frontier:
+                    raise ValueError('Nested/unsourced condition needs explicit workflow definitions')
+                expression = re.sub(r'^(?:neu|if)\s+|\s+(?:thi|then)$', '', part)
+                condition = self._parse_condition(expression, frontier[-1])
+                branch = {'base': frontier[:], 'condition': condition, 'true': [], 'else': False}
+                parallel_base = None
+            elif part in {'nguoc lai', 'else'}:
+                if branch is None or branch['else']:
+                    raise ValueError('Else without a unique if')
+                branch['true'] = frontier[:]
+                frontier = branch['base'][:]
+                condition = {**branch['condition'], 'negate': True}
+                branch['else'] = True
+                parallel_base = None
+            elif part in {'song song', 'dong thoi', 'in parallel'}:
+                parallel_base, parallel = frontier[:], []
+            elif part in {'roi', 'sau do', 'tiep theo', 'then', ';', '\n'}:
+                parallel_base = None
+                if branch is not None and branch['else'] and frontier != branch['base']:
+                    frontier = branch['true'] + frontier
+                    branch, condition = None, None
+                    join_policy = 'all_terminal'
+            elif part in {'va', 'and'}:
+                pass
+            else:
+                if re.match(r'^(khong\s+(?:can\s+)?|do not\s+|don.t\s+)', part):
+                    excluded.append(part)
+                    continue
+                route = classify(part)
+                # Action-scoped routing handles short clauses without leaking nouns from other steps.
+                action_rules = [
+                    (r'\b(?:lap|xuat|export)\b.*\bphu luc\b', 'SKILL_PHULUC'),
+                    (r'\b(?:kiem chung|cross-check|verify|verification)\b', 'SKILL_VERIFY'),
+                    (r'\b(?:chi phi|cost|boq)\b', 'Cost_Estimator'),
+                    (r'\b(?:tinh|thiet ke|calculate|design)\s+(?:cot thep|dam|cot|san|mong|lien ket|beam|column|foundation)\b', 'Structural_Design_Engineer'),
+                    (r'\b(?:lap|xuat)\s+to trinh\b', 'Design_Evaluation'),
+                ]
+                if not part.startswith('@'):
+                    for pattern, chosen in action_rules:
+                        if re.search(pattern, part):
+                            route = {'primary_skill': chosen, 'confidence_level': 'HIGH'}
+                            break
+                skill = route.get('primary_skill')
+                if not skill or route.get('confidence_level') == 'LOW':
+                    raise ValueError(f'Unresolved workflow clause: {part}')
+                deps = (parallel_base if parallel_base is not None else frontier)[:]
+                if condition and condition['source_stage'] not in deps:
+                    deps.append(condition['source_stage'])
+                if len(definitions) >= self.max_stages:
+                    raise ValueError('Workflow exceeds max_stages')
+                definitions.append({'skill': skill, 'task': part, 'depends_on': deps,
+                                    'condition': condition, 'join_policy': join_policy})
+                join_policy = 'all_success'
+                if parallel_base is not None:
+                    parallel.append(len(definitions))
+                    frontier = parallel[:]
+                else:
+                    frontier = [len(definitions)]
+        result = self.build_dag(definitions, prompt)
+        result.update({'template': 'dynamic_dag_v2', 'description': 'Conditional dependency workflow',
+                       'excluded_clauses': excluded, 'trigger': 'explicit workflow grammar'})
+        return result
+
+    @staticmethod
+    def ready_stages(pipeline, states):
+        """Pure scheduler: ready/skipped/blocked. No tools or external side effects."""
+        graph = PipelineBuilder._graph_metadata(pipeline['stages'])
+        state = {int(k): (dict(v) if isinstance(v, dict) else {'status': v}) for k, v in states.items()}
+        terminal = {'SUCCESS', 'PASS', 'FAILURE', 'FAIL', 'ERROR', 'SKIPPED'}
+        success = {'SUCCESS', 'PASS'}
+        ready, skipped, blocked = [], [], []
+        for stage_id in graph['topological_order']:
+            if stage_id in state:
+                continue
+            stage = pipeline['stages'][stage_id-1]
+            deps = stage['depends_on']
+            if not all(state.get(d, {}).get('status') in terminal for d in deps):
+                continue
+            cond = stage.get('condition')
+            verdict = True
+            if cond:
+                source = state.get(cond['source_stage'], {})
+                outputs = source.get('outputs')
+                outputs = outputs if isinstance(outputs, dict) else {}
+                value = source.get(cond['field'], outputs.get(cond['field']))
+                if value is None:
+                    continue
+                op, expected = cond['op'], cond['value']
+                if op == 'in':
+                    verdict = value in expected
+                else:
+                    import math
+                    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+                        continue
+                    verdict = {'>': lambda: value > expected, '>=': lambda: value >= expected,
+                               '<': lambda: value < expected, '<=': lambda: value <= expected,
+                               '==': lambda: value == expected, '!=': lambda: value != expected}[op]()
+                if cond.get('negate'):
+                    verdict = not verdict
+            if not verdict:
+                state[stage_id] = {'status': 'SKIPPED'}
+                skipped.append(stage_id)
+            elif any(state[d]['status'] == 'SKIPPED' for d in deps) and stage.get('join_policy') != 'all_terminal':
+                state[stage_id] = {'status': 'SKIPPED'}
+                skipped.append(stage_id)
+            else:
+                permitted = all(state[d]['status'] in success or
+                    (cond and d == cond['source_stage']) or
+                    (stage.get('join_policy') == 'all_terminal' and state[d]['status'] == 'SKIPPED') for d in deps)
+                if permitted:
+                    ready.append(stage_id)
+                else:
+                    blocked.append(stage_id)
+        return {'ready': ready, 'skipped': skipped, 'blocked': blocked}
 
     def _build_stage(self, stage_num: int, skill: str, all_skills: List[str]) -> dict:
         """Xây dựng 1 stage trong pipeline."""
@@ -299,6 +545,7 @@ Ví dụ:
   python pipeline_builder.py --list-templates
         """
     )
+    parser.add_argument("--prompt", type=str, help="Plan a conditional DAG from a multi-step request")
     parser.add_argument("--skills", type=str, help="Danh sách skill cách nhau bởi dấu phẩy")
     parser.add_argument("--template", type=str, help="Tên template pipeline")
     parser.add_argument("--context", type=str, default="", help="Mô tả bối cảnh")
@@ -322,7 +569,9 @@ Ví dụ:
         }, ensure_ascii=False, indent=2))
         return
 
-    if args.template:
+    if args.prompt:
+        result = builder.plan(args.prompt)
+    elif args.template:
         result = builder.build_from_template(args.template)
     elif args.skills:
         skill_list = [s.strip() for s in args.skills.split(",")]

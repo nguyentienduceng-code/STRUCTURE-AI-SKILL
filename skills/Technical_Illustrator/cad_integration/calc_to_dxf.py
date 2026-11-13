@@ -27,6 +27,8 @@ Version: 1.0.0
 
 import sys
 import os
+from pathlib import Path
+from typing import Optional, Dict, List, Tuple
 import json
 import math
 import re
@@ -46,6 +48,18 @@ except ImportError:
 # =============================================================================
 # HELPER FUNCTIONS
 # =============================================================================
+
+def _get_master_template_path() -> Optional[Path]:
+    """Tìm kiếm file template DCE Master Seed Template theo thứ tự ưu tiên."""
+    candidates = [
+        Path(__file__).parent / "templates" / "DCE_Master_Seed_Template.dxf",
+        Path(r"g:\My Drive\Google AI Studio\.agents\skills\Technical_Illustrator\cad_integration\templates\DCE_Master_Seed_Template.dxf"),
+        Path(r"g:\My Drive\Google AI Studio\01_Projects\99_Archived\DuAn_Test\Dam_200x400_DCE.dxf")
+    ]
+    for c in candidates:
+        if c.is_file():
+            return c
+    return None
 
 def parse_section_size(section_str: str) -> dict:
     """
@@ -142,18 +156,24 @@ class RCCalculatorToDXF:
         self.msp = None
 
     def setup_document(self):
-        """Thiet lap tai lieu DXF."""
+        """Thiet lap tai lieu DXF ke thua tu Seed Template DCE Pro."""
         if not HAS_EZDXF:
             raise RuntimeError("ezdxf not installed")
 
-        self.doc = ezdxf.new('R2018')
-        self.msp = self.doc.modelspace()
-
-        # Create layers
-        self._setup_layers()
-
-        # Create text styles
-        self._setup_text_styles()
+        template_path = _get_master_template_path()
+        if template_path:
+            self.doc = ezdxf.readfile(str(template_path))
+            self.msp = self.doc.modelspace()
+            # Xoa thuc the cu, giu nguyen 100% TABLES (Layers, Blocks, Dimstyles, Linetypes)
+            for e in list(self.msp):
+                self.msp.delete_entity(e)
+            self.doc.header['$INSUNITS'] = 4    # Millimeters
+            self.doc.header['$MEASUREMENT'] = 1 # Metric
+        else:
+            self.doc = ezdxf.new('R2018', setup=True)
+            self.msp = self.doc.modelspace()
+            self._setup_layers()
+            self._setup_text_styles()
 
         return self
 
@@ -214,10 +234,15 @@ class RCCalculatorToDXF:
         # Ve title block
         self._draw_title_block(ox, oy, sf, scale)
 
+        # Audit truoc khi luu
+        auditor = self.doc.audit()
+        if auditor.errors:
+            print(f"[WARN] Audit errors: {auditor.errors}")
+
         # Save
         os.makedirs(os.path.dirname(output_path) or '.', exist_ok=True)
         self.doc.saveas(output_path)
-        print(f"[OK] Da tao DXF: {output_path}")
+        print(f"[OK] Da tao DXF: {output_path} (Audit fixes: {len(auditor.fixes)})")
 
         return output_path
 
@@ -430,33 +455,41 @@ class SteelCalculatorToDXF:
         self.msp = None
 
     def setup_document(self):
-        """Thiet lap tai lieu DXF."""
+        """Thiet lap tai lieu DXF ke thua tu Seed Template DCE Pro."""
         if not HAS_EZDXF:
             raise RuntimeError("ezdxf not installed")
 
-        self.doc = ezdxf.new('R2018')
-        self.msp = self.doc.modelspace()
+        template_path = _get_master_template_path()
+        if template_path:
+            self.doc = ezdxf.readfile(str(template_path))
+            self.msp = self.doc.modelspace()
+            for e in list(self.msp):
+                self.msp.delete_entity(e)
+            self.doc.header['$INSUNITS'] = 4
+            self.doc.header['$MEASUREMENT'] = 1
+        else:
+            self.doc = ezdxf.new('R2018', setup=True)
+            self.msp = self.doc.modelspace()
+            # Create layers
+            layers = {
+                'DCE_Beam': (2, 'Continuous'),      # Yellow - Dam thep
+                'DCE_ThepChu': (1, 'Continuous'),   # Red - Thep
+                'DCE_Truc': (8, 'DASHDOT2_DBIM'),   # Gray - Truc
+                'DCE_Dim': (254, 'Continuous'),     # Dimension
+                'Dce_text': (7, 'Continuous'),       # White - Text
+            }
 
-        # Create layers
-        layers = {
-            'DCE_Beam': (2, 'Continuous'),      # Yellow - Dam thep
-            'DCE_ThepChu': (1, 'Continuous'),   # Red - Thep
-            'DCE_Truc': (8, 'DASHDOT2_DBIM'),   # Gray - Truc
-            'DCE_Dim': (254, 'Continuous'),     # Dimension
-            'Dce_text': (7, 'Continuous'),       # White - Text
-        }
+            for name, (color, ltype) in layers.items():
+                try:
+                    self.doc.layers.add(name=name, color=color)
+                except:
+                    pass
 
-        for name, (color, ltype) in layers.items():
+            # Text styles
             try:
-                self.doc.layers.add(name=name, color=color)
+                self.doc.styles.new("Dce_Text", font="arial.ttf")
             except:
                 pass
-
-        # Text styles
-        try:
-            self.doc.styles.new("Dce_Text", font="arial.ttf")
-        except:
-            pass
 
         return self
 
@@ -479,10 +512,15 @@ class SteelCalculatorToDXF:
         # Draw title block
         self._draw_title_block(ox, oy, sf, scale)
 
+        # Audit truoc khi luu
+        auditor = self.doc.audit()
+        if auditor.errors:
+            print(f"[WARN] Audit errors: {auditor.errors}")
+
         # Save
         os.makedirs(os.path.dirname(output_path) or '.', exist_ok=True)
         self.doc.saveas(output_path)
-        print(f"[OK] Da tao DXF: {output_path}")
+        print(f"[OK] Da tao DXF: {output_path} (Audit fixes: {len(auditor.fixes)})")
 
         return output_path
 

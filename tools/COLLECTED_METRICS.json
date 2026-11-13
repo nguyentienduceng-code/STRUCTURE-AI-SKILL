@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-11-05T07:22:28.591991+00:00",
+  "timestamp": "2026-11-11T10:39:57.912440+07:00",
   "skills_summary": {
-    "total": 13,
-    "production": 13,
+    "total": 14,
+    "production": 14,
     "placeholder": 0,
     "skills": [
       {
         "name": "Cost_Estimator",
-        "version": "1.2.0",
-        "last_updated": "2026-09-27",
+        "version": "1.4.0",
+        "last_updated": "2026-11-02",
         "status": "production"
       },
       {
@@ -36,6 +36,12 @@
         "status": "production"
       },
       {
+        "name": "SKILL_DUAL_AGENT_BRIDGE",
+        "version": "3.1.0",
+        "last_updated": "2026-11-07",
+        "status": "production"
+      },
+      {
         "name": "SKILL_FORENSIC",
         "version": "1.2.0",
         "last_updated": "2026-09-27",
@@ -49,7 +55,7 @@
       },
       {
         "name": "SKILL_PHULUC",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "last_updated": "2026-11-02",
         "status": "production"
       },
@@ -67,8 +73,8 @@
       },
       {
         "name": "SKILL_VERIFY",
-        "version": "3.2.0",
-        "last_updated": "2026-10-25",
+        "version": "3.3.0",
+        "last_updated": "2026-11-09",
         "status": "production"
       },
       {
@@ -217,22 +223,22 @@
     ]
   },
   "changelog_latest": {
-    "version": "v7.1",
-    "date": "2026-11-02",
-    "title": "Kiểm Định Toàn Diện & Bản Vá Hệ Thống Cấp Enterprise (Patch F01–F06)",
-    "bullet_count": 6,
-    "raw_heading": "## 2026-11-02 — v7.1: Kiểm Định Toàn Diện & Bản Vá Hệ Thống Cấp Enterprise (Patch F01–F06)\n"
+    "version": "v7.4",
+    "date": "2026-11-11",
+    "title": "Kiểm Toán Toàn Diện Hệ Sinh Thái `.agents`, Hợp Nhất SSOT & Vá Chuỗi Kiểm Thử",
+    "bullet_count": 3,
+    "raw_heading": "## 2026-11-11 — v7.4: Kiểm Toán Toàn Diện Hệ Sinh Thái `.agents`, Hợp Nhất SSOT & Vá Chuỗi Kiểm Thử\n"
   },
   "keyword_database": {
-    "schema_version": "1.1.0",
-    "last_updated": "2026-10-18",
-    "declared_total_keywords": 417,
-    "actual_skill_count": 12,
-    "actual_primary_keyword_count": 192,
-    "actual_secondary_keyword_count": 164,
-    "actual_regex_count": 61,
+    "schema_version": "1.2.0",
+    "last_updated": "2026-11-11",
+    "declared_total_keywords": 442,
+    "actual_skill_count": 13,
+    "actual_primary_keyword_count": 210,
+    "actual_secondary_keyword_count": 169,
+    "actual_regex_count": 63,
     "actual_anti_keyword_count": 19,
-    "actual_total_keyword_count": 417,
+    "actual_total_keyword_count": 442,
     "tie_breaker_keys": [
       "description",
       "rules"
@@ -249,8 +255,8 @@
     "warnings": []
   },
   "calculators": {
-    "total_count": 60,
-    "skill_count_with_calculators": 12,
+    "total_count": 118,
+    "skill_count_with_calculators": 13,
     "by_skill": {
       "Design_Evaluation": [
         "Design_Evaluation/calculators/deflection_check.py",
@@ -259,10 +265,17 @@
         "Design_Evaluation/calculators/rc_flexure_design.py",
         "Design_Evaluation/calculators/steel_member_check_v2024.py",
         "Design_Evaluation/calculators/wind_load_calc.py",
+        "Design_Evaluation/scripts/auto_rfi_generator.py",
+        "Design_Evaluation/scripts/boq_extractor.py",
         "Design_Evaluation/scripts/cad_deep_reader.py",
+        "Design_Evaluation/scripts/convert_standards_to_md.py",
         "Design_Evaluation/scripts/generate_clash_dossier.py",
-        "Design_Evaluation/scripts/lessons_lookup.py",
+        "Design_Evaluation/scripts/generate_report.py",
+        "Design_Evaluation/scripts/generate_review_dashboard.py",
         "Design_Evaluation/scripts/report_dispatcher.py",
+        "Design_Evaluation/scripts/stage_gate_checklist.py",
+        "Design_Evaluation/scripts/validate_handoff.py",
+        "Design_Evaluation/scripts/validate_registry.py",
         "Design_Evaluation/scripts/xlsx_report.py"
       ],
       "Structural_Design_Engineer": [
@@ -278,20 +291,31 @@
         "Structural_Design_Engineer/scripts/calc_steel_beam_tcvn.py",
         "Structural_Design_Engineer/scripts/calc_steel_connection_tcvn.py",
         "Structural_Design_Engineer/scripts/calc_weld_tcvn.py",
-        "Structural_Design_Engineer/scripts/envelope_summary.py",
-        "Structural_Design_Engineer/scripts/etabs_com_reader.py",
         "Structural_Design_Engineer/scripts/export_calc_sheet.py",
-        "Structural_Design_Engineer/scripts/ifc_parser.py",
         "Structural_Design_Engineer/scripts/rebar_cutting_optimizer.py",
         "Structural_Design_Engineer/scripts/rebar_tokenizer.py"
       ],
       "SKILL_GEOTECH": [
+        "SKILL_GEOTECH/calculators/assess_excavation_geometry.py",
         "SKILL_GEOTECH/calculators/calc_base_heave.py",
         "SKILL_GEOTECH/calculators/calc_corner_brace.py",
+        "SKILL_GEOTECH/calculators/calc_cpt_interpretation.py",
+        "SKILL_GEOTECH/calculators/calc_geostatic_stress.py",
+        "SKILL_GEOTECH/calculators/calc_pile_load_test.py",
+        "SKILL_GEOTECH/calculators/calc_plaxis_model_geometry.py",
+        "SKILL_GEOTECH/calculators/calc_psr.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_hs.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_mc.py",
+        "SKILL_GEOTECH/calculators/calc_soil_params_ssc.py",
         "SKILL_GEOTECH/calculators/calc_spt_correlations.py",
+        "SKILL_GEOTECH/calculators/calc_structural_elements.py",
         "SKILL_GEOTECH/calculators/calc_strut_capacity.py",
         "SKILL_GEOTECH/calculators/calc_waling_beam_capacity.py",
-        "SKILL_GEOTECH/calculators/export_geotech_report.py"
+        "SKILL_GEOTECH/calculators/export_geotech_report.py",
+        "SKILL_GEOTECH/calculators/format_etabs_output.py",
+        "SKILL_GEOTECH/calculators/plaxis_to_etabs_handoff.py",
+        "SKILL_GEOTECH/calculators/verify_against_ground_truth.py",
+        "SKILL_GEOTECH/calculators/verify_serviceability_limits.py"
       ],
       "SKILL_TEMPWORKS": [
         "SKILL_TEMPWORKS/calculators/calc_formwork_column.py",
@@ -300,21 +324,41 @@
         "SKILL_TEMPWORKS/calculators/calc_shoring_system.py"
       ],
       "SKILL_FORENSIC": [
-        "SKILL_FORENSIC/scripts/back_calculation.py"
+        "SKILL_FORENSIC/scripts/back_calculation.py",
+        "SKILL_FORENSIC/scripts/evidence_checklist_generator.py",
+        "SKILL_FORENSIC/scripts/hypothesis_ranker.py",
+        "SKILL_FORENSIC/scripts/remedial_solution_generator.py",
+        "SKILL_FORENSIC/scripts/search_fm.py"
       ],
       "SKILL_RFI": [
+        "SKILL_RFI/scripts/deadline_escalation.py",
+        "SKILL_RFI/scripts/document_generator.py",
         "SKILL_RFI/scripts/document_renderer.py",
-        "SKILL_RFI/scripts/document_tracker.py"
+        "SKILL_RFI/scripts/document_tracker.py",
+        "SKILL_RFI/scripts/rfi_dashboard.py"
       ],
       "SKILL_VERIFY": [
+        "SKILL_VERIFY/scripts/calculation_logs_checker.py",
+        "SKILL_VERIFY/scripts/compare_with_etabs.py",
         "SKILL_VERIFY/scripts/cross_doc_conflict_checker.py",
+        "SKILL_VERIFY/scripts/dce_cad_compliance_checker.py",
         "SKILL_VERIFY/scripts/drawing_calc_crosscheck.py",
         "SKILL_VERIFY/scripts/ingest_project_docs.py",
+        "SKILL_VERIFY/scripts/inter_module_verify.py",
         "SKILL_VERIFY/scripts/report_consistency_check.py",
-        "SKILL_VERIFY/scripts/standard_conflict_checker.py"
+        "SKILL_VERIFY/scripts/standard_conflict_checker.py",
+        "SKILL_VERIFY/scripts/validate_verification_report.py",
+        "SKILL_VERIFY/scripts/verify_all.py"
       ],
       "Cost_Estimator": [
-        "Cost_Estimator/scripts/boq_cost_analysis.py"
+        "Cost_Estimator/scripts/boq_cost_analysis.py",
+        "Cost_Estimator/scripts/boq_ve_excel_exporter.py",
+        "Cost_Estimator/scripts/carbon_calculator.py",
+        "Cost_Estimator/scripts/compare_structural_options.py",
+        "Cost_Estimator/scripts/leed_credit_estimator.py",
+        "Cost_Estimator/scripts/material_optimization.py",
+        "Cost_Estimator/scripts/schedule_cost_impact.py",
+        "Cost_Estimator/scripts/update_prices.py"
       ],
       "Global_Dispatcher": [
         "Global_Dispatcher/scripts/approval_gate.py",
@@ -324,17 +368,39 @@
         "Global_Dispatcher/scripts/workflow_integration.py"
       ],
       "Technical_Illustrator": [
+        "Technical_Illustrator/scripts/dce_trigger.py",
+        "Technical_Illustrator/scripts/draw_2d_section.py",
+        "Technical_Illustrator/scripts/draw_bolt_connection.py",
+        "Technical_Illustrator/scripts/draw_comparison_chart.py",
+        "Technical_Illustrator/scripts/draw_foundation.py",
+        "Technical_Illustrator/scripts/draw_moment_diagram.py",
+        "Technical_Illustrator/scripts/draw_pile_cap.py",
+        "Technical_Illustrator/scripts/draw_rc_beam_full.py",
+        "Technical_Illustrator/scripts/draw_rc_column.py",
+        "Technical_Illustrator/scripts/draw_rc_wall.py",
+        "Technical_Illustrator/scripts/draw_slab_rebar.py",
+        "Technical_Illustrator/scripts/draw_weld_detail.py",
         "Technical_Illustrator/scripts/ms_project_gantt.py"
       ],
       "Project_Manager": [
         "Project_Manager/scripts/evm_cpm_calculator.py",
         "Project_Manager/scripts/iso_kpi_exporter.py",
         "Project_Manager/scripts/ms_project_gantt.py",
+        "Project_Manager/scripts/msproject_bridge.py",
+        "Project_Manager/scripts/msproject_xml_engine.py",
         "Project_Manager/scripts/project_grading.py",
+        "Project_Manager/scripts/project_roadmap.py",
         "Project_Manager/scripts/qltk_tracking_exporter.py"
       ],
-      "SKILL_PHULUC": [
-        "SKILL_PHULUC/scripts/docx_generator_v2.py"
+      "SKILL_BIM_COORDINATION": [
+        "SKILL_BIM_COORDINATION/scripts/clash_detector.py"
+      ],
+      "SKILL_DUAL_AGENT_BRIDGE": [
+        "SKILL_DUAL_AGENT_BRIDGE/scripts/claim_task.py",
+        "SKILL_DUAL_AGENT_BRIDGE/scripts/dual_agent_audit.py",
+        "SKILL_DUAL_AGENT_BRIDGE/scripts/handover_task.py",
+        "SKILL_DUAL_AGENT_BRIDGE/scripts/quick_status.py",
+        "SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py"
       ]
     }
   }
