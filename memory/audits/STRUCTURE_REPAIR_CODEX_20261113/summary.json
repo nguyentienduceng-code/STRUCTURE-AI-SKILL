@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-13T22:26:28.244856+07:00",
+  "status": "COMPLETED",
+  "fixed_findings": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05"
+  ],
+  "full_passed": 27,
+  "full_seconds": 89.45863770000051,
+  "fast_passed": 17,
+  "fast_seconds": 11.573338300000614,
+  "verified_archives": 7,
+  "recovered_rvt_entries": 663,
+  "registry_issues": 0,
+  "registry_warnings": 0,
+  "limitation": "All bytes and local entries present in the damaged ZIP were recovered. Completeness before the original archive was created is unknown."
+}

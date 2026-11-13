@@ -56,7 +56,7 @@ class ScriptDiscovery:
                     score += 3
 
             if score > 0:
-                candidates.append((script["name"], score, script["description"]))
+                candidates.append((script.get("path", script["name"]), score, script["description"]))
 
         # Trả về top 3 candidates
         candidates.sort(key=lambda x: x[1], reverse=True)

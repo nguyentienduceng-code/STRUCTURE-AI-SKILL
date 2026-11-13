@@ -1,0 +1,111 @@
+{
+  "tier": "fast",
+  "registered_suites": 27,
+  "selected_suites": 17,
+  "all_passed": true,
+  "wall_seconds": 11.573338300000614,
+  "suites": [
+    {
+      "number": 1,
+      "name": "1. Integration Test (64 checks)",
+      "passed": true,
+      "wall_seconds": 0.2449176999998599
+    },
+    {
+      "number": 2,
+      "name": "2. Regression Calculator Test (13 calculators)",
+      "passed": true,
+      "wall_seconds": 0.20848690000002534
+    },
+    {
+      "number": 3,
+      "name": "3. Pre-Execution Approval Gate (32 tests)",
+      "passed": true,
+      "wall_seconds": 0.1966138999996474
+    },
+    {
+      "number": 4,
+      "name": "4. Intent Classifier Benchmark (17 tests)",
+      "passed": true,
+      "wall_seconds": 0.16040659999998752
+    },
+    {
+      "number": 5,
+      "name": "5. E2E Pipeline Workflow",
+      "passed": true,
+      "wall_seconds": 0.13533009999991918
+    },
+    {
+      "number": 6,
+      "name": "6. DE Calculators Unit Tests (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.1464496999997209
+    },
+    {
+      "number": 8,
+      "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.16006190000007336
+    },
+    {
+      "number": 9,
+      "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
+      "passed": true,
+      "wall_seconds": 0.2493224999998347
+    },
+    {
+      "number": 14,
+      "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
+      "passed": true,
+      "wall_seconds": 1.7140564000001177
+    },
+    {
+      "number": 15,
+      "name": "15. Sync Report System Consistency (14 tests)",
+      "passed": true,
+      "wall_seconds": 0.5553440999992745
+    },
+    {
+      "number": 17,
+      "name": "17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)",
+      "passed": true,
+      "wall_seconds": 0.5258511000001818
+    },
+    {
+      "number": 19,
+      "name": "19. Dual-Agent Bridge & Bus IPC (7 tests)",
+      "passed": true,
+      "wall_seconds": 0.4084732000001168
+    },
+    {
+      "number": 20,
+      "name": "20. Cognitive Brain v2.0 Benchmark (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.2518758999995043
+    },
+    {
+      "number": 21,
+      "name": "21. R&D & Structural TCVN Regression Patches (20 checks)",
+      "passed": true,
+      "wall_seconds": 1.1433115999998336
+    },
+    {
+      "number": 22,
+      "name": "22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)",
+      "passed": true,
+      "wall_seconds": 0.6319598000000042
+    },
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (62 tests)",
+      "passed": true,
+      "wall_seconds": 2.830687300000136
+    },
+    {
+      "number": 27,
+      "name": "27. CAD Edit Workbench (9 tests)",
+      "passed": true,
+      "wall_seconds": 1.8883928999994168
+    }
+  ]
+}

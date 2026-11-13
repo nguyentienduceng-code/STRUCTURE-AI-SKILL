@@ -19,6 +19,7 @@ import os
 import json
 import unittest
 import shutil
+import tempfile
 from pathlib import Path
 
 if sys.stdout.encoding != "utf-8":
@@ -73,6 +74,22 @@ class TestSuite13A_DocReader(unittest.TestCase):
         self.assertTrue(res["summary"]["total_files"] > 10)
         self.assertIn("thuyet_minh", res["inventory"])
         self.assertIn("ban_ve", res["inventory"])
+
+    def test_A06_scanner_preserves_inventory_and_nonrecursive_scope(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'nested').mkdir()
+            for name in ('plan.dxf', 'notes.txt', '.hidden.pdf', '~$draft.docx', 'nested/book.pdf'):
+                (root/name).write_bytes(b'fixture')
+            flat = dr.scan_project_directory(directory, recursive=False)
+            deep = dr.scan_project_directory(directory)
+            self.assertEqual(flat['summary']['total_files'], 2)
+            self.assertEqual(deep['summary']['total_files'], 3)
+            self.assertEqual(deep['summary']['thuyet_minh'], 1)
+            for entries in deep['inventory'].values():
+                for item in entries:
+                    self.assertTrue(Path(item['path']).is_absolute())
+                    self.assertEqual(item['size_kb'], round(7/1024, 1))
 
 
 class TestSuite13B_ConflictAnalyzer(unittest.TestCase):

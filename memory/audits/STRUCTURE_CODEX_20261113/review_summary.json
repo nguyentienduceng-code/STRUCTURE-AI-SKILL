@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-11-13T22:18:23.657716+07:00",
+  "review_status": "NEED_REVIEW",
+  "production_source_modified_by_review": false,
+  "skills": 14,
+  "python_sources_parsed": 222,
+  "syntax_errors": 0,
+  "full_passed": 27,
+  "full_seconds": 93.84419620000062,
+  "fast_passed": 17,
+  "fast_seconds": 11.575966100000187,
+  "archive_valid": 6,
+  "archive_invalid": 1,
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "P1",
+      "title": "Archive rvt-mcp.zip không hợp lệ",
+      "location": ".agents/_references_archived/rvt-mcp.zip",
+      "evidence": "1,877,086 bytes; hai lần đọc cùng SHA-256 b135a0190e40c3b7936f3c3ec93c42f4037035d72b6f5f1333abcd52a60ce073; không có EOCD; zipfile.BadZipFile.",
+      "impact": "Không thể xác nhận phục hồi toàn bộ thư viện đã nén hoặc xác minh con số 3.739 tệp.",
+      "recommendation": "Khôi phục từ nguồn/backup tin cậy, tạo ZIP mới, kiểm CRC và manifest từng tệp trước khi thay thế bản hiện tại."
+    },
+    {
+      "id": "F02",
+      "priority": "P1",
+      "title": "Nhận ca có thể ghi đè tác tử đang giữ ca",
+      "location": ".agents/tools/sync_bus.py:732 và bản sao trong skill bridge",
+      "evidence": "Bus thử nghiệm tách biệt đang IN_PROGRESS/CODEX; claim_task(GEMINI) thành công và đổi holder thành GEMINI.",
+      "impact": "FileLock bảo vệ thao tác ghi đồng thời nhưng không bảo vệ quyền sở hữu ca. Lỗi hiện hữu; chưa xác định được thời điểm phát sinh.",
+      "recommendation": "Trong cùng FileLock, từ chối holder khác; cho phép nhận lại cùng holder; thêm test cạnh tranh và kiểm tra quyền complete/review."
+    },
+    {
+      "id": "F03",
+      "priority": "P2",
+      "title": "Dò workspace và metadata bàn giao chưa theo vị trí memory mới",
+      "location": ".agents/tools/sync_bus.py:171,351,508 và bản sao trong skill bridge",
+      "evidence": "Không truyền workspace: root bị nhận là .agents và relative bus thành memory/DUAL_AGENT_BUS.json. Truyền workspace đúng: .agents/memory/DUAL_AGENT_BUS.json. Cả 18 artifacts trong bus nhận bàn giao vẫn dùng đường dẫn cũ không tồn tại.",
+      "impact": "Bus vật lý đọc được nhưng đường dẫn artifact, phát hiện file dự án và memo có thể sai; chưa đạt tiêu chí hoạt động ổn định.",
+      "recommendation": "Thống nhất root resolver, đường dẫn memory và memo; kiểm từ project root, .agents và thư mục ngoài; giữ fallback legacy có kiểm soát."
+    },
+    {
+      "id": "F04",
+      "priority": "P2",
+      "title": "Còn 8 literal đường dẫn cố định tới workspace ổ G:",
+      "location": "cad_plan_engine.py:1336–1338; dce_dxf_generator.py:214–215; msproject_bridge.py:113–115",
+      "evidence": "AST tìm thấy 8 literal workspace trong 3 file runtime/CLI. Ba đường dẫn demo MS Project không tồn tại tại vị trí ghi cứng; các đường dẫn CAD tồn tại trên máy này nhưng không portable.",
+      "impact": "Di chuyển gói sang máy/ổ khác chưa bảo đảm độc lập; mặc định CLI vẫn trỏ dự án cụ thể.",
+      "recommendation": "Suy ra template theo __file__; yêu cầu hoặc cấu hình input/output. Không xóa các đường dẫn dò executable hệ điều hành hợp lệ."
+    },
+    {
+      "id": "F05",
+      "priority": "P2",
+      "title": "Registry và trình kiểm tra CAD không thống nhất đường dẫn",
+      "location": ".agents/skills/Technical_Illustrator/scripts/registry.json; Design_Evaluation/scripts/validate_registry.py",
+      "evidence": "Validator báo MISSING_FILE cho cad_plan_engine.py, dce_dxf_generator.py, calc_to_dxf.py. Cả ba thực tế nằm trong cad_integration/, không phải scripts/. Ngoài ra có 5 cảnh báo orphan.",
+      "impact": "Không phải mất ba file nguồn, nhưng công cụ xác minh registry hiện không PASS và dễ điều hướng sai entry point.",
+      "recommendation": "Bổ sung đường dẫn tương đối rõ ràng trong registry và cho validator/consumer dùng cùng quy ước."
+    }
+  ],
+  "criteria": {
+    "new_bus_readable_and_claimed": true,
+    "bus_stable_and_ownership_safe": false,
+    "no_incorrect_hardcoded_paths": false,
+    "independent_27_suites_pass": true,
+    "independent_report_written": true
+  }
+}

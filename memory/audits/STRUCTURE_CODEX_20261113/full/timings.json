@@ -1,0 +1,171 @@
+{
+  "tier": "full",
+  "registered_suites": 27,
+  "selected_suites": 27,
+  "all_passed": true,
+  "wall_seconds": 93.72708129999955,
+  "suites": [
+    {
+      "number": 1,
+      "name": "1. Integration Test (64 checks)",
+      "passed": true,
+      "wall_seconds": 0.2609181999996508
+    },
+    {
+      "number": 2,
+      "name": "2. Regression Calculator Test (13 calculators)",
+      "passed": true,
+      "wall_seconds": 0.2543562999999267
+    },
+    {
+      "number": 3,
+      "name": "3. Pre-Execution Approval Gate (32 tests)",
+      "passed": true,
+      "wall_seconds": 0.18944079999982932
+    },
+    {
+      "number": 4,
+      "name": "4. Intent Classifier Benchmark (17 tests)",
+      "passed": true,
+      "wall_seconds": 0.14549360000000888
+    },
+    {
+      "number": 5,
+      "name": "5. E2E Pipeline Workflow",
+      "passed": true,
+      "wall_seconds": 0.15791929999977583
+    },
+    {
+      "number": 6,
+      "name": "6. DE Calculators Unit Tests (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.13499959999990097
+    },
+    {
+      "number": 7,
+      "name": "7. Sprint 1 Reporting & TCVN Tests (4 tests)",
+      "passed": true,
+      "wall_seconds": 1.0710594999991372
+    },
+    {
+      "number": 8,
+      "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.14180120000037277
+    },
+    {
+      "number": 9,
+      "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
+      "passed": true,
+      "wall_seconds": 0.25143039999966277
+    },
+    {
+      "number": 10,
+      "name": "10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)",
+      "passed": true,
+      "wall_seconds": 2.810127900000225
+    },
+    {
+      "number": 11,
+      "name": "11. Sprint 3.4 DCE Deep Integration Tests (16 tests)",
+      "passed": true,
+      "wall_seconds": 2.1282944000004136
+    },
+    {
+      "number": 12,
+      "name": "12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)",
+      "passed": true,
+      "wall_seconds": 0.8481913999994504
+    },
+    {
+      "number": 13,
+      "name": "13. Sprint 5 Comprehensive Verification & Reporting (17 tests)",
+      "passed": true,
+      "wall_seconds": 0.6810126000000309
+    },
+    {
+      "number": 14,
+      "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
+      "passed": true,
+      "wall_seconds": 2.1000457000000097
+    },
+    {
+      "number": 15,
+      "name": "15. Sync Report System Consistency (14 tests)",
+      "passed": true,
+      "wall_seconds": 0.5544806000007156
+    },
+    {
+      "number": 16,
+      "name": "16. Cognitive & System Control Engine (40 tests)",
+      "passed": true,
+      "wall_seconds": 4.837274100000286
+    },
+    {
+      "number": 17,
+      "name": "17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)",
+      "passed": true,
+      "wall_seconds": 0.5315052999994805
+    },
+    {
+      "number": 18,
+      "name": "18. DCE CAD Compliance & Zero White Text Lock (9 tests)",
+      "passed": true,
+      "wall_seconds": 4.633281999999781
+    },
+    {
+      "number": 19,
+      "name": "19. Dual-Agent Bridge & Bus IPC (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.15080649999981688
+    },
+    {
+      "number": 20,
+      "name": "20. Cognitive Brain v2.0 Benchmark (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.2846497000000454
+    },
+    {
+      "number": 21,
+      "name": "21. R&D & Structural TCVN Regression Patches (20 checks)",
+      "passed": true,
+      "wall_seconds": 1.1963808999998946
+    },
+    {
+      "number": 22,
+      "name": "22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)",
+      "passed": true,
+      "wall_seconds": 0.6790914000002886
+    },
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (62 tests)",
+      "passed": true,
+      "wall_seconds": 2.861842600000273
+    },
+    {
+      "number": 24,
+      "name": "24. Nonlinear RC Fiber Section P-Mx-My 3D (23 tests)",
+      "passed": true,
+      "wall_seconds": 2.632041100000606
+    },
+    {
+      "number": 25,
+      "name": "25. Project Data Adapter & E2E Batch Pipeline (34 tests)",
+      "passed": true,
+      "wall_seconds": 19.670497500000238
+    },
+    {
+      "number": 26,
+      "name": "26. Durable Project Orchestration & Agent Roles (39 tests)",
+      "passed": true,
+      "wall_seconds": 42.399774499999694
+    },
+    {
+      "number": 27,
+      "name": "27. CAD Edit Workbench (9 tests)",
+      "passed": true,
+      "wall_seconds": 1.8703000000004977
+    }
+  ]
+}

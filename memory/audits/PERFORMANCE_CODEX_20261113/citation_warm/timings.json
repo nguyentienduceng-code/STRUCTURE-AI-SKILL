@@ -1,0 +1,15 @@
+{
+  "tier": "selected",
+  "registered_suites": 27,
+  "selected_suites": 1,
+  "all_passed": true,
+  "wall_seconds": 2.824972099999968,
+  "suites": [
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (60 tests)",
+      "passed": true,
+      "wall_seconds": 2.8185617999999977
+    }
+  ]
+}

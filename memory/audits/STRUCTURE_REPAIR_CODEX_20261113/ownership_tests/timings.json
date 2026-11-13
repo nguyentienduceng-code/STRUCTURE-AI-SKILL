@@ -1,0 +1,15 @@
+{
+  "tier": "selected",
+  "registered_suites": 27,
+  "selected_suites": 1,
+  "all_passed": true,
+  "wall_seconds": 0.535658699999658,
+  "suites": [
+    {
+      "number": 19,
+      "name": "19. Dual-Agent Bridge & Bus IPC (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.5274337000000742
+    }
+  ]
+}

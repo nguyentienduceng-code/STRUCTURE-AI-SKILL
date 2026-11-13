@@ -51,10 +51,11 @@ except ImportError:
 
 def _get_master_template_path() -> Optional[Path]:
     """Tìm kiếm file template DCE Master Seed Template theo thứ tự ưu tiên."""
+    script_dir = Path(__file__).resolve().parent
+    workspace_root = Path(__file__).resolve().parents[4]
     candidates = [
-        Path(__file__).parent / "templates" / "DCE_Master_Seed_Template.dxf",
-        Path(r"g:\My Drive\Google AI Studio\.agents\skills\Technical_Illustrator\cad_integration\templates\DCE_Master_Seed_Template.dxf"),
-        Path(r"g:\My Drive\Google AI Studio\01_Projects\99_Archived\DuAn_Test\Dam_200x400_DCE.dxf")
+        script_dir / "templates" / "DCE_Master_Seed_Template.dxf",
+        workspace_root / "01_Projects" / "99_Archived" / "DuAn_Test" / "Dam_200x400_DCE.dxf"
     ]
     for c in candidates:
         if c.is_file():
@@ -747,7 +748,8 @@ if __name__ == "__main__":
         print(f"As_chon: {rc_result.get('As_chon_mm2')} mm2")
 
         # Generate DXF
-        output_dir = "G:/My Drive/Google AI Studio/output"
+        workspace_root = Path(__file__).resolve().parents[4]
+        output_dir = str(workspace_root / "output")
         os.makedirs(output_dir, exist_ok=True)
 
         dxf = RCCalculatorToDXF(rc_result)

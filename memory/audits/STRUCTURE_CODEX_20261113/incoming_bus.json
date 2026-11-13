@@ -1,0 +1,47 @@
+{
+  "project_context": {
+    "project_code": "00_SYSTEM_STRUCTURE_AGENT_STANDALONE",
+    "project_purpose": "Kiem toan doc lap he thong sau tai cau truc bo Agent Structure khep kin",
+    "role_distribution": "Linh hoạt tùy mục đích dự án",
+    "action_type": "DYNAMIC"
+  },
+  "last_updated_by": "GEMINI",
+  "timestamp": "2026-11-13T22:11:10.230817+07:00",
+  "handoff_status": "IN_PROGRESS",
+  "current_holder": "CODEX",
+  "summary": "Da hoan tat 5 Phase tai cau truc: nen 3.739 file references thanh 7 zip trong _references_archived/ (giam 76.8% file count), di chuyen memory vao .agents/memory/, loai bo hardcoded paths, dong bo SSOT AGENTS.md, dat 27/27 test suites PASS (fast 12.45s, full 80.06s).",
+  "artifacts_modified": [
+    "memory/DUAL_AGENT_BUS.json",
+    "memory/DUAL_AGENT_HANDOFF_MEMO.md",
+    "memory/audits/PERFORMANCE_CODEX_20261113/REPORT.md",
+    "memory/audits/PERFORMANCE_CODEX_20261113/archive_legacy.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/cache_timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/citation_warm/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/fast/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/final_fast/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/final_full/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/finalize_audit.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/full/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_cache.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_io.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_io.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/profile_suite.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/refined/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/summary.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/targeted/timings.json"
+  ],
+  "next_action_for_partner": {
+    "target_agent": "CODEX",
+    "task_description": "Kiem tra ra soat lai toan bo he thong sau tai cau truc: (1) Xac nhan vi tri moi cua Bus tai .agents/memory/DUAL_AGENT_BUS.json, (2) Kiem tra tinh toan ven cua 14 skills va tools, (3) Chay run_all_tests.py doc lap de kiem chung 27/27 suites PASS, (4) Doi chieu hieu nang va lap bien ban kiem toan doc lap tai .agents/memory/audits/.",
+    "target_files": [],
+    "acceptance_criteria": [
+      "Xac nhan Bus tai .agents/memory/DUAL_AGENT_BUS.json hoat dong on dinh",
+      "Kiem tra khong con hardcoded path sai",
+      "Doc lap chay run_all_tests.py dat 27/27 PASS",
+      "Lap bao cao kiem toan doc lap tai .agents/memory/audits/"
+    ],
+    "command": "Kiem tra ra soat lai toan bo he thong sau tai cau truc: (1) Xac nhan vi tri moi cua Bus tai .agents/memory/DUAL_AGENT_BUS.json, (2) Kiem tra tinh toan ven cua 14 skills va tools, (3) Chay run_all_tests.py doc lap de kiem chung 27/27 suites PASS, (4) Doi chieu hieu nang va lap bien ban kiem toan doc lap tai .agents/memory/audits/."
+  },
+  "Verification_Status": "IN_PROGRESS",
+  "claim_timestamp": "2026-11-13T22:12:09.637951+07:00"
+}

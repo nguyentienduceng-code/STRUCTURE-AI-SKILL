@@ -19,13 +19,19 @@ def find_bus_file():
     env_ws = os.environ.get("DUAL_AGENT_WORKSPACE")
     candidates = []
     if env_ws:
+        candidates.append(Path(env_ws) / ".agents" / "memory" / "DUAL_AGENT_BUS.json")
         candidates.append(Path(env_ws) / "memory" / "DUAL_AGENT_BUS.json")
 
+    file_path = Path(__file__).resolve()
+    agents_root = file_path.parents[3]
+    ws_root = file_path.parents[4]
+
     candidates.extend([
+        agents_root / "memory" / "DUAL_AGENT_BUS.json",
+        ws_root / ".agents" / "memory" / "DUAL_AGENT_BUS.json",
+        ws_root / "memory" / "DUAL_AGENT_BUS.json",
+        Path.cwd() / ".agents" / "memory" / "DUAL_AGENT_BUS.json",
         Path.cwd() / "memory" / "DUAL_AGENT_BUS.json",
-        Path("G:/My Drive/Google AI Studio/memory/DUAL_AGENT_BUS.json"),
-        Path("J:/My Drive/AI AGENT/memory/DUAL_AGENT_BUS.json"),
-        Path("D:/AI AGENT/memory/DUAL_AGENT_BUS.json"),
     ])
 
     for c in candidates:

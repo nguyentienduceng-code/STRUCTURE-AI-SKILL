@@ -1333,9 +1333,9 @@ def export_dce_plan(output_dxf_path: str, template_path: Optional[str] = None,
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description="DCE Pro Multi-Sheet Plan Engine")
-    parser.add_argument('--output', '-o', default=r'g:\My Drive\Google AI Studio\01_Projects\15.TEST\04_Deliverables_ToTrinh\mat_bang_cot_vach_tang_dien_hinh.dxf', help="Path to output DXF")
-    parser.add_argument('--template', '-t', default=r'g:\My Drive\Google AI Studio\.agents\skills\Technical_Illustrator\cad_integration\templates\DCE_Master_Seed_Template.dxf', help="Path to DCE seed template")
-    parser.add_argument('--pdf', '-p', default=r'g:\My Drive\Google AI Studio\01_Projects\15.TEST\01_Input_CAD_PDF\a.pdf', help="Path to architectural PDF")
+    parser.add_argument("--output", "-o", required=True, help="Path to output DXF")
+    parser.add_argument("--template", "-t", default=str(Path(__file__).resolve().parent / "templates" / "DCE_Master_Seed_Template.dxf"), help="Path to DCE seed template")
+    parser.add_argument("--pdf", "-p", required=True, help="Path to architectural PDF")
     parser.add_argument('--sheet', '-s', default='KC-02', choices=['KC-01', 'KC-02', 'KC-03', 'all'], help="Sheet type to generate")
     parser.add_argument('--input-json', '-i', default=None, help="Optional structural model JSON file overriding built-in demo model")
     args = parser.parse_args()

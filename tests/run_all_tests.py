@@ -10,6 +10,7 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 import os
+import json
 import subprocess
 import time
 from pathlib import Path
@@ -31,27 +32,44 @@ SUITES = [
     ("10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)", [sys.executable, str(TESTS_DIR / "test_dce_integration.py")]),
     ("11. Sprint 3.4 DCE Deep Integration Tests (16 tests)", [sys.executable, str(TESTS_DIR / "test_dce_deep_integration.py")]),
     ("12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)", [sys.executable, str(TESTS_DIR / "test_suite12_doc_intelligence.py")]),
-    ("13. Sprint 5 Comprehensive Verification & Reporting (16 tests)", [sys.executable, str(TESTS_DIR / "test_suite13_verification.py")]),
+    ("13. Sprint 5 Comprehensive Verification & Reporting (17 tests)", [sys.executable, str(TESTS_DIR / "test_suite13_verification.py")]),
     ("14. Policy Engine & Multi-Trigger Rules (55 tests)", [sys.executable, str(TESTS_DIR / "test_policy_engine.py")]),
     ("15. Sync Report System Consistency (14 tests)", [sys.executable, str(TESTS_DIR / "test_sync_report.py")]),
     ("16. Cognitive & System Control Engine (40 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
     ("17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)", [sys.executable, str(TESTS_DIR / "test_suite17_xlsx_view_sanity.py")]),
     ("18. DCE CAD Compliance & Zero White Text Lock (9 tests)", [sys.executable, str(TESTS_DIR / "test_dce_cad_compliance.py")]),
-    ("19. Dual-Agent Bridge & Bus IPC (3 tests)", [sys.executable, str(SKILLS_ROOT / "SKILL_DUAL_AGENT_BRIDGE" / "tests" / "test_dual_agent_bridge.py")]),
+    ("19. Dual-Agent Bridge & Bus IPC (7 tests)", [sys.executable, str(SKILLS_ROOT / "SKILL_DUAL_AGENT_BRIDGE" / "tests" / "test_dual_agent_bridge.py")]),
     ("20. Cognitive Brain v2.0 Benchmark (10 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_brain_20261022.py")]),
     ("21. R&D & Structural TCVN Regression Patches (20 checks)", [sys.executable, str(TESTS_DIR / "test_rd_structural_patches_20261022.py")]),
     ("22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_architecture_v2.py")]),
-    ("23. PDF Citation Grounding & Input Provenance Guard (60 tests)", [sys.executable, str(TESTS_DIR / "test_citation_grounding_guard.py")]),
+    ("23. PDF Citation Grounding & Input Provenance Guard (62 tests)", [sys.executable, str(TESTS_DIR / "test_citation_grounding_guard.py")]),
     ("24. Nonlinear RC Fiber Section P-Mx-My 3D (23 tests)", [sys.executable, str(TESTS_DIR / "test_rc_section_pm_3d.py")]),
     ("25. Project Data Adapter & E2E Batch Pipeline (34 tests)", [sys.executable, str(TESTS_DIR / "test_project_data_pipeline.py")]),
+    ("26. Durable Project Orchestration & Agent Roles (39 tests)", [sys.executable, str(TESTS_DIR / "test_project_orchestration_p1.py")]),
+    ("27. CAD Edit Workbench (9 tests)", [sys.executable, str(TESTS_DIR / "test_cad_edit_workbench.py")]),
 ]
+
+# Smoke tier includes the real-PDF grounding guard. Slow reporting, CAD,
+# control timing, nonlinear solving and durable orchestration remain in full CI.
+FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 19, 20, 21, 22, 23, 27}
 
 def main():
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
+    tier = parser.add_mutually_exclusive_group()
+    tier.add_argument('--fast', action='store_true', help='Development smoke tier (target <15s); not full certification')
+    tier.add_argument('--full', action='store_true', help='All registered suites for CI/CD (default)')
     parser.add_argument('--suite', type=int, action='append', help='Run only these suite numbers (repeatable)')
+    parser.add_argument('--report-dir', type=Path, help='Save JSON timing report and complete per-suite logs')
+    parser.add_argument('--timeout', type=float, default=300, help='Per-suite timeout in seconds (default: 300)')
     args = parser.parse_args()
+    if args.timeout <= 0 or not __import__('math').isfinite(args.timeout):
+        parser.error('Timeout must be positive and finite')
+    if args.fast and args.suite:
+        parser.error('--fast cannot be combined with --suite; use explicit selection or the smoke tier')
     selected = SUITES
+    if args.fast:
+        selected = [(name, cmd) for name, cmd in SUITES if int(name.split('.', 1)[0]) in FAST_SUITES]
     if args.suite:
         available = {int(name.split('.', 1)[0]) for name, _ in SUITES}
         if set(args.suite) - available:
@@ -61,16 +79,30 @@ def main():
     print(" RUN ALL TESTS — BỘ KIỂM TRA TOÀN DIỆN HỆ SINH THÁI .AGENTS")
     print("=" * 80)
 
-    total_start = time.time()
+    if args.report_dir:
+        args.report_dir = args.report_dir.resolve()
+        args.report_dir.mkdir(parents=True, exist_ok=True)
+    print(f" Tier: {'fast' if args.fast else 'selected' if args.suite else 'full'} | {len(selected)}/{len(SUITES)} suites", flush=True)
+    total_start = time.perf_counter()
     all_passed = True
     results = []
 
     for name, cmd in selected:
-        print(f"\n▶ Chạy: {name}...")
-        start = time.time()
+        print(f"\n▶ Chạy: {name}...", flush=True)
+        start = time.perf_counter()
         test_env = {**os.environ, "PYTHONUTF8": "1"}
-        p = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=test_env)
-        elapsed = time.time() - start
+        try:
+            p = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=test_env,
+                               cwd=AGENTS_ROOT.parent, timeout=args.timeout)
+        except subprocess.TimeoutExpired as error:
+            def decoded(value):
+                return value.decode('utf-8', 'replace') if isinstance(value, bytes) else value or ''
+            p = subprocess.CompletedProcess(cmd, 124, decoded(error.stdout), decoded(error.stderr) + '\nSUITE_TIMEOUT')
+        elapsed = time.perf_counter() - start
+        if args.report_dir:
+            number = int(name.split('.', 1)[0])
+            (args.report_dir / f'suite_{number:02d}.log').write_text(
+                f'command={cmd!r}\nexit_code={p.returncode}\nwall_seconds={elapsed:.6f}\nSTDOUT:\n{p.stdout}\nSTDERR:\n{p.stderr}', encoding='utf-8')
         passed = (p.returncode == 0)
         results.append((name, passed, elapsed))
         if passed:
@@ -78,7 +110,8 @@ def main():
         else:
             print(f" ❌ THẤT BẠI ({elapsed:.2f}s)")
             print(" --- Chi tiết lỗi ---")
-            print(p.stderr or p.stdout)
+            print(p.stdout)
+            print(p.stderr)
             all_passed = False
 
     print("\n" + "=" * 80)
@@ -88,7 +121,14 @@ def main():
         status = "✅ PASS" if passed else "❌ FAIL"
         print(f" {status} | {name:<50s} ({elapsed:.2f}s)")
 
-    total_elapsed = time.time() - total_start
+    total_elapsed = time.perf_counter() - total_start
+    if args.report_dir:
+        report = {'tier': 'fast' if args.fast else 'selected' if args.suite else 'full',
+                  'registered_suites': len(SUITES), 'selected_suites': len(results),
+                  'all_passed': all_passed, 'wall_seconds': total_elapsed,
+                  'suites': [{'number': int(name.split('.', 1)[0]), 'name': name, 'passed': passed,
+                              'wall_seconds': elapsed} for name, passed, elapsed in results]}
+        (args.report_dir / 'timings.json').write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
     print("-" * 80)
     if all_passed:
         print(f" 🎉 TẤT CẢ TEST SUITES ĐỀU VƯỢT QUA! (Tổng thời gian: {total_elapsed:.2f}s)")

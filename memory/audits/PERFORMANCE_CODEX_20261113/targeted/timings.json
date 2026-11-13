@@ -1,0 +1,21 @@
+{
+  "tier": "selected",
+  "registered_suites": 27,
+  "selected_suites": 2,
+  "all_passed": true,
+  "wall_seconds": 4.245878700000048,
+  "suites": [
+    {
+      "number": 13,
+      "name": "13. Sprint 5 Comprehensive Verification & Reporting (16 tests)",
+      "passed": true,
+      "wall_seconds": 0.9887232999999469
+    },
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (60 tests)",
+      "passed": true,
+      "wall_seconds": 3.2408520999999837
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{"wall_seconds": 19.7507693, "parent_cpu_seconds": 3.65625, "exit_code": 0}
+         1441198 function calls (1404956 primitive calls) in 19.749 seconds
+
+   Ordered by: cumulative time
+   List reduced from 8375 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   19.751   19.751 <frozen runpy>:262(run_path)
+   1299/2    0.019    0.000   19.703    9.852 {built-in method builtins.exec}
+        1    0.000    0.000   19.703   19.703 <frozen runpy>:91(_run_module_code)
+        1    0.000    0.000   19.703   19.703 <frozen runpy>:65(_run_code)
+        1    0.000    0.000   19.703   19.703 test_citation_grounding_guard.py:1(<module>)
+        1    0.000    0.000   19.630   19.630 main.py:67(__init__)
+        1    0.000    0.000   19.628   19.628 main.py:255(runTests)
+        1    0.000    0.000   19.628   19.628 runner.py:224(run)
+      7/1    0.000    0.000   19.628   19.628 suite.py:83(__call__)
+      7/1    0.001    0.000   19.628   19.628 suite.py:102(run)
+       60    0.000    0.000   19.620    0.327 case.py:689(__call__)
+       60    0.001    0.000   19.620    0.327 case.py:599(run)
+       60    0.001    0.000   19.604    0.327 case.py:588(_callTestMethod)
+       55    0.018    0.000   13.580    0.247 citation_grounding_auditor.py:300(verify_citation)
+      203    0.001    0.000   11.404    0.056 __init__.py:12333(get_text)
+      203    0.005    0.000   11.403    0.056 utils.py:459(get_text)
+      203    0.002    0.000   11.351    0.056 __init__.py:12348(get_textpage)
+      203    0.001    0.000   11.343    0.056 __init__.py:10152(_get_textpage)
+      203    0.000    0.000   11.338    0.056 extra.py:194(page_get_textpage)
+      203   11.338    0.056   11.338    0.056 {built-in method pymupdf._extra.page_get_textpage}
+17196/17183    0.006    0.000    9.673    0.001 {method 'join' of 'str' objects}
+      164    0.001    0.000    9.666    0.059 citation_grounding_auditor.py:360(<genexpr>)
+       18    0.000    0.000    7.759    0.431 citation_grounding_auditor.py:397(audit)
+      145    0.005    0.000    5.618    0.039 __init__.py:1(<module>)
+        1    0.000    0.000    4.233    4.233 test_citation_grounding_guard.py:152(test_markdown_and_docx_including_header_and_table)
+        2    0.000    0.000    4.053    2.026 citation_grounding_auditor.py:408(audit_file)
+        1    0.000    0.000    2.672    2.672 test_citation_grounding_guard.py:135(test_bad_citation_cannot_hide_next_to_valid_one)
+  1325/17    0.009    0.000    2.356    0.139 <frozen importlib._bootstrap>:1349(_find_and_load)
+  1322/17    0.006    0.000    2.355    0.139 <frozen importlib._bootstrap>:1304(_find_and_load_unlocked)
+  1183/18    0.003    0.000    2.355    0.131 <frozen importlib._bootstrap_external>:989(exec_module)
+  2895/34    0.004    0.000    2.308    0.068 <frozen importlib._bootstrap>:480(_call_with_frames_removed)
+  1298/19    0.004    0.000    2.287    0.120 <frozen importlib._bootstrap>:911(_load_unlocked)
+        6    0.000    0.000    2.176    0.363 subprocess.py:506(run)
+        6    0.000    0.000    2.151    0.358 subprocess.py:1165(communicate)
+        6    0.000    0.000    2.142    0.357 subprocess.py:1603(_communicate)
+
+

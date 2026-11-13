@@ -90,7 +90,7 @@ def validate_scripts(registry):
             })
             continue
 
-        script_path = scripts_dir / script_name
+        script_path = scripts_dir / script.get('path', script_name)
 
         if not script_path.exists():
             issues.append({
@@ -109,7 +109,7 @@ def validate_scripts(registry):
             if '__pycache__' not in rel_path and '_deprecated' not in rel_path:
                 actual_scripts.append(rel_path)
 
-    registered_names = [s.get('name', '') for s in registry.get('scripts', [])]
+    registered_names = [s.get('path', s.get('name', '')) for s in registry.get('scripts', [])]
     for script_path in actual_scripts:
         if script_path not in registered_names:
             warnings.append({
@@ -155,14 +155,14 @@ def validate_structure(registry):
 def validate_cad_integration(registry):
     """Check CAD integration scripts"""
     issues = []
-    cad_dir = get_script_dir() / 'cad_integration'
+    cad_dir = get_script_dir().parent / 'cad_integration'
 
     print(f"\n{BOLD}=== Validating CAD Integration ==={RESET}")
 
     if cad_dir.exists():
         cad_scripts = list(cad_dir.glob('*.py'))
         if cad_scripts:
-            cad_in_registry = any('cad_integration' in s.get('name', '')
+            cad_in_registry = any('cad_integration' in s.get('path', s.get('name', ''))
                                   for s in registry.get('scripts', []))
             if not cad_in_registry:
                 warnings_count = 1

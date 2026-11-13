@@ -1,0 +1,44 @@
+{"wall_seconds": 2.5401858999998694, "parent_cpu_seconds": 0.609375, "exit_code": 0}
+         386042 function calls (372930 primitive calls) in 2.540 seconds
+
+   Ordered by: cumulative time
+   List reduced from 3788 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    2.540    2.540 <frozen runpy>:262(run_path)
+    229/2    0.007    0.000    2.504    1.252 {built-in method builtins.exec}
+        1    0.000    0.000    2.504    2.504 <frozen runpy>:91(_run_module_code)
+        1    0.000    0.000    2.504    2.504 <frozen runpy>:65(_run_code)
+        1    0.000    0.000    2.504    2.504 test_citation_grounding_guard.py:1(<module>)
+        1    0.000    0.000    2.427    2.427 main.py:67(__init__)
+        1    0.000    0.000    2.425    2.425 main.py:255(runTests)
+        1    0.000    0.000    2.425    2.425 runner.py:224(run)
+      7/1    0.000    0.000    2.425    2.425 suite.py:83(__call__)
+      7/1    0.000    0.000    2.425    2.425 suite.py:102(run)
+       60    0.000    0.000    2.418    0.040 case.py:689(__call__)
+       60    0.001    0.000    2.418    0.040 case.py:599(run)
+       60    0.001    0.000    2.403    0.040 case.py:588(_callTestMethod)
+        6    0.000    0.000    0.955    0.159 subprocess.py:506(run)
+        6    0.000    0.000    0.932    0.155 subprocess.py:1165(communicate)
+        6    0.000    0.000    0.924    0.154 subprocess.py:1603(_communicate)
+       12    0.000    0.000    0.924    0.077 threading.py:1117(join)
+    88/64    0.000    0.000    0.923    0.014 {method 'acquire' of '_thread.lock' objects}
+       12    0.000    0.000    0.923    0.077 threading.py:1155(_wait_for_tstate_lock)
+     12/6    0.001    0.000    0.923    0.154 threading.py:1018(_bootstrap)
+     12/6    0.000    0.000    0.923    0.154 threading.py:1058(_bootstrap_inner)
+     12/6    0.000    0.000    0.922    0.154 threading.py:1001(run)
+     12/6    0.000    0.000    0.922    0.154 subprocess.py:1598(_readerthread)
+    41/35    0.000    0.000    0.922    0.026 {method 'close' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    0.764    0.764 test_citation_grounding_guard.py:485(test_json_cli_exit_codes_and_source_unchanged)
+       55    0.009    0.000    0.609    0.011 citation_grounding_auditor.py:308(verify_citation)
+   207/20    0.001    0.000    0.525    0.026 <frozen importlib._bootstrap>:1349(_find_and_load)
+   206/19    0.001    0.000    0.525    0.028 <frozen importlib._bootstrap>:1304(_find_and_load_unlocked)
+   173/22    0.001    0.000    0.500    0.023 <frozen importlib._bootstrap_external>:989(exec_module)
+       28    0.001    0.000    0.463    0.017 pdf_text_index.py:20(__init__)
+   199/23    0.001    0.000    0.461    0.020 <frozen importlib._bootstrap>:911(_load_unlocked)
+   450/39    0.002    0.000    0.455    0.012 <frozen importlib._bootstrap>:480(_call_with_frames_removed)
+     1517    0.390    0.000    0.398    0.000 {built-in method nt.stat}
+       47    0.000    0.000    0.386    0.008 pathlib.py:1015(read_bytes)
+        1    0.000    0.000    0.373    0.373 test_citation_grounding_guard.py:152(test_markdown_and_docx_including_header_and_table)
+
+

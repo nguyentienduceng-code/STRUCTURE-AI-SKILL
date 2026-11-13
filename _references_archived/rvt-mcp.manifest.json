@@ -1,0 +1,3988 @@
+{
+  "recovered_entries": 663,
+  "all_original_bytes_consumed": true,
+  "original_sha256": "b135a0190e40c3b7936f3c3ec93c42f4037035d72b6f5f1333abcd52a60ce073",
+  "repaired_sha256": "26729ac2b5d28bd374f30ec8dbc551f5f2df0476c03e6c29c82a177f9a21aa81",
+  "scope": "All local entries present in damaged archive recovered and verified. Pre-archive repository completeness is unknown.",
+  "original_backup": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\STRUCTURE_REPAIR_CODEX_20261113\\rvt-mcp.original.damaged",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 45552,
+      "crc32": 2714523474,
+      "sha256": "20f6672cb93c44e8af460603ce8299586851c3bb4681fab9d6c2ad2bebadf44d"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 37738,
+      "crc32": 1228102280,
+      "sha256": "075fbdd76618e4139d0bc5b2bf400e9b335edbc90e6b37bc833e189f249cc563"
+    },
+    {
+      "path": "README.vi.md",
+      "bytes": 42612,
+      "crc32": 1674264174,
+      "sha256": "e4ec5e47c316e55f8246f5baa4a33e695d52fea8ad8ede7b57eefde284aaabce"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11338,
+      "crc32": 4161944304,
+      "sha256": "d0591c477b6048592124878a14533adf975d8e00e303b30f693b2bfcd84e52a8"
+    },
+    {
+      "path": "README.ja.md",
+      "bytes": 46953,
+      "crc32": 488247171,
+      "sha256": "4a33a4bc57c253d05fb627616a2224db5caca7d0955a9fb0ca62294b39ed2d17"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 11459,
+      "crc32": 1672112192,
+      "sha256": "7d5a95390380fe1944d50d19e570ebb595a9461e3c1a0bfcc54f52d67d51329a"
+    },
+    {
+      "path": "server.json",
+      "bytes": 652,
+      "crc32": 1641562175,
+      "sha256": "32c7bf8f5307716efce4d0d4b8cef8c8833f957f001d26de0292e9568f2868e5"
+    },
+    {
+      "path": "smithery.yaml",
+      "bytes": 819,
+      "crc32": 4140517906,
+      "sha256": "85232aad5442574762d8a70109c1296109f7408ff8d63c88e876592fd487fac8"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "bytes": 741,
+      "crc32": 1537483464,
+      "sha256": "2dbd95ad53ac5e9e271d8f6df4b6a28c2d71e23fe6b2a933985f3c83ef92149a"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 90650,
+      "crc32": 3566427802,
+      "sha256": "2be574d95473a988a74adf2f54795cfcda4733a206a339bf16b82b39a087e8df"
+    },
+    {
+      "path": "CLAUDE.md",
+      "bytes": 14040,
+      "crc32": 936811590,
+      "sha256": "a4a6f07839029a39f28d102f91048da61b572492eb8bc10f94fde747888e63f6"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 12674,
+      "crc32": 1612126442,
+      "sha256": "b60f3251ba565ae422c2696168957c6805171021e8d33289581f51e1d59b77bb"
+    },
+    {
+      "path": ".mcp.json.example",
+      "bytes": 156,
+      "crc32": 1456580537,
+      "sha256": "64276eceffe303ea8e547d690d97a4136a6fe01e310c091a62ee07866e17d311"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 1799,
+      "crc32": 244956680,
+      "sha256": "98b0a91f9670e3d3ebc2e53a1d168cc0034cc56f80cd45b2bee499f0d9b14d00"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 404,
+      "crc32": 2511540060,
+      "sha256": "4f01952fcf06576be3e2bdccc41762c7e773749346c2f8242a618ebed33dade7"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 25104,
+      "crc32": 3849523834,
+      "sha256": "4c68479dc5762177c3bbd480658382714add481bcdeae6082a6eb4692e1191c9"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 4161,
+      "crc32": 3620993513,
+      "sha256": "6387d48c76897ae66a6de1deac4a2dbcb62023f54ff5c2f5f4f05bf95ded5ace"
+    },
+    {
+      "path": "tests/check-public-tree.Tests.ps1",
+      "bytes": 4606,
+      "crc32": 4057802639,
+      "sha256": "cc47a535b3437ca92aa08c41f68e007499616411c2e055c92d1d29cccb27db43"
+    },
+    {
+      "path": "tests/installer/test_verify_package.py",
+      "bytes": 3941,
+      "crc32": 2790994092,
+      "sha256": "a6a63290a21f38072214b418108731d379474c75ea7b5f3ebdb8b5dee7742e36"
+    },
+    {
+      "path": "tests/installer/upgrade.Tests.ps1",
+      "bytes": 70590,
+      "crc32": 3229318795,
+      "sha256": "7434a5fede1741839fcb3a41d4d9bcb2f693dea9ca6f2f3fcb6293ca496fb754"
+    },
+    {
+      "path": "tests/installer/verify-package.py",
+      "bytes": 9031,
+      "crc32": 2258342710,
+      "sha256": "743db90efaf7b9c1798fc091519ca8fd6bcaf8c613a19f834b5b816240b6408b"
+    },
+    {
+      "path": "tests/installer/pack-nupkg.Tests.ps1",
+      "bytes": 5331,
+      "crc32": 4174955785,
+      "sha256": "97b7f338781924ac43e39d9b2e5a91e24bc7c44b0caa1978f7d984918508e9f5"
+    },
+    {
+      "path": "tests/installer/uninstall.Tests.ps1",
+      "bytes": 18543,
+      "crc32": 1775769135,
+      "sha256": "b72d3c2ca96dff7627d75b2342fd266d77f19652ccf7e705b4e8ce0e6c715090"
+    },
+    {
+      "path": "tests/installer/upgrade-package.ps1",
+      "bytes": 9055,
+      "crc32": 4215708457,
+      "sha256": "89898dd64d0e711a8203aaa6fde4e0108ac7d87990de66b2afc3a08f478bf147"
+    },
+    {
+      "path": "tests/native/RoomCategoryTagRegression.cs",
+      "bytes": 6953,
+      "crc32": 3676690179,
+      "sha256": "2ec318874bad638313da2180a49b6d2a87c77c1795b86347e7fdd05e9666d794"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/ToolsStateChecks.cs",
+      "bytes": 4598,
+      "crc32": 2045793957,
+      "sha256": "79c746b14b3b973e5d7d006076f0bf196571b8f5d624beddce09eb8dbc6fc4d7"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/SettingsTestHost.cs",
+      "bytes": 1536,
+      "crc32": 3287512280,
+      "sha256": "6e2ca60dabe3d62d932792e8f375fb434467a0ff183d83b1fdf9a281a053699b"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/SettingsStateChecks.cs",
+      "bytes": 9270,
+      "crc32": 1099810835,
+      "sha256": "156ef4c4ffc87feab7f3e8cc2de9422d083733cb4f12f433797d9467de33c9d7"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/Program.cs",
+      "bytes": 26009,
+      "crc32": 3200303665,
+      "sha256": "209f8fba1c1a6d8903660c785fe1af7993b0e1b7bd5b103bbcb4f8930bc4b4e2"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/HistoryRegressionChecks.cs",
+      "bytes": 17645,
+      "crc32": 969579948,
+      "sha256": "4db9773a3b18695155a9e76b3e80907f008cbaea1aaea3d0818771fe3aa02b9f"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/HistoryStateChecks.cs",
+      "bytes": 12638,
+      "crc32": 382510667,
+      "sha256": "c50a8c72e1b914b801b4949b447798688a77edc7c63a9f6f22516e9c50f3c4bb"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/HistoryLatestChecks.cs",
+      "bytes": 8931,
+      "crc32": 2649080733,
+      "sha256": "efd8f486a953a3003d67fce92edcd4dfc70f03253df3a430759a0c86ece809db"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/IssuesResetAsyncChecks.cs",
+      "bytes": 6080,
+      "crc32": 430813510,
+      "sha256": "41818f5303ab92bd641f1cb789931b6c785715a99c2429409a62bfbee859a3be"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/IssuesStateChecks.cs",
+      "bytes": 18089,
+      "crc32": 1915808409,
+      "sha256": "b5c76fd08c289a6741b2d2a2b0d16ebd86f80dfac871a1a8e13e1f6c361dbcc8"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/FailureModelPickerDiagnostics.cs",
+      "bytes": 9398,
+      "crc32": 2646964785,
+      "sha256": "b8354566327304440183757777f9b4e6d6174fe657033b253853641d362e62be"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/README.md",
+      "bytes": 4079,
+      "crc32": 1881642641,
+      "sha256": "3e75967ebba31df3200507571980b6a836e8e5bde1113fb91822c00d529d442d"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/HistoryTestRuntime.cs",
+      "bytes": 4579,
+      "crc32": 2836535611,
+      "sha256": "e5f6d0390214acbe56f64b60e33729ad1b7ae06133167dc5001a75f8c4108158"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/FakePresentation.cs",
+      "bytes": 11861,
+      "crc32": 87225158,
+      "sha256": "7b6c3ab158c1ded36ba6bc8076e9b7b5b15154286ff517397fed17e379a535bd"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/FailureModelPickerChecks.cs",
+      "bytes": 8942,
+      "crc32": 2772455700,
+      "sha256": "d12c853248814e65040e6efbc721806fe0fe17dcd49909cc7476d216b1c671a2"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/WarningPolicySettingsChecks.cs",
+      "bytes": 11534,
+      "crc32": 2386801637,
+      "sha256": "3f6efc826f3d604ceb832b80db2d5bd12768793289ad82f8289d1175abbf4963"
+    },
+    {
+      "path": "tests/RvtMcp.Settings.Tests/RvtMcp.Settings.Tests.csproj",
+      "bytes": 7089,
+      "crc32": 1377312091,
+      "sha256": "b23003c9523f9be17e4c00bc45f46f0af69820ba1e0bd9f533f0142a17255042"
+    },
+    {
+      "path": "tests/Shared/WpfBindingErrors.cs",
+      "bytes": 1064,
+      "crc32": 1982325120,
+      "sha256": "eb3b22663fcc4705a41bd88f63d30b11d81f910d8e547b98b3d5bdf56568f875"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/LiveTailVisualTests.cs",
+      "bytes": 13688,
+      "crc32": 3485959202,
+      "sha256": "c7a2d26b4d6c5a3bbc10c84282090b74b753f583f18c38728a538f180ff8e229"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/TimelineVisualTests.cs",
+      "bytes": 7129,
+      "crc32": 1265790220,
+      "sha256": "6118b3b383155091216cf9e7b0d1ecde44494d0974f66c615dda25c8e901f0ae"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/ToastCardStateChecks.cs",
+      "bytes": 4732,
+      "crc32": 2668657447,
+      "sha256": "be92071fc93f0c54a6c95b598dfaa836deec40c56b4aa145775e0444d732594b"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/ToastVisualTests.cs",
+      "bytes": 32331,
+      "crc32": 1036778716,
+      "sha256": "3144276fa9eedaa275900db8397c963e77e41884e45ec8dc28011456e55612f9"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/PositionVisualTests.cs",
+      "bytes": 15383,
+      "crc32": 3059339113,
+      "sha256": "a854bcbab6d2f9651881294468dbb25b204698653044cc9be8756f40d30ce283"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/RvtMcp.Toast.Tests.csproj",
+      "bytes": 3481,
+      "crc32": 2185733786,
+      "sha256": "330e1e04a329734dd2c9cc8a7c1ef345a5f5da98cd5a0b0676a2a1b3e28ef9ff"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/README.md",
+      "bytes": 4749,
+      "crc32": 4043301242,
+      "sha256": "ff142a07532b0ea9a2d8a61a16fa8d7992cbdebe24932616c5be5a1f62d63546"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/HoverRegressionTests.cs",
+      "bytes": 1680,
+      "crc32": 2807812199,
+      "sha256": "6606afdf622db04fa3d0c4a1df6fbb91389b3f7fa05dc33ebefb40a89f003ba1"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/Program.cs",
+      "bytes": 25120,
+      "crc32": 3874897534,
+      "sha256": "9350c4dce81e7b0d46d5c40634473252784c672fbb37e56837862c34b2ef2cf7"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/ToastPreview.cs",
+      "bytes": 8283,
+      "crc32": 395323553,
+      "sha256": "36570c897f3272d117a0a036383919a435ceeff04a1fd4f0059982fc3f54cf66"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/RecentActivityVisualTests.cs",
+      "bytes": 27690,
+      "crc32": 3761995773,
+      "sha256": "a72d242ed6cc8559fc3e0bea747678bf6965cd44806729ac700d7e82eb4c8e46"
+    },
+    {
+      "path": "tests/RvtMcp.Toast.Tests/ArrivalVisualTests.cs",
+      "bytes": 8599,
+      "crc32": 1518956035,
+      "sha256": "417eed271d1185a3742586c40f77f262374e058c9423701f65ab352deeb95616"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/README.md",
+      "bytes": 3552,
+      "crc32": 2823522789,
+      "sha256": "6df69480634fb3085d1d56b0056771078b0f9f4c4dd81ecca7832f7cc9046f3d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/RvtMcp.Tests.csproj",
+      "bytes": 10912,
+      "crc32": 2283079352,
+      "sha256": "d371dd6703e82d852085e60a50aa79003b16ad1eef441a505c2bfc08535b88da"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Plugin/RibbonTask9Tests.cs",
+      "bytes": 2444,
+      "crc32": 1992804549,
+      "sha256": "2c3c837654d522d5757cc0c167d75e6a0f0de1021eb97191237d0a03ec52e65a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Plugin/PluginHistoryWindowWiringTests.cs",
+      "bytes": 6323,
+      "crc32": 482096439,
+      "sha256": "5b382ba8a1258777d1e16b03baf0a60b19cf6f2be79629b6f986db06f04e19fd"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Plugin/FailureLinkedDocumentTests.cs",
+      "bytes": 1283,
+      "crc32": 1939420738,
+      "sha256": "f7323cf38ec4d445aca18a5635e887ee212538373f9586c9672af0689afc4074"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/fixtures/usage-streams/cluster-a-below-threshold.jsonl",
+      "bytes": 2192,
+      "crc32": 197770332,
+      "sha256": "d9e0cea448ef8f5a5d87f8d641954f0e9630b6116196e3f60c638f039fb81d4d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/fixtures/usage-streams/cluster-a-at-threshold.jsonl",
+      "bytes": 2466,
+      "crc32": 2385921799,
+      "sha256": "46d394f642d29544ba7c5c9804da32ce9d55b2af92d4f3a9709dc2827b34ff4b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/fixtures/usage-streams/cluster-c-failed-rate.jsonl",
+      "bytes": 3611,
+      "crc32": 1103218409,
+      "sha256": "ca65b763b107a144aaa662e434c30f7b2d5e0663ff67d3e2305f70f7d3ad7a6c"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/fixtures/usage-streams/cluster-b-unstable-parameter-kind.jsonl",
+      "bytes": 3786,
+      "crc32": 2222889389,
+      "sha256": "aca7e7273479c9db506808af188ee6461543c08ef4eb8f8352251811425be16f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/ServerStateConfigCollection.cs",
+      "bytes": 365,
+      "crc32": 1301749940,
+      "sha256": "fa71ee736d704c03a67e8d14a4867838ca45e005f8d009880eccf8005ae421e7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/ServerProjectReferenceTests.cs",
+      "bytes": 3600,
+      "crc32": 4072894399,
+      "sha256": "b773e144bb9c1d6f18cf312a9c62aa73a437935b2da6c40134338fb212e2e230"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/SnapshotSerializerTests.cs",
+      "bytes": 1955,
+      "crc32": 191788804,
+      "sha256": "aa87b01794cbe7a5455674f6195fb3b8dba67e9868c896bc7769e1f4f97b4314"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/Capture.cs",
+      "bytes": 2427,
+      "crc32": 3541101623,
+      "sha256": "9e383d3bdac205275ddb1e1c327a7803e652035e0f962ffad6a6a7d27a3a928a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/L10nCollection.cs",
+      "bytes": 320,
+      "crc32": 2354418200,
+      "sha256": "1a9dd6a05ce6d9d8fcb595c5f15a5d58982d851acf3eeca01f2f20a0113cfb41"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/SnapshotSerializer.cs",
+      "bytes": 3281,
+      "crc32": 4183656111,
+      "sha256": "175c0c2f5a2dd3d77315133d073913e657b60a9d3626b74471c90f23bc696b26"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Helpers/RuntimeTestIsolationTests.cs",
+      "bytes": 1108,
+      "crc32": 4014252909,
+      "sha256": "b44d818ef1812fe0333ae626c66ab3265023029bb42a37141c02de745cade1be"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/OversizedResponseScopeContractTests.cs",
+      "bytes": 10975,
+      "crc32": 2437059968,
+      "sha256": "e49f8dec6f27052efd417f6129b890328e53cbe174178d35cb3417c972c507e3"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ResponseSizeGuardTests.cs",
+      "bytes": 4505,
+      "crc32": 2926054795,
+      "sha256": "5e7a843be78f9f510f416026a51b312f26c78d24134b44fb5dbbf11481eaadd2"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ResponseSpillWriterTests.cs",
+      "bytes": 14779,
+      "crc32": 2860715033,
+      "sha256": "ebb9ef98f6abd0423e3cc5a9df51061738664344837fcb1badffc45f615506dd"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/SchemaValidatorTests.cs",
+      "bytes": 4717,
+      "crc32": 1149515850,
+      "sha256": "f163dd357514a213e638b754c4b75092684ba6556efd1bd613077d696df5e771"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ResponseSpillPolicyTests.cs",
+      "bytes": 3507,
+      "crc32": 1689573867,
+      "sha256": "6b3c9481e4d676490ff56bb0c96a90ed0513aa988eac8e27c924d9e85f45091d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ScriptDocumentCloseTests.cs",
+      "bytes": 6740,
+      "crc32": 1099726154,
+      "sha256": "8f6ca4facb4bdafa3b9536bd74756ae478ccdc3f28538345cbeb269ea08c11ea"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ResponseSpillProcessorTests.cs",
+      "bytes": 4827,
+      "crc32": 3207397470,
+      "sha256": "b698292590839eb6b66b1da01279aa9b6a8b063032e8a9f0fb381c276252a4e6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/SendCodeSourceBuilderTests.cs",
+      "bytes": 4263,
+      "crc32": 394424998,
+      "sha256": "cb0d61097218369557aa7a9e48e79da60b1c08564307a4af95e828173d3c098f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/RequestWaitTests.cs",
+      "bytes": 5775,
+      "crc32": 3822701210,
+      "sha256": "ba843ccdde69970b0db76886ae2a6815bd9777b25d1e63652029bd14907cfb98"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/RecentFileListTests.cs",
+      "bytes": 2647,
+      "crc32": 782669237,
+      "sha256": "8b54e1f0219106b7e38fc63fffc79b31194affa038ef020229e688fba10fb5d6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/LegacyDataMigrationTests.cs",
+      "bytes": 2947,
+      "crc32": 2119514419,
+      "sha256": "6b166bc6b4e153638539c084c85cbbc8b984d8062d1a2173afbc0f0644b19d8f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/DocumentTargetPolicyTests.cs",
+      "bytes": 2788,
+      "crc32": 99890039,
+      "sha256": "e547bcf9148d1cbf85d57ec4a6fd7c52bae12f6110ebf4d6b2cbad9521126854"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/DocumentTargetGuardTests.cs",
+      "bytes": 4204,
+      "crc32": 3497900173,
+      "sha256": "bab06487d7de8c97608f050c123976c690d1a858d7ca8d4274415cda784cd007"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/CommandDispatcherTests.cs",
+      "bytes": 1179,
+      "crc32": 649504971,
+      "sha256": "c72e6c3adc2b3c83d307ac0db3964fac3fdbb20410de6fed0f9488998248f6cd"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/ErrorSanitizerTests.cs",
+      "bytes": 2559,
+      "crc32": 4218964752,
+      "sha256": "dc2773a3b88c142fbf1133388e8cc6cc2ecf72e657372267e1c899e8a1f2e70d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/CaptureOutputResolverTests.cs",
+      "bytes": 1525,
+      "crc32": 2899923302,
+      "sha256": "317a235dbe750283167b2949f846e6fb5bb34cf234f260379f618013d7c313d2"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/CommandOutcomeTests.cs",
+      "bytes": 6024,
+      "crc32": 4145414558,
+      "sha256": "6d6233dba04b0a4f8d50af257416127c4a81392f6fa609c50cd65b66143df05a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/CaptureViewImagePathTests.cs",
+      "bytes": 3703,
+      "crc32": 3730261481,
+      "sha256": "92938f426d18a331399763086c40ee9a9101ddf1e239ad59c8f50dea5574bbf9"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/OversizedResponseInfrastructureTests.cs",
+      "bytes": 5319,
+      "crc32": 3491429236,
+      "sha256": "2b04d824943da58d295cf2b76f50daec787583b2de92112febf1373d1edf44ab"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Infrastructure/McpAddinDiscoveryTests.cs",
+      "bytes": 7050,
+      "crc32": 625948661,
+      "sha256": "76b24179f45892a5ba365a4aecbf921e1ead1a24dc34ee95ac51c4827c490c7a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/WarningPolicyConfigTests.cs",
+      "bytes": 4829,
+      "crc32": 1874789810,
+      "sha256": "b1c055d462d0afb2b911f71be6a0d3ec24cd2ea79bbf6f1db6894f5ca0f1dcdb"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/JournalDurationTests.cs",
+      "bytes": 1743,
+      "crc32": 2325513223,
+      "sha256": "e6331b8e9baf154c67adffa80cc97193d4f0086e67516ae5de2c240a70b56fde"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/SpillRetentionConfigTests.cs",
+      "bytes": 4248,
+      "crc32": 975138430,
+      "sha256": "d36fdb33a30e7e7ddb80bd0de50f4565ad9c4734b210f6bcd5dcb8bd92c4c9a2"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigTask4Tests.cs",
+      "bytes": 10276,
+      "crc32": 1537074366,
+      "sha256": "ea7e02a87446bee9f1946145fd8385b62b74c2d5c8e96d54fca9f2535c14d6a6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigLocalizationTests.cs",
+      "bytes": 3900,
+      "crc32": 689467400,
+      "sha256": "97f5c221a8e7f3f55646c2b79c1c842908d19e14eccbf2e4b3eea463a36463e0"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigTests.cs",
+      "bytes": 12732,
+      "crc32": 1025944703,
+      "sha256": "1709fc86f16c768e2045fa4e5b7b6e0839f6d517e854ea81c7cee019bc2f423d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigTransportTests.cs",
+      "bytes": 3815,
+      "crc32": 752137020,
+      "sha256": "b9413ee3c75ca4c4d60c4673da3c2c9db2b8417692698fc1d9560e594004ef72"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/ToastPositionPreferenceTests.cs",
+      "bytes": 6181,
+      "crc32": 44264663,
+      "sha256": "2bb79b2a65a42387be7b93072562ee6abc6e358fb0bafb8d7a4d8f7e43147c4f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/BrandingPreferenceTests.cs",
+      "bytes": 3311,
+      "crc32": 3420046369,
+      "sha256": "a8e0226f8ee603c9428307041207a0cbd4a5988476534280937b71b93079e7d3"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigAdaptiveBakeTests.cs",
+      "bytes": 4621,
+      "crc32": 2621131899,
+      "sha256": "b8b65e7fe90fd4a210f366f425a57c4e66c238105a8d6545da8587409760aa37"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/RvtMcpConfigPersistSendCodeTests.cs",
+      "bytes": 8989,
+      "crc32": 19005136,
+      "sha256": "119ee18a98d66e45f754d57e3adfa89e72fca633466ace02174460c1c2093aa2"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/PersistSendCodeTtlTests.cs",
+      "bytes": 1168,
+      "crc32": 2595183732,
+      "sha256": "cd1f278cf271c5549ac1dfa02f409bcd2a0178ada470395068d910c64475def6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Config/StatusPrivacySectionTests.cs",
+      "bytes": 1951,
+      "crc32": 3819447177,
+      "sha256": "6f3896995dee8c276cb3fe38551a7d15107a156453b207632d5815af9a480485"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/UserFailureAggregationTests.cs",
+      "bytes": 7678,
+      "crc32": 305333937,
+      "sha256": "339da200899bc6481c22ae43a722820e39a540c39a8600693932ae14d533bf81"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/ActiveDocumentReceiptTests.cs",
+      "bytes": 2529,
+      "crc32": 2555397468,
+      "sha256": "2ff3271be73926cf326389bb5d30c9bbdc9bea70d491f0b4d0085bbc015438cf"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/WarningPolicyLedgerTests.cs",
+      "bytes": 2127,
+      "crc32": 2273513096,
+      "sha256": "ce126194a173f18ff300af457b3ef4630158f62346bce4a0f8fbc212089a5f9c"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/CommittedTransactionLogTests.cs",
+      "bytes": 2426,
+      "crc32": 3529481415,
+      "sha256": "2d5cb89a2eac53d59d531ff376fe0dac9af24a0767d3dfad9556c79936b1095f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureDispatchTests.cs",
+      "bytes": 11116,
+      "crc32": 1320852773,
+      "sha256": "32e82334a7ba32fe20d6ee7458caa376b52549f3c2f490e29aabefde21b6fd20"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/WarningPolicyProcessingTests.cs",
+      "bytes": 10820,
+      "crc32": 542252454,
+      "sha256": "ccb911d3a79021a11f72a9117471c2f8b1582d91230d3cf32ebffacee17ab2a6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureDocumentLifetimeTests.cs",
+      "bytes": 6261,
+      "crc32": 3989050400,
+      "sha256": "f50394f697c752ab47bf6acb331a62873625c3c0ce314d16ccda4de768d0c1aa"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/WarningPolicyTests.cs",
+      "bytes": 3243,
+      "crc32": 3483086142,
+      "sha256": "daaa63ab610f7be9bf470f8d6eee2b83ac259a742278759ae8e674828e4e1694"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureCoreTests.cs",
+      "bytes": 11344,
+      "crc32": 3508763167,
+      "sha256": "99e4d66b6aad97ecf898fc3a48b32e32b5806d1dbe81123a1f95718b087821ca"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureReceiptScopeTests.cs",
+      "bytes": 1428,
+      "crc32": 358161154,
+      "sha256": "afcd5b4d27d658a4128fd2ba5f6ec495d14fc2fb4a5c75fc218d2242964c7cf5"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureLedgerTests.cs",
+      "bytes": 54396,
+      "crc32": 182599083,
+      "sha256": "10ec167cad8e47923588b9c3551b63bc5c0fc8cbd174578c61c2ec7fcfbbf9d7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/OperationReceiptRegressionTests.cs",
+      "bytes": 1214,
+      "crc32": 1128965268,
+      "sha256": "287c6ee51655232f2895e5ceb1629be9f00b28bdb4ee54a4fe00a1ac86e776fe"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureIssueModelTests.cs",
+      "bytes": 8483,
+      "crc32": 2688765005,
+      "sha256": "53ca61fba09820e2abeb63ac0d74e169871669626d5a7120df9fae7814530558"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureStopScopeTests.cs",
+      "bytes": 5609,
+      "crc32": 2589086003,
+      "sha256": "9acad11f6c382353520220de908ab58d842d359d933784e7b7ce5c47b7d78682"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureCompletionTests.cs",
+      "bytes": 6810,
+      "crc32": 1303723022,
+      "sha256": "e2a84c2f9831eedc1f21c57b35cd1baf7dd69b69b4c48d45f0c529e31a5fee30"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Failures/FailureCaptureDiagnosticTests.cs",
+      "bytes": 4943,
+      "crc32": 134536035,
+      "sha256": "78ec6d533b75c7c93de1ddc6be303221a08af0cad339f10b751fa325861356c3"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/OverrideFolderWatcherTests.cs",
+      "bytes": 3764,
+      "crc32": 1776576663,
+      "sha256": "d16ace29f59ee76a790d9374a5cffcf4f1091a8187c16b242479464378abfd42"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/LFacadeTests.cs",
+      "bytes": 5206,
+      "crc32": 1944872915,
+      "sha256": "d7f3e997a3f9d1b8b59d2cb1432835208d4adef88113794f0779751b3a09736d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/LocalizationReportTests.cs",
+      "bytes": 3731,
+      "crc32": 1471400696,
+      "sha256": "68f8e3422ae42ebb04eb2f9ff79aa71ced5081e6844c4c1c2bec4e524da9a350"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/OverrideValidatorTests.cs",
+      "bytes": 5320,
+      "crc32": 840307019,
+      "sha256": "d8eb6d6b78d2bbef762ca0240f78c47bc503c7b44e20a9e023828cbccd6afd81"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/LocalizationHostTests.cs",
+      "bytes": 6115,
+      "crc32": 2721455584,
+      "sha256": "b90d8dab591c9fe8d531b060c3d604ef8772fa853db3fdd2f6e9ae07fb072b5a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/StringTableTests.cs",
+      "bytes": 4176,
+      "crc32": 625443144,
+      "sha256": "0fce34f744ac1722a284d302ec546a77955041a45650ccc8dd2210f6fb20324f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/ToolSummaryCatalogTests.cs",
+      "bytes": 2192,
+      "crc32": 4145055375,
+      "sha256": "9470c0431ffad85f08fe13e0aef05a4a44180f5cedd6198dd2ded058512b045b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/EmbeddedCatalogTests.cs",
+      "bytes": 1369,
+      "crc32": 1435672704,
+      "sha256": "40a3b05c981d049598adc2dc5592930a9f087465d8cdb34a9d062acc00854b8e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/LocaleResolverTests.cs",
+      "bytes": 2743,
+      "crc32": 2692528219,
+      "sha256": "9c4470de48ec669e54e81be17b0fa25a19a36aa05b31d554d3b8006504c56579"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Localization/CatalogCompletenessTests.cs",
+      "bytes": 4715,
+      "crc32": 2612420667,
+      "sha256": "2f4590257968a2437c66e1528df92303e51c3c77e90bef6f1798a83863ad9652"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Survey/SurveyChangeImpactTests.cs",
+      "bytes": 10407,
+      "crc32": 3181729524,
+      "sha256": "7085d33cedd4e6e5bd90e71b40aad70a492d2f64763a8770ce090ca4a7b006a7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Survey/SurveySnapshotTests.cs",
+      "bytes": 10322,
+      "crc32": 2314277571,
+      "sha256": "c8d940c93c8f38c4e3e36dc0486f9d72cc8eb51d0b23af07a0d863ffa4c4ce15"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/SendCodeJournalGateTests.cs",
+      "bytes": 2600,
+      "crc32": 3792256009,
+      "sha256": "a1ccf4592414ab7358157cb2cefebeaa4b2ad84d70d64fb896837b5fe44db016"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/McpSessionLogEventTests.cs",
+      "bytes": 1524,
+      "crc32": 3974217705,
+      "sha256": "6877fb0a2f3e376ff5d15e4508be7105960307734939a616f64f3b112bca21e1"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/LogFileLockTests.cs",
+      "bytes": 2593,
+      "crc32": 896116293,
+      "sha256": "34125f9cbb92a056ec69d48504fe1b1168343950282ef03eee55ad8e7a6d54c8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/McpSessionLogPrivacyTests.cs",
+      "bytes": 5349,
+      "crc32": 2873778586,
+      "sha256": "b3759c55da3987a295020dce6216905a73a436f706af57a18ad5ebb7f56479f8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/McpLoggerTests.cs",
+      "bytes": 9917,
+      "crc32": 2544987926,
+      "sha256": "a4270aaaaaca018031f90c9df5bd71d188d12ddb383f9bef44ceea4451cf9686"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/SendCodeJournalTests.cs",
+      "bytes": 13384,
+      "crc32": 2025061850,
+      "sha256": "f063ada9d405d602a3d3e3786bc9c18698235959fe7d37472826d36e1e221f7f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/BoundedLogTests.cs",
+      "bytes": 15032,
+      "crc32": 462775313,
+      "sha256": "5a82e991eea4eadb76dbdadf1b607bad2b0e5f8528b47facbb733f62333085e1"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/HistoryLocalizationTests.cs",
+      "bytes": 5465,
+      "crc32": 1018395049,
+      "sha256": "6277c1ba7535e92d6c66a0146464289bdce9d24c76b42f5a6d03f593f013caa8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/HistoryRegressionTests.cs",
+      "bytes": 6691,
+      "crc32": 2701347052,
+      "sha256": "53fd823ce4433ddf116db89553fbf1130182a5597fa06a00f8e65bb5732328c8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Logging/SessionLogHistoryLoaderTests.cs",
+      "bytes": 10833,
+      "crc32": 751387659,
+      "sha256": "5d021f91b033124a022140d765622fd2475efb21a4ff0421d958763b3d75292f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Lint/FirmProfileLibraryTests.cs",
+      "bytes": 2208,
+      "crc32": 112982292,
+      "sha256": "7e2215c3da9ee1c547146954641bc83b761d211042efe81779cf7e4598652816"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Lint/ViewNamingAnalyzerTests.cs",
+      "bytes": 4563,
+      "crc32": 463555389,
+      "sha256": "d7d55c0c05c552dd3e09a62616b87db80df529486c2d6a82f264c1426b7ac247"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Commands/ToggleMcpCommandTests.cs",
+      "bytes": 11446,
+      "crc32": 250817718,
+      "sha256": "a668a534c70ad50ee459916266c528662489a11df69bfab71f37436db2cc82ad"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/TransportResponseWriterTests.cs",
+      "bytes": 12486,
+      "crc32": 2356913560,
+      "sha256": "5f2fe2cd689f1d837f3c2c7c8743088aa291240e95960ac67f22f732d122de0b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/HealthTransportTests.cs",
+      "bytes": 6107,
+      "crc32": 1927978235,
+      "sha256": "a7f81b98a7cdbfd1bb785344d638aae6e6b0dac0496fe74ab20fbf440c8641a4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/TransportStopTests.cs",
+      "bytes": 13052,
+      "crc32": 3073106316,
+      "sha256": "4053df93e9dbb13491016de8efd4dbc35cb77066964ca53d787accb1f80bd99f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/NamedPipeDuplexTests.cs",
+      "bytes": 4741,
+      "crc32": 523252384,
+      "sha256": "f3060fe071c5f564660a14a8867bcaddfa048f65a77836f7e658f46b54e7aa83"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/Issue22RegressionTests.cs",
+      "bytes": 2508,
+      "crc32": 694352429,
+      "sha256": "c87c487dfba213c52a7ec65a356cb7c8a0bcb31cb63c4989185582cac8f09169"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Transport/TransportAuthenticationTests.cs",
+      "bytes": 7291,
+      "crc32": 1668587730,
+      "sha256": "90e06580097393df4f9ad67e0313f0d96d1d51a19fc626ff177e86b83acee766"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Update/UpdateCheckTests.cs",
+      "bytes": 5882,
+      "crc32": 1353071591,
+      "sha256": "177aaeb92dacd864a4c987fb00bbe2feb2614d82191c21e27c191649f7f43886"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/MepConnectorDomainTests.cs",
+      "bytes": 4526,
+      "crc32": 2673771378,
+      "sha256": "56c527e7cf147cc82af995e41fed431404120da6e0d7074029eda36385ab3fb0"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/ProjectCoordinateSystemContractTests.cs",
+      "bytes": 4564,
+      "crc32": 1949531880,
+      "sha256": "1a75c6f3fdecad85adb91faa92b96edad3a97157e15e9533e9f0c502089ee525"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/MepConnectionSystemTypeTests.cs",
+      "bytes": 6289,
+      "crc32": 1451254218,
+      "sha256": "823727df046021e231e68463f69083d332396411f864b18ac2abc2390610444f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/MepMembershipPolicyTests.cs",
+      "bytes": 1558,
+      "crc32": 3629229282,
+      "sha256": "9c21bb0da94d697f140a5de745036a7edcfb8c5c90941405b9183b78ecd9de3e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/PointBasedPlacementTests.cs",
+      "bytes": 13697,
+      "crc32": 641544748,
+      "sha256": "935033dedcbfc5655c7580534a6281a15c1a00007f0a536aa7b8fdd76d4409cc"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/ViewSheetMutationContractTests.cs",
+      "bytes": 3888,
+      "crc32": 3570954149,
+      "sha256": "5539d2264c76559b3bff50685b2450420a20527b537f6b7656340556db108e3a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/OpenModelLocalPolicyTests.cs",
+      "bytes": 8281,
+      "crc32": 3357223380,
+      "sha256": "6685de80162df56d5b1ddf897d337d9c31b0e2a8c2dcd672de7c848954d5f408"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/MepConnectionHandlerTests.cs",
+      "bytes": 10602,
+      "crc32": 3578830144,
+      "sha256": "b40f7af6d1eead8a7c9a8abac83dd7341e1d089294af342d21db906e9bc12b99"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/ScheduleSortInputTests.cs",
+      "bytes": 1288,
+      "crc32": 1979708482,
+      "sha256": "cf99101ccd4cb78bc7cd806a038197d03cf309e8ff8763c3a3f3114dbad65768"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/MepSystemMembershipTests.cs",
+      "bytes": 7192,
+      "crc32": 4271658904,
+      "sha256": "52bf421780712036c3abd6395903cd52a2cee3ae63065cf507b6dddcb961bde8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/RoomAreaTransactionContractTests.cs",
+      "bytes": 2714,
+      "crc32": 2760651481,
+      "sha256": "bd020d606bc4b2667d81cd4d2c323d9deabed536d9617ad022599c6612dc4d80"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/ViewportLayoutMathTests.cs",
+      "bytes": 9911,
+      "crc32": 143197844,
+      "sha256": "fad671f8ffa50b70cbdceeea2dc593a2155a877d7fbbdeaa0c128e62c7e03f30"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Handlers/BatchExecutorTests.cs",
+      "bytes": 14915,
+      "crc32": 2024375417,
+      "sha256": "15a2cfdc18671d23110541cbc0357ce87dd221cb29489b620c43bd91a817226d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakedToolParameterDefaultsTests.cs",
+      "bytes": 1385,
+      "crc32": 3693379571,
+      "sha256": "6e14d56431b18f888c548c3809fbe5b41f6827c5b787d186bb70a6590917a943"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakedToolRuntimeSourceTests.cs",
+      "bytes": 2036,
+      "crc32": 2759536353,
+      "sha256": "5bfca9d1888f086d90e1396edbe3dd084abcc18783cbc71110c7a3076551b7c4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakedToolRuntimeCacheTests.cs",
+      "bytes": 3427,
+      "crc32": 2595785207,
+      "sha256": "d8f813f1449c627d1f45ec2530bfb6f32114f4c30d37546e6bbe2dbaadae91df"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakeCompilerPolicyTests.cs",
+      "bytes": 10059,
+      "crc32": 2061746089,
+      "sha256": "e5984d40f0a9a412cf44395afc00c95e3ba71ef394a01afd2d7ed525dbe571c4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakedToolDispatchAuthorizerTests.cs",
+      "bytes": 5853,
+      "crc32": 322042961,
+      "sha256": "20013093fbfcdb56bb609f977f79a9e8edce7c0a06c1eff94dae48b215b5174a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolBaker/BakedToolRegistryTests.cs",
+      "bytes": 5278,
+      "crc32": 3016907865,
+      "sha256": "b63c1a4c66cc744ce195a345c1046fe41674204bc7287a4336a159d4378040c7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Security/PathAllowlistTests.cs",
+      "bytes": 1424,
+      "crc32": 291568441,
+      "sha256": "2d6146716f668453f14e18d3a9f172931b5469b426893ba746b2249189591854"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Security/DiscoveryPublisherTests.cs",
+      "bytes": 21188,
+      "crc32": 1713818113,
+      "sha256": "ae635d94a00eea9987c43123e970683f3c1043dad5bd061a4a0843335fee405f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Security/McpResponsePrivacyTests.cs",
+      "bytes": 1804,
+      "crc32": 771483156,
+      "sha256": "5857c2d5db6ea99a1bf0201134389b713fb5413b4c07b19d69cb99fca343a60f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/FailureIssuesPresentationTests.cs",
+      "bytes": 14345,
+      "crc32": 4251651108,
+      "sha256": "0a5e10e6227db3628a2dfffdb90a8e02c12961afee60e7ae71af28112917aa50"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/FailureCrossModelDecisionTests.cs",
+      "bytes": 6025,
+      "crc32": 58051205,
+      "sha256": "59091da5796143662429245ac719051b0ce7319efc5dbbee3f89ca72c6e97e35"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Settings/SettingsTask6Tests.cs",
+      "bytes": 1862,
+      "crc32": 531081849,
+      "sha256": "05948e2ada08f4467cc79d3c55891d982b900bd8c8e32420d957473596bca218"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Settings/SettingsLocalizationTests.cs",
+      "bytes": 4751,
+      "crc32": 3950801815,
+      "sha256": "55821cb864826746145f86ccc1b4320dfc051c26c71589bb21e8f90900a8bc97"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Settings/AboutInfoTests.cs",
+      "bytes": 1073,
+      "crc32": 2277983744,
+      "sha256": "6ac7e4c28b7dbe95bc4db3ef4422dc901c78f8ac8166df8fd7faae1d84f5a07e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToolNameFormatterTests.cs",
+      "bytes": 929,
+      "crc32": 27291961,
+      "sha256": "e92e7a6a2e7c9522b3b2d2cb172409bf6096fefcaa939a601878ee905b14ed13"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToolActivityClassifierTests.cs",
+      "bytes": 2481,
+      "crc32": 1971133520,
+      "sha256": "549e96cc79feea288add84d02c5ed5494e9a0cec3485b8fadaa57b8e906923f4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToastRecentActivityTests.cs",
+      "bytes": 10899,
+      "crc32": 3153610638,
+      "sha256": "2510f07f410998a390af7ce754f9c36a2d3f51489c7964c777f682fa62b82564"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToastThumbnailLoaderTests.cs",
+      "bytes": 1613,
+      "crc32": 2293492508,
+      "sha256": "33188fb0e2b82587e47e806609d81517098bbc5c7a51dbbf0d1040cf02703bb7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ActivityAggregatorTests.cs",
+      "bytes": 19435,
+      "crc32": 586850100,
+      "sha256": "0df6e91dd79b8e34c0fe709f8e194d55f676b02137af695d0f1baf20836b7738"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToastActivityTooltipTests.cs",
+      "bytes": 2200,
+      "crc32": 113297080,
+      "sha256": "91b8afe9c9f128a293a03f402bbfdad1f8cb687c407acaf50b01b1fe9b50b5ff"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToastContentBuilderTests.cs",
+      "bytes": 14400,
+      "crc32": 1327816467,
+      "sha256": "2d53c21bfc717a5f735d3a75337555176984f5dfe6fccf6aad33569aecee2637"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/Views/Toast/ToastPlacementTests.cs",
+      "bytes": 3785,
+      "crc32": 1316257522,
+      "sha256": "b25d3a39282282d6c7a63446fcdf342d676c9225fbc7729ec553dcf590b62edc"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Shared/ToolCatalog/CatalogOwnershipTests.cs",
+      "bytes": 1734,
+      "crc32": 3660931757,
+      "sha256": "40aaa364017c03ef0ff6592abcebbde03b7262f48509ec2a980150604eb20388"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/ToolBakerFailureReceiptTests.cs",
+      "bytes": 7416,
+      "crc32": 3020036208,
+      "sha256": "f83d41d596bc036ee600540625a58ccafbf8a53899b36681f5cb2a39e0abd3f6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/UsageEventLoggerTests.cs",
+      "bytes": 14471,
+      "crc32": 203294555,
+      "sha256": "537e0f3e4876a282ecd90216d1008c215abdabde041865edfb0ca1203a3cd0a5"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/SuggestionProposerTests.cs",
+      "bytes": 7841,
+      "crc32": 2017821343,
+      "sha256": "b3a774815240fde01e62756ba1983637415718e6ce743982b0678f74993a34ed"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/ToolBakerMigrationTests.cs",
+      "bytes": 9205,
+      "crc32": 2209377569,
+      "sha256": "1aacd37a4afb9a29a396400e30b502474cb01186ce899189c68455567fdff43d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/BakeDbTests.cs",
+      "bytes": 12876,
+      "crc32": 445366023,
+      "sha256": "7acc243893cab38bf607e80531e4bd0adceca68902e08d96ac57e904cd5a5707"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/ClusterEngineTests.cs",
+      "bytes": 2183,
+      "crc32": 2896814897,
+      "sha256": "1034743dfe5831f8d6a3e4998a2e9e0498c49ceb2692d7a9489552655deebb57"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Bake/BakeRedactorTests.cs",
+      "bytes": 14319,
+      "crc32": 4292410528,
+      "sha256": "913e702e53ffb631055c481637e43e7e80139ab514d766887f7137499fcc972d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/RuntimeGuardRegressionTests.cs",
+      "bytes": 11488,
+      "crc32": 2720554223,
+      "sha256": "a902be1038e1c92e63089b6b2197915822e4e942a324707dc099fce99d8be56f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/ToolsetFilterTests.cs",
+      "bytes": 6113,
+      "crc32": 99699317,
+      "sha256": "ec61bfbc96575d2bc373feeadb42a2e126eedd76ed8983408ddc156e96879a7b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/RuntimeControlsTests.cs",
+      "bytes": 14900,
+      "crc32": 1878467920,
+      "sha256": "ff50a754e4f3d41591ab863715745c680ac2739d78aa2db6fdb6d31775c96ed5"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/RevitDialogInformationTests.cs",
+      "bytes": 28592,
+      "crc32": 2044800917,
+      "sha256": "e302f367a1de65337c1e1452663c6305b059b011211165dbe6d1f72024ec60f4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/ToolArgumentGuardTests.cs",
+      "bytes": 24230,
+      "crc32": 610362360,
+      "sha256": "458229c7492c32f98d10cbe7750fe8ee98007ebb51af7c931773820071191c28"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/SafetyResponseCapTests.cs",
+      "bytes": 5961,
+      "crc32": 2282346792,
+      "sha256": "64049c20081aea7e1cd23ef5e5657da3ad4743e77c103af8da9f3b3ee99cf2f6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/ToolCatalogTask5Tests.cs",
+      "bytes": 11639,
+      "crc32": 788624186,
+      "sha256": "e88bec0a65c7bc6ac8c493194633ce344d59bf63b92f36bb147036f5eeaa0020"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/ReadOnlyTargetContractTests.cs",
+      "bytes": 2882,
+      "crc32": 3993459661,
+      "sha256": "3442909ef6d0e27c9ff4c4a9adf6dabf9069dc6cd66a2ae295f49b9affc2b124"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/RuntimeProtocolTests.cs",
+      "bytes": 18441,
+      "crc32": 2393268731,
+      "sha256": "180ff11f07ca4ec9aab04b21f1b7a8477bff74523eb354c441b9525ec9746a62"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/SpillCleanupServiceTests.cs",
+      "bytes": 5349,
+      "crc32": 1045025174,
+      "sha256": "2ebca983ea451f50d98a717c45ba9b16c6f2a470cef115b9738b1314acd05a9e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Mcp/FailureProtocolTests.cs",
+      "bytes": 14845,
+      "crc32": 601226338,
+      "sha256": "334558c43b36e85041738088641557b6cdae9b2e8ff7c8c89dc0f1f0768a8d09"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/HistoryIdentityTests.cs",
+      "bytes": 10765,
+      "crc32": 1236203894,
+      "sha256": "e432de7ad125d9dafc7ec51a37c88521e9b299d05d0baf987eba7c14f7f41009"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/ChangeTrackingTests.cs",
+      "bytes": 8201,
+      "crc32": 2607998109,
+      "sha256": "5f49cb50dcfc281fde1e0853884f5633c514c6fe197c899709afe7271061b1e7"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/HistoryReviewRegressionTests.cs",
+      "bytes": 11932,
+      "crc32": 3354788474,
+      "sha256": "fc9f2718666771cae87afc0cffb16c779d19e819929ce79b522701138c7a48db"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/SqliteRuntimeTests.cs",
+      "bytes": 2408,
+      "crc32": 263457680,
+      "sha256": "0df4533cb3d70aaa1f7046e202d17cffa9da3de1bf7fca091d63e15fe28f73d4"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/ChangeHistoryTests.cs",
+      "bytes": 11635,
+      "crc32": 1321131846,
+      "sha256": "1c2c0f0f372d38afecb642ff05fc5eeffd740db1e3c762bec2ea03dc6b4ef71f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Memory/ChangeHistoryRuntimeTests.cs",
+      "bytes": 10886,
+      "crc32": 2704362333,
+      "sha256": "955dbae840d2f5deeffad6913fc7050807c4ad42807db7438c4d23ceb6dd1645"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Gateway/ToolGatewayBindingTests.cs",
+      "bytes": 57629,
+      "crc32": 1967501107,
+      "sha256": "97f68e99cfd4a5f932c50c5a58622d16bacd9df91356e7cb76b787ad965f95e8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Gateway/UnknownCommandGuidanceTests.cs",
+      "bytes": 3068,
+      "crc32": 1953843932,
+      "sha256": "1d9226a345cef63df0f2929e6ae78571c65bb896ac0f1910f074555125f6acdf"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Gateway/TimeoutValidationTests.cs",
+      "bytes": 1138,
+      "crc32": 1112537457,
+      "sha256": "d21b4ccd6fd2918914817830032e13c9f7c3e68423f0f26636530c7987ba2b35"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Gateway/BasePointFailureReceiptTests.cs",
+      "bytes": 1449,
+      "crc32": 4092842940,
+      "sha256": "b6a669e4d87bed6a06ab6b705df218e4e016b0e00f22ccaba0764d564ad9d87b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Gateway/GatewayFailureIntegrationTests.cs",
+      "bytes": 44117,
+      "crc32": 341330861,
+      "sha256": "dbba94703d775814ecd667b4f3c1f92636ba8c0c5020dedd08e4739bc22e47e8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/LinkToolShellTests.cs",
+      "bytes": 7371,
+      "crc32": 337338082,
+      "sha256": "4156ae385744e13bc08392913192b29287ded4b70231948cac7bc3319067547d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolCountDocumentationTests.cs",
+      "bytes": 1638,
+      "crc32": 3232241019,
+      "sha256": "2b6caf9946bc55d5276675c21a30119b723f669306bc65d5be4fc972bcd59ffc"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolsListSnapshotTests.cs",
+      "bytes": 12038,
+      "crc32": 3060507979,
+      "sha256": "b18728d27221ffb2a0013e06dbb20c7f669ec1302f86997971ef317753995f69"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/LintToolShellTests.cs",
+      "bytes": 2677,
+      "crc32": 2518828892,
+      "sha256": "530e088a336d30ef92092a803784c5893f3a180657e178e3870eb78bbbc2a239"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/QueryToolShellTests.cs",
+      "bytes": 9336,
+      "crc32": 111849195,
+      "sha256": "8237f6e12746135f1d804f8ac92894a5b464a08e3a6841d595732d75d40743a9"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolSurfaceBudgetTests.cs",
+      "bytes": 3137,
+      "crc32": 1358117776,
+      "sha256": "82c55f3c239c103bb8beaee5d9f9c6a2fe51f94bec1a846959be013b49b35eb6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ServerToolWrapperEdgeGoldenTests.cs",
+      "bytes": 9318,
+      "crc32": 923860981,
+      "sha256": "b8b774594f264bea196edbc9c69932a69c81e68d23830dc44bc1d37b69733692"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/RoomsToolShellTests.cs",
+      "bytes": 7258,
+      "crc32": 3652973366,
+      "sha256": "6e6a2281d2fc34d14753733cbdd13a002a95b3182a50cabd28a25d10c4f316e3"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ScheduleToolShellTests.cs",
+      "bytes": 7223,
+      "crc32": 3976374276,
+      "sha256": "fbbac2795b5423896a3cd72a52ded9426d0ea23171a72a1234dfec6c48b87e68"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ViewToolShellTests.cs",
+      "bytes": 5299,
+      "crc32": 319052346,
+      "sha256": "9476ae031692bb043a32b4803ee632a3086fe489eeeeb28ea0b3b118f9852f5b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/JsonInputSerializationTests.cs",
+      "bytes": 5180,
+      "crc32": 4193142944,
+      "sha256": "a431d9eaf037ed90b0e5ef7927ece3dce48045aa3fbd8e8751c28971ba0f47c0"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/OrganizationToolShellTests.cs",
+      "bytes": 6912,
+      "crc32": 2760595290,
+      "sha256": "c644aa359ca3305d2dd6f4c2f5bf3fcd17a055d218921c197d346d1b2d9f2829"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ServerToolWrapperGoldenTests.cs",
+      "bytes": 4070,
+      "crc32": 1341696833,
+      "sha256": "d76a70efbf865a1c36e3ebbfae12a98d6d2a155fccf3420e97b4260101b82b2e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/WorkflowsToolShellTests.cs",
+      "bytes": 7253,
+      "crc32": 1198508557,
+      "sha256": "eabf0c6877a361dcfd714de43f0b257f9427ad235c143d4661ace27774da2481"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolbakerToolsRunBakedToolTests.cs",
+      "bytes": 4274,
+      "crc32": 2159387585,
+      "sha256": "2c2c6daa21fb37fbe784beee8943f24e27e68850fc09c0c578c2d5d07452476b"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolPermissionsDocumentationTests.cs",
+      "bytes": 1377,
+      "crc32": 2474026197,
+      "sha256": "60a9083a67ab79c01de50215d4398cd90a4164e922c58d66ca634be4fe4bb403"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ToolPermissionSemanticsTests.cs",
+      "bytes": 5925,
+      "crc32": 2909226737,
+      "sha256": "ca5bccae6a919f9e4d6c3e29265edc384df9dc9b922b57532683ae726376172e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ParametersToolShellTests.cs",
+      "bytes": 7076,
+      "crc32": 3496377391,
+      "sha256": "57bc24799eaccbf791e66f1bb3fd2f9b97ac285ae8489ae9954a1e3ba80c1b4d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/MetaToolShellTests.cs",
+      "bytes": 7066,
+      "crc32": 3306671381,
+      "sha256": "3f2fa323f6826fb62a4da468d527436b0ed04c3b9815fcecf677b42eeb51bf8d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/SheetsToolShellTests.cs",
+      "bytes": 9837,
+      "crc32": 4272719025,
+      "sha256": "a60d67235029437c108148cb5bad506d0716beba816e41970ff281674fcfaa14"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/MaterialsToolShellTests.cs",
+      "bytes": 7796,
+      "crc32": 582059964,
+      "sha256": "06ff61cdf19f9f4b88dc12414dfa4ee06027b8210b7cce04b8af67ed538e9dc3"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/ExportToolShellTests.cs",
+      "bytes": 10832,
+      "crc32": 2155813943,
+      "sha256": "2702f67af9d17bd41bdbf3ae167656b69b08ba22738d68c97b46bd70678079af"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/MepToolShellTests.cs",
+      "bytes": 8852,
+      "crc32": 674652036,
+      "sha256": "2665609b9db42467629b16ee8cca5687154d4520e88d8e1c0aa7244c805d174d"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/AnnotationToolShellTests.cs",
+      "bytes": 8009,
+      "crc32": 831332885,
+      "sha256": "fafc8469a3b2cc1a62cff8ee5ddb2598e1a201475b2e22098dd8eb8bd8e83c80"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/GraphicsToolShellTests.cs",
+      "bytes": 6912,
+      "crc32": 2450152982,
+      "sha256": "83ebdb66b9dbc9841327025cbb9d7925e2c25198499ec53c88058c1046b1a7e6"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/EveryToolContractTests.cs",
+      "bytes": 9628,
+      "crc32": 2614468533,
+      "sha256": "f06576d7e6ef100d09416566ed160ac2e3fb81deb6207c4606df7af8434ed5a9"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/GeometryToolShellTests.cs",
+      "bytes": 9042,
+      "crc32": 2667316160,
+      "sha256": "dbc6518ee5a9322434e06a77007586623cce89083655adc6b1f8482b51e9959f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Tools/FamiliesToolShellTests.cs",
+      "bytes": 7822,
+      "crc32": 1683935775,
+      "sha256": "0dd5a74e07dba45cd08bedf60a7d74841266ea2cfd2f228d0bda175a2cff44e8"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Targeting/TargetScannerTests.cs",
+      "bytes": 8071,
+      "crc32": 1280073176,
+      "sha256": "65233118855ba0375d6545aeb3444cfdeab79e33d12d0300854248c91b9f33f9"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Targeting/RevitTargetBindingTests.cs",
+      "bytes": 17011,
+      "crc32": 207590009,
+      "sha256": "63326248ff9149560dfaf673053089f7d8b156eb9d23f99febeb6c2b805ecafd"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Targeting/TargetFilterAndOptionsTests.cs",
+      "bytes": 6078,
+      "crc32": 2854360406,
+      "sha256": "be02ffff86eb718cffc234889398da451ef9e5a21b479e74b55c82d5dbfd3f02"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Health/RuntimeIdentityTests.cs",
+      "bytes": 2867,
+      "crc32": 3752711792,
+      "sha256": "f119517c1699c4759e733cd543663a4bbf44c468b13d3bc538bdb4bbed7b41ec"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Health/HealthProtocolTests.cs",
+      "bytes": 6354,
+      "crc32": 1034404294,
+      "sha256": "3b4260c57c5ec6a7c0235da71862942ae2511baa06880937f482008173be9203"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Health/ReleaseUpdateCheckTests.cs",
+      "bytes": 15898,
+      "crc32": 3831875413,
+      "sha256": "2bc7434e04819e4e450d256680993ad10a09d94414ee45bdbcfa714cc2a3ba27"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Health/HealthToolsTests.cs",
+      "bytes": 5998,
+      "crc32": 635219501,
+      "sha256": "090b8d9c7b01962fb2afe5d8c2c6f17cda42dca3cc06a2c97299b62b95c6db52"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Prompts/PromptRequestLoggingTests.cs",
+      "bytes": 4598,
+      "crc32": 3248095045,
+      "sha256": "f9fac7ed61a85acc31c349649083178f8f03059e1db6e422f8d5b85033c4899f"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Prompts/PromptToolNameTests.cs",
+      "bytes": 2792,
+      "crc32": 3712475037,
+      "sha256": "304f4afdc58b2dc68ddf51592e2f4f03426db11a503bafd260e04abcb9043dbf"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Prompts/PromptBodyTests.cs",
+      "bytes": 4043,
+      "crc32": 54709677,
+      "sha256": "3ed1124b608bc4779fa7c482e37ae0ddafc3d5c1f9f96f3fba60a1fe1cec5f43"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Prompts/RevitPromptsTests.cs",
+      "bytes": 14485,
+      "crc32": 2495503792,
+      "sha256": "164e4986242d0b1a3e8440065e1dac483bf6b99c6f66e95135be2d7fd5719875"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Prompts/PromptsListSnapshotTests.cs",
+      "bytes": 2751,
+      "crc32": 373015088,
+      "sha256": "9b6a8f222e558cfa26817774455e8ce0bfdec5e31d9dcb9fff88ab1333c9ab88"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Server/Handlers/ToolBakerHandlersTests.cs",
+      "bytes": 30849,
+      "crc32": 650718793,
+      "sha256": "69d8b1a1e6472413b66914e3816c40766ff25dea9d8dd8511b5b2f7444ca215e"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Catalog/strings.tt.json",
+      "bytes": 171,
+      "crc32": 1260254982,
+      "sha256": "3c572f5c052c7634844c1c091d3930cbb5361dc62537a90e96680598ecbf4493"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/.gitkeep",
+      "bytes": 0,
+      "crc32": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/response-size-scoped-commands.txt",
+      "bytes": 1962,
+      "crc32": 997882984,
+      "sha256": "9062e1007e7d65a37cabc4dd19cd164784f29c73115696cede06e6c52ecaaf3c"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/tools-list.json",
+      "bytes": 213295,
+      "crc32": 1927391663,
+      "sha256": "5b588d21d88cc7b2b9bc1822bf35d6715cac6fd5d3c7b93e9037815b1f920ba2"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/server-tool-wrappers.json",
+      "bytes": 157484,
+      "crc32": 2173199233,
+      "sha256": "1a74a5d08b943c76e98dd72ce782807874963a00302ca9af2a6867f1a417ac4a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/tools-list-adaptive-bake.json",
+      "bytes": 215543,
+      "crc32": 2822814721,
+      "sha256": "a69e0ea40eda137bbb9f0af1ce10d2cda475c87e8f954bad925dfc304d1f21ad"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/tools-list-structural.json",
+      "bytes": 14364,
+      "crc32": 3075753593,
+      "sha256": "3da25e877f69aa601e9e240bbf4d6a70131b75b47f285cfe64bdfbb6aac10e4a"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/server-tool-wrapper-edges.json",
+      "bytes": 11976,
+      "crc32": 3092358614,
+      "sha256": "8324c0c5f0533f42cf062009f2758e756335657b541653595b66ab9dd5fa5999"
+    },
+    {
+      "path": "tests/RvtMcp.Tests/Golden/prompts-list.json",
+      "bytes": 1974,
+      "crc32": 2371232680,
+      "sha256": "41033bb1e227bebf17212886bb3a90fc9ff9df35b1d69ce8533f1cf9636f34e1"
+    },
+    {
+      "path": "scripts/summarize-mcp-calls.ps1",
+      "bytes": 2166,
+      "crc32": 3780226870,
+      "sha256": "eb45a7d3fc2b6417775ee0486ae3bfa83a9f312d0196643f97240e203fc5e8b1"
+    },
+    {
+      "path": "scripts/package-client-setup.ps1",
+      "bytes": 8133,
+      "crc32": 2277959393,
+      "sha256": "80b11e7e611367e07a6eec285008d6f421f9e605ba946d3afb9b9ceea1b1d2eb"
+    },
+    {
+      "path": "scripts/regen-mcps-schemas.py",
+      "bytes": 3579,
+      "crc32": 614064156,
+      "sha256": "ab5d4c8bb6c076e3181c43e3cdc286cae4b385824bd2dab9d72fee62010b04c3"
+    },
+    {
+      "path": "scripts/stage-plugin-zip.ps1",
+      "bytes": 4862,
+      "crc32": 485273812,
+      "sha256": "71d19728a33f81a50810690a5118efa12d34652265442bef5e6cf30b51d30eaa"
+    },
+    {
+      "path": "scripts/check-public-tree.ps1",
+      "bytes": 2940,
+      "crc32": 2575583148,
+      "sha256": "9adab15cdd0e93602b24cae11c1982999fa851b26847df660a6a167031c101c1"
+    },
+    {
+      "path": "scripts/install.ps1",
+      "bytes": 72473,
+      "crc32": 1392219359,
+      "sha256": "0de317edbd988455fe82fb6914c77e65e7b7339293e91ee7185c96cced8fb28c"
+    },
+    {
+      "path": "scripts/uninstall-old.ps1",
+      "bytes": 3804,
+      "crc32": 647763474,
+      "sha256": "ef48735281d51fdb9b59f33c0fa1be4dc97fff7106adbaf833c8c752c268f120"
+    },
+    {
+      "path": "scripts/uninstall-all.ps1",
+      "bytes": 12350,
+      "crc32": 453358251,
+      "sha256": "40fc44b3d07e3a19db2994f2007d49f28ef6c68ad6d022c8531ca55d33627e09"
+    },
+    {
+      "path": "scripts/publish-nupkg.ps1",
+      "bytes": 2454,
+      "crc32": 1234530393,
+      "sha256": "d4502ae3b28f485c6ec509725602e78386a79c9598f204b9fd3faf7f8b0bfa21"
+    },
+    {
+      "path": ".github/workflows/build.yml",
+      "bytes": 6505,
+      "crc32": 2146388343,
+      "sha256": "4d1c9c7ab6f3ede223555a8320d92c075efd96fb698f23de9b2530e5cc5a0d68"
+    },
+    {
+      "path": "docs/send-code.md",
+      "bytes": 8313,
+      "crc32": 4119590872,
+      "sha256": "9bffc785c17a97f971727e3fe269f9155f879a048cedbfd689fafe6bfcd16d26"
+    },
+    {
+      "path": "docs/mcp-config-opencode-kilo.md",
+      "bytes": 12354,
+      "crc32": 1672145472,
+      "sha256": "3f40c6f75dffc9fd0d68f20d513fe75ee338b2feb8c9df86e52255d9a1043de2"
+    },
+    {
+      "path": "docs/schedules.md",
+      "bytes": 1816,
+      "crc32": 3920507339,
+      "sha256": "4dfc46938bef486f57cc753a5c620b99117108eac37d92dae384ed86077be3d9"
+    },
+    {
+      "path": "docs/stairs-workflow.md",
+      "bytes": 9774,
+      "crc32": 815390831,
+      "sha256": "f2a3556bcdcff07c4d5435686e59c756cb3cf3e32d17ace86ae03f04729b6fa0"
+    },
+    {
+      "path": "docs/bake.md",
+      "bytes": 5995,
+      "crc32": 3285673038,
+      "sha256": "fe1437690b76b57a80308644c816061390b3f74ef890130c7f3c36af5d1f37d1"
+    },
+    {
+      "path": "docs/change-tracking.md",
+      "bytes": 9843,
+      "crc32": 1068252539,
+      "sha256": "6ef043b4b2b880a5b8efdbf5dedd130d211c0d021c94a8f054ea05f0bc72a516"
+    },
+    {
+      "path": "docs/install.md",
+      "bytes": 22508,
+      "crc32": 4129701436,
+      "sha256": "579c6c96a2bfa9f0edb4da48724b7fd5ff4e2b7e81f5f65d5541d1f5a95585ba"
+    },
+    {
+      "path": "docs/mcp-config-claude-clients.md",
+      "bytes": 15645,
+      "crc32": 1940491176,
+      "sha256": "fddc9cd93e4bbc0cf9ac04ac5744903983b0467d13758d24bc067758dc943220"
+    },
+    {
+      "path": "docs/placement-and-mep-contracts.md",
+      "bytes": 5547,
+      "crc32": 3743309476,
+      "sha256": "ed14e0793cce617840843df8be1ec81f164542f13b5c7846d68fa12b3b35f40b"
+    },
+    {
+      "path": "docs/change-survey.md",
+      "bytes": 7600,
+      "crc32": 3137348711,
+      "sha256": "4839d6a719670aa0f9da0101c6b98eab20975534a12b33db2ed382e581266017"
+    },
+    {
+      "path": "docs/mcp-client-wiring.md",
+      "bytes": 15401,
+      "crc32": 3931560589,
+      "sha256": "19acafa7e5062e2d5680917e8c7ea7a4de40f824e9b4756dd956093300d23111"
+    },
+    {
+      "path": "docs/controlled-failures.md",
+      "bytes": 24713,
+      "crc32": 15326504,
+      "sha256": "444726fa09f997489b57c2a02601261b66ed3140ac4f46889c8ae1775bb46df2"
+    },
+    {
+      "path": "docs/mcp-config-codex.md",
+      "bytes": 12627,
+      "crc32": 1985671766,
+      "sha256": "cf6d0d80370332953bbf5d4da6528e81dae219e228f77c4660e248e9c03d5f18"
+    },
+    {
+      "path": "docs/localization.md",
+      "bytes": 7128,
+      "crc32": 4034587512,
+      "sha256": "cf70bf12c66ba8f245e5ea95dc3e24f13148bf23a126a6b8e14d7f835d0221c7"
+    },
+    {
+      "path": "docs/testing/2026-10-20-v1.2.1-validation.md",
+      "bytes": 6611,
+      "crc32": 2783246904,
+      "sha256": "6edae385dd349c5ca494a36a9e9942c672c9879146d8e1873d0a2ea1f9ec777c"
+    },
+    {
+      "path": "docs/testing/2026-10-18-v1.2.0-validation.md",
+      "bytes": 10999,
+      "crc32": 1394608256,
+      "sha256": "1c476f212ff17e2fa8649e137ff89e0a96164b166e0db7d7f9fa3e42cfc8d3ac"
+    },
+    {
+      "path": "docs/benchmarks/2026-10-18-tool-descriptors.md",
+      "bytes": 2419,
+      "crc32": 4255189147,
+      "sha256": "2e1a08ea3ee0f06d753fcdf6e18e96761ef06612b4cbbff3f413cc85ae286e04"
+    },
+    {
+      "path": "docs/firm-profiles/README.md",
+      "bytes": 2519,
+      "crc32": 667180091,
+      "sha256": "9514a4829dcd9a71d6fd85b13a501e5c035619893e0530a703a5bd77dbf50eee"
+    },
+    {
+      "path": "src/RvtMcp.sln",
+      "bytes": 63892,
+      "crc32": 3539000291,
+      "sha256": "46eef8cdd3e17132c6c9eb76b92d4822c65788105c06dcf44bcbf6c0c299789e"
+    },
+    {
+      "path": "src/plugin-r22/IconGenerator.cs",
+      "bytes": 9796,
+      "crc32": 3503967479,
+      "sha256": "a75a7ae3f60113041971f6ee6b8c3afd3d8463fa0d0911cab12c42b105c49c39"
+    },
+    {
+      "path": "src/plugin-r22/RvtMcp.Plugin.R22.csproj",
+      "bytes": 3871,
+      "crc32": 1834163459,
+      "sha256": "6839c92de92aa3b9b117f4eeae9a769144764159fb03b68758ede49f3afe7b96"
+    },
+    {
+      "path": "src/plugin-r22/RvtMcp.R22.addin",
+      "bytes": 396,
+      "crc32": 2538044456,
+      "sha256": "77ff5d29923f3f1209f591299b55ad62579cf2394f06174a3d3138cf04aec317"
+    },
+    {
+      "path": "src/plugin-r22/App.cs",
+      "bytes": 12526,
+      "crc32": 896292666,
+      "sha256": "efaf457bafd45155d1abebae6e00560d31249cac2befd71a83309e97dac17626"
+    },
+    {
+      "path": "src/plugin-r25/RvtMcp.Plugin.R25.csproj",
+      "bytes": 3465,
+      "crc32": 2226459811,
+      "sha256": "dfc7317d573af72642faffdad70f91adc9af9beb2637c9624089bf1e8248fb0e"
+    },
+    {
+      "path": "src/plugin-r25/IconGenerator.cs",
+      "bytes": 9796,
+      "crc32": 3503967479,
+      "sha256": "a75a7ae3f60113041971f6ee6b8c3afd3d8463fa0d0911cab12c42b105c49c39"
+    },
+    {
+      "path": "src/plugin-r25/RvtMcp.R25.addin",
+      "bytes": 396,
+      "crc32": 350603329,
+      "sha256": "6ce2834adf45cad37af3adeeafde9d78c92a2662e8e5d66c23480276128f0f94"
+    },
+    {
+      "path": "src/plugin-r25/App.cs",
+      "bytes": 12530,
+      "crc32": 2666697823,
+      "sha256": "1020287e74fefedfb69922e854376f0d69aaf044053ccc7a78d11736b86a183a"
+    },
+    {
+      "path": "src/shared/RibbonSetup.cs",
+      "bytes": 9073,
+      "crc32": 3985462036,
+      "sha256": "9eb5892e5b4300b326112989e82072454ebc382b328ae0626fff53282f9d4e6c"
+    },
+    {
+      "path": "src/shared/Update/UpdateNoticeCoordinator.cs",
+      "bytes": 2236,
+      "crc32": 1582857008,
+      "sha256": "8b6aa2fa67097d02c2488f816b2baf8ecf397d014c899106617b030f17c7c710"
+    },
+    {
+      "path": "src/shared/Update/UpdateCheck.cs",
+      "bytes": 14670,
+      "crc32": 2456561958,
+      "sha256": "586ee4c1a4c9dcc43deb1386248189b6b2e6410b32f62702fa0a2386b1456ba1"
+    },
+    {
+      "path": "src/shared/Views/ActivityHistoryView.cs",
+      "bytes": 43091,
+      "crc32": 384436431,
+      "sha256": "a6d0c4a7d68790b878d515872a30de09efa626509f9b95bd522b9f470d1795e7"
+    },
+    {
+      "path": "src/shared/Views/FailureModelPicker.cs",
+      "bytes": 12210,
+      "crc32": 2260531506,
+      "sha256": "21f21ee820b66c93d269e531b1689f2cd7c77d6f1b6b081627257c7663040630"
+    },
+    {
+      "path": "src/shared/Views/BakeInboxWindow.cs",
+      "bytes": 1919,
+      "crc32": 2877609587,
+      "sha256": "fdb90a0359b4b0ccb58d3f51bd19019c717f323993f520fe860a797b9e6259f2"
+    },
+    {
+      "path": "src/shared/Views/FailureIssuesPresentation.cs",
+      "bytes": 11574,
+      "crc32": 627297045,
+      "sha256": "3cad2413092e16f10826c7637702e372582062ae0e346e1a55ca00f4a3286ea2"
+    },
+    {
+      "path": "src/shared/Views/FailureResetDialog.cs",
+      "bytes": 2348,
+      "crc32": 1657845690,
+      "sha256": "641210810c7354d9bfe317c4c6629c254ab4fec4e441113f5a5c0ae005a4ea10"
+    },
+    {
+      "path": "src/shared/Views/FailureIssuesContext.cs",
+      "bytes": 535,
+      "crc32": 856721111,
+      "sha256": "1472df5370f9124a62ca61e445a373905a9f67ea0f647456888a103d4f1b9a11"
+    },
+    {
+      "path": "src/shared/Views/BimwrightStyles.cs",
+      "bytes": 21396,
+      "crc32": 37682160,
+      "sha256": "428bf6a18ff3da72120297c67e2ac67e16613a43872783ab7ac4facc057e2ee5"
+    },
+    {
+      "path": "src/shared/Views/HistoryWindow.Host.cs",
+      "bytes": 352,
+      "crc32": 3920401730,
+      "sha256": "56e5aaea0ace26001b2a81765e2347911966ef290598dc6e4114fa2b57ccc679"
+    },
+    {
+      "path": "src/shared/Views/HistoryChrome.cs",
+      "bytes": 9405,
+      "crc32": 1457534308,
+      "sha256": "887b1d161f888fbd80861c3e2f6d1240b08f0eb2033fd896d07a65be1a551b3e"
+    },
+    {
+      "path": "src/shared/Views/FailureIssuesView.cs",
+      "bytes": 39949,
+      "crc32": 4229663529,
+      "sha256": "85b020a657db6438b913400020ac5a3edfba4a02c2636197fb789370be6ed07f"
+    },
+    {
+      "path": "src/shared/Views/ScrollBarFadeBehavior.cs",
+      "bytes": 22247,
+      "crc32": 2775639399,
+      "sha256": "631a92a5c4c8417e6cfa3e196bdd7012271c064c0b855589e56fc00bed550e9b"
+    },
+    {
+      "path": "src/shared/Views/HistoryWindow.cs",
+      "bytes": 7832,
+      "crc32": 2102870857,
+      "sha256": "34538692c3229ef317734ead7dac73dda404fdeb10fd47c022e330e168467cfd"
+    },
+    {
+      "path": "src/shared/Views/FailureDecisionReviewWindow.cs",
+      "bytes": 9175,
+      "crc32": 3208320501,
+      "sha256": "4b22924c0a9ef3acf08ce66285c4f3f6e0e414aa70147cb6ecad8e86a91c9be7"
+    },
+    {
+      "path": "src/shared/Views/BrandAssets.cs",
+      "bytes": 1696,
+      "crc32": 4135473072,
+      "sha256": "220f2568c15d4013338090187dd2def4d0471b8e3b490d441ee0f96a1b6e5406"
+    },
+    {
+      "path": "src/shared/Views/Update/UpdateNoticeWindow.cs",
+      "bytes": 5687,
+      "crc32": 3956009740,
+      "sha256": "ba4b490976e800c83e2e5805b9d1619d2ed8a74e6e44644332a20ac648cc0686"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToolActivityClassifier.cs",
+      "bytes": 2468,
+      "crc32": 353458993,
+      "sha256": "1fcfb7b6ac67dee5019333af65a0317f80f17586ec57fc94d7e1d0ffd28aaf32"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastManager.cs",
+      "bytes": 21738,
+      "crc32": 3587187200,
+      "sha256": "c22bbd9245545a0c789a9ceb69b7fc8aa3504d3ea17a6bf716e6e546ac646ae8"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToolNameFormatter.cs",
+      "bytes": 1463,
+      "crc32": 3045237553,
+      "sha256": "b02b6baea01ca94a0e2db071bcf331e511fa79c6db6a771eee0551e6519b128a"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastHost.cs",
+      "bytes": 11644,
+      "crc32": 3391297705,
+      "sha256": "fc771336d7839d52913249710043141db16d67a45c3dd2eb90a313f648c092c4"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastViewModel.cs",
+      "bytes": 1686,
+      "crc32": 1067415818,
+      "sha256": "431790b9efb4959f4d481c6342a299ac52e91b9a442fbe6301bd81281fcd092a"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastScrollBarStyles.cs",
+      "bytes": 5197,
+      "crc32": 3163393515,
+      "sha256": "0ec3b764369837a4ab08ce26987bb81fd4703d630321cd5d5c7408feb036121f"
+    },
+    {
+      "path": "src/shared/Views/Toast/ActivityAggregator.cs",
+      "bytes": 16227,
+      "crc32": 3218295955,
+      "sha256": "37e58e91488a023488e1f2b1827b5788a28cf20a205015a69f7899102860f872"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastNotifier.cs",
+      "bytes": 8314,
+      "crc32": 1619736793,
+      "sha256": "61e977a702574130d8afead5748f381b7013254085b5434d9c74c15a2655490f"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastWindow.cs",
+      "bytes": 64405,
+      "crc32": 1899933775,
+      "sha256": "376d05a1c5706d9280328e9ce45845df2f216207ebdd74e7a2acbad5411291c1"
+    },
+    {
+      "path": "src/shared/Views/Toast/McpToastTheme.cs",
+      "bytes": 3864,
+      "crc32": 1251629754,
+      "sha256": "ba4018687303e0c95b82cd3ed2642ac41d87a8b95ba3c4498672aaff6ffdb4b7"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastThumbnailLoader.cs",
+      "bytes": 659,
+      "crc32": 1939102575,
+      "sha256": "c86d2754e4de9c0552d2934c6182e3955d08e009e9b22e33d0940eec512a7b2b"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastActivityPanel.cs",
+      "bytes": 22484,
+      "crc32": 2708102370,
+      "sha256": "360aac2b9dfb439728b49be5feaf6e99ddd124ccdd35b26b46e25288afd423a3"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastActivityLog.cs",
+      "bytes": 4629,
+      "crc32": 2262437139,
+      "sha256": "8498b9755406d7c188b8e08c656245390e68b4b854374b018e2338d999d1c1a4"
+    },
+    {
+      "path": "src/shared/Views/Toast/RollingToastNumber.cs",
+      "bytes": 12368,
+      "crc32": 805048665,
+      "sha256": "40935e794b14c17ec30ab049127f81ecd75a3426467a6ab76b4bdbef0c87d6b4"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastContentBuilder.cs",
+      "bytes": 17083,
+      "crc32": 2941559604,
+      "sha256": "a520337fb5d99bd1518bd3b206f72e51041c03ae78af37ec376d831a05575551"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastActivityEntry.cs",
+      "bytes": 3192,
+      "crc32": 795384133,
+      "sha256": "da28dd88ff6acd4f502bc5815370fabb504aa3a643c7caae111807869e06cc7b"
+    },
+    {
+      "path": "src/shared/Views/Toast/ToastPlacement.cs",
+      "bytes": 3015,
+      "crc32": 3042042263,
+      "sha256": "1b935edff32a46f227ff858fdfe6c11e3beec61ab52f78d214cd0b8df08b2cb1"
+    },
+    {
+      "path": "src/shared/Views/Settings/ToolRow.cs",
+      "bytes": 2420,
+      "crc32": 1807921357,
+      "sha256": "87b3c2a96b4fdbcb1621447be62bbb7d3cf59c8da669cef57757013975a7f718"
+    },
+    {
+      "path": "src/shared/Views/Settings/ToolsViewModel.cs",
+      "bytes": 8180,
+      "crc32": 2398983680,
+      "sha256": "0c2b06601b5f4f12e54d2b870c1900249eb14cb9285e5bf4a56aae4f37ff5c7c"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsText.cs",
+      "bytes": 2080,
+      "crc32": 829317351,
+      "sha256": "6f3776237f1e91c6af23d9f22639c947ac00a72dddfa33266a4a28031191e6d3"
+    },
+    {
+      "path": "src/shared/Views/Settings/AboutInfo.cs",
+      "bytes": 2729,
+      "crc32": 735929201,
+      "sha256": "77152e69525e9e06812881a18dbca9c46d9bb0db25a436c9473a9c4ad8a19815"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsStyles.cs",
+      "bytes": 16536,
+      "crc32": 4231355323,
+      "sha256": "92b107026f780ad6ee1b14bd5aa99e8ada9497da30cfa88ee43273550bb1cb57"
+    },
+    {
+      "path": "src/shared/Views/Settings/LicenseWindow.cs",
+      "bytes": 5013,
+      "crc32": 3617342843,
+      "sha256": "6b0b012460107ff8627317c5d77d70b92321204463ece86e2206a12b49f52965"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsPresentation.cs",
+      "bytes": 3438,
+      "crc32": 3971558470,
+      "sha256": "796a5a47caa73ad25b277f7e092eac615a3fe3cf19b2728e3018919d23bd0a26"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsModels.cs",
+      "bytes": 1466,
+      "crc32": 2927162775,
+      "sha256": "3d7d4bd762716777f242dbbacdbf8f0ad8c43876363dc2db16c1a3098cda2a43"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsViewModel.cs",
+      "bytes": 18357,
+      "crc32": 3395411462,
+      "sha256": "700a0d025bcf6b1cc6f1c4a0fb7c6932d02426213366854f92cf2cefd544ddd2"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsWindow.Host.cs",
+      "bytes": 631,
+      "crc32": 2021570447,
+      "sha256": "4e8256b32aaee08fc782a9bb0ffe5985e4c8e636d65c10d985acb41f3b08bebc"
+    },
+    {
+      "path": "src/shared/Views/Settings/SettingsWindow.cs",
+      "bytes": 53076,
+      "crc32": 3838140414,
+      "sha256": "723a3175aa8a7314709a137b7582d5a4486d8c61d017faa38f0a60d34cece6e4"
+    },
+    {
+      "path": "src/shared/Transport/PipeTransportServer.cs",
+      "bytes": 14612,
+      "crc32": 3750592409,
+      "sha256": "e2af59f616ee936af3df38e8f4ea40e3a330418bece66d567c6dd7b40c5ce9a2"
+    },
+    {
+      "path": "src/shared/Transport/ITransportServer.cs",
+      "bytes": 388,
+      "crc32": 1763339767,
+      "sha256": "a20ca156c411fa871056c60d3c54ad32e16593f7b4921101ea8c807ca0a3badf"
+    },
+    {
+      "path": "src/shared/Transport/TransportResponseWriter.cs",
+      "bytes": 9319,
+      "crc32": 3417997450,
+      "sha256": "1239e8c26201730ea8a9226cdc889a4060bd9646d2a337b3e389533bd7786b61"
+    },
+    {
+      "path": "src/shared/Transport/TcpTransportServer.cs",
+      "bytes": 13793,
+      "crc32": 1230000674,
+      "sha256": "1179cdb7770d62d2f5e5d0cce6f95bfcc648829c11729781676c54fed36fa6be"
+    },
+    {
+      "path": "src/shared/ToolCatalog/ToolCatalogModels.cs",
+      "bytes": 18252,
+      "crc32": 2209506037,
+      "sha256": "a88faecb9033af1f6732b9fa536d3a5732a90bfd0fbab7a90ea8f7ea1d343902"
+    },
+    {
+      "path": "src/shared/Properties/PlatformSupport.cs",
+      "bytes": 266,
+      "crc32": 2695652332,
+      "sha256": "4575cc17b8a830cfc6995ba9c233c76b6945c64accd8165ea3be39f38f6e1565"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolRuntimeCache.cs",
+      "bytes": 4422,
+      "crc32": 1149223538,
+      "sha256": "62dd40f8fb582d67ce8640c3d7b69296072231cb1338636a830cb35364e2a71c"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolRegistry.cs",
+      "bytes": 11690,
+      "crc32": 1976113605,
+      "sha256": "a04e7390a948fc7b4009fa65ad17590970377bc4759347d8fdc7f83bc191121a"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolDispatchAuthorizer.cs",
+      "bytes": 3614,
+      "crc32": 2002948064,
+      "sha256": "17cac85f95b486a693eff52c966f439bb956ad0bade5843df7e348cc76434ff1"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolRuntimeSource.cs",
+      "bytes": 3123,
+      "crc32": 1557059181,
+      "sha256": "429335cff95e53dcef07d3bc221aae4a88da64c82a152061488d00962b193300"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolRuntimeCommandFactory.cs",
+      "bytes": 6566,
+      "crc32": 64411516,
+      "sha256": "4a04548b9bb8dde79e6c7bc748bba03c25ac5672d971147fcd654872c96fd3b1"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolRecord.cs",
+      "bytes": 809,
+      "crc32": 3111217426,
+      "sha256": "32fa912a348a6bde6679cb09f7e97b878ae20bab2bf14b3d3717fef5fed01027"
+    },
+    {
+      "path": "src/shared/ToolBaker/ToolCompiler.cs",
+      "bytes": 7724,
+      "crc32": 1508835903,
+      "sha256": "422531e30045e809832f659b91ecb60ec08932d55fff8f8e083c1f90bb349164"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakeCompilerPolicy.cs",
+      "bytes": 21978,
+      "crc32": 2203919602,
+      "sha256": "3559aa50874757bc204226ff6b9d390d52a42604440185697dd31c42b27a2b7d"
+    },
+    {
+      "path": "src/shared/ToolBaker/BakedToolParameterDefaults.cs",
+      "bytes": 2128,
+      "crc32": 19265651,
+      "sha256": "03632d41c42a59412ba664168ab2e8013673b74ddf6f580f5a6de463e11b1eca"
+    },
+    {
+      "path": "src/shared/Survey/SurveySnapshotCache.cs",
+      "bytes": 3419,
+      "crc32": 1371764706,
+      "sha256": "f10a16401d675baaa0dc52f0629e0c57ca0531aa0500fe5153725156c32c43d2"
+    },
+    {
+      "path": "src/shared/Survey/SurveyHistoryBridge.cs",
+      "bytes": 11582,
+      "crc32": 57032307,
+      "sha256": "ba4e7f8844b1ab9da55523140f85716c48c9c369159adc84360d2c9b32d3b2ee"
+    },
+    {
+      "path": "src/shared/Survey/SurveyEngine.cs",
+      "bytes": 39641,
+      "crc32": 675330083,
+      "sha256": "1f56cdaac3fcdf5b3cd2c923484e2f25fe3f56f6bee844a9d75b3c7d1fc2a9f8"
+    },
+    {
+      "path": "src/shared/Survey/SurveyContract.cs",
+      "bytes": 12870,
+      "crc32": 3976458122,
+      "sha256": "45808b1b74076200abf86e0e75d1f3fe695479902f824573d1235cb43851a1c4"
+    },
+    {
+      "path": "src/shared/Security/SecretMasker.cs",
+      "bytes": 1110,
+      "crc32": 125326759,
+      "sha256": "8040229c03a27670fc5f7d53bda6f6896d2cea3e7b5a1cd753b239ec4fc1e03b"
+    },
+    {
+      "path": "src/shared/Security/ErrorSanitizer.cs",
+      "bytes": 1564,
+      "crc32": 3624024622,
+      "sha256": "59b7dcf3fc3d67a3e03ef82a833fabf194cbeca62ef0b8575558af75ca361b61"
+    },
+    {
+      "path": "src/shared/Security/AuthToken.cs",
+      "bytes": 3357,
+      "crc32": 1788433911,
+      "sha256": "b3e64ff2c5d8389639050b25ad334f8477274dbaa979e2095a28f38406f32ebd"
+    },
+    {
+      "path": "src/shared/Security/DiscoveryPublisher.cs",
+      "bytes": 9669,
+      "crc32": 2331191296,
+      "sha256": "62c745d1ab0794f1ad55dc64829d5c92b277f468a917565281f2f4f19ec669d2"
+    },
+    {
+      "path": "src/shared/Security/DiscoveryCoordination.cs",
+      "bytes": 1685,
+      "crc32": 4256606198,
+      "sha256": "f7a32c7b3b72b81abdcf986d68ebdcb652f511bea1dbf5e970c95cb3266fd1c4"
+    },
+    {
+      "path": "src/shared/Security/PathAllowlist.cs",
+      "bytes": 1837,
+      "crc32": 3285480339,
+      "sha256": "ed31c3f68a7ea34fff37551ceaa3a6a2f44351ce79c3d991fd1484f4c6603169"
+    },
+    {
+      "path": "src/shared/Security/BakeRedactor.cs",
+      "bytes": 21829,
+      "crc32": 1137766150,
+      "sha256": "0171c85a199a9066ae6319a1e4c69ae8bfe766c2df2e935fd29ee4b869ad5182"
+    },
+    {
+      "path": "src/shared/Security/McpResponsePrivacy.cs",
+      "bytes": 1113,
+      "crc32": 4005236958,
+      "sha256": "6ae1565de6357e7a19b47baa2617211349a13ff33ddfa328e6c781f9711b0723"
+    },
+    {
+      "path": "src/shared/Localization/StringTable.cs",
+      "bytes": 8544,
+      "crc32": 1586296464,
+      "sha256": "be979f71c1c94d3c8cff63e98caa0a3f4ef1d62f541e8c93e1fd704b1323972f"
+    },
+    {
+      "path": "src/shared/Localization/OverrideValidator.cs",
+      "bytes": 3901,
+      "crc32": 3664887902,
+      "sha256": "70ae29aaf3a82433357f7963efc2692a335d6d6c5f014ded37863a6bf9912a05"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaryCatalog.cs",
+      "bytes": 6033,
+      "crc32": 868844646,
+      "sha256": "b249db7a9b6c0ed94fb5f23175ee6bb60c4a5f4c342554b58e67085cebce696a"
+    },
+    {
+      "path": "src/shared/Localization/LocaleResolver.cs",
+      "bytes": 3952,
+      "crc32": 2255658245,
+      "sha256": "7b65314f3cca0166c57b9482b6efb79d023bb6f0dd36ce88ef8341b45ba4c752"
+    },
+    {
+      "path": "src/shared/Localization/L.cs",
+      "bytes": 5971,
+      "crc32": 191547635,
+      "sha256": "73064f3f080291402bed038b35168063a165b413ba41620fa367b2bedd663890"
+    },
+    {
+      "path": "src/shared/Localization/EmbeddedCatalog.cs",
+      "bytes": 1546,
+      "crc32": 1777051748,
+      "sha256": "0b6acdfd2f351dda4abd28cb11f063438d91c67cccd775931c8a623a5812c080"
+    },
+    {
+      "path": "src/shared/Localization/LocalizationHost.cs",
+      "bytes": 9720,
+      "crc32": 4071019793,
+      "sha256": "6d77b28f43690d0ebab5aae9c8823c0bd09cd600dfbc1a5adf9e336311fab7ff"
+    },
+    {
+      "path": "src/shared/Localization/OverrideFolderWatcher.cs",
+      "bytes": 4149,
+      "crc32": 192940431,
+      "sha256": "0d64a2f132991e541ed6930727832f43fa0dc4bdc777d97cd7e7414588f482cd"
+    },
+    {
+      "path": "src/shared/Localization/LocalizationReport.cs",
+      "bytes": 4253,
+      "crc32": 2535895903,
+      "sha256": "bc5460d2371206e8b01909afe6aeb5f8847984b1d650dfdd61acb637a0ce1ec4"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.fr.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.zh-TW.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.ko.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.pt-BR.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.ru.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.nl.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.zh-CN.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.pl.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.it.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.ja.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.hu.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.cs.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.en.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.de.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/ToolSummaries/summary.es.json",
+      "bytes": 35197,
+      "crc32": 1526667617,
+      "sha256": "930b61d84dde4778846d92a3f7cd8d825c4d882e6b7f260873c7a6ef272b98cd"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.ko.json",
+      "bytes": 30557,
+      "crc32": 2591893050,
+      "sha256": "79effbfb176cc50a86006f7b91a6cb56443cce0a1dc10d0b2b0798ae7d3b90aa"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.fr.json",
+      "bytes": 31194,
+      "crc32": 2592028702,
+      "sha256": "06b892f21e203d9338e562622e5fa3ce2b170d753451a49857e600bdab21c0d4"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.pl.json",
+      "bytes": 29898,
+      "crc32": 4115459321,
+      "sha256": "0e841f61d452026dab688ff26d4b67857bf63e1089edb3870b9209c2afe2b6d1"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.zh-TW.json",
+      "bytes": 27582,
+      "crc32": 3272566869,
+      "sha256": "ec972554ee24b9f0dad0f0de8d18846e6519b950167cc1e254705eae1a98c9ac"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.nl.json",
+      "bytes": 29837,
+      "crc32": 82663862,
+      "sha256": "79079bcb6d472ebbdc8d5350a2d2de59e071001c1d41401121ba57c0302d06dd"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.ru.json",
+      "bytes": 39575,
+      "crc32": 3809079499,
+      "sha256": "e8ebe21a4edd7342b4235aa97b939ebf9b2ef49d2dd5ada5a96596e663f7a0f7"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.it.json",
+      "bytes": 30059,
+      "crc32": 3148133843,
+      "sha256": "00d4d77f1f3c1e52f6522a0ceec2e64892ec97ac48b77b2179729cc3b9b73476"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.de.json",
+      "bytes": 30497,
+      "crc32": 4201829042,
+      "sha256": "c764cbf405cb22d4f2872cbfe2146536be34d287418745d6dc6c78029fb72501"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.en.json",
+      "bytes": 27634,
+      "crc32": 1691777710,
+      "sha256": "fa31a4db6fd8d5d89ee98199be89ce4345a07c1f8c40c0c58739c984a00e034c"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.cs.json",
+      "bytes": 29493,
+      "crc32": 1933270684,
+      "sha256": "ad0851c992a5b461e850532f45a7c93c8bf296558931e4aff22760ce51aeb48d"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.ja.json",
+      "bytes": 32899,
+      "crc32": 1528915294,
+      "sha256": "3052f853e952c693870e0ed9bbae96094b5328b7bd16dc06a838c1a36fa4b2d8"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.pt-BR.json",
+      "bytes": 29735,
+      "crc32": 3397768218,
+      "sha256": "644de621d2073e17afb27e8d6bad8805310c6415f07da1f1801aa68d267ecee8"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.hu.json",
+      "bytes": 31037,
+      "crc32": 2516946616,
+      "sha256": "6df86503552718e0f7a93fccf81e8e0f00163db0d145cc1987f26edc3739ab0b"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.zh-CN.json",
+      "bytes": 27435,
+      "crc32": 1824587651,
+      "sha256": "1bfb074568692e44344b8739a4c5be7d103e1f8a9328b73dd9032a2d17bb450d"
+    },
+    {
+      "path": "src/shared/Localization/Catalog/strings.es.json",
+      "bytes": 29982,
+      "crc32": 3192840729,
+      "sha256": "a8dc5f583500f81629838c3944fbe3fcb7c300c3f5c996771e9205522bd87e50"
+    },
+    {
+      "path": "src/shared/Presentation/History/HistoryShellViewModel.cs",
+      "bytes": 1865,
+      "crc32": 513028336,
+      "sha256": "fc241ba31d9d4b5482995a8527b1ad3bcfe01811864307ef8627853d08ca2ec6"
+    },
+    {
+      "path": "src/shared/Presentation/History/IHistoryRuntime.cs",
+      "bytes": 1401,
+      "crc32": 415763177,
+      "sha256": "eba9fa135d5716626d1933b65991e87ea53ed0492cbee772f6959b0be71d8b6b"
+    },
+    {
+      "path": "src/shared/Presentation/History/ActivityHistoryViewModel.cs",
+      "bytes": 8864,
+      "crc32": 3521960238,
+      "sha256": "9362419cdc716d423ae08a6c426b64c0a11b41f28a019e4b49f3394dbc1ca9df"
+    },
+    {
+      "path": "src/shared/Presentation/Common/StatusViewModel.cs",
+      "bytes": 839,
+      "crc32": 1847119090,
+      "sha256": "f9d6493d4af330940bdb5642dae5bd4924c02b49371e56ec5602bc512bb87d5a"
+    },
+    {
+      "path": "src/shared/Presentation/Common/ObservableObject.cs",
+      "bytes": 742,
+      "crc32": 935908437,
+      "sha256": "ecea7f5097fd801c1fbea6cad28bbfd9924af23128e9f7fc115af2cc1e8e5541"
+    },
+    {
+      "path": "src/shared/Presentation/Common/RelayCommand.cs",
+      "bytes": 783,
+      "crc32": 3634224679,
+      "sha256": "d20b42b8f0220c93fe8f3e3b7892ff062c38ac7b615d9c34c18191b11ef97447"
+    },
+    {
+      "path": "src/shared/Presentation/Common/AsyncRelayCommand.cs",
+      "bytes": 1584,
+      "crc32": 2796996083,
+      "sha256": "8b3b293df8f1ef43fc1aca7bce4bb9359f1a64ea9c55edde7214be66cec62422"
+    },
+    {
+      "path": "src/shared/Presentation/Settings/IToolsCatalogSource.cs",
+      "bytes": 752,
+      "crc32": 1987182698,
+      "sha256": "95d1fda85ca31292b08586be4840805855be73c527c4a0e4977fc68b85ae4025"
+    },
+    {
+      "path": "src/shared/Presentation/Settings/ISettingsRuntime.cs",
+      "bytes": 2334,
+      "crc32": 501925270,
+      "sha256": "b4bd229b385f6c6c6a58e81de38e94f2acf9437744a40d118d9bde65aa21fecc"
+    },
+    {
+      "path": "src/shared/Presentation/Issues/IssuesText.cs",
+      "bytes": 6619,
+      "crc32": 3307672256,
+      "sha256": "99292f7231e1ccfd81360b3fbbc83a1fafd0e42dc009a5fc5a5cf3871873bbb3"
+    },
+    {
+      "path": "src/shared/Presentation/Issues/IssuesViewModel.cs",
+      "bytes": 16883,
+      "crc32": 4142707541,
+      "sha256": "d388316622574c08ef68fe5534a8102b1afa8001755d25692d21350b52ac09ab"
+    },
+    {
+      "path": "src/shared/Presentation/Issues/IssueRows.cs",
+      "bytes": 4493,
+      "crc32": 162586626,
+      "sha256": "f3a783ab3fe87d47802075710557bffd2c104181c0a86ef9fbddb79e760e6a4b"
+    },
+    {
+      "path": "src/shared/Presentation/Issues/IssuesViewModel.Actions.cs",
+      "bytes": 8161,
+      "crc32": 334127423,
+      "sha256": "69238fb6563d3beac8911ca936f8f45862c05f6def2fe7c8add6cbbeb5671c43"
+    },
+    {
+      "path": "src/shared/Presentation/Issues/IIssuesRuntime.cs",
+      "bytes": 1375,
+      "crc32": 58427599,
+      "sha256": "809221e788158fbd0155e516e5fca8943a0624006a53a0cf447d81745672fc31"
+    },
+    {
+      "path": "src/shared/Presentation/Toast/ToastCardViewModel.cs",
+      "bytes": 4979,
+      "crc32": 4225422986,
+      "sha256": "1fa51fe182e9a3d6f9dc84c933a12224a71063df8cf4f4c8b404e0f33bfdab5a"
+    },
+    {
+      "path": "src/shared/Logging/SendCodeJournalGate.cs",
+      "bytes": 1057,
+      "crc32": 4002743498,
+      "sha256": "097848816a510b43bda90153ecc49bdbaf8ef3e0776d49bcdc970e204ec763bb"
+    },
+    {
+      "path": "src/shared/Logging/DiagnosticLog.cs",
+      "bytes": 11709,
+      "crc32": 4094872104,
+      "sha256": "e3dcf3e0a0f853a61ed6c019a28b0ca06198bbffb581ada6b4e137fe349060da"
+    },
+    {
+      "path": "src/shared/Logging/McpLogger.cs",
+      "bytes": 8770,
+      "crc32": 2038722087,
+      "sha256": "2f6a15d740e8133ea1856a6cd3106907fb24eed0208db556f5f0c9847e7c9597"
+    },
+    {
+      "path": "src/shared/Logging/BoundedLogFile.cs",
+      "bytes": 10406,
+      "crc32": 1570979274,
+      "sha256": "ff55ac5da3d89c5d23c1d4a91388ba4faf94c84ada7a276df15b8f1e95dd44c4"
+    },
+    {
+      "path": "src/shared/Logging/McpSessionLog.cs",
+      "bytes": 9328,
+      "crc32": 2423614627,
+      "sha256": "db9dd10fc5235cb5f688f19c32bfeb767e33985a5230ccfca4514585cb1e2453"
+    },
+    {
+      "path": "src/shared/Logging/SummaryGenerator.cs",
+      "bytes": 3892,
+      "crc32": 1029342298,
+      "sha256": "f432ee8baf4b3d62401e9788e26511a0933d6df9257bd8e2bc6270ae0df97e06"
+    },
+    {
+      "path": "src/shared/Logging/PersistSendCodeTtl.cs",
+      "bytes": 1665,
+      "crc32": 1352472653,
+      "sha256": "8a07fba17ca00c209a98ad81d133d339ae1d1f67d1550e069799112687dbe3a8"
+    },
+    {
+      "path": "src/shared/Logging/SessionLogHistoryLoader.cs",
+      "bytes": 7910,
+      "crc32": 56798016,
+      "sha256": "03c362c2b57d3c593d1ef3a746a3f08bb51a740f6b02ee21d12c0ab0d281c64a"
+    },
+    {
+      "path": "src/shared/Logging/SendCodeJournal.cs",
+      "bytes": 7704,
+      "crc32": 1851970273,
+      "sha256": "f1979c0a8c94d7d8dd2427a87b6bf949b46f3da815f99c8a91d33c602c8af264"
+    },
+    {
+      "path": "src/shared/Infrastructure/HostHealthObserver.cs",
+      "bytes": 593,
+      "crc32": 799114415,
+      "sha256": "6a85f8e31dd17e01e444396f5e969421286f6d46b1d2528ede2ade08f98017be"
+    },
+    {
+      "path": "src/shared/Infrastructure/McpAddinDiscovery.cs",
+      "bytes": 8946,
+      "crc32": 687294279,
+      "sha256": "a431ea546c9d4272e821d7c360e6455c932778ae6cbc291529bf950c5850fcdc"
+    },
+    {
+      "path": "src/shared/Infrastructure/NoDocumentGuidance.cs",
+      "bytes": 881,
+      "crc32": 1939386963,
+      "sha256": "1c6de27a41d2ac2372d1b7a7f391919843c42d5389514b00f92dc3fbf2cfa5e4"
+    },
+    {
+      "path": "src/shared/Infrastructure/SharedParameterGuid.cs",
+      "bytes": 837,
+      "crc32": 3836722148,
+      "sha256": "fb04fa714bac3bb872241427b23312d4ac343520e253b74dd69aad9b770f4dfc"
+    },
+    {
+      "path": "src/shared/Infrastructure/IdlingUpdater.cs",
+      "bytes": 6152,
+      "crc32": 4186326565,
+      "sha256": "da1f77051105310cc1ac3068c52f7e420669b0b2aef945bf64ba727dde28d9b6"
+    },
+    {
+      "path": "src/shared/Infrastructure/CaptureOutputResolver.cs",
+      "bytes": 2757,
+      "crc32": 2299258935,
+      "sha256": "1e2213aeb0fca99c15ca1bad5ec3dbacba6a9206f4c97138084f625873a53f15"
+    },
+    {
+      "path": "src/shared/Infrastructure/HostHealthSnapshot.cs",
+      "bytes": 2743,
+      "crc32": 932443675,
+      "sha256": "3bd69b7257e8f74e15e36465aff53402f03c5b7dbffde6c97ef04eb7fee9e141"
+    },
+    {
+      "path": "src/shared/Infrastructure/ToolReadPolicy.cs",
+      "bytes": 6833,
+      "crc32": 626664632,
+      "sha256": "89da4d9bb7ba08279306d8de7bef3d0be3770bc89fe99e2734ce1377ac82ec6a"
+    },
+    {
+      "path": "src/shared/Infrastructure/CaptureOutputPath.cs",
+      "bytes": 2537,
+      "crc32": 2764609989,
+      "sha256": "fc93aa2e3ea736efa75cfddac0dd4639d8e059865310e96969a2df52c6f355e7"
+    },
+    {
+      "path": "src/shared/Infrastructure/ExportTransaction.cs",
+      "bytes": 1030,
+      "crc32": 3042659931,
+      "sha256": "299536b0a30dafa9d3456e7837d14f1a8c93323ad956290a87302cdaaf9f41da"
+    },
+    {
+      "path": "src/shared/Infrastructure/McpDocument.cs",
+      "bytes": 2627,
+      "crc32": 1819175369,
+      "sha256": "ef4789bdaf0a20d820e7d2caddc4af2bd1100f5db5de15b2eba814202f9150aa"
+    },
+    {
+      "path": "src/shared/Infrastructure/RecentFileList.cs",
+      "bytes": 2936,
+      "crc32": 1282847995,
+      "sha256": "a90c6bba4042461c8354ee2184f723e60be7e86100412d5eb45dbe553dea7d63"
+    },
+    {
+      "path": "src/shared/Infrastructure/LegacyDataMigration.cs",
+      "bytes": 8408,
+      "crc32": 2206628405,
+      "sha256": "db28a246e7f9ed526d413a5abbaef41c548d5da30c2a6b6395b17f57633d62fe"
+    },
+    {
+      "path": "src/shared/Infrastructure/SendCodeDocumentRewriter.cs",
+      "bytes": 2899,
+      "crc32": 3036418654,
+      "sha256": "ba81579bc7df5bfa551056d9e13f34c888bfeb284466d048640720df7cc29566"
+    },
+    {
+      "path": "src/shared/Infrastructure/RuntimeIdentity.cs",
+      "bytes": 2813,
+      "crc32": 3056198107,
+      "sha256": "eabbc2957ffdb6c30db8ce90d1836c96e62254b3cd7349f5471a41fd3e3d30dc"
+    },
+    {
+      "path": "src/shared/Infrastructure/SendCodeSourceBuilder.cs",
+      "bytes": 1691,
+      "crc32": 1647009172,
+      "sha256": "90d42e2e787e0f7a54a9c4538046b3ade434434df4d46d3fb130e4364810cadf"
+    },
+    {
+      "path": "src/shared/Infrastructure/SafeFailuresPreprocessor.cs",
+      "bytes": 2855,
+      "crc32": 3171507657,
+      "sha256": "be6619a2970d4d6e8a81afce94422f7d0c8c13d76b6f1cbf061f07689ab38efb"
+    },
+    {
+      "path": "src/shared/Infrastructure/RevitCompat.cs",
+      "bytes": 1776,
+      "crc32": 1812312412,
+      "sha256": "a8810724ba88d81a7981e03577d3e4f865230348472efa295d7be9e930089b27"
+    },
+    {
+      "path": "src/shared/Infrastructure/SchemaValidator.cs",
+      "bytes": 8623,
+      "crc32": 724505199,
+      "sha256": "0a3ddb9248d46890490e4d53c7b537ecc4f275bd748b8f4ed33df77f525d046e"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/IssuesDialogs.cs",
+      "bytes": 1103,
+      "crc32": 3068524402,
+      "sha256": "ad3f94f3ba759da337eaf14fdb11c0ee6fa5f126492d4b406cf99cf593fd506b"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/IssuesRuntime.cs",
+      "bytes": 3256,
+      "crc32": 3990679550,
+      "sha256": "cd39b3b2985334b363f6d9973bddfe76f24383d6cdd2760b0e87d0de466e4916"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/HistoryRuntime.cs",
+      "bytes": 5147,
+      "crc32": 2205771201,
+      "sha256": "91bd1450a51025ca76fb8a086dd1170c1131acded17b47438e4282908ef00ff1"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/ToolsCatalogSource.cs",
+      "bytes": 5806,
+      "crc32": 2150088485,
+      "sha256": "e2e405589a7b592dafc2bea5f5a4e0d103ad52bc4187a66cd47481ea76475d03"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/SettingsRuntime.cs",
+      "bytes": 11327,
+      "crc32": 3837060560,
+      "sha256": "a21cd0f2593a6c593fedca913ea1062139f432e9851d8ad923d633cd736929f4"
+    },
+    {
+      "path": "src/shared/Infrastructure/UI/HistoryDialogs.cs",
+      "bytes": 919,
+      "crc32": 2159782372,
+      "sha256": "018157d5ac6ae91d2fd36b7d90159fc863a8f67252c1dc5d1ad31b5bf5b8059d"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseSpillWriter.cs",
+      "bytes": 31958,
+      "crc32": 3097941540,
+      "sha256": "02cb6de4e3c5dc69fca205b0d37bc0b4ea2ed8033cf227e68102b0a98e51609a"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponsePaging.cs",
+      "bytes": 3007,
+      "crc32": 3068020622,
+      "sha256": "8cf146fc679135d279427b7f15b8d65e03da8996149e81bbe4b40e1af3f393fe"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseEnvelopeGuard.cs",
+      "bytes": 5013,
+      "crc32": 9052242,
+      "sha256": "8d62035b68d8ed599f4aac167da6fcb774ac35daf89fbbca9d4ee659c9130ad5"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseSizePolicyCatalog.cs",
+      "bytes": 18617,
+      "crc32": 460056088,
+      "sha256": "abd135d4be5b989cb6e6db6fb9761a83c4c60b99de2216da72bb190935df9729"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseSizeGuard.cs",
+      "bytes": 3750,
+      "crc32": 1835636871,
+      "sha256": "64d5499d0c54e5923f57f8366cfe3c9437012eae10025a8effea86a252050bc8"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/SafetyResponseMetadata.cs",
+      "bytes": 5083,
+      "crc32": 3030705575,
+      "sha256": "c49af3544fa6055a1bc912a0749922edbdbb65b8a97d5449ac42e59f505e43c6"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseSpillProcessor.cs",
+      "bytes": 6058,
+      "crc32": 564719510,
+      "sha256": "5de76308e87843e0ea280eac7539b04e1b1fd3c89defad6c1fd4a665ccb9efb0"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/ResponseSpillPolicy.cs",
+      "bytes": 3722,
+      "crc32": 3822847239,
+      "sha256": "19d3bb95b13433057724bcbe6ad14c329f28e16e6c03afa95c9c3c92ea75b72f"
+    },
+    {
+      "path": "src/shared/Infrastructure/Responses/MutationResponseCompactor.cs",
+      "bytes": 6298,
+      "crc32": 3220964592,
+      "sha256": "92c03fbd8b27a5d2910647807be5b0b31cfbe4350f446df3b65aad38367082aa"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/CommandDispatcher.cs",
+      "bytes": 20697,
+      "crc32": 2195971201,
+      "sha256": "fa44fd3df2d673875671676be2a6f1c687b085aa0c8fa679a5dc0c6c7b3faf3d"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/IRevitCommand.cs",
+      "bytes": 681,
+      "crc32": 1258020403,
+      "sha256": "ac36ecb9f2b1f0c53bdd6f8831188f16ead27347d2648e855454e152c9ced794"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/McpEventHandler.cs",
+      "bytes": 22453,
+      "crc32": 1909496622,
+      "sha256": "2755fd2690e00ee4ded5038c5002319feb5fd3e6b5b5483c9ed41114a19d0df3"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/DocumentTargetGuard.cs",
+      "bytes": 2066,
+      "crc32": 3507907709,
+      "sha256": "e2d11311c3feee8248b95f81a9b8ab043c3540fd57aca0b5bebc77fa03189323"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/PendingRequestLifecycle.cs",
+      "bytes": 7785,
+      "crc32": 2127897616,
+      "sha256": "1960893cda20411050d31c6672c3b3d708e3acfe4ccc79bce41981b41aa94a6d"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/CommandOutcome.cs",
+      "bytes": 2808,
+      "crc32": 2407078804,
+      "sha256": "c3fdae27bae387990f4519505e9beecef29a25c18a5d66b4195c18ae7fa1dea3"
+    },
+    {
+      "path": "src/shared/Infrastructure/Execution/RequestWait.cs",
+      "bytes": 1720,
+      "crc32": 2082441537,
+      "sha256": "662962205056512411bfa817c18fda33ac56f93c751fb5642be01b1245a63854"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/DocumentChangeAccumulator.cs",
+      "bytes": 4250,
+      "crc32": 1321796515,
+      "sha256": "76b59f0020a9c2b067e5053b64b42467abd2ee367fb172bf5a41e415478c300d"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/HistoryFileIdentity.cs",
+      "bytes": 3665,
+      "crc32": 2021160268,
+      "sha256": "d2da522d89477233d0653625ba3572dfafd508e1c8744e4b1ee757857d419d34"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/McpChangeTracker.cs",
+      "bytes": 8532,
+      "crc32": 2688168971,
+      "sha256": "4f8412f2caf9ef36bde202b355d59ae7b979ee000b251b2975fc34466f37ab9f"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/HistoryDiagnostics.cs",
+      "bytes": 1096,
+      "crc32": 1497293187,
+      "sha256": "2e3f2fd579471bdcc49a581c1715a59009f7bf54abc49281730df3b752b6ea62"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/ChangeHistoryTransfer.cs",
+      "bytes": 5703,
+      "crc32": 2899142009,
+      "sha256": "77c399d590883cf83fd488a8e9b03cfdb0845c28c2212d07bf822add191e19d4"
+    },
+    {
+      "path": "src/shared/Infrastructure/ChangeTracking/ChangeSummary.cs",
+      "bytes": 2577,
+      "crc32": 2138243460,
+      "sha256": "dccc49f6ac5ed9f4633396c0eb4077223872f41b52ee25aa073929184c1d6dcf"
+    },
+    {
+      "path": "src/shared/Lint/FirmProfile.cs",
+      "bytes": 790,
+      "crc32": 3204920494,
+      "sha256": "a3a6f9ea471d789c179f0a40414aa8e32313be81e3431db2d033f6759eb44bfa"
+    },
+    {
+      "path": "src/shared/Lint/ViewNamingAnalyzer.cs",
+      "bytes": 6701,
+      "crc32": 1568072299,
+      "sha256": "f3d6c1356d2391deaa005cd2d66531ee31c732cfec9d2931329a1124a2f6dece"
+    },
+    {
+      "path": "src/shared/Lint/FirmProfileLibrary.cs",
+      "bytes": 4397,
+      "crc32": 390576188,
+      "sha256": "dde095ee17d6b351395a13e293d9945b5e353a163d9ead094d8f2da0171ff27b"
+    },
+    {
+      "path": "src/shared/Failures/UserDialogBuffer.cs",
+      "bytes": 11418,
+      "crc32": 3938874926,
+      "sha256": "1256a1ef769754e611a8c55239ae7f4c010c6b81565c08ad45f51091683838cb"
+    },
+    {
+      "path": "src/shared/Failures/FailureLedgerStore.cs",
+      "bytes": 70945,
+      "crc32": 4058734924,
+      "sha256": "5ce97465d33369678fe987d2f0c6e7bba0dd7c1db4d886bc520ab791793f03b3"
+    },
+    {
+      "path": "src/shared/Failures/FailureCompletion.cs",
+      "bytes": 3741,
+      "crc32": 3548143125,
+      "sha256": "aae4c7bb5e7f992f5ca6e44761516f8e8d71202f9545e4dccd6752d84eb80388"
+    },
+    {
+      "path": "src/shared/Failures/FailureNativeEvents.cs",
+      "bytes": 42798,
+      "crc32": 1917708163,
+      "sha256": "74976afe626dc25c5db04c32c14be823801509297f32610112c271203d2cd281"
+    },
+    {
+      "path": "src/shared/Failures/FailurePolicy.cs",
+      "bytes": 7242,
+      "crc32": 325682504,
+      "sha256": "7e71704b2bf2774dd86c353ad02c44dd0958b097580adb90f8ceafed8b07d22a"
+    },
+    {
+      "path": "src/shared/Failures/FailureControl.cs",
+      "bytes": 48324,
+      "crc32": 2846305626,
+      "sha256": "e78af9b48534d7cd4b8a2975f250193a434a6014d3c068105eef1936a389ab54"
+    },
+    {
+      "path": "src/shared/Failures/FailureContracts.cs",
+      "bytes": 11561,
+      "crc32": 1316398174,
+      "sha256": "8c53cca3953f0d6594a39687b6ed07b1ff1c76fe492a5297f47fdfbb7f8af84b"
+    },
+    {
+      "path": "src/shared/Failures/RevitMessageCatalog.cs",
+      "bytes": 6648,
+      "crc32": 3415555099,
+      "sha256": "6fa825289c271a22b3f7080ab594d27d4d72393cf4a3ef0c07e3f839fd324173"
+    },
+    {
+      "path": "src/shared/Failures/FailureCapture.cs",
+      "bytes": 16341,
+      "crc32": 588366771,
+      "sha256": "7909389451d5f445b7acb67681fa3156a4d4e4ee68f8ab6496155ea5a582e7a4"
+    },
+    {
+      "path": "src/shared/Failures/RevitMessageCatalogModel.cs",
+      "bytes": 8287,
+      "crc32": 2512587242,
+      "sha256": "32f114e7afa269ea615df2874ba897f1c56c3fdc2963fe109161d0782c2504a8"
+    },
+    {
+      "path": "src/shared/Failures/CommittedTransactionLog.cs",
+      "bytes": 1483,
+      "crc32": 2206006765,
+      "sha256": "2903a42700e3e5164a246d6b75a70c8cb9906c8cd6991a97b3957ad8226a5a86"
+    },
+    {
+      "path": "src/shared/Config/ToastPositionOptions.cs",
+      "bytes": 1750,
+      "crc32": 4117032776,
+      "sha256": "ab1f6a767108bcde9b42c1a9df656893dcef02bb5d0f93f0aadef4b1abc43ca8"
+    },
+    {
+      "path": "src/shared/Config/PreferenceValues.cs",
+      "bytes": 690,
+      "crc32": 357688716,
+      "sha256": "f09088f01ceac796f0fe898fd73e9e070137fd2f9e63064e955d1b074ddda16c"
+    },
+    {
+      "path": "src/shared/Config/RvtMcpConfig.cs",
+      "bytes": 56576,
+      "crc32": 3036517267,
+      "sha256": "a1a859dd6e29a050c78c80222cfee60faf3c296c397cb32767d113c7b977f170"
+    },
+    {
+      "path": "src/shared/Config/StatusPrivacySection.cs",
+      "bytes": 2053,
+      "crc32": 2890520295,
+      "sha256": "f7eef18f9289f2cb598544561d9d146cd99f210e325f7b33f08d41f61df3ff08"
+    },
+    {
+      "path": "src/shared/Commands/ShowBakeInboxCommand.cs",
+      "bytes": 508,
+      "crc32": 263774013,
+      "sha256": "9dc1a6b686b4de5449484f426d038ccafeee291f03237f89b488912abee63c59"
+    },
+    {
+      "path": "src/shared/Commands/ShowHistoryCommand.cs",
+      "bytes": 504,
+      "crc32": 905254988,
+      "sha256": "51c9292d38c85e75c5be1e056036f59eb4f90c765c009d2fb8aaafc002033678"
+    },
+    {
+      "path": "src/shared/Commands/ShowSettingsLanguageCommand.cs",
+      "bytes": 626,
+      "crc32": 2791132619,
+      "sha256": "7b7296afd480745f33f02ab5ca02bf39f3c3a961553211af4829b5494c546b08"
+    },
+    {
+      "path": "src/shared/Commands/ShowSettingsCommand.cs",
+      "bytes": 568,
+      "crc32": 3379199937,
+      "sha256": "30d822d9f79ecbade0f904040a0f70bf2aae2a9032aeda6605478c027aac3cc2"
+    },
+    {
+      "path": "src/shared/Commands/ToggleMcpCommand.cs",
+      "bytes": 1849,
+      "crc32": 2864037379,
+      "sha256": "bd133b81b843da7fbb3ae71d76306aa285d4541165ca8ceec738e546eaaf2aa8"
+    },
+    {
+      "path": "src/shared/Commands/ToggleToastCommand.cs",
+      "bytes": 1081,
+      "crc32": 826666292,
+      "sha256": "fb279c65a18905575dc35905b4f9ea4c0a40220317da903bf24ccde2af4e0344"
+    },
+    {
+      "path": "src/shared/Commands/CopyConnectionInfoCommand.cs",
+      "bytes": 1344,
+      "crc32": 2724225551,
+      "sha256": "be873765be2932bb0c07ae88e44d82dc455183157ef5bdde03b1513d0b819ba5"
+    },
+    {
+      "path": "src/shared/Commands/RunBakedRibbonSlotCommands.cs",
+      "bytes": 4354,
+      "crc32": 1481571971,
+      "sha256": "0966a813aea642add209da78f818aec63e530d93ff061ac66c2c4b6c7d33ca24"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/CreateFilledRegionHandler.cs",
+      "bytes": 9018,
+      "crc32": 3048357399,
+      "sha256": "c8f4a2996b57589feaec5f612259f82b3d7a6b3e4ac8d3803418902518e06b88"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/FindUndimensionedElementsHandler.cs",
+      "bytes": 9578,
+      "crc32": 528503052,
+      "sha256": "2fe601592dddda1c2d33c77828c4b6d589b1aa8cebcd0dfd9479f245f2ea521a"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/TagAllWallsHandler.cs",
+      "bytes": 2478,
+      "crc32": 2520083414,
+      "sha256": "ae1800100cbc538093bbdb80f94c4ee68e0508c9245a987e55f0f0ed29f15ffc"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/WipeEmptyTagsHandler.cs",
+      "bytes": 10499,
+      "crc32": 3777205745,
+      "sha256": "ea91fa366b5b72f2a168147e4e048560753a12183212c00a63e9988f854c767d"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/CreateDetailLineHandler.cs",
+      "bytes": 7407,
+      "crc32": 2910347464,
+      "sha256": "8e099571466564a1ba60d0e534b3821ec8057225a50094f1377accd302555900"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/FindUntaggedElementsHandler.cs",
+      "bytes": 11412,
+      "crc32": 2112325001,
+      "sha256": "9b70ec4c834b9d337769e6af7c4636c228dbd5f7237559cb88d464124959fe99"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/TagElementsHandler.cs",
+      "bytes": 13364,
+      "crc32": 4232932815,
+      "sha256": "d6c45ec85f0ca1c1afbbdbeba7e010896aa3b1a079e6c819e77d99ae1f8d326f"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/CreateTextNoteHandler.cs",
+      "bytes": 7909,
+      "crc32": 2241068826,
+      "sha256": "e799b3a5ff4952be482355132153e4c81f83d2dd2b9eb9ee849a0ff452687052"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/ListKeynotesHandler.cs",
+      "bytes": 9306,
+      "crc32": 1800860360,
+      "sha256": "aecd3c35ceaa4e9b1f673e250f2923d3223a0890df795a61f58e7702f3bf130c"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/TagAllByCategoryHandler.cs",
+      "bytes": 17531,
+      "crc32": 2759821336,
+      "sha256": "25fc6a53e2fb8ecdec6992396039c6785f8c7398d86598ad63dd9c7a61e63581"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/CreateDimensionsHandler.cs",
+      "bytes": 14649,
+      "crc32": 2969300644,
+      "sha256": "5a3d0ae643b05a17e78293a69180df86879fb0bd010b707fdc2a0bbb4bb730b3"
+    },
+    {
+      "path": "src/shared/Handlers/Annotations/ApplyKeynoteToElementHandler.cs",
+      "bytes": 8866,
+      "crc32": 1197218433,
+      "sha256": "f4f69e408d13a8a158c4f0cd90f54f05a8357bcdf7684e3970cb9a609c256871"
+    },
+    {
+      "path": "src/shared/Handlers/Links/PublishCoordinatesToLinkHandler.cs",
+      "bytes": 5983,
+      "crc32": 1865409970,
+      "sha256": "b2738e7dc8c8b665ed9014010b33debd618cc7786c2bc7cb5fd52762b3769c7f"
+    },
+    {
+      "path": "src/shared/Handlers/Links/ImportCadToViewHandler.cs",
+      "bytes": 9333,
+      "crc32": 1854691087,
+      "sha256": "7b6803e25216782e5f046711d311d9a6fe6d8e288caa5c798ae052b8618f8be1"
+    },
+    {
+      "path": "src/shared/Handlers/Links/ListLinkedCadHandler.cs",
+      "bytes": 7011,
+      "crc32": 1478671449,
+      "sha256": "121066207464d89522b83ee240eb47f6bda5d17579861631a4f9b797ee04dac1"
+    },
+    {
+      "path": "src/shared/Handlers/Links/GetLinkElementsHandler.cs",
+      "bytes": 9601,
+      "crc32": 2447036869,
+      "sha256": "576ad3bde835aa1a7e445ccd87102c21d49872de7957fa1a6e9d53d44f1ed004"
+    },
+    {
+      "path": "src/shared/Handlers/Links/UnloadLinkHandler.cs",
+      "bytes": 6279,
+      "crc32": 1792920052,
+      "sha256": "e39e2ac1dffbdd473ea8525563a7940bddb76e2c12bf048adfb94f9670aae700"
+    },
+    {
+      "path": "src/shared/Handlers/Links/GetLinkCoordinateSystemHandler.cs",
+      "bytes": 13793,
+      "crc32": 3706847002,
+      "sha256": "b351b7c3e46a17694a11daa620dc682f25c09efc1f8f414e1b73bf669a8baed7"
+    },
+    {
+      "path": "src/shared/Handlers/Links/ReloadLinkHandler.cs",
+      "bytes": 4795,
+      "crc32": 1106397869,
+      "sha256": "28c15f8a788c123d1c22f5e20cf8ee7ed0811e5dcc35ee8624b638c0c316238a"
+    },
+    {
+      "path": "src/shared/Handlers/Links/LinkRevitModelHandler.cs",
+      "bytes": 7128,
+      "crc32": 3380887525,
+      "sha256": "00f6abe19d840996b07182f2155c3c1e9676d18f633e3a234b252798dd381603"
+    },
+    {
+      "path": "src/shared/Handlers/Links/AcquireCoordinatesFromLinkHandler.cs",
+      "bytes": 7378,
+      "crc32": 86344357,
+      "sha256": "c75ab794b949abdc5501d12f3ff9d9526d88a63e41117658a56fe0a0b0a352f7"
+    },
+    {
+      "path": "src/shared/Handlers/Links/ListLinkedModelsHandler.cs",
+      "bytes": 8041,
+      "crc32": 223212641,
+      "sha256": "beef53cbb0ea066221a8ae0a59ab3fc0f213e31b171033f7eb5064038965f255"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/CreateScheduleHandler.cs",
+      "bytes": 48604,
+      "crc32": 4035175991,
+      "sha256": "ffdc71875eb7e38b50347abdb6459319c3c4617c090516d91fa3c2e025ec9166"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/GetScheduleDataHandler.cs",
+      "bytes": 11931,
+      "crc32": 1600642817,
+      "sha256": "abc081fd9d72b02f423e384dc0ece706d88afee36065464aa39d56be2f57b845"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/ListSchedulesHandler.cs",
+      "bytes": 5526,
+      "crc32": 3158643783,
+      "sha256": "6feac2e460ad2f88f76fcf8d2d05b1bd67b7f036ab30e2c2c53fadec3b0599b6"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/GetSchedulableFieldsHandler.cs",
+      "bytes": 9532,
+      "crc32": 1280405198,
+      "sha256": "08b23e262b8488453ccf8374fdb25b5a8f8af7812c5f310f6df745d900a160a1"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/AddScheduleFieldHandler.cs",
+      "bytes": 28752,
+      "crc32": 1719295882,
+      "sha256": "d1eabf6974115756c94cc1a943714e115fb6739edb43d619efad7bd3179793d2"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/GetScheduleFormulasHandler.cs",
+      "bytes": 19311,
+      "crc32": 187455656,
+      "sha256": "c793cf15ed9bc0cc635f0c94982dfea9026b7533dd7919620e018d5aca845bc1"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/FindScheduleElementsHandler.cs",
+      "bytes": 8794,
+      "crc32": 412863239,
+      "sha256": "1d3c16c144016e074c079276aa15ca1e5e9baba51e1c28431bf4e36ac3f8ac8c"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/GetScheduleDefinitionHandler.cs",
+      "bytes": 23692,
+      "crc32": 3583112459,
+      "sha256": "b0e1c6e6baa023296085d6ff9e9223242ebbf2048687a78ba254be008fe345f3"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/ScheduleSortInput.cs",
+      "bytes": 1175,
+      "crc32": 3994180900,
+      "sha256": "78c99f3bad5606b1f11d4d5b5b39a55d5c88266d5156260c9d49cfebfe0f6e3e"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/UpdateScheduleFieldHandler.cs",
+      "bytes": 33594,
+      "crc32": 4185250869,
+      "sha256": "fa64f70d1d9cebb0d801ecf7ff475245fa1cabf22bb89af2c1c680d7293bb42e"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/ExportScheduleCsvHandler.cs",
+      "bytes": 6398,
+      "crc32": 1192816133,
+      "sha256": "15b27f3af752474647c08498883f165b1ab5b23f7a315827c63024062f56a856"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/ScheduleElementIdFilter.cs",
+      "bytes": 2969,
+      "crc32": 4165138086,
+      "sha256": "456e56871d1555aeb8141a1b1e6180e060954f8a3987f5d17ab17d5a85bb6383"
+    },
+    {
+      "path": "src/shared/Handlers/Schedules/ApplyScheduleFilterSortHandler.cs",
+      "bytes": 23882,
+      "crc32": 2872825374,
+      "sha256": "315a77ce33952ae3a1a03802cabc6bb406575e197adced1406ad418aadf7112f"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/TagAllRoomsHandler.cs",
+      "bytes": 3884,
+      "crc32": 976233517,
+      "sha256": "a10de940bfeaa8c1e4d8447a5c0ae773ac142a58bf61ee1bf4aad6792f6dbb4b"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/ComputeRoomFinishesHandler.cs",
+      "bytes": 12919,
+      "crc32": 2678641501,
+      "sha256": "c15f1097588ce15bbaa51fc93cf3f885d0fe0c11fdcab24ffcd7cfff42e59b6b"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/GetRoomOpeningsHandler.cs",
+      "bytes": 10474,
+      "crc32": 1616845234,
+      "sha256": "faf19c2b05f995fbd5b4b6ccca0f7864111ed815a332f81a3cf64e1f5669816b"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/TagAllAreasHandler.cs",
+      "bytes": 10981,
+      "crc32": 2428943971,
+      "sha256": "8be355c38aa6a98c64eb10f3c1da472b786509a3936c75bfe10bb0e88b5929a7"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/GetRoomBoundariesHandler.cs",
+      "bytes": 9404,
+      "crc32": 3661622831,
+      "sha256": "f5e9e1b929e500d80193753eb6a13d0aa0e04f139083588961af12483a0cfed2"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/ListRoomsHandler.cs",
+      "bytes": 8502,
+      "crc32": 3150830302,
+      "sha256": "5d316a68709f159793a003e515d1126bd1265ea5cf2fe22fcb67d99d6ed02de9"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/ListAreasHandler.cs",
+      "bytes": 5478,
+      "crc32": 181147216,
+      "sha256": "e7275735b5109d80d978e7a43f65445fefecae120dc3b8e678192d0e81578fb6"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/CreateRoomSeparatorHandler.cs",
+      "bytes": 8881,
+      "crc32": 3316699755,
+      "sha256": "2f34228354efa2dbd143ab5b81942681594f69193479a58da926343850cb3280"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/AutoCreateRoomsFromWallsHandler.cs",
+      "bytes": 13241,
+      "crc32": 3304017179,
+      "sha256": "0c1e9388db566d908aa1aff536b103e841d9d8566399f66d69aeb7ea8fd982f0"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/CreateRoomHandler.cs",
+      "bytes": 3711,
+      "crc32": 1573565739,
+      "sha256": "c48c121a0107b5d7cd380e2e1f3581d89d2db2124a254dd9b144506ab85d8bfc"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/CreateSpaceHandler.cs",
+      "bytes": 8275,
+      "crc32": 344343622,
+      "sha256": "8182763c40e0612f9244482e1f128f50e4138731c879da412fd121a98498db53"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/CreateAreaHandler.cs",
+      "bytes": 11973,
+      "crc32": 2330200066,
+      "sha256": "4ab97d227a8ba6713692764d0e8b33fe9d5d7585ecac66bb5795a7169f98a12d"
+    },
+    {
+      "path": "src/shared/Handlers/Rooms/ExportRoomDataHandler.cs",
+      "bytes": 2050,
+      "crc32": 3732084043,
+      "sha256": "2990892e6a6c62625d6ec55c69f90436e15d9d29df7962ac71e17776f74bd98c"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateFoundationIsolatedHandler.cs",
+      "bytes": 5304,
+      "crc32": 4078741849,
+      "sha256": "87b806563241275cfc513312c297b45feb223b4556aff0a28e0044a23700eb9b"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateRebarStirrupHandler.cs",
+      "bytes": 6661,
+      "crc32": 3253346957,
+      "sha256": "2e8363941f53d7f1b68437862029e30778a50ed9013d09930ee2ab0812e0e8db"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateStructuralColumnHandler.cs",
+      "bytes": 5511,
+      "crc32": 1647843064,
+      "sha256": "8f4c8c0416de758e93e8b9b2b1283e95efeaaa408d80ac0161a8d4713bfd479b"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/SetStructuralLoadHandler.cs",
+      "bytes": 3954,
+      "crc32": 1238291383,
+      "sha256": "0fad92c5d42f6acd4c1fa15170ed2655f750f27430ae682dd656ae311ee650aa"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateStructuralWallHandler.cs",
+      "bytes": 4823,
+      "crc32": 3380869424,
+      "sha256": "43cba072dfb7a7e8e6d6e7eeafd88f436e9fcea3e2806bf92767044c6df2c18b"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateFoundationWallHandler.cs",
+      "bytes": 3219,
+      "crc32": 559684289,
+      "sha256": "bad5adc0d29ba09b24ca9464dce4232d623e5ebaf12c69b22c5412447842de31"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/GetStructuralLoadsHandler.cs",
+      "bytes": 5527,
+      "crc32": 792078181,
+      "sha256": "c4939b6b813828b8458873e7ce1da88b308c3886130b506ccd75d10d56a96887"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/TagStructuralFramingHandler.cs",
+      "bytes": 5791,
+      "crc32": 2429274287,
+      "sha256": "3ac51f1c7623f9b8a8f50c4737e2fea0ee9703f379f0393acafc2f2c9c600bff"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/AnalyzeStructuralConnectionsHandler.cs",
+      "bytes": 3133,
+      "crc32": 3479466566,
+      "sha256": "1e8f9162a2d58cf075d6aac0fd5dd3f4fba5b6ee6b57b1e4804e0ecb47cdceff"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateRebarSetHandler.cs",
+      "bytes": 11135,
+      "crc32": 1611646574,
+      "sha256": "c6c1cf7e55b434755ce8afeb6352d4b5c315e3b6df1d9ebc7abec14d8a924334"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/ListRebarHandler.cs",
+      "bytes": 4038,
+      "crc32": 1589210516,
+      "sha256": "edfacd9771456e19a5e3a1d4abd86e192a7e024596296392797f0d06bf0198f0"
+    },
+    {
+      "path": "src/shared/Handlers/Structural/CreateStructuralBeamHandler.cs",
+      "bytes": 5566,
+      "crc32": 3719776255,
+      "sha256": "04c68005c313a3641b0e82aced24786c21bc0873c47ed308387ceae62d0dd0d3"
+    },
+    {
+      "path": "src/shared/Handlers/Families/ReplaceFamilyTypeHandler.cs",
+      "bytes": 17943,
+      "crc32": 73515771,
+      "sha256": "6b54aebfcaf94ecabc634d0b82ae9aae58658feed4a585e6961185ba410ce55d"
+    },
+    {
+      "path": "src/shared/Handlers/Families/AuditFamiliesHandler.cs",
+      "bytes": 13061,
+      "crc32": 4021440500,
+      "sha256": "02efd9baa9ab6123cf0d209df115ad58bc35239c15cd0fce5c116eeda4235e86"
+    },
+    {
+      "path": "src/shared/Handlers/Families/GetFamilyTypesHandler.cs",
+      "bytes": 2088,
+      "crc32": 1696849811,
+      "sha256": "81ad111e8b8551cf44c96609ce4f21092c1163fd65d0c57d1eaf401ba71c1315"
+    },
+    {
+      "path": "src/shared/Handlers/Families/RenameFamilyTypeHandler.cs",
+      "bytes": 8639,
+      "crc32": 974295017,
+      "sha256": "43f84c03d6058de1afd677fa3e985e776538ad12711a5aec328678625979240d"
+    },
+    {
+      "path": "src/shared/Handlers/Families/GetFamilyInstancesHandler.cs",
+      "bytes": 13769,
+      "crc32": 3085611961,
+      "sha256": "be32c96a7a01e103b58b37bdad9a86b54a64342b3654352989b0de6fc21c4026"
+    },
+    {
+      "path": "src/shared/Handlers/Families/ListLoadedFamiliesHandler.cs",
+      "bytes": 14231,
+      "crc32": 3020355359,
+      "sha256": "e7a0c819b94a4390e426b3f16a7e49e501626d878e50212d68f66bff03523506"
+    },
+    {
+      "path": "src/shared/Handlers/Families/ExportFamilyToPathHandler.cs",
+      "bytes": 11358,
+      "crc32": 869894768,
+      "sha256": "84e3898a16803af13b1ca0216379184a67c583720203b887dbdd6621ab4dc4e0"
+    },
+    {
+      "path": "src/shared/Handlers/Families/UnloadFamilyHandler.cs",
+      "bytes": 13972,
+      "crc32": 3637334808,
+      "sha256": "240a2329d3ebe6cd9de23c609c437491c16bbb28ae69245719c4a98dd02dfd48"
+    },
+    {
+      "path": "src/shared/Handlers/Families/LoadFamilyFromPathHandler.cs",
+      "bytes": 9936,
+      "crc32": 1635846215,
+      "sha256": "8bf55fa8e93d31b24c6618b3b86371e743cbc9571f1b86efa33768dbe0041576"
+    },
+    {
+      "path": "src/shared/Handlers/Families/ListFamilyTypesInFamilyHandler.cs",
+      "bytes": 17792,
+      "crc32": 2703818501,
+      "sha256": "16f4157e657d147ed4e809edc5aec248636aee87d9a7d06de8af4590feaac57e"
+    },
+    {
+      "path": "src/shared/Handlers/Families/DuplicateFamilyTypeHandler.cs",
+      "bytes": 22677,
+      "crc32": 2199422418,
+      "sha256": "2baf851f0f060ed00a16ebf239fc28257969040d85b48a69b6200159c9cce6cc"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowModelAuditHandler.cs",
+      "bytes": 23959,
+      "crc32": 1920170387,
+      "sha256": "9e0a26a6e56772db588896237adf25a8a7825b184f6c0c6d859b9c68d822c3aa"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowTakeoffReportHandler.cs",
+      "bytes": 17696,
+      "crc32": 2575779518,
+      "sha256": "f37370ca75bb158a54f84e5499c266e127e361f6ff61d6a973ad3794a8d32ae5"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowViewCleanupHandler.cs",
+      "bytes": 15799,
+      "crc32": 1214040456,
+      "sha256": "badcb41488c597cd10b4fef262ad9a2d3b1d97568e60b3ba901aa007343b89f4"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowSupport.cs",
+      "bytes": 22358,
+      "crc32": 2802934489,
+      "sha256": "f35280b59e31e892eced608a76a5b5dc265aa193fc570a2352a7a0d0cd01d68b"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowNamingNormalizationHandler.cs",
+      "bytes": 15853,
+      "crc32": 4104741847,
+      "sha256": "92f569f51ad874511d332c2d965dec7022e05e9762e1f62c777ae6b7ce16cc05"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowSheetSetHandler.cs",
+      "bytes": 19656,
+      "crc32": 793477290,
+      "sha256": "66249554ad6dc287dcd9fe24cf4714aecd41349c2572223cf9eda388a400217a"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowRoomDocumentationHandler.cs",
+      "bytes": 21891,
+      "crc32": 4221647699,
+      "sha256": "c396136e63d44fd5940e2260c0a9cc8ebb39c9cd6c636d2abc22367dd6c0d51c"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowClashReviewHandler.cs",
+      "bytes": 23227,
+      "crc32": 3291002131,
+      "sha256": "0a116765db775b03c7f3b089d5f310231cc0cab99bd773b96968457051676af1"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/SurveyChangeImpactHandler.cs",
+      "bytes": 1090,
+      "crc32": 1533300325,
+      "sha256": "27d3eb06ab640e386c29c5e19b5d85fc420b739af9397cb8aea67691bbe5392a"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/ClashDetectionHandler.cs",
+      "bytes": 18910,
+      "crc32": 1058157518,
+      "sha256": "f550788684bf8a4478017337e2d687f6b6816287ba707c1f77143aff4c5f61fa"
+    },
+    {
+      "path": "src/shared/Handlers/Workflows/WorkflowDataRoundtripHandler.cs",
+      "bytes": 19625,
+      "crc32": 476570144,
+      "sha256": "5f6f6e5fbdb83c9f8710299de8e84f8e8b8021ebd723765bf8b98676d8f02cb6"
+    },
+    {
+      "path": "src/shared/Handlers/Lint/DetectFirmProfileHandler.cs",
+      "bytes": 4024,
+      "crc32": 673311504,
+      "sha256": "b47a2ac6e071a46740193662f32a8c254a0f04ad33829e90d9c2f6a71c0602d4"
+    },
+    {
+      "path": "src/shared/Handlers/Lint/AnalyzeViewNamingPatternsHandler.cs",
+      "bytes": 3616,
+      "crc32": 1869875181,
+      "sha256": "d6d2ea27b3cb8fbbc9367986e2c722a05da3f163dfeb2b1a0bc727d530e5e99d"
+    },
+    {
+      "path": "src/shared/Handlers/Lint/SuggestViewNameCorrectionsHandler.cs",
+      "bytes": 4787,
+      "crc32": 1921472799,
+      "sha256": "9e0e0cf4342265fd946d5d533267534077997a72ea19e2c667f42509eadf7227"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/GetElementGeometryHandler.cs",
+      "bytes": 13712,
+      "crc32": 4148169727,
+      "sha256": "a3c61d2f97a8cf85e4ffda474fe85663e628f005380f25c4b101cc7e36116b67"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/ProjectPointOntoFaceHandler.cs",
+      "bytes": 8386,
+      "crc32": 1582876759,
+      "sha256": "4c5fd3ca325d20fa5ea981aa9dbc561e432c70cf93c455c00d295a68f6bc5371"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/GetElementBoundingBoxHandler.cs",
+      "bytes": 8123,
+      "crc32": 895119125,
+      "sha256": "9a683977f6ee9dee4efb38957f7245f2368bc9fc32c4534fd0eb5bdf630d5f0a"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/MeasureDistanceBetweenElementsHandler.cs",
+      "bytes": 14207,
+      "crc32": 799762040,
+      "sha256": "9d3aeb4fd361389832933f53d1d3e600055a37aadf25813977203d6529864eb7"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/FindElementsInVolumeHandler.cs",
+      "bytes": 10728,
+      "crc32": 903776397,
+      "sha256": "238f4e584d13d3fc00db016df7a3b1d5b3c4b6071a0acf7d9b547233bc81950a"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/RaycastFromPointHandler.cs",
+      "bytes": 9289,
+      "crc32": 1929102716,
+      "sha256": "1cd4df0a0963d50b6d5478a7db1aaee774248b50af9e7678768cede334ef73db"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/GetElementCentroidHandler.cs",
+      "bytes": 10299,
+      "crc32": 2042182093,
+      "sha256": "168095b24a3de85adfa8c59fd823f40de68f80effef07a7c1c4da2d62804c73c"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/ComputeElementAreaHandler.cs",
+      "bytes": 7718,
+      "crc32": 1605870131,
+      "sha256": "1382ebe6d8b7523f66b0e6eec9e5eccdf4676a30beed6a1f04b2e08d91739eb4"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/AnalyzeGeometryComplexityHandler.cs",
+      "bytes": 14619,
+      "crc32": 3557482341,
+      "sha256": "e38ed73ab23990b61b88f0b7bd89fa2f1c1b7470654661435b953d4ea2b0de4c"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/FindOverlappingElementsHandler.cs",
+      "bytes": 10553,
+      "crc32": 3481097022,
+      "sha256": "746ea3126cfe1c5a1a79f3947e06deec3540192deb4760b011f97b4bdee1f776"
+    },
+    {
+      "path": "src/shared/Handlers/Geometry/ComputeElementVolumeHandler.cs",
+      "bytes": 7398,
+      "crc32": 1047603424,
+      "sha256": "97fbef4e52ac01088ba9141a0e12dec3a96c57fc4ba8e90c912eef6e42eaa631"
+    },
+    {
+      "path": "src/shared/Handlers/Views/CreateCalloutViewHandler.cs",
+      "bytes": 7198,
+      "crc32": 2853446439,
+      "sha256": "22e3eb7d88f99a87d6571d19b4175702b741b296e7a9456ddb97bfd5375115e9"
+    },
+    {
+      "path": "src/shared/Handlers/Views/ActivateViewHandler.cs",
+      "bytes": 2227,
+      "crc32": 205591052,
+      "sha256": "3bece20afcfbaa1447cd8fd00dec4fdfdca3438bedeb4b3ad65cc3d5052c0ad3"
+    },
+    {
+      "path": "src/shared/Handlers/Views/CreateViewTemplateFromViewHandler.cs",
+      "bytes": 8125,
+      "crc32": 1755334223,
+      "sha256": "b60f4403e8ae42ab0d6b34ff99b5456038e36ff6dc847c27dc8aa2d86bf87270"
+    },
+    {
+      "path": "src/shared/Handlers/Views/SetViewScaleHandler.cs",
+      "bytes": 2576,
+      "crc32": 3277847656,
+      "sha256": "ab365555c563d7c53b037b36952dd93557c0abd2572c402a63ad3db992c8f2cf"
+    },
+    {
+      "path": "src/shared/Handlers/Views/SetViewCropHandler.cs",
+      "bytes": 5244,
+      "crc32": 650408224,
+      "sha256": "d5fa95170656c6b3c5f30c7d2ae3e8a805f8816eea66a8a514e4741908bc7cb7"
+    },
+    {
+      "path": "src/shared/Handlers/Views/GetCurrentViewHandler.cs",
+      "bytes": 1169,
+      "crc32": 3377824869,
+      "sha256": "16bb4f37a4f3be80223102980d33f092f10255cf0519ed563773d40eea9e051e"
+    },
+    {
+      "path": "src/shared/Handlers/Views/GetViewVisibilityHandler.cs",
+      "bytes": 7640,
+      "crc32": 2082431511,
+      "sha256": "b19839d0e250fefdb2b75e2818de6ae8c16fba360edd591f8c7b2cd6346b923f"
+    },
+    {
+      "path": "src/shared/Handlers/Views/ApplyViewTemplateHandler.cs",
+      "bytes": 7349,
+      "crc32": 2716198050,
+      "sha256": "3b0b96b6c07d445dfde01a0bf1f4c80dded1cac93693142d27f449a96bade18c"
+    },
+    {
+      "path": "src/shared/Handlers/Views/CreateViewHandler.cs",
+      "bytes": 4752,
+      "crc32": 3645430835,
+      "sha256": "9d5303accf7f00b7876764c382ac8852500e7a1649ec8845178e1dac0951b319"
+    },
+    {
+      "path": "src/shared/Handlers/Views/CaptureViewImageHandler.cs",
+      "bytes": 4169,
+      "crc32": 641529123,
+      "sha256": "86e65c958a777a23d3468b77005f5ea74f468c5600f045a782014c10def58f48"
+    },
+    {
+      "path": "src/shared/Handlers/Views/SetViewPhaseHandler.cs",
+      "bytes": 11047,
+      "crc32": 214649058,
+      "sha256": "ab2abd688a7acd3892a92293564de2190657d48e86909bdc715db4b55dc4195c"
+    },
+    {
+      "path": "src/shared/Handlers/Views/DeleteViewTemplateHandler.cs",
+      "bytes": 5687,
+      "crc32": 440150645,
+      "sha256": "674bedad1eb2eadf6077c6fc730b103c836ae4074da6a43947c006f07c459506"
+    },
+    {
+      "path": "src/shared/Handlers/Views/ListViewTemplatesHandler.cs",
+      "bytes": 9081,
+      "crc32": 892417581,
+      "sha256": "e1675f5a3aeff3ea0c72951e837bcf03596d65b4d136ba5191b2ce4a10026be2"
+    },
+    {
+      "path": "src/shared/Handlers/Views/DuplicateViewTemplateHandler.cs",
+      "bytes": 4427,
+      "crc32": 2152313345,
+      "sha256": "277a8414c1ce9540566982ee8f55325885afe40a132989900abc374d8bcb3e21"
+    },
+    {
+      "path": "src/shared/Handlers/ToolBaker/ApplyBakeSuggestionHandler.cs",
+      "bytes": 11502,
+      "crc32": 1651819600,
+      "sha256": "ba72d756eb0759cfea02099e4992e15cf4baaeeca4aaa1ea87dfd8fd7a95e5ba"
+    },
+    {
+      "path": "src/shared/Handlers/ToolBaker/RunBakedToolHandler.cs",
+      "bytes": 2898,
+      "crc32": 2931545536,
+      "sha256": "46144352ca8d8bad9b8cd67e7a239656acccf257ada78440011e0d1a7b6f2e6a"
+    },
+    {
+      "path": "src/shared/Handlers/ToolBaker/ListBakedToolsHandler.cs",
+      "bytes": 2923,
+      "crc32": 4268012986,
+      "sha256": "f8c8c7a841186e10106d46d233ee02629de03080b9f9a93c213bae597657b618"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/SelectElementsHandler.cs",
+      "bytes": 6921,
+      "crc32": 553608590,
+      "sha256": "ea72a5d066c653a0281362e561d1262463fb35424a0a445a1114b50342449f5e"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/GetSelectedElementsHandler.cs",
+      "bytes": 2484,
+      "crc32": 1046789479,
+      "sha256": "a098a5718cb5090534ac4bf9a6bd271a18914afe2d70e81ec538287aef8f9560"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/CreatePointBasedElementHandler.cs",
+      "bytes": 10561,
+      "crc32": 2620196034,
+      "sha256": "fb39787706a846b66b8148c9e784cbbf7bd7ce2cc901372d57cd011f3e771be5"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/ChangeElementTypeHandler.cs",
+      "bytes": 9700,
+      "crc32": 1511404619,
+      "sha256": "533aaef7f9adc7885f63f299cbf54d6b2265d4546580463b8e452378e4b87a75"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/CreateLineBasedElementHandler.cs",
+      "bytes": 4668,
+      "crc32": 175562407,
+      "sha256": "4c24436468d19c86a0d1094868e606ced1d0575c76e88b11135080aedb03ad5f"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/GetElementDetailsHandler.cs",
+      "bytes": 10692,
+      "crc32": 2470589542,
+      "sha256": "64ae21f748fbffe55fe8658e48633114cb9bebbdb9dead511a62a978971797ed"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/CreateSurfaceBasedElementHandler.cs",
+      "bytes": 5914,
+      "crc32": 321749694,
+      "sha256": "c6724771fb40d232aa65869c8d2294ae9106b782e273ef69b5664f430d21ed31"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/DeleteElementHandler.cs",
+      "bytes": 2561,
+      "crc32": 1498588928,
+      "sha256": "677ee45de754b011b8bca311f42e72990b09feb168c9fbae6bba1348a06309e1"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/GetElementRelationshipsHandler.cs",
+      "bytes": 7314,
+      "crc32": 1057594205,
+      "sha256": "cdd17e9c205df2ac6ac3432d02a18c7405079bfff79b23d3473bf0df8734171d"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/OperateElementHandler.cs",
+      "bytes": 4569,
+      "crc32": 3152972552,
+      "sha256": "05e0fc4d609442c14b55801117f23f88601c3bb080e7138b51746c2ed34914e4"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/ShowElementInViewHandler.cs",
+      "bytes": 2775,
+      "crc32": 2040381694,
+      "sha256": "e373cf09e3fb0f5665298d24d717e223a5f70555b7349c83b16c6c1dd6f9cde0"
+    },
+    {
+      "path": "src/shared/Handlers/Elements/AiElementFilterHandler.cs",
+      "bytes": 8211,
+      "crc32": 2020505779,
+      "sha256": "71422608888862d29b1f166564b495b51473afa78f0620e6aa36c2b7f86581fb"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/ListSharedParametersHandler.cs",
+      "bytes": 11300,
+      "crc32": 1910535498,
+      "sha256": "da9c387cde43fc44a41f32fca3c06651ebbefa5e79bcabafa38f8eb2ce60c56f"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/SetTypeParameterValuesHandler.cs",
+      "bytes": 24207,
+      "crc32": 3440999038,
+      "sha256": "4a810d9af199c6a4f80947c1736b4c1a9015366b3f9e3fbc4049640fb61b17aa"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/ListProjectParametersHandler.cs",
+      "bytes": 6818,
+      "crc32": 925914766,
+      "sha256": "b19f22d676d03eecb2b66c0b892c3ece7ccafc771e102c6988bce3e555a43597"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/CreateSharedParameterHandler.cs",
+      "bytes": 12727,
+      "crc32": 292961989,
+      "sha256": "ce824225e896a4c3a57b1f84bde90fb340489da719d5906186a27534cbc28deb"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/CreateProjectParameterHandler.cs",
+      "bytes": 1461,
+      "crc32": 1725798562,
+      "sha256": "28526264fa008dce3804de12372ab614553b16503c3622d65c2c463de0095546"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/SetParameterValueByGuidHandler.cs",
+      "bytes": 24760,
+      "crc32": 2385803449,
+      "sha256": "1e9264aa23c32bbebcd4b795a64e000771779a3c35c88db49b8d45b4ac4d9b15"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/RemoveParameterBindingHandler.cs",
+      "bytes": 10699,
+      "crc32": 2772686867,
+      "sha256": "d52f6d3ea1dc7419d7e855e27d02942cd225cebab2a352d2d71a4c06bf6d65fa"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/SetElementParameterValuesHandler.cs",
+      "bytes": 19104,
+      "crc32": 276472492,
+      "sha256": "4b5ca61bf4f06cb70d6aa4b473912a58669232d434854ecc6d4a7e5739bc7ab8"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/ListProjectParameterBindingsHandler.cs",
+      "bytes": 6764,
+      "crc32": 2886876358,
+      "sha256": "ee0aa151fc243aec5f21e98534607d7ac0ca09588fd203c3dc369da24b772c47"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/GetElementParametersHandler.cs",
+      "bytes": 11116,
+      "crc32": 115729545,
+      "sha256": "d3dbb261cc22db9d2f64ec79976ddc831c82fdfd2af904ea9c0556281c03acb7"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/ExportSharedParameterFileHandler.cs",
+      "bytes": 6816,
+      "crc32": 1380001191,
+      "sha256": "0fe67641ac1971387948fe69e1a40f1b78046aab1519cbd9b68f21f9842fcd2c"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/GetTypeParametersHandler.cs",
+      "bytes": 10316,
+      "crc32": 1714730916,
+      "sha256": "5c5b78218f607398c209d894bdbac13dcf4f5aa8b11fe0c46a0c97f9e97cb974"
+    },
+    {
+      "path": "src/shared/Handlers/Parameters/BindSharedParameterHandler.cs",
+      "bytes": 13187,
+      "crc32": 1639922620,
+      "sha256": "fc5f1db3f7c5a9c783d2baf1b9431ea9ff5ace831184afb6579223b72f5dcc46"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportDwgHandler.cs",
+      "bytes": 11810,
+      "crc32": 582765886,
+      "sha256": "a00492f289539347a6a9df256012ae661b86546470c57eed078796254f125495"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportPdfHandler.cs",
+      "bytes": 8102,
+      "crc32": 3900364695,
+      "sha256": "2215953e07e492335419abf3c604087e924d042399b9aa4f8b63a748bab1eb7a"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportDwfHandler.cs",
+      "bytes": 8641,
+      "crc32": 1424050382,
+      "sha256": "500753fa0739b015b57de1e391a5822e46c680bfce88f5e7045647e2f9ed715a"
+    },
+    {
+      "path": "src/shared/Handlers/Export/BatchExportSheetsHandler.cs",
+      "bytes": 10739,
+      "crc32": 1133492044,
+      "sha256": "ee405dc943db57a4844fea4c9b3f02e8ce11c78fa2b1b634e8f9263e9281b68c"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportFbxHandler.cs",
+      "bytes": 8108,
+      "crc32": 2665621806,
+      "sha256": "6a0d4177222e2a416505bb0be9cf741c8dbd3d221dee1bb43c6089b9a0c1cce5"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportIfcHandler.cs",
+      "bytes": 7186,
+      "crc32": 383101749,
+      "sha256": "ea8047e0f387e665e622e6543f9f644c3ae1952a16f0341f8b3d85707269b2b3"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ListExportSettingsHandler.cs",
+      "bytes": 7185,
+      "crc32": 1618028667,
+      "sha256": "44c83c0550cc58cdd6a5ab0d171627d2c5b699c260da238fc0edebf27169b7ae"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportImageHandler.cs",
+      "bytes": 9549,
+      "crc32": 3306551984,
+      "sha256": "ffe29fe366e61f95f433b70ac5daeed2c984f85bee2f6cef2f2adddc89503d04"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportDgnHandler.cs",
+      "bytes": 10239,
+      "crc32": 1563229406,
+      "sha256": "f19d4b465fe999ef6bfe7e5425acaf2fab4e48cbbdbdee5521c1c9a0a35de1e6"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportNwcHandler.cs",
+      "bytes": 5904,
+      "crc32": 3362738061,
+      "sha256": "326ccd79fdcfd8d7022d2398c6c950f776010c2233845eb20bcbde07a417a5a1"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportElementsDataHandler.cs",
+      "bytes": 19281,
+      "crc32": 1306672301,
+      "sha256": "680ce4fcb563ef2f4c0d6531dc8c7b16dc63de6bbee79e1a82f38b27654a43ab"
+    },
+    {
+      "path": "src/shared/Handlers/Export/ExportGbxmlHandler.cs",
+      "bytes": 7005,
+      "crc32": 3456596750,
+      "sha256": "62da4cf6e5c6805153160ce5570d6cb3ec7ef429669d035e9f9525e327a2a8f1"
+    },
+    {
+      "path": "src/shared/Handlers/Mep/MepMembershipPolicy.cs",
+      "bytes": 1162,
+      "crc32": 1731723250,
+      "sha256": "3f0e40000725ce88c3137963d32b6379acd802da5829174d4386a0f8772218bc"
+    }
+  ]
+}

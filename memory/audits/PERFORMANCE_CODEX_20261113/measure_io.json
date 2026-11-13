@@ -1,0 +1,8 @@
+{
+  "files": 4908,
+  "old_drive_seconds": 11.355344700000387,
+  "scandir_drive_seconds": 0.4646182999999837,
+  "scandir_local_empty_mirror_seconds": 0.06101330000001326,
+  "inventory_names_equal": true,
+  "scope": "Metadata traversal only; local mirror has empty files, no PDF content I/O comparison"
+}

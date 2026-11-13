@@ -1,0 +1,58 @@
+{
+  "ownership_probe": {
+    "initial_holder": "CODEX",
+    "attempted_claim": "GEMINI",
+    "claim_rejected": false,
+    "final_holder": "GEMINI",
+    "ownership_preserved": false,
+    "isolated_test": true,
+    "stdout": "[SYNC_BUS v3.0] 🔒 GEMINI ĐÃ TIẾP NHẬN CA VÀ KHÓA THI HÀNH (IN_PROGRESS).\n              Đối tác đối chiếu hoặc Gemini sẽ KHÔNG can thiệp ghi đè lúc này!\n"
+  },
+  "registry": {
+    "version": "2.2.0",
+    "issues": [
+      {
+        "type": "MISSING_FILE",
+        "file": "cad_plan_engine.py",
+        "message": "Script listed in registry but file not found: cad_plan_engine.py"
+      },
+      {
+        "type": "MISSING_FILE",
+        "file": "dce_dxf_generator.py",
+        "message": "Script listed in registry but file not found: dce_dxf_generator.py"
+      },
+      {
+        "type": "MISSING_FILE",
+        "file": "calc_to_dxf.py",
+        "message": "Script listed in registry but file not found: calc_to_dxf.py"
+      }
+    ],
+    "warnings": [
+      {
+        "type": "ORPHAN_SCRIPT",
+        "file": "dce_trigger.py",
+        "message": "Script file exists but NOT in registry: dce_trigger.py"
+      },
+      {
+        "type": "ORPHAN_SCRIPT",
+        "file": "dce_writer/beam_writer.py",
+        "message": "Script file exists but NOT in registry: dce_writer/beam_writer.py"
+      },
+      {
+        "type": "ORPHAN_SCRIPT",
+        "file": "dce_writer/steel_writer.py",
+        "message": "Script file exists but NOT in registry: dce_writer/steel_writer.py"
+      },
+      {
+        "type": "ORPHAN_SCRIPT",
+        "file": "dce_writer/column_writer.py",
+        "message": "Script file exists but NOT in registry: dce_writer/column_writer.py"
+      },
+      {
+        "type": "ORPHAN_SCRIPT",
+        "file": "dce_writer/__init__.py",
+        "message": "Script file exists but NOT in registry: dce_writer/__init__.py"
+      }
+    ]
+  }
+}

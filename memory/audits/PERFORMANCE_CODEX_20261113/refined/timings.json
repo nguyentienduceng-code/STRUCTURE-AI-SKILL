@@ -1,0 +1,21 @@
+{
+  "tier": "selected",
+  "registered_suites": 27,
+  "selected_suites": 2,
+  "all_passed": true,
+  "wall_seconds": 8.955497199999854,
+  "suites": [
+    {
+      "number": 16,
+      "name": "16. Cognitive & System Control Engine (40 tests)",
+      "passed": true,
+      "wall_seconds": 6.076886100000138
+    },
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (60 tests)",
+      "passed": true,
+      "wall_seconds": 2.8584481000000324
+    }
+  ]
+}

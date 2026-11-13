@@ -1,0 +1,12 @@
+[
+  {
+    "mode": "cold",
+    "wall_seconds": 3.0960637999996834,
+    "exit_code": 0
+  },
+  {
+    "mode": "warm",
+    "wall_seconds": 2.7188739000002897,
+    "exit_code": 0
+  }
+]

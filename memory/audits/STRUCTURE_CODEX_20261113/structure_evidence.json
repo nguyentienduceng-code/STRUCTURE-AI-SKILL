@@ -1,0 +1,868 @@
+{
+  "root": "G:\\My Drive\\Google AI Studio",
+  "skills": [
+    {
+      "name": "Cost_Estimator",
+      "entry_exists": true,
+      "version": "1.4.0",
+      "sha256": "ac8c551c73d71966251cf35f74a0cae80995e7075cd25eaa82bb16915bcedcfe"
+    },
+    {
+      "name": "Design_Evaluation",
+      "entry_exists": true,
+      "version": "3.4.0",
+      "sha256": "8254998bbb30b91db160b87f42c2d3c59960de137d7616e6a8437b5682b6c2bc"
+    },
+    {
+      "name": "Global_Dispatcher",
+      "entry_exists": true,
+      "version": "2.0.0",
+      "sha256": "8c1e432f5f7b67e62b52b1401222f093f431b12f68a7cdefa2cb364ec4aa2aa2"
+    },
+    {
+      "name": "Project_Manager",
+      "entry_exists": true,
+      "version": "2.0.0",
+      "sha256": "eb71295fd554738d0248d0353f12d57ec7cf916489f6dde24468d0df3879a7c9"
+    },
+    {
+      "name": "SKILL_BIM_COORDINATION",
+      "entry_exists": true,
+      "version": "1.4.0",
+      "sha256": "2a1e828cf5d3de804489aa7798f26e0a5f0fd9ef257f673f18f785650c4852eb"
+    },
+    {
+      "name": "SKILL_DUAL_AGENT_BRIDGE",
+      "entry_exists": true,
+      "version": "3.1.0",
+      "sha256": "81dc4309d618125b51002cbdd6b0d507afbe255291d3b6c7cbf87c6daa3f056f"
+    },
+    {
+      "name": "SKILL_FORENSIC",
+      "entry_exists": true,
+      "version": "1.2.0",
+      "sha256": "c060a287e14b347d217f6f5cd356b9c6176a15605af7292bbecf21a5be860fe9"
+    },
+    {
+      "name": "SKILL_GEOTECH",
+      "entry_exists": true,
+      "version": "3.1.0",
+      "sha256": "331dc58ecca96f2726baea3d49410daa3a2b8100d5ce0af6f13dc472ce13683e"
+    },
+    {
+      "name": "SKILL_PHULUC",
+      "entry_exists": true,
+      "version": "3.1.0",
+      "sha256": "8e5c76fd7b6dfdaa92e47769cecc3b503c37c0a138da06e436fcde2c1f9a9de5"
+    },
+    {
+      "name": "SKILL_RFI",
+      "entry_exists": true,
+      "version": "1.4.0",
+      "sha256": "275fbde4110d8688ab0737233170ea96c6c770ba95dd9e543d028b515607baa5"
+    },
+    {
+      "name": "SKILL_TEMPWORKS",
+      "entry_exists": true,
+      "version": "1.0.0",
+      "sha256": "e84b09c862ed618f383bd244543d82314acc48fe45a4d8ee408d6e7aef172c91"
+    },
+    {
+      "name": "SKILL_VERIFY",
+      "entry_exists": true,
+      "version": "3.3.0",
+      "sha256": "8dfd6016289efac5388189749b1e62709cdbcfad570564829dab4140664493f4"
+    },
+    {
+      "name": "Structural_Design_Engineer",
+      "entry_exists": true,
+      "version": "1.3.0",
+      "sha256": "23a670323c1616d8cd5ba7a100b00f8bcb434c6d9d2aeb0aebe442d58a6c47bd"
+    },
+    {
+      "name": "Technical_Illustrator",
+      "entry_exists": true,
+      "version": "1.4.0",
+      "sha256": "caece7b2543c1c263a018502353a7f442f4224c47a19fed6a89c858280a8e781"
+    }
+  ],
+  "archives": [
+    {
+      "name": "agent-circuit-breaker.zip",
+      "files": 218,
+      "uncompressed_bytes": 1315964,
+      "compressed_bytes": 377363,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "4dfb4ce5afe300dd15dd8a776734a90c5f56b5efe4dea5d010fbd68ec9104f5f"
+    },
+    {
+      "name": "horizun-revit-mcp.zip",
+      "files": 1928,
+      "uncompressed_bytes": 34543568,
+      "compressed_bytes": 10096136,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "110037dc045837e7174e34f81e11435cfaa597dedd0fa846bc09b1db0dce26af"
+    },
+    {
+      "name": "pyconcrete.zip",
+      "files": 51,
+      "uncompressed_bytes": 311698,
+      "compressed_bytes": 57147,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "ff5cfc0cb142881a5242fd4846725fff2320e67e72d69bdc4a055b662954786f"
+    },
+    {
+      "name": "rule-engine.zip",
+      "files": 89,
+      "uncompressed_bytes": 1275673,
+      "compressed_bytes": 333442,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "eca33f1365fde51bcf4454a4226203f60dd4efb598f62b5d11e306a71dcfa662"
+    },
+    {
+      "name": "rvt-mcp.zip",
+      "files": 0,
+      "error": "File is not a zip file",
+      "bytes": 1877086,
+      "sha256": "b135a0190e40c3b7936f3c3ec93c42f4037035d72b6f5f1333abcd52a60ce073"
+    },
+    {
+      "name": "simple-graph.zip",
+      "files": 19,
+      "uncompressed_bytes": 8408,
+      "compressed_bytes": 6439,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "2d540048ea38cb282e2bfb4599849a9547f192110e7065827020f0d91bf2b0b1"
+    },
+    {
+      "name": "verdict-rules.zip",
+      "files": 1,
+      "uncompressed_bytes": 1451,
+      "compressed_bytes": 985,
+      "crc_error": null,
+      "unsafe_members": [],
+      "sha256": "ea59218a0b5bd8d761998c62bc634f65787b5a17a31de03e5b6b6da56fd330b2"
+    }
+  ],
+  "syntax_errors": [],
+  "windows_path_literals": [
+    {
+      "file": "tools/sync_bus.py",
+      "line": 220,
+      "value": "H:\\My Drive\\AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 221,
+      "value": "h:\\my drive\\ai agent",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 222,
+      "value": "H:/My Drive/AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 223,
+      "value": "h:/my drive/ai agent",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 246,
+      "value": "H:\\My Drive\\AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 247,
+      "value": "h:\\my drive\\ai agent",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 248,
+      "value": "H:/My Drive/AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "tools/sync_bus.py",
+      "line": 249,
+      "value": "h:/my drive/ai agent",
+      "exists": false
+    },
+    {
+      "file": "tools/cad_bridge.py",
+      "line": 70,
+      "value": "C:\\Dce Pro\\Cad\\Form 2.dxf",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_deep_inspector.py",
+      "line": 30,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_rules_registry.py",
+      "line": 41,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_rules_registry.py",
+      "line": 440,
+      "value": "C:\\Dce Pro (1,239 txt configs + DbimSteelAutocad.dll + Form 2.dxf)",
+      "exists": false
+    },
+    {
+      "file": "tools/dce_il_decompiler_and_schema_extractor.py",
+      "line": 35,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_pe_string_extractor.py",
+      "line": 30,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_fast_scan.py",
+      "line": 15,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_utf16le_scanner.py",
+      "line": 21,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/dce_binary_scanner.py",
+      "line": 19,
+      "value": "C:\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 84,
+      "value": "C:\\Dce Pro\\DCE Pro.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 85,
+      "value": "C:\\Dce Pro\\AddinSteelCad\\DbimSteelAutocad-ToanHuynh-2.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 86,
+      "value": "C:\\Dce Pro\\AddinSteelCad\\DbimSteelAutocad.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 87,
+      "value": "C:\\Dce Pro\\AddinSteel\\DceSteel-DESKTOP-BT5QG2E.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 88,
+      "value": "C:\\Dce Pro\\AddinSteel\\DceSteel.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 89,
+      "value": "C:\\Dce Pro\\V.2020\\DCE Excel.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 90,
+      "value": "C:\\Dce Pro\\BcDCE Pro.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 91,
+      "value": "C:\\Dce Pro\\ZwDCE Pro.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 92,
+      "value": "C:\\Dce Pro\\GcDCE Pro.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 93,
+      "value": "C:\\Dce Pro\\IcDCE Pro.dll",
+      "exists": true
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 112,
+      "value": "C:\\Dce Pro\\System\\KhoiDongEtabs.txt",
+      "exists": false
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 113,
+      "value": "C:\\Dce Pro\\System\\KhoiDongEtabs2.txt",
+      "exists": false
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 116,
+      "value": "C:\\Program Files\\Computers and Structures\\ETABS... => RegisterETABS.exe (Run as administrator)",
+      "exists": false
+    },
+    {
+      "file": "tools/update_operation_schema.py",
+      "line": 117,
+      "value": "C:\\Program Files\\Computers and Structures\\SAP2000... => RegisterSAP2000.exe (Run as administrator)",
+      "exists": false
+    },
+    {
+      "file": "tools/dce_option_controller.py",
+      "line": 40,
+      "value": "C:\\\\Dce Pro",
+      "exists": true
+    },
+    {
+      "file": "tools/doc_reader.py",
+      "line": 647,
+      "value": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Design_Evaluation/scripts/cad_deep_reader.py",
+      "line": 421,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD*\\accoreconsole.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Design_Evaluation/scripts/cad_deep_reader.py",
+      "line": 428,
+      "value": "C:\\Program Files*\\ODA\\*\\ODAFileConverter.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Design_Evaluation/scripts/generate_clash_dossier.py",
+      "line": 65,
+      "value": "C:/Windows/Fonts/timesbd.ttf",
+      "exists": true
+    },
+    {
+      "file": "skills/Design_Evaluation/scripts/generate_clash_dossier.py",
+      "line": 66,
+      "value": "C:/Windows/Fonts/arialbd.ttf",
+      "exists": true
+    },
+    {
+      "file": "skills/Design_Evaluation/scripts/generate_clash_dossier.py",
+      "line": 67,
+      "value": "C:/Windows/Fonts/tahomabd.ttf",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 38,
+      "value": "C:\\Dce Pro\\V.2020\\DCE Excel-AddIn64.xll",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 29,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\acad.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 30,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2023\\acad.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 31,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2022\\acad.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 32,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2021\\acad.exe",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 33,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2020\\acad.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_trigger.py",
+      "line": 34,
+      "value": "C:\\Program Files\\Autodesk\\AutoCAD 2019\\acad.exe",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_writer/beam_writer.py",
+      "line": 39,
+      "value": "C:\\Dce Pro\\Excel\\File V.2020\\09. DCE_Beam_2020.xlsm",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_writer/steel_writer.py",
+      "line": 32,
+      "value": "C:\\Dce Pro\\Excel\\DceSteel\\20. TCVN 5575 Steel Beam Design - Section I.xlsm",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_writer/steel_writer.py",
+      "line": 33,
+      "value": "C:\\Dce Pro\\Excel\\DceSteel\\25. TCVN 5575 Steel Column Design - Section I.xlsm",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_writer/steel_writer.py",
+      "line": 34,
+      "value": "C:\\Dce Pro\\Excel\\DceSteel\\160. Chi tiet bu long neo.xlsm",
+      "exists": false
+    },
+    {
+      "file": "skills/Technical_Illustrator/scripts/dce_writer/column_writer.py",
+      "line": 24,
+      "value": "C:\\Dce Pro\\Excel\\File V.2020\\08. DCE_ColumnWall_2020.xlsm",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/analyze_dxf.py",
+      "line": 151,
+      "value": "C:\\DCE Pro\\Cad",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/dce_dxf_generator.py",
+      "line": 214,
+      "value": "g:\\My Drive\\Google AI Studio\\.agents\\skills\\Technical_Illustrator\\cad_integration\\templates\\DCE_Master_Seed_Template.dxf",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/dce_dxf_generator.py",
+      "line": 215,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\99_Archived\\DuAn_Test\\Dam_200x400_DCE.dxf",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+      "line": 1336,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\15.TEST\\04_Deliverables_ToTrinh\\mat_bang_cot_vach_tang_dien_hinh.dxf",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+      "line": 1337,
+      "value": "g:\\My Drive\\Google AI Studio\\.agents\\skills\\Technical_Illustrator\\cad_integration\\templates\\DCE_Master_Seed_Template.dxf",
+      "exists": true
+    },
+    {
+      "file": "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+      "line": 1338,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\15.TEST\\01_Input_CAD_PDF\\a.pdf",
+      "exists": true
+    },
+    {
+      "file": "skills/Structural_Design_Engineer/scripts/rebar_tokenizer.py",
+      "line": 55,
+      "value": "C:\\Dce Pro\\MayHoc\\mauhoc.db",
+      "exists": true
+    },
+    {
+      "file": "skills/Project_Manager/scripts/msproject_bridge.py",
+      "line": 113,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\HO YEN QUANG\\04_Deliverables_ToTrinh\\YenQuang_TienDo_MSProject.xml",
+      "exists": false
+    },
+    {
+      "file": "skills/Project_Manager/scripts/msproject_bridge.py",
+      "line": 114,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\HO YEN QUANG\\04_Deliverables_ToTrinh\\YenQuang_TienDo_MSProject.mpp",
+      "exists": false
+    },
+    {
+      "file": "skills/Project_Manager/scripts/msproject_bridge.py",
+      "line": 115,
+      "value": "g:\\My Drive\\Google AI Studio\\01_Projects\\HO YEN QUANG\\04_Deliverables_ToTrinh\\chart_tiendo_msproject_standard.png",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 220,
+      "value": "H:\\My Drive\\AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 221,
+      "value": "h:\\my drive\\ai agent",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 222,
+      "value": "H:/My Drive/AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 223,
+      "value": "h:/my drive/ai agent",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 246,
+      "value": "H:\\My Drive\\AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 247,
+      "value": "h:\\my drive\\ai agent",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 248,
+      "value": "H:/My Drive/AI AGENT",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+      "line": 249,
+      "value": "h:/my drive/ai agent",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/tests/test_dual_agent_bridge.py",
+      "line": 50,
+      "value": "C:/project/root/src/module/app.py",
+      "exists": false
+    },
+    {
+      "file": "skills/SKILL_DUAL_AGENT_BRIDGE/tests/test_dual_agent_bridge.py",
+      "line": 49,
+      "value": "C:/project/root",
+      "exists": false
+    }
+  ],
+  "missing_skill_links": [],
+  "sources": {
+    "tools/__init__.py": "741a14ac40e818a180fe204fb2168643c3cf7fbedc0c32bf6a2d53271f0a0b84",
+    "tools/_collect_keyword_db.py": "99097e2772f618b9b9d51f650d5314457476b90631af65c15d28adb78c4ba07f",
+    "tools/_collect_changelog.py": "7d10bb3a2d7e09c2256a6559a972e01dce07e8591f317d9568c4e33f20ca20f4",
+    "tools/sync_bus.py": "85aa213bdf6913bf919ce58ac917d63031fd99aeb5cce2975c6c821dce82920c",
+    "tools/run_collectors.py": "42ee0e35a7c7e28d056ba48bdbfb9791dd146c5236b9c0c1f3af690aeb71b162",
+    "tools/_verify_claims.py": "1d07ebea3ff81b7024f54bb1b64727bd0bc14245aa8ec118e5b6d6c599e1cec5",
+    "tools/_render_markdown.py": "abde4ea23fad78cadc09caf04fa340e88789a6e020babf3b629ef7f30d7d54d6",
+    "tools/sync_report.py": "9aa54af9f38afd094320a664a61e41c2b68b30830a19b3173f349a09dfb10a58",
+    "tools/policy_engine.py": "e84c66fbacbecf22500cdce7bc5008b2eb195d29b5ec55fded3254bc74ce2c63",
+    "tools/export_system_digest.py": "455e566a4d01af066694cd2049bcd019b6e41b0008b4dc0684186818f6cb4d24",
+    "tools/etabs_com_reader.py": "46e0e524b982517834c3278f890b9bb64d2b0d3d9c146bb2779494701c24b25a",
+    "tools/cad_bridge.py": "8035bfca15d422d97633c0c4141d8216637aae71da7a43eafdd5e0f05e7a7eda",
+    "tools/ifc_parser.py": "e9f379521991f92c1f28294241f598596f3d5cc9cd0492af9aaf349a37dd0785",
+    "tools/dce_deep_inspector.py": "1cd601844eebd7f5ab1f65442376b8a5849bc8b617bf7a808676b2caafc29f08",
+    "tools/dce_rules_registry.py": "3ed0c65fdf8a1140b141dbd7c153714f903fceab461646abca6dc44354c81bb7",
+    "tools/dce_il_decompiler_and_schema_extractor.py": "fbd80ef6ed85c77edf2c14496a512f0496e5dec979a5aa0c08a1021fe54eafc9",
+    "tools/dce_pe_string_extractor.py": "fdd6a602780fcfef84459791bd0f0056dd589ad46a89f0853fcb8f11c667f574",
+    "tools/dce_fast_scan.py": "fd1d905b5796c69474f936ead20a68c42ad9b773a0c317537384ffc21a968e8d",
+    "tools/dce_utf16le_scanner.py": "a0d3c646cb3de6e7638892f675d6d60c5daeae8cc08d5f88459f88e413deaf71",
+    "tools/dce_binary_scanner.py": "4e438d082ee38a16f8bbda87337b1361f4693c135dd8406f4c38403593bc2b7e",
+    "tools/update_operation_schema.py": "1c55b584ba2adf599f76dbd120423b57e4e9921d02701b3eeadd6845b9802bbf",
+    "tools/conflict_analyzer.py": "1b687341b09c3686cf8143ee0ed8872d3198b20056560e6a7a7b3888e02e8240",
+    "tools/version_differ.py": "bf650ab8fa4c3fd7bbaf11140e1fa8ada35d0e8c79ff54791353494d3e131b76",
+    "tools/rebar_provided_checker.py": "9be798c3aa350f0d5d954e017e059e0a665eba54153be0d5a9cbd5b8e5b251f7",
+    "tools/report_pipeline.py": "a7026d348e13186b098f00f59516ff7d0a1221f290f5327d2e968546c37b3188",
+    "tools/dce_excel_bus.py": "51bb61faf4312bd48c303ec2dcf258108650649861dd20b7791a1254f0b04585",
+    "tools/dce_option_controller.py": "1f9516c71d27f8c6123990a36100a6f6b8c598e2ad0ed6bdce080dd7089e0a25",
+    "tools/dce_xdata_bridge.py": "2b01bdd9b8725ee78aedd42971b4a04af8db82e9fb17de168a125b292331454e",
+    "tools/dce_cad_automation.py": "212d342c6faf5846f675d3509c63759114dbe4922bb1b7978021d8ae88fa30c9",
+    "tools/calc_continuous_beam.py": "4282eb8542e29c2350b02a7990508e1d8dcef9690e7b576ec86b230539cb73d1",
+    "tools/calc_isolated_footing.py": "f4cd76735f635e44d4ff1158edd9a46a6c8552482b4a8853ad6b4f53d3916048",
+    "tools/_collect_calculators.py": "f0cd0e2d3668a34ff360dfc45d38f9e8fbd7c71bb2cce0fa4927ddc538d538de",
+    "tools/_collect_standards.py": "385982c1eb1df86cea22042de7121332d452d7904c4b53956140e526ca27df41",
+    "tools/xlsx_view_sanity.py": "b4faee0a7bd4e34690c8ab62d99a139a0b7d114d5157b0619264c882e6582b72",
+    "tools/submission_packager.py": "cb29525227fb8d117b31a61851a7a94bbb3cc5caf7a74021a3ce3f97f21813d3",
+    "tools/end_to_end_pipeline.py": "da3b9498d412c871ac473f2117ae9c83d83b31dd5e8d159b8e04883c96950d81",
+    "tools/doc_reader.py": "11550a32ee705a9f180bb9b8e6b04d8c9919b27b1c47e501752caf67c6fed322",
+    "tools/_collect_skills.py": "0ab795f48582ae12ad774e6db048329a34c2053907503b1a6178dc92a538194c",
+    "tools/_collect_tests.py": "524fd3f4e3b181e988decdbe41f2720604a039909e3d4a804666891e18a730e9",
+    "tools/system_controller.py": "34c271d0e3415e96ce0d33cdf98184c2d2e02c9a63f3704ddb84eb8c5b8448e9",
+    "tools/audit_zero_white_text.py": "c6256aa8950dc3e4bbec1335884df8f40254d10952782613f4889451e16730dc",
+    "tools/docx_report_builder.py": "4a95a7cfc088753231128a2f6d9baf21e4a755960055f64594aacabcd33ee5ce",
+    "tools/citation_grounding_auditor.py": "1c13d7d61581eb4279f31e705ec0e823f1b9b8d9e1a8bdafdfba28262b8555a3",
+    "tools/input_provenance_guard.py": "8d7950ecc3b8048ff7b03e38666a6b76132a70fdbcfe43418349bde2d9831679",
+    "tools/project_data_pipeline.py": "70ba9d12258aa3267b4b2f04dbcd62e62bea1a8dc0b4f481e8995390b2b9b686",
+    "tools/agent_permissions.py": "28979842eaf634a8610d4bf837277adabdba864dbc3db37b0cb632d9387cb6ae",
+    "tools/project_run_store.py": "e77c6c46b905238df99c8b089ba06690845251363511709c10f5a131aab82082",
+    "tools/project_independent_verifier.py": "5ed39b53119b40e37d6bf5ecf2a9424c587ffd6398b7004a2072eeddd33ceeca",
+    "tools/project_orchestrator_worker.py": "869db8ba3e733d3598b756d80da14ea909568a7cb28583e7a91d1b00081924d4",
+    "tools/project_orchestrator.py": "4d72dcd11ce0696cac5d407019238b0dd11dc52ab07ae7043e4d77aea5e15137",
+    "tools/cad_edit_workbench.py": "d5bec3ff7e4e77d90c1f8f72eb923cb1c9db7569e4a8069d37e95d3f85dca203",
+    "tools/pdf_text_index.py": "539408a73447990d8b5eb63901695a0ef9613072c9f92a941b2a057e64f60f31",
+    "skills/Design_Evaluation/scripts/boq_extractor.py": "bb863595b2519444707eb9e9a60555e4e1e8c53c3cf844cc8c46ed1e2d054d3e",
+    "skills/Design_Evaluation/scripts/generate_report.py": "8c6afadf7354007c3f3738fa56a4d59b228aa22109ee95f4543c851c8ac9e60d",
+    "skills/Design_Evaluation/scripts/validate_handoff.py": "100b8de3a3192966e0d84ca3c4cad444135d3360ad07d0fa3b317e409ea00a51",
+    "skills/Design_Evaluation/scripts/convert_standards_to_md.py": "b06d7e352a433924dd0f5e38ab4627f194cd412c1e7dcec6fcf69abf974ed213",
+    "skills/Design_Evaluation/scripts/generate_review_dashboard.py": "cc12f342a8beb7139b2711739eaab5a4e0ff2fce4dceb04c248bad4c45fa4a50",
+    "skills/Design_Evaluation/scripts/auto_rfi_generator.py": "8eff9afe893578ea738c87dca42aa0a062a6aebf1d79de09569575b88c69073f",
+    "skills/Design_Evaluation/scripts/stage_gate_checklist.py": "7fa0dc22b9d84c92700038d52642e92c73ffa88906abc473e12f05cbe230aeec",
+    "skills/Design_Evaluation/scripts/validate_registry.py": "41783d0c6498734116e3f6f02bbc3dc69531124083feaf7ae4d280fe275d0ed1",
+    "skills/Design_Evaluation/scripts/report_dispatcher.py": "dc1f134a458e358e4347934513ab5ff8cef763b02812f565e6890f53b4e2ea70",
+    "skills/Design_Evaluation/scripts/cad_deep_reader.py": "403af242dba8303c03e6832af77224e7e04b00eb65c6a31b2c22aea9b9ffa14d",
+    "skills/Design_Evaluation/scripts/xlsx_report.py": "e3d19c8678efabd62129d91ab2ccc92550477266d2f980da1aa413951a1d0fdd",
+    "skills/Design_Evaluation/scripts/generate_clash_dossier.py": "166a73c350573b73bc7a8bb269aa614fae49090b8185cb17909f2ecffa60406e",
+    "skills/Design_Evaluation/scripts/_lib/__init__.py": "d8c10c003a9af979892c77f550bc2f41270b32a1d04866e84e465458f4025c1c",
+    "skills/Design_Evaluation/scripts/_lib/_audience_profiles.py": "3c743bc928894aa2b7553f400893f730d7496b9dbd73cb0fac385e839c99934f",
+    "skills/Design_Evaluation/scripts/_lib/_report_utils.py": "8eda1642a1c57ef700ad21e7753bbb0497ca078879008ab5f2cbf30a6a9d4b70",
+    "skills/Design_Evaluation/scripts/_lib/_chart_inserter.py": "77a24181d9cd124d5865acd25e4077c9894f3341de15d257c5e77fce601968f8",
+    "skills/Design_Evaluation/scripts/_lib/_executive_dashboard.py": "324b7be5874ec276d5042f9a7211e91624b796108c6a33b65eb85c83dd697140",
+    "skills/Design_Evaluation/scripts/_lib/_docx_helpers.py": "c6770232b25b4dce98553ea5f490b3d73f9f8f8108c75d99b1547fd55cbd9ef8",
+    "skills/Design_Evaluation/calculators/rc_flexure_design.py": "f5b73b18e2647c4f9ded419391d81db17387bc759b2a80118560dc86e71c3d87",
+    "skills/Design_Evaluation/calculators/wind_load_calc.py": "9e8f59012206780cb2ca12906f079da696bd0322443d68d55912eee4b6d6af1b",
+    "skills/Design_Evaluation/calculators/deflection_check.py": "146b67782a662636608bb8c6a72ee1047f78492f2a05f596b06dab176744414c",
+    "skills/Design_Evaluation/calculators/foundation_bearing.py": "38fac190dfe1228cc29c77961a5e2c81093ad99fef6303d3c11c6e82b8ab733e",
+    "skills/Design_Evaluation/calculators/steel_member_check_v2024.py": "51fabd05dc15cb45839b949b2b6a31ac1f35886a173a620a53b1246b8918af7b",
+    "skills/Design_Evaluation/calculators/earthquake_load_calc.py": "99cdb99f5e499f9ebd1cacb658d361770fa05186bae3f158d7372277c208636f",
+    "skills/Design_Evaluation/calculators/tests/steel_member_check_2012_deprecated.py": "204bda1f93f4f18309ce237abe53b56684a53116b74dfc9082ae22de21f32d7c",
+    "skills/Design_Evaluation/calculators/tests/test_steel_member_v2024.py": "50de783f4fddc4a7f3c253a5d6c1052caa85b7189637d751864349b0c82234a1",
+    "skills/Design_Evaluation/calculators/tests/test_rc_flexure.py": "44eb066b19b2684ec56466173ec6ff66fb54ae1ac2b0e073f0ea9a651e99374d",
+    "skills/Design_Evaluation/calculators/tests/run_tests.py": "9264a3c868a478c908276859ec0b261c07d74651856cd95a5301836ff23741bd",
+    "skills/Design_Evaluation/modules/error_handler.py": "3bd0d2aebe959af3260d815331a69d5858b11c7c21a0a273a48f200bcaf82760",
+    "skills/Design_Evaluation/modules/script_discovery.py": "ae907420d9ceb02c5ea61e677ac22a6da1d932dc61a5222ab115328db01aa2c5",
+    "skills/Design_Evaluation/modules/audience_detector.py": "7c44ed227d83baa2bbd8987a99d2392366a7c25f02d915609bfda50bf381e346",
+    "skills/Design_Evaluation/modules/catalogue_scraper.py": "3a291a9da0ef0ea3c38f4f926486fe9295d5e396506803eb2a45c5d9a273eb12",
+    "skills/Design_Evaluation/modules/live_cost_fetcher.py": "19aec3450c035edd99449fa9978ee22a83abc132a85585394eb17f305bbd5c11",
+    "skills/Design_Evaluation/modules/validate_image_output.py": "f59cf5c4ec3c7fa57bea47bcb7d79835901a6f41bf53b7b3ece0c4538b51d08d",
+    "skills/Design_Evaluation/modules/forensic_analyzer.py": "ec1826f26a37e5c22e34f6e8aa4963f3c48297571db7153b28d1c7391655d451",
+    "skills/Design_Evaluation/modules/template_validator.py": "93bb3a4e2c5fbec2cc42731798cd109fbce0d0c8821bc79b7ac7e5a3bf5cf43d",
+    "skills/Design_Evaluation/modules/standards_version_tracker.py": "42dbd5510f045d96d4731f3942bc3314693ea04bdba1cfc648a8509fcff7fb86",
+    "skills/Technical_Illustrator/scripts/draw_2d_section.py": "a476f3688878c757eb74827e0ac16b7bfe88ab4a89d014aadbc9052a79b54de9",
+    "skills/Technical_Illustrator/scripts/draw_bolt_connection.py": "8d0da0efa25498bcb48819fe1661da1b1637a93e1c4e37c2160c0f5aad4de97e",
+    "skills/Technical_Illustrator/scripts/draw_comparison_chart.py": "8f20dcc48585780bf19de160c3e599618d5152d60a52745c8cb0c250cce95116",
+    "skills/Technical_Illustrator/scripts/draw_slab_rebar.py": "be4e6fc4f9b216aab65949a833ea22148ba5c0e3513ef9af9660c26c6cfcc835",
+    "skills/Technical_Illustrator/scripts/draw_foundation.py": "95d1b9006ed8942d581e08fa7f5aecae1878e5098be5dc7307e3b8004a2f9b4c",
+    "skills/Technical_Illustrator/scripts/draw_rc_column.py": "2259058eb8e1c4288de415806b82177cedb6e37abeac8d56c9b9dccf78788aca",
+    "skills/Technical_Illustrator/scripts/draw_rc_wall.py": "ea600437e3d9e547e2af9c35ab6923baaa68e000a87ebc05b4bf23a8b0642545",
+    "skills/Technical_Illustrator/scripts/draw_rc_beam_full.py": "a06284049a66095d245efccc7d99b03e4abfb9c907c97720f7389046670f2fc9",
+    "skills/Technical_Illustrator/scripts/draw_pile_cap.py": "69499dfe15362864cffcfdfde04b234d900d500cb2bfd4c580474e2b2c069123",
+    "skills/Technical_Illustrator/scripts/draw_weld_detail.py": "c5141bbbf24f5b8da4231976cd93df3cff500e9d43655d852ae81ebbf33bf3ee",
+    "skills/Technical_Illustrator/scripts/dce_trigger.py": "1d522624d43f74f0b5fd4f0e7b15f9575320ffb2ccac25aac8c05210193427be",
+    "skills/Technical_Illustrator/scripts/draw_moment_diagram.py": "6726602fe4ed7e1e6e968ed8a03f7c6a34d959a3bf22985317edb64a638f1680",
+    "skills/Technical_Illustrator/scripts/ms_project_gantt.py": "b8cacf0e94184bc4df082c5774931652df06776d9996f497afd3e065533d305a",
+    "skills/Technical_Illustrator/scripts/dce_writer/beam_writer.py": "af9c80bcf70f13dc527dd479a6d96d19654e225df57b7a985db165fe3742c7d9",
+    "skills/Technical_Illustrator/scripts/dce_writer/steel_writer.py": "edb5a495e2f4987beb556c5e0759dc12958ad1fd6bf7e0589d7f369830ad1867",
+    "skills/Technical_Illustrator/scripts/dce_writer/column_writer.py": "62afbc0e73027df601e5a5f8a4f9a08e84db257ee995637926c27ab11e6037bc",
+    "skills/Technical_Illustrator/scripts/dce_writer/__init__.py": "d5d051963c5c3456add78e380a6aa5e2c5712bc53ddd6531fad838402c796dde",
+    "skills/Technical_Illustrator/modules/drawing_standards.py": "bedff7ec76b3a5366cd9226f60130739c0bcdf61e2a76961ff0ae2ad53519018",
+    "skills/Technical_Illustrator/cad_integration/analyze_dxf.py": "f90d3243ab760073fe43436321508c793e8eb5f3d816c648bf946b5b656b8ac1",
+    "skills/Technical_Illustrator/cad_integration/dce_dxf_generator.py": "95abc7feaea21545a01118f0ed116267c7d33ce82310f8314d67c24b09d129ea",
+    "skills/Technical_Illustrator/cad_integration/calc_to_dxf.py": "48196a6870caecf2fea34eb6a3241033091ea36ef64f8b98a2366c01e5764907",
+    "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py": "8055f34b4aa0dfc29b93d47548fefda9e65af418eb4914fcfdc01548b6b357de",
+    "skills/Structural_Design_Engineer/scripts/calc_rc_section.py": "225ab4027245979fa39dc51de307ef4a9794157a90d2ae157cb2c21ddcd420ee",
+    "skills/Structural_Design_Engineer/scripts/calc_steel_connection_tcvn.py": "afce4a3fa7582518a05ffb9f5b56aa8c639f2f8adc91d67c7b0bbacb95cb261f",
+    "skills/Structural_Design_Engineer/scripts/calc_rc_column.py": "aea02de934a8bfb35abd4630aee8d4d192194e4a1a8e6c003dbd443244e018e0",
+    "skills/Structural_Design_Engineer/scripts/calc_weld_tcvn.py": "5ebf91fe35673b454cff2b4dd8f2854fd7653456fc9424bfeeee84db3351059b",
+    "skills/Structural_Design_Engineer/scripts/calc_foundation_pile.py": "aef6fbabef306d1b0fab1e4a2da4523a3d0b5c6e6d2c8abb709adbb50e254f5f",
+    "skills/Structural_Design_Engineer/scripts/calc_anchorage_lap.py": "18b74e53363968cf394f28e3171cfc978d9ddf2d1cb2068c1abc0ad9821a45e4",
+    "skills/Structural_Design_Engineer/scripts/rebar_tokenizer.py": "732d2099bbe5d2be7d1f3d52849be37dfb748832a01e3e1e0f58969417c09d63",
+    "skills/Structural_Design_Engineer/scripts/rebar_cutting_optimizer.py": "6298f004cd2a3a08b44a780ae50a8f14623b00b09b53e932f424270567c7ea22",
+    "skills/Structural_Design_Engineer/scripts/calc_punching_shear.py": "5f9dd48b008d1e07b18510b4297609e40d6014b5228e0afa75e10fbfdbfc76ce",
+    "skills/Structural_Design_Engineer/scripts/calc_steel_beam_tcvn.py": "4ac99625d625b34a8329a00c3d4f6a72ae86786e53a629a487090ec9a8c1665d",
+    "skills/Structural_Design_Engineer/scripts/calc_rc_wall.py": "2c7aaa8ec6afc78fc7f5114f2594e6704b29a2fb25cbcbd976d4001684f08a05",
+    "skills/Structural_Design_Engineer/scripts/calc_crack_width.py": "5c888b9dfb8fc6174b508e846ee7786bd2c49ff5ce8a3fa79187f0c36d724a85",
+    "skills/Structural_Design_Engineer/scripts/calc_slab.py": "9d7d69805d591c6ba7ad12d55aeb2f1f64fb6065b8af885c0ae92599de4da7ef",
+    "skills/Structural_Design_Engineer/scripts/export_calc_sheet.py": "48eae66ffa01ea2a02775996db0a752583b3b7feda964ae0f4b7ddbfd7e3b3bb",
+    "skills/Structural_Design_Engineer/scripts/cad_bridge.py": "2bb0f61f0f994127bfab8b8338178c26d97a8cbfc7f5a6de7c75f70a862551d5",
+    "skills/Structural_Design_Engineer/scripts/calc_rc_section_pm_3d.py": "796ee5eb07e2a89b1ba856f2fb7ff539ae4b3296fd3dd0aff9525d437700255c",
+    "skills/Structural_Design_Engineer/templates/appendix/appendix_generator.py": "340e531e333194a91673fae732ab9a9e02a828857de13791bffd45b599a998f8",
+    "skills/Cost_Estimator/scripts/compare_structural_options.py": "54ea75660f91d036182e900eeb76f589937d7a15011c54c9a883051a6f5472e7",
+    "skills/Cost_Estimator/scripts/boq_cost_analysis.py": "b295f8fccbef0e0568f5ba631aad833aff7cbfbf111264cf16f4e00f4bb49346",
+    "skills/Cost_Estimator/scripts/material_optimization.py": "4e69c9f5ad066b94e5c355284b61c3397febd2ff0c8eed2a42767a91caa8ced5",
+    "skills/Cost_Estimator/scripts/carbon_calculator.py": "3b62cb8eeda2f6974b8d0f081a48cc82d1746aad3275e41b9d2971af87a792d9",
+    "skills/Cost_Estimator/scripts/schedule_cost_impact.py": "8fda5e5824c64e211e21715394194d0f66bb1353da9b2cca69e514e7bd1d2593",
+    "skills/Cost_Estimator/scripts/update_prices.py": "b3f95802de04f3d0ace16efb9629f74f98a0105c6eaaa68fecc153d3730cd9ed",
+    "skills/Cost_Estimator/scripts/leed_credit_estimator.py": "62357401c587719db8db5b6e9f6bbce255c29064a9363587d7744e476553730d",
+    "skills/Cost_Estimator/scripts/boq_ve_excel_exporter.py": "578fb133f6f43fd3a403667bfc381aba87938024c98f80d7677c76991e4e6df5",
+    "skills/SKILL_FORENSIC/scripts/evidence_checklist_generator.py": "afbe94b407d68c57958080aaa3286e3fdbd93b540881c5c1987fa82afbd5eb7c",
+    "skills/SKILL_FORENSIC/scripts/back_calculation.py": "a352e4ed44c5f678f4050accb18d1d0c594517fb9a8a47d836c138e343a7d697",
+    "skills/SKILL_FORENSIC/scripts/hypothesis_ranker.py": "e82ee518f87ce118908054259c32bfe139336f7d423d35c107ecec65b676039c",
+    "skills/SKILL_FORENSIC/scripts/remedial_solution_generator.py": "b3fd59a6e7ae6f36faacf80d00b9a7fa932c45d1224fca858a173d4571d7a079",
+    "skills/SKILL_FORENSIC/scripts/search_fm.py": "d564a155fcd7def56e129b72dd3a3a04243ff845e9c2c8482603668dffa72702",
+    "skills/SKILL_VERIFY/scripts/inter_module_verify.py": "33d967df9659be6276cc248a277ca4750a21d112b50a849832cf3ccf4e18abf4",
+    "skills/SKILL_VERIFY/scripts/calculation_logs_checker.py": "697953201dc70271cf059814668a911fee94e54d606a4c1277d2284c31378793",
+    "skills/SKILL_VERIFY/scripts/compare_with_etabs.py": "5e1e1a3e7fc7531b47d871b78ac31311f88378725272d0de3395302412b55523",
+    "skills/SKILL_VERIFY/scripts/report_consistency_check.py": "36275a7797ceb78e67917b111056bf39b3f7741babd516050e58085b1023d986",
+    "skills/SKILL_VERIFY/scripts/validate_verification_report.py": "2801ff89c4b44f743b9f633baee8cb3904a8700a08ed25e4a6cd174b6e46727e",
+    "skills/SKILL_VERIFY/scripts/verify_all.py": "628fa93f7786f9f0218218654a42297de8ab4fede585ee3fa078a113d2be8267",
+    "skills/SKILL_VERIFY/scripts/ingest_project_docs.py": "dce9a88b89d1cf4e5a241af6bad0253a2b12ec37d6960ae58d1d5df8f1053bb6",
+    "skills/SKILL_VERIFY/scripts/cross_doc_conflict_checker.py": "4685b046d0ce5f67c62f82bfe58da6c9f6cb15c7af16df661d0b1bc79b0ac0e3",
+    "skills/SKILL_VERIFY/scripts/standard_conflict_checker.py": "94f5bf577da4bfdb16c789f746e838febc71432a3bae8db82fadf91b4b3677b0",
+    "skills/SKILL_VERIFY/scripts/drawing_calc_crosscheck.py": "2743de20f0308b54f666d7799c87e86e7cbaa663f7f36411e1be54a56cf04611",
+    "skills/SKILL_VERIFY/scripts/dce_cad_compliance_checker.py": "d887b472b653cc8fc29538612ae1000bc744735115719bf31dd0af9b86ffe6bc",
+    "skills/SKILL_RFI/scripts/rfi_dashboard.py": "37676cc5809352fe9b7a8bbbe74daf4e8e2c0cf516dd1c51d19d59f86c4b1421",
+    "skills/SKILL_RFI/scripts/document_generator.py": "954244908206d2a51db9d27398d1aa4b25c206aae7fe33ecb33cd5a8cee2c508",
+    "skills/SKILL_RFI/scripts/document_tracker.py": "61c0e87518b6c9f2198a07f860661dc9d68af756358ab9d5d1b799c84888df46",
+    "skills/SKILL_RFI/scripts/deadline_escalation.py": "dacee820d22707f15157ee7ae3ecdb55b314d193e6df10cbbe4e9ca7b1b1e038",
+    "skills/SKILL_RFI/scripts/document_renderer.py": "79e1a793665dc56cf4c1cdc7d687adcf9ef9d57a83ddf8aecc0dfdb1a7bbb19d",
+    "skills/SKILL_PHULUC/docx_generator.py": "2900369ee4ec717675c507ea0df4441f72935163e53bda157014ae29d568bf8c",
+    "skills/SKILL_PHULUC/generator_full.py": "1292267afa8f5f57a6375426bf1696aed49a4e797be75351d6b780dc198caf8e",
+    "skills/SKILL_PHULUC/docx_generator_v2.py": "596dab41d712a1b7269a6810f5a0a71c4e698b36f3ff30a7e562e2c10de05524",
+    "skills/SKILL_PHULUC/calculators/json_to_tmtt_compiler.py": "08a1485d69d308870662a0b97ab91aa26c8d6550dc939d6e294a2a1a09a6a898",
+    "skills/SKILL_PHULUC/scripts/audit_phuluc_docx.py": "e20ad52b624c6d1bfed8214dbfa0c2aa36951da5da7aaeabec982c836bfb6489",
+    "skills/SKILL_GEOTECH/calculators/calc_geostatic_stress.py": "e407764167f56737c7aa29725deb0b3c036d420b4c05daf80fe7e1fc5c54d455",
+    "skills/SKILL_GEOTECH/calculators/calc_spt_correlations.py": "cb51783d71f785bf24f8be6c2070a44e25d357ceeda550ee1b02729e307a1361",
+    "skills/SKILL_GEOTECH/calculators/calc_structural_elements.py": "283ae96585b6408c7c9be46cebf3518498415dcd9344723f9311aa4abd31f2c5",
+    "skills/SKILL_GEOTECH/calculators/calc_soil_params_mc.py": "1bb54b58a18c61c037d6152f593e2fc9540b66916bbc903438f2b11a402e0b3e",
+    "skills/SKILL_GEOTECH/calculators/calc_soil_params_hs.py": "cc6bc1277364ae6c3e3b227717493cea449ab99ae55b64c7301279592690109f",
+    "skills/SKILL_GEOTECH/calculators/calc_cpt_interpretation.py": "1226927a75733aa448f79e7d5188e9cf87763e8e3f36283c81cdf1cb5ddea868",
+    "skills/SKILL_GEOTECH/calculators/verify_against_ground_truth.py": "4422abda4953872af1b48e5f1a5db955cac67114f8e58ed589ea931b99f0cb3c",
+    "skills/SKILL_GEOTECH/calculators/calc_soil_params_ssc.py": "f38c4c98382ea34b7cd7777364415652de8cfce300a52d31d4ddb7a91c4339f1",
+    "skills/SKILL_GEOTECH/calculators/verify_serviceability_limits.py": "d1fa50a5c85c546208b44f5e2d468da6136b351f2d959a642b9070e4a59c69a9",
+    "skills/SKILL_GEOTECH/calculators/calc_pile_load_test.py": "b67d2e581c9bcf2a80b9366324be65069e819196022f4a58a6b18cfaabd9d2c9",
+    "skills/SKILL_GEOTECH/calculators/calc_psr.py": "7c1fcbbcae6f0fed13f65cd43e535afcb5fffee65d08e875f71616c296909abe",
+    "skills/SKILL_GEOTECH/calculators/calc_base_heave.py": "f6f8004a456a9edbef1cb67c0cc5a8865a99feab1b7d5fafe54b62311429f55d",
+    "skills/SKILL_GEOTECH/calculators/calc_strut_capacity.py": "9f3aa6e22a53c6dcde183ab2a8df5fd5ffb8ec760977b848ebbf34fdb9697cfb",
+    "skills/SKILL_GEOTECH/calculators/calc_waling_beam_capacity.py": "42540d0542ab9cb900708fd94a5cffdd7b66051d5f0b22a711f647592b770c6f",
+    "skills/SKILL_GEOTECH/calculators/assess_excavation_geometry.py": "e3ba17bf199b33145d5e9605694ed4b594f431fd4779d49e3d3722843fe8fb0d",
+    "skills/SKILL_GEOTECH/calculators/calc_corner_brace.py": "7c6f5d541618b0005a605ad3864f9a92b2aaeb584a4a600b2baf715d212088e0",
+    "skills/SKILL_GEOTECH/calculators/calc_plaxis_model_geometry.py": "dc636044d88eddaa878deb1088cf7934def28949252ff065dddc314a540d157e",
+    "skills/SKILL_GEOTECH/calculators/plaxis_to_etabs_handoff.py": "4ea38e6856e45ed696712b74d198eee9e3c9e960728827c88cec396987611e0a",
+    "skills/SKILL_GEOTECH/calculators/format_etabs_output.py": "d0d256b0f50d4c4778543202b6db7de773620e14461d931fc76b2a976099fbda",
+    "skills/SKILL_GEOTECH/calculators/export_geotech_report.py": "876306f10900540221a2cee4326046c09839be8da6eb1161b10774e3ef9b73a8",
+    "skills/Project_Manager/scripts/project_roadmap.py": "89cc803f33ce7b4488ee3264130cae23e04a893bc5abd012c4f8dfd60d3940d7",
+    "skills/Project_Manager/scripts/project_grading.py": "8f77e3a9a24d9b200feb4ce6edb5447ef45ddd8fb41aa97c6f641c60433e0a8c",
+    "skills/Project_Manager/scripts/iso_kpi_exporter.py": "5e33bb19f19f53e438b4a9d1daac98fe45a93a8cd9104fdb2e0fc1fd3f425408",
+    "skills/Project_Manager/scripts/qltk_tracking_exporter.py": "98b5504d1f04119fc855ff7870f90b373fc0e5d8062ff0d621f1c36daf239ea9",
+    "skills/Project_Manager/scripts/evm_cpm_calculator.py": "98705f91ee8ce13a2323a66e096996ea94357c21b930ce70cdf7f6d50004a74b",
+    "skills/Project_Manager/scripts/msproject_xml_engine.py": "48ef7d28fb03c52a1ba4e9d9b10796fb37454dfca9e45871b63b1db35d61ae27",
+    "skills/Project_Manager/scripts/msproject_bridge.py": "d180d6f32be0f1b12b1c57d1ef4e64da883f4dd3371c178da928bfaf8b07b0c5",
+    "skills/Project_Manager/scripts/ms_project_gantt.py": "2f742daedf9bbd90ecc478390559a06c6cce55b8de9a2b351a22312f16f97a2f",
+    "skills/SKILL_BIM_COORDINATION/scripts/clash_detector.py": "e2b79110d08b1e19d5d4c599ac37f4a90dbdb3bdf0ae61070c0896d973f6f5d8",
+    "skills/SKILL_TEMPWORKS/calculators/calc_shoring_system.py": "2b9a4a2246c03f26f747c2d26615e58855ade3b79749d25aba6a47fbf33f90ed",
+    "skills/SKILL_TEMPWORKS/calculators/calc_formwork_wall.py": "23b1ce78e1a3fd544d4d06681435e216603a7cf4a1847db742cf49d0c59abe3d",
+    "skills/SKILL_TEMPWORKS/calculators/calc_formwork_column.py": "b98d5e04db1ce844852bbd862e7f1045927f8e0176ead076e87d939e1166d35b",
+    "skills/SKILL_TEMPWORKS/calculators/calc_formwork_slab.py": "7aed294e1fdc98457b8a468d2e3ae46d508d9dcb1be3dc284825cc3c9ce48892",
+    "skills/Global_Dispatcher/scripts/pipeline_builder.py": "f2d2ce60b5c6ac4bd52d86f1aca34afee320b983d95068ed60996fc534fa1e62",
+    "skills/Global_Dispatcher/scripts/test_approval_gate.py": "151a6a32cca8114e657cd2c02c45ed7b70f464d91c83822d86969bf20d4fc322",
+    "skills/Global_Dispatcher/scripts/workflow_integration.py": "fc4a0eba7ee37e73bc2e252b8151e30d4af2c096ddb940e3b1a45b556be24834",
+    "skills/Global_Dispatcher/scripts/intent_classifier.py": "f9dac39124374faf943d4c80c1f4dc38af5ce2cea6d29113740e9cecaeb4c593",
+    "skills/Global_Dispatcher/scripts/approval_state.py": "780e9419d5a70e2bc210cb4501b53667e82a5d5906f3a226866bf25ea8b4735b",
+    "skills/Global_Dispatcher/scripts/approval_gate.py": "ef5cb55c2bc072c2cd1f03fe8ad7e589bb79d74308c868f2a81b2c794c7cf283",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py": "85aa213bdf6913bf919ce58ac917d63031fd99aeb5cce2975c6c821dce82920c",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/claim_task.py": "32c0e83e5356dde9486a7f8f880438ed3ad0018947589bc832d1d2fb2c82a664",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/handover_task.py": "f5a9c62f0be0d15af8a1bf45b51704342d84e41c88d9ba4ad453c41ca8249c27",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/quick_status.py": "5bef69cf949fdbf4149e936edb8c7321d42d0d9c09287939bd9d64152c127fcf",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/scripts/dual_agent_audit.py": "cbb0a8aff8ffcbe8bce0090796827958543b3bb130b11ea9f5b3901fca7c99ab",
+    "skills/SKILL_DUAL_AGENT_BRIDGE/tests/test_dual_agent_bridge.py": "b7f1ee4617063d8665083fea2efed36d25bd8787e1024636b793d14de97be8c3",
+    "_SHARED/workflows/parallel_review_workflow.py": "281107366df72e3c6a7995b8d205947e3db61670ab8df413308d6de6a6302751",
+    "_SHARED/memory/project_memory.py": "7ba5dfff0c08722a068fd8687b8d873039b1df6aeb40ca7f68afe5300e2c376c",
+    "_SHARED/memory/lessons_lookup.py": "6f1d189a5977138d3afe3f22cff1ba0c664bdc687c981a0017ed3e1b6ec914d0",
+    "_SHARED/standards_mcp/server.py": "54f75645e5e6316be117ad1deac1b90da4bf10d5d566ca302886264ecc48f830",
+    "_SHARED/SHARED_CONTEXT/audit_logger.py": "d0279481d233f579059b9036179b6ff627c11f202494ba57a716051cf404c1fe",
+    "_SHARED/SHARED_CONTEXT/envelope_summary.py": "ea0dac45901baeac0e2ab77d1fdbc71808c31762242e64d943889666b57f0f58",
+    "_SHARED/SHARED_CONTEXT/review_gate_engine.py": "79f73704e45fb89c824d0ec9b7974af3cb59d0bcb519ba3531839092ffe9f359",
+    "_SHARED/SHARED_CONTEXT/confidence_score.py": "be2c5cc8e11b286fa16ae7d9da7938a60c7ac8a5e3dad2a250eb008a495e1d0d",
+    "_SHARED/SHARED_CONTEXT/validate_handoff_schema.py": "1c3b07cf16aad2b8c54538acc53ee06bf85fa552e73df91c96c699ce0aeb752e",
+    "_SHARED/SHARED_CONTEXT/handoff_manager.py": "b212db7e3afe684fb35b50d81bc7ba08ab18e13534268d821bf312bb9ac91f19",
+    "_SHARED/SHARED_CONTEXT/excel_theme_engine.py": "7d573c6366d835ca19a504f4b0a4d2f113e9bbe5de9e595862e29d7c3d4f8a28",
+    "_SHARED/SHARED_CONTEXT/skill_guard.py": "c819be590b8f84f5f36663482f540acc9526eba1a4481e18333046e8e3b6baaa",
+    "_SHARED/SHARED_CONTEXT/parametric_sketcher.py": "c8d8df76ab16ca8308aec3f150b620b1edb435571c372e7b4c190822739ed56f",
+    "_SHARED/SHARED_CONTEXT/design_tokens.py": "5204675a23a318fc0d304018ba57e95e1b85932fa191599b13bf10c62da0ddee",
+    "_SHARED/tests/test_e2e_pipeline.py": "cd6d0f248369f58c757ae9d66c353af35c2f048b26f2ad485a68949fad9016da"
+  },
+  "ssot_hashes": {
+    "AGENTS.md": "52c2531016e057d3321ea5b05eacad1ca81d59baf6b54ec2c6e5c26c6441e0bb",
+    ".agents\\AGENTS.md": "52c2531016e057d3321ea5b05eacad1ca81d59baf6b54ec2c6e5c26c6441e0bb",
+    ".agents\\skills\\AGENTS.md": "52c2531016e057d3321ea5b05eacad1ca81d59baf6b54ec2c6e5c26c6441e0bb"
+  },
+  "bus_entrypoints": [
+    {
+      "module_dir": "tools",
+      "explicit_workspace": false,
+      "exit_code": 0,
+      "result": {
+        "workspace": "G:\\My Drive\\Google AI Studio\\.agents",
+        "bus": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\DUAL_AGENT_BUS.json",
+        "relative_bus": "memory/DUAL_AGENT_BUS.json"
+      }
+    },
+    {
+      "module_dir": "tools",
+      "explicit_workspace": true,
+      "exit_code": 0,
+      "result": {
+        "workspace": "G:\\My Drive\\Google AI Studio",
+        "bus": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\DUAL_AGENT_BUS.json",
+        "relative_bus": ".agents/memory/DUAL_AGENT_BUS.json"
+      }
+    },
+    {
+      "module_dir": "skills\\SKILL_DUAL_AGENT_BRIDGE\\scripts",
+      "explicit_workspace": false,
+      "exit_code": 0,
+      "result": {
+        "workspace": "G:\\My Drive\\Google AI Studio\\.agents",
+        "bus": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\DUAL_AGENT_BUS.json",
+        "relative_bus": "memory/DUAL_AGENT_BUS.json"
+      }
+    },
+    {
+      "module_dir": "skills\\SKILL_DUAL_AGENT_BRIDGE\\scripts",
+      "explicit_workspace": true,
+      "exit_code": 0,
+      "result": {
+        "workspace": "G:\\My Drive\\Google AI Studio",
+        "bus": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\DUAL_AGENT_BUS.json",
+        "relative_bus": ".agents/memory/DUAL_AGENT_BUS.json"
+      }
+    }
+  ],
+  "stale_bus_artifacts": [
+    "memory/DUAL_AGENT_BUS.json",
+    "memory/DUAL_AGENT_HANDOFF_MEMO.md",
+    "memory/audits/PERFORMANCE_CODEX_20261113/REPORT.md",
+    "memory/audits/PERFORMANCE_CODEX_20261113/archive_legacy.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/cache_timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/citation_warm/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/fast/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/final_fast/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/final_full/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/finalize_audit.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/full/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_cache.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_io.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/measure_io.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/profile_suite.py",
+    "memory/audits/PERFORMANCE_CODEX_20261113/refined/timings.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/summary.json",
+    "memory/audits/PERFORMANCE_CODEX_20261113/targeted/timings.json"
+  ],
+  "archive_member_total": 2306
+}

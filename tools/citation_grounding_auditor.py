@@ -17,6 +17,7 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+from functools import lru_cache
 
 if hasattr(sys.stdout, 'reconfigure') and sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
@@ -45,7 +46,14 @@ def standard_identity(text):
 
 def _locked_citation_years(lock_path=DEFAULT_LOCK):
     """Only the CURRENT column of the normative table may supply missing editions."""
-    lock = Path(lock_path).read_text(encoding='utf-8-sig')
+    path = Path(lock_path)
+    stat = path.stat()
+    return dict(_cached_locked_years(str(path.absolute()), stat.st_mtime_ns, stat.st_ctime_ns, stat.st_size, stat.st_ino))
+
+
+@lru_cache(maxsize=32)
+def _cached_locked_years(path, mtime_ns, ctime_ns, size, inode):
+    lock = Path(path).read_text(encoding='utf-8-sig')
     normative = lock.split('## 1.', 1)[1].split('## 2.', 1)[0]
     years = {}
     for row in normative.splitlines():
@@ -350,25 +358,25 @@ class CitationGroundingAuditor:
             return fail('AMBIGUOUS_PDF_PART_OR_DUPLICATE')
         path = candidates[0]
         try:
-            import pymupdf
-            with pymupdf.open(path) as pdf:
+            from pdf_text_index import PDFTextIndex
+            with PDFTextIndex(path) as pdf:
                 if pdf.needs_pass:
                     return fail('PDF_PASSWORD_REQUIRED')
                 if page > len(pdf):
                     return fail('PAGE_OUT_OF_RANGE')
                 # Validate file contents as well as filename; reject renamed PDFs.
-                identity_text = '\n'.join(pdf[i].get_text() for i in range(min(6, len(pdf))))
+                identity_text = '\n'.join(pdf.text(i) for i in range(min(6, len(pdf))))
                 identities = [standard_identity(m[0]) for m in STANDARD_RE.finditer(identity_text)]
                 if (code, year) not in identities:
                     return fail('PDF_IDENTITY_NOT_VERIFIED')
                 result['PDF_Path'] = str(path)
-                result['PDF_SHA256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+                result['PDF_SHA256'] = pdf.sha256
                 indices = sorted(range(max(0, page-1-self.page_window), min(len(pdf), page+self.page_window)),
                                  key=lambda i: (abs(i-(page-1)), i))
                 result['Searched_PDF_Pages'] = [i+1 for i in indices]
                 has_text = False
                 for index in indices:
-                    text = unicodedata.normalize('NFKC', pdf[index].get_text())
+                    text = unicodedata.normalize('NFKC', pdf.text(index))
                     has_text = has_text or bool(text.strip())
                     matches = [pattern.search(text) for pattern in patterns]
                     if not all(matches):

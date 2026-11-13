@@ -1,0 +1,33 @@
+{
+  "cli": [
+    {
+      "entrypoint": "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+      "exit_code": 2,
+      "stderr": "usage: cad_plan_engine.py [-h] --output OUTPUT [--template TEMPLATE] --pdf PDF\n                          [--sheet {KC-01,KC-02,KC-03,all}]\n                          [--input-json INPUT_JSON]\ncad_plan_engine.py: error: the following arguments are required: --output/-o, --pdf/-p\n",
+      "no_output_created": true
+    },
+    {
+      "entrypoint": "skills/Project_Manager/scripts/msproject_bridge.py",
+      "exit_code": 2,
+      "stderr": "usage: msproject_bridge.py [-h] [--demo {yen_quang}] [--xml-out XML_OUT]\n                           [--mpp-out MPP_OUT] [--png-out PNG_OUT]\n                           [--docx-out DOCX_OUT]\nmsproject_bridge.py: error: --demo requires --xml-out, --mpp-out and --png-out\n",
+      "no_output_created": true
+    }
+  ],
+  "discovery": [
+    [
+      "../cad_integration/cad_plan_engine.py",
+      3,
+      "Sinh bộ bản vẽ CAD Mặt bằng Kết cấu chuẩn DCE Pro A1 (KC-01 Tổng MB, KC-02 Định vị Cột Vách 7 Gap, KC-03 Dầm Sàn)"
+    ],
+    [
+      "../cad_integration/dce_dxf_generator.py",
+      3,
+      "Sinh bản vẽ dầm BTCT chuẩn DCE Pro kế thừa DCE_Master_Seed_Template.dxf"
+    ],
+    [
+      "../cad_integration/calc_to_dxf.py",
+      3,
+      "Xuất kết quả tính toán BTCT & Kết cấu Thép sang DXF chuẩn DCE Pro"
+    ]
+  ]
+}

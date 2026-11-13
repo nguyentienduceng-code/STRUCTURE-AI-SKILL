@@ -6,7 +6,7 @@
 > **Trạng thái bàn giao (handoff_status):** `{handoff_status}` *(Verification: `{Verification_Status}`)*  
 > **Tác tử giữ ca (current_holder):** `{current_holder}`  
 > **Chế độ phân việc:** {role_distribution}  
-> **Kênh bus nguyên tử:** `memory/DUAL_AGENT_BUS.json`  
+> **Kênh bus nguyên tử:** `.agents/memory/DUAL_AGENT_BUS.json`  
 
 ---
 

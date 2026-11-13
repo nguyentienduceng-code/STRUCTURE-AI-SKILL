@@ -9,7 +9,7 @@ Usage:
         --handoff audit_2026.json \\
         --formats md,docx \\
         --audience designer \\
-        --output "G:/My Drive/Google AI Studio/01_Projects/REPORT/"
+        --output "./01_Projects/REPORT/"
 
     # Chỉ xuất DOCX, có charts
     python report_dispatcher.py \\

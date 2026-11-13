@@ -13,19 +13,15 @@ import os
 import sys
 import argparse
 import json
+from pathlib import Path
 
 if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 # Import các engine nội bộ
-try:
-    from msproject_xml_engine import export_to_msproject_xml, import_from_msproject_xml, convert_xml_to_mpp
-    from ms_project_gantt import draw_ms_project_gantt, embed_gantt_in_docx_landscape, get_ho_yen_quang_tasks
-except ImportError:
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    sys.path.append(script_dir)
-    from msproject_xml_engine import export_to_msproject_xml, import_from_msproject_xml, convert_xml_to_mpp
-    from ms_project_gantt import draw_ms_project_gantt, embed_gantt_in_docx_landscape, get_ho_yen_quang_tasks
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from msproject_xml_engine import export_to_msproject_xml, convert_xml_to_mpp
+from ms_project_gantt import draw_ms_project_gantt, embed_gantt_in_docx_landscape, get_ho_yen_quang_tasks
 
 
 def run_pipeline(
@@ -110,10 +106,10 @@ if __name__ == "__main__":
         holidays_data = [
             {"start": "2027-01-26", "end": "2027-02-05", "label": "Nghỉ Tết Nguyên Đán Đinh Mùi 2027"}
         ]
-        xml_path = args.xml_out or r"g:\My Drive\Google AI Studio\01_Projects\HO YEN QUANG\04_Deliverables_ToTrinh\YenQuang_TienDo_MSProject.xml"
-        mpp_path = args.mpp_out or r"g:\My Drive\Google AI Studio\01_Projects\HO YEN QUANG\04_Deliverables_ToTrinh\YenQuang_TienDo_MSProject.mpp"
-        png_path = args.png_out or r"g:\My Drive\Google AI Studio\01_Projects\HO YEN QUANG\04_Deliverables_ToTrinh\chart_tiendo_msproject_standard.png"
-        
+        if not all((args.xml_out, args.mpp_out, args.png_out)):
+            parser.error("--demo requires --xml-out, --mpp-out and --png-out")
+        xml_path, mpp_path, png_path = args.xml_out, args.mpp_out, args.png_out
+
         run_pipeline(
             tasks=tasks_data,
             project_name="DỰ ÁN KHU DU LỊCH VÀ NGHỈ DƯỠNG SINH THÁI CAO CẤP HỒ YÊN QUANG",

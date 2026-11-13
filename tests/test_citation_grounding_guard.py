@@ -230,6 +230,59 @@ class AdversarialPDFTests(unittest.TestCase):
             cg.CitationGroundingAuditor(self.directory, self.directory/'absent.md')
 
 
+class PDFTextIndexCacheTests(unittest.TestCase):
+    def test_memory_disk_and_disabled_cache_return_identical_text(self):
+        from unittest.mock import patch
+        import pdf_text_index as index
+        import pymupdf
+        with tempfile.TemporaryDirectory() as folder, patch.dict('os.environ', {'PDF_TEXT_INDEX_CACHE_DIR': folder}):
+            path = Path(folder)/'fixture.pdf'
+            with pymupdf.open() as doc:
+                doc.new_page().insert_text((30, 40), 'Original evidence')
+                doc.save(path)
+            with index.PDFTextIndex(path) as pdf:
+                original = pdf.text(0)
+                cache = pdf.path
+            index._MEMORY.clear()
+            with patch.object(pymupdf, 'open', side_effect=AssertionError('warm cache re-extracted PDF')):
+                with index.PDFTextIndex(path) as pdf:
+                    self.assertEqual(pdf.text(0), original)
+            index._MEMORY.clear()
+            cache.write_text('{broken', encoding='utf-8')
+            with index.PDFTextIndex(path) as pdf:
+                self.assertEqual(pdf.text(0), original)
+            index._MEMORY.clear()
+            with patch.dict('os.environ', {'PDF_TEXT_INDEX_CACHE_DIR': str(path)}):
+                with index.PDFTextIndex(path) as pdf:
+                    self.assertEqual(pdf.text(0), original)
+
+    def test_source_hash_invalidates_same_size_same_mtime_and_missing_source(self):
+        import os
+        import pdf_text_index as index
+        import pymupdf
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder, patch.dict('os.environ', {'PDF_TEXT_INDEX_CACHE_DIR': folder}):
+            path = Path(folder)/'fixture.pdf'
+            with pymupdf.open() as doc:
+                doc.new_page().insert_text((30, 40), 'Alpha evidence')
+                doc.save(path)
+            with index.PDFTextIndex(path) as pdf:
+                before = pdf.sha256
+                self.assertIn('Alpha', pdf.text(0))
+            stat = path.stat()
+            raw = path.read_bytes()
+            changed = raw.replace(b'416c706861', b'4f6d656761')  # Alpha -> Omega, equal length.
+            self.assertNotEqual(raw, changed)
+            path.write_bytes(changed)
+            os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+            with index.PDFTextIndex(path) as pdf:
+                self.assertNotEqual(pdf.sha256, before)
+                self.assertIn('Omega', pdf.text(0))
+            path.unlink()
+            with self.assertRaises(FileNotFoundError):
+                index.PDFTextIndex(path)
+
+
 class InputProvenanceTests(unittest.TestCase):
     def test_complete_audit_trail(self):
         r = pg.audit_inputs({'Inputs': {'gamma_II': 18.5}, 'Provenance': [provenance()]})

@@ -1,0 +1,44 @@
+{"wall_seconds": 7.800524799999948, "parent_cpu_seconds": 2.3125, "exit_code": 0}
+         1615371 function calls (1597420 primitive calls) in 7.800 seconds
+
+   Ordered by: cumulative time
+   List reduced from 3539 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    7.800    7.800 <frozen runpy>:262(run_path)
+    380/2    0.005    0.000    7.775    3.888 {built-in method builtins.exec}
+        1    0.000    0.000    7.775    7.775 <frozen runpy>:91(_run_module_code)
+        1    0.000    0.000    7.775    7.775 <frozen runpy>:65(_run_code)
+        1    0.000    0.000    7.775    7.775 test_cognitive_and_control_systems.py:1(<module>)
+        1    0.000    0.000    7.601    7.601 main.py:67(__init__)
+        1    0.000    0.000    7.553    7.553 main.py:255(runTests)
+        1    0.000    0.000    7.553    7.553 runner.py:224(run)
+      5/1    0.000    0.000    7.552    7.552 suite.py:83(__call__)
+      5/1    0.000    0.000    7.552    7.552 suite.py:102(run)
+       40    0.000    0.000    7.552    0.189 case.py:689(__call__)
+       40    0.001    0.000    7.552    0.189 case.py:599(run)
+       40    0.000    0.000    6.132    0.153 case.py:588(_callTestMethod)
+        3    0.000    0.000    2.859    0.953 sync_bus.py:566(auto_handoff)
+        2    0.022    0.011    2.848    1.424 sync_bus.py:304(detect_modified_files)
+     4784    2.576    0.001    2.627    0.001 {built-in method nt.stat}
+       10    0.000    0.000    2.118    0.212 standards_graph.py:136(__init__)
+       10    0.000    0.000    2.118    0.212 standards_graph.py:157(_init_db)
+       10    0.002    0.000    2.017    0.202 standards_graph.py:607(_seed_default_standards)
+     2803    0.002    0.000    2.013    0.001 pathlib.py:835(stat)
+       36    0.001    0.000    1.567    0.044 __init__.py:1(<module>)
+   395/18    0.002    0.000    1.488    0.083 <frozen importlib._bootstrap>:1349(_find_and_load)
+   389/15    0.001    0.000    1.487    0.099 <frozen importlib._bootstrap>:1304(_find_and_load_unlocked)
+        1    0.000    0.000    1.460    1.460 test_cognitive_and_control_systems.py:457(test_sync_bus_v3_handoff_lifecycle_and_claim)
+   351/23    0.001    0.000    1.459    0.063 <frozen importlib._bootstrap_external>:989(exec_module)
+        1    0.000    0.000    1.437    1.437 test_cognitive_and_control_systems.py:492(test_sync_bus_v3_acceptance_criteria_and_checklist)
+       40    0.000    0.000    1.414    0.035 case.py:585(_callSetUp)
+   384/15    0.001    0.000    1.412    0.094 <frozen importlib._bootstrap>:911(_load_unlocked)
+   928/45    0.001    0.000    1.394    0.031 <frozen importlib._bootstrap>:480(_call_with_frames_removed)
+        6    0.000    0.000    1.357    0.226 test_cognitive_and_control_systems.py:127(setUp)
+      307    0.002    0.000    1.111    0.004 standards_graph.py:210(upsert_node)
+     14/7    0.000    0.000    1.102    0.157 __init__.py:73(import_module)
+     14/7    0.000    0.000    1.102    0.157 <frozen importlib._bootstrap>:1375(_gcd_import)
+        1    0.000    0.000    1.095    1.095 test_cognitive_and_control_systems.py:537(test_skill_guard_import_paths_resolve_for_all_3_skills)
+        1    0.000    0.000    1.042    1.042 report_dispatcher.py:1(<module>)
+
+

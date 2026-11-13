@@ -1,0 +1,31 @@
+{
+  "bus_version": "3.2.0",
+  "project": "Nhà máy Công ty TNHH Tân Hỷ — Mở rộng Giai đoạn II (KCN Minh Hưng III, Bình Phước)",
+  "last_updated": "2026-10-26T21:10:00+07:00",
+  "master_protocol": "7-Gate High-Level Construction Board Audit Protocol (v3.2.0)",
+  "current_stage_gate": "ALL_ARGON_RECOMMENDATIONS_CONSOLIDATED_AND_SYNCED_V3.2",
+  "review_gate_status": "PRODUCTION_LOCKED_V3.2_VERIFIED",
+  "system_benchmark_score": "9.65 / 10.0 (Tier-1 High-Level Construction Board)",
+  "agent_system_sync": {
+    "internal_agent_skill": "user:design-evaluation-audit (v3.2.0)",
+    "persistent_memory_id": "workflows/structural_design_audit_v3_2",
+    "drive_agents_md": "AGENTS.md (v7.1)",
+    "drive_standards_lock_md": "STANDARDS_LOCK.md (v3.2.0)",
+    "master_task_spec_docx": "QuyTrinh_ChuyenSau_TungNhiemVu_HeThongSkill_v3.1_20261026.docx",
+    "master_7gate_sop_docx": "QuyTrinh_ThamTra_ThietKe_7Buoc_BanXayDungCaoCap_v3.0_20261025.docx",
+    "adjusted_audit_report_v2_docx": "TanHy_BaoCao_ThamTra_Dot1_v2_20261025.docx",
+    "upgraded_clash_dossier_docx": "TanHy_HoSo_KhoanhLoi_XungDot_Gui_TVTK_20261025.docx",
+    "argon_audit_report_docx": "Argon_BaoCao_Audit_Va_Benchmark_HeThong_v3.2_20261026.docx",
+    "expanded_crosscheck_matrix_json": "03_Agent_Workspace/TANHY_CrossCheck_Matrix_v3_20261026.json",
+    "freelancer_pricing_v2_xlsx": "TanHy_BaoGia_ThamTra_Freelancer_v2_20261025.xlsx"
+  },
+  "consolidated_deliverables_summary": {
+    "total_clashes": 22,
+    "critical_clashes": 14,
+    "major_clashes": 6,
+    "minor_clashes": 2,
+    "data_drift_status": "ZERO_DRIFT_RESOLVED",
+    "typography_status": "TIMES_NEW_ROMAN_STRICT_10PT_11PT",
+    "contract_sanctions": "4_CLAUSES_INTEGRATED_INTO_SKILL_RFI"
+  }
+}

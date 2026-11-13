@@ -169,34 +169,29 @@ class FileLock:
 # ==============================================================================
 
 def find_workspace_root() -> Path:
-    """Tự động dò tìm thư mục gốc workspace chứa .agents và memory."""
+    """Resolve the project root consistently from nested or external callers."""
     env_ws = os.environ.get("DUAL_AGENT_WORKSPACE")
-    if env_ws and Path(env_ws).is_dir():
-        return Path(env_ws).resolve()
-
-    cwd = Path.cwd()
-    if (cwd / "memory").is_dir() and (cwd / ".agents").is_dir():
-        return cwd
-
-    curr = Path(__file__).resolve().parent
-    for _ in range(6):
-        if (curr / ".agents").is_dir() and (curr / "memory").is_dir():
-            return curr
-        curr = curr.parent
-
-    curr = Path(__file__).resolve().parent
-    for _ in range(6):
-        if (curr / "memory").is_dir() or (curr / ".agents").is_dir():
-            return curr
-        curr = curr.parent
-
-    # Fallback chuẩn: .agents/tools -> parents[2]
-    return Path(__file__).resolve().parents[2]
+    if env_ws:
+        root = Path(env_ws).resolve()
+        if not root.is_dir():
+            raise ValueError("DUAL_AGENT_WORKSPACE is not a directory")
+        return root.parent if root.name == '.agents' else root
+    for start in (Path.cwd().resolve(), Path(__file__).resolve().parent):
+        for candidate in (start, *start.parents):
+            if (candidate / '.agents').is_dir():
+                return candidate
+    raise FileNotFoundError("Cannot locate workspace containing .agents")
 
 
 WORKSPACE_ROOT = find_workspace_root()
-BUS_PATH = WORKSPACE_ROOT / "memory" / "DUAL_AGENT_BUS.json"
-MEMO_PATH = WORKSPACE_ROOT / "memory" / "DUAL_AGENT_HANDOFF_MEMO.md"
+
+def get_bus_paths(ws_root: Path) -> tuple[Path, Path]:
+    agents_mem = ws_root / ".agents" / "memory"
+    if (agents_mem / "DUAL_AGENT_BUS.json").exists() or agents_mem.is_dir():
+        return agents_mem / "DUAL_AGENT_BUS.json", agents_mem / "DUAL_AGENT_HANDOFF_MEMO.md"
+    return ws_root / "memory" / "DUAL_AGENT_BUS.json", ws_root / "memory" / "DUAL_AGENT_HANDOFF_MEMO.md"
+
+BUS_PATH, MEMO_PATH = get_bus_paths(WORKSPACE_ROOT)
 LOCK_PATH = LOCK_DIR / LOCK_FILENAME
 
 
@@ -342,7 +337,7 @@ def detect_modified_files(
             pass
 
     # 2. Quét thư mục dự án & memory theo mtime
-    scan_targets = [workspace_root / "memory"]
+    scan_targets = [get_bus_paths(workspace_root)[0].parent]
     if project_code and project_code not in ("MASTER_SYSTEM", "00_MANAGEMENT_QLTK"):
         proj_dir = workspace_root / "01_Projects" / project_code
         if proj_dir.is_dir():
@@ -363,20 +358,26 @@ def detect_modified_files(
     for target in scan_targets:
         if not target.exists():
             continue
-        for root, dirs, files in os.walk(target):
-            dirs[:] = [d for d in dirs if d not in ignore_dirs and not d.startswith(".")]
-            for f in files:
-                if f.startswith(".") or ".tmp." in f:
-                    continue
-                ext = Path(f).suffix.lower()
-                if ext in allowed_exts:
-                    fp = Path(root) / f
-                    try:
-                        mtime = fp.stat().st_mtime
-                        if mtime >= time_threshold:
-                            modified_set.add(to_relative_path(str(fp), workspace_root))
-                    except Exception:
-                        pass
+        pending = [str(target)]
+        while pending:
+            try:
+                with os.scandir(pending.pop()) as entries:
+                    for entry in entries:
+                        if entry.name.startswith('.'):
+                            continue
+                        if entry.is_dir():
+                            if entry.name not in ignore_dirs and not entry.is_symlink():
+                                pending.append(entry.path)
+                            continue
+                        if '.tmp.' in entry.name or Path(entry.name).suffix.lower() not in allowed_exts:
+                            continue
+                        try:
+                            if entry.stat().st_mtime >= time_threshold:
+                                modified_set.add(to_relative_path(entry.path, workspace_root))
+                        except OSError:
+                            pass
+            except OSError:
+                continue
 
     filtered = [
         f for f in modified_set
@@ -493,7 +494,7 @@ def generate_handoff_memo(payload: dict, memo_path: Path = MEMO_PATH) -> None:
         f"> **Trạng thái bàn giao (handoff_status):** `{handoff_status}` *(Verification: `{verification_status}`)*  ",
         f"> **Tác tử giữ ca (current_holder):** `{holder}`  ",
         f"> **Chế độ phân việc:** {role_distribution}  ",
-        f"> **Kênh bus nguyên tử:** `memory/DUAL_AGENT_BUS.json`  ",
+        f"> **Kênh bus nguyên tử:** `{to_relative_path(str(BUS_PATH), WORKSPACE_ROOT)}`  ",
         "",
         "---",
         "",
@@ -727,6 +728,10 @@ def claim_task(agent: str) -> dict:
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
         data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        holder = str(data.get("current_holder", "IDLE")).upper()
+        agent = agent.upper()
+        if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
+            raise PermissionError(f"Active shift belongs to {holder}; {agent} cannot change it")
         data["handoff_status"] = "IN_PROGRESS"
         data["current_holder"] = agent
         data["Verification_Status"] = "IN_PROGRESS"
@@ -748,6 +753,10 @@ def complete_task(agent: str, summary: str = "", files: Optional[List[str]] = No
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
         data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        holder = str(data.get("current_holder", "IDLE")).upper()
+        agent = agent.upper()
+        if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
+            raise PermissionError(f"Active shift belongs to {holder}; {agent} cannot change it")
         data["handoff_status"] = "COMPLETED"
         data["current_holder"] = "IDLE"
         data["last_updated_by"] = agent
@@ -773,6 +782,10 @@ def request_review(agent: str, summary: str = "", next_agent: str = "GEMINI") ->
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
         data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        holder = str(data.get("current_holder", "IDLE")).upper()
+        agent = agent.upper()
+        if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
+            raise PermissionError(f"Active shift belongs to {holder}; {agent} cannot change it")
         data["handoff_status"] = "NEED_REVIEW"
         data["current_holder"] = "IDLE"
         data["last_updated_by"] = agent

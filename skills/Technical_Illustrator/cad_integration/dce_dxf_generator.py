@@ -211,8 +211,6 @@ class DCEDXFGenerator:
         # Uu tien nap Seed Template chua day du 46 Layer DCE_*, Linetypes *_DBIM, DimStyles, Blocks
         template_candidates = [
             Path(__file__).parent / "templates" / "DCE_Master_Seed_Template.dxf",
-            Path(r"g:\My Drive\Google AI Studio\.agents\skills\Technical_Illustrator\cad_integration\templates\DCE_Master_Seed_Template.dxf"),
-            Path(r"g:\My Drive\Google AI Studio\01_Projects\99_Archived\DuAn_Test\Dam_200x400_DCE.dxf")
         ]
         template_path = None
         for cand in template_candidates:

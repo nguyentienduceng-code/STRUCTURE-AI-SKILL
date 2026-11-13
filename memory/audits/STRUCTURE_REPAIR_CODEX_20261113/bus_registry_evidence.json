@@ -1,0 +1,16 @@
+{
+  "ownership_probe": {
+    "initial_holder": "CODEX",
+    "attempted_claim": "GEMINI",
+    "claim_rejected": true,
+    "final_holder": "CODEX",
+    "ownership_preserved": true,
+    "isolated_test": true,
+    "stdout": ""
+  },
+  "registry": {
+    "version": "2.2.0",
+    "issues": [],
+    "warnings": []
+  }
+}

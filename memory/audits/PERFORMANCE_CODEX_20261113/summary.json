@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-11-13T20:56:38.318299+07:00",
+  "original_24_passed": true,
+  "original_24_baseline_seconds": 71.88,
+  "original_24_final_sum_seconds": 30.040842999999313,
+  "full_registered_suites": 27,
+  "full_passed": true,
+  "full_seconds": 79.23318620000009,
+  "fast_suites": 17,
+  "fast_seconds": 11.40938240000014,
+  "suite23_cold_seconds": 3.0960637999996834,
+  "suite23_warm_seconds": 2.7188739000002897,
+  "acceptance": {
+    "profiling": true,
+    "citation_cache": true,
+    "suite23_under_2s": false,
+    "fast_under_15s": true,
+    "original_24_under_30s": false,
+    "original_24_all_passed": true,
+    "full_27_all_passed": true,
+    "archive_verified": true
+  },
+  "source_sha256": {
+    ".agents/tools/pdf_text_index.py": "539408a73447990d8b5eb63901695a0ef9613072c9f92a941b2a057e64f60f31",
+    ".agents/tools/citation_grounding_auditor.py": "1c13d7d61581eb4279f31e705ec0e823f1b9b8d9e1a8bdafdfba28262b8555a3",
+    ".agents/tools/doc_reader.py": "11550a32ee705a9f180bb9b8e6b04d8c9919b27b1c47e501752caf67c6fed322",
+    ".agents/tools/sync_bus.py": "55eb744983dec8dd0d0dddbb8c06b242439e6132796a74bb673af6d46ea9d653",
+    ".agents/tools/project_orchestrator.py": "4d72dcd11ce0696cac5d407019238b0dd11dc52ab07ae7043e4d77aea5e15137",
+    ".agents/tests/run_all_tests.py": "38c59f2c4e259115106c4ce9b521f1875b5409054b381378d2c7c489c926af3b",
+    ".agents/tests/test_citation_grounding_guard.py": "435b2ca10e31bd097aee75ea151f82bf49cba899d4ffc67dbab94163e9b8cb8f",
+    ".agents/tests/test_suite13_verification.py": "a303684cb515d3ab515f9cf4dad042e1d3cab4bb235fb3fb5deaf9b96d172704",
+    ".agents/tests/TEST_TIERS.md": "c667adb4202301ffa719ad0586622671170dd94ceb5de983da21b73595f76795"
+  }
+}

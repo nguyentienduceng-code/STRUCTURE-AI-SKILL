@@ -1,0 +1,16 @@
+[
+  {
+    "bytes": 1877086,
+    "sha256": "b135a0190e40c3b7936f3c3ec93c42f4037035d72b6f5f1333abcd52a60ce073",
+    "header": "504b0304140000000800157f",
+    "eocd_offset": -1,
+    "is_zip": false
+  },
+  {
+    "bytes": 1877086,
+    "sha256": "b135a0190e40c3b7936f3c3ec93c42f4037035d72b6f5f1333abcd52a60ce073",
+    "header": "504b0304140000000800157f",
+    "eocd_offset": -1,
+    "is_zip": false
+  }
+]

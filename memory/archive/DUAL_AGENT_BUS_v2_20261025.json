@@ -1,0 +1,36 @@
+{
+  "bus_version": "2.3.0",
+  "project": "Nhà máy Công ty TNHH Tân Hỷ — Mở rộng Giai đoạn II (KCN Minh Hưng III, Bình Phước)",
+  "last_updated": "2026-10-25T19:30:00+07:00",
+  "current_stage_gate": "STAGE_GATE_2_PASSED_WITH_ARGON_AUDIT_V2",
+  "review_gate_status": "APPROVED_FOR_CLIENT_SUBMISSION_V2",
+  "active_agents": {
+    "gemini_antigravity": "COMPLETED_V2_DELIVERABLES",
+    "claude_code": "VERIFIED_SCOPE_AND_CALCULATIONS",
+    "argon_independent_auditor": "COMPLETED_4WAY_CLASH_AUDIT_AND_SKILL_UPGRADE"
+  },
+  "audit_metrics_v2": {
+    "input_files_verified": 18,
+    "drawing_pages_scanned": 51,
+    "total_4way_clashes_detected": 18,
+    "critical_clashes": 10,
+    "major_clashes": 5,
+    "minor_clashes": 3,
+    "rfi_issued": 12,
+    "ncr_issued": 7
+  },
+  "deliverables_in_04_Deliverables_ToTrinh": [
+    "TanHy_BaoCao_ThamTra_Dot1_v2_20261025.docx",
+    "Argon_BaoCao_Audit_ThamTra_SkillBenchmark_TanHy_20261025.docx",
+    "TanHy_BaoGia_ThamTra_Freelancer_v2_20261025.xlsx",
+    "_CHANGELOG.md"
+  ],
+  "upgraded_skills": [
+    "Design_Evaluation/SKILL.md (v2.3.0)",
+    "Design_Evaluation/SKILLKC.md (v2.3.0)",
+    "Design_Evaluation/SKILL_REPORT.md (v2.3.0)",
+    "SKILL_BIM_COORDINATION/SKILL.md (v1.0.0)",
+    "SKILL_VERIFY/SKILL.md (v1.3.0) + scripts/drawing_calc_crosscheck.py",
+    "SKILL_RFI/SKILL.md (v1.3.0)"
+  ]
+}

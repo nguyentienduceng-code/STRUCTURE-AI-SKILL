@@ -30,7 +30,7 @@ if sys.platform == 'win32':
 DCE_ROOT = Path(r"C:\Dce Pro")
 AGENTS_ROOT = Path(__file__).resolve().parent.parent
 DOCS_DIR = AGENTS_ROOT / "docs"
-MEMORY_DIR = AGENTS_ROOT.parent / "memory"
+MEMORY_DIR = AGENTS_ROOT / "memory" if (AGENTS_ROOT / "memory").exists() else AGENTS_ROOT.parent / "memory"
 
 DUMP_JSON_PATH = DOCS_DIR / "DCE_FULL_ARCHITECTURE_DUMP.json"
 REPORT_MD_PATH = DOCS_DIR / "DCE_ANATOMY_REPORT.md"

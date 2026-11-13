@@ -7,12 +7,12 @@ triggers:
   - "Khi người dùng yêu cầu bàn giao công việc giữa Gemini và Claude"
   - "Khi cần phối hợp 2 AI cùng làm việc đồng thời trên một dự án"
   - "Khi cần thẩm tra chéo độc lập (Red-Team Audit, Verification) giữa 2 Agent"
-  - "Khi đồng bộ trạng thái qua memory/DUAL_AGENT_BUS.json hoặc DUAL_AGENT_HANDOFF_MEMO.md"
+  - "Khi đồng bộ trạng thái qua .agents/memory/DUAL_AGENT_BUS.json hoặc DUAL_AGENT_HANDOFF_MEMO.md"
 ---
 
 # 🛰️ SKILL_DUAL_AGENT_BRIDGE: CẦU NỐI ĐIỀU PHỐI ĐA TÁC TỬ (GEMINI ⚔️ CLAUDE)
 
-> **Cơ sở vận hành:** Hệ thống Bus nguyên tử `memory/DUAL_AGENT_BUS.json` & Biên bản ca trực `memory/DUAL_AGENT_HANDOFF_MEMO.md`.  
+> **Cơ sở vận hành:** Hệ thống Bus nguyên tử `.agents/memory/DUAL_AGENT_BUS.json` & Biên bản ca trực `.agents/memory/DUAL_AGENT_HANDOFF_MEMO.md`.  
 > **Nguyên tắc cốt lõi:** Tuyệt đối không để 2 AI giẫm chân lên nhau (Zero-Collision), không thất thoát ngữ cảnh (Zero-Context-Leak), và nghiệm thu bằng số liệu cứng (Deterministic Criteria).
 
 ---
@@ -47,7 +47,7 @@ Hệ thống hỗ trợ 3 chế độ cộng tác linh hoạt tùy theo tính ch
 
 ## 2. QUY CHUẨN DỮ LIỆU BUS NGUYÊN TỬ (JSON SCHEMA v3.0)
 
-File `memory/DUAL_AGENT_BUS.json` bắt buộc tuân thủ cấu trúc sau:
+File `.agents/memory/DUAL_AGENT_BUS.json` bắt buộc tuân thủ cấu trúc sau:
 
 ```json
 {
@@ -64,7 +64,7 @@ File `memory/DUAL_AGENT_BUS.json` bắt buộc tuân thủ cấu trúc sau:
   "summary": "Tóm tắt súc tích các công việc đã làm trong lượt này",
   "artifacts_modified": [
     ".agents/tools/sync_bus.py",
-    "memory/DUAL_AGENT_BUS.json"
+    ".agents/memory/DUAL_AGENT_BUS.json"
   ],
   "next_action_for_partner": {
     "target_agent": "CLAUDE | GEMINI",
@@ -135,7 +135,7 @@ python .agents/tools/sync_bus.py --clean-conflicts --confirm
 ## 5. MẪU LỆNH CHUYỂN TIẾP NHANH (PROMPT TEMPLATES)
 
 ### Khi Gemini bàn giao sang Claude:
-> *"Claude ơi, tôi đã hoàn tất công việc ở phần của mình. Trạng thái bus đã cập nhật tại `memory/DUAL_AGENT_BUS.json`. Bạn hãy chạy `python .agents/tools/sync_bus.py --claim --agent CLAUDE` để nhận ca và đối soát các tiêu chí nghiệm thu trong `memory/DUAL_AGENT_HANDOFF_MEMO.md` nhé."*
+> *"Claude ơi, tôi đã hoàn tất công việc ở phần của mình. Trạng thái bus đã cập nhật tại `.agents/memory/DUAL_AGENT_BUS.json`. Bạn hãy chạy `python .agents/tools/sync_bus.py --claim --agent CLAUDE` để nhận ca và đối soát các tiêu chí nghiệm thu trong `.agents/memory/DUAL_AGENT_HANDOFF_MEMO.md` nhé."*
 
 ### Khi Claude bàn giao sang Gemini:
 > *"Gemini ơi, tôi đã thực hiện xong các hạng mục được giao và xác nhận tiêu chí nghiệm thu. Tôi đã chuyển trạng thái sang `COMPLETED`. Bạn hãy kiểm tra lại bus qua `python .agents/tools/sync_bus.py --read` để tiếp tục tiến trình nhé."*

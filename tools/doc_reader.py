@@ -28,50 +28,28 @@ if sys.stdout.encoding != "utf-8":
     except Exception:
         pass
 
-# Backend Detection
-_PDF_BACKEND = None
-_DOCX_BACKEND = None
-_XLSX_BACKEND = None
-_DXF_BACKEND = None
-_OCR_BACKEND = None
+# Discover backends without loading unrelated CAD/OCR/data dependencies.
+from importlib import import_module
+from importlib.util import find_spec
 
-try:
-    import pdfplumber
-    _PDF_BACKEND = "pdfplumber"
-except ImportError:
-    pass
 
-if _PDF_BACKEND is None:
-    try:
-        import pymupdf
-        _PDF_BACKEND = "pymupdf"
-    except ImportError:
-        pass
+class _LazyBackend:
+    def __init__(self, name):
+        self.name = name
 
-try:
-    import pytesseract as _tesseract
-    from pdf2image import convert_from_path as _pdf2img
-    _OCR_BACKEND = "tesseract"
-except ImportError:
-    pass
+    def __getattr__(self, attribute):
+        return getattr(import_module(self.name), attribute)
 
-try:
-    import docx as _docx_lib
-    _DOCX_BACKEND = "python-docx"
-except ImportError:
-    pass
 
-try:
-    import openpyxl as _openpyxl_lib
-    _XLSX_BACKEND = "openpyxl"
-except ImportError:
-    pass
-
-try:
-    import ezdxf as _ezdxf_lib
-    _DXF_BACKEND = "ezdxf"
-except ImportError:
-    pass
+_PDF_BACKEND = 'pdfplumber' if find_spec('pdfplumber') else ('pymupdf' if find_spec('pymupdf') else None)
+_DOCX_BACKEND = 'python-docx' if find_spec('docx') else None
+_XLSX_BACKEND = 'openpyxl' if find_spec('openpyxl') else None
+_DXF_BACKEND = 'ezdxf' if find_spec('ezdxf') else None
+_OCR_BACKEND = 'tesseract' if find_spec('pytesseract') and find_spec('pdf2image') else None
+pdfplumber = _LazyBackend('pdfplumber')
+_docx_lib = _LazyBackend('docx')
+_openpyxl_lib = _LazyBackend('openpyxl')
+_ezdxf_lib = _LazyBackend('ezdxf')
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1413,20 +1391,28 @@ def scan_project_directory(dir_path: str, recursive: bool = True) -> dict:
         "inventory": {"thuyet_minh": [], "ban_ve": [], "bang_tinh": [], "mo_hinh": [], "hinh_anh": [], "other": []},
     }
 
-    pattern = "**/*" if recursive else "*"
-    all_paths = [f for f in p.glob(pattern) if f.is_file() and not f.name.startswith("~$") and not f.name.startswith(".")]
-
-    for fpath in all_paths:
-        ext = fpath.suffix.lower()
-        cat = "other"
-        for k, exts in categories.items():
-            if ext in exts:
-                cat = k
-                break
-        item_info = {"name": fpath.name, "path": str(fpath.resolve()), "extension": ext, "size_kb": round(fpath.stat().st_size / 1024, 1), "category": cat}
-        results["inventory"][cat].append(item_info)
-        results["summary"][cat] += 1
-        results["summary"]["total_files"] += 1
+    # DirEntry reuses Windows enumeration metadata instead of repeating cloud
+    # stat/resolve calls. Resolve individual file links, but do not recurse into
+    # directory symlinks (the same traversal policy as pathlib.glob).
+    pending = [str(p.resolve())]
+    while pending:
+        with os.scandir(pending.pop()) as entries:
+            for entry in entries:
+                if entry.is_dir(follow_symlinks=False):
+                    if recursive:
+                        pending.append(entry.path)
+                    continue
+                if entry.name.startswith(('~$', '.')) or not entry.is_file():
+                    continue
+                fpath = Path(entry.path)
+                ext = fpath.suffix.lower()
+                cat = next((k for k, exts in categories.items() if ext in exts), 'other')
+                resolved = str(fpath.resolve()) if entry.is_symlink() else entry.path
+                item_info = {"name": entry.name, "path": resolved, "extension": ext,
+                             "size_kb": round(entry.stat().st_size / 1024, 1), "category": cat}
+                results["inventory"][cat].append(item_info)
+                results["summary"][cat] += 1
+                results["summary"]["total_files"] += 1
 
     return results
 

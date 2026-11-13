@@ -537,7 +537,7 @@ def _bound_case(column, case, conventions):
     return values, records
 
 
-def run_project_pipeline(sources, *, conventions=None, solver_options=None, stories=None,
+def prepare_project_pipeline(sources, *, conventions=None, solver_options=None, stories=None,
                          coordinate_tolerance_mm=1., label_tolerance_mm=500., coordinate_mode='XYZ'):
     """Return a deterministic schedule plus every evaluated concurrent case.
 
@@ -613,6 +613,22 @@ def run_project_pipeline(sources, *, conventions=None, solver_options=None, stor
                 if _id_key(peer['story']) == _id_key(column['story']) or any(not case['story'] and _id_key(case['joint']) == _id_key(column['joint']) for case in cases):
                     member['errors'].append('JOINT_ASSIGNED_TO_MULTIPLE_COLUMNS_OR_UNKNOWN_STORIES')
                     break
+    return {'schema_version': 'project.prepared.v1', 'documents': documents, 'members': members,
+            'cases': cases, 'issues': issues, 'excluded_rows': excluded_rows, 'options': options,
+            'conventions': copy.deepcopy(conventions), 'coordinate_mode': coordinate_mode}
+
+
+def calculate_prepared_project(prepared, *, calculation_executor=None):
+    """Evaluate an immutable prepared snapshot; executor is trusted Python integration only."""
+    if not isinstance(prepared, dict) or prepared.get('schema_version') != 'project.prepared.v1':
+        raise PipelineDataError('INVALID_PREPARED_PROJECT')
+    if calculation_executor is not None and not callable(calculation_executor):
+        raise PipelineDataError('CALCULATION_EXECUTOR_MUST_BE_A_TRUSTED_CALLABLE')
+    snapshot = copy.deepcopy(prepared)
+    documents, members, cases = (snapshot[key] for key in ('documents', 'members', 'cases'))
+    issues, excluded_rows, options = (snapshot[key] for key in ('issues', 'excluded_rows', 'options'))
+    conventions, coordinate_mode = snapshot['conventions'], snapshot['coordinate_mode']
+    executor = calculation_executor or calc_rc_section_pm_3d
     consumed_cases = set()
     for member in members:
         column = member.get('_column')
@@ -646,7 +662,7 @@ def run_project_pipeline(sources, *, conventions=None, solver_options=None, stor
                 preflight = audit_inputs(inputs, provenance)
                 if not preflight['allowed']:
                     raise PipelineDataError('PIPELINE_PROVENANCE_PREFLIGHT_BLOCKED')
-                calculation = calc_rc_section_pm_3d(**inputs, **options, provenance=provenance, require_provenance=True)
+                calculation = executor(**inputs, **options, provenance=provenance, require_provenance=True)
                 entry.update(inputs=inputs, Provenance=provenance, calculation=calculation)
                 if calculation['status'] not in ('OK', 'FAILED') or (calculation['status'] == 'OK' and not calculation['Input_Provenance_Audit']['allowed']):
                     member['errors'].append('CASE_NOT_CONCLUSIVE:'+case['row']['location'])
@@ -700,6 +716,16 @@ def run_project_pipeline(sources, *, conventions=None, solver_options=None, stor
         'Calculation_Logs': [{'Step': 'Evaluate all concurrent rows and select governing utilization',
                               'Rule': 'No independently enveloped N/Mx/My; no PASS if a bound case is uncheckable',
                               'Result': counts}]}
+
+
+
+def run_project_pipeline(sources, *, conventions=None, solver_options=None, stories=None,
+                         coordinate_tolerance_mm=1., label_tolerance_mm=500., coordinate_mode='XYZ'):
+    """Backward-compatible one-shot execution; durable orchestration uses the two stages."""
+    prepared = prepare_project_pipeline(sources, conventions=conventions, solver_options=solver_options,
+        stories=stories, coordinate_tolerance_mm=coordinate_tolerance_mm,
+        label_tolerance_mm=label_tolerance_mm, coordinate_mode=coordinate_mode)
+    return calculate_prepared_project(prepared)
 
 
 def main(argv=None):

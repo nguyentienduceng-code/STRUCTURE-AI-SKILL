@@ -8,6 +8,13 @@ description: "Kỹ sư Minh họa Kỹ thuật & Tiến độ PMO AI chuyên sin
 
 ## Tổng quan
 
+### Chỉnh sửa CAD theo phiên (DXF, bản nháp)
+
+Dùng `../../tools/cad_edit_workbench.py` cho vòng lặp đọc/chọn handle → sửa vị trí
+TEXT/MTEXT hoặc dimension thẳng → đọc lại kiểm chứng → xem SVG → sửa tiếp/hoàn tác.
+Hướng dẫn và giới hạn: `../../tools/CAD_EDIT_WORKBENCH.md`. Đây là backend chỉnh sửa
+DXF trên bản sao; chưa hỗ trợ sửa DWG trực tiếp hoặc chọn đối tượng bằng giao diện.
+
 **Technical_Illustrator** là Trợ lý AI chuyên **trực quan hóa kỹ thuật & quản trị dự án** bằng hệ thống script Python chuẩn xác (MODE 2D — Mặc định) và mô phỏng phối cảnh (MODE 3D).
 
 > **Nguồn sự thật duy nhất về thư viện script:** `scripts/registry.json` (registry v2.2.0 — 12 Active Parametric Scripts).

@@ -394,7 +394,8 @@
       "use_cases": [
         "structural_plan_cad",
         "column_wall_setting_out"
-      ]
+      ],
+      "path": "../cad_integration/cad_plan_engine.py"
     },
     {
       "name": "dce_dxf_generator.py",
@@ -417,7 +418,8 @@
       ],
       "use_cases": [
         "beam_detail_dxf"
-      ]
+      ],
+      "path": "../cad_integration/dce_dxf_generator.py"
     },
     {
       "name": "calc_to_dxf.py",
@@ -442,7 +444,43 @@
       ],
       "use_cases": [
         "calc_export_dxf"
-      ]
+      ],
+      "path": "../cad_integration/calc_to_dxf.py"
+    },
+    {
+      "name": "dce_trigger.py",
+      "path": "dce_trigger.py",
+      "internal": true,
+      "description": "Internal CAD writer/trigger module; not a standalone CLI",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "dce_writer/beam_writer.py",
+      "path": "dce_writer/beam_writer.py",
+      "internal": true,
+      "description": "Internal CAD writer/trigger module; not a standalone CLI",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "dce_writer/steel_writer.py",
+      "path": "dce_writer/steel_writer.py",
+      "internal": true,
+      "description": "Internal CAD writer/trigger module; not a standalone CLI",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "dce_writer/column_writer.py",
+      "path": "dce_writer/column_writer.py",
+      "internal": true,
+      "description": "Internal CAD writer/trigger module; not a standalone CLI",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "dce_writer/__init__.py",
+      "path": "dce_writer/__init__.py",
+      "internal": true,
+      "description": "Internal CAD writer/trigger module; not a standalone CLI",
+      "status": "ACTIVE"
     }
   ]
 }
