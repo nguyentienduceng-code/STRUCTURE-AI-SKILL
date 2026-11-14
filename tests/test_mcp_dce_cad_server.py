@@ -108,6 +108,22 @@ class TestMcpDceCadServer(unittest.TestCase):
         self.assertIn("revision", res)
         self.assertTrue("drawing" in res or "drawing" in res.get("current", {}))
 
+    def test_06_resolve_cad_collisions_tool(self):
+        """resolve_cad_collisions tự động phát hiện và né chữ qua MCP."""
+        dxf_path = os.path.join(self.tmp_dir, "test_render.dxf")
+        if not os.path.isfile(dxf_path):
+            srv.render_cad_plan(output_dxf_path=dxf_path, sheet_type="KC-02")
+
+        # Test dry_run
+        res_dry = srv.resolve_cad_collisions(dxf_path=dxf_path, dry_run=True)
+        self.assertIn(res_dry.get("status"), ["OK", "DRY_RUN_OK"])
+        self.assertIn("displacements_planned", res_dry)
+
+        # Test execute real
+        out_dxf = os.path.join(self.tmp_dir, "resolved_plan.dxf")
+        res_real = srv.resolve_cad_collisions(dxf_path=dxf_path, output_dxf=out_dxf, dry_run=False)
+        self.assertEqual(res_real.get("status"), "OK")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -58,6 +58,7 @@ AGENTS = Path(__file__).resolve().parent.parent
 CPE    = AGENTS / "skills" / "Technical_Illustrator" / "cad_integration" / "cad_plan_engine.py"
 CHECK  = AGENTS / "skills" / "SKILL_VERIFY" / "scripts" / "dce_cad_compliance_checker.py"
 WORK   = AGENTS / "tools" / "cad_edit_workbench.py"
+SOLVER = AGENTS / "tools" / "cad_collision_solver.py"
 PREV   = AGENTS / "tools" / "dce_render_preview.py"
 ODA_EXE = os.environ.get(
     "ODA_FILE_CONVERTER",
@@ -69,10 +70,13 @@ _EDIT_ROOT_DEFAULT = SCRATCH_ROOT / "sessions"
 
 def _load(path: Path, modname: str):
     """Nạp module theo đường dẫn tuyệt đối (cross-skill, không phải package)."""
+    if modname in sys.modules:
+        return sys.modules[modname]
     spec = importlib.util.spec_from_file_location(modname, str(path))
     if spec is None or spec.loader is None:
         raise ImportError(f"Không nạp được module: {path}")
     mod = importlib.util.module_from_spec(spec)
+    sys.modules[modname] = mod
     spec.loader.exec_module(mod)
     return mod
 
@@ -252,6 +256,27 @@ def edit_entity(
     return {"status": "OK", "file_written": True,
             "session_dir": str(root),
             "revision": new_rev, "drawing": view["drawing"]}
+
+
+@_tool()
+def resolve_cad_collisions(
+    dxf_path: str,
+    output_dxf: str = "",
+    dry_run: bool = False,
+) -> dict:
+    """Tự động phát hiện và giải quyết xung đột đè chữ trong bản vẽ CAD (Sprint 2).
+
+    Sử dụng thuật toán tìm kiếm hướng tâm (8 hướng) và hàm mục tiêu khoảng cách/vật cản.
+    Tự động sinh Leader Line (đường chỉ dẫn) nếu nhãn bị dời > 300mm.
+    dry_run=True: chỉ trả về danh sách va chạm và kế hoạch dời, KHÔNG sửa file.
+    dry_run=False: áp dụng dời nhãn và lưu file kết quả.
+    """
+    solver_mod = _load(SOLVER, "cad_solver")
+    if not os.path.isfile(dxf_path):
+        return {"status": "E001", "error": f"Không tìm thấy file DXF tại: {dxf_path}"}
+    solver = solver_mod.CadCollisionSolver.from_dxf(dxf_path)
+    res = solver.solve_all(dry_run=dry_run, output_path=output_dxf or None)
+    return res
 
 
 @_tool()
