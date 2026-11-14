@@ -1,0 +1,161 @@
+{
+  "timestamp": "2026-11-14T08:37:35.809010+07:00",
+  "agent": "CODEX",
+  "status": "PASS_WITH_DOCUMENTED_SCOPE",
+  "scope": "MCP CAD managed scratch writes; not all Windows sharing violations",
+  "python": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+  "packages": {
+    "mcp": "2.3.0",
+    "ezdxf": "1.4.4",
+    "matplotlib": "3.10.9"
+  },
+  "verified_local_root": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad",
+  "drive_conflicts_end_of_shift": 0,
+  "fast": {
+    "tier": "fast",
+    "registered_suites": 28,
+    "selected_suites": 17,
+    "all_passed": true,
+    "wall_seconds": 11.690654500000164,
+    "suites": [
+      {
+        "number": 1,
+        "name": "1. Integration Test (64 checks)",
+        "passed": true,
+        "wall_seconds": 0.28582509999978356
+      },
+      {
+        "number": 2,
+        "name": "2. Regression Calculator Test (13 calculators)",
+        "passed": true,
+        "wall_seconds": 0.220991099999992
+      },
+      {
+        "number": 3,
+        "name": "3. Pre-Execution Approval Gate (32 tests)",
+        "passed": true,
+        "wall_seconds": 0.19202210000003106
+      },
+      {
+        "number": 4,
+        "name": "4. Intent Classifier Benchmark (17 tests)",
+        "passed": true,
+        "wall_seconds": 0.1735670999996728
+      },
+      {
+        "number": 5,
+        "name": "5. E2E Pipeline Workflow",
+        "passed": true,
+        "wall_seconds": 0.15177630000016507
+      },
+      {
+        "number": 6,
+        "name": "6. DE Calculators Unit Tests (10 tests)",
+        "passed": true,
+        "wall_seconds": 0.15021109999997861
+      },
+      {
+        "number": 8,
+        "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
+        "passed": true,
+        "wall_seconds": 0.15346970000064175
+      },
+      {
+        "number": 9,
+        "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
+        "passed": true,
+        "wall_seconds": 0.24379970000063622
+      },
+      {
+        "number": 14,
+        "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
+        "passed": true,
+        "wall_seconds": 1.615730800000165
+      },
+      {
+        "number": 15,
+        "name": "15. Sync Report System Consistency (14 tests)",
+        "passed": true,
+        "wall_seconds": 0.4555913000003784
+      },
+      {
+        "number": 17,
+        "name": "17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)",
+        "passed": true,
+        "wall_seconds": 0.5717157000008228
+      },
+      {
+        "number": 19,
+        "name": "19. Dual-Agent Bridge & Bus IPC (7 tests)",
+        "passed": true,
+        "wall_seconds": 0.5055312000004051
+      },
+      {
+        "number": 20,
+        "name": "20. Cognitive Brain v2.0 Benchmark (10 tests)",
+        "passed": true,
+        "wall_seconds": 0.27600230000007286
+      },
+      {
+        "number": 21,
+        "name": "21. R&D & Structural TCVN Regression Patches (20 checks)",
+        "passed": true,
+        "wall_seconds": 1.1401226999996652
+      },
+      {
+        "number": 22,
+        "name": "22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)",
+        "passed": true,
+        "wall_seconds": 0.6711537000001044
+      },
+      {
+        "number": 23,
+        "name": "23. PDF Citation Grounding & Input Provenance Guard (62 tests)",
+        "passed": true,
+        "wall_seconds": 2.7427349999998114
+      },
+      {
+        "number": 27,
+        "name": "27. CAD Edit Workbench (9 tests)",
+        "passed": true,
+        "wall_seconds": 1.9964334000005692
+      }
+    ]
+  },
+  "cad_guard": {
+    "tier": "selected",
+    "registered_suites": 28,
+    "selected_suites": 2,
+    "all_passed": true,
+    "wall_seconds": 16.2522527000001,
+    "suites": [
+      {
+        "number": 18,
+        "name": "18. DCE CAD Compliance & Zero White Text Lock (9 tests)",
+        "passed": true,
+        "wall_seconds": 10.772814699999799
+      },
+      {
+        "number": 28,
+        "name": "28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)",
+        "passed": true,
+        "wall_seconds": 5.463593200000105
+      }
+    ]
+  },
+  "test_counts": {
+    "suite_18": 14,
+    "suite_28": 18,
+    "fast_suites": 17
+  },
+  "sha256": {
+    ".agents/tools/dce_virtual_drive_guard.py": "3c9a6860528899f5ed1e0caa289d9b24e80ecf8c56cc6b5854448483119f1cbf",
+    ".agents/tools/dce_render_preview.py": "1d4522c72c9ceb07f593053711fc7efaaa02349db518e34dec4fb4a99d553147",
+    ".agents/tools/mcp_dce_cad_server.py": "9bd0f95b872a9e8c2810d35fb31dfb0fc44d5f3ecf2d4084f05498152320e3d9",
+    ".agents/tools/mcp_config.json": "f2c516bfa666e4216a374bdaa49dd5d9f1c55b4bf00b9ca0545989dc0160fff0",
+    ".agents/tests/test_dce_virtual_drive_guard.py": "50dd7e1b94fa74f516790ff798c741273ba90e37bc44c9a9f0b51dbb0188532b",
+    ".agents/tests/run_all_tests.py": "80073213ec30f74de6d948945666f7f07b41e472f080bdb1189827e486aea43c",
+    ".agents/docs/DCE_VIRTUAL_DRIVE_GUARD.md": "7587545adc77c351f14c2ce1a98013eaf2335e202bdfa4f5907308f32ca1c951"
+  },
+  "notes": "ACCEPTANCE.md and DCE_VIRTUAL_DRIVE_GUARD.md contain lifecycle and scope limits."
+}

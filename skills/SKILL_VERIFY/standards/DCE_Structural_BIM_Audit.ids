@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+  <info>
+    <title>DCE Pro v5.0 - Quy chuan Kiem toan Mo hinh Ket cau BIM IFC4 (TCVN 5574:2018 &amp; TCVN 9386:2025)</title>
+    <copyright>DCE Structural AI Ecosystem</copyright>
+    <version>5.0.0</version>
+    <description>Kiem tra bat buoc thuoc tinh chiu luc LoadBearing, cap do ben be tong va ma dinh danh SSOT_UUID tren cot, vach, dam, san.</description>
+  </info>
+  <specifications>
+    <specification name="Gate_BIM_01_Cot_Chiu_Luc_TCVN" ifcVersion="IFC4">
+      <applicability minOccurs="1" maxOccurs="unbounded">
+        <entity>
+          <name><simpleValue>IFCCOLUMN</simpleValue></name>
+        </entity>
+      </applicability>
+      <requirements>
+        <property dataType="IFCLOGICAL" cardinality="required">
+          <propertySet><simpleValue>Pset_ColumnCommon</simpleValue></propertySet>
+          <baseName><simpleValue>LoadBearing</simpleValue></baseName>
+          <value><simpleValue>true</simpleValue></value>
+        </property>
+      </requirements>
+    </specification>
+    <specification name="Gate_BIM_02_Vach_Cung_Khang_Chan" ifcVersion="IFC4">
+      <applicability minOccurs="1" maxOccurs="unbounded">
+        <entity>
+          <name><simpleValue>IFCWALL</simpleValue></name>
+        </entity>
+      </applicability>
+      <requirements>
+        <property dataType="IFCLOGICAL" cardinality="required">
+          <propertySet><simpleValue>Pset_WallCommon</simpleValue></propertySet>
+          <baseName><simpleValue>LoadBearing</simpleValue></baseName>
+          <value><simpleValue>true</simpleValue></value>
+        </property>
+      </requirements>
+    </specification>
+  </specifications>
+</ids>

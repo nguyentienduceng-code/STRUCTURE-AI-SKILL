@@ -47,11 +47,13 @@ SUITES = [
     ("25. Project Data Adapter & E2E Batch Pipeline (34 tests)", [sys.executable, str(TESTS_DIR / "test_project_data_pipeline.py")]),
     ("26. Durable Project Orchestration & Agent Roles (39 tests)", [sys.executable, str(TESTS_DIR / "test_project_orchestration_p1.py")]),
     ("27. CAD Edit Workbench (9 tests)", [sys.executable, str(TESTS_DIR / "test_cad_edit_workbench.py")]),
+    ("28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)", [sys.executable, '-B', str(TESTS_DIR / "test_dce_virtual_drive_guard.py")]),
+    ("29. MCP DCE-CAD Server & Vision Tools (5 tests)", [sys.executable, str(TESTS_DIR / "test_mcp_dce_cad_server.py")]),
 ]
 
 # Smoke tier includes the real-PDF grounding guard. Slow reporting, CAD,
 # control timing, nonlinear solving and durable orchestration remain in full CI.
-FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 19, 20, 21, 22, 23, 27}
+FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 18, 19, 20, 21, 22, 23, 27, 28, 29}
 
 def main():
     import argparse

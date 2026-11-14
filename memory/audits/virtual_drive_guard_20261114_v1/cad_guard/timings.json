@@ -1,0 +1,21 @@
+{
+  "tier": "selected",
+  "registered_suites": 28,
+  "selected_suites": 2,
+  "all_passed": true,
+  "wall_seconds": 16.2522527000001,
+  "suites": [
+    {
+      "number": 18,
+      "name": "18. DCE CAD Compliance & Zero White Text Lock (9 tests)",
+      "passed": true,
+      "wall_seconds": 10.772814699999799
+    },
+    {
+      "number": 28,
+      "name": "28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)",
+      "passed": true,
+      "wall_seconds": 5.463593200000105
+    }
+  ]
+}

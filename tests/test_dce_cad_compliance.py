@@ -33,6 +33,7 @@ import ezdxf
 from dce_dxf_generator import DCEDXFGenerator
 from calc_to_dxf import RCCalculatorToDXF, SteelCalculatorToDXF
 from cad_plan_engine import export_dce_plan
+from cad_plan_engine import DcePlanEngine, build_structural_model, SCALE_MM
 from dce_cad_compliance_checker import audit_dxf_compliance
 from docx_generator import sanitize_docx_table_colors
 
@@ -223,6 +224,83 @@ class TestZeroWhiteTextLock(unittest.TestCase):
         # Xác nhận chữ trắng đã được chuyển về chữ tối 1E3246
         self.assertNotEqual(run.font.color.rgb, RGBColor(255, 255, 255), "Chữ trắng phải bị ghi đè hoàn toàn.")
         self.assertEqual(run.font.color.rgb, RGBColor(0x1E, 0x32, 0x46))
+
+
+class TestDceV5OffsetAndRevitConversion(unittest.TestCase):
+    """
+    Kiểm thử tích hợp DCE v5.0 starter kit (RFC_MCP_DCE_CAD_PERCEPTION_LOOP §6.3.1):
+    1. _col_centers: model cũ (không offset) giữ 100% hành vi giữa trục (regression).
+    2. _col_centers: cột mép (offset_x_mm = bx/2) dịch đúng, lệch vượt biên bị chặn.
+    3. column_revit_center: khớp công thức compute_column_revit_center của kit (3 ca,
+       kiểm chứng chiều nghịch đảo x_g = x_c - B/2 + a_left).
+    """
+
+    def _engine_at_origin(self):
+        model = build_structural_model()
+        eng = DcePlanEngine(model).setup()
+        eng.ox, eng.oy = 0.0, 0.0  # origin trung tính: _wx(x) = x * SCALE_MM
+        return eng
+
+    def test_v5_01_regression_column_center_without_offset(self):
+        eng = self._engine_at_origin()
+        col = {'name': 'T1', 'x': 0.35, 'y': 27.50, 'bx': 0.70, 'by': 1.00}
+        cx, cy = eng._col_centers(col)
+        self.assertAlmostEqual(cx, 0.35 * SCALE_MM, places=3)
+        self.assertAlmostEqual(cy, 27.50 * SCALE_MM, places=3)
+
+    def test_v5_02_mep_column_offset_shifts_center(self):
+        eng = self._engine_at_origin()
+        # Cột mép: mặt trái nằm TRÊN trục (a_left = 0 theo kit) => tâm lệch +bx/2
+        col = {'name': 'T2', 'x': 0.35, 'y': 27.50, 'bx': 0.70, 'by': 1.00,
+               'offset_x_mm': 0.35 * SCALE_MM}
+        cx, cy = eng._col_centers(col)
+        self.assertAlmostEqual(cx, 0.70 * SCALE_MM, places=3)  # 350 + 350
+        self.assertAlmostEqual(cy, 27.50 * SCALE_MM, places=3)
+
+    def test_v5_03_offset_beyond_size_rejected(self):
+        eng = self._engine_at_origin()
+        bad = {'name': 'T3', 'x': 1.0, 'y': 1.0, 'bx': 0.70, 'by': 1.00,
+               'offset_x_mm': 0.71 * SCALE_MM}
+        with self.assertRaises(ValueError):
+            eng._col_centers(bad)
+
+    def test_v5_04_revit_center_matches_kit_formula(self):
+        # Ca 1: cột giữa trục (offset 0)
+        r0 = DcePlanEngine.column_revit_center({'x': 0.0, 'y': 0.0, 'bx': 0.4, 'by': 0.4})
+        self.assertEqual(r0['x_center_mm'], 0.0)
+        self.assertEqual(r0['x_center_ft'], 0.0)
+        # Ca 2: cột mép (offset_x_mm = 200 = B/2) => khớp kit: tam +200mm
+        r1 = DcePlanEngine.column_revit_center({'x': 0.0, 'y': 0.0, 'bx': 0.4, 'by': 0.4,
+                                               'offset_x_mm': 200.0})
+        self.assertEqual(r1['x_center_mm'], 200.0)
+        self.assertAlmostEqual(r1['x_center_ft'], 200.0 / 304.8, places=6)
+        # Ca 3: lệch tâm (kit: a_left=100 => x_c = 1500 + (200 - 100) = 1600mm)
+        r2 = DcePlanEngine.column_revit_center({'x': 1.5, 'y': 3.0, 'bx': 0.4, 'by': 0.6,
+                                               'offset_x_mm': 100.0, 'ssot_uuid': 'U-1'})
+        self.assertEqual(r2['x_center_mm'], 1600.0)
+        self.assertEqual(r2['y_center_mm'], 3000.0)
+        self.assertEqual(r2['ssot_uuid'], 'U-1')
+        self.assertAlmostEqual(r2['x_center_ft'], 1600.0 / 304.8, places=6)
+
+    def test_v5_05_sheet_export_unaffected(self):
+        # Sau khi thêm offset: model chuẩn (không offset) xuất KC-02 phải audit PASS
+        tmp = os.path.join(self._tempdir(), "v5_kc02.dxf")
+        export_dce_plan(tmp, sheet_type="KC-02")
+        res = audit_dxf_compliance(tmp)
+        self.assertEqual(res['status'], 'PASS', f"KC-02 regression FAIL: {res.get('issues')}")
+
+    @classmethod
+    def _tempdir(cls):
+        import tempfile as _t
+        d = _t.mkdtemp(prefix="dce_v5_")
+        cls._t = d
+        return d
+
+    @classmethod
+    def tearDownClass(cls):
+        import shutil
+        if getattr(cls, '_t', None):
+            shutil.rmtree(cls._t, ignore_errors=True)
 
 
 if __name__ == '__main__':

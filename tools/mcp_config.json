@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "dce-cad": {
+      "command": "python",
+      "args": ["-B", "G:\\My Drive\\Google AI Studio\\.agents\\tools\\mcp_dce_cad_server.py"],
+      "env": {
+        "ODA_FILE_CONVERTER": "C:\\Program Files\\ODA\\ODA File Converter\\ODAFileConverter.exe",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    }
+  },
+  "_note": {
+    "source": "RFC_MCP_DCE_CAD_PERCEPTION_LOOP.md §6.3.4 (mẫu cấu trúc từ kit E, trỏ .agents/ thật)",
+    "clients": ["Claude Code (claude mcp add --python ...)", "Claude Desktop (claude_desktop_config.json)", "Antigravity IDE", "Cursor (mcp.json)"],
+    "registration_example": {
+      "claude_code": "claude mcp add dce-cad -- python \"G:\\My Drive\\Google AI Studio\\.agents\\tools\\mcp_dce_cad_server.py\""
+    },
+    "tools": [
+      "render_cad_plan(sheet_type, output_dxf_path, template_path, pdf_path, model_json_path, dry_run)",
+      "render_preview(dxf_path, out_png, dpi, layout, view_box)",
+      "consume_preview(preview_id)",
+      "release_preview(preview_id)",
+      "validate_cad(dxf_path)",
+      "edit_entity(session_dir, source_dxf, handle, dx, dy, expected_revision, dry_run)",
+      "convert_to_dwg(dxf_path, out_dwg)"
+    ],
+    "dependencies": ["mcp (pip, 1.x/2.x)", "ezdxf>=1.4", "matplotlib", "ODA File Converter (optional, cho convert_to_dwg)"],
+    "scratch_policy": "Virtual Drive Guard: local fixed NTFS/ReFS C:/D: only. Optional DCE_CAD_SCRATCH_ROOT; unsafe overrides fall back to local Temp. PNG destinations are always redirected; use output_png/preview_id from the response.",
+    "vision_lifecycle": "render_preview -> consume_preview returns image content and automatically deletes the PNG; direct file readers call release_preview after inspection. Abandoned completed previews expire after 24h and are swept on the next allocation. Edit revisions are retained."
+  }
+}

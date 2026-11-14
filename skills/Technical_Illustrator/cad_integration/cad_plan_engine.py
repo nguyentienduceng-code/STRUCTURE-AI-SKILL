@@ -342,6 +342,36 @@ class DcePlanEngine:
     def _wx(self, x_m): return self.ox + x_m * SCALE_MM
     def _wy(self, y_m): return self.oy + y_m * SCALE_MM
 
+    # ------------------------------------------------------------------
+    # QUY ĐỔI CỘT SANG REVIT (DCE v5.0 starter kit — RFC §6.2B)
+    # Revit internal units = feet. Chỉ dùng khi xuất mô hình 3D/SSOT
+    # (Giai đoạn 3); các renderer 2D không đụng đường này.
+    # ------------------------------------------------------------------
+    MM_TO_FT = 1.0 / 304.8
+
+    @classmethod
+    def column_revit_center(cls, col: Dict[str, Any]) -> Dict[str, float]:
+        """
+        Quy đổi tọa độ cột engine-model (mét) sang tâm hình học Revit.
+
+        Công thức (đã kiểm chứng 3 ca giữa trục / mép trục / lệch tâm
+        khớp compute_column_revit_center của starter kit):
+            x_c_mm = x*1000 + offset_x_mm      (offset default 0 => giữa trục)
+            y_c_mm = y*1000 + offset_y_mm
+        Trả về mm (1 số lẻ) + feet Revit (6 số lẻ) + ssot_uuid (nếu có).
+        """
+        off_x = float(col.get('offset_x_mm', 0.0))
+        off_y = float(col.get('offset_y_mm', 0.0))
+        x_c_mm = float(col['x']) * 1000.0 + off_x
+        y_c_mm = float(col['y']) * 1000.0 + off_y
+        return {
+            'ssot_uuid': col.get('ssot_uuid', ''),
+            'x_center_mm': round(x_c_mm, 1),
+            'y_center_mm': round(y_c_mm, 1),
+            'x_center_ft': round(x_c_mm * cls.MM_TO_FT, 6),
+            'y_center_ft': round(y_c_mm * cls.MM_TO_FT, 6),
+        }
+
     def setup(self):
         if self.template_path and os.path.exists(self.template_path):
             self.doc = ezdxf.readfile(str(self.template_path))
@@ -374,6 +404,26 @@ class DcePlanEngine:
     # ------------------------------------------------------------------
     # CÁC PHẦN DÙNG CHUNG (LƯỚI TRỤC, DIM, KHUNG BẢN VẼ, VOID)
     # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # CỘT MÉP / LỆCH TÂM (DCE v5.0 starter kit — RFC §6.2B)
+    # ------------------------------------------------------------------
+    # Mô hình cũ: (x, y) = TÂM cột, luôn giữa trục. Thêm 2 trường
+    # (mm, optional, default 0.0) để dịch cột mép/lệch tâm. Ví dụ cột
+    # 700x1000 có MẶT TRÁI nằm trên trục: offset_x_mm = 350.
+    # Model không khai báo => hành vi cũ giữ nguyên 100% (regression-safe).
+    def _col_centers(self, col):
+        """Tâm cột world-coord = (x, y) + offset_x_mm/offset_y_mm (clamp [0..size])."""
+        bx_mm = float(col['bx']) * SCALE_MM
+        by_mm = float(col['by']) * SCALE_MM
+        off_x = float(col.get('offset_x_mm', 0.0))
+        off_y = float(col.get('offset_y_mm', 0.0))
+        if not (0.0 <= off_x <= bx_mm and 0.0 <= off_y <= by_mm):
+            raise ValueError(
+                f"{col.get('name', '?')}: offset_x_mm/offset_y_mm vượt biên [0..size] — kiểm tra model")
+        cx = self._wx(col['x']) + off_x
+        cy = self._wy(col['y']) + off_y
+        return cx, cy
+
     def render_slab_boundary(self):
         self.msp.add_lwpolyline(
             [(self.ox, self.oy), (self.ox + self.L, self.oy),
@@ -462,7 +512,7 @@ class DcePlanEngine:
         gyd = m['grid_y'] if isinstance(m['grid_y'], dict) else {it['name']: it['pos'] for it in m['grid_y']}
 
         for col in m['columns']:
-            cx = self._wx(col['x']); cy = self._wy(col['y'])
+            cx, cy = self._col_centers(col)
             nearest_gx = min(gxd.keys(), key=lambda k: abs(cx - self._wx(gxd[k])))
             nearest_gy = min(gyd.keys(), key=lambda k: abs(cy - self._wy(gyd[k])))
             gx_dist = cx - self._wx(gxd[nearest_gx])
@@ -591,8 +641,8 @@ class DcePlanEngine:
     def render_columns_walls_kc02(self):
         msp = self.msp
         for col in self.model['columns']:
-            cx = self._wx(col['x']); cy = self._wy(col['y'])
             bx = col['bx'] * SCALE_MM; by = col['by'] * SCALE_MM
+            cx, cy = self._col_centers(col)
             x0, y0 = cx - bx / 2.0, cy - by / 2.0
             x1, y1 = cx + bx / 2.0, cy + by / 2.0
             pts = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
@@ -810,8 +860,8 @@ class DcePlanEngine:
     def render_columns_walls_supports(self):
         msp = self.msp
         for col in self.model['columns']:
-            cx = self._wx(col['x']); cy = self._wy(col['y'])
             bx = col['bx'] * SCALE_MM; by = col['by'] * SCALE_MM
+            cx, cy = self._col_centers(col)
             pts = [
                 (cx - bx/2, cy - by/2), (cx + bx/2, cy - by/2),
                 (cx + bx/2, cy + by/2), (cx - bx/2, cy + by/2)
