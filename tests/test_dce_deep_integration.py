@@ -21,7 +21,9 @@ if sys.stdout.encoding != "utf-8":
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 import tempfile
+import shutil
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 TESTS_DIR = Path(__file__).resolve().parent
@@ -194,7 +196,15 @@ class TestDceOptionController(unittest.TestCase):
     """Kiểm thử bộ điều khiển 1.239 file cấu hình .txt & Dual-Source JSON Registry v2.0."""
 
     def setUp(self):
-        self.ctrl = DceOptionController()
+        # Transaction tests must never mutate the installed commercial software.
+        scratch = tempfile.TemporaryDirectory(prefix='dce_options_test_')
+        self.addCleanup(scratch.cleanup)
+        root = Path(scratch.name)
+        installed = Path('C:/Dce Pro')
+        for name in ('System', 'SystemSteel', 'SystemRvt'):
+            if (installed / name).is_dir():
+                shutil.copytree(installed / name, root / name)
+        self.ctrl = DceOptionController(dce_root=root)
 
     def test_01_get_essential_options(self):
         """Kiểm tra đọc các tham số cấu hình cốt lõi."""
@@ -228,6 +238,10 @@ class TestDceCadAutomation(unittest.TestCase):
     """Kiểm thử module điều khiển Multi-CAD Automation & VPGroup::CalcMetaRect v2.0."""
 
     def setUp(self):
+        # These cases exercise offline fallback; never send commands to a live CAD.
+        offline = patch.object(DceCadAutomation, '_init_com', return_value=False)
+        offline.start()
+        self.addCleanup(offline.stop)
         self.cad_auto = DceCadAutomation()
 
     def test_01_send_command_offline_fallback(self):

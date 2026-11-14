@@ -1,0 +1,376 @@
+{
+  "C:\\Dce Pro\\configDb.db": {
+    "snapshot": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce_anatomy_snapshots_20261114\\snapshot_53ad189fe3.db",
+    "header": "53514c69746520666f726d6174203300",
+    "tables": {
+      "ConfigSettings": {
+        "sql": "CREATE TABLE ConfigSettings (config_key TEXT, config_value TEXT)",
+        "columns": [
+          [
+            0,
+            "config_key",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            1,
+            "config_value",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 8,
+        "sample": [
+          [
+            "ToKen",
+            "<REDACTED>"
+          ],
+          [
+            "TokenLicenseKey",
+            "<REDACTED>"
+          ]
+        ]
+      }
+    }
+  },
+  "C:\\Dce Pro\\configDbSteel.db": {
+    "snapshot": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce_anatomy_snapshots_20261114\\snapshot_0f60c1dea1.db",
+    "header": "53514c69746520666f726d6174203300",
+    "tables": {
+      "ConfigSettings": {
+        "sql": "CREATE TABLE ConfigSettings (config_key TEXT, config_value TEXT)",
+        "columns": [
+          [
+            0,
+            "config_key",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            1,
+            "config_value",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 7,
+        "sample": [
+          [
+            "ToKen",
+            "<REDACTED>"
+          ],
+          [
+            "TokenLicenseKey",
+            "<REDACTED>"
+          ]
+        ]
+      }
+    }
+  },
+  "C:\\Dce Pro\\MayHoc\\mauhoc.db": {
+    "snapshot": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce_anatomy_snapshots_20261114\\snapshot_a3672bab3f.db",
+    "header": "53514c69746520666f726d6174203300",
+    "tables": {
+      "MauHoc": {
+        "sql": "CREATE TABLE MauHoc(Id INTEGER PRIMARY KEY AUTOINCREMENT, TextGoc TEXT, ChiSoSo INTEGER, GiaTri INTEGER, Feature TEXT, Nhan TEXT, Nguon TEXT, ThoiGian TEXT, Hash TEXT)",
+        "columns": [
+          [
+            0,
+            "Id",
+            "INTEGER",
+            0,
+            null,
+            1
+          ],
+          [
+            1,
+            "TextGoc",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            2,
+            "ChiSoSo",
+            "INTEGER",
+            0,
+            null,
+            0
+          ],
+          [
+            3,
+            "GiaTri",
+            "INTEGER",
+            0,
+            null,
+            0
+          ],
+          [
+            4,
+            "Feature",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            5,
+            "Nhan",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            6,
+            "Nguon",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            7,
+            "ThoiGian",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            8,
+            "Hash",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 45020,
+        "sample": [
+          [
+            3656,
+            "[1b] 3x∅20, L= 11700",
+            0,
+            1,
+            "PREV_lbr NEXT_b AFTERL_0 INRING_1 DKCHUAN_0 NDIGIT_1 INSEQ_0 BEFORED_0 AFTERD_0 SHLET_1",
+            "SH",
+            "user",
+            "2026-07-05 12:23:52",
+            "7BFA9014D754C349E807C64643679B44"
+          ],
+          [
+            3657,
+            "[1b] 3x∅20, L= 11700",
+            1,
+            3,
+            "PREV_rbr NEXT_x AFTERL_0 INRING_0 DKCHUAN_0 NDIGIT_1 INSEQ_0 BEFORED_0 AFTERD_0 SHLET_0",
+            "SL",
+            "user",
+            "2026-07-05 12:23:52",
+            "213CC2DDDA66A73E4060235B0B6CBC25"
+          ]
+        ]
+      },
+      "LichSuSua": {
+        "sql": "CREATE TABLE LichSuSua(Id INTEGER PRIMARY KEY AUTOINCREMENT, TextGoc TEXT, Truoc TEXT, Sau TEXT, ThoiGian TEXT)",
+        "columns": [
+          [
+            0,
+            "Id",
+            "INTEGER",
+            0,
+            null,
+            1
+          ],
+          [
+            1,
+            "TextGoc",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            2,
+            "Truoc",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            3,
+            "Sau",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            4,
+            "ThoiGian",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 3,
+        "sample": [
+          [
+            1,
+            "[1b] 3x∅20, L= 11700",
+            "",
+            "SL=3;DK=20;KC1=0;KC2=0;KC3=0;KC4=0;SH=1b;L=11700",
+            "2026-07-05 12:23:52"
+          ],
+          [
+            2,
+            "[1a+3G]6x∅20,L=11700",
+            "",
+            "SL=6;DK=20;KC1=0;KC2=0;KC3=0;KC4=0;SH=1a+3G;L=11700",
+            "2026-07-05 12:24:33"
+          ]
+        ]
+      },
+      "CauHinhModel": {
+        "sql": "CREATE TABLE CauHinhModel(Ten TEXT, DuongDan TEXT, SoMau INTEGER, ThoiGian TEXT)",
+        "columns": [
+          [
+            0,
+            "Ten",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            1,
+            "DuongDan",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            2,
+            "SoMau",
+            "INTEGER",
+            0,
+            null,
+            0
+          ],
+          [
+            3,
+            "ThoiGian",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 10,
+        "sample": [
+          [
+            "SteelToken",
+            "C:\\Dce Pro\\MayHoc\\model.zip",
+            435,
+            "2026-07-05 11:27:40"
+          ],
+          [
+            "SteelToken",
+            "C:\\Dce Pro\\MayHoc\\model.zip",
+            435,
+            "2026-07-05 11:29:09"
+          ]
+        ]
+      }
+    }
+  },
+  "C:\\Dce Pro\\System\\configDb.db": {
+    "snapshot": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce_anatomy_snapshots_20261114\\snapshot_6c6f7c2ef5.db",
+    "header": "53514c69746520666f726d6174203300",
+    "tables": {
+      "ConfigSettings": {
+        "sql": "CREATE TABLE ConfigSettings (config_key TEXT, config_value TEXT)",
+        "columns": [
+          [
+            0,
+            "config_key",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            1,
+            "config_value",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 8,
+        "sample": [
+          [
+            "ToKen",
+            "<REDACTED>"
+          ],
+          [
+            "TokenLicenseKey",
+            "<REDACTED>"
+          ]
+        ]
+      }
+    }
+  },
+  "C:\\Dce Pro\\AddinSteelCad\\System\\configDb.db": {
+    "snapshot": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce_anatomy_snapshots_20261114\\snapshot_755c5ca410.db",
+    "header": "53514c69746520666f726d6174203300",
+    "tables": {
+      "ConfigSettings": {
+        "sql": "CREATE TABLE ConfigSettings (config_key TEXT, config_value TEXT)",
+        "columns": [
+          [
+            0,
+            "config_key",
+            "TEXT",
+            0,
+            null,
+            0
+          ],
+          [
+            1,
+            "config_value",
+            "TEXT",
+            0,
+            null,
+            0
+          ]
+        ],
+        "rows": 7,
+        "sample": [
+          [
+            "ToKen",
+            "<REDACTED>"
+          ],
+          [
+            "TokenLicenseKey",
+            "<REDACTED>"
+          ]
+        ]
+      }
+    }
+  }
+}

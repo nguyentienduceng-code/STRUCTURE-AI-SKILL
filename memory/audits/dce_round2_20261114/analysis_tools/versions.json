@@ -1,0 +1,14 @@
+{
+  "dnfile": "0.18.0",
+  "dncil": "1.0.2",
+  "libredwg_web": "0.8.8",
+  "dwg_warning": {
+    "code": 76,
+    "flags": [
+      "UNHANDLEDCLASS",
+      "INVALIDTYPE",
+      "VALUEOUTOFBOUNDS"
+    ]
+  },
+  "source_execution": false
+}

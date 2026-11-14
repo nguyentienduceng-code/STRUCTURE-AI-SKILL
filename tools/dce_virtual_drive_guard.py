@@ -42,9 +42,13 @@ def require_local(path):
             continue
         if info.st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
             raise UnsafeScratchPath(f'Reparse point in scratch path: {parent}')
-    path = path.resolve()
-    if path.drive.upper() not in {'C:', 'D:'}:
+    resolved = path.resolve()
+    resolved_str = str(resolved)
+    if resolved_str.startswith('\\\\?\\'):
+        resolved = Path(resolved_str[4:])
+    if resolved.drive.upper() not in {'C:', 'D:'}:
         raise UnsafeScratchPath(f'Alias resolves outside local C:/D: volumes: {path}')
+    path = resolved
     if any(any(word in part.casefold() for word in
                ('onedrive', 'google drive', 'googledrive', 'my drive', 'dropbox'))
            for part in path.parts):

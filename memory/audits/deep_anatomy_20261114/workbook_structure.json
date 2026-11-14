@@ -1,0 +1,64 @@
+{
+  "01. DCE_Etabs_2020.xlsm": {
+    "sheets": [
+      "DATA",
+      "STRENGTH CLASSES FOR CONCRETE",
+      "POINT_WALL",
+      "POINT_COLUMN",
+      "POINT_SLAB",
+      "POINT_BEAM",
+      "TOA_DO",
+      "MAIN"
+    ],
+    "formula_xml_elements": 243,
+    "vba_present": true
+  },
+  "08. DCE_ColumnWall_2020.xlsm": {
+    "sheets": [
+      "DATA_CONCRETE&REBAR",
+      "PIERFORCES",
+      "PIERSECTION",
+      "STORY DATA",
+      "DATA_CORE",
+      "TM Wall",
+      "TM Column",
+      "TinhCat",
+      "Design",
+      "WallDesign",
+      "ColumnDesign",
+      "Wall Detail",
+      "Column Detail"
+    ],
+    "formula_xml_elements": 924,
+    "vba_present": true
+  },
+  "09. DCE_Beam_2020.xlsm": {
+    "sheets": [
+      "ProgramName",
+      "BEAM FORCES",
+      "FRAME SECTION PROPERTIES",
+      "FRAME ASSIGNMENTS SUMMARY",
+      "POINT COORDINATES",
+      "BEAM CONNECTIVITY DATA",
+      "PIERSECTION",
+      "Gird",
+      "NoiLuc",
+      "BanVe",
+      "THDL",
+      "TinhDam",
+      "TM_CT_TCVN",
+      "ThuyetMinh",
+      "BocTachKL",
+      "BEAM DCE",
+      "DCE_Pro_Beam",
+      "GiaCuongChanThep",
+      "ThuVienChonThep",
+      "TM_AUTOCAD_3",
+      "TM_AUTOCAD",
+      "TM_AUTOCAD_2",
+      "DL_DCE"
+    ],
+    "formula_xml_elements": 2714,
+    "vba_present": true
+  }
+}

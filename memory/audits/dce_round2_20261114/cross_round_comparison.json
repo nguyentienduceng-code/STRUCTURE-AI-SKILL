@@ -1,0 +1,30 @@
+{
+  "note": "Differences from the previous round baseline, not changes during Round 2. Round 2 own baseline is unchanged.",
+  "comparison": {
+    "files_before": 3010,
+    "files_after": 3010,
+    "changes": [
+      "C:\\Dce Pro\\System\\Text2GF.txt",
+      "C:\\Dce Pro\\System\\ba72c0608dfc.txt",
+      "C:\\Dce Pro\\System\\ngc.txt",
+      "C:\\Dce Pro\\System\\TokenLicenseKey.txt",
+      "C:\\Dce Pro\\configDb.db",
+      "C:\\Dce Pro\\System\\Text1DltF.txt",
+      "C:\\Dce Pro\\System\\PlanCode.txt",
+      "C:\\Dce Pro\\System\\TokenComputerName.txt",
+      "C:\\Dce Pro\\DCE Warning.txt",
+      "C:\\Dce Pro\\System\\TokenComputer.txt",
+      "C:\\Dce Pro\\System\\tc.txt",
+      "C:\\Dce Pro\\System\\CheckListNTN.txt",
+      "C:\\Dce Pro\\System\\nac.txt",
+      "C:\\Dce Pro\\System\\Text3.txt",
+      "C:\\Dce Pro\\System\\gi.txt",
+      "C:\\Dce Pro\\System\\AttachAproperty.txt",
+      "C:\\Dce Pro\\System\\ToKen.txt",
+      "C:\\Dce Pro\\System\\Setdefinition.txt",
+      "C:\\Dce Pro\\System\\PHPMLA.txt",
+      "C:\\Dce Pro\\System\\TokenSignature.txt"
+    ],
+    "unchanged": false
+  }
+}
