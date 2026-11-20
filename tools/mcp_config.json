@@ -17,16 +17,24 @@
       "claude_code": "claude mcp add dce-cad -- python \"G:\\My Drive\\Google AI Studio\\.agents\\tools\\mcp_dce_cad_server.py\""
     },
     "tools": [
-      "render_cad_plan(sheet_type, output_dxf_path, template_path, pdf_path, model_json_path, dry_run)",
+      "render_cad_plan(sheet_type, output_dxf_path, template_path, pdf_path, model_json_path, v6, dry_run)",
       "render_preview(dxf_path, out_png, dpi, layout, view_box)",
       "consume_preview(preview_id)",
       "release_preview(preview_id)",
-      "validate_cad(dxf_path)",
+      "validate_cad(dxf_path, profile=full, beam_dxf_path, colwall_dxf_path)",
       "edit_entity(session_dir, source_dxf, handle, dx, dy, expected_revision, dry_run)",
-      "convert_to_dwg(dxf_path, out_dwg)"
+      "convert_to_dwg(dxf_path, out_dwg)",
+      "resolve_cad_collisions(dxf_path, output_dxf, dry_run)",
+      "auto_layout_and_scale_plan(json_model_path, target_sheet, force_scale, sheet_type, output_dxf_path, render_dpi, render_preview_png, v6, dry_run)",
+      "export_cad_sheet_set(model_json_path, sheet_types, target_sheet, force_scale, auto_scale, render_preview, export_pdf, dry_run)",
+      "open_form(project_dir, form_id)",
+      "diff_form(project_dir, form_id, baseline)",
+      "apply_agent_changes(project_dir, form_id, changes, commit, compliance)"
     ],
-    "dependencies": ["mcp (pip, 1.x/2.x)", "ezdxf>=1.4", "matplotlib", "ODA File Converter (optional, cho convert_to_dwg)"],
-    "scratch_policy": "Virtual Drive Guard: local fixed NTFS/ReFS C:/D: only. Optional DCE_CAD_SCRATCH_ROOT; unsafe overrides fall back to local Temp. PNG destinations are always redirected; use output_png/preview_id from the response.",
+    "dependencies": ["mcp (pip, 1.x/2.x)", "ezdxf>=1.4,<2", "shapely>=2,<3", "matplotlib", "ODA File Converter (optional, cho convert_to_dwg)"],
+    "cad_first_policy": "Muc tieu mac dinh la xuat file CAD (.dxf/.dwg). KHONG tu dong xuat PDF (export_pdf=False) hay preview PNG (render_preview=False) khi nguoi dung khong ghi chu yeu cau.",
+    "audit_contract": "schema 2.0: full is default; PASS requires physical checks and all required gates. Missing/stale evidence => NEEDS_REVIEW. physical PASS never certifies 20/20 gates. See docs/MCP_DCE_CAD_CONTRACT.md.",
+    "scratch_policy": "Virtual Drive Guard: local fixed NTFS/ReFS C:/D: only. Optional DCE_CAD_SCRATCH_ROOT; unsafe overrides fall back to local Temp. render_cad_plan, resolve_cad_collisions and PNG destinations are redirected; use actual output paths from the response. pdf_path is a read-only input.",
     "vision_lifecycle": "render_preview -> consume_preview returns image content and automatically deletes the PNG; direct file readers call release_preview after inspection. Abandoned completed previews expire after 24h and are swept on the next allocation. Edit revisions are retained."
   }
 }

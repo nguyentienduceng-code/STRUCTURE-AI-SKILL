@@ -1,8 +1,8 @@
 ---
 name: SKILL_DUAL_AGENT_BRIDGE
-version: 3.1.0
-last_updated: 2026-11-07
-description: "Giao thức và quy trình chuẩn điều phối làm việc song song hoặc luân phiên giữa Gemini (Antigravity) và Claude (Claude Code / Desktop). Đảm bảo tính nguyên tử của dữ liệu, loại bỏ xung đột file trên Google Drive, khóa phần vùng an toàn và kiểm toán chéo định lượng."
+version: 3.3.0
+last_updated: 2026-11-19
+description: "Giao thức và quy trình chuẩn điều phối làm việc song song hoặc luân phiên giữa Gemini (Antigravity) và Claude (Claude Code / Desktop). Đảm bảo tính nguyên tử của dữ liệu, loại bỏ xung đột file trên Google Drive, khóa phần vùng an toàn, kiểm toán chéo định lượng. v3.2: SSOT chống trùng lặp, Lease/Heartbeat chống ca treo, Project-Scoped Path Resolver, Visual Gate (Điều 12d Enforcer). v3.3: Product-First handoff (deliverable/evidence_files/acceptance_cmd), Visual Gate evidence-based (bằng chứng phải TỒN TẠI trên đĩa, SHA-256), RECEIPTS (mọi --force để lại dấu vết audit), P1 Report Gate (chuẩn RESULT.md 5 mục theo ca, layout cad_v6)."
 triggers:
   - "Khi người dùng yêu cầu bàn giao công việc giữa Gemini và Claude"
   - "Khi cần phối hợp 2 AI cùng làm việc đồng thời trên một dự án"
@@ -15,11 +15,15 @@ triggers:
 > **Cơ sở vận hành:** Hệ thống Bus nguyên tử `.agents/memory/DUAL_AGENT_BUS.json` & Biên bản ca trực `.agents/memory/DUAL_AGENT_HANDOFF_MEMO.md`.  
 > **Nguyên tắc cốt lõi:** Tuyệt đối không để 2 AI giẫm chân lên nhau (Zero-Collision), không thất thoát ngữ cảnh (Zero-Context-Leak), và nghiệm thu bằng số liệu cứng (Deterministic Criteria).
 
+> **🏛️ KIẾN TRÚC SSOT v3.2 (Single Source of Truth):** Toàn bộ logic của bus sống duy nhất tại **`.agents/tools/sync_bus.py`**. Bản tại `.agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py` là **thin wrapper** (chỉ đại diện CLI + import, alias module vào `sys.modules["sync_bus"]` để bảo toàn cơ chế monkey-patch của test suite). Mọi bugfix/feature thực thi tại SSOT; wrapper tự kế thừa, không cần đồng bộ mã.
+
 ---
 
 ## 1. BA KỊCH BẢN PHỐI HỢP ĐỒNG THỜI (OPERATIONAL MODES)
 
 Hệ thống hỗ trợ 3 chế độ cộng tác linh hoạt tùy theo tính chất công việc:
+
+Đọc `agent_selection` và `use_dual_agent_bus` từ phiếu Global_Dispatcher trước khi bàn giao. Với CLAUDE_ONLY hoặc GEMINI_ONLY, tác tử được chọn tự chạy chuỗi skill và kiểm tệp theo phiếu. Dùng bước xác nhận độc lập của con người khi công việc yêu cầu. Với ca phối hợp, truyền `--dispatch-ticket` qua lệnh bàn giao để giữ định danh dự án và tiêu chí nghiệm thu cùng phiên bản.
 
 ### 1.1 Kịch bản A: Luân phiên ca trực (Relay / Sequential Handoff)
 - **Áp dụng:** Khi một tác tử hoàn thành một giai đoạn (Sprint/Phase) và cần bàn giao toàn bộ cho tác tử kia tiếp quản.
@@ -99,12 +103,16 @@ File `.agents/memory/DUAL_AGENT_BUS.json` bắt buộc tuân thủ cấu trúc s
 
 4. **Xử lý Xung đột Google Drive (Drive Conflict Hygiene):**
    - Trước khi nhận ca hoặc khi kết thúc ca, tự động quét các file có đuôi `(1)`, `(2)`. So sánh mtime và hash để bảo tồn bản sửa đổi mới nhất, không xóa nhầm dữ liệu.
+5. **Visual & Real-Model Gate Trước Khi Bàn giao (Bài học 2026-11-15 — Chống Ping-Pong Token):**
+   - **Cấm bàn giao sang đối tác/Auditor (CODEX/CLAUDE/GEMINI)** khi mới chỉ pass JSON schema trên fixture giả lập. Với task CAD, bên làm phải tự chạy qua engine thật (`DcePlanEngine` + `DCE_Master_Seed_Template.dxf` / MCP `dce-cad`) và tự soi ảnh preview (`render_preview`) trước khi đặt `NEED_REVIEW` hay `COMPLETED`.
+   - **Chốt Acceptance Checklist tối đa 5 cổng đo được** ngay từ đầu task; không thêm tiêu chí bất ngờ giữa chừng.
+   - **Đóng milestone phải dọn log vào `archive/`** và cập nhật về SSOT (`README.md` / `SKILL.md`), tránh để Agent phiên sau tốn token đọc hàng trăm file audit lịch sử.
 
 ---
 
 ## 4. HỆ THỐNG LỆNH CLI ĐIỀU PHỐI (`sync_bus.py`)
 
-Công cụ điều phối đặt tại `.agents/tools/sync_bus.py`:
+Công cụ điều phối đặt tại `.agents/tools/sync_bus.py` (SSOT):
 
 ```bash
 # 1. Đọc trạng thái hiện tại của Bus:
@@ -112,6 +120,9 @@ python .agents/tools/sync_bus.py --read
 
 # 2. Agent nhận ca (Khóa bus, ngăn Agent kia ghi đè):
 python .agents/tools/sync_bus.py --claim --agent CLAUDE
+
+# 2b. v3.2: Agent gia hạn lease ca trực (chống ca treo khi crash/quota hết):
+python .agents/tools/sync_bus.py --heartbeat --agent CLAUDE
 
 # 3. Hoàn tất ca làm việc và mở khóa:
 python .agents/tools/sync_bus.py --complete --agent CLAUDE --summary "Đã hoàn tất tính toán dầm D1"
@@ -121,14 +132,70 @@ python .agents/tools/sync_bus.py --need-review --agent CLAUDE
 
 # 5. Tự động bàn giao ca có tiêu chí nghiệm thu:
 python .agents/tools/sync_bus.py --auto --sender GEMINI --target CLAUDE \
-    --project 00_MANAGEMENT_QLTK --purpose "Đồng bộ giao thức Bus v3.1" \
+    --project 00_MANAGEMENT_QLTK --purpose "Đồng bộ giao thức Bus v3.2" \
     --task "Kiểm tra chéo và chạy kiểm thử tự động" \
     --criteria "100% test Suite PASS;Không còn file xung đột Drive" --confirm
+
+# 5b. v3.2: Thu hẹp phạm vi scan artifacts theo đúng dự án đang làm:
+python .agents/tools/sync_bus.py --auto --sender CLAUDE --target GEMINI \
+    --project 16_BPTC_Q12 --project-dir 01_Projects/16.BPTC\ Q12 \
+    --task "Bàn giao kết quả mặt bằng kết cấu DCE" --criteria "Preview .png đính kèm" --confirm
 
 # 6. Quét và dọn dẹp file xung đột Google Drive an toàn:
 python .agents/tools/sync_bus.py --scan-conflicts
 python .agents/tools/sync_bus.py --clean-conflicts --confirm
+
+# 5c. v3.3: Bàn giao PRODUCT-FIRST (khai báo sản phẩm + bằng chứng + lệnh nghiệm thu):
+python .agents/tools/sync_bus.py --auto --sender CLAUDE --target GEMINI \
+    --action-type CAD \
+    --deliverable "1 ban ve DXF KC-02 + audit log PASS" \
+    --evidence-files "out/preview.png" --check-evidence-on-disk \
+    --acceptance-cmd "python .agents/tools/dce_render_preview.py out/kc02.dxf out/preview.png" \
+    --task "Xuat ban ve KC-02" --files ".agents/tools/dce_render_preview.py"
+
+# 5d. v3.3 P1: Bàn giao kèm báo cáo pha (Report Gate — chuẩn RESULT.md 5 mục theo cad_v6):
+python .agents/tools/sync_bus.py --auto --sender CLAUDE --target GEMINI \
+    --project CAD_V6 --action-type CAD --phase C1 \
+    --task "Kiem tra mat bang ket cau DCE" \
+    --deliverable "1 DXF KC-03 + preview PNG" \
+    --evidence-files "out/preview.png" --check-evidence-on-disk \
+    --acceptance-cmd "python -m unittest discover -s tests" \
+    --emit-report --files ".agents/tools/sync_bus.py"
 ```
+
+> **📄 Chuẩn báo cáo pha (P1 Report Gate):** ca GATED (`--action-type CAD/DOCX/REPORT_VISUAL`)
+> **bắt buộc** kèm `report_file` (báo cáo RESULT.md) TỒN TẠI trên đĩa khi khép ca / request review.
+> Layout chuẩn theo cad_v6 (cả 2 phía đã dùng): `.agents/memory/audits/<project>/<agent>/<PHASE>_RESULT.md`
+> (vd `cad_v6/claude/C1_RESULT.md`). `--emit-report` sinh skeleton **5 mục cố định**
+> (đọc máy được bởi Codex/đối tác):
+> 1. `SCOPE_DELIVERED` — sản phẩm/scope đã bàn giao; 2. `VERIFICATION_COMMAND` — lệnh chạy lại được;
+> 3. `RESULTS` — kết quả đo được (số liệu, PASS/FAIL); 4. `CONSTRAINTS` — đã KHÔNG làm gì, vì sao;
+> 5. `HANDOFF_CONTRACT` — hợp đồng giao diện cho ca kế tiếp.
+> Cờ `--emit-report` **không ghi đè** file đã tồn tại; ca legacy (CODE/META/…) không bị ảnh hưởng.
+
+**Cờ `--force` (bắt buộc ghi rõ khi dùng):** Bỏ qua cảnh báo IN_PROGRESS (lease active) VÀ Visual Gate (Điều 12d) để ghi đè bus. v3.3: **mọi `--force` đều sinh RECEIPT** (phiếu audit: lý do + hash bằng chứng SHA-256 + chữ ký) — bypass không còn "vô danh". Kèm `--receipt-reason "<lý do>"`.
+
+### 4.1. Nâng cấp Kiến trúc v3.2 (4 Trọng tâm)
+
+| # | Nâng cấp | Hành vi | Cờ / Trường |
+|---|----------|---------|-------------|
+| 1 | **SSOT Khử trùng lặp** | Logic tập trung tại `tools/sync_bus.py`; bản `scripts/` là thin wrapper alias module | `import sync_bus` → SSOT |
+| 2 | **Lease / Heartbeat** | Ca IN_PROGRESS kèm `lease_expire_at` (mặc định 60 phút, env `DUAL_AGENT_LEASE_MIN`). Hết hạn mà không heartbeat → đối tác auto-claim không cần `--force` | `--heartbeat`, `--force` |
+| 3 | **Project-Scoped Resolver** | Chuẩn hóa mọi artifact về gốc workspace; `--project-dir` thu hẹp scan tránh gom nhầm dự án khác | `--project-dir` |
+| 4 | **Visual Gate (Điều 12d)** | Task CAD/Bản vẽ bắt buộc ≥1 bằng chứng (`preview.png` / `_verification.json`) trong artifacts trước khi PENDING/NEED_REVIEW/COMPLETED | `--complete-files`, `--force` |
+
+### 4.2. Nâng cấp Kiến trúc v3.3 (Product-First Handoff — 4 Điểm)
+
+| # | Nâng cấp | Hành vi | Cờ / Trường |
+|---|----------|---------|-------------|
+| 1 | **Product-First Schema** | Ca bàn giao khai báo tường minh: `deliverable` (sản phẩm mong đợi), `evidence_files` (bằng chứng), `acceptance_cmd` (lệnh chạy lại được để tự chứng minh). Không khai báo → bus hoạt động như v3.2 (backward-compatible) | `--deliverable`, `--evidence-files`, `--acceptance-cmd` |
+| 2 | **Visual Gate v2 (Evidence-Based)** | Kích hoạt theo `--action-type`: CAD/DOCX/REPORT_VISUAL → bắt buộc bằng chứng; CODE/META/INFRA/TEST/DOCS → miễn; không khai báo → fallback dò keyword (hành vi v3.2). Cờ `--check-evidence-on-disk` yêu cầu file bằng chứng **THẬT SỰ TỒN TẠI trên đĩa** (băm SHA-256) — không chấp nhận danh khai suông | `--action-type`, `--check-evidence-on-disk` |
+| 3 | **RECEIPTS (Phiếu nghiệm thu)** | Ca `NEED_REVIEW`/`COMPLETED` và MỌI `--force` sinh 1 receipt JSON vào `.agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/`: hash bằng chứng, trạng thái gate, lý do force, chữ ký agent. Codex A1 nghiệm thu độc lập dựa trên bằng chứng, không phải tin lời bus | tự động; `--receipt-reason` |
+| 4 | **P1 Report Gate (chuẩn RESULT.md theo ca)** | Ca GATED (CAD/DOCX/REPORT_VISUAL) **bắt buộc kèm báo cáo pha** `report_file` (RESULT.md) tồn tại trên đĩa khi khép ca / review. `--emit-report` sinh skeleton 5 mục đọc máy được, layout chuẩn cad_v6 `<project>/<agent>/<PHASE>_RESULT.md`; không ghi đè file có sẵn | `--emit-report`, `--report-file`, `--phase` |
+
+> **Nguyên tắc tương thích ngược (v3.3):** Toàn bộ API/CLI v1.0–v3.2 vẫn hoạt động không đổi. Các trường Product-First chỉ xuất hiện trong payload khi được khai báo; ca legacy (không `action_type`, không `evidence_files`) qua gate đúng hành vi v3.2 (keyword + danh khai artifacts).
+
+> **Nguyên tắc tương thích ngược (v3.2, vẫn hiệu lực):** Bus cũ không có mốc thời gian (legacy) vẫn được bảo vệ — bắt buộc `--force` để tiếp quản; v3.3: bypass đó sinh RECEIPT audit.
 
 ---
 

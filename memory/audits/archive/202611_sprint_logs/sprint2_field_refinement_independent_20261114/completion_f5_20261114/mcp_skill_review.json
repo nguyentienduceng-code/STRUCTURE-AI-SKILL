@@ -1,0 +1,22 @@
+{
+  "tools": [
+    "render_cad_plan(sheet_type, output_dxf_path, template_path, pdf_path, model_json_path, dry_run)",
+    "render_preview(dxf_path, out_png, dpi, layout, view_box)",
+    "consume_preview(preview_id)",
+    "release_preview(preview_id)",
+    "validate_cad(dxf_path, profile=full, beam_dxf_path, colwall_dxf_path)",
+    "edit_entity(session_dir, source_dxf, handle, dx, dy, expected_revision, dry_run)",
+    "convert_to_dwg(dxf_path, out_dwg)",
+    "resolve_cad_collisions(dxf_path, output_dxf, dry_run)"
+  ],
+  "stdio_test_passed": true,
+  "SDK": "2.3.0",
+  "ezdxf": "1.4.4",
+  "shapely": "2.1.2",
+  "ODA_default_executable_present": false,
+  "skills": {
+    "SKILL_VERIFY": "3.4.0",
+    "Technical_Illustrator": "1.5.0"
+  },
+  "bridge": "SKILL_DUAL_AGENT_BRIDGE, FileLock lifecycle; suite 19 PASS"
+}

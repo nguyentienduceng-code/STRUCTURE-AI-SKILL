@@ -114,10 +114,10 @@ python SKILL_RFI/scripts/document_renderer.py \\
 │
 ├── Design_Evaluation/             ← 🟢 Review, Thẩm tra 7 Cổng, Tờ trình (v3.4.0)
 ├── Structural_Design_Engineer/    ← 🟢 Tính toán thiết kế, Thuyết minh (v1.3.0)
-├── Technical_Illustrator/         ← 🟢 Vẽ 2D/CAD DCE Pro & Gantt PMO (v1.4.0)
+├── Technical_Illustrator/         ← 🟢 Vẽ 2D/CAD DCE Pro & Gantt PMO (v1.7.0)
 ├── Cost_Estimator/                ← 🟢 So sánh chi phí, VE, Carbon (v1.4.0)
 ├── SKILL_FORENSIC/                ← 🟢 Điều tra sự cố kết cấu (v1.2.0)
-├── SKILL_VERIFY/                  ← 🟢 Kiểm chứng 8 tầng & CAD Audit (v3.3.0)
+├── SKILL_VERIFY/                  ← 🟢 Kiểm chứng 8 tầng & CAD Audit (v3.4.0)
 ├── SKILL_RFI/                     ← 🟢 Quản lý RFI / NCR / Submittal (v1.4.0)
 ├── SKILL_PHULUC/                  ← 🟢 Phụ lục tính toán chuyên nghiệp (v3.1.0)
 ├── SKILL_GEOTECH/                 ← 🟢 Địa kỹ thuật & Plaxis (v3.1.0)
@@ -280,7 +280,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.3 Technical_Illustrator (v1.4.0)  
+### 3.3 Technical_Illustrator (v1.7.0)
   
 **Vai trò:** Minh họa Kỹ thuật & Tiến độ PMO  
   
@@ -306,8 +306,14 @@ python SKILL_RFI/scripts/document_renderer.py \\
 | `draw_pile_cap.py` | `--type --L --B --H --pile_d --n_piles` | Đài cọc |  
 | `draw_weld_detail.py` | `--type --plate_t --weld_type` | Chi tiết hàn |  
 | `draw_moment_diagram.py` | `--input --output` | Biểu đồ nội lực (M, V, N) SVG/DXF |  
-| `cad_integration/cad_plan_engine.py` | `--output --template --pdf` | **Bản vẽ CAD Mặt bằng Cột Vách chuẩn DCE Pro A1 (Giải quyết trọn vẹn 7 Gaps)** |  
+| `cad_integration/cad_plan_engine.py` | `--output --template --pdf` | **Bản vẽ CAD Mặt bằng Cột Vách & KC-03 chuẩn DCE Pro v6** |  
 | `cad_integration/dce_dxf_generator.py` | DXF template | Bản vẽ CAD dầm sàn |  
+| `cad_integration/dce_block_catalog.py` | DXF / Steel catalog JSON | Quét ATTDEF/SHA-256 (`132` blocks, gồm `34` Steel `PARTIAL_DWG_WASM_READ_76`) |  
+| `cad_integration/dce_block_binding.py` | `Insert` + `DceBlockSpec` | `bind_block_attributes()`, `extract_semantic_values()` |  
+| `cad_integration/cad_element_registry.py` | Manifest + `RebarStrip` | `CadElementRegistry`, `validate_sheet_set_semantics()` (5 cổng), `filter_rebar_strips_by_face()` |  
+| `cad_integration/dce_steel_adapter.py` | Fixture Steel + `ezdxf` | Kết xuất & round-trip 1:1 mm (`xscale==yscale`, `UNSUPPORTED_BLOCK_BEHAVIOR` khi thiếu runtime) |  
+| `cad_integration/cad_tag_placement.py` | Hình học + `overrides` | `TagPlacementPlanner` đặt nhãn dầm/sàn, tránh lỗ & bật leader |  
+| `cad_integration/cad_sheet_set.py` | `SheetSetManifest` JSON | `export_sheet_set()` xuất bộ tờ A3 & dual-viewport `TOP`/`BOTTOM` |  
   
 **Deprecated (di chuyển sang `_deprecated/`):**  
 | Script | Lý do | Thay thế |  
@@ -382,7 +388,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.6 SKILL_VERIFY (v3.3.0)  
+### 3.6 SKILL_VERIFY (v3.4.0)
   
 **Vai trò:** Quality Assurance / Hệ thống Kiểm chứng Độc lập 8 Tầng  
   

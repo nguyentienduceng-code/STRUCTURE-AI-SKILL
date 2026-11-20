@@ -1,5 +1,10 @@
 # RFC: MCP DCE-CAD Adapter & Vision Perception Loop
 
+> Cập nhật triển khai 2026-11-14: [hợp đồng hiện hành](MCP_DCE_CAD_CONTRACT.md)
+> dùng schema 2.0, full mặc định, PASS/FAIL/NEEDS_REVIEW/ERROR và 8 tools.
+> Chữ ký PASS/FAIL trong phần RFC lịch sử bên dưới đã được thay thế.
+> Output render/collision qua MCP được chuyển về local scratch.
+
 > **Mã tài liệu:** RFC-20261113-MCP-CAD  
 > **Trạng thái:** PROPOSED  
 > **Tác giả:** Claude & Gemini Dual-Agent Co-Design  
@@ -114,6 +119,7 @@ flowchart TD
 | `validate_cad` | `SKILL_VERIFY/scripts/dce_cad_compliance_checker.py::audit_dxf_compliance(dxf_path)` → dict có `status: PASS/FAIL` + `graphic_sanity` | Import cross-skill: dùng `importlib` theo đường dẫn tuyệt đối (không phải package) |
 | `edit_entity` | `cad_edit_workbench.CadEditSession.create(source, root)` → `.inspect()`, `.move(handle, dx, dy, expected_revision=...)` — **revision-locked (optimistic locking)** | Schema tool bắt buộc nhận + trả về `revision`; CẤM bỏ trường này. Chỉ TEXT/MTEXT/DIMENSION phẳng |
 | `convert_to_dwg` | ODA (chưa cài) → trả `UNAVAILABLE` + hướng dẫn | Wrapper thật thêm vào Giai đoạn 2 |
+| `auto_layout_and_scale_plan` | (Directive v5.0, 2026-11-14) `sheet_scale_fitter.SheetScaleSolver` → `export_dce_plan(scale_spec=...)` + `dce_render_preview` (300dpi) + `audit_dxf_compliance` | Dynamic Sheet-Scale Governor: tự chọn khổ A2/A1/A0 + tỷ lệ theo fill-window [0.65, 0.85]; `force_scale` ép tỷ lệ; PNG qua preview lifecycle (consume/release); vector PDF = `UNSUPPORTED_AUDIT_CONTRACT` (engine legacy không emit p1/p2/bbox) |
 
 1. **Thứ tự ưu tiên (đáp câu hỏi Bus "Giai đoạn 1 hay 2"):** **Giai đoạn 1 trước, chạy standalone** — không cần `mcp` SDK, engine không đổi, Vision loop khép kín ngay trong Claude Code (agent gọi CLI của `dce_render_preview.py` rồi Read ảnh PNG). Giai đoạn 2 chỉ là bọc tool, giá trị gia tăng là cho **client khác** (Antigravity/Cursor) — nên không gấp.
 

@@ -1,0 +1,11 @@
+{
+  "overall": "NEEDS_REVIEW",
+  "two_dxf_product_checks": "PASS",
+  "full_suites_passed": 30,
+  "full_suite_seconds": 103.59168599999975,
+  "reproduced_code_findings": 4,
+  "clearance_definition_requires_clarification": true,
+  "kc02_preview_requires_refresh": true,
+  "source_or_product_modified_by_auditor": false,
+  "github_push_by_auditor": false
+}

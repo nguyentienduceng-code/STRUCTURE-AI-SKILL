@@ -1,0 +1,525 @@
+{
+  "render_summary": {
+    "Standard_Method": "TCVN 5575:2024 / DCE Steel G2 Static-2D",
+    "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\gemini\\g2_steel_verification.dxf",
+    "sections_count": 5,
+    "baseplates_count": 2,
+    "plates_count": 1,
+    "bound_blocks_count": 6,
+    "commercial_xdata_written": false,
+    "capability_warnings": [
+      {
+        "code": "UNSUPPORTED_BLOCK_BEHAVIOR",
+        "requested_mode": "DYNAMIC",
+        "applied_mode": "STATIC_2D_ACCURATE",
+        "member_mark": "SB1",
+        "message": "Headless DXF generator lacks AutoCAD ObjectARX/AcDbEvalGraph runtime; cannot evaluate Dynamic Block stretch/flip actions. Fallback to static 1:1 mm geometry."
+      },
+      {
+        "code": "UNSUPPORTED_COMMERCIAL_XDATA_DISABLED",
+        "commercial_xdata_written": false,
+        "member_mark": "SB1",
+        "message": "Commercial XData injection (DceSteelRebar / SYS_XData_App) is disabled in headless G2 DXF output."
+      }
+    ],
+    "rendered_sections": [
+      {
+        "element_id": "STEEL_COL_C1",
+        "mark": "SC1",
+        "profile_type": "H",
+        "section_name": "H300x300x10x15",
+        "expected_width_mm": 300.0,
+        "expected_height_mm": 300.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "34"
+        ]
+      },
+      {
+        "element_id": "STEEL_BM_B1",
+        "mark": "SB1",
+        "profile_type": "I",
+        "section_name": "I350x175x7x11",
+        "expected_width_mm": 175.0,
+        "expected_height_mm": 350.0,
+        "capability_status": "UNSUPPORTED_BLOCK_BEHAVIOR",
+        "handles": [
+          "3F"
+        ]
+      },
+      {
+        "element_id": "STEEL_BOX_BX1",
+        "mark": "SBX1",
+        "profile_type": "BOX",
+        "section_name": "BOX_200x200x6",
+        "expected_width_mm": 200.0,
+        "expected_height_mm": 200.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "41",
+          "42"
+        ]
+      },
+      {
+        "element_id": "STEEL_CH_U1",
+        "mark": "SU1",
+        "profile_type": "CHANNEL",
+        "section_name": "U160x64x5",
+        "expected_width_mm": 64.0,
+        "expected_height_mm": 160.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "44"
+        ]
+      },
+      {
+        "element_id": "STEEL_PP_P1",
+        "mark": "SP1",
+        "profile_type": "PIPE",
+        "section_name": "D219x6.0",
+        "expected_width_mm": 219.0,
+        "expected_height_mm": 219.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "46",
+          "47"
+        ]
+      }
+    ],
+    "rendered_baseplates": [
+      {
+        "element_id": "STEEL_BP_01",
+        "baseplate_mark": "BD-01",
+        "block_name": "Dce_BP_Pin4",
+        "plate_width_mm": 400.0,
+        "plate_height_mm": 400.0,
+        "thickness_mm": 20.0,
+        "bolt_count": 4,
+        "handles": [
+          "49",
+          "4A",
+          "4B",
+          "4C",
+          "4D"
+        ]
+      },
+      {
+        "element_id": "STEEL_BP_02",
+        "baseplate_mark": "BD-02",
+        "block_name": "Dce_BP_Fix8",
+        "plate_width_mm": 560.0,
+        "plate_height_mm": 420.0,
+        "thickness_mm": 28.0,
+        "bolt_count": 8,
+        "handles": [
+          "62",
+          "63",
+          "64",
+          "65",
+          "66",
+          "67",
+          "68",
+          "69",
+          "6A"
+        ]
+      }
+    ],
+    "rendered_plates": [
+      {
+        "element_id": "STEEL_PL_01",
+        "member_mark": "GUSSET-01",
+        "block_name": "Dce-ThepTam",
+        "width_mm": 240.0,
+        "height_mm": 180.0,
+        "handle": "79"
+      }
+    ],
+    "bound_blocks": [
+      {
+        "block_name": "Dce_PlanI",
+        "element_id": "STEEL_COL_C1",
+        "tags": {
+          "TENCOT": "SC1"
+        }
+      },
+      {
+        "block_name": "Dce_BP_Pin4",
+        "element_id": "STEEL_BP_01",
+        "tags": {
+          "TenBanDe": "BD-01",
+          "ChieuDay": "20"
+        }
+      },
+      {
+        "block_name": "Dce_AnchorExpansion",
+        "element_id": "STEEL_BP_01",
+        "tags": {
+          "SL": "4"
+        }
+      },
+      {
+        "block_name": "Dce_BP_Fix8",
+        "element_id": "STEEL_BP_02",
+        "tags": {
+          "TenBanDe": "BD-02",
+          "ChieuDay": "28"
+        }
+      },
+      {
+        "block_name": "Dce_AnchorExpansion",
+        "element_id": "STEEL_BP_02",
+        "tags": {
+          "SL": "8"
+        }
+      },
+      {
+        "block_name": "Dce-ThepTam",
+        "element_id": "STEEL_PL_01",
+        "tags": {
+          "B": "14",
+          "SL": "4",
+          "TENCK": "GUSSET-01",
+          "HINHDANG": "TRAPEZOID",
+          "VATCANH": "V45-10"
+        }
+      }
+    ],
+    "Calculation_Logs": [
+      {
+        "step": "render_section:SC1",
+        "element_id": "STEEL_COL_C1",
+        "mark": "SC1",
+        "profile_type": "H",
+        "section_name": "H300x300x10x15",
+        "expected_width_mm": 300.0,
+        "expected_height_mm": 300.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "34"
+        ]
+      },
+      {
+        "step": "render_section:SB1",
+        "element_id": "STEEL_BM_B1",
+        "mark": "SB1",
+        "profile_type": "I",
+        "section_name": "I350x175x7x11",
+        "expected_width_mm": 175.0,
+        "expected_height_mm": 350.0,
+        "capability_status": "UNSUPPORTED_BLOCK_BEHAVIOR",
+        "handles": [
+          "3F"
+        ]
+      },
+      {
+        "step": "render_section:SBX1",
+        "element_id": "STEEL_BOX_BX1",
+        "mark": "SBX1",
+        "profile_type": "BOX",
+        "section_name": "BOX_200x200x6",
+        "expected_width_mm": 200.0,
+        "expected_height_mm": 200.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "41",
+          "42"
+        ]
+      },
+      {
+        "step": "render_section:SU1",
+        "element_id": "STEEL_CH_U1",
+        "mark": "SU1",
+        "profile_type": "CHANNEL",
+        "section_name": "U160x64x5",
+        "expected_width_mm": 64.0,
+        "expected_height_mm": 160.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "44"
+        ]
+      },
+      {
+        "step": "render_section:SP1",
+        "element_id": "STEEL_PP_P1",
+        "mark": "SP1",
+        "profile_type": "PIPE",
+        "section_name": "D219x6.0",
+        "expected_width_mm": 219.0,
+        "expected_height_mm": 219.0,
+        "capability_status": "STATIC_2D_ACCURATE",
+        "handles": [
+          "46",
+          "47"
+        ]
+      },
+      {
+        "step": "render_baseplate:BD-01",
+        "element_id": "STEEL_BP_01",
+        "baseplate_mark": "BD-01",
+        "block_name": "Dce_BP_Pin4",
+        "plate_width_mm": 400.0,
+        "plate_height_mm": 400.0,
+        "thickness_mm": 20.0,
+        "bolt_count": 4,
+        "handles": [
+          "49",
+          "4A",
+          "4B",
+          "4C",
+          "4D"
+        ]
+      },
+      {
+        "step": "render_baseplate:BD-02",
+        "element_id": "STEEL_BP_02",
+        "baseplate_mark": "BD-02",
+        "block_name": "Dce_BP_Fix8",
+        "plate_width_mm": 560.0,
+        "plate_height_mm": 420.0,
+        "thickness_mm": 28.0,
+        "bolt_count": 8,
+        "handles": [
+          "62",
+          "63",
+          "64",
+          "65",
+          "66",
+          "67",
+          "68",
+          "69",
+          "6A"
+        ]
+      }
+    ]
+  },
+  "roundtrip_audit": {
+    "Standard_Method": "TCVN 5575:2024 / DCE Steel G2 Roundtrip Audit",
+    "passed": true,
+    "uniform_scale_ok": true,
+    "scale_violations": [],
+    "dynamic_block_refs_count": 0,
+    "commercial_xdata_count": 0,
+    "extracted_blocks": [
+      {
+        "block_name": "Dce_PlanI",
+        "handle": "3C",
+        "semantic": {
+          "column_mark": "SC1",
+          "_raw_tags": {
+            "TENCOT": "SC1"
+          }
+        }
+      },
+      {
+        "block_name": "Dce_BP_Pin4",
+        "handle": "55",
+        "semantic": {
+          "baseplate_mark": "BD-01",
+          "thickness_mm": 20.0,
+          "_raw_tags": {
+            "TenBanDe": "BD-01",
+            "ChieuDay": "20"
+          }
+        }
+      },
+      {
+        "block_name": "Dce_AnchorExpansion",
+        "handle": "5F",
+        "semantic": {
+          "bolt_count": 4,
+          "_raw_tags": {
+            "SL": "4"
+          }
+        }
+      },
+      {
+        "block_name": "Dce_BP_Fix8",
+        "handle": "72",
+        "semantic": {
+          "baseplate_mark": "BD-02",
+          "thickness_mm": 28.0,
+          "_raw_tags": {
+            "TenBanDe": "BD-02",
+            "ChieuDay": "28"
+          }
+        }
+      },
+      {
+        "block_name": "Dce_AnchorExpansion",
+        "handle": "76",
+        "semantic": {
+          "bolt_count": 8,
+          "_raw_tags": {
+            "SL": "8"
+          }
+        }
+      },
+      {
+        "block_name": "Dce-ThepTam",
+        "handle": "84",
+        "semantic": {
+          "plate_thickness": 14.0,
+          "quantity": 4,
+          "member_mark": "GUSSET-01",
+          "shape_desc": "TRAPEZOID",
+          "chamfer_desc": "V45-10",
+          "_raw_tags": {
+            "B": "14",
+            "SL": "4",
+            "TENCK": "GUSSET-01",
+            "HINHDANG": "TRAPEZOID",
+            "VATCANH": "V45-10"
+          }
+        }
+      }
+    ],
+    "geometry_checks": [
+      {
+        "kind": "steel_section",
+        "mark": "SC1",
+        "expected_mm": [
+          300.0,
+          300.0
+        ],
+        "actual_mm": [
+          300.0,
+          300.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "steel_section",
+        "mark": "SB1",
+        "expected_mm": [
+          175.0,
+          350.0
+        ],
+        "actual_mm": [
+          175.0,
+          350.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "steel_section",
+        "mark": "SBX1",
+        "expected_mm": [
+          200.0,
+          200.0
+        ],
+        "actual_mm": [
+          200.0,
+          200.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "steel_section",
+        "mark": "SU1",
+        "expected_mm": [
+          64.0,
+          160.0
+        ],
+        "actual_mm": [
+          64.0,
+          160.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "steel_section",
+        "mark": "SP1",
+        "expected_mm": [
+          219.0,
+          219.0
+        ],
+        "actual_mm": [
+          219.0,
+          219.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "baseplate",
+        "mark": "BD-01",
+        "expected_mm": [
+          400.0,
+          400.0
+        ],
+        "actual_mm": [
+          400.0,
+          400.0
+        ],
+        "matched": true
+      },
+      {
+        "kind": "baseplate",
+        "mark": "BD-02",
+        "expected_mm": [
+          560.0,
+          420.0
+        ],
+        "actual_mm": [
+          560.0,
+          420.0
+        ],
+        "matched": true
+      }
+    ],
+    "mismatches": [],
+    "Calculation_Logs": [
+      {
+        "step": "roundtrip_audit",
+        "passed": true,
+        "checks": 7,
+        "blocks": 6
+      }
+    ]
+  },
+  "semantic_audit": {
+    "Standard_Method": "DCE Sheet Set Semantics G2 (STRUCTURAL_SHEET_SET_GUIDE v6)",
+    "is_valid": true,
+    "checks": {
+      "floor_and_column_continuity": true,
+      "design_group_consistency": true,
+      "detail_target_resolution": true,
+      "linkage_completeness": true,
+      "rebar_top_bottom_separation": true
+    },
+    "total_elements": 12,
+    "rebar_top_count": 2,
+    "rebar_bottom_count": 2,
+    "violations": {
+      "stopped_column_violations": [],
+      "duplicate_mark_conflicts": [],
+      "undeclared_floor_violations": [],
+      "design_group_violations": [],
+      "missing_detail_targets": [],
+      "incomplete_linkage": [],
+      "invalid_rebar_faces": [],
+      "viewport_face_mixing_violations": []
+    },
+    "Calculation_Logs": [
+      {
+        "step": "floor_and_column_continuity",
+        "passed": true
+      },
+      {
+        "step": "design_group_consistency",
+        "passed": true
+      },
+      {
+        "step": "detail_target_resolution",
+        "passed": true
+      },
+      {
+        "step": "linkage_completeness",
+        "passed": true
+      },
+      {
+        "step": "rebar_top_bottom_separation",
+        "passed": true
+      }
+    ]
+  }
+}

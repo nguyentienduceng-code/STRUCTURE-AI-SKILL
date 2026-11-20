@@ -27,6 +27,8 @@ def main():
     parser.add_argument("--criteria", required=True, help="Tiêu chí nghiệm thu (phân cách bởi dấu chấm phẩy ';')")
     parser.add_argument("--summary", default="", help="Tóm tắt công việc đã thực hiện")
     parser.add_argument("--workspace", default=None, help="Thư mục workspace tùy chọn")
+    parser.add_argument("--agent-selection", choices=["AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"])
+    parser.add_argument("--dispatch-ticket")
     args = parser.parse_args()
 
     sender = args.sender.upper()
@@ -45,6 +47,10 @@ def main():
         "--criteria", args.criteria,
         "--confirm"
     ]
+    if args.agent_selection:
+        cmd.extend(["--agent-selection", args.agent_selection])
+    if args.dispatch_ticket:
+        cmd.extend(["--dispatch-ticket", args.dispatch_ticket])
     if args.summary:
         cmd.extend(["--summary", args.summary])
 
@@ -61,12 +67,6 @@ def main():
     print(res.stdout)
     if res.stderr:
         print(res.stderr, file=sys.stderr)
-
-    if res.returncode == 0:
-        print(f"\n>>> [THÀNH CÔNG] Đã bàn giao ca cho {target}!")
-        print(f">>> File bus và memo đã được cập nhật an toàn.")
-    else:
-        print(f"\n>>> [LỖI] Bàn giao thất bại. Mã thoát: {res.returncode}")
 
     sys.exit(res.returncode)
 

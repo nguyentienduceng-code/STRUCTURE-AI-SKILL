@@ -1,0 +1,12 @@
+{
+  "tools/cad_scene_index.py": "05f4ff1bcc2004a2972318540843793479a421d1246bc6b135d2c8d377bd5ff0",
+  "tools/cad_collision_solver.py": "5dc84a26ceab633dedd88c09e200b8496da17d9918e513a00ea9cfee8ba61337",
+  "tools/mcp_dce_cad_server.py": "bd723dae87ecc68ef9f7607bb76c17de2d548ca97b9e339c164196bacfaa4c72",
+  "tools/dce_virtual_drive_guard.py": "7e3db537071f2dec12113114c16c169d813241662ed972bcc8f89bb2117cef4c",
+  "tools/dce_render_preview.py": "d62b04a5b65527a5b1e77dcfd97d0a282dc746f712bd547a210efdf11052263a",
+  "tools/requirements-cad-collision.txt": "3e5d9596011df6f584d2cd535920c31a921c3c20d87806b49e7e7ab543d2323d",
+  "tests/test_cad_collision_solver.py": "f9df7334fa79b2b0590811eac6eeda56e01a459d1e132684f399c5fd1de7deff",
+  "tests/test_mcp_dce_cad_server.py": "2e37ac1853c4458b17d05789a911a5727a9557e24b0f6e48e6f47cb83fcc9311",
+  "tests/run_all_tests.py": "08ca9741e551e5aca30537a326fe74d2f03c1a732a4e02963719191388c0e1fb",
+  "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py": "d5024c1c776d2668ec29c3581141e520c04e24800f6b613fffeb196bcd5ec33f"
+}

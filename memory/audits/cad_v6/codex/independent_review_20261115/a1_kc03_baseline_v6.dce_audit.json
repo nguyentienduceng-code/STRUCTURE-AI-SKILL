@@ -1,0 +1,1583 @@
+{
+  "engine": "DcePlanEngine",
+  "v6_directive": true,
+  "v6_status": "OK_V6",
+  "v6_diagnostics": [],
+  "provenance": {
+    "dxf_sha256": "3e1f4841e3c6fa79d00efc89ef50883eda910dfb849b110688a21ee9dc3b2ac0",
+    "generator": "cad_plan_engine.DcePlanEngine (v6 data-driven)",
+    "status": "OK_V6"
+  },
+  "element_registry": {
+    "project_name": "A1_KC03_BASELINE",
+    "total_elements": 58,
+    "elements": {
+      "BM_000": {
+        "element_id": "BM_000",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_000"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350AD"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_001": {
+        "element_id": "BM_001",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_001"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350B4"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_002": {
+        "element_id": "BM_002",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_002"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350BA"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_003": {
+        "element_id": "BM_003",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_003"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350C0"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_004": {
+        "element_id": "BM_004",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_004"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350C6"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_005": {
+        "element_id": "BM_005",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_005"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350CC"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_006": {
+        "element_id": "BM_006",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_006"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350D2"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_007": {
+        "element_id": "BM_007",
+        "category": "BEAM",
+        "mark": "D1A",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_007"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350D8"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_008": {
+        "element_id": "BM_008",
+        "category": "BEAM",
+        "mark": "D1B",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_008"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350DF"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_009": {
+        "element_id": "BM_009",
+        "category": "BEAM",
+        "mark": "D1B",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_009"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350E5"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_010": {
+        "element_id": "BM_010",
+        "category": "BEAM",
+        "mark": "DG1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_010"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350EC"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_011": {
+        "element_id": "BM_011",
+        "category": "BEAM",
+        "mark": "DG2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x800",
+          "b_mm": 500.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_011"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350F2"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_012": {
+        "element_id": "BM_012",
+        "category": "BEAM",
+        "mark": "D1B",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_012"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350F8"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_013": {
+        "element_id": "BM_013",
+        "category": "BEAM",
+        "mark": "D1B",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_013"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "350FF"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_014": {
+        "element_id": "BM_014",
+        "category": "BEAM",
+        "mark": "D1C",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_014"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35105"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_015": {
+        "element_id": "BM_015",
+        "category": "BEAM",
+        "mark": "D1C",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_015"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3510B"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_016": {
+        "element_id": "BM_016",
+        "category": "BEAM",
+        "mark": "DG1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_016"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35112"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_017": {
+        "element_id": "BM_017",
+        "category": "BEAM",
+        "mark": "DG2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x800",
+          "b_mm": 500.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_017"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35118"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_018": {
+        "element_id": "BM_018",
+        "category": "BEAM",
+        "mark": "D1C",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_018"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3511E"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_019": {
+        "element_id": "BM_019",
+        "category": "BEAM",
+        "mark": "D1C",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "500x900",
+          "b_mm": 500.0,
+          "h_mm": 900.0,
+          "spans": [
+            "SEG_019"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35125"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_020": {
+        "element_id": "BM_020",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_020"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3512B"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_021": {
+        "element_id": "BM_021",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_021"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35131"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_022": {
+        "element_id": "BM_022",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_022"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35137"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_023": {
+        "element_id": "BM_023",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_023"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3513D"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_024": {
+        "element_id": "BM_024",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_024"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35143"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_025": {
+        "element_id": "BM_025",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_025"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35149"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_026": {
+        "element_id": "BM_026",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_026"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3514F"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_027": {
+        "element_id": "BM_027",
+        "category": "BEAM",
+        "mark": "D1D",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "400x800",
+          "b_mm": 400.0,
+          "h_mm": 800.0,
+          "spans": [
+            "SEG_027"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35155"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_028": {
+        "element_id": "BM_028",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_028"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3515B"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_029": {
+        "element_id": "BM_029",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_029"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35162"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_030": {
+        "element_id": "BM_030",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_030"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35169"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_031": {
+        "element_id": "BM_031",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_031"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35170"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_032": {
+        "element_id": "BM_032",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_032"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35177"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_033": {
+        "element_id": "BM_033",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_033"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3517E"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_034": {
+        "element_id": "BM_034",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_034"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35185"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_035": {
+        "element_id": "BM_035",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_035"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3518C"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_036": {
+        "element_id": "BM_036",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_036"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35193"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_037": {
+        "element_id": "BM_037",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_037"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3519A"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_038": {
+        "element_id": "BM_038",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_038"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351A1"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_039": {
+        "element_id": "BM_039",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_039"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351A8"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_040": {
+        "element_id": "BM_040",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_040"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351AF"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_041": {
+        "element_id": "BM_041",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_041"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351B6"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_042": {
+        "element_id": "BM_042",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_042"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351BD"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_043": {
+        "element_id": "BM_043",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_043"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351C4"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_044": {
+        "element_id": "BM_044",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_044"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351CB"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_045": {
+        "element_id": "BM_045",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_045"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351D2"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_046": {
+        "element_id": "BM_046",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_046"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351D9"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_047": {
+        "element_id": "BM_047",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_047"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351E0"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_048": {
+        "element_id": "BM_048",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_048"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351E7"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_049": {
+        "element_id": "BM_049",
+        "category": "BEAM",
+        "mark": "D2",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "300x700",
+          "b_mm": 300.0,
+          "h_mm": 700.0,
+          "spans": [
+            "SEG_049"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351EE"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_050": {
+        "element_id": "BM_050",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_050"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351F5"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_051": {
+        "element_id": "BM_051",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_051"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "351FC"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_052": {
+        "element_id": "BM_052",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_052"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35203"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_053": {
+        "element_id": "BM_053",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_053"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3520A"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_054": {
+        "element_id": "BM_054",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_054"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35211"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_055": {
+        "element_id": "BM_055",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_055"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35218"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_056": {
+        "element_id": "BM_056",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_056"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "3521F"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      },
+      "BM_057": {
+        "element_id": "BM_057",
+        "category": "BEAM",
+        "mark": "DP1",
+        "span_id": null,
+        "floor_id": "TYPICAL",
+        "design_group_id": null,
+        "section_profile": {
+          "size": "250x600",
+          "b_mm": 250.0,
+          "h_mm": 600.0,
+          "spans": [
+            "SEG_057"
+          ]
+        },
+        "geometry_refs": [],
+        "tag_refs": [
+          "35226"
+        ],
+        "schedule_refs": [],
+        "detail_ref": {},
+        "status": "CONTINUOUS",
+        "metadata": {
+          "source": "C1-v6-generator"
+        },
+        "change_history": []
+      }
+    }
+  }
+}

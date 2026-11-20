@@ -9,7 +9,7 @@ Nâng cấp v2.0 (2026-10-22):
 """
 
 import sys
-if sys.stdout.encoding != 'utf-8':
+if getattr(sys.stdout, 'reconfigure', None) and sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 import re

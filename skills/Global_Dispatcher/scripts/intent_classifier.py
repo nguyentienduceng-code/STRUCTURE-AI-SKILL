@@ -6,7 +6,7 @@ người dùng, trích xuất thực thể kỹ thuật sâu (Deep Slot Filling)
 """
 
 import sys
-if sys.stdout.encoding != 'utf-8':
+if getattr(sys.stdout, 'reconfigure', None) and sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 import json
@@ -641,12 +641,18 @@ class IntentClassifier:
             return None
         if pipeline.get("graph_type") == "DAG" or pipeline.get("error"):
             return pipeline
-        from pipeline_builder import PipelineBuilder
+        if __package__:
+            from .pipeline_builder import PipelineBuilder
+        else:
+            from pipeline_builder import PipelineBuilder
         return PipelineBuilder(self.db_path).build(pipeline["skills"], context=prompt)
 
     def _detect_pipeline(self, prompt_lower: str, prompt_ascii: str, ranked: list, match_details: dict) -> Optional[dict]:
         if re.search(r"\b(roi|sau do|tiep theo|neu|song song|dong thoi|then|if|in parallel)\b|;|\n", prompt_ascii):
-            from pipeline_builder import PipelineBuilder
+            if __package__:
+                from .pipeline_builder import PipelineBuilder
+            else:
+                from pipeline_builder import PipelineBuilder
             try:
                 plan = PipelineBuilder(self.db_path).plan(
                     prompt_lower, lambda text: self.classify(text, plan_workflow=False))
@@ -915,6 +921,8 @@ def main():
     parser.add_argument("--test-cognitive", action="store_true", help="Chạy bộ kiểm thử nhận thức nâng cao")
     parser.add_argument("--db", type=str, default=None, help="Đường dẫn keyword_database.json")
 
+    parser.add_argument("--agent-selection", choices=("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"))
+    parser.add_argument("--workspace", default=None, help="Workspace chứa thư mục dự án")
     args = parser.parse_args()
     classifier = IntentClassifier(db_path=args.db)
 
@@ -944,7 +952,18 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    result = classifier.classify(args.prompt, top_n=args.top, verbose=args.verbose)
+    # This CLI keeps the domain classifier's fields and publishes the same
+    # operational routing used by the handover adapter.
+    sys.path.insert(0, str(SCRIPT_DIR.parent))
+    from intent_classifier import IntentClassifier2D, task_intent_text
+    result = classifier.classify(task_intent_text(args.prompt), top_n=args.top, verbose=args.verbose)
+    result["prompt"] = args.prompt
+    try:
+        result["dispatch_2d"] = IntentClassifier2D(workspace_root=args.workspace).classify(
+            args.prompt, args.agent_selection
+        ).to_dict()
+    except ValueError as exc:
+        parser.error(str(exc))
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

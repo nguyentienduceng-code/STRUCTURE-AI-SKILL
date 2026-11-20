@@ -1,0 +1,350 @@
+{
+  "tools\\mcp_dce_cad_server.py": {
+    "sha256": "560e1327e1ec79f70461d5b46ba63b6f699923ce625ce9235b2c5613730e5202",
+    "bytes": 15590
+  },
+  "tools\\mcp_config.json": {
+    "sha256": "0fa0349bfd94bd850c476f3401c2818ebafd7b7987bae890d3dbd5655b5495b8",
+    "bytes": 2320
+  },
+  "tools\\cad_collision_solver.py": {
+    "sha256": "e29bd5337fe038471711f322c58448d1fcdc0976a307a22d7f18a6ef1a1d82d6",
+    "bytes": 32672
+  },
+  "skills\\SKILL_VERIFY\\scripts\\dce_cad_compliance_checker.py": {
+    "sha256": "fb58b37eccc2a5974e365a660b49b7358fe010cda0a7a99dd8e3ec31e25c988b",
+    "bytes": 45982
+  },
+  "skills\\Technical_Illustrator\\cad_integration\\cad_plan_engine.py": {
+    "sha256": "79616eb396f3ea3b67f7bdc0e036dfef0b92a4cb661990ef20bc32076802600b",
+    "bytes": 168489
+  },
+  "skills\\SKILL_VERIFY\\SKILL.md": {
+    "sha256": "909b6d3d3d0e275d4de55879f4558195be2481f930238f803e7b06c45075f5cc",
+    "bytes": 6728
+  },
+  "skills\\Technical_Illustrator\\SKILL.md": {
+    "sha256": "07682c3e84d1527291b8a9e4fd06c2d83806e06943ba94d69db5f04cfe2edbab",
+    "bytes": 6891
+  },
+  "skills\\SKILL_INDEX.md": {
+    "sha256": "f06dc3cce08730d553a9066f023b6cf5d42cd0e9b9ca44c3894a035eaafe7a78",
+    "bytes": 37003
+  },
+  "skills\\CHANGELOG.md": {
+    "sha256": "96ee1d4015311b733129486514695803f2d309a6f55330d641a9b574cd8a92d2",
+    "bytes": 35568
+  },
+  "tests\\run_all_tests.py": {
+    "sha256": "49b6923a8bc547e85e4e35d039e6c807eefe944e0cadbe80efe7a765f26aaee8",
+    "bytes": 9420
+  },
+  "tests\\test_dce_cad_compliance.py": {
+    "sha256": "23f05b49a44943782de0ce9395a8ce9006c26990e33dce21bc91ccffdf769e5b",
+    "bytes": 22334
+  },
+  "tests\\test_mcp_dce_cad_server.py": {
+    "sha256": "b33940b146f7b023dbf665869424d9efb03b698027719444b63b412f42a7f3a4",
+    "bytes": 11784
+  },
+  "tests\\test_cad_collision_solver.py": {
+    "sha256": "bd5096512757769933ce4bb98063ad6f986b57faa468ab4efeed665d9f742490",
+    "bytes": 26882
+  },
+  "docs\\DCE_VIRTUAL_DRIVE_GUARD.md": {
+    "sha256": "6d0b51ba2267de839fbac48466c67c7db27b091883168be349ec2e60e3e5d234",
+    "bytes": 4970
+  },
+  "docs\\RFC_MCP_DCE_CAD_PERCEPTION_LOOP.md": {
+    "sha256": "5e1bc523692f65442e2be79a958ea1b05c21514f93ae103cb20064c20c84e063",
+    "bytes": 17186
+  },
+  "docs\\MCP_DCE_CAD_CONTRACT.md": {
+    "sha256": "e549936879b2390d21f8d991140ffec595524581e0a4a859248762728c2491f6",
+    "bytes": 4103
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\SPRINT2_SIGN_OFF_v2_20261114.md": {
+    "sha256": "e995d732748bdecbbab1b014dfa0202ad1ab8220e6fe34f12505b33ec4793b7b",
+    "bytes": 11860
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\manifest_before.json": {
+    "sha256": "db5e00ab6f8474da30419448f38f0bbba4777c8576b00ff96503610ac5a30159",
+    "bytes": 6720
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\PLAN.md": {
+    "sha256": "ecb0ca7cacd59a2342bdd9987abf79fb8e70de06f94d472b1bab6f45de5a19e9",
+    "bytes": 1128
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\native_generator_checks.json": {
+    "sha256": "61361566ed90cf2389e8b78ae71099faa97becda9940322ae03112f72d548b18",
+    "bytes": 32324
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\verify_completion.py": {
+    "sha256": "29d5d552120c63d067604503a9bd82a335af48d508a71c475a5382241e42c301",
+    "bytes": 4896
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\product_verification.json": {
+    "sha256": "186a0fd6feb8e5329a39ee12218ddc524815fee63cb0f092b43fe80adb57c141",
+    "bytes": 43231
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\product_integrity.json": {
+    "sha256": "4f7f62948ef46128783094b46a54a929058292badc87d1c33c453e3a1a073af0",
+    "bytes": 49
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\adversarial_probes.json": {
+    "sha256": "f6301f5fe0ea98c45b15780548a0dea43449e2e27d2520abd1085aa662c37606",
+    "bytes": 669
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\preview_comparison.json": {
+    "sha256": "17c7bb16f230d6a0822cde8c873951ca2029954c543317ea145c4cf46253e3fa",
+    "bytes": 1929
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\verdict.json": {
+    "sha256": "f977c26d76f90eed50598df7f47ccc4662eb2c8c107b8016ef831d254a313990",
+    "bytes": 446
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\mcp_skill_review.json": {
+    "sha256": "06cd37bc7de63af10b4312e8c4ef047beaf34ff7c33a06a47ff0f3868c76dd86",
+    "bytes": 835
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests\\suite_18.log": {
+    "sha256": "46443804285b69449d2f71db3560732d4d89ce794b3f2d99da7e2b6f4fb6694d",
+    "bytes": 2911
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests\\suite_29.log": {
+    "sha256": "6a2dafc392bcad8477ac7d2696194d2bd9d139a30b91b564622c150fef9b3227",
+    "bytes": 7563
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests\\suite_30.log": {
+    "sha256": "607b26ac8748bf135085f4a885b6f3fa559d667b5ea20be9072770876833e735",
+    "bytes": 1012
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests\\timings.json": {
+    "sha256": "082b6be0234818e39e5269392a721556ba766e9f7ec25aaf16931ef88296557f",
+    "bytes": 699
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v2\\suite_18.log": {
+    "sha256": "ea64bca963899668a73a5a56e29fb53a0b1ce4400ebaccda171face29f6af725",
+    "bytes": 1123
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v2\\suite_29.log": {
+    "sha256": "c2e5599d7d0eca5695827890a62dde53fa5fa9a2e3837b320a42b78ec1d7adb6",
+    "bytes": 4429
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v2\\timings.json": {
+    "sha256": "2def29aae7e401b326c3627d58e5ab3e5200fe86936fcee0bdef7b152423e4af",
+    "bytes": 504
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v3\\suite_18.log": {
+    "sha256": "61a9d9c0e7cecb9442391a7d1cddecca4aacfae9b3ee24e19f7ac3c720a6dfba",
+    "bytes": 1124
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v3\\suite_29.log": {
+    "sha256": "87c2bd7a42b222ea49d9b9c5dde7252397540d2239a4f968809cb8a23faaa216",
+    "bytes": 3943
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v3\\suite_30.log": {
+    "sha256": "891ae1107ab3cee9043a5fdf62c53f17e75420f6c922af8edf9856feaecce089",
+    "bytes": 1012
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\targeted_tests_v3\\timings.json": {
+    "sha256": "0746b2e8b39ce4f6acafe6f5808d4a839cc6c8402a7b8bf43e421f46cf1fdc61",
+    "bytes": 699
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_01.log": {
+    "sha256": "cef7387c3236b47d17662b83213d68894549ff66327947c6cfd1ecb9bc3f38bf",
+    "bytes": 3557
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_02.log": {
+    "sha256": "8d61a9ad8e7a8cc5367badc47a6e519051e5bb70dccc618a48d4f8b2e8ca621d",
+    "bytes": 2590
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_03.log": {
+    "sha256": "6242129682134e6950f531a75047ddec872b8723374e96c65f9edf4b22fee4ec",
+    "bytes": 5031
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_04.log": {
+    "sha256": "afacc8d21cebaaa5fb7b8cef28f2cded6dbd7f56e469c55ef08c601179896a16",
+    "bytes": 7956
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_05.log": {
+    "sha256": "317e113f664608f15f1353a7c7bb13be9720477c10f1b5231e634fa9e694070c",
+    "bytes": 1163
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_06.log": {
+    "sha256": "ef056843686f26986e80fe1dc1b86b3ea8ff8653b11283bb8b7ff77dbdc0f517",
+    "bytes": 1718
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_07.log": {
+    "sha256": "e56344a9f0dc1a6057c8a96d7e6ecd2fd1acbf6d30de6c78fabc8f3982a43967",
+    "bytes": 327
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_08.log": {
+    "sha256": "3c87b0219dcb589edf204b01145e6eb4d769a684610b420ae42742180fd93233",
+    "bytes": 333
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_09.log": {
+    "sha256": "f5c3b670091f8fa2ffb70aa8659e23b5c19b7046eff35e39158555a9c287508b",
+    "bytes": 5497
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_10.log": {
+    "sha256": "bb90f6d7dcbbc3fe7fa28181188ec877f26c2ae0be783a08fcdf4b9e7be66d4a",
+    "bytes": 2481
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_11.log": {
+    "sha256": "57dd1e5e2fc9037e3649b7d13e2f2d8ce59f97fb8c901a8dbcc6bd2cca23e1d6",
+    "bytes": 3455
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_12.log": {
+    "sha256": "1269d81708397cba4f10bc35c5c1b941431e414f34acbea91d824ad3c74bb078",
+    "bytes": 20416
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_13.log": {
+    "sha256": "a27d89815ae92f42ad616a7c005867c0f452a9810ad8d093409f3005381ea8c2",
+    "bytes": 3304
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_14.log": {
+    "sha256": "d15b26e38f1b0c61fa85e8e3bb2037ed5097eb0cdf24f6da8ce654eca92c9c37",
+    "bytes": 375
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_15.log": {
+    "sha256": "22201f1890f8861837c463cbf3dc486fa7d691c3067c0a1f8462ef353471e0e0",
+    "bytes": 332
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_16.log": {
+    "sha256": "805c38248db6a125e2290704b5cfc3eba1c92d624005067e38a793d8d1da5a4c",
+    "bytes": 10820
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_17.log": {
+    "sha256": "02419df5a2f2fa114ca650ee6d661968f883e2f7634ec61198b8ec77e8f7a906",
+    "bytes": 1976
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_18.log": {
+    "sha256": "4260a46f15ec85615d955d9059f572554f71759cab1de920841c833df61ffd5e",
+    "bytes": 1124
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_19.log": {
+    "sha256": "dcf66e739cc199a8bb89814416457fb6c8c8a1092a2ec91c9f2655f0776acb59",
+    "bytes": 363
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_20.log": {
+    "sha256": "55adbf7ea4598a060a5f717cd33fc2f201fd7bc4e812c8e7740b0945e6c3c932",
+    "bytes": 3289
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_21.log": {
+    "sha256": "493b9faa7bc87f5eda16bde97d7cb9a6251ac4d2c587d048a1e549fd3c3d0b7e",
+    "bytes": 4339
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_22.log": {
+    "sha256": "679f35d289309907390af5398832d1a84a013433413c9dc9da5f68e1b11fdd4c",
+    "bytes": 5951
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_23.log": {
+    "sha256": "ff00efd79de04068aa6961e71f2e8542a4a61787b6527dc53d24e57a42934bb8",
+    "bytes": 8661
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_24.log": {
+    "sha256": "c18cb1b4381036922719691336e7cc498fc142167edbc28f9f80a97a01ebf7ca",
+    "bytes": 3862
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_25.log": {
+    "sha256": "8a883b3bd3fe03ac8e31f7993c60604353829f96e91e0326a4c59d70c169e72b",
+    "bytes": 5732
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_26.log": {
+    "sha256": "9f3ac63803bebc49f545c82a7182be3b4ff114b7d9f7fd9ec4d689c6d7add056",
+    "bytes": 6057
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_27.log": {
+    "sha256": "ad2e22c9b1a8973bbdaf71a765c1bd9abeeb071c3879a7643eb3f0af447dd4e1",
+    "bytes": 333
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_28.log": {
+    "sha256": "a95f137f6ca24557ba95f52632108c487c98bdb5c428d615298c9fc444c5027b",
+    "bytes": 2724
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_29.log": {
+    "sha256": "69c704e116ce04a697f6654e14fdf5a16b40ba64dfbe67158cc639f74ff36246",
+    "bytes": 3943
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\suite_30.log": {
+    "sha256": "79ffd8d8a5f09114022d20f01827654efcadcb42e3ac9d45786be1fb05c38a13",
+    "bytes": 1012
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\full_tests\\timings.json": {
+    "sha256": "1690ca97b25c37691a8586304f8c584ff2ca6c2a2377e1eeaf4f6f78064f0aa4",
+    "bytes": 5300
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\COLUMN_WALL_SETOUT.dxf": {
+    "sha256": "0629cbb328f3fb480bf182a28132e2c635e797f9b1a7fa2ac015376ce83c42ae",
+    "bytes": 467516
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\COLUMN_WALL_SETOUT.dce_audit.json": {
+    "sha256": "83c54a7cc6c2c3a28ab4c836bc1155e0bbd442487c4db1b370e3c70c5ed05e67",
+    "bytes": 152946
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\BEAM_SLAB_FRAMING.dxf": {
+    "sha256": "a5e3b3e4166ec55c943a195f2614f2063b39a3be9b489bf26fd17874ad2f1358",
+    "bytes": 160342
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\BEAM_SLAB_FRAMING.dce_audit.json": {
+    "sha256": "8881c14c5db44369d425319be96f0675bd99e02bc18c263e91e6ee8ab51b64e9",
+    "bytes": 80768
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\SLAB_REBAR_PLAN.dxf": {
+    "sha256": "e439700542ae83f0ec729bdde47198b9a673b9a08bcac463de8232390cb23642",
+    "bytes": 141652
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\SLAB_REBAR_PLAN.dce_audit.json": {
+    "sha256": "d9262194c8de1eede4f93f98b7491a5eaa7f582545de8bd5545157e3bf1aea70",
+    "bytes": 78313
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\FOUNDATION_LAYOUT.dxf": {
+    "sha256": "ad1428be0140861eb11145efa1d5249139a860d4b7c4e2d50dea99d92e568597",
+    "bytes": 268559
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\generated_native\\FOUNDATION_LAYOUT.dce_audit.json": {
+    "sha256": "0deaa0f56a2edc41846b52c236730eed283d898a0e48e542097cbd9f8efa481a",
+    "bytes": 156057
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tools\\mcp_dce_cad_server.py": {
+    "sha256": "bd723dae87ecc68ef9f7607bb76c17de2d548ca97b9e339c164196bacfaa4c72",
+    "bytes": 14181
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tools\\cad_collision_solver.py": {
+    "sha256": "d696f358501a72a859c6b617a7620cdd511335aa819931eac8e31d7d17f8c5b7",
+    "bytes": 32409
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tools\\mcp_config.json": {
+    "sha256": "f2c516bfa666e4216a374bdaa49dd5d9f1c55b4bf00b9ca0545989dc0160fff0",
+    "bytes": 1899
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tests\\test_dce_cad_compliance.py": {
+    "sha256": "d878e7e9d6b0ad48070c938fb3b6e3e51de618972ff246eb0ebaf31207aca1c3",
+    "bytes": 15387
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tests\\test_mcp_dce_cad_server.py": {
+    "sha256": "2e37ac1853c4458b17d05789a911a5727a9557e24b0f6e48e6f47cb83fcc9311",
+    "bytes": 7150
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\tests\\test_cad_collision_solver.py": {
+    "sha256": "d9d604e932a7fccde3480ba91f632a2933e34d50062fd9130872a0a6fb48ef9e",
+    "bytes": 23244
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\skills\\SKILL_VERIFY\\SKILL.md": {
+    "sha256": "8dfd6016289efac5388189749b1e62709cdbcfad570564829dab4140664493f4",
+    "bytes": 4773
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\skills\\Technical_Illustrator\\SKILL.md": {
+    "sha256": "caece7b2543c1c263a018502353a7f442f4224c47a19fed6a89c858280a8e781",
+    "bytes": 5272
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\skills\\SKILL_VERIFY\\scripts\\dce_cad_compliance_checker.py": {
+    "sha256": "2cf459d4c73f9ac94e4e4dc2f3569c49c8d7ae017329041017215636e90408aa",
+    "bytes": 39246
+  },
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\completion_f5_20261114\\before\\skills\\Technical_Illustrator\\cad_integration\\cad_plan_engine.py": {
+    "sha256": "8a969ee38f4227b9c185b9cc641638b0dab1d840aa8b7128eb33396596411482",
+    "bytes": 163882
+  }
+}

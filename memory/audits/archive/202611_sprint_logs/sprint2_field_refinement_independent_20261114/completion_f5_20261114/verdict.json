@@ -1,0 +1,12 @@
+{
+  "software_status": "COMPLETE",
+  "F1_F4": "PASS",
+  "F5_status_contract": "PASS",
+  "MCP_tools_registered": 8,
+  "full_regression_suites": 30,
+  "full_regression_wall_seconds": 115.40193170000202,
+  "native_plan_profiles": "4/4 PASS, each 16 applicable gates + 4 NOT_APPLICABLE",
+  "full_detail_certification": "NEEDS_REVIEW: detail inputs absent; no invented PASS",
+  "github_push_performed": false,
+  "confidence_level": "HIGH"
+}

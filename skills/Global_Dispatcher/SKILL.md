@@ -22,7 +22,7 @@ triggers:
 | Tình huống | Hành động |
 |-----------|-----------|
 | User gửi yêu cầu mới, KHÔNG chỉ định skill | ✅ KÍCH HOẠT — Phân loại và định tuyến |
-| User gửi yêu cầu mới, CÓ chỉ định skill (`@SkillName`) | ❌ BỎQUA — Chuyển thẳng đến skill được chỉ định |
+| User gửi yêu cầu mới, CÓ chỉ định skill (`@SkillName`) | ✅ Giữ skill được chỉ định và xác định dự án, tác tử, chế độ công việc trước khi thực hiện |
 | Đang ở giữa pipeline (skill đang chạy) | ❌ BỎQUA — Tiếp tục pipeline hiện tại |
 | User nói "chuyển skill" hoặc "dùng skill khác" | ✅ KÍCH HOẠT — Re-classify |
 
@@ -45,6 +45,18 @@ python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/scripts/in
 - `confidence_level` — HIGH / MEDIUM / LOW
 - `is_pipeline` — Có cần chạy nhiều skill không
 - `pipeline` — Nếu là pipeline, thứ tự chạy
+
+### Chọn tác tử và chạy phiếu công việc
+
+Đọc `primary_skill`, chuỗi `pipeline` và `dispatch_2d.execution_plan`. Tác tử chạy skill theo phụ thuộc trong kế hoạch. Dùng `--workspace` để định vị dự án khi chạy từ thư mục khác. Đặt mặc định qua `dispatch_task.py set-default --workspace <workspace> --project-dir <dự án> --agent-selection CLAUDE_ONLY`. Lệnh nhận `--agent-selection AUTO|CLAUDE_ONLY|GEMINI_ONLY|DUAL` hoặc chỉ dẫn như “riêng ca này chỉ dùng Claude”. Đặt mặc định lâu dài bằng tệp văn bản UTF-8 `.agent-selection` ở gốc đúng dự án, nội dung là một trong bốn giá trị. Khi người dùng yêu cầu đặt mặc định, xác định đúng dự án trước khi lưu.
+
+Đọc lần lượt từng tệp trong `dispatch_2d.skill_files` theo thứ tự và phụ thuộc của `skill_workflow.stages`. Nếu ca chỉ có một skill, dùng tệp hướng dẫn của skill chính.
+
+1. Chuẩn bị phiếu bằng `dispatch_task.py prepare --workspace <đường dẫn tuyệt đối> --ticket <tệp cục bộ mới> --prompt "<yêu cầu>"`. Với sản phẩm, truyền `--expected-file <tên tệp>` cho từng đầu ra và `--project-identity "<mã hoặc tên công trình trong nguồn duyệt>"`. Khi bỏ qua định danh, cổng dùng tên thư mục dự án. Thêm `--independent-review` nếu cần người kiểm tra độc lập. Khi có nhiều dự án phù hợp, xác nhận đích rồi lập phiếu lại.
+2. Với một tác tử, thực hiện các bước tại chỗ. Khi thiếu công cụ, báo đúng bước cần hỗ trợ. Với hai tác tử, truyền phiếu qua `sync_bus.py --auto --dispatch-ticket <phiếu>` cùng thông tin ca. Hai bên dùng cùng danh mục đầu ra và nguồn đã xác nhận.
+3. Trình số liệu và nhận xác nhận theo Điều 3 trước khi ghi tệp chính thức. Sau khi người dùng xác nhận, chạy `dispatch_task.py approve --ticket <phiếu> --response "<câu trả lời thực tế>" --draft <bản nháp đã trình> --approval-record <tệp xác nhận mới>`. Có thể lặp `--draft`. Giữ các bản nháp tại chỗ để đối chiếu khi kiểm tra. Nếu nội dung kỹ thuật thay đổi, trình lại phần thay đổi.
+4. Sau xuất, dùng `dispatch_task.py check --ticket <phiếu> --actor CLAUDE --report <tệp tóm tắt tiếng Việt> --approval-record <xác nhận>` (chọn GEMINI khi Gemini thực hiện). Kết quả JSON trả về chứa đường dẫn và mã băm tệp. Với ca phối hợp dùng `sync_bus.py --complete --approval-record <xác nhận>` sau khi đủ các điều kiện bàn giao.
+5. Khi cần kiểm tra độc lập, tiếp nhận tệp xác nhận từ người thực sự kiểm tra qua `--review-record <tệp JSON>`. Hai trường là `reviewer` và `evidence_hashes` (ánh xạ đường dẫn sản phẩm tới SHA-256). Host chịu trách nhiệm xác thực danh tính, lưu xác nhận và chuyển kỹ sư ký nếu cần. Phiếu một tác tử ghi tự kiểm khi thiếu xác nhận độc lập. Công cụ đọc định danh dạng chữ trong DOCX/XLSX/PDF/DXF. Bản quét hoặc nhãn CAD đã phá chữ cần người kiểm tra bổ sung nguồn đọc được.
 
 ### 1.2 Bước 2: Quyết định Hành động
 

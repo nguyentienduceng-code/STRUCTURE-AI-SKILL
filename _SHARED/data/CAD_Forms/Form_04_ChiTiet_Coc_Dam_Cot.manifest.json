@@ -1,0 +1,115 @@
+{
+  "template_contract_version": "1.0",
+  "form_id": "FORM_04_CHITIET_COC_DAM_COT",
+  "title_vi": "Form 04 — Chi tiết Cọc, Đài Móng, Dầm, Cột & Thống kê Thép (Khổ A3)",
+  "sheet_size": "A3",
+  "frame_mm": [
+    42000.0,
+    29700.0
+  ],
+  "source_space": "MODEL",
+  "titleblock_block": "DCE_TITLEBLOCK_A3",
+  "required_zones": {
+    "VIEWPORT_DETAIL_1": "DCE_ZONE_DETAIL_1",
+    "VIEWPORT_DETAIL_2": "DCE_ZONE_DETAIL_2",
+    "TABLE_REBAR": "DCE_ZONE_TABLE",
+    "NOTE": "DCE_ZONE_NOTE",
+    "TITLEBLOCK": "DCE_TITLEBLOCK_A3"
+  },
+  "zone_aliases": {
+    "VIEWPORT_DETAIL_1": [
+      "DCE_ZONE_VIEWPORT_TOP"
+    ],
+    "VIEWPORT_DETAIL_2": [
+      "DCE_ZONE_VIEWPORT_BOTTOM"
+    ]
+  },
+  "required_title_tags": [
+    "TEN_CONG_TRINH",
+    "TEN_BAN_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "allowlist_title_tags": [
+    "CHU_DAU_TU",
+    "DIA_DIEM",
+    "DIA_DIEM_2",
+    "CONG_TY",
+    "DIA_CHI_CTY",
+    "EMAIL_CTY",
+    "TEL_CTY",
+    "GIAM_DOC",
+    "KIEM_TRA",
+    "THIET_KE",
+    "THE_HIEN",
+    "TEN_CONG_TRINH",
+    "HANG_MUC",
+    "TEN_BAN_VE",
+    "BUOC_TK",
+    "NAM",
+    "NGAY_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "preserve_user_styles": true,
+  "min_supported_dxf_version": "AC1021",
+  "profile": "detail_rebar",
+  "agent_owned_appid": "DCE_AGENT_OWNED",
+  "dxf_sha256": "4a363bfc5902d7e158675e55a0b36326442c8942e351210241df7ffc70f5f48d",
+  "dxf_version": "AC1021",
+  "roundtrip_status": "FULL",
+  "zones_wcs_snapshot": {
+    "VIEWPORT_DETAIL_1": [
+      [
+        700.0,
+        15250.0,
+        24000.0,
+        29200.0
+      ]
+    ],
+    "VIEWPORT_DETAIL_2": [
+      [
+        700.0,
+        650.0,
+        24000.0,
+        14500.0
+      ]
+    ],
+    "TABLE_REBAR": [
+      [
+        24400.0,
+        15250.0,
+        36400.0,
+        29200.0
+      ]
+    ],
+    "NOTE": [
+      [
+        24400.0,
+        650.0,
+        36400.0,
+        14500.0
+      ]
+    ]
+  },
+  "detected_title_tags": [
+    "CHU_DAU_TU",
+    "DIA_DIEM",
+    "DIA_DIEM_2",
+    "CONG_TY",
+    "DIA_CHI_CTY",
+    "EMAIL_CTY",
+    "TEL_CTY",
+    "GIAM_DOC",
+    "KIEM_TRA",
+    "THIET_KE",
+    "THE_HIEN",
+    "TEN_CONG_TRINH",
+    "HANG_MUC",
+    "TEN_BAN_VE",
+    "BUOC_TK",
+    "NAM",
+    "KY_HIEU",
+    "TY_LE"
+  ]
+}

@@ -1,0 +1,366 @@
+[
+  {
+    "sheet": "KC-01",
+    "skip_count": 1,
+    "min_gap_mm": 0.5320600272862066,
+    "max_gap_mm": 0.5320600272862066,
+    "replay_matches_product": true,
+    "skipped_annotations": [
+      {
+        "handle": "35094",
+        "source": "35092",
+        "gap_mm": 0.5320600272862066,
+        "planned_position": [
+          22600.0,
+          24160.0
+        ],
+        "unpadded_layout_to_source_mm": 86.45676082119145
+      }
+    ],
+    "unpadded_min_mm": 86.45676082119145,
+    "unpadded_max_mm": 86.45676082119145,
+    "unpadded_count_below_100": 1
+  },
+  {
+    "sheet": "KC-02",
+    "skip_count": 33,
+    "min_gap_mm": 1.5683492496536928,
+    "max_gap_mm": 72.36834924966388,
+    "replay_matches_product": true,
+    "skipped_annotations": [
+      {
+        "handle": "350B2",
+        "source": "350B0",
+        "gap_mm": 12.09515508925199,
+        "planned_position": [
+          25530.0,
+          43550.0
+        ],
+        "unpadded_layout_to_source_mm": 82.87504206601744
+      },
+      {
+        "handle": "350BE",
+        "source": "350BC",
+        "gap_mm": 13.412522177042996,
+        "planned_position": [
+          39875.0,
+          43450.0
+        ],
+        "unpadded_layout_to_source_mm": 83.94552537685482
+      },
+      {
+        "handle": "350DC",
+        "source": "351DD",
+        "gap_mm": 21.56834924966097,
+        "planned_position": [
+          20006.2,
+          35861.2
+        ],
+        "unpadded_layout_to_source_mm": 91.56834924966095
+      },
+      {
+        "handle": "350E2",
+        "source": "350E1",
+        "gap_mm": 20.004016597935696,
+        "planned_position": [
+          25030.0,
+          32175.0
+        ],
+        "unpadded_layout_to_source_mm": 102.27239337285923
+      },
+      {
+        "handle": "350F4",
+        "source": "351F5",
+        "gap_mm": 1.5683492496536928,
+        "planned_position": [
+          63776.2,
+          34906.2
+        ],
+        "unpadded_layout_to_source_mm": 71.56834924965369
+      },
+      {
+        "handle": "350FA",
+        "source": "35200",
+        "gap_mm": 21.56834924966097,
+        "planned_position": [
+          67883.8,
+          35861.2
+        ],
+        "unpadded_layout_to_source_mm": 91.56834924966095
+      },
+      {
+        "handle": "35154",
+        "source": "35153",
+        "gap_mm": 31.384303942722727,
+        "planned_position": [
+          16975.0,
+          21130.0
+        ],
+        "unpadded_layout_to_source_mm": 101.65354954144549
+      },
+      {
+        "handle": "3515A",
+        "source": "35159",
+        "gap_mm": 33.54706684856683,
+        "planned_position": [
+          17000.0,
+          29945.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856683
+      },
+      {
+        "handle": "35160",
+        "source": "3515F",
+        "gap_mm": 33.44061358089416,
+        "planned_position": [
+          16975.0,
+          38815.0
+        ],
+        "unpadded_layout_to_source_mm": 103.70670689205397
+      },
+      {
+        "handle": "35166",
+        "source": "35165",
+        "gap_mm": 33.54706684856865,
+        "planned_position": [
+          22950.0,
+          21380.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856865
+      },
+      {
+        "handle": "3516C",
+        "source": "3516B",
+        "gap_mm": 33.547066848568655,
+        "planned_position": [
+          22950.0,
+          29945.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856866
+      },
+      {
+        "handle": "35172",
+        "source": "35171",
+        "gap_mm": 33.54706684856865,
+        "planned_position": [
+          22950.0,
+          38565.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856866
+      },
+      {
+        "handle": "35178",
+        "source": "35177",
+        "gap_mm": 33.547066848568655,
+        "planned_position": [
+          29310.0,
+          22440.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856863
+      },
+      {
+        "handle": "3517E",
+        "source": "3517D",
+        "gap_mm": 33.547066848568655,
+        "planned_position": [
+          29310.0,
+          37560.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856863
+      },
+      {
+        "handle": "35184",
+        "source": "35183",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          35560.0,
+          22440.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "3518A",
+        "source": "35189",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          35560.0,
+          37560.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "35190",
+        "source": "3518F",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          44890.0,
+          22490.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856501
+      },
+      {
+        "handle": "35196",
+        "source": "35195",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          44890.0,
+          37510.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856501
+      },
+      {
+        "handle": "3519C",
+        "source": "3519B",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          54000.0,
+          22440.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "351A2",
+        "source": "351A1",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          54000.0,
+          37560.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "351A8",
+        "source": "351A7",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          60460.0,
+          22440.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "351AE",
+        "source": "351AD",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          60460.0,
+          37560.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856502
+      },
+      {
+        "handle": "351B4",
+        "source": "351B3",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          67030.0,
+          21380.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856501
+      },
+      {
+        "handle": "351BA",
+        "source": "351B9",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          67030.0,
+          29945.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856501
+      },
+      {
+        "handle": "351C0",
+        "source": "351BF",
+        "gap_mm": 33.54706684856501,
+        "planned_position": [
+          67030.0,
+          38565.0
+        ],
+        "unpadded_layout_to_source_mm": 103.54706684856501
+      },
+      {
+        "handle": "351D8",
+        "source": "351D7",
+        "gap_mm": 72.36834924966024,
+        "planned_position": [
+          20057.0,
+          22087.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924966027
+      },
+      {
+        "handle": "351DE",
+        "source": "351DD",
+        "gap_mm": 72.36834924966023,
+        "planned_position": [
+          20057.0,
+          39372.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924966027
+      },
+      {
+        "handle": "351E4",
+        "source": "351E3",
+        "gap_mm": 72.36834924966026,
+        "planned_position": [
+          26237.0,
+          22112.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924966024
+      },
+      {
+        "handle": "351EA",
+        "source": "351E9",
+        "gap_mm": 72.36834924966024,
+        "planned_position": [
+          26237.0,
+          39247.0
+        ],
+        "unpadded_layout_to_source_mm": 142.3683492496602
+      },
+      {
+        "handle": "351F0",
+        "source": "351EF",
+        "gap_mm": 72.36834924965659,
+        "planned_position": [
+          63847.0,
+          22112.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924965663
+      },
+      {
+        "handle": "351F6",
+        "source": "351F5",
+        "gap_mm": 72.3683492496566,
+        "planned_position": [
+          63847.0,
+          39247.0
+        ],
+        "unpadded_layout_to_source_mm": 142.3683492496566
+      },
+      {
+        "handle": "351FC",
+        "source": "351FB",
+        "gap_mm": 72.36834924966388,
+        "planned_position": [
+          70247.0,
+          22087.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924966388
+      },
+      {
+        "handle": "35202",
+        "source": "35201",
+        "gap_mm": 72.36834924966388,
+        "planned_position": [
+          70247.0,
+          39372.0
+        ],
+        "unpadded_layout_to_source_mm": 142.36834924966388
+      }
+    ],
+    "unpadded_min_mm": 71.56834924965369,
+    "unpadded_max_mm": 142.36834924966388,
+    "unpadded_count_below_100": 5
+  }
+]

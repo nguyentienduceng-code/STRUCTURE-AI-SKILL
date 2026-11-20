@@ -1,0 +1,1526 @@
+[
+  {
+    "sheet": "KC-01",
+    "units": 4,
+    "entity_count": 455,
+    "remaining_collision_count": 0,
+    "leader_conflicts": [],
+    "leaders": [
+      {
+        "handle": "3543B",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 564.0934515688932,
+        "owner": "35040",
+        "source": "3503E"
+      },
+      {
+        "handle": "3543C",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "35046",
+        "source": "35044"
+      },
+      {
+        "handle": "3543D",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "3504C",
+        "source": "3504A"
+      },
+      {
+        "handle": "3543E",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "35052",
+        "source": "35050"
+      },
+      {
+        "handle": "3543F",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "35058",
+        "source": "35056"
+      },
+      {
+        "handle": "35440",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "3505E",
+        "source": "3505C"
+      },
+      {
+        "handle": "35441",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "35064",
+        "source": "35062"
+      },
+      {
+        "handle": "35442",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "3506A",
+        "source": "35068"
+      },
+      {
+        "handle": "35443",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 564.0934515688932,
+        "owner": "35070",
+        "source": "3506E"
+      },
+      {
+        "handle": "35444",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 264.0934515688932,
+        "owner": "35076",
+        "source": "35074"
+      },
+      {
+        "handle": "35445",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "3507C",
+        "source": "3507A"
+      },
+      {
+        "handle": "35446",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 617.5934515688932,
+        "owner": "35082",
+        "source": "35080"
+      },
+      {
+        "handle": "35447",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 264.0934515688932,
+        "owner": "35088",
+        "source": "35086"
+      },
+      {
+        "handle": "35448",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 333.5,
+        "owner": "3508E",
+        "source": "3508C"
+      },
+      {
+        "handle": "35449",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 687.0,
+        "owner": "3509A",
+        "source": "35098"
+      },
+      {
+        "handle": "3544A",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 333.5,
+        "owner": "350A0",
+        "source": "3509E"
+      },
+      {
+        "handle": "3544B",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 633.5,
+        "owner": "350A6",
+        "source": "350A4"
+      },
+      {
+        "handle": "3544C",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486388,
+        "owner": "350AC",
+        "source": "350AA"
+      },
+      {
+        "handle": "3544D",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486388,
+        "owner": "350B2",
+        "source": "350B0"
+      },
+      {
+        "handle": "3544E",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486385,
+        "owner": "350B8",
+        "source": "350B6"
+      },
+      {
+        "handle": "3544F",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486385,
+        "owner": "350BE",
+        "source": "350BC"
+      },
+      {
+        "handle": "35450",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486385,
+        "owner": "350C4",
+        "source": "350C2"
+      },
+      {
+        "handle": "35451",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 689.4047707486385,
+        "owner": "350CA",
+        "source": "350C8"
+      },
+      {
+        "handle": "35452",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 687.0,
+        "owner": "350D0",
+        "source": "350CE"
+      },
+      {
+        "handle": "35453",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 633.5,
+        "owner": "350D6",
+        "source": "350D4"
+      }
+    ],
+    "leader_count": 25,
+    "length_min_mm": 264.0934515688932,
+    "length_max_mm": 689.4047707486388,
+    "micro_leaders": [],
+    "layer_color": 250,
+    "wrong_layer": [],
+    "moved_annotations": [
+      {
+        "handle": "35040",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 564.0934515688931,
+        "nearest_structural_handle": "3503E",
+        "position": [
+          16203.5,
+          45053.5
+        ]
+      },
+      {
+        "handle": "35046",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688931,
+        "nearest_structural_handle": "35044",
+        "position": [
+          22557.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "3504C",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688931,
+        "nearest_structural_handle": "3504A",
+        "position": [
+          28917.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "35052",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "35050",
+        "position": [
+          35167.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "35058",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "35056",
+        "position": [
+          44497.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "3505E",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "3505C",
+        "position": [
+          53607.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "35064",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "35062",
+        "position": [
+          60067.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "3506A",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "35068",
+        "position": [
+          66637.0,
+          45107.0
+        ]
+      },
+      {
+        "handle": "35070",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 308.0566166439239,
+        "nearest_structural_handle": "35323",
+        "position": [
+          71796.5,
+          45053.5
+        ]
+      },
+      {
+        "handle": "35076",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 264.0934515688932,
+        "nearest_structural_handle": "35074",
+        "position": [
+          16253.5,
+          35783.5
+        ]
+      },
+      {
+        "handle": "3507C",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688931,
+        "nearest_structural_handle": "3507A",
+        "position": [
+          22557.0,
+          36437.0
+        ]
+      },
+      {
+        "handle": "35082",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 617.5934515688932,
+        "nearest_structural_handle": "35080",
+        "position": [
+          66637.0,
+          36437.0
+        ]
+      },
+      {
+        "handle": "35088",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 264.0934515688932,
+        "nearest_structural_handle": "35086",
+        "position": [
+          71746.5,
+          35783.5
+        ]
+      },
+      {
+        "handle": "3508E",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 333.5,
+        "nearest_structural_handle": "3508C",
+        "position": [
+          16253.5,
+          24106.5
+        ]
+      },
+      {
+        "handle": "35094",
+        "distance_mm": 750.0,
+        "leaders": 0,
+        "clearance_mm": 0.5320600272862066,
+        "nearest_structural_handle": "35092",
+        "position": [
+          22600.0,
+          24160.0
+        ]
+      },
+      {
+        "handle": "3509A",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 687.0,
+        "nearest_structural_handle": "35098",
+        "position": [
+          65223.0,
+          23453.0
+        ]
+      },
+      {
+        "handle": "350A0",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 333.5,
+        "nearest_structural_handle": "3509E",
+        "position": [
+          71746.5,
+          24106.5
+        ]
+      },
+      {
+        "handle": "350A6",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 633.5,
+        "nearest_structural_handle": "350A4",
+        "position": [
+          16203.5,
+          14946.5
+        ]
+      },
+      {
+        "handle": "350AC",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486388,
+        "nearest_structural_handle": "350AA",
+        "position": [
+          21143.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350B2",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486388,
+        "nearest_structural_handle": "350B0",
+        "position": [
+          27503.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350B8",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486385,
+        "nearest_structural_handle": "350B6",
+        "position": [
+          33753.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350BE",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486385,
+        "nearest_structural_handle": "350BC",
+        "position": [
+          43083.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350C4",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486385,
+        "nearest_structural_handle": "350C2",
+        "position": [
+          52193.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350CA",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 689.4047707486385,
+        "nearest_structural_handle": "350C8",
+        "position": [
+          58653.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350D0",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 687.0,
+        "nearest_structural_handle": "350CE",
+        "position": [
+          65223.0,
+          14893.0
+        ]
+      },
+      {
+        "handle": "350D6",
+        "distance_mm": 499.9244942988891,
+        "leaders": 1,
+        "clearance_mm": 633.5,
+        "nearest_structural_handle": "350D4",
+        "position": [
+          71796.5,
+          14946.5
+        ]
+      }
+    ],
+    "altered_fixed_entities": [],
+    "repeat_status": "DRY_RUN_OK",
+    "repeat_displacements": 0,
+    "compliance": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dxf",
+      "status": "PASS",
+      "dxf_version": "AC1021",
+      "total_entities": 455,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [
+        {
+          "layer": "DCE_Leader",
+          "count": 25
+        }
+      ],
+      "blocks": {
+        "total_inserts": 57,
+        "axis_bubbles": 30,
+        "member_tags": 26,
+        "title_blocks": 1
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": true,
+        "beam_void_clashes": 0
+      },
+      "issues": [],
+      "gates_passed": 5,
+      "gates_total": 20,
+      "gate_results": [
+        {
+          "gate_id": "G8.01",
+          "gate_name": "DXF_VERSION_AND_SYNTAX",
+          "passed": true,
+          "detail": "Chuẩn DXF=AC1021 (Mode=COLUMN_WALL_SETOUT, Scale=1/100), Cụm logic=455, Thực thể hình học DXF=401."
+        },
+        {
+          "gate_id": "G8.02",
+          "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+          "passed": false,
+          "detail": "Thiếu các Layer chuẩn: ['DCE_Boundary_Zone', 'DCE_Cot', 'DCE_CouplingBeam', 'DCE_Thep_Chu', 'DCE_Thep_Dai', 'DCE_Vach']"
+        },
+        {
+          "gate_id": "G8.03",
+          "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+          "passed": false,
+          "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_100 (2.2mm) & DCE_DIM_COT_100 (1.8mm), mũi tên _ARCHTICK."
+        },
+        {
+          "gate_id": "G8.04",
+          "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+          "passed": false,
+          "detail": "100% (0 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+        },
+        {
+          "gate_id": "G8.05",
+          "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+          "passed": false,
+          "detail": "100% (0 cột: 0 đi tiếp DCE_Cot_Block, 0 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+        },
+        {
+          "gate_id": "G8.06",
+          "gate_name": "SETOUT_TRUE_DIMENSIONS",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Có 0 chuỗi Linear Dimension định vị (DCE_DIM_COT_100), 0 LEADER, 0 lệch số Dim."
+        },
+        {
+          "gate_id": "G8.07",
+          "gate_name": "TAG_ATTSYNC_IMMUNITY",
+          "passed": false,
+          "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại (99.0, 99.0) và (99.0, 99.0) (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+        },
+        {
+          "gate_id": "G8.08",
+          "gate_name": "SCOPE_SEPARATION_LOCK",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Hệ dầm tham chiếu (50 đoạn nhịp) đã cắt mép cột trên DCE_NetThay, 0 nhãn dầm gây nhiễu."
+        },
+        {
+          "gate_id": "G8.09",
+          "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+          "passed": false,
+          "detail": "Đủ 0 vách có vùng biên B.E. (TCVN 9386:2025), 0 dầm nối lõi CB và 6 lỗ mở VoidX."
+        },
+        {
+          "gate_id": "G8.10",
+          "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+          "passed": false,
+          "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+        },
+        {
+          "gate_id": "G8.11",
+          "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+          "passed": false,
+          "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+        },
+        {
+          "gate_id": "G8.12",
+          "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Đã kiểm tra hộp bao AABB của 0 nhãn DCE_TenCauKien: 0 xung đột đè chữ."
+        },
+        {
+          "gate_id": "G8.17",
+          "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+          "passed": false,
+          "detail": ""
+        },
+        {
+          "gate_id": "G8.18",
+          "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+          "passed": false,
+          "detail": "Đã kiểm tra 15 đường trục & 0 đầu trục với 0 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+        },
+        {
+          "gate_id": "G8.19",
+          "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+          "passed": false,
+          "detail": "Đã kiểm tra 0 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+        },
+        {
+          "gate_id": "G8.20",
+          "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+          "passed": false,
+          "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+        },
+        {
+          "gate_id": "G8.13",
+          "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+          "passed": true,
+          "detail": "Tích hợp sẵn sàng module cad_beam_elevation_engine (neo gối >= Ln/3, đai tới hạn 2*hb, MC 1/20)."
+        },
+        {
+          "gate_id": "G8.14",
+          "gate_name": "COLUMN_SECTION_REBAR_RULES",
+          "passed": true,
+          "detail": "Tích hợp sẵn sàng module cad_column_wall_detail_engine (As_prov >= As_calc, 1% <= mu <= 4%)."
+        },
+        {
+          "gate_id": "G8.15",
+          "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+          "passed": true,
+          "detail": "Đủ vùng biên chịu nén B.E. l_be >= max(0.15*Lw, 1.5*bw, 400mm) theo TCVN 9386:2025."
+        },
+        {
+          "gate_id": "G8.16",
+          "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+          "passed": true,
+          "detail": "Đồng bộ công thức trọng lượng thép BBS (d^2/162.2) và bảng thống kê cấu kiện Sidebar."
+        }
+      ]
+    },
+    "image": {
+      "path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_after.png",
+      "size": [
+        8490,
+        5410
+      ],
+      "info": {
+        "Software": "Matplotlib version3.10.9, https://matplotlib.org/",
+        "dpi": "(99.9998, 99.9998)"
+      }
+    },
+    "dxf_audit_errors": 0
+  },
+  {
+    "sheet": "KC-02",
+    "units": 4,
+    "entity_count": 499,
+    "remaining_collision_count": 0,
+    "leader_conflicts": [],
+    "leaders": [
+      {
+        "handle": "35533",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 157.6603001364274,
+        "owner": "35124",
+        "source": "351D6"
+      },
+      {
+        "handle": "35534",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 157.6603001364274,
+        "owner": "3512A",
+        "source": "351E2"
+      },
+      {
+        "handle": "35535",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 704.756521690781,
+        "owner": "35136",
+        "source": "35134"
+      },
+      {
+        "handle": "35536",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 162.6603001364274,
+        "owner": "35148",
+        "source": "351EF"
+      },
+      {
+        "handle": "35537",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 157.6603001364274,
+        "owner": "3514E",
+        "source": "351FB"
+      },
+      {
+        "handle": "35538",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 283.43566988375255,
+        "owner": "351C6",
+        "source": "351C5"
+      },
+      {
+        "handle": "35539",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 283.547066848565,
+        "owner": "351CC",
+        "source": "351CB"
+      },
+      {
+        "handle": "3553A",
+        "type": "LINE",
+        "layer": "DCE_Leader",
+        "entity_color": 250,
+        "length_mm": 281.40616832373956,
+        "owner": "351D2",
+        "source": "351D1"
+      }
+    ],
+    "leader_count": 8,
+    "length_min_mm": 157.6603001364274,
+    "length_max_mm": 704.756521690781,
+    "micro_leaders": [],
+    "layer_color": 250,
+    "wrong_layer": [],
+    "moved_annotations": [
+      {
+        "handle": "350AC",
+        "distance_mm": 299.9546965793314,
+        "leaders": 0,
+        "clearance_mm": 217.32292375629777,
+        "nearest_structural_handle": "350AA",
+        "position": [
+          19062.1,
+          44062.1
+        ]
+      },
+      {
+        "handle": "350B2",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 12.09515508925199,
+        "nearest_structural_handle": "350B0",
+        "position": [
+          25530.0,
+          43550.0
+        ]
+      },
+      {
+        "handle": "350BE",
+        "distance_mm": 750.0,
+        "leaders": 0,
+        "clearance_mm": 13.412522177042996,
+        "nearest_structural_handle": "350BC",
+        "position": [
+          39875.0,
+          43450.0
+        ]
+      },
+      {
+        "handle": "350C4",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 112.47268545161857,
+        "nearest_structural_handle": "350C2",
+        "position": [
+          48239.0,
+          43556.0
+        ]
+      },
+      {
+        "handle": "350D6",
+        "distance_mm": 299.95469657933654,
+        "leaders": 0,
+        "clearance_mm": 183.47501441749392,
+        "nearest_structural_handle": "350D4",
+        "position": [
+          69252.1,
+          44062.1
+        ]
+      },
+      {
+        "handle": "350DC",
+        "distance_mm": 1599.7583817564437,
+        "leaders": 0,
+        "clearance_mm": 21.56834924966097,
+        "nearest_structural_handle": "351DD",
+        "position": [
+          20006.2,
+          35861.2
+        ]
+      },
+      {
+        "handle": "350E2",
+        "distance_mm": 1600.0,
+        "leaders": 0,
+        "clearance_mm": 20.004016597935696,
+        "nearest_structural_handle": "350E1",
+        "position": [
+          25030.0,
+          32175.0
+        ]
+      },
+      {
+        "handle": "350EE",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 63.79672578444661,
+        "nearest_structural_handle": "350EC",
+        "position": [
+          50756.0,
+          32926.0
+        ]
+      },
+      {
+        "handle": "350F4",
+        "distance_mm": 1599.758381756441,
+        "leaders": 0,
+        "clearance_mm": 1.5683492496536928,
+        "nearest_structural_handle": "351F5",
+        "position": [
+          63776.2,
+          34906.2
+        ]
+      },
+      {
+        "handle": "350FA",
+        "distance_mm": 1599.758381756441,
+        "leaders": 0,
+        "clearance_mm": 21.56834924966097,
+        "nearest_structural_handle": "35200",
+        "position": [
+          67883.8,
+          35861.2
+        ]
+      },
+      {
+        "handle": "35100",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 63.7967257844466,
+        "nearest_structural_handle": "350FE",
+        "position": [
+          18981.0,
+          26466.0
+        ]
+      },
+      {
+        "handle": "35106",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 12.175618401653175,
+        "nearest_structural_handle": "35104",
+        "position": [
+          24924.0,
+          27476.0
+        ]
+      },
+      {
+        "handle": "35112",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 18.884038199183124,
+        "nearest_structural_handle": "3509A",
+        "position": [
+          50756.0,
+          28486.0
+        ]
+      },
+      {
+        "handle": "35118",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 14.145152215048029,
+        "nearest_structural_handle": "35116",
+        "position": [
+          62751.0,
+          27476.0
+        ]
+      },
+      {
+        "handle": "3511E",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 63.7967257844466,
+        "nearest_structural_handle": "3511C",
+        "position": [
+          69121.0,
+          26466.0
+        ]
+      },
+      {
+        "handle": "35124",
+        "distance_mm": 1300.0,
+        "leaders": 1,
+        "clearance_mm": 96.30074596544043,
+        "nearest_structural_handle": "35122",
+        "position": [
+          17550.0,
+          17350.0
+        ]
+      },
+      {
+        "handle": "3512A",
+        "distance_mm": 1300.0,
+        "leaders": 1,
+        "clearance_mm": 24.672216879160146,
+        "nearest_structural_handle": "35128",
+        "position": [
+          23730.0,
+          17650.0
+        ]
+      },
+      {
+        "handle": "35136",
+        "distance_mm": 999.8489885977782,
+        "leaders": 1,
+        "clearance_mm": 704.7565216907799,
+        "nearest_structural_handle": "35134",
+        "position": [
+          39832.0,
+          18457.0
+        ]
+      },
+      {
+        "handle": "3513C",
+        "distance_mm": 149.90663761154806,
+        "leaders": 0,
+        "clearance_mm": 110.14571257725595,
+        "nearest_structural_handle": "3513A",
+        "position": [
+          48239.0,
+          17856.0
+        ]
+      },
+      {
+        "handle": "35148",
+        "distance_mm": 1300.0,
+        "leaders": 1,
+        "clearance_mm": 24.133815621046285,
+        "nearest_structural_handle": "35146",
+        "position": [
+          63945.0,
+          17650.0
+        ]
+      },
+      {
+        "handle": "3514E",
+        "distance_mm": 1300.0,
+        "leaders": 1,
+        "clearance_mm": 93.21760827990322,
+        "nearest_structural_handle": "3514C",
+        "position": [
+          70340.0,
+          17350.0
+        ]
+      },
+      {
+        "handle": "35154",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 31.384303942722727,
+        "nearest_structural_handle": "35153",
+        "position": [
+          16975.0,
+          21130.0
+        ]
+      },
+      {
+        "handle": "3515A",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856683,
+        "nearest_structural_handle": "35159",
+        "position": [
+          17000.0,
+          29945.0
+        ]
+      },
+      {
+        "handle": "35160",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.44061358089416,
+        "nearest_structural_handle": "3515F",
+        "position": [
+          16975.0,
+          38815.0
+        ]
+      },
+      {
+        "handle": "35166",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856865,
+        "nearest_structural_handle": "35165",
+        "position": [
+          22950.0,
+          21380.0
+        ]
+      },
+      {
+        "handle": "3516C",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.547066848568655,
+        "nearest_structural_handle": "3516B",
+        "position": [
+          22950.0,
+          29945.0
+        ]
+      },
+      {
+        "handle": "35172",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856865,
+        "nearest_structural_handle": "35171",
+        "position": [
+          22950.0,
+          38565.0
+        ]
+      },
+      {
+        "handle": "35178",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.547066848568655,
+        "nearest_structural_handle": "35177",
+        "position": [
+          29310.0,
+          22440.0
+        ]
+      },
+      {
+        "handle": "3517E",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.547066848568655,
+        "nearest_structural_handle": "3517D",
+        "position": [
+          29310.0,
+          37560.0
+        ]
+      },
+      {
+        "handle": "35184",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "35183",
+        "position": [
+          35560.0,
+          22440.0
+        ]
+      },
+      {
+        "handle": "3518A",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "35189",
+        "position": [
+          35560.0,
+          37560.0
+        ]
+      },
+      {
+        "handle": "35190",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "3518F",
+        "position": [
+          44890.0,
+          22490.0
+        ]
+      },
+      {
+        "handle": "35196",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "35195",
+        "position": [
+          44890.0,
+          37510.0
+        ]
+      },
+      {
+        "handle": "3519C",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "3519B",
+        "position": [
+          54000.0,
+          22440.0
+        ]
+      },
+      {
+        "handle": "351A2",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351A1",
+        "position": [
+          54000.0,
+          37560.0
+        ]
+      },
+      {
+        "handle": "351A8",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351A7",
+        "position": [
+          60460.0,
+          22440.0
+        ]
+      },
+      {
+        "handle": "351AE",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351AD",
+        "position": [
+          60460.0,
+          37560.0
+        ]
+      },
+      {
+        "handle": "351B4",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351B3",
+        "position": [
+          67030.0,
+          21380.0
+        ]
+      },
+      {
+        "handle": "351BA",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351B9",
+        "position": [
+          67030.0,
+          29945.0
+        ]
+      },
+      {
+        "handle": "351C0",
+        "distance_mm": 500.0,
+        "leaders": 0,
+        "clearance_mm": 33.54706684856501,
+        "nearest_structural_handle": "351BF",
+        "position": [
+          67030.0,
+          38565.0
+        ]
+      },
+      {
+        "handle": "351C6",
+        "distance_mm": 750.0,
+        "leaders": 1,
+        "clearance_mm": 283.4356698837547,
+        "nearest_structural_handle": "351C5",
+        "position": [
+          73475.0,
+          21130.0
+        ]
+      },
+      {
+        "handle": "351CC",
+        "distance_mm": 750.0,
+        "leaders": 1,
+        "clearance_mm": 283.547066848565,
+        "nearest_structural_handle": "351CB",
+        "position": [
+          73450.0,
+          29945.0
+        ]
+      },
+      {
+        "handle": "351D2",
+        "distance_mm": 750.0,
+        "leaders": 1,
+        "clearance_mm": 281.40616832373684,
+        "nearest_structural_handle": "351D1",
+        "position": [
+          73475.0,
+          38815.0
+        ]
+      },
+      {
+        "handle": "351D8",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966024,
+        "nearest_structural_handle": "351D7",
+        "position": [
+          20057.0,
+          22087.0
+        ]
+      },
+      {
+        "handle": "351DE",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966023,
+        "nearest_structural_handle": "351DD",
+        "position": [
+          20057.0,
+          39372.0
+        ]
+      },
+      {
+        "handle": "351E4",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966026,
+        "nearest_structural_handle": "351E3",
+        "position": [
+          26237.0,
+          22112.0
+        ]
+      },
+      {
+        "handle": "351EA",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966024,
+        "nearest_structural_handle": "351E9",
+        "position": [
+          26237.0,
+          39247.0
+        ]
+      },
+      {
+        "handle": "351F0",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924965659,
+        "nearest_structural_handle": "351EF",
+        "position": [
+          63847.0,
+          22112.0
+        ]
+      },
+      {
+        "handle": "351F6",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.3683492496566,
+        "nearest_structural_handle": "351F5",
+        "position": [
+          63847.0,
+          39247.0
+        ]
+      },
+      {
+        "handle": "351FC",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966388,
+        "nearest_structural_handle": "351FB",
+        "position": [
+          70247.0,
+          22087.0
+        ]
+      },
+      {
+        "handle": "35202",
+        "distance_mm": 999.8489885977782,
+        "leaders": 0,
+        "clearance_mm": 72.36834924966388,
+        "nearest_structural_handle": "35201",
+        "position": [
+          70247.0,
+          39372.0
+        ]
+      }
+    ],
+    "altered_fixed_entities": [],
+    "repeat_status": "DRY_RUN_OK",
+    "repeat_displacements": 0,
+    "compliance": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dxf",
+      "status": "PASS",
+      "dxf_version": "AC1021",
+      "total_entities": 499,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [
+        {
+          "layer": "DCE_Leader",
+          "count": 8
+        }
+      ],
+      "blocks": {
+        "total_inserts": 108,
+        "axis_bubbles": 30,
+        "member_tags": 76,
+        "title_blocks": 2
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": false,
+        "beam_void_clashes": 0
+      },
+      "issues": [],
+      "gates_passed": 5,
+      "gates_total": 20,
+      "gate_results": [
+        {
+          "gate_id": "G8.01",
+          "gate_name": "DXF_VERSION_AND_SYNTAX",
+          "passed": true,
+          "detail": "Chuẩn DXF=AC1021 (Mode=COLUMN_WALL_SETOUT, Scale=1/100), Cụm logic=499, Thực thể hình học DXF=445."
+        },
+        {
+          "gate_id": "G8.02",
+          "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+          "passed": false,
+          "detail": "Thiếu các Layer chuẩn: ['DCE_Boundary_Zone', 'DCE_Cot', 'DCE_CouplingBeam', 'DCE_Thep_Chu', 'DCE_Thep_Dai', 'DCE_Vach']"
+        },
+        {
+          "gate_id": "G8.03",
+          "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+          "passed": false,
+          "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_100 (2.2mm) & DCE_DIM_COT_100 (1.8mm), mũi tên _ARCHTICK."
+        },
+        {
+          "gate_id": "G8.04",
+          "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+          "passed": false,
+          "detail": "100% (0 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+        },
+        {
+          "gate_id": "G8.05",
+          "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+          "passed": false,
+          "detail": "100% (0 cột: 0 đi tiếp DCE_Cot_Block, 0 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+        },
+        {
+          "gate_id": "G8.06",
+          "gate_name": "SETOUT_TRUE_DIMENSIONS",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Có 0 chuỗi Linear Dimension định vị (DCE_DIM_COT_100), 0 LEADER, 0 lệch số Dim."
+        },
+        {
+          "gate_id": "G8.07",
+          "gate_name": "TAG_ATTSYNC_IMMUNITY",
+          "passed": false,
+          "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại (99.0, 99.0) và (99.0, 99.0) (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+        },
+        {
+          "gate_id": "G8.08",
+          "gate_name": "SCOPE_SEPARATION_LOCK",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Hệ dầm tham chiếu (0 đoạn nhịp) đã cắt mép cột trên DCE_NetThay, 0 nhãn dầm gây nhiễu."
+        },
+        {
+          "gate_id": "G8.09",
+          "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+          "passed": false,
+          "detail": "Đủ 0 vách có vùng biên B.E. (TCVN 9386:2025), 0 dầm nối lõi CB và 6 lỗ mở VoidX."
+        },
+        {
+          "gate_id": "G8.10",
+          "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+          "passed": false,
+          "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+        },
+        {
+          "gate_id": "G8.11",
+          "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+          "passed": false,
+          "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+        },
+        {
+          "gate_id": "G8.12",
+          "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+          "passed": false,
+          "detail": "[COLUMN_WALL_SETOUT] Đã kiểm tra hộp bao AABB của 0 nhãn DCE_TenCauKien: 0 xung đột đè chữ."
+        },
+        {
+          "gate_id": "G8.17",
+          "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+          "passed": false,
+          "detail": ""
+        },
+        {
+          "gate_id": "G8.18",
+          "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+          "passed": false,
+          "detail": "Đã kiểm tra 15 đường trục & 0 đầu trục với 0 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+        },
+        {
+          "gate_id": "G8.19",
+          "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+          "passed": false,
+          "detail": "Đã kiểm tra 0 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+        },
+        {
+          "gate_id": "G8.20",
+          "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+          "passed": false,
+          "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+        },
+        {
+          "gate_id": "G8.13",
+          "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+          "passed": true,
+          "detail": "Tích hợp sẵn sàng module cad_beam_elevation_engine (neo gối >= Ln/3, đai tới hạn 2*hb, MC 1/20)."
+        },
+        {
+          "gate_id": "G8.14",
+          "gate_name": "COLUMN_SECTION_REBAR_RULES",
+          "passed": true,
+          "detail": "Tích hợp sẵn sàng module cad_column_wall_detail_engine (As_prov >= As_calc, 1% <= mu <= 4%)."
+        },
+        {
+          "gate_id": "G8.15",
+          "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+          "passed": true,
+          "detail": "Đủ vùng biên chịu nén B.E. l_be >= max(0.15*Lw, 1.5*bw, 400mm) theo TCVN 9386:2025."
+        },
+        {
+          "gate_id": "G8.16",
+          "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+          "passed": true,
+          "detail": "Đồng bộ công thức trọng lượng thép BBS (d^2/162.2) và bảng thống kê cấu kiện Sidebar."
+        }
+      ]
+    },
+    "image": {
+      "path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_after.png",
+      "size": [
+        8490,
+        5410
+      ],
+      "info": {
+        "Software": "Matplotlib version3.10.9, https://matplotlib.org/",
+        "dpi": "(99.9998, 99.9998)"
+      }
+    },
+    "dxf_audit_errors": 0
+  }
+]

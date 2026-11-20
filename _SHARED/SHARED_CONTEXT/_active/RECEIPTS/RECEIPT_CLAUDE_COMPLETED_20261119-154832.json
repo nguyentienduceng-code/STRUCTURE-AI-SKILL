@@ -1,0 +1,21 @@
+{
+  "receipt_id": "RCP_20261119-154832_CLAUDE_COMPLETED",
+  "issued_at": "2026-11-19T15:48:32.562257+07:00",
+  "project_code": "SKILL_DUAL_AGENT_BRIDGE",
+  "action_type": "DYNAMIC",
+  "sender": "CLAUDE",
+  "target": "GEMINI",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "evidence_hashes": {
+    ".agents/tools/sync_bus.py": null,
+    ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/SKILL.md": null,
+    "out/preview.png": null
+  },
+  "force_used": true,
+  "force_reason": "v3.3 dogfood: complete voi bang chung PNG that su",
+  "bus_sha256": "b37d4928a0f37a3443311422eb52f48bee81b94dadf3114a96ae8576bb75543d",
+  "signature": "CLAUDE@20261119-154832"
+}

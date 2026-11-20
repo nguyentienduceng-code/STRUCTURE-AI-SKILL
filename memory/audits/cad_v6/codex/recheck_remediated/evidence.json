@@ -1,0 +1,2347 @@
+[
+  {
+    "file": "KC-02_C2_A3.dxf",
+    "hash": "1c794f6c546022f74205bde619d1d4d8e9bc468fb9f551fac6b10ac0ee529599",
+    "model_counts": {
+      "LWPOLYLINE": 11,
+      "HATCH": 2,
+      "INSERT": 9,
+      "LINE": 6,
+      "DIMENSION": 1,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          205.0,
+          145.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      },
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          150.0,
+          205.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [
+      0.0
+    ],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_schedule_entries": [
+      "COL_C1_F1",
+      "COL_C1_F2",
+      "BM_D1A_F2_S1",
+      "BM_D1A_F2_S2",
+      "STEEL_COL_C1",
+      "STEEL_BM_B1",
+      "STEEL_BOX_BX1",
+      "STEEL_CH_U1",
+      "STEEL_PP_P1",
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_plate": true,
+    "dimstyles": {
+      "Standard": 1
+    },
+    "raw_dict_attributes": [
+      [
+        "45",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "4B",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "51",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ],
+      [
+        "57",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ]
+    ],
+    "provenance_present": false,
+    "geometry_signature": "f835f61639a00694935719d773230c6c16f59113f50e35eaad5490b828e9fea5",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']",
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-03_C2_A3.dxf",
+    "hash": "de681a73aa2b6682990f8c69c154bd6c240149a7b5689b6aa3218ca89ee49cca",
+    "model_counts": {
+      "LWPOLYLINE": 11,
+      "HATCH": 2,
+      "INSERT": 9,
+      "LINE": 6,
+      "DIMENSION": 1,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          242.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_schedule_entries": [
+      "COL_C1_F1",
+      "COL_C1_F2",
+      "BM_D1A_F2_S1",
+      "BM_D1A_F2_S2",
+      "STEEL_COL_C1",
+      "STEEL_BM_B1",
+      "STEEL_BOX_BX1",
+      "STEEL_CH_U1",
+      "STEEL_PP_P1",
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_plate": true,
+    "dimstyles": {
+      "Standard": 1
+    },
+    "raw_dict_attributes": [
+      [
+        "45",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "4B",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "51",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ],
+      [
+        "57",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ]
+    ],
+    "provenance_present": false,
+    "geometry_signature": "f835f61639a00694935719d773230c6c16f59113f50e35eaad5490b828e9fea5",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']",
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-04_C2_A3.dxf",
+    "hash": "a39424da6db1eff9d455e732e76165d66f68bfc1b3731aa072cff5a4ad6b47c4",
+    "model_counts": {
+      "LWPOLYLINE": 11,
+      "HATCH": 2,
+      "INSERT": 9,
+      "LINE": 6,
+      "DIMENSION": 1,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "layer": "VP_BOTTOM",
+        "bbox": [
+          15.0,
+          15.0,
+          205.0,
+          145.0
+        ],
+        "scale": 50.0,
+        "frozen": [
+          "REBAR_TOP"
+        ]
+      },
+      {
+        "layer": "VP_TOP",
+        "bbox": [
+          15.0,
+          150.0,
+          205.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": [
+          "REBAR_BOTTOM"
+        ]
+      }
+    ],
+    "overlap": [
+      0.0
+    ],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_schedule_entries": [
+      "COL_C1_F1",
+      "COL_C1_F2",
+      "BM_D1A_F2_S1",
+      "BM_D1A_F2_S2",
+      "STEEL_COL_C1",
+      "STEEL_BM_B1",
+      "STEEL_BOX_BX1",
+      "STEEL_CH_U1",
+      "STEEL_PP_P1",
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_plate": true,
+    "dimstyles": {
+      "Standard": 1
+    },
+    "raw_dict_attributes": [
+      [
+        "45",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "4B",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "51",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ],
+      [
+        "57",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ]
+    ],
+    "provenance_present": false,
+    "geometry_signature": "f835f61639a00694935719d773230c6c16f59113f50e35eaad5490b828e9fea5",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']",
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-06_C2_A3.dxf",
+    "hash": "0a4e1ea2151d2bdeb7327bdbac08c756774c925ac4868b05a8d9e03d4e0dfdb9",
+    "model_counts": {
+      "LWPOLYLINE": 11,
+      "HATCH": 2,
+      "INSERT": 9,
+      "LINE": 6,
+      "DIMENSION": 1,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          242.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_schedule_entries": [
+      "COL_C1_F1",
+      "COL_C1_F2",
+      "BM_D1A_F2_S1",
+      "BM_D1A_F2_S2",
+      "STEEL_COL_C1",
+      "STEEL_BM_B1",
+      "STEEL_BOX_BX1",
+      "STEEL_CH_U1",
+      "STEEL_PP_P1",
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_plate": true,
+    "dimstyles": {
+      "Standard": 1
+    },
+    "raw_dict_attributes": [
+      [
+        "45",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "4B",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "51",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ],
+      [
+        "57",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ]
+    ],
+    "provenance_present": false,
+    "geometry_signature": "f835f61639a00694935719d773230c6c16f59113f50e35eaad5490b828e9fea5",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']",
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-07_C2_A3.dxf",
+    "hash": "068de322a3a95f11f410259d58c324157d130fe98084451b50b2aea679cc34e5",
+    "model_counts": {
+      "LWPOLYLINE": 11,
+      "HATCH": 2,
+      "INSERT": 9,
+      "LINE": 6,
+      "DIMENSION": 1,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          242.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_schedule_entries": [
+      "COL_C1_F1",
+      "COL_C1_F2",
+      "BM_D1A_F2_S1",
+      "BM_D1A_F2_S2",
+      "STEEL_COL_C1",
+      "STEEL_BM_B1",
+      "STEEL_BOX_BX1",
+      "STEEL_CH_U1",
+      "STEEL_PP_P1",
+      "STEEL_BP_01",
+      "STEEL_BP_02"
+    ],
+    "missing_plate": true,
+    "dimstyles": {
+      "Standard": 1
+    },
+    "raw_dict_attributes": [
+      [
+        "45",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "4B",
+        "{'width_mm': 300, 'height_mm': 300, 'concrete_grade': 'B30'}"
+      ],
+      [
+        "51",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ],
+      [
+        "57",
+        "{'width_mm': 200, 'height_mm': 400, 'concrete_grade': 'B25'}"
+      ]
+    ],
+    "provenance_present": false,
+    "geometry_signature": "f835f61639a00694935719d773230c6c16f59113f50e35eaad5490b828e9fea5",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dxf",
+        "status": "FAIL",
+        "dxf_version": "AC1032",
+        "total_entities": 30,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "CONCRETE",
+            "count": 4
+          },
+          {
+            "layer": "CONCRETE_HATCH",
+            "count": 4
+          },
+          {
+            "layer": "TAG",
+            "count": 9
+          },
+          {
+            "layer": "STEEL",
+            "count": 7
+          },
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "DIMENSION",
+            "count": 1
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 9,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 1,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": [
+            "Standard"
+          ]
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']",
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "FAIL",
+        "physical_issues": [
+          "DimStyle ngoài chuẩn DCE: ['Standard']"
+        ],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing or stale DXF SHA256 binding: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  }
+]

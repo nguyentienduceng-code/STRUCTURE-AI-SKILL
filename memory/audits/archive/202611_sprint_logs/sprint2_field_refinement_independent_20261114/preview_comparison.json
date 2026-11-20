@@ -1,0 +1,78 @@
+[
+  {
+    "sheet": "KC-01",
+    "supplied_size": [
+      8490,
+      5410
+    ],
+    "fresh_size": [
+      8490,
+      5410
+    ],
+    "fresh_preview": {
+      "status": "OK",
+      "output_png": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\previews\\ef460ce04ca24d63a09f746028eadd2f\\preview.png",
+      "preview_id": "ef460ce04ca24d63a09f746028eadd2f",
+      "requested_output_png": "",
+      "temporary": true,
+      "cleanup_tool": "release_preview",
+      "vision_tool": "consume_preview",
+      "png_bytes": 386206,
+      "render_seconds": 3.303,
+      "dpi": 100,
+      "layout": "Model",
+      "view_box": [
+        14500,
+        33000,
+        36500,
+        47000
+      ],
+      "modelspace_entities": 455,
+      "layers": 57,
+      "blocks": 191,
+      "verified_file_exists": true
+    },
+    "different_pixels": 0,
+    "total_pixels": 45930900,
+    "difference_bbox": null,
+    "exact_pixel_match": true
+  },
+  {
+    "sheet": "KC-02",
+    "supplied_size": [
+      8490,
+      5410
+    ],
+    "fresh_size": [
+      8490,
+      5410
+    ],
+    "fresh_preview": {
+      "status": "OK",
+      "output_png": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\previews\\1a4d6fea554a40c1a4528888fbde1c4e\\preview.png",
+      "preview_id": "1a4d6fea554a40c1a4528888fbde1c4e",
+      "requested_output_png": "",
+      "temporary": true,
+      "cleanup_tool": "release_preview",
+      "vision_tool": "consume_preview",
+      "png_bytes": 656740,
+      "render_seconds": 4.181,
+      "dpi": 100,
+      "layout": "Model",
+      "view_box": [
+        14500,
+        33000,
+        36500,
+        47000
+      ],
+      "modelspace_entities": 499,
+      "layers": 57,
+      "blocks": 191,
+      "verified_file_exists": true
+    },
+    "different_pixels": 0,
+    "total_pixels": 45930900,
+    "difference_bbox": null,
+    "exact_pixel_match": true
+  }
+]

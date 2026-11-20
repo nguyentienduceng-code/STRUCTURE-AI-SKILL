@@ -5,26 +5,67 @@
 > **Tham khảo nhanh:** Xem `skills/SKILL_INDEX.md` để biết mapping tình huống → skill → script.
 > **P0 Infrastructure:** Xem `skills/SKILL_BRIDGE.md` (data contracts) và `skills/INTER_SKILL_TRIGGERS.md` (auto-invocation).
 > **P1 Tools:** Xem `confidence_score.py`, `validate_handoff_schema.py`, `handoff_manager.py` trong `_SHARED/SHARED_CONTEXT/`.
-> **Cập nhật:** 2026-11-11 — v7.4 (Unified SSOT: 7-Gate Audit + 14 Production Skills + Rules 12b–12e)
+> **Cập nhật:** 2026-11-20 — v7.5 (2D Cognitive Dispatcher v3.4 + Rules 0.1–0.3 + 14 Production Skills + Rules 12b–12e)
 
 ---
 
-## 0. Bảng Điều phối Liên-Skill (Dispatcher — ĐỌC TRƯỚC TIÊN)
+# ĐIỀU 0: MA TRẬN PHÂN LUỒNG NHẬN THỨC 2 CHIỀU (2D COGNITIVE DISPATCHER)
 
-### 0.1 Điều phối Tự động qua Global Dispatcher (Khuyến nghị)
+> **Hiệu lực:** Quy tắc tối cao (SSOT Rule 0) áp dụng bắt buộc cho cả **Gemini**, **Claude**, toàn bộ **14 Domain Skills** và giao thức **Dual-Agent Bus v3.4**. Mọi tác vụ trước khi thực thi đều phải đi qua `Global_Dispatcher` (`intent_classifier.py` + `project_target_resolver.py`) để xác định đồng thời **2 chiều độc lập**:
+>
+> 1. **Chiều 1 — Chuyên môn Kỹ thuật (`domain_skill`):** 1 trong 14 kỹ năng chuyên ngành (Kết cấu, Địa chất, Thép, CAD, BPTC, Thẩm tra, Hệ thống...).
+>
+> 2. **Chiều 2 — Chế độ Tác vụ (`engagement_mode`):** `PRODUCT_COLLAB` | `SYSTEM_UPGRADE` | `SOLO_EXECUTION`.
 
-Khi nhận yêu cầu từ User bằng ngôn ngữ tự nhiên và chưa rõ dùng skill nào, chạy công cụ điều phối trung tâm:
+## 0.1. Ma trận Phân luồng 2 Chiều & Phân vai Bất khả xâm phạm
 
-```bash
-python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/scripts/intent_classifier.py" \
-    --prompt "<YÊU CẦU CỦA USER>" --top 3
-```
+### Chọn tác tử cho từng ca
 
-- Nếu `confidence >= 0.85` (HIGH): Nạp `SKILL.md` của `primary_skill` và thực thi ngay.
-- Nếu `is_pipeline == true`: Sử dụng `pipeline_builder.py` để chuỗi hóa các skills theo đúng thứ tự handoff.
-- Nếu `confidence < 0.60` (LOW): Trình bày top 3 lựa chọn và hỏi User xác nhận.
+Chọn tác tử độc lập với chuyên môn và chế độ công việc. Lựa chọn trong ca ưu tiên hơn mặc định dự án. Mặc định chung là AUTO.
 
-### 0.2 Bảng Tra cứu Nhanh (Manual Dispatcher Table)
+| Lựa chọn | Phân việc |
+| --- | --- |
+| AUTO | Một tác tử cho việc độc lập. Áp dụng bảng phân vai dưới đây cho việc phối hợp. |
+| CLAUDE_ONLY hoặc GEMINI_ONLY | Tác tử được chọn thực hiện toàn bộ chuỗi skill. Bỏ bước giao cho đối tác và ghi bus liên tác tử. |
+| DUAL | Gemini và Claude phối hợp theo đầu ra và quan hệ phụ thuộc ghi trong phiếu. |
+
+Chế độ một tác tử giữ nguyên yêu cầu xác nhận dự án, số liệu gốc, Điều 3 trước khi xuất và kiểm tra bản cuối. Khi thiếu công cụ, báo bước bị chặn. Chỉ đổi tác tử khi người dùng chọn lại. Phân biệt tự kiểm với kiểm tra độc lập. Người kiểm tra độc lập xác nhận đúng mã băm của tệp cuối. Mọi thay đổi của tệp cần kiểm lại. Ca cần kỹ sư ký phải chuyển người có thẩm quyền.
+
+Lệnh giao việc ghi rõ tệp đích được phép sửa. Chỉ sửa script dự án khi được giao quyền. Quy tắc phân vai trong bảng sau áp dụng cho phần việc có hai tác tử.
+
+| Chế độ (`engagement_mode`) | Tín hiệu kích hoạt | Phân vai AI | Thư mục trả hàng bắt buộc | Giao thức Bus & Ngôn ngữ báo cáo |
+| ----- | ----- | ----- | ----- | ----- |
+| **`PRODUCT_COLLAB`** *(Phối hợp Làm Sản phẩm Dự án)* | Nhắc tên/mã dự án (`01_Projects/`, `01_Structural_Projects/`) hoặc yêu cầu *tờ trình, thuyết minh, bản vẽ, xuất hồ sơ Word/PDF/DXF/Excel* (kể cả khi cần sửa script build cục bộ của dự án) | **Gemini = Maker** (dựng mô hình, trích xuất số liệu, bản vẽ CAD, script build thô). **Claude = Chủ trì Thẩm tra** (thẩm định TCVN & Nghị định 30, đối chiếu chéo CAD ↔ Thuyết minh, **sửa script build khi được giao quyền và chạy lệnh xuất file cuối**) | `01_Projects/<Tên_DA>/04_Deliverables_ToTrinh/` hoặc `01_Structural_Projects/<Tên_DA>/04_Deliverables_ToTrinh/` | **Tách 2 lớp:** Khóa nguyên tử, receipt, SHA-256 chạy ngầm trong `bus_meta`. Báo cáo người dùng **100% tiếng Việt kỹ thuật**, cấm biệt ngữ lập trình |
+| **`SYSTEM_UPGRADE`** *(Nâng cấp Hệ thống / Công cụ)* | Nhắc `.agents/`, `SKILL.md`, `sync_bus.py`, `MCP`, `test_`, nâng cấp skill, bus IPC, validator, kiểm thử tự động | Cả **Gemini** và **Claude** đóng vai **Software Architect / DevOps** | `.agents/tools/`, `.agents/skills/`, `.agents/memory/audits/` | Áp dụng đầy đủ v3.3 (Report Gate P1, RECEIPTS, SHA-256, `run_all_tests.py`). Cho phép thuật ngữ lập trình |
+| **`SOLO_EXECUTION`** *(Làm việc Độc lập 1 lượt)* | Hỏi đáp lý thuyết, tra cứu TCVN, tính nhanh 1 cấu kiện, hoặc điểm tin cậy phân loại nhỏ hơn `0.35` | AI nhận lệnh tự xử lý dứt điểm trong 1 lượt | Không bắt buộc (trừ khi người dùng chỉ định) | **Tắt Bus IPC** (không ghi `DUAL_AGENT_BUS.json`, triệt tiêu độ trễ và ping-pong token) |
+
+## 0.2. Thứ tự Ưu tiên Phân loại (Xử lý Prompt Lai)
+
+1. **Cờ cưỡng bức tường minh:** `/prod` → `PRODUCT_COLLAB`, `/sys` → `SYSTEM_UPGRADE`, `/solo` → `SOLO_EXECUTION`.
+
+2. **Đường dẫn lõi hệ thống:** Yêu cầu thao tác trực tiếp lên `.agents/`, `.claude/`, `sync_bus.py`, `mcp_dce_cad_server.py`, `AGENTS.md` → vào `SYSTEM_UPGRADE`. Đường dẫn chỉ dùng để tham khảo giữ nguyên mục tiêu của yêu cầu.
+
+3. **Prompt lai gắn với dự án:** Prompt yêu cầu sửa script build cục bộ để khắc phục lỗi trình bày/số liệu và xuất lại hồ sơ dự án → vẫn vào `PRODUCT_COLLAB` với cờ `allow_script_patch = True`.
+
+4. **Khóa xác nhận dự án:** Ở chế độ `PRODUCT_COLLAB`, nếu `ProjectTargetResolver` khớp **0 dự án** hoặc **từ 2 dự án trở lên** (`AMBIGUOUS`), bắt buộc dừng ở trạng thái `NEEDS_PROJECT_CONFIRMATION` và hỏi xác nhận đúng 1 câu; **tuyệt đối không đoán bừa thư mục đích**.
+
+5. **Chốt rơi an toàn:** Điểm tin cậy nhỏ hơn `0.35` → mặc định về `SOLO_EXECUTION`, không tự ý mở Bus IPC.
+
+## 0.3. Cổng Nghiệm thu Hồ sơ & Quy tắc Báo cáo 3 Ý (`PRODUCT_COLLAB`)
+
+Mọi ca làm việc ở chế độ `PRODUCT_COLLAB` chỉ được phép chuyển sang `COMPLETED` khi vượt qua đồng thời 2 cổng cứng trong `ProductDeliverableGate`:
+
+1. **Cổng Hồ sơ Vật lý (`BLOCKED_MISSING_DELIVERABLE`):** Phải có ít nhất 1 tệp sản phẩm thật (`.docx`, `.pdf`, `.dxf`, `.xlsx`, dung lượng lớn hơn 0, thời gian cập nhật sau thời điểm giao việc) nằm trong đúng thư mục `04_Deliverables_ToTrinh/` của dự án. Mọi trường hợp chỉ xuất file nháp `.md` vào `.agents/memory/audits/` hoặc `.claude/memory/` đều bị từ chối đóng ca.
+
+2. **Cổng Ngôn ngữ Kỹ thuật (`BLOCKED_JARGON_VIOLATION`):** Cấm tuyệt đối các thuật ngữ lập trình/hạ tầng (`SSOT`, `unpack`, `receipt`, `SHA-256`, `evidence_hashes`, `action_type`, `gate=PASS`, `force=False`, `mock`, `IPC`, `POSIX`, `bus_meta`, `pytest`, `refactor`) trong bản báo cáo gửi Tổng Công Trình Sư. Báo cáo bắt buộc ngắn gọn đúng **3 ý**:
+
+   * **1. Đã sửa gì?** (Nêu rõ hạng mục kỹ thuật, tiêu chuẩn TCVN hoặc lỗi trình bày đã khắc phục.)
+
+   * **2. File ở đâu?** (Ghi chính xác đường dẫn Windows tới tệp `.docx`/`.pdf`/`.dxf`/`.xlsx` trong `04_Deliverables_ToTrinh/`.)
+
+   * **3. Số liệu đạt hay không?** (Kết luận dứt khoát Đạt / Chưa đạt theo TCVN và Nghị định 30/2020/NĐ-CP.)
+
+## 0.4 Bảng Tra cứu Nhanh 14 Domain Skills (Manual Dispatcher Table)
 
 Khi không cần chạy script phân loại, tra bảng này để xác định skill chính. **Không nạp 2 skill cùng lúc** trừ khi quy trình yêu cầu nối tiếp.
 
@@ -234,6 +275,10 @@ Mọi bản vẽ mặt bằng kết cấu (Mặt bằng định vị cột vách
    - Mọi bản vẽ phải được đóng khung tiêu chuẩn A1 ($84100 \times 59400\text{ mm}$ ở 1:100) hoặc A0, có khung viền trong (lề gáy $25\text{ mm}$, lề khác $10\text{ mm}$) và Khung tên đồ án chuẩn DCE Pro (`DCE_Frame`) góc dưới phải.
    - Bản vẽ định vị cột vách bắt buộc có **Bảng Thống kê Tiết diện & Cốt thép Cột Vách** (`DCE_Schedule`) đặt ở lề phải, liệt kê đầy đủ STT, Mã CK, Kích thước, Cấp bê tông B35, Thép dọc, Thép đai và Số lượng.
    - Ô mở thang máy phải thể hiện nét cửa mở (`DCE_GapOpen`) có dầm lanh tô (`DCE_Lanh_To`); lỗ rỗng xuyên sàn thang bộ / MEP shaft phải có 2 nét gạch chéo X (`DCE_VoidX`).
+6. **Khóa Luồng CAD-first, MCP-first & Visual Gate (Bài học 2026-11-15)**:
+   - Xuất **CAD (`.dxf`/`.dwg`) qua MCP `dce-cad`** là mục tiêu chính: **không mặc định xuất PDF (`export_pdf=False`)** khi User không yêu cầu.
+   - Luôn dùng luồng chính `DcePlanEngine` (`v6=True`) + `DCE_Master_Seed_Template.dxf`, cấm vẽ song song từ đầu trên fixture giả.
+   - Bắt buộc test 1 ca công trình thật + tự soi ảnh `render_preview` trước khi bàn giao Dual-Agent (`DUAL_AGENT_BUS.json`) hay chốt hoàn thành.
 
 ---
 

@@ -1,0 +1,22 @@
+{
+  "receipt_id": "RCP_20261119-161753_CLAUDE_NEED_REVIEW",
+  "issued_at": "2026-11-19T16:17:53.412067+07:00",
+  "project_code": "SKILL_DUAL_AGENT_BRIDGE",
+  "action_type": "DYNAMIC",
+  "sender": "CLAUDE",
+  "target": "GEMINI",
+  "handoff_status": "NEED_REVIEW",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/skill_dual_agent_bridge/claude/P1_RESULT.md",
+  "evidence_hashes": {
+    ".agents/tools/sync_bus.py": null,
+    ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/SKILL.md": null,
+    "out/preview.png": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "11f1d53de7d7eebe9f2c3f139bc2a5da198486825f0333c004bc75406eeac206",
+  "signature": "CLAUDE@20261119-161753"
+}

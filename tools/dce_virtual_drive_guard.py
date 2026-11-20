@@ -110,9 +110,12 @@ def configure_runtime():
     """Run before ezdxf/matplotlib imports; keep library caches off Drive too."""
     sys.dont_write_bytecode = True
     temp = managed_dir('temp')
+    font_cache = require_local(temp / 'font-cache')
+    font_cache.mkdir(parents=True, exist_ok=True)
     tempfile.tempdir = str(temp)
     os.environ.update(TEMP=str(temp), TMP=str(temp), TMPDIR=str(temp),
                       MPLCONFIGDIR=str(managed_dir('matplotlib')),
+                      XDG_CACHE_HOME=str(font_cache),
                       PYTHONDONTWRITEBYTECODE='1', MPLBACKEND='Agg')
     return local_root()
 
@@ -173,15 +176,30 @@ def cleanup_preview(preview_id):
 
 
 def sweep_previews():
-    """Lazy TTL fallback for abandoned completed previews; never touch sessions."""
+    """Lazy TTL fallback for abandoned previews (completed OR in-progress); never touch sessions.
+
+    A crash between `allocate_preview` and `finish_preview` leaves a folder with
+    no `.ready` marker — with the old `.ready`-only check that folder was never
+    collected, so it leaked forever. In-progress folders are now swept by the
+    PNG mtime (or the folder mtime before the PNG is written) once they outlive
+    the TTL. `cleanup_preview` handles both cases (missing_ok unlink + rmdir);
+    a non-empty rmdir yields CLEANUP_PENDING and is retried on a later sweep.
+    """
     results = []
+    now = time.time()
     for folder in managed_dir('previews').iterdir():
         if not re.fullmatch(r'[0-9a-f]{32}', folder.name):
             continue
         try:
             ready = require_local(folder / '.ready')
-            if ready.is_file() and time.time() - ready.stat().st_mtime > PREVIEW_TTL_SECONDS:
-                results.append(cleanup_preview(folder.name))
+            if ready.is_file():
+                if now - ready.stat().st_mtime > PREVIEW_TTL_SECONDS:
+                    results.append(cleanup_preview(folder.name))
+            else:
+                png = require_local(folder / 'preview.png')
+                ref = png if png.is_file() else folder
+                if now - ref.stat().st_mtime > PREVIEW_TTL_SECONDS:
+                    results.append(cleanup_preview(folder.name))
         except (OSError, UnsafeScratchPath):
             continue
     return results

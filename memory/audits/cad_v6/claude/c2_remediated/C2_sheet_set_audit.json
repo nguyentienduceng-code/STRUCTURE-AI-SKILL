@@ -1,0 +1,222 @@
+{
+  "status": "PASS",
+  "audit": {
+    "Standard_Method": "DCE Sheet Set Semantics G2 (STRUCTURAL_SHEET_SET_GUIDE v6)",
+    "is_valid": true,
+    "checks": {
+      "floor_and_column_continuity": true,
+      "design_group_consistency": true,
+      "detail_target_resolution": true,
+      "linkage_completeness": true,
+      "rebar_top_bottom_separation": true
+    },
+    "total_elements": 9,
+    "rebar_top_count": 2,
+    "rebar_bottom_count": 2,
+    "violations": {
+      "stopped_column_violations": [],
+      "duplicate_mark_conflicts": [],
+      "undeclared_floor_violations": [],
+      "design_group_violations": [],
+      "missing_detail_targets": [],
+      "incomplete_linkage": [],
+      "invalid_rebar_faces": [],
+      "viewport_face_mixing_violations": []
+    },
+    "Calculation_Logs": [
+      {
+        "step": "floor_and_column_continuity",
+        "passed": true
+      },
+      {
+        "step": "design_group_consistency",
+        "passed": true
+      },
+      {
+        "step": "detail_target_resolution",
+        "passed": true
+      },
+      {
+        "step": "linkage_completeness",
+        "passed": true
+      },
+      {
+        "step": "rebar_top_bottom_separation",
+        "passed": true
+      }
+    ]
+  },
+  "sheets": [
+    {
+      "sheet_no": "KC-02",
+      "path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-02_C2_A3.dxf",
+      "viewport_count": 2,
+      "faces": [
+        null,
+        null
+      ],
+      "entity_counts": {
+        "INSERT": 9,
+        "LINE": 6,
+        "LWPOLYLINE": 11,
+        "HATCH": 2
+      }
+    },
+    {
+      "sheet_no": "KC-03",
+      "path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-03_C2_A3.dxf",
+      "viewport_count": 1,
+      "faces": [
+        null
+      ],
+      "entity_counts": {
+        "INSERT": 9,
+        "LINE": 6,
+        "LWPOLYLINE": 11,
+        "HATCH": 2
+      }
+    },
+    {
+      "sheet_no": "KC-04",
+      "path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-04_C2_A3.dxf",
+      "viewport_count": 2,
+      "faces": [
+        "BOTTOM",
+        "TOP"
+      ],
+      "entity_counts": {
+        "INSERT": 9,
+        "LINE": 6,
+        "LWPOLYLINE": 11,
+        "HATCH": 2
+      }
+    },
+    {
+      "sheet_no": "KC-06",
+      "path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-06_C2_A3.dxf",
+      "viewport_count": 1,
+      "faces": [
+        null
+      ],
+      "entity_counts": {
+        "INSERT": 9,
+        "LINE": 6,
+        "LWPOLYLINE": 11,
+        "HATCH": 2
+      }
+    },
+    {
+      "sheet_no": "KC-07",
+      "path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated\\KC-07_C2_A3.dxf",
+      "viewport_count": 1,
+      "faces": [
+        null
+      ],
+      "entity_counts": {
+        "INSERT": 9,
+        "LINE": 6,
+        "LWPOLYLINE": 11,
+        "HATCH": 2
+      }
+    }
+  ],
+  "source_fixture": ".agents/skills/Technical_Illustrator/cad_integration/fixtures/g2_steel_and_sheet_fixture.json",
+  "viewports": [
+    {
+      "viewport_id": "VP_COL_F1",
+      "paper_bbox": [
+        15,
+        15,
+        205,
+        145
+      ],
+      "view_height": 6500.0,
+      "scale": 50.0,
+      "content_face": null,
+      "frozen_layers": []
+    },
+    {
+      "viewport_id": "VP_COL_F2",
+      "paper_bbox": [
+        15,
+        150,
+        205,
+        280
+      ],
+      "view_height": 6500.0,
+      "scale": 50.0,
+      "content_face": null,
+      "frozen_layers": []
+    },
+    {
+      "viewport_id": "VP_BEAM_F2",
+      "paper_bbox": [
+        15,
+        15,
+        365,
+        242
+      ],
+      "view_height": 11350.0,
+      "scale": 50.0,
+      "content_face": null,
+      "frozen_layers": []
+    },
+    {
+      "viewport_id": "VP_SLAB_BOT",
+      "paper_bbox": [
+        15,
+        15,
+        205,
+        145
+      ],
+      "view_height": 6500.0,
+      "scale": 50.0,
+      "content_face": "BOTTOM",
+      "frozen_layers": [
+        "REBAR_TOP"
+      ]
+    },
+    {
+      "viewport_id": "VP_SLAB_TOP",
+      "paper_bbox": [
+        15,
+        150,
+        205,
+        280
+      ],
+      "view_height": 6500.0,
+      "scale": 50.0,
+      "content_face": "TOP",
+      "frozen_layers": [
+        "REBAR_BOTTOM"
+      ]
+    },
+    {
+      "viewport_id": "VP_BM_DET",
+      "paper_bbox": [
+        15,
+        15,
+        365,
+        242
+      ],
+      "view_height": 11350.0,
+      "scale": 50.0,
+      "content_face": null,
+      "frozen_layers": []
+    },
+    {
+      "viewport_id": "VP_STEEL_DET",
+      "paper_bbox": [
+        15,
+        15,
+        365,
+        242
+      ],
+      "view_height": 11350.0,
+      "scale": 50.0,
+      "content_face": null,
+      "frozen_layers": []
+    }
+  ],
+  "artifact_sha256": "fd6e8aea97a80f977fed08d27035662f7b6bd50b43984e921cfc8baf84718e07"
+}

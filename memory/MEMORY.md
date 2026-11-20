@@ -5,8 +5,8 @@
 > **Cơ chế tương tác:** Song hành Đa Tác Nhân (Dual-Agent Collaboration): **Gemini Antigravity** & **Claude Code**  
 > **Kênh đồng bộ bus:** `memory/DUAL_AGENT_BUS.json` | **Giao ban:** `memory/DUAL_AGENT_HANDOFF_MEMO.md`  
 > **Kho mã nguồn & Lưu trữ Git Upstream:** [`STRUCTURE-AI-SKILL` (GitHub)](https://github.com/nguyentienduceng-code/STRUCTURE-AI-SKILL)  
-> **Phiên bản hệ sinh thái:** v7.3 (Unified Master Architecture)  
-> **Cập nhật ngày:** 06/11/2026
+> **Phiên bản hệ sinh thái:** v7.5 (2D Cognitive Dispatcher v3.4 + Rules 0.1–0.3 + 14 Production Skills + MCP P2 Loop)  
+> **Cập nhật ngày:** 20/11/2026
 
 ---
 
@@ -76,6 +76,19 @@ Mọi tác tử AI (Gemini / Claude / Subagents) khi hoạt động trong không
    - Phân cấp công trình: **Thông tư 34/2026/TT-BXD** & **QCVN 03:2022/BXD** | An toàn cháy: **QCVN 06:2022/BXD**.
 6. **Review Gate (Cổng Kiểm Duyệt An Toàn):**
    - Chỉ xuất file chính thức sau khi in tóm tắt chỉ số sử dụng $\eta$, số liệu chốt và được User xác nhận rõ ràng.
+8. **Ma trận Phân luồng Nhận thức 2 Chiều (Điều 0 AGENTS.md — 2D Cognitive Dispatcher v3.4):**
+   - Mọi tác vụ phải qua `Global_Dispatcher` xác định đồng thời `domain_skill` (1/14 skills) và `engagement_mode` (`PRODUCT_COLLAB` | `SYSTEM_UPGRADE` | `SOLO_EXECUTION`).
+   - `PRODUCT_COLLAB`: Gemini (Maker) + Claude (Chủ trì Thẩm tra/Xuất bản). Bắt buộc vượt Cổng Hồ sơ Vật lý tại `04_Deliverables_ToTrinh/` và Cổng Ngôn ngữ Kỹ thuật (báo cáo ngắn gọn đúng 3 ý, không biệt ngữ lập trình).
+   - `SYSTEM_UPGRADE`: Nâng cấp hệ thống/công cụ. Áp dụng đầy đủ Receipt, SHA-256, test suites.
+   - `SOLO_EXECUTION`: Tra cứu/tính nhanh 1 lượt, tắt hoàn toàn Bus IPC để triệt tiêu trễ token.
+9. **Khóa Cấp Bền Bê Tông Thực Tế Việt Nam (Điều 12c AGENTS.md):**
+   - Dầm sàn dân dụng cao tầng: B25 (M350) - B30 (M400), cấm vượt quá B35 do nứt co ngót. Cột vách tầng thấp B35-B40.
+   - Tuyệt đối cấm gán B45-B60 cho nhà cao tầng dân dụng thông thường khi chưa có văn bản CĐT/TVTK; ưu tiên tăng tiết diện, tăng hàm lượng cốt thép hoặc dùng cột SRC/CFT.
+10. **Khóa Luồng CAD-First, MCP-First & Chống Ping-Pong Dual-Agent (P2 Perception Loop & Visual Gate v3.3):**
+   - **CAD-first:** Xuất file CAD (`.dxf`/`.dwg`) qua 13 tools MCP `dce-cad` (`mcp_dce_cad_server.py`).
+   - **Single Canonical Engine:** Bản vẽ mặt bằng chuẩn qua `DcePlanEngine` (`v6=True`) + `DCE_Master_Seed_Template.dxf`.
+   - **Test Công trình Thật + Visual Gate:** Khép vòng perception loop (`render_preview` 300 DPI -> `consume_preview` -> `validate_cad` physical=PASS), đóng băng bằng chứng SHA-256 vật lý trên đĩa trước khi bàn giao.
+   - **Chống phình Context & Rác Audit:** Lưu trữ log cũ vào `archive/`, bảo toàn cấu trúc tệp sạch.
 
 ---
 
@@ -116,5 +129,5 @@ Mọi tác tử AI (Gemini / Claude / Subagents) khi hoạt động trong không
 - **Kho lưu trữ chính thức (Official Remote):** [`STRUCTURE-AI-SKILL` (GitHub)](https://github.com/nguyentienduceng-code/STRUCTURE-AI-SKILL)
 - **Thư mục cục bộ liên kết:** `G:\My Drive\Google AI Studio\.agents`
 - **Nhánh vận hành (Default Branch):** `main`
-- **Phạm vi lưu trữ:** Toàn bộ hệ sinh thái Agentic (13 Skills chuyên sâu, 111 Calculators kỹ thuật, 17 Test Suites kiểm định, Hệ thống bảo vệ Circuit Breaker & Blackbox Recorder, và Engine Cầu nối Điều phối `sync_bus.py`).
-- **Quy tắc Đẩy mã nguồn (Push Protocol):** Bắt buộc chạy toàn bộ bộ kiểm thử Suite #16 đạt 39/39 PASS trước khi đồng bộ hoặc commit lên kho lưu trữ đám mây.
+- **Phạm vi lưu trữ:** Toàn bộ hệ sinh thái Agentic (14 Skills chuyên sâu, 111 Calculators kỹ thuật, 46 Test Suites kiểm định, Hệ thống bảo vệ Circuit Breaker & Blackbox Recorder, và Engine Cầu nối Điều phối `sync_bus.py`).
+- **Quy tắc Đẩy mã nguồn (Push Protocol):** Bắt buộc chạy toàn bộ bộ kiểm thử đạt 100% PASS trước khi đồng bộ hoặc commit lên kho lưu trữ đám mây.

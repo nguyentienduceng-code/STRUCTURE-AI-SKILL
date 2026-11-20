@@ -1,0 +1,1868 @@
+[
+  {
+    "file": "KC-02_C2_A3.dxf",
+    "sha256": "787e72f99063e44e28e2ef54121aaaf8bca20f7bdd5b105ac4db2c3713fce77d",
+    "model_counts": {
+      "LINE": 4,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "handle": "34",
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      },
+      {
+        "handle": "35",
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      }
+    ],
+    "viewport_overlap_mm2": [
+      99450.0
+    ],
+    "missing_sidecar": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dxf",
+        "status": "NEEDS_REVIEW",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-03_C2_A3.dxf",
+    "sha256": "7d4701b61dad1955894a67adc3ac3154d5f4fc596ae5949800d09fc3a31415f9",
+    "model_counts": {
+      "LINE": 4,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "handle": "34",
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      }
+    ],
+    "viewport_overlap_mm2": [],
+    "missing_sidecar": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dxf",
+        "status": "NEEDS_REVIEW",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-04_C2_A3.dxf",
+    "sha256": "0188e96d1260a42275c4ba65df0e8150f653ee5b0f15616875f20c3015fd3cde",
+    "model_counts": {
+      "LINE": 4,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "handle": "34",
+        "layer": "VP_BOTTOM",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      },
+      {
+        "handle": "35",
+        "layer": "VP_TOP",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      }
+    ],
+    "viewport_overlap_mm2": [
+      99450.0
+    ],
+    "missing_sidecar": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dxf",
+        "status": "NEEDS_REVIEW",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    },
+    "preview": "KC-04_actual_paperspace.png"
+  },
+  {
+    "file": "KC-06_C2_A3.dxf",
+    "sha256": "099b4a925fbebb602190c0e2b183c8ab0a7752c7807e2403606cbcb61c3b42f4",
+    "model_counts": {
+      "LINE": 4,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "handle": "34",
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      }
+    ],
+    "viewport_overlap_mm2": [],
+    "missing_sidecar": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dxf",
+        "status": "NEEDS_REVIEW",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-07_C2_A3.dxf",
+    "sha256": "a5fe8b9f547cecc9182e4a71982ebaa8e2d63df642860eeed4a7c4b21e77c03d",
+    "model_counts": {
+      "LINE": 4,
+      "TEXT": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 1,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "handle": "34",
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          405.0,
+          270.0
+        ],
+        "actual_scale_denominator": 11.764705882352942,
+        "declared_scale": 50.0,
+        "frozen_layers": []
+      }
+    ],
+    "viewport_overlap_mm2": [],
+    "missing_sidecar": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dxf",
+        "status": "NEEDS_REVIEW",
+        "dxf_version": "AC1032",
+        "total_entities": 5,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 2
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 2
+          },
+          {
+            "layer": "SHEET_TITLE",
+            "count": 1
+          }
+        ],
+        "blocks": {
+          "total_inserts": 0,
+          "axis_bubbles": 0,
+          "member_tags": 0,
+          "title_blocks": 0
+        },
+        "dimensions": {
+          "total_dimensions": 0,
+          "dce_compliant_dimensions": 0,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": false,
+          "has_standard_frame": false,
+          "has_schedule_table": false,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [
+          "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json",
+          "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "metadata_issues": [
+          "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+        ],
+        "detail_audits": {},
+        "gate_status": "UNVERIFIED",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 16,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "REQUIRED_EVIDENCE",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "UNVERIFIED",
+            "applicable": true,
+            "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dce_audit.json"
+          }
+        ]
+      }
+    }
+  }
+]

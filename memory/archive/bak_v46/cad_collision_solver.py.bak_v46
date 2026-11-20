@@ -1,0 +1,486 @@
+# g:\My Drive\Google AI Studio\.agents\tools\cad_collision_solver.py
+"""Anti-Collision Solver for CAD Layout Drawings.
+
+Part of Sprint 2 (Vision Perception Loop & Anti-Collision Engine).
+Algorithms:
+- Spatial Conflict Detection between Text Labels, Structural Elements, Grid Lines.
+- Exact Bounding Box translation tracking (delta_x, delta_y).
+- Dynamic Grid Updating for sequential multi-label mutual avoidance.
+- Bounded radial search with strict geometric feasibility and distance ordering.
+- Automatic Leader Line generation for displaced annotations (> 300mm).
+- Dry-run restores the exact scene; fixed engineering entities are preserved.
+- Leaders are routed and persisted with ownership for read-back validation.
+"""
+
+from __future__ import annotations
+
+import math
+import sys
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Any
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
+import ezdxf
+from shapely.affinity import translate
+from shapely.geometry import box as shape_box, LineString, Point
+from shapely.ops import nearest_points
+
+try:
+    from tools.cad_scene_index import CadSceneIndex, SceneEntity, BoundingBox
+except ModuleNotFoundError:
+    TOOLS_DIR = Path(__file__).resolve().parent
+    if str(TOOLS_DIR) not in sys.path:
+        sys.path.insert(0, str(TOOLS_DIR))
+    from cad_scene_index import CadSceneIndex, SceneEntity, BoundingBox
+
+
+@dataclass
+class CollisionItem:
+    entity_handle: str
+    entity_text: str
+    colliding_with_handle: str
+    colliding_with_type: str
+    colliding_with_layer: str
+    overlap_area: float
+
+
+@dataclass
+class DisplacementPlan:
+    handle: str
+    text_content: str
+    original_pos: Tuple[float, float]
+    target_pos: Tuple[float, float]
+    delta_x: float
+    delta_y: float
+    distance: float
+    needs_leader: bool = False
+    cost: float = 0.0
+
+
+class CadCollisionSolver:
+    """Detects and resolves text collisions in CAD layout drawings."""
+
+    # Offsets in millimeters to test in each direction
+    OFFSETS_MM = [150.0, 300.0, 500.0, 750.0, 1000.0, 1300.0, 1600.0]
+
+    # 8 search directions: E, NE, N, NW, W, SW, S, SE
+    DIRECTIONS = [
+        (1.0, 0.0),       # East
+        (0.707, 0.707),   # North-East
+        (0.0, 1.0),       # North
+        (-0.707, 0.707),  # North-West
+        (-1.0, 0.0),      # West
+        (-0.707, -0.707), # South-West
+        (0.0, -1.0),      # South
+        (0.707, -0.707),  # South-East
+    ]
+
+    def __init__(self, scene_index: CadSceneIndex):
+        self.scene = scene_index
+        self.doc = scene_index.doc
+
+    @classmethod
+    def from_dxf(cls, dxf_path: Path | str) -> CadCollisionSolver:
+        scene = CadSceneIndex.from_dxf_file(dxf_path)
+        return cls(scene)
+
+    def detect_collisions(self) -> List[CollisionItem]:
+        """Detect all collisions involving movable text labels."""
+        collisions: List[CollisionItem] = []
+
+        labels = self.scene.movable_entities + [e for e in self.scene.grid.entities.values() if e.role == 'locked_label']
+        for entity in labels:
+            colliding = self.scene.grid.query_bbox(entity.bbox, exclude_handle=entity.handle)
+            for other in colliding:
+                if other.leader_owner == entity.handle:
+                    continue  # Intentional leader attachment at the owner's padded text envelope.
+                # Only check collision against hard obstacles or other text/block labels
+                if not (other.is_hard_obstacle or other.is_movable or other.dxftype in ("TEXT", "MTEXT", "INSERT")):
+                    continue
+
+                area = self._shape(entity).intersection(self._shape(other)).area
+                if area > 1e-6:
+                    collisions.append(CollisionItem(
+                        entity_handle=entity.handle,
+                        entity_text=entity.text_content,
+                        colliding_with_handle=other.handle,
+                        colliding_with_type=other.dxftype,
+                        colliding_with_layer=other.layer,
+                        overlap_area=round(area, 1)
+                    ))
+        return collisions
+
+    def evaluate_candidate_delta(
+        self,
+        entity: SceneEntity,
+        delta_x: float,
+        delta_y: float
+    ) -> float:
+        """Cost function evaluating a proposed translation delta (delta_x, delta_y)."""
+        test_bbox = BoundingBox(
+            min_x=entity.bbox.min_x + delta_x,
+            min_y=entity.bbox.min_y + delta_y,
+            max_x=entity.bbox.max_x + delta_x,
+            max_y=entity.bbox.max_y + delta_y
+        )
+
+        bounds = getattr(self.scene, "drawing_bounds", None)
+        if bounds and (test_bbox.min_x < bounds.min_x or test_bbox.max_x > bounds.max_x or
+                       test_bbox.min_y < bounds.min_y or test_bbox.max_y > bounds.max_y):
+            return float("inf")
+        dist = math.hypot(delta_x, delta_y)
+        candidate = translate(self._shape(entity), delta_x, delta_y)
+
+        # Base cost proportional to displacement distance
+        cost = dist * 1.0
+
+        # Query obstacles at proposed candidate box
+        obstacles = self.scene.grid.query_bbox(test_bbox, exclude_handle=entity.handle)
+        for obs in obstacles:
+            # Ignore leaders or non-obstacle annotations
+            if not (obs.is_hard_obstacle or obs.is_movable or obs.dxftype in ("TEXT", "MTEXT", "INSERT")):
+                continue
+
+            if candidate.intersects(self._shape(obs)):
+                return float('inf')
+
+        return cost
+
+    def solve_entity(self, entity: SceneEntity) -> Optional[DisplacementPlan]:
+        """Find the optimal non-colliding displacement for a single label."""
+        orig_x, orig_y = entity.anchor_point
+
+        # Evaluate current position first
+        curr_cost = self.evaluate_candidate_delta(entity, 0.0, 0.0)
+        if curr_cost <= 1.0:
+            return None  # No collision, no move needed
+
+        best_plan: Optional[DisplacementPlan] = None
+        min_cost = float("inf")
+
+        # Systematic radial search across 8 directions and expanding radii
+        for distance_mm in self.OFFSETS_MM + [2200.,3000.,4000.,5500.,7500.]:
+            dist = distance_mm * self.scene.unit
+            for dx_dir, dy_dir in self.DIRECTIONS:
+                delta_x = round(dx_dir * distance_mm, 1) * self.scene.unit
+                delta_y = round(dy_dir * distance_mm, 1) * self.scene.unit
+
+                cost = self.evaluate_candidate_delta(entity, delta_x, delta_y)
+                if cost < min_cost:
+                    min_cost = cost
+                    distance = math.hypot(delta_x, delta_y)
+                    best_plan = DisplacementPlan(
+                        handle=entity.handle,
+                        text_content=entity.text_content,
+                        original_pos=(orig_x, orig_y),
+                        target_pos=(orig_x + delta_x, orig_y + delta_y),
+                        delta_x=delta_x,
+                        delta_y=delta_y,
+                        distance=round(distance*self.scene.mm_per_unit, 1)*self.scene.unit,
+                        needs_leader=(distance * self.scene.mm_per_unit > 300.0),
+                        cost=round(cost, 1)
+                    )
+
+            # If an obstacle-free position found (no hard or soft overlaps), stop expanding
+            if math.isfinite(min_cost):
+                break
+
+        return best_plan if math.isfinite(min_cost) else None
+
+    @staticmethod
+    def _shape(entity):
+        return entity.geometry if entity.geometry is not None else shape_box(
+            entity.bbox.min_x,entity.bbox.min_y,entity.bbox.max_x,entity.bbox.max_y)
+
+    def _route(self, plan):
+        """Bounded visibility routing in the final annotation scene.
+
+        Prefer a nearby structural boundary. With no structural identity, retain
+        an explicit original-annotation anchor rather than claiming a model link.
+        """
+        entity = self.scene.grid.entities[plan.handle]
+        point = Point(plan.original_pos)
+        structural = [e for e in self.scene.grid.query_bbox(
+            BoundingBox(point.x,point.y,point.x,point.y).expanded(1000*self.scene.unit))
+            if e.handle != plan.handle and e.layer in self.scene.HARD_OBSTACLE_LAYERS
+            and e.layer not in {'DCE_Frame','DCE_Schedule','DCE_Truc'}
+            and not e.is_movable and e.dxftype in {'LINE','LWPOLYLINE','POLYLINE'}]
+        structural = [e for e in structural if e.role != 'boundary']
+        source = min(structural, key=lambda e:(self._shape(e).distance(point) +
+                     self._shape(e).distance(self._shape(entity))), default=None)
+        original = translate(self._shape(entity),-plan.delta_x,-plan.delta_y)
+        target_shape = self._shape(source) if source else original.boundary
+        end = nearest_points(target_shape,self._shape(entity))[0]
+        start = nearest_points(self._shape(entity),end)[0]
+        length = start.distance(end)
+        if length < 1e-6:
+            return None
+        if length * self.scene.mm_per_unit < 100.0:
+            return {'points': [], 'source_handle': source.handle if source else '',
+                    'anchor_kind': 'immediate_proximity', 'skip_draw': True}
+        if source is None:
+            end = Point(end.x+(start.x-end.x)*min(25*self.scene.unit/length,0.4),
+                        end.y+(start.y-end.y)*min(25*self.scene.unit/length,0.4))
+        start = (start.x,start.y)
+        end = (end.x,end.y)
+        source_handle = source.handle if source else ''
+
+        def clear(a,b):
+            line = LineString([a,b])
+            if line.intersection(self._shape(entity)).length > 1e-6:
+                return False
+            bounds = BoundingBox(*line.bounds).expanded(22*self.scene.unit)
+            for other in self.scene.grid.query_bbox(bounds, exclude_handle=plan.handle):
+                if not (other.is_movable or other.is_hard_obstacle):
+                    continue
+                geom = other.leader_geometry if other.leader_geometry is not None else self._shape(other)
+                if geom.is_empty:
+                    continue
+                if b == end and (other.handle == source_handle or
+                    (other.dxftype in {'LINE','LWPOLYLINE','POLYLINE'} and not other.is_movable
+                     and geom.distance(Point(end)) < 1e-6)):
+                    if line.intersection(geom).length <= 1e-6:
+                        continue
+                if line.distance(geom) < 22*self.scene.unit:
+                    return False
+            return True
+
+        paths = [[start,end], [start,(start[0],end[1]),end],
+                 [start,(end[0],start[1]),end]]
+        corridor = BoundingBox(min(start[0],end[0]),min(start[1],end[1]),
+                               max(start[0],end[0]),max(start[1],end[1])).expanded(1000*self.scene.unit)
+        nearby = self.scene.grid.query_bbox(corridor,exclude_handle=plan.handle)
+        # Doglegs along obstacle bounds provide deterministic alternatives without
+        # an unbounded search or changes to structural geometry.
+        for obs in nearby[:96]:
+            b=obs.bbox.expanded(40*self.scene.unit)
+            for x in (b.min_x,b.max_x):
+                paths.append([start,(x,start[1]),(x,end[1]),end])
+            for y in (b.min_y,b.max_y):
+                paths.append([start,(start[0],y),(end[0],y),end])
+        paths.sort(key=lambda path:sum(math.dist(a,b) for a,b in zip(path,path[1:])))
+        for path in paths:
+            if all(clear(a,b) for a,b in zip(path,path[1:]) if a != b):
+                return {'points':path,'source_handle':source_handle,
+                        'anchor_kind':'inferred_structural_boundary' if source else 'original_annotation_boundary'}
+        return None
+
+    def detect_leader_conflicts(self):
+        """Validate persisted or proposed leaders, including structural clearance.
+
+        Grid/slab reference strokes can be crossed. Intentional terminal contact
+        with a structural boundary is permitted, but crossing its interior is not.
+        """
+        conflicts = []
+        for leader in list(self.scene.grid.entities.values()):
+            if leader.role != 'leader' or not leader.leader_points:
+                continue
+            a,b = leader.leader_points
+            line = LineString([a,b])
+            for other in self.scene.grid.query_bbox(BoundingBox(*line.bounds).expanded(20*self.scene.unit),leader.handle):
+                if other.role == 'leader' and other.leader_owner == leader.leader_owner:
+                    continue
+                if not (other.is_movable or other.is_hard_obstacle):
+                    continue
+                geom = other.leader_geometry if other.leader_geometry is not None else self._shape(other)
+                if geom.is_empty:
+                    continue
+                intersection = line.intersection(geom)
+                if other.handle == leader.leader_owner:
+                    if intersection.length <= 1e-6:
+                        continue
+                elif leader.leader_terminal and other.dxftype in {'LINE','LWPOLYLINE','POLYLINE'} and not other.is_movable:
+                    if geom.distance(Point(b)) < 1e-6 and intersection.length <= 1e-6:
+                        continue
+                if line.distance(geom) < 20*self.scene.unit-1e-6:
+                    conflicts.append({'leader_owner':leader.leader_owner,'leader_handle':leader.handle,
+                                      'crossed_handle':other.handle})
+        return conflicts
+
+    def _reroute_position(self, plan):
+        """Try another feasible label position when its first leader is trapped."""
+        entity = self.scene.grid.entities[plan.handle]
+        saved = (entity.bbox,entity.geometry,entity.anchor_point)
+        for mm in self.OFFSETS_MM + [2200.,3000.,4000.,5500.,7500.]:
+            for vx,vy in self.DIRECTIONS:
+                dx,dy = round(vx*mm,1)*self.scene.unit,round(vy*mm,1)*self.scene.unit
+                target = (plan.original_pos[0]+dx,plan.original_pos[1]+dy)
+                sx,sy = target[0]-saved[2][0],target[1]-saved[2][1]
+                if not math.isfinite(self.evaluate_candidate_delta(entity,sx,sy)):
+                    continue
+                distance=math.hypot(dx,dy)
+                trial = DisplacementPlan(plan.handle,plan.text_content,plan.original_pos,target,dx,dy,
+                    round(distance*self.scene.mm_per_unit,1)*self.scene.unit,
+                    distance*self.scene.mm_per_unit>300,distance)
+                self.scene.grid.remove(entity)
+                entity.geometry=translate(self._shape(entity),sx,sy)
+                entity.bbox=BoundingBox(*entity.geometry.bounds)
+                entity.anchor_point=target
+                self.scene.grid.insert(entity)
+                route = self._route(trial) if trial.needs_leader else None
+                if route is not None or not trial.needs_leader:
+                    return trial,route
+                self.scene.grid.remove(entity)
+                entity.bbox,entity.geometry,entity.anchor_point=saved
+                self.scene.grid.insert(entity)
+        return None,None
+
+    @staticmethod
+    def _segment_hits_box(start, end, box):
+        # Slab intersection; detects true segment crossing rather than diagonal AABB overlap.
+        lo, hi = 0.0, 1.0
+        for a, b, lower, upper in ((start[0],end[0],box.min_x,box.max_x),
+                                    (start[1],end[1],box.min_y,box.max_y)):
+            delta = b-a
+            if abs(delta) < 1e-12:
+                if a < lower or a > upper:
+                    return False
+            else:
+                t1,t2 = sorted(((lower-a)/delta,(upper-a)/delta))
+                lo,hi = max(lo,t1),min(hi,t2)
+                if lo > hi:
+                    return False
+        return True
+
+    def solve_all(self, dry_run: bool = False, output_path: Optional[Path | str] = None) -> Dict[str, Any]:
+        """Resolve all collisions in the drawing and optionally commit changes."""
+        if not dry_run and output_path:
+            from dce_virtual_drive_guard import require_local
+            require_local(output_path)
+            if self.doc.filename and Path(output_path).resolve() == Path(self.doc.filename).resolve():
+                raise ValueError("Collision output must not overwrite source")
+        initial_collisions = self.detect_collisions()
+        plans: List[DisplacementPlan] = []
+        snapshots = {e.handle:(e.bbox,e.geometry,e.anchor_point) for e in self.scene.movable_entities}
+
+        # Process colliding entities sequentially with active grid update
+        colliding_handles = {c.entity_handle for c in initial_collisions}
+        for entity in self.scene.movable_entities:
+            if entity.handle in colliding_handles:
+                plan = self.solve_entity(entity)
+                if plan is not None and (plan.delta_x != 0.0 or plan.delta_y != 0.0):
+                    plans.append(plan)
+                    # Update entity bbox in memory & spatial index so next entities avoid this new location!
+                    self.scene.grid.remove(entity)
+                    entity.geometry = translate(self._shape(entity), plan.delta_x, plan.delta_y)
+                    entity.bbox = BoundingBox(
+                        min_x=entity.bbox.min_x + plan.delta_x,
+                        min_y=entity.bbox.min_y + plan.delta_y,
+                        max_x=entity.bbox.max_x + plan.delta_x,
+                        max_y=entity.bbox.max_y + plan.delta_y
+                    )
+                    entity.anchor_point = (plan.target_pos[0], plan.target_pos[1])
+                    self.scene.grid.insert(entity)
+
+        routes = {}
+        route_errors = []
+        pending_leaders = []
+        for index,p in enumerate(plans):
+            if not p.needs_leader:
+                continue
+            route = self._route(p)
+            if route is None:
+                replacement,route=self._reroute_position(p)
+                if replacement is None:
+                    route_errors.append({"handle":p.handle,"reason":"No safe leader route"})
+                    continue
+                p = plans[index] = replacement
+                if not p.needs_leader:
+                    continue
+            if route and route.get('skip_draw'):
+                p.needs_leader = False
+                continue
+            routes[p.handle] = route
+            leader_layer = 'DCE_Leader'
+            for i,(a,b) in enumerate(zip(route['points'],route['points'][1:])):
+                if a == b:
+                    continue
+                geom = LineString([a,b]).buffer(20*self.scene.unit)
+                leader = SceneEntity(f"pending:{p.handle}:{i}","LINE",leader_layer,
+                    bbox=BoundingBox(*geom.bounds),is_hard_obstacle=True,role="leader",
+                    geometry=geom,leader_owner=p.handle,source_handle=route['source_handle'])
+                leader.leader_points = (a,b)
+                leader.leader_terminal = b == route['points'][-1]
+                self.scene.grid.insert(leader)
+                pending_leaders.append(leader)
+        remaining = self.detect_collisions()
+        leader_conflicts = self.detect_leader_conflicts()
+        applied_count = 0
+        leaders_created = 0
+        apply_errors = list(route_errors)
+        target = None
+        # No partial application when a required leader cannot be routed.
+        commit = not dry_run and not (route_errors or remaining or leader_conflicts)
+        if commit:
+            from dce_virtual_drive_guard import require_local, managed_dir
+            import uuid
+            target = require_local(output_path) if output_path else managed_dir('temp') / (uuid.uuid4().hex+'.dxf')
+            if 'DCE_COLLISION' not in self.doc.appids:
+                self.doc.appids.new('DCE_COLLISION')
+            leader_layer = 'DCE_Leader'
+            if 'DCE_Leader' not in self.doc.layers:
+                try:
+                    self.doc.layers.add('DCE_Leader', color=250)
+                except Exception as ex:
+                    apply_errors.append({"handle": "DCE_Leader", "reason": f"Cannot create layer DCE_Leader: {ex}"})
+                    commit = False
+            else:
+                try:
+                    self.doc.layers.get('DCE_Leader').dxf.color = 250
+                except Exception:
+                    pass
+            if commit:
+                for p in plans:
+                    ent = self.doc.entitydb[p.handle]
+                    ent.translate(p.delta_x,p.delta_y,0)
+                    applied_count += 1
+                    route = routes.get(p.handle)
+                    if route and not route.get('skip_draw'):
+                        for a,b in zip(route['points'],route['points'][1:]):
+                            if a == b:
+                                continue
+                            line = self.doc.modelspace().add_line((*a,0),(*b,0),
+                                dxfattribs={'layer':leader_layer,'color':250})
+                            line.set_xdata('DCE_COLLISION',[(1000,'leader'),(1005,p.handle),
+                                (1005,route['source_handle'] or '0'),(1070,int(b==route['points'][-1]))])
+                            leaders_created += 1
+                self.doc.saveas(target)
+        if not commit:
+            for leader in pending_leaders:
+                self.scene.grid.remove(leader)
+            for p in reversed(plans):
+                e = self.scene.grid.entities[p.handle]
+                self.scene.grid.remove(e)
+                e.bbox,e.geometry,e.anchor_point = snapshots[p.handle]
+                self.scene.grid.insert(e)
+        return {
+            "status": ("DRY_RUN_OK" if dry_run else "OK") if not (remaining or leader_conflicts or apply_errors) else "NEEDS_REVIEW",
+            "remaining_collision_count": len(remaining),
+            "leader_conflicts": leader_conflicts,
+            "apply_errors": apply_errors,
+            "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+            "mm_per_drawing_unit": self.scene.mm_per_unit,
+            "leader_paths": routes,
+            "units_verified_mm": self.doc.header.get("$INSUNITS", 0) == 4,
+            "output_dxf": str(target) if target is not None else None,
+            "initial_collision_count": len(initial_collisions),
+            "displacements_planned": len(plans),
+            "displacements_applied": applied_count,
+            "leaders_created": leaders_created,
+            "plans": [
+                {
+                    "handle": p.handle,
+                    "text": p.text_content,
+                    "from": [p.original_pos[0], p.original_pos[1]],
+                    "to": [p.target_pos[0], p.target_pos[1]],
+                    "delta": [p.delta_x, p.delta_y],
+                    "distance_mm": round(p.distance*self.scene.mm_per_unit,4),
+                    "needs_leader": p.needs_leader,
+                    "cost": p.cost
+                }
+                for p in plans
+            ]
+        }

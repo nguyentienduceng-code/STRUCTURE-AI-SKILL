@@ -1,0 +1,31 @@
+{
+  "dry_run_layer_mutation": {
+    "status": "DRY_RUN_OK",
+    "new_layers": []
+  },
+  "leader_layer_creation_failure": {
+    "status": "NEEDS_REVIEW",
+    "leaders": [],
+    "errors": [
+      {
+        "handle": "DCE_Leader",
+        "reason": "Cannot enforce DCE_Leader layer contract (color=250): injected DCE_Leader creation failure"
+      }
+    ]
+  },
+  "existing_wrong_layer_color": {
+    "status": "OK",
+    "layer_color": 250,
+    "leaders": [
+      {
+        "layer": "DCE_Leader",
+        "length_mm": 180.0
+      }
+    ]
+  },
+  "no_structural_source_micro_leader": {
+    "status": "OK",
+    "leaders": [],
+    "paths": {}
+  }
+}

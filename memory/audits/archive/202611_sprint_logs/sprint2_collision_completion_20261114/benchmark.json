@@ -1,0 +1,7363 @@
+[
+  {
+    "sheet": "KC-01",
+    "engine_method": "render_sheet_kc02",
+    "description": "57m x 28m typical floor geometry, 40-storey tower scenario; not a solver-verified project",
+    "entities": 430,
+    "movable_labels": 27,
+    "units": 4,
+    "source": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\sprint2_completion_20261114\\KC-01.dxf",
+    "source_sha256": "5d3f048e513b7eb0e8ce07aab85163134fa3df23763e451b7476b3670957801a",
+    "runs": [
+      {
+        "wall_seconds": 0.708538499999122,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "35040": {
+            "points": [
+              [
+                15528.05661664393,
+                44584.09345156889
+              ],
+              [
+                15528.05661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3503E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35046": {
+            "points": [
+              [
+                21881.556616643928,
+                44637.59345156889
+              ],
+              [
+                21881.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "35044",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3504C": {
+            "points": [
+              [
+                28241.556616643928,
+                44637.59345156889
+              ],
+              [
+                28241.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "3504A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35052": {
+            "points": [
+              [
+                34491.55661664393,
+                44637.59345156889
+              ],
+              [
+                34491.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35050",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35058": {
+            "points": [
+              [
+                43821.55661664393,
+                44637.59345156889
+              ],
+              [
+                43821.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35056",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3505E": {
+            "points": [
+              [
+                52931.55661664393,
+                44637.59345156889
+              ],
+              [
+                52931.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3505C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35064": {
+            "points": [
+              [
+                59391.55661664393,
+                44637.59345156889
+              ],
+              [
+                59391.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35062",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3506A": {
+            "points": [
+              [
+                65961.55661664394,
+                44637.59345156889
+              ],
+              [
+                65961.55661664394,
+                44020.0
+              ]
+            ],
+            "source_handle": "35068",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35070": {
+            "points": [
+              [
+                71780.0,
+                44584.09345156889
+              ],
+              [
+                71780.0,
+                44020.0
+              ]
+            ],
+            "source_handle": "3506E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35076": {
+            "points": [
+              [
+                15578.05661664393,
+                35314.09345156889
+              ],
+              [
+                15578.05661664393,
+                35050.0
+              ]
+            ],
+            "source_handle": "35074",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3507C": {
+            "points": [
+              [
+                21881.556616643928,
+                35967.59345156889
+              ],
+              [
+                21881.556616643928,
+                35350.0
+              ]
+            ],
+            "source_handle": "3507A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35082": {
+            "points": [
+              [
+                65961.55661664394,
+                35967.59345156889
+              ],
+              [
+                65961.55661664394,
+                35350.0
+              ]
+            ],
+            "source_handle": "35080",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35088": {
+            "points": [
+              [
+                72421.94338335608,
+                35314.09345156889
+              ],
+              [
+                72421.94338335608,
+                35050.0
+              ]
+            ],
+            "source_handle": "35086",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3508E": {
+            "points": [
+              [
+                15924.032060027284,
+                24506.5
+              ],
+              [
+                15924.032060027284,
+                24840.0
+              ]
+            ],
+            "source_handle": "3508C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35094": {
+            "points": [
+              [
+                22270.532060027286,
+                24560.0
+              ],
+              [
+                22270.0,
+                24560.0
+              ]
+            ],
+            "source_handle": "35092",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3509A": {
+            "points": [
+              [
+                65510.0,
+                23853.0
+              ],
+              [
+                65510.0,
+                24540.0
+              ]
+            ],
+            "source_handle": "35098",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A0": {
+            "points": [
+              [
+                71680.0,
+                24506.5
+              ],
+              [
+                71680.0,
+                24840.0
+              ]
+            ],
+            "source_handle": "3509E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A6": {
+            "points": [
+              [
+                16220.0,
+                15346.5
+              ],
+              [
+                16220.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350A4",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350AC": {
+            "points": [
+              [
+                21472.467939972714,
+                15293.0
+              ],
+              [
+                21530.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350AA",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B2": {
+            "points": [
+              [
+                27832.467939972714,
+                15293.0
+              ],
+              [
+                27890.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B8": {
+            "points": [
+              [
+                34082.46793997272,
+                15293.0
+              ],
+              [
+                34140.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                43412.46793997272,
+                15293.0
+              ],
+              [
+                43470.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350C4": {
+            "points": [
+              [
+                52522.46793997272,
+                15293.0
+              ],
+              [
+                52580.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350CA": {
+            "points": [
+              [
+                58982.46793997272,
+                15293.0
+              ],
+              [
+                59040.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C8",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D0": {
+            "points": [
+              [
+                65610.0,
+                15293.0
+              ],
+              [
+                65610.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350CE",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D6": {
+            "points": [
+              [
+                71780.0,
+                15346.5
+              ],
+              [
+                71780.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350D4",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\04bda8608e614c0f949aff4b2058ddf5.dxf",
+        "initial_collision_count": 80,
+        "displacements_planned": 26,
+        "displacements_applied": 26,
+        "leaders_created": 26,
+        "plans": [
+          {
+            "handle": "35040",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35046",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22557.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3504C",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28917.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35052",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35167.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35058",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44497.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3505E",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53607.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35064",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60067.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3506A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66637.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35070",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35076",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              16253.5,
+              35783.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3507C",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              35730.0
+            ],
+            "to": [
+              22557.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35082",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              35730.0
+            ],
+            "to": [
+              66637.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35088",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              71746.5,
+              35783.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3508E",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              16253.5,
+              24106.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35094",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              24160.0
+            ],
+            "to": [
+              22600.0,
+              24160.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3509A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              24160.0
+            ],
+            "to": [
+              65223.0,
+              23453.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350A0",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              71746.5,
+              24106.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350A6",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              14946.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AC",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              21143.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B2",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              27503.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B8",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              33753.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350BE",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              43083.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350C4",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              52193.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350CA",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              58653.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D0",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              65223.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D6",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              14946.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.7731052999988606,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "35040": {
+            "points": [
+              [
+                15528.05661664393,
+                44584.09345156889
+              ],
+              [
+                15528.05661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3503E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35046": {
+            "points": [
+              [
+                21881.556616643928,
+                44637.59345156889
+              ],
+              [
+                21881.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "35044",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3504C": {
+            "points": [
+              [
+                28241.556616643928,
+                44637.59345156889
+              ],
+              [
+                28241.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "3504A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35052": {
+            "points": [
+              [
+                34491.55661664393,
+                44637.59345156889
+              ],
+              [
+                34491.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35050",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35058": {
+            "points": [
+              [
+                43821.55661664393,
+                44637.59345156889
+              ],
+              [
+                43821.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35056",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3505E": {
+            "points": [
+              [
+                52931.55661664393,
+                44637.59345156889
+              ],
+              [
+                52931.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3505C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35064": {
+            "points": [
+              [
+                59391.55661664393,
+                44637.59345156889
+              ],
+              [
+                59391.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35062",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3506A": {
+            "points": [
+              [
+                65961.55661664394,
+                44637.59345156889
+              ],
+              [
+                65961.55661664394,
+                44020.0
+              ]
+            ],
+            "source_handle": "35068",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35070": {
+            "points": [
+              [
+                71780.0,
+                44584.09345156889
+              ],
+              [
+                71780.0,
+                44020.0
+              ]
+            ],
+            "source_handle": "3506E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35076": {
+            "points": [
+              [
+                15578.05661664393,
+                35314.09345156889
+              ],
+              [
+                15578.05661664393,
+                35050.0
+              ]
+            ],
+            "source_handle": "35074",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3507C": {
+            "points": [
+              [
+                21881.556616643928,
+                35967.59345156889
+              ],
+              [
+                21881.556616643928,
+                35350.0
+              ]
+            ],
+            "source_handle": "3507A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35082": {
+            "points": [
+              [
+                65961.55661664394,
+                35967.59345156889
+              ],
+              [
+                65961.55661664394,
+                35350.0
+              ]
+            ],
+            "source_handle": "35080",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35088": {
+            "points": [
+              [
+                72421.94338335608,
+                35314.09345156889
+              ],
+              [
+                72421.94338335608,
+                35050.0
+              ]
+            ],
+            "source_handle": "35086",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3508E": {
+            "points": [
+              [
+                15924.032060027284,
+                24506.5
+              ],
+              [
+                15924.032060027284,
+                24840.0
+              ]
+            ],
+            "source_handle": "3508C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35094": {
+            "points": [
+              [
+                22270.532060027286,
+                24560.0
+              ],
+              [
+                22270.0,
+                24560.0
+              ]
+            ],
+            "source_handle": "35092",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3509A": {
+            "points": [
+              [
+                65510.0,
+                23853.0
+              ],
+              [
+                65510.0,
+                24540.0
+              ]
+            ],
+            "source_handle": "35098",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A0": {
+            "points": [
+              [
+                71680.0,
+                24506.5
+              ],
+              [
+                71680.0,
+                24840.0
+              ]
+            ],
+            "source_handle": "3509E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A6": {
+            "points": [
+              [
+                16220.0,
+                15346.5
+              ],
+              [
+                16220.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350A4",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350AC": {
+            "points": [
+              [
+                21472.467939972714,
+                15293.0
+              ],
+              [
+                21530.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350AA",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B2": {
+            "points": [
+              [
+                27832.467939972714,
+                15293.0
+              ],
+              [
+                27890.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B8": {
+            "points": [
+              [
+                34082.46793997272,
+                15293.0
+              ],
+              [
+                34140.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                43412.46793997272,
+                15293.0
+              ],
+              [
+                43470.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350C4": {
+            "points": [
+              [
+                52522.46793997272,
+                15293.0
+              ],
+              [
+                52580.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350CA": {
+            "points": [
+              [
+                58982.46793997272,
+                15293.0
+              ],
+              [
+                59040.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C8",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D0": {
+            "points": [
+              [
+                65610.0,
+                15293.0
+              ],
+              [
+                65610.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350CE",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D6": {
+            "points": [
+              [
+                71780.0,
+                15346.5
+              ],
+              [
+                71780.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350D4",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\b1e78726638e4fe08fe8137dd041ebe8.dxf",
+        "initial_collision_count": 80,
+        "displacements_planned": 26,
+        "displacements_applied": 26,
+        "leaders_created": 26,
+        "plans": [
+          {
+            "handle": "35040",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35046",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22557.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3504C",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28917.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35052",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35167.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35058",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44497.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3505E",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53607.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35064",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60067.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3506A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66637.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35070",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35076",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              16253.5,
+              35783.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3507C",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              35730.0
+            ],
+            "to": [
+              22557.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35082",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              35730.0
+            ],
+            "to": [
+              66637.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35088",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              71746.5,
+              35783.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3508E",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              16253.5,
+              24106.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35094",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              24160.0
+            ],
+            "to": [
+              22600.0,
+              24160.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3509A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              24160.0
+            ],
+            "to": [
+              65223.0,
+              23453.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350A0",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              71746.5,
+              24106.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350A6",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              14946.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AC",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              21143.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B2",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              27503.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B8",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              33753.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350BE",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              43083.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350C4",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              52193.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350CA",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              58653.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D0",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              65223.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D6",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              14946.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.8497726000005059,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "35040": {
+            "points": [
+              [
+                15528.05661664393,
+                44584.09345156889
+              ],
+              [
+                15528.05661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3503E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35046": {
+            "points": [
+              [
+                21881.556616643928,
+                44637.59345156889
+              ],
+              [
+                21881.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "35044",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3504C": {
+            "points": [
+              [
+                28241.556616643928,
+                44637.59345156889
+              ],
+              [
+                28241.556616643928,
+                44020.0
+              ]
+            ],
+            "source_handle": "3504A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35052": {
+            "points": [
+              [
+                34491.55661664393,
+                44637.59345156889
+              ],
+              [
+                34491.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35050",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35058": {
+            "points": [
+              [
+                43821.55661664393,
+                44637.59345156889
+              ],
+              [
+                43821.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35056",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3505E": {
+            "points": [
+              [
+                52931.55661664393,
+                44637.59345156889
+              ],
+              [
+                52931.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "3505C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35064": {
+            "points": [
+              [
+                59391.55661664393,
+                44637.59345156889
+              ],
+              [
+                59391.55661664393,
+                44020.0
+              ]
+            ],
+            "source_handle": "35062",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3506A": {
+            "points": [
+              [
+                65961.55661664394,
+                44637.59345156889
+              ],
+              [
+                65961.55661664394,
+                44020.0
+              ]
+            ],
+            "source_handle": "35068",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35070": {
+            "points": [
+              [
+                71780.0,
+                44584.09345156889
+              ],
+              [
+                71780.0,
+                44020.0
+              ]
+            ],
+            "source_handle": "3506E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35076": {
+            "points": [
+              [
+                15578.05661664393,
+                35314.09345156889
+              ],
+              [
+                15578.05661664393,
+                35050.0
+              ]
+            ],
+            "source_handle": "35074",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3507C": {
+            "points": [
+              [
+                21881.556616643928,
+                35967.59345156889
+              ],
+              [
+                21881.556616643928,
+                35350.0
+              ]
+            ],
+            "source_handle": "3507A",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35082": {
+            "points": [
+              [
+                65961.55661664394,
+                35967.59345156889
+              ],
+              [
+                65961.55661664394,
+                35350.0
+              ]
+            ],
+            "source_handle": "35080",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35088": {
+            "points": [
+              [
+                72421.94338335608,
+                35314.09345156889
+              ],
+              [
+                72421.94338335608,
+                35050.0
+              ]
+            ],
+            "source_handle": "35086",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3508E": {
+            "points": [
+              [
+                15924.032060027284,
+                24506.5
+              ],
+              [
+                15924.032060027284,
+                24840.0
+              ]
+            ],
+            "source_handle": "3508C",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35094": {
+            "points": [
+              [
+                22270.532060027286,
+                24560.0
+              ],
+              [
+                22270.0,
+                24560.0
+              ]
+            ],
+            "source_handle": "35092",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3509A": {
+            "points": [
+              [
+                65510.0,
+                23853.0
+              ],
+              [
+                65510.0,
+                24540.0
+              ]
+            ],
+            "source_handle": "35098",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A0": {
+            "points": [
+              [
+                71680.0,
+                24506.5
+              ],
+              [
+                71680.0,
+                24840.0
+              ]
+            ],
+            "source_handle": "3509E",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350A6": {
+            "points": [
+              [
+                16220.0,
+                15346.5
+              ],
+              [
+                16220.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350A4",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350AC": {
+            "points": [
+              [
+                21472.467939972714,
+                15293.0
+              ],
+              [
+                21530.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350AA",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B2": {
+            "points": [
+              [
+                27832.467939972714,
+                15293.0
+              ],
+              [
+                27890.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350B8": {
+            "points": [
+              [
+                34082.46793997272,
+                15293.0
+              ],
+              [
+                34140.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350B6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                43412.46793997272,
+                15293.0
+              ],
+              [
+                43470.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350C4": {
+            "points": [
+              [
+                52522.46793997272,
+                15293.0
+              ],
+              [
+                52580.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350CA": {
+            "points": [
+              [
+                58982.46793997272,
+                15293.0
+              ],
+              [
+                59040.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350C8",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D0": {
+            "points": [
+              [
+                65610.0,
+                15293.0
+              ],
+              [
+                65610.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350CE",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350D6": {
+            "points": [
+              [
+                71780.0,
+                15346.5
+              ],
+              [
+                71780.0,
+                15980.0
+              ]
+            ],
+            "source_handle": "350D4",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\26288fd0bdd5495ba07b307f9b7aee60.dxf",
+        "initial_collision_count": 80,
+        "displacements_planned": 26,
+        "displacements_applied": 26,
+        "leaders_created": 26,
+        "plans": [
+          {
+            "handle": "35040",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35046",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22557.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3504C",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28917.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35052",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35167.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35058",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44497.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3505E",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53607.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35064",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60067.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3506A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66637.0,
+              45107.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35070",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35076",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              16253.5,
+              35783.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3507C",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              35730.0
+            ],
+            "to": [
+              22557.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35082",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              35730.0
+            ],
+            "to": [
+              66637.0,
+              36437.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35088",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              71746.5,
+              35783.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "3508E",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              16253.5,
+              24106.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35094",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              24160.0
+            ],
+            "to": [
+              22600.0,
+              24160.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3509A",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              24160.0
+            ],
+            "to": [
+              65223.0,
+              23453.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350A0",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              71746.5,
+              24106.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350A6",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              14946.5
+            ],
+            "delta": [
+              353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AC",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              21143.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B2",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              27503.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350B8",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              33753.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350BE",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              43083.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350C4",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              52193.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350CA",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              58653.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D0",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              65223.0,
+              14893.0
+            ],
+            "delta": [
+              -707.0,
+              -707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "350D6",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              14946.5
+            ],
+            "delta": [
+              -353.5,
+              -353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      }
+    ],
+    "max_wall_seconds": 0.8497726000005059,
+    "fixed_entities_preserved": 403,
+    "moved_labels_in_frame_or_schedule": 0,
+    "remaining_details": []
+  },
+  {
+    "sheet": "KC-02",
+    "engine_method": "render_sheet_kc03",
+    "description": "57m x 28m typical floor geometry, 40-storey tower scenario; not a solver-verified project",
+    "entities": 491,
+    "movable_labels": 59,
+    "units": 4,
+    "source": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\sprint2_completion_20261114\\KC-02.dxf",
+    "source_sha256": "c7c08db4a002fcf651f3c3e10e324cf556840b1a90a9115184448e99acbf8ab1",
+    "runs": [
+      {
+        "wall_seconds": 0.932247799999459,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "350B2": {
+            "points": [
+              [
+                25305.204638472034,
+                43177.79672578445
+              ],
+              [
+                25305.01448658089,
+                43165.70306550762
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                39650.20463847203,
+                43077.79672578445
+              ],
+              [
+                39650.060889792054,
+                43064.38497394263
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350DC": {
+            "points": [
+              [
+                19016.56834924966,
+                36261.2
+              ],
+              [
+                18995.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350E2": {
+            "points": [
+              [
+                26019.63165075034,
+                32575.0
+              ],
+              [
+                26025.38528967957,
+                32594.158713921413
+              ]
+            ],
+            "source_handle": "350E1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350F4": {
+            "points": [
+              [
+                62786.568349249654,
+                35306.2
+              ],
+              [
+                62785.0,
+                35306.2
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350FA": {
+            "points": [
+              [
+                68873.43165075034,
+                36261.2
+              ],
+              [
+                68895.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "35200",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35124": {
+            "points": [
+              [
+                18547.339699863573,
+                17750.0
+              ],
+              [
+                18705.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351D6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3512A": {
+            "points": [
+              [
+                24727.339699863573,
+                18050.0
+              ],
+              [
+                24885.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351E2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35136": {
+            "points": [
+              [
+                40056.79536152797,
+                18084.796725784447
+              ],
+              [
+                40064.34858815908,
+                17380.080681101805
+              ]
+            ],
+            "source_handle": "35134",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35148": {
+            "points": [
+              [
+                62947.66030013643,
+                18050.0
+              ],
+              [
+                62785.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3514E": {
+            "points": [
+              [
+                69342.66030013643,
+                17750.0
+              ],
+              [
+                69185.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35154": {
+            "points": [
+              [
+                16078.547066848567,
+                21530.0
+              ],
+              [
+                16047.163220405788,
+                21530.169459214056
+              ]
+            ],
+            "source_handle": "35153",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3515A": {
+            "points": [
+              [
+                16103.547066848567,
+                30345.0
+              ],
+              [
+                16070.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "35159",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35160": {
+            "points": [
+              [
+                16078.547066848567,
+                38795.59345156889
+              ],
+              [
+                16045.106929365056,
+                38795.41500899961
+              ]
+            ],
+            "source_handle": "3515F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35166": {
+            "points": [
+              [
+                22053.54706684857,
+                21780.0
+              ],
+              [
+                22020.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "35165",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3516C": {
+            "points": [
+              [
+                22053.54706684857,
+                30345.0
+              ],
+              [
+                22020.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "3516B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35172": {
+            "points": [
+              [
+                22053.54706684857,
+                38965.0
+              ],
+              [
+                22020.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "35171",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35178": {
+            "points": [
+              [
+                28413.54706684857,
+                22840.0
+              ],
+              [
+                28380.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35177",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3517E": {
+            "points": [
+              [
+                28413.54706684857,
+                37960.0
+              ],
+              [
+                28380.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "3517D",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35184": {
+            "points": [
+              [
+                34663.547066848565,
+                22840.0
+              ],
+              [
+                34630.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35183",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3518A": {
+            "points": [
+              [
+                34663.547066848565,
+                37960.0
+              ],
+              [
+                34630.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "35189",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35190": {
+            "points": [
+              [
+                43993.547066848565,
+                22890.0
+              ],
+              [
+                43960.0,
+                22890.0
+              ]
+            ],
+            "source_handle": "3518F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35196": {
+            "points": [
+              [
+                43993.547066848565,
+                37910.0
+              ],
+              [
+                43960.0,
+                37910.0
+              ]
+            ],
+            "source_handle": "35195",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3519C": {
+            "points": [
+              [
+                53103.547066848565,
+                22840.0
+              ],
+              [
+                53070.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "3519B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A2": {
+            "points": [
+              [
+                53103.547066848565,
+                37960.0
+              ],
+              [
+                53070.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351A1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A8": {
+            "points": [
+              [
+                59563.547066848565,
+                22840.0
+              ],
+              [
+                59530.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "351A7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351AE": {
+            "points": [
+              [
+                59563.547066848565,
+                37960.0
+              ],
+              [
+                59530.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351AD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351B4": {
+            "points": [
+              [
+                66133.54706684857,
+                21780.0
+              ],
+              [
+                66100.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "351B3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351BA": {
+            "points": [
+              [
+                66133.54706684857,
+                30345.0
+              ],
+              [
+                66100.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351B9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C0": {
+            "points": [
+              [
+                66133.54706684857,
+                38965.0
+              ],
+              [
+                66100.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "351BF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C6": {
+            "points": [
+              [
+                72578.54706684857,
+                21110.593451568893
+              ],
+              [
+                72295.11552870541,
+                21109.06304369555
+              ]
+            ],
+            "source_handle": "351C5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351CC": {
+            "points": [
+              [
+                72553.54706684857,
+                30345.0
+              ],
+              [
+                72270.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351CB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D2": {
+            "points": [
+              [
+                72578.54706684857,
+                39215.0
+              ],
+              [
+                72297.14490493278,
+                39216.50161239016
+              ]
+            ],
+            "source_handle": "351D1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D8": {
+            "points": [
+              [
+                19067.36834924966,
+                22487.0
+              ],
+              [
+                18995.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351D7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351DE": {
+            "points": [
+              [
+                19067.36834924966,
+                39772.0
+              ],
+              [
+                18995.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351E4": {
+            "points": [
+              [
+                25247.36834924966,
+                22512.0
+              ],
+              [
+                25175.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351E3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351EA": {
+            "points": [
+              [
+                25247.36834924966,
+                39647.0
+              ],
+              [
+                25175.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351E9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F0": {
+            "points": [
+              [
+                62857.36834924966,
+                22512.0
+              ],
+              [
+                62785.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F6": {
+            "points": [
+              [
+                62857.36834924966,
+                39647.0
+              ],
+              [
+                62785.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351FC": {
+            "points": [
+              [
+                69257.36834924966,
+                22487.0
+              ],
+              [
+                69185.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35202": {
+            "points": [
+              [
+                69257.36834924966,
+                39772.0
+              ],
+              [
+                69185.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "35201",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\91af1d5a6d3a4ccc94987e8d53e31c91.dxf",
+        "initial_collision_count": 132,
+        "displacements_planned": 51,
+        "displacements_applied": 51,
+        "leaders_created": 41,
+        "plans": [
+          {
+            "handle": "350AC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              19062.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350B2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25530.0,
+              43550.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350BE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              39875.0,
+              43450.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              48239.0,
+              43556.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350D6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69252.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350DC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              34730.0
+            ],
+            "to": [
+              20006.2,
+              35861.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "350E2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              33775.0
+            ],
+            "to": [
+              25030.0,
+              32175.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "350EE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              32820.0
+            ],
+            "to": [
+              50756.0,
+              32926.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350F4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              33775.0
+            ],
+            "to": [
+              63776.2,
+              34906.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.8
+          },
+          {
+            "handle": "350FA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              34730.0
+            ],
+            "to": [
+              67883.8,
+              35861.2
+            ],
+            "delta": [
+              -1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "35100",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              26360.0
+            ],
+            "to": [
+              18981.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35106",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              27370.0
+            ],
+            "to": [
+              24924.0,
+              27476.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35112",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              28380.0
+            ],
+            "to": [
+              50756.0,
+              28486.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35118",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              27370.0
+            ],
+            "to": [
+              62751.0,
+              27476.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "3511E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              26360.0
+            ],
+            "to": [
+              69121.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35124",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              17550.0,
+              17350.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3512A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              17650.0
+            ],
+            "to": [
+              23730.0,
+              17650.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35136",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              17750.0
+            ],
+            "to": [
+              39832.0,
+              18457.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3513C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              17750.0
+            ],
+            "to": [
+              48239.0,
+              17856.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35148",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              17650.0
+            ],
+            "to": [
+              63945.0,
+              17650.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3514E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              70340.0,
+              17350.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35154",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              21130.0
+            ],
+            "to": [
+              16975.0,
+              21130.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3515A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16500.0,
+              29945.0
+            ],
+            "to": [
+              17000.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35160",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              38815.0
+            ],
+            "to": [
+              16975.0,
+              38815.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35166",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              21380.0
+            ],
+            "to": [
+              22950.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3516C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              29945.0
+            ],
+            "to": [
+              22950.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35172",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              38565.0
+            ],
+            "to": [
+              22950.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35178",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              22440.0
+            ],
+            "to": [
+              29310.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3517E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              37560.0
+            ],
+            "to": [
+              29310.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35184",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              22440.0
+            ],
+            "to": [
+              35560.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3518A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              37560.0
+            ],
+            "to": [
+              35560.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35190",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              22490.0
+            ],
+            "to": [
+              44890.0,
+              22490.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35196",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              37510.0
+            ],
+            "to": [
+              44890.0,
+              37510.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3519C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              22440.0
+            ],
+            "to": [
+              54000.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              37560.0
+            ],
+            "to": [
+              54000.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              22440.0
+            ],
+            "to": [
+              60460.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351AE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              37560.0
+            ],
+            "to": [
+              60460.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351B4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              21380.0
+            ],
+            "to": [
+              67030.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351BA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              29945.0
+            ],
+            "to": [
+              67030.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              38565.0
+            ],
+            "to": [
+              67030.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              21380.0
+            ],
+            "to": [
+              20057.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351DE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              38665.0
+            ],
+            "to": [
+              20057.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351E4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              21405.0
+            ],
+            "to": [
+              26237.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351EA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              38540.0
+            ],
+            "to": [
+              26237.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              21405.0
+            ],
+            "to": [
+              63847.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              38540.0
+            ],
+            "to": [
+              63847.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351FC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              21380.0
+            ],
+            "to": [
+              70247.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35202",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              38665.0
+            ],
+            "to": [
+              70247.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.8872257000002719,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "350B2": {
+            "points": [
+              [
+                25305.204638472034,
+                43177.79672578445
+              ],
+              [
+                25305.01448658089,
+                43165.70306550762
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                39650.20463847203,
+                43077.79672578445
+              ],
+              [
+                39650.060889792054,
+                43064.38497394263
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350DC": {
+            "points": [
+              [
+                19016.56834924966,
+                36261.2
+              ],
+              [
+                18995.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350E2": {
+            "points": [
+              [
+                26019.63165075034,
+                32575.0
+              ],
+              [
+                26025.38528967957,
+                32594.158713921413
+              ]
+            ],
+            "source_handle": "350E1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350F4": {
+            "points": [
+              [
+                62786.568349249654,
+                35306.2
+              ],
+              [
+                62785.0,
+                35306.2
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350FA": {
+            "points": [
+              [
+                68873.43165075034,
+                36261.2
+              ],
+              [
+                68895.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "35200",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35124": {
+            "points": [
+              [
+                18547.339699863573,
+                17750.0
+              ],
+              [
+                18705.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351D6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3512A": {
+            "points": [
+              [
+                24727.339699863573,
+                18050.0
+              ],
+              [
+                24885.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351E2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35136": {
+            "points": [
+              [
+                40056.79536152797,
+                18084.796725784447
+              ],
+              [
+                40064.34858815908,
+                17380.080681101805
+              ]
+            ],
+            "source_handle": "35134",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35148": {
+            "points": [
+              [
+                62947.66030013643,
+                18050.0
+              ],
+              [
+                62785.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3514E": {
+            "points": [
+              [
+                69342.66030013643,
+                17750.0
+              ],
+              [
+                69185.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35154": {
+            "points": [
+              [
+                16078.547066848567,
+                21530.0
+              ],
+              [
+                16047.163220405788,
+                21530.169459214056
+              ]
+            ],
+            "source_handle": "35153",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3515A": {
+            "points": [
+              [
+                16103.547066848567,
+                30345.0
+              ],
+              [
+                16070.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "35159",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35160": {
+            "points": [
+              [
+                16078.547066848567,
+                38795.59345156889
+              ],
+              [
+                16045.106929365056,
+                38795.41500899961
+              ]
+            ],
+            "source_handle": "3515F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35166": {
+            "points": [
+              [
+                22053.54706684857,
+                21780.0
+              ],
+              [
+                22020.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "35165",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3516C": {
+            "points": [
+              [
+                22053.54706684857,
+                30345.0
+              ],
+              [
+                22020.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "3516B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35172": {
+            "points": [
+              [
+                22053.54706684857,
+                38965.0
+              ],
+              [
+                22020.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "35171",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35178": {
+            "points": [
+              [
+                28413.54706684857,
+                22840.0
+              ],
+              [
+                28380.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35177",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3517E": {
+            "points": [
+              [
+                28413.54706684857,
+                37960.0
+              ],
+              [
+                28380.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "3517D",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35184": {
+            "points": [
+              [
+                34663.547066848565,
+                22840.0
+              ],
+              [
+                34630.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35183",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3518A": {
+            "points": [
+              [
+                34663.547066848565,
+                37960.0
+              ],
+              [
+                34630.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "35189",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35190": {
+            "points": [
+              [
+                43993.547066848565,
+                22890.0
+              ],
+              [
+                43960.0,
+                22890.0
+              ]
+            ],
+            "source_handle": "3518F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35196": {
+            "points": [
+              [
+                43993.547066848565,
+                37910.0
+              ],
+              [
+                43960.0,
+                37910.0
+              ]
+            ],
+            "source_handle": "35195",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3519C": {
+            "points": [
+              [
+                53103.547066848565,
+                22840.0
+              ],
+              [
+                53070.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "3519B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A2": {
+            "points": [
+              [
+                53103.547066848565,
+                37960.0
+              ],
+              [
+                53070.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351A1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A8": {
+            "points": [
+              [
+                59563.547066848565,
+                22840.0
+              ],
+              [
+                59530.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "351A7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351AE": {
+            "points": [
+              [
+                59563.547066848565,
+                37960.0
+              ],
+              [
+                59530.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351AD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351B4": {
+            "points": [
+              [
+                66133.54706684857,
+                21780.0
+              ],
+              [
+                66100.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "351B3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351BA": {
+            "points": [
+              [
+                66133.54706684857,
+                30345.0
+              ],
+              [
+                66100.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351B9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C0": {
+            "points": [
+              [
+                66133.54706684857,
+                38965.0
+              ],
+              [
+                66100.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "351BF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C6": {
+            "points": [
+              [
+                72578.54706684857,
+                21110.593451568893
+              ],
+              [
+                72295.11552870541,
+                21109.06304369555
+              ]
+            ],
+            "source_handle": "351C5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351CC": {
+            "points": [
+              [
+                72553.54706684857,
+                30345.0
+              ],
+              [
+                72270.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351CB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D2": {
+            "points": [
+              [
+                72578.54706684857,
+                39215.0
+              ],
+              [
+                72297.14490493278,
+                39216.50161239016
+              ]
+            ],
+            "source_handle": "351D1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D8": {
+            "points": [
+              [
+                19067.36834924966,
+                22487.0
+              ],
+              [
+                18995.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351D7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351DE": {
+            "points": [
+              [
+                19067.36834924966,
+                39772.0
+              ],
+              [
+                18995.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351E4": {
+            "points": [
+              [
+                25247.36834924966,
+                22512.0
+              ],
+              [
+                25175.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351E3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351EA": {
+            "points": [
+              [
+                25247.36834924966,
+                39647.0
+              ],
+              [
+                25175.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351E9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F0": {
+            "points": [
+              [
+                62857.36834924966,
+                22512.0
+              ],
+              [
+                62785.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F6": {
+            "points": [
+              [
+                62857.36834924966,
+                39647.0
+              ],
+              [
+                62785.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351FC": {
+            "points": [
+              [
+                69257.36834924966,
+                22487.0
+              ],
+              [
+                69185.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35202": {
+            "points": [
+              [
+                69257.36834924966,
+                39772.0
+              ],
+              [
+                69185.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "35201",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\118acb1faf534a3785402098d3a70a29.dxf",
+        "initial_collision_count": 132,
+        "displacements_planned": 51,
+        "displacements_applied": 51,
+        "leaders_created": 41,
+        "plans": [
+          {
+            "handle": "350AC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              19062.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350B2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25530.0,
+              43550.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350BE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              39875.0,
+              43450.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              48239.0,
+              43556.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350D6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69252.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350DC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              34730.0
+            ],
+            "to": [
+              20006.2,
+              35861.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "350E2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              33775.0
+            ],
+            "to": [
+              25030.0,
+              32175.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "350EE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              32820.0
+            ],
+            "to": [
+              50756.0,
+              32926.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350F4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              33775.0
+            ],
+            "to": [
+              63776.2,
+              34906.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.8
+          },
+          {
+            "handle": "350FA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              34730.0
+            ],
+            "to": [
+              67883.8,
+              35861.2
+            ],
+            "delta": [
+              -1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "35100",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              26360.0
+            ],
+            "to": [
+              18981.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35106",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              27370.0
+            ],
+            "to": [
+              24924.0,
+              27476.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35112",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              28380.0
+            ],
+            "to": [
+              50756.0,
+              28486.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35118",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              27370.0
+            ],
+            "to": [
+              62751.0,
+              27476.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "3511E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              26360.0
+            ],
+            "to": [
+              69121.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35124",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              17550.0,
+              17350.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3512A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              17650.0
+            ],
+            "to": [
+              23730.0,
+              17650.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35136",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              17750.0
+            ],
+            "to": [
+              39832.0,
+              18457.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3513C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              17750.0
+            ],
+            "to": [
+              48239.0,
+              17856.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35148",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              17650.0
+            ],
+            "to": [
+              63945.0,
+              17650.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3514E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              70340.0,
+              17350.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35154",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              21130.0
+            ],
+            "to": [
+              16975.0,
+              21130.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3515A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16500.0,
+              29945.0
+            ],
+            "to": [
+              17000.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35160",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              38815.0
+            ],
+            "to": [
+              16975.0,
+              38815.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35166",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              21380.0
+            ],
+            "to": [
+              22950.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3516C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              29945.0
+            ],
+            "to": [
+              22950.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35172",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              38565.0
+            ],
+            "to": [
+              22950.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35178",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              22440.0
+            ],
+            "to": [
+              29310.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3517E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              37560.0
+            ],
+            "to": [
+              29310.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35184",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              22440.0
+            ],
+            "to": [
+              35560.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3518A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              37560.0
+            ],
+            "to": [
+              35560.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35190",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              22490.0
+            ],
+            "to": [
+              44890.0,
+              22490.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35196",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              37510.0
+            ],
+            "to": [
+              44890.0,
+              37510.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3519C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              22440.0
+            ],
+            "to": [
+              54000.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              37560.0
+            ],
+            "to": [
+              54000.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              22440.0
+            ],
+            "to": [
+              60460.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351AE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              37560.0
+            ],
+            "to": [
+              60460.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351B4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              21380.0
+            ],
+            "to": [
+              67030.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351BA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              29945.0
+            ],
+            "to": [
+              67030.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              38565.0
+            ],
+            "to": [
+              67030.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              21380.0
+            ],
+            "to": [
+              20057.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351DE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              38665.0
+            ],
+            "to": [
+              20057.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351E4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              21405.0
+            ],
+            "to": [
+              26237.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351EA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              38540.0
+            ],
+            "to": [
+              26237.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              21405.0
+            ],
+            "to": [
+              63847.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              38540.0
+            ],
+            "to": [
+              63847.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351FC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              21380.0
+            ],
+            "to": [
+              70247.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35202",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              38665.0
+            ],
+            "to": [
+              70247.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.8695301999996445,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing coordinates; physical thresholds normalized to mm",
+        "mm_per_drawing_unit": 1.0,
+        "leader_paths": {
+          "350B2": {
+            "points": [
+              [
+                25305.204638472034,
+                43177.79672578445
+              ],
+              [
+                25305.01448658089,
+                43165.70306550762
+              ]
+            ],
+            "source_handle": "350B0",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350BE": {
+            "points": [
+              [
+                39650.20463847203,
+                43077.79672578445
+              ],
+              [
+                39650.060889792054,
+                43064.38497394263
+              ]
+            ],
+            "source_handle": "350BC",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350DC": {
+            "points": [
+              [
+                19016.56834924966,
+                36261.2
+              ],
+              [
+                18995.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350E2": {
+            "points": [
+              [
+                26019.63165075034,
+                32575.0
+              ],
+              [
+                26025.38528967957,
+                32594.158713921413
+              ]
+            ],
+            "source_handle": "350E1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350F4": {
+            "points": [
+              [
+                62786.568349249654,
+                35306.2
+              ],
+              [
+                62785.0,
+                35306.2
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "350FA": {
+            "points": [
+              [
+                68873.43165075034,
+                36261.2
+              ],
+              [
+                68895.0,
+                36261.2
+              ]
+            ],
+            "source_handle": "35200",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35124": {
+            "points": [
+              [
+                18547.339699863573,
+                17750.0
+              ],
+              [
+                18705.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351D6",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3512A": {
+            "points": [
+              [
+                24727.339699863573,
+                18050.0
+              ],
+              [
+                24885.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351E2",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35136": {
+            "points": [
+              [
+                40056.79536152797,
+                18084.796725784447
+              ],
+              [
+                40064.34858815908,
+                17380.080681101805
+              ]
+            ],
+            "source_handle": "35134",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35148": {
+            "points": [
+              [
+                62947.66030013643,
+                18050.0
+              ],
+              [
+                62785.0,
+                18050.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3514E": {
+            "points": [
+              [
+                69342.66030013643,
+                17750.0
+              ],
+              [
+                69185.0,
+                17750.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35154": {
+            "points": [
+              [
+                16078.547066848567,
+                21530.0
+              ],
+              [
+                16047.163220405788,
+                21530.169459214056
+              ]
+            ],
+            "source_handle": "35153",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3515A": {
+            "points": [
+              [
+                16103.547066848567,
+                30345.0
+              ],
+              [
+                16070.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "35159",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35160": {
+            "points": [
+              [
+                16078.547066848567,
+                38795.59345156889
+              ],
+              [
+                16045.106929365056,
+                38795.41500899961
+              ]
+            ],
+            "source_handle": "3515F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35166": {
+            "points": [
+              [
+                22053.54706684857,
+                21780.0
+              ],
+              [
+                22020.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "35165",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3516C": {
+            "points": [
+              [
+                22053.54706684857,
+                30345.0
+              ],
+              [
+                22020.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "3516B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35172": {
+            "points": [
+              [
+                22053.54706684857,
+                38965.0
+              ],
+              [
+                22020.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "35171",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35178": {
+            "points": [
+              [
+                28413.54706684857,
+                22840.0
+              ],
+              [
+                28380.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35177",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3517E": {
+            "points": [
+              [
+                28413.54706684857,
+                37960.0
+              ],
+              [
+                28380.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "3517D",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35184": {
+            "points": [
+              [
+                34663.547066848565,
+                22840.0
+              ],
+              [
+                34630.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "35183",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3518A": {
+            "points": [
+              [
+                34663.547066848565,
+                37960.0
+              ],
+              [
+                34630.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "35189",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35190": {
+            "points": [
+              [
+                43993.547066848565,
+                22890.0
+              ],
+              [
+                43960.0,
+                22890.0
+              ]
+            ],
+            "source_handle": "3518F",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35196": {
+            "points": [
+              [
+                43993.547066848565,
+                37910.0
+              ],
+              [
+                43960.0,
+                37910.0
+              ]
+            ],
+            "source_handle": "35195",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "3519C": {
+            "points": [
+              [
+                53103.547066848565,
+                22840.0
+              ],
+              [
+                53070.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "3519B",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A2": {
+            "points": [
+              [
+                53103.547066848565,
+                37960.0
+              ],
+              [
+                53070.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351A1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351A8": {
+            "points": [
+              [
+                59563.547066848565,
+                22840.0
+              ],
+              [
+                59530.0,
+                22840.0
+              ]
+            ],
+            "source_handle": "351A7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351AE": {
+            "points": [
+              [
+                59563.547066848565,
+                37960.0
+              ],
+              [
+                59530.0,
+                37960.0
+              ]
+            ],
+            "source_handle": "351AD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351B4": {
+            "points": [
+              [
+                66133.54706684857,
+                21780.0
+              ],
+              [
+                66100.0,
+                21780.0
+              ]
+            ],
+            "source_handle": "351B3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351BA": {
+            "points": [
+              [
+                66133.54706684857,
+                30345.0
+              ],
+              [
+                66100.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351B9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C0": {
+            "points": [
+              [
+                66133.54706684857,
+                38965.0
+              ],
+              [
+                66100.0,
+                38965.0
+              ]
+            ],
+            "source_handle": "351BF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351C6": {
+            "points": [
+              [
+                72578.54706684857,
+                21110.593451568893
+              ],
+              [
+                72295.11552870541,
+                21109.06304369555
+              ]
+            ],
+            "source_handle": "351C5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351CC": {
+            "points": [
+              [
+                72553.54706684857,
+                30345.0
+              ],
+              [
+                72270.0,
+                30345.0
+              ]
+            ],
+            "source_handle": "351CB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D2": {
+            "points": [
+              [
+                72578.54706684857,
+                39215.0
+              ],
+              [
+                72297.14490493278,
+                39216.50161239016
+              ]
+            ],
+            "source_handle": "351D1",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351D8": {
+            "points": [
+              [
+                19067.36834924966,
+                22487.0
+              ],
+              [
+                18995.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351D7",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351DE": {
+            "points": [
+              [
+                19067.36834924966,
+                39772.0
+              ],
+              [
+                18995.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "351DD",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351E4": {
+            "points": [
+              [
+                25247.36834924966,
+                22512.0
+              ],
+              [
+                25175.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351E3",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351EA": {
+            "points": [
+              [
+                25247.36834924966,
+                39647.0
+              ],
+              [
+                25175.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351E9",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F0": {
+            "points": [
+              [
+                62857.36834924966,
+                22512.0
+              ],
+              [
+                62785.0,
+                22512.0
+              ]
+            ],
+            "source_handle": "351EF",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351F6": {
+            "points": [
+              [
+                62857.36834924966,
+                39647.0
+              ],
+              [
+                62785.0,
+                39647.0
+              ]
+            ],
+            "source_handle": "351F5",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "351FC": {
+            "points": [
+              [
+                69257.36834924966,
+                22487.0
+              ],
+              [
+                69185.0,
+                22487.0
+              ]
+            ],
+            "source_handle": "351FB",
+            "anchor_kind": "inferred_structural_boundary"
+          },
+          "35202": {
+            "points": [
+              [
+                69257.36834924966,
+                39772.0
+              ],
+              [
+                69185.0,
+                39772.0
+              ]
+            ],
+            "source_handle": "35201",
+            "anchor_kind": "inferred_structural_boundary"
+          }
+        },
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\207b7e721ab74533b14957b370db9c71.dxf",
+        "initial_collision_count": 132,
+        "displacements_planned": 51,
+        "displacements_applied": 51,
+        "leaders_created": 41,
+        "plans": [
+          {
+            "handle": "350AC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              19062.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350B2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25530.0,
+              43550.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350BE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              39875.0,
+              43450.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              48239.0,
+              43556.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350D6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69252.1,
+              44062.1
+            ],
+            "delta": [
+              212.1,
+              212.1
+            ],
+            "distance_mm": 300.0,
+            "needs_leader": false,
+            "cost": 300.0
+          },
+          {
+            "handle": "350DC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              34730.0
+            ],
+            "to": [
+              20006.2,
+              35861.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "350E2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              33775.0
+            ],
+            "to": [
+              25030.0,
+              32175.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "350EE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              32820.0
+            ],
+            "to": [
+              50756.0,
+              32926.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "350F4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              33775.0
+            ],
+            "to": [
+              63776.2,
+              34906.2
+            ],
+            "delta": [
+              1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.8
+          },
+          {
+            "handle": "350FA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              34730.0
+            ],
+            "to": [
+              67883.8,
+              35861.2
+            ],
+            "delta": [
+              -1131.2,
+              1131.2
+            ],
+            "distance_mm": 1599.8,
+            "needs_leader": true,
+            "cost": 1599.7583817564453
+          },
+          {
+            "handle": "35100",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18875.0,
+              26360.0
+            ],
+            "to": [
+              18981.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35106",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              27370.0
+            ],
+            "to": [
+              24924.0,
+              27476.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35112",
+            "text": "Dce_KhTenDam",
+            "from": [
+              50650.0,
+              28380.0
+            ],
+            "to": [
+              50756.0,
+              28486.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35118",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              27370.0
+            ],
+            "to": [
+              62751.0,
+              27476.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "3511E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69015.0,
+              26360.0
+            ],
+            "to": [
+              69121.0,
+              26466.0
+            ],
+            "delta": [
+              106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35124",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              17550.0,
+              17350.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3512A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              17650.0
+            ],
+            "to": [
+              23730.0,
+              17650.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35136",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              17750.0
+            ],
+            "to": [
+              39832.0,
+              18457.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "3513C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              17750.0
+            ],
+            "to": [
+              48239.0,
+              17856.0
+            ],
+            "delta": [
+              -106.0,
+              106.0
+            ],
+            "distance_mm": 149.9,
+            "needs_leader": false,
+            "cost": 149.9
+          },
+          {
+            "handle": "35148",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              17650.0
+            ],
+            "to": [
+              63945.0,
+              17650.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3514E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              70340.0,
+              17350.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35154",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              21130.0
+            ],
+            "to": [
+              16975.0,
+              21130.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3515A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16500.0,
+              29945.0
+            ],
+            "to": [
+              17000.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35160",
+            "text": "Dce_KhTenDam",
+            "from": [
+              16475.0,
+              38815.0
+            ],
+            "to": [
+              16975.0,
+              38815.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35166",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              21380.0
+            ],
+            "to": [
+              22950.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3516C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              29945.0
+            ],
+            "to": [
+              22950.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35172",
+            "text": "Dce_KhTenDam",
+            "from": [
+              22450.0,
+              38565.0
+            ],
+            "to": [
+              22950.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35178",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              22440.0
+            ],
+            "to": [
+              29310.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3517E",
+            "text": "Dce_KhTenDam",
+            "from": [
+              28810.0,
+              37560.0
+            ],
+            "to": [
+              29310.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35184",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              22440.0
+            ],
+            "to": [
+              35560.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3518A",
+            "text": "Dce_KhTenDam",
+            "from": [
+              35060.0,
+              37560.0
+            ],
+            "to": [
+              35560.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35190",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              22490.0
+            ],
+            "to": [
+              44890.0,
+              22490.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35196",
+            "text": "Dce_KhTenDam",
+            "from": [
+              44390.0,
+              37510.0
+            ],
+            "to": [
+              44890.0,
+              37510.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "3519C",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              22440.0
+            ],
+            "to": [
+              54000.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              53500.0,
+              37560.0
+            ],
+            "to": [
+              54000.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351A8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              22440.0
+            ],
+            "to": [
+              60460.0,
+              22440.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351AE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              59960.0,
+              37560.0
+            ],
+            "to": [
+              60460.0,
+              37560.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351B4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              21380.0
+            ],
+            "to": [
+              67030.0,
+              21380.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351BA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              29945.0
+            ],
+            "to": [
+              67030.0,
+              29945.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              66530.0,
+              38565.0
+            ],
+            "to": [
+              67030.0,
+              38565.0
+            ],
+            "delta": [
+              500.0,
+              0.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "351C6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D2",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D8",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              21380.0
+            ],
+            "to": [
+              20057.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351DE",
+            "text": "Dce_KhTenDam",
+            "from": [
+              19350.0,
+              38665.0
+            ],
+            "to": [
+              20057.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351E4",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              21405.0
+            ],
+            "to": [
+              26237.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351EA",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25530.0,
+              38540.0
+            ],
+            "to": [
+              26237.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F0",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              21405.0
+            ],
+            "to": [
+              63847.0,
+              22112.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351F6",
+            "text": "Dce_KhTenDam",
+            "from": [
+              63140.0,
+              38540.0
+            ],
+            "to": [
+              63847.0,
+              39247.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "351FC",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              21380.0
+            ],
+            "to": [
+              70247.0,
+              22087.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          },
+          {
+            "handle": "35202",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69540.0,
+              38665.0
+            ],
+            "to": [
+              70247.0,
+              39372.0
+            ],
+            "delta": [
+              707.0,
+              707.0
+            ],
+            "distance_mm": 999.8,
+            "needs_leader": true,
+            "cost": 999.8
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      }
+    ],
+    "max_wall_seconds": 0.932247799999459,
+    "fixed_entities_preserved": 432,
+    "moved_labels_in_frame_or_schedule": 0,
+    "remaining_details": []
+  }
+]

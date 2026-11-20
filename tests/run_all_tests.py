@@ -37,7 +37,7 @@ SUITES = [
     ("15. Sync Report System Consistency (14 tests)", [sys.executable, str(TESTS_DIR / "test_sync_report.py")]),
     ("16. Cognitive & System Control Engine (40 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_and_control_systems.py")]),
     ("17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)", [sys.executable, str(TESTS_DIR / "test_suite17_xlsx_view_sanity.py")]),
-    ("18. DCE CAD Compliance & Zero White Text Lock (9 tests)", [sys.executable, str(TESTS_DIR / "test_dce_cad_compliance.py")]),
+    ("18. DCE CAD Compliance & Zero White Text Lock (25 tests)", [sys.executable, str(TESTS_DIR / "test_dce_cad_compliance.py")]),
     ("19. Dual-Agent Bridge & Bus IPC (7 tests)", [sys.executable, str(SKILLS_ROOT / "SKILL_DUAL_AGENT_BRIDGE" / "tests" / "test_dual_agent_bridge.py")]),
     ("20. Cognitive Brain v2.0 Benchmark (10 tests)", [sys.executable, str(TESTS_DIR / "test_cognitive_brain_20261022.py")]),
     ("21. R&D & Structural TCVN Regression Patches (20 checks)", [sys.executable, str(TESTS_DIR / "test_rd_structural_patches_20261022.py")]),
@@ -48,13 +48,38 @@ SUITES = [
     ("26. Durable Project Orchestration & Agent Roles (39 tests)", [sys.executable, str(TESTS_DIR / "test_project_orchestration_p1.py")]),
     ("27. CAD Edit Workbench (9 tests)", [sys.executable, str(TESTS_DIR / "test_cad_edit_workbench.py")]),
     ("28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)", [sys.executable, '-B', str(TESTS_DIR / "test_dce_virtual_drive_guard.py")]),
-    ("29. MCP DCE-CAD Server & Vision Tools (5 tests)", [sys.executable, str(TESTS_DIR / "test_mcp_dce_cad_server.py")]),
-    ("30. CAD Scene Index & Collision Solver (Sprint 2 Anti-Collision) (6 tests)", [sys.executable, str(TESTS_DIR / "test_cad_collision_solver.py")]),
+    ("29. MCP DCE-CAD Server & Vision Tools (12 tests)", [sys.executable, str(TESTS_DIR / "test_mcp_dce_cad_server.py")]),
+    ("30. CAD Scene Index & Collision Solver (Sprint 2 Anti-Collision) (35 tests)", [sys.executable, str(TESTS_DIR / "test_cad_collision_solver.py")]),
+    ("31. Dynamic Sheet-Scale Governor & SSOT Layout (Directive v5.0) (11 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_sheet_scale_fitter.py")]),
+    ("32. CAD Semantics v6 C1 Renderer & Tag Placement (6 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_cad_v6_c1.py")]),
+    ("33. CAD Semantics v6 C2 Sheet Set & Dual Viewport (3 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_cad_v6_c2.py")]),
 ]
 
 # Smoke tier includes the real-PDF grounding guard. Slow reporting, CAD,
 # control timing, nonlinear solving and durable orchestration remain in full CI.
-FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 18, 19, 20, 21, 22, 23, 27, 28, 29, 30}
+FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 18, 19, 20, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33}
+
+
+def _auto_register_unregistered():
+    """Self-heal: register any .agents/tests/test_*.py not already in SUITES.
+
+    Prevents "dead on arrival" — a newly dropped unit-test file is picked up by
+    `--full` automatically (the hardcoded SUITES list previously left 12 files
+    unregistered, incl. the P4.1/P4.2/P4.3 suites). Auto-registered suites are
+    full-CI only (not in FAST_SUITES) since CAD-heavy suites run slow.
+    """
+    already = {Path(c[-1]).name for _n, c in SUITES if c and c[-1].endswith(".py")}
+    # These have dedicated runner entries (calculators / integration), not unit suites.
+    skip = {"test_runner.py", "test_e2e_pipeline.py", "integration_test.py"}
+    next_no = len(SUITES)
+    added = []
+    for f in sorted(TESTS_DIR.glob("test_*.py")):
+        if f.name in already or f.name in skip:
+            continue
+        next_no += 1
+        SUITES.append((f"{next_no}. [auto] {f.stem} (auto-registered unit suite)", [sys.executable, str(f)]))
+        added.append(f.name)
+    return added
 
 def main():
     import argparse
@@ -70,6 +95,9 @@ def main():
         parser.error('Timeout must be positive and finite')
     if args.fast and args.suite:
         parser.error('--fast cannot be combined with --suite; use explicit selection or the smoke tier')
+    _auto_added = _auto_register_unregistered()
+    if _auto_added:
+        print(f" [auto] Đã tự đăng ký {len(_auto_added)} suite chưa có trong SUITES: {', '.join(_auto_added)}")
     selected = SUITES
     if args.fast:
         selected = [(name, cmd) for name, cmd in SUITES if int(name.split('.', 1)[0]) in FAST_SUITES]

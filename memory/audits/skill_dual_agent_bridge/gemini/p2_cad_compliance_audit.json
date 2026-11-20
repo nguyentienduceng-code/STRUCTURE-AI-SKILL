@@ -1,0 +1,48 @@
+{
+  "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\skill_dual_agent_bridge\\gemini\\p2_cad_ground_truth.dxf",
+  "status": "PASS",
+  "dxf_version": "AC1021",
+  "total_entities": 429,
+  "audit_errors": [],
+  "audit_fixes_count": 0,
+  "illegal_layers": [],
+  "non_dce_layers": [],
+  "blocks": {
+    "total_inserts": 57,
+    "axis_bubbles": 30,
+    "member_tags": 26,
+    "title_blocks": 1,
+    "attrib_inserts": 57
+  },
+  "dimensions": {
+    "total_dimensions": 15,
+    "dce_compliant_dimensions": 15,
+    "non_dce_dimensions": []
+  },
+  "graphic_sanity": {
+    "has_concrete_solid_hatch": true,
+    "has_standard_frame": true,
+    "has_schedule_table": true,
+    "has_setting_out_dims": true,
+    "beam_void_clashes": 0,
+    "is_steel_only_plan": false
+  },
+  "issues": [],
+  "schema_version": "2.0",
+  "profile": "physical",
+  "physical_status": "PASS",
+  "physical_issues": [],
+  "gate_issues": [],
+  "metadata_issues": [],
+  "detail_audits": {},
+  "gate_status": "NOT_RUN",
+  "gates_registered": 20,
+  "gates_total": 0,
+  "gates_passed": 0,
+  "gates_failed": 0,
+  "gates_unverified": 0,
+  "gates_not_applicable": 0,
+  "full_compliance_verified": false,
+  "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+  "gate_results": []
+}

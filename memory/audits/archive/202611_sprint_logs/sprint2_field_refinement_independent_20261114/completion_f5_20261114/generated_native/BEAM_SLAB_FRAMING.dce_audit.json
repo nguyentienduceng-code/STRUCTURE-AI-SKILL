@@ -1,0 +1,3979 @@
+{
+  "engine_version": "4.7.1",
+  "dxf_version": "AC1021",
+  "scale": 100.0,
+  "mode": "BEAM_SLAB_FRAMING",
+  "layout_style": "SINGLE_FULL_VIEWPORT",
+  "template_reused": false,
+  "layout_spec": {
+    "sheet_size": "A1",
+    "scale": 100.0,
+    "scale_label": "1/100",
+    "dimstyle_dce": "Dce_100MV",
+    "dimstyle_main": "DCE_DIM_MAIN_100",
+    "dimstyle_setout": "DCE_DIM_COT_100",
+    "viewport_fill_ratio": 1.016,
+    "sidebar_divider_x": 68600.0,
+    "sidebar_bbox": [
+      68600.0,
+      3000.0,
+      85100.0,
+      60400.0
+    ],
+    "title_block_bbox": [
+      68600.0,
+      3000.0,
+      85100.0,
+      8500.0
+    ],
+    "title_band_bbox": [
+      4500.0,
+      3000.0,
+      68000.0,
+      5400.0
+    ],
+    "canvas_bbox": [
+      4800.0,
+      5800.0,
+      68000.0,
+      60100.0
+    ]
+  },
+  "blocks_defined": {
+    "DCE_Truc_Bubble": {
+      "source_alias": "KyHieuTruc",
+      "radius_paper": 4.0,
+      "crosshair_ticks": [
+        [
+          [
+            -5.5,
+            0
+          ],
+          [
+            -4.0,
+            0
+          ]
+        ],
+        [
+          [
+            4.0,
+            0
+          ],
+          [
+            5.5,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            -5.5
+          ],
+          [
+            0,
+            -4.0
+          ]
+        ],
+        [
+          [
+            0,
+            4.0
+          ],
+          [
+            0,
+            5.5
+          ]
+        ]
+      ],
+      "attdefs": {
+        "SH_TRUC": {
+          "insert": [
+            0.0,
+            0.0
+          ],
+          "align": "MIDDLE_CENTER",
+          "height": 2.8
+        }
+      }
+    },
+    "DCE_Cot_Block": {
+      "source_alias": "Cot_Tiep",
+      "description": "Block Cột đi tiếp lên tầng trên (1x1mm: LWPOLYLINE + SOLID HATCH)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "has_solid_hatch": true,
+      "has_border_lwpolyline": true,
+      "hatch_layer": "DCE_Hatch",
+      "border_layer": "DCE_Cot"
+    },
+    "DCE_Cot_Dung": {
+      "source_alias": "Cot_Dung",
+      "description": "Block Cột dừng tại tầng hiện tại (1x1mm: LWPOLYLINE + 2 đường chéo chữ X)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "has_cross_x": true,
+      "has_border_lwpolyline": true,
+      "border_layer": "DCE_Cot"
+    },
+    "DCE_Coc_Block": {
+      "source_alias": "KyHieuCoc",
+      "description": "Block Cọc BTCT / Cọc khoan nhồi định vị tại tâm (1x1mm)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ]
+    },
+    "DCE_TenCauKien": {
+      "source_alias": "TenCauKien",
+      "healed_from_template": true,
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "divider_line": [
+        [
+          -4.8,
+          0.0
+        ],
+        [
+          4.8,
+          0.0
+        ]
+      ],
+      "attdefs": {
+        "SOCAUKIEN": {
+          "insert": [
+            0.0,
+            0.6
+          ],
+          "align": "BOTTOM_CENTER",
+          "height": 2.4
+        },
+        "TENCAUKIEN": {
+          "insert": [
+            0.0,
+            -0.6
+          ],
+          "align": "TOP_CENTER",
+          "height": 1.9
+        }
+      }
+    },
+    "DCE_KyHieuSan": {
+      "source_alias": "CaoDo_San",
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "radius_paper": 3.5,
+      "attdefs": {
+        "MA_SAN": {
+          "insert": [
+            0.0,
+            0.5
+          ],
+          "align": "BOTTOM_CENTER",
+          "height": 1.8
+        },
+        "CAO_DO": {
+          "insert": [
+            0.0,
+            -0.5
+          ],
+          "align": "TOP_CENTER",
+          "height": 1.8
+        }
+      }
+    },
+    "DCE_SH_Thep": {
+      "source_alias": "SH_Thep",
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "radius_paper": 2.2,
+      "attdefs": {
+        "SO_HIEU": {
+          "insert": [
+            0.0,
+            0.0
+          ],
+          "align": "MIDDLE_CENTER",
+          "height": 2.0
+        },
+        "QUY_CACH": {
+          "insert": [
+            3.0,
+            0.0
+          ],
+          "align": "MIDDLE_LEFT",
+          "height": 2.0
+        }
+      }
+    },
+    "DCE_TitleBlock_A1": {
+      "source_alias": "KhungTen_DCE",
+      "outer_size_paper": [
+        841.0,
+        594.0
+      ],
+      "inner_margins_paper": {
+        "left": 25.0,
+        "top": 10.0,
+        "right": 10.0,
+        "bottom": 10.0
+      },
+      "drawing_zone_width_paper": 641.0,
+      "schedule_zone_width_paper": 165.0,
+      "attdefs": [
+        "CHU_DAU_TU",
+        "TEN_DU_AN",
+        "HANG_MUC",
+        "DIA_DIEM",
+        "DON_VI_TVTK",
+        "CHU_NHIEM",
+        "CHU_TRI_KC",
+        "NGUOI_THIET_KE",
+        "KIEM_TRA",
+        "TEN_BAN_VE",
+        "TY_LE",
+        "KY_HIEU_BV"
+      ]
+    }
+  },
+  "dimstyles_defined": {
+    "DCE_DIM_MAIN_100": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 2.2,
+      "dimasz": 1.5,
+      "dimexe": 1.2,
+      "dimexo": 1.5,
+      "dimgap": 0.6,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    },
+    "DCE_DIM_COT_100": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 1.8,
+      "dimasz": 1.0,
+      "dimexe": 0.9,
+      "dimexo": 0.8,
+      "dimgap": 0.5,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimtix": 1,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    },
+    "Dce_100MV": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 2.2,
+      "dimasz": 1.5,
+      "dimexe": 1.2,
+      "dimexo": 1.2,
+      "dimgap": 0.6,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    }
+  },
+  "layers_defined": {
+    "DCE_Cot": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Vach": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Boundary_Zone": {
+      "color": 1,
+      "linetype": "HIDDEN2",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Hatch": {
+      "color": 253,
+      "linetype": "CONTINUOUS",
+      "lineweight": 9,
+      "screening": 30
+    },
+    "DCE_Truc": {
+      "color": 1,
+      "linetype": "CENTER2",
+      "lineweight": 13,
+      "screening": 70
+    },
+    "DCE_Dim": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 15,
+      "screening": 100
+    },
+    "DCE_Setout": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 100
+    },
+    "DCE_Name": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_NetThay": {
+      "color": 8,
+      "linetype": "HIDDEN2",
+      "lineweight": 18,
+      "screening": 60
+    },
+    "DCE_CouplingBeam": {
+      "color": 6,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_VoidX": {
+      "color": 8,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 60
+    },
+    "DCE_Thep_Chu": {
+      "color": 1,
+      "linetype": "CONTINUOUS",
+      "lineweight": 40,
+      "screening": 100
+    },
+    "DCE_Thep_Dai": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Schedule": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Frame": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 50,
+      "screening": 100
+    },
+    "DCE_BaoBeTong": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_MainBeam": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Beam": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Leader": {
+      "color": 250,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 80
+    },
+    "DCE_Note": {
+      "color": 250,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "Dce_text": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Block": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Symbol": {
+      "color": 140,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Core": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 30,
+      "screening": 100
+    },
+    "DCE_GapOpen": {
+      "color": 3,
+      "linetype": "HIDDEN2",
+      "lineweight": 15,
+      "screening": 100
+    },
+    "DCE_Lanh_To": {
+      "color": 1,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_RanhDat": {
+      "color": 1,
+      "linetype": "CENTER2",
+      "lineweight": 30,
+      "screening": 100
+    },
+    "DCE_ChiGioi": {
+      "color": 6,
+      "linetype": "HIDDEN2",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Road": {
+      "color": 8,
+      "linetype": "CONTINUOUS",
+      "lineweight": 15,
+      "screening": 70
+    }
+  },
+  "entities_log": [
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_ELEV_1",
+      "bbox": [
+        22400.0,
+        8400.0,
+        28100.0,
+        11200.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG MÁY TM1"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_ELEV_2",
+      "bbox": [
+        28900.0,
+        8400.0,
+        34600.0,
+        11200.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG MÁY TM2"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_STAIR",
+      "bbox": [
+        22400.0,
+        16800.0,
+        28100.0,
+        19600.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG BỘ L1"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_MEP",
+      "bbox": [
+        28900.0,
+        16800.0,
+        34600.0,
+        19600.0
+      ],
+      "has_cross_x": true,
+      "label": "MEP SHAFT"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_CouplingBeam",
+      "id": "CB1",
+      "bbox": [
+        24200.0,
+        11200.0,
+        26300.0,
+        11600.0
+      ],
+      "label": "CB1 (400x900)"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_CouplingBeam",
+      "id": "CB2",
+      "bbox": [
+        30700.0,
+        11200.0,
+        32800.0,
+        11600.0
+      ],
+      "label": "CB2 (400x900)"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.1",
+      "p1": [
+        700.0,
+        0.0
+      ],
+      "p2": [
+        7150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.1 (400x800)",
+      "beam_label_pos": [
+        3925.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.2",
+      "p1": [
+        8050.0,
+        0.0
+      ],
+      "p2": [
+        14650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.2 (400x800)",
+      "beam_label_pos": [
+        11350.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.3",
+      "p1": [
+        15550.0,
+        0.0
+      ],
+      "p2": [
+        21650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.3 (400x800)",
+      "beam_label_pos": [
+        18600.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.4",
+      "p1": [
+        22550.0,
+        0.0
+      ],
+      "p2": [
+        28150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.4 (400x800)",
+      "beam_label_pos": [
+        25350.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.5",
+      "p1": [
+        29050.0,
+        0.0
+      ],
+      "p2": [
+        34650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.5 (400x800)",
+      "beam_label_pos": [
+        31850.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.6",
+      "p1": [
+        35550.0,
+        0.0
+      ],
+      "p2": [
+        41650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.6 (400x800)",
+      "beam_label_pos": [
+        38600.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.7",
+      "p1": [
+        42550.0,
+        0.0
+      ],
+      "p2": [
+        49150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.7 (400x800)",
+      "beam_label_pos": [
+        45850.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.8",
+      "p1": [
+        50050.0,
+        0.0
+      ],
+      "p2": [
+        56700.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1A.8 (400x800)",
+      "beam_label_pos": [
+        53375.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.1",
+      "p1": [
+        550.0,
+        8000.0
+      ],
+      "p2": [
+        6950.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_L.1 (500x900)",
+      "beam_label_pos": [
+        3750.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.2",
+      "p1": [
+        8050.0,
+        8000.0
+      ],
+      "p2": [
+        14450.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_L.2 (500x900)",
+      "beam_label_pos": [
+        11250.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.3",
+      "p1": [
+        15550.0,
+        8000.0
+      ],
+      "p2": [
+        22000.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_L.3 (500x900)",
+      "beam_label_pos": [
+        18775.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.1",
+      "p1": [
+        35000.0,
+        8000.0
+      ],
+      "p2": [
+        41450.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_R.1 (500x900)",
+      "beam_label_pos": [
+        38225.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.2",
+      "p1": [
+        42550.0,
+        8000.0
+      ],
+      "p2": [
+        48950.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_R.2 (500x900)",
+      "beam_label_pos": [
+        45750.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.3",
+      "p1": [
+        50050.0,
+        8000.0
+      ],
+      "p2": [
+        56650.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1B_R.3 (500x900)",
+      "beam_label_pos": [
+        53350.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.1",
+      "p1": [
+        550.0,
+        14000.0
+      ],
+      "p2": [
+        6950.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_L.1 (500x900)",
+      "beam_label_pos": [
+        3750.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.2",
+      "p1": [
+        8050.0,
+        14000.0
+      ],
+      "p2": [
+        14450.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_L.2 (500x900)",
+      "beam_label_pos": [
+        11250.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.3",
+      "p1": [
+        15550.0,
+        14000.0
+      ],
+      "p2": [
+        22000.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_L.3 (500x900)",
+      "beam_label_pos": [
+        18775.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.1",
+      "p1": [
+        35000.0,
+        14000.0
+      ],
+      "p2": [
+        41450.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_R.1 (500x900)",
+      "beam_label_pos": [
+        38225.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.2",
+      "p1": [
+        42550.0,
+        14000.0
+      ],
+      "p2": [
+        48950.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_R.2 (500x900)",
+      "beam_label_pos": [
+        45750.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.3",
+      "p1": [
+        50050.0,
+        14000.0
+      ],
+      "p2": [
+        56650.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1C_R.3 (500x900)",
+      "beam_label_pos": [
+        53350.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.1",
+      "p1": [
+        550.0,
+        20000.0
+      ],
+      "p2": [
+        6950.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_L.1 (500x900)",
+      "beam_label_pos": [
+        3750.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.2",
+      "p1": [
+        8050.0,
+        20000.0
+      ],
+      "p2": [
+        14450.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_L.2 (500x900)",
+      "beam_label_pos": [
+        11250.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.3",
+      "p1": [
+        15550.0,
+        20000.0
+      ],
+      "p2": [
+        22000.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_L.3 (500x900)",
+      "beam_label_pos": [
+        18775.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.1",
+      "p1": [
+        35000.0,
+        20000.0
+      ],
+      "p2": [
+        41450.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_R.1 (500x900)",
+      "beam_label_pos": [
+        38225.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.2",
+      "p1": [
+        42550.0,
+        20000.0
+      ],
+      "p2": [
+        48950.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_R.2 (500x900)",
+      "beam_label_pos": [
+        45750.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.3",
+      "p1": [
+        50050.0,
+        20000.0
+      ],
+      "p2": [
+        56650.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1D_R.3 (500x900)",
+      "beam_label_pos": [
+        53350.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.1",
+      "p1": [
+        700.0,
+        28000.0
+      ],
+      "p2": [
+        7150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.1 (400x800)",
+      "beam_label_pos": [
+        3925.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.2",
+      "p1": [
+        8050.0,
+        28000.0
+      ],
+      "p2": [
+        14650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.2 (400x800)",
+      "beam_label_pos": [
+        11350.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.3",
+      "p1": [
+        15550.0,
+        28000.0
+      ],
+      "p2": [
+        21650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.3 (400x800)",
+      "beam_label_pos": [
+        18600.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.4",
+      "p1": [
+        22550.0,
+        28000.0
+      ],
+      "p2": [
+        28150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.4 (400x800)",
+      "beam_label_pos": [
+        25350.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.5",
+      "p1": [
+        29050.0,
+        28000.0
+      ],
+      "p2": [
+        34650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.5 (400x800)",
+      "beam_label_pos": [
+        31850.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.6",
+      "p1": [
+        35550.0,
+        28000.0
+      ],
+      "p2": [
+        41650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.6 (400x800)",
+      "beam_label_pos": [
+        38600.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.7",
+      "p1": [
+        42550.0,
+        28000.0
+      ],
+      "p2": [
+        49150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.7 (400x800)",
+      "beam_label_pos": [
+        45850.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.8",
+      "p1": [
+        50050.0,
+        28000.0
+      ],
+      "p2": [
+        56700.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D1E.8 (400x800)",
+      "beam_label_pos": [
+        53375.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.1",
+      "p1": [
+        0.0,
+        700.0
+      ],
+      "p2": [
+        0.0,
+        7500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_1.1 (300x700)",
+      "beam_label_pos": [
+        -350.0,
+        4100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.2",
+      "p1": [
+        0.0,
+        8700.0
+      ],
+      "p2": [
+        0.0,
+        13500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_1.2 (300x700)",
+      "beam_label_pos": [
+        -350.0,
+        11100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.3",
+      "p1": [
+        0.0,
+        14700.0
+      ],
+      "p2": [
+        0.0,
+        19500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_1.3 (300x700)",
+      "beam_label_pos": [
+        -350.0,
+        17100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.4",
+      "p1": [
+        0.0,
+        20700.0
+      ],
+      "p2": [
+        0.0,
+        27700.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_1.4 (300x700)",
+      "beam_label_pos": [
+        -350.0,
+        24200.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.1",
+      "p1": [
+        7500.0,
+        700.0
+      ],
+      "p2": [
+        7500.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_2.1 (300x700)",
+      "beam_label_pos": [
+        7150.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.2",
+      "p1": [
+        7500.0,
+        8700.0
+      ],
+      "p2": [
+        7500.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_2.2 (300x700)",
+      "beam_label_pos": [
+        7150.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.3",
+      "p1": [
+        7500.0,
+        14700.0
+      ],
+      "p2": [
+        7500.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_2.3 (300x700)",
+      "beam_label_pos": [
+        7150.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.4",
+      "p1": [
+        7500.0,
+        20700.0
+      ],
+      "p2": [
+        7500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_2.4 (300x700)",
+      "beam_label_pos": [
+        7150.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.1",
+      "p1": [
+        15000.0,
+        700.0
+      ],
+      "p2": [
+        15000.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_3.1 (300x700)",
+      "beam_label_pos": [
+        14650.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.2",
+      "p1": [
+        15000.0,
+        8700.0
+      ],
+      "p2": [
+        15000.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_3.2 (300x700)",
+      "beam_label_pos": [
+        14650.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.3",
+      "p1": [
+        15000.0,
+        14700.0
+      ],
+      "p2": [
+        15000.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_3.3 (300x700)",
+      "beam_label_pos": [
+        14650.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.4",
+      "p1": [
+        15000.0,
+        20700.0
+      ],
+      "p2": [
+        15000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_3.4 (300x700)",
+      "beam_label_pos": [
+        14650.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_4B",
+      "p1": [
+        22000.0,
+        700.0
+      ],
+      "p2": [
+        22000.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_4B (300x700)",
+      "beam_label_pos": [
+        21650.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_4T",
+      "p1": [
+        22000.0,
+        20000.0
+      ],
+      "p2": [
+        22000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_4T (300x700)",
+      "beam_label_pos": [
+        21650.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_5B",
+      "p1": [
+        28500.0,
+        700.0
+      ],
+      "p2": [
+        28500.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_5B (300x700)",
+      "beam_label_pos": [
+        28150.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_5T",
+      "p1": [
+        28500.0,
+        20000.0
+      ],
+      "p2": [
+        28500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_5T (300x700)",
+      "beam_label_pos": [
+        28150.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_6B",
+      "p1": [
+        35000.0,
+        700.0
+      ],
+      "p2": [
+        35000.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_6B (300x700)",
+      "beam_label_pos": [
+        34650.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_6T",
+      "p1": [
+        35000.0,
+        20000.0
+      ],
+      "p2": [
+        35000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_6T (300x700)",
+      "beam_label_pos": [
+        34650.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.1",
+      "p1": [
+        42000.0,
+        700.0
+      ],
+      "p2": [
+        42000.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_7.1 (300x700)",
+      "beam_label_pos": [
+        41650.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.2",
+      "p1": [
+        42000.0,
+        8700.0
+      ],
+      "p2": [
+        42000.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_7.2 (300x700)",
+      "beam_label_pos": [
+        41650.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.3",
+      "p1": [
+        42000.0,
+        14700.0
+      ],
+      "p2": [
+        42000.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_7.3 (300x700)",
+      "beam_label_pos": [
+        41650.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.4",
+      "p1": [
+        42000.0,
+        20700.0
+      ],
+      "p2": [
+        42000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_7.4 (300x700)",
+      "beam_label_pos": [
+        41650.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.1",
+      "p1": [
+        49500.0,
+        700.0
+      ],
+      "p2": [
+        49500.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_8.1 (300x700)",
+      "beam_label_pos": [
+        49150.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.2",
+      "p1": [
+        49500.0,
+        8700.0
+      ],
+      "p2": [
+        49500.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_8.2 (300x700)",
+      "beam_label_pos": [
+        49150.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.3",
+      "p1": [
+        49500.0,
+        14700.0
+      ],
+      "p2": [
+        49500.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_8.3 (300x700)",
+      "beam_label_pos": [
+        49150.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.4",
+      "p1": [
+        49500.0,
+        20700.0
+      ],
+      "p2": [
+        49500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_8.4 (300x700)",
+      "beam_label_pos": [
+        49150.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.1",
+      "p1": [
+        57000.0,
+        700.0
+      ],
+      "p2": [
+        57000.0,
+        7500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_9.1 (300x700)",
+      "beam_label_pos": [
+        56650.0,
+        4100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.2",
+      "p1": [
+        57000.0,
+        8700.0
+      ],
+      "p2": [
+        57000.0,
+        13500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_9.2 (300x700)",
+      "beam_label_pos": [
+        56650.0,
+        11100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.3",
+      "p1": [
+        57000.0,
+        14700.0
+      ],
+      "p2": [
+        57000.0,
+        19500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_9.3 (300x700)",
+      "beam_label_pos": [
+        56650.0,
+        17100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.4",
+      "p1": [
+        57000.0,
+        20700.0
+      ],
+      "p2": [
+        57000.0,
+        27700.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": true,
+      "beam_label_text": "D2_9.4 (300x700)",
+      "beam_label_pos": [
+        56650.0,
+        24200.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_KyHieuSan",
+      "layer": "DCE_Name",
+      "id": "S1",
+      "insert": [
+        3750.0,
+        4000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        7500.0,
+        8000.0
+      ],
+      "hatch_pattern": "NONE",
+      "attribs": {
+        "MA_SAN": "S1 (h=150)",
+        "CAO_DO": "+0.000"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_KyHieuSan",
+      "layer": "DCE_Name",
+      "id": "S2_WC",
+      "insert": [
+        11250.0,
+        11000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "bbox": [
+        7500.0,
+        8000.0,
+        15000.0,
+        14000.0
+      ],
+      "hatch_pattern": "ANSI31",
+      "attribs": {
+        "MA_SAN": "S2_WC (h=120)",
+        "CAO_DO": "-0.050"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_KyHieuSan",
+      "layer": "DCE_Name",
+      "id": "S1_B",
+      "insert": [
+        18500.0,
+        4000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "bbox": [
+        15000.0,
+        0.0,
+        22000.0,
+        8000.0
+      ],
+      "hatch_pattern": "NONE",
+      "attribs": {
+        "MA_SAN": "S1_B (h=150)",
+        "CAO_DO": "+0.000"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_KyHieuSan",
+      "layer": "DCE_Name",
+      "id": "S1_C",
+      "insert": [
+        38500.0,
+        4000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "bbox": [
+        35000.0,
+        0.0,
+        42000.0,
+        8000.0
+      ],
+      "hatch_pattern": "NONE",
+      "attribs": {
+        "MA_SAN": "S1_C (h=150)",
+        "CAO_DO": "+0.000"
+      }
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "1",
+      "p1": [
+        0.0,
+        -3800.0
+      ],
+      "p2": [
+        0.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        0.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "1"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        0.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "1"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "2",
+      "p1": [
+        7500.0,
+        -3800.0
+      ],
+      "p2": [
+        7500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        7500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "2"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        7500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "2"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "3",
+      "p1": [
+        15000.0,
+        -3800.0
+      ],
+      "p2": [
+        15000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        15000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "3"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        15000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "3"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "4",
+      "p1": [
+        22000.0,
+        -3800.0
+      ],
+      "p2": [
+        22000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        22000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "4"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        22000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "4"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "5",
+      "p1": [
+        28500.0,
+        -3800.0
+      ],
+      "p2": [
+        28500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        28500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "5"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        28500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "5"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "6",
+      "p1": [
+        35000.0,
+        -3800.0
+      ],
+      "p2": [
+        35000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        35000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "6"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        35000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "6"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "7",
+      "p1": [
+        42000.0,
+        -3800.0
+      ],
+      "p2": [
+        42000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        42000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "7"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        42000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "7"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "8",
+      "p1": [
+        49500.0,
+        -3800.0
+      ],
+      "p2": [
+        49500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        49500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "8"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        49500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "8"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "9",
+      "p1": [
+        57000.0,
+        -3800.0
+      ],
+      "p2": [
+        57000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        57000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "9"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        57000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "9"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "A",
+      "p1": [
+        -3800.0,
+        0.0
+      ],
+      "p2": [
+        58400.0,
+        0.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        0.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "A"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        0.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "A"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "B",
+      "p1": [
+        -3800.0,
+        8000.0
+      ],
+      "p2": [
+        58400.0,
+        8000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        8000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "B"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        8000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "B"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "C",
+      "p1": [
+        -3800.0,
+        14000.0
+      ],
+      "p2": [
+        58400.0,
+        14000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        14000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "C"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        14000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "C"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "D",
+      "p1": [
+        -3800.0,
+        20000.0
+      ],
+      "p2": [
+        58400.0,
+        20000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        20000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "D"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        20000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "D"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "E",
+      "p1": [
+        -3800.0,
+        28000.0
+      ],
+      "p2": [
+        58400.0,
+        28000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        28000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "E"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        28000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "E"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W1",
+      "bbox": [
+        22000.0,
+        8000.0,
+        22400.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W2",
+      "bbox": [
+        34600.0,
+        8000.0,
+        35000.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W3",
+      "bbox": [
+        22000.0,
+        19600.0,
+        35000.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_1A",
+      "status": "CONTINUOUS",
+      "insert": [
+        200.0,
+        200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1B",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        8100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1C",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        14100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1D",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        20100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_1E",
+      "status": "CONTINUOUS",
+      "insert": [
+        200.0,
+        28200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_2A",
+      "status": "CONTINUOUS",
+      "insert": [
+        7600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2B",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2C",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2D",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_2E",
+      "status": "CONTINUOUS",
+      "insert": [
+        7600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_3A",
+      "status": "CONTINUOUS",
+      "insert": [
+        15100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3B",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3C",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3D",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_3E",
+      "status": "CONTINUOUS",
+      "insert": [
+        15100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_4A",
+      "status": "CONTINUOUS",
+      "insert": [
+        22100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_4E",
+      "status": "CONTINUOUS",
+      "insert": [
+        22100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_5A",
+      "status": "CONTINUOUS",
+      "insert": [
+        28600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_5E",
+      "status": "CONTINUOUS",
+      "insert": [
+        28600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_6A",
+      "status": "CONTINUOUS",
+      "insert": [
+        35100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_6E",
+      "status": "CONTINUOUS",
+      "insert": [
+        35100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_7A",
+      "status": "CONTINUOUS",
+      "insert": [
+        42100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7B",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7C",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7D",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_7E",
+      "status": "CONTINUOUS",
+      "insert": [
+        42100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_8A",
+      "status": "CONTINUOUS",
+      "insert": [
+        49600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8B",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8C",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8D",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_8E",
+      "status": "CONTINUOUS",
+      "insert": [
+        49600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_9A",
+      "status": "CONTINUOUS",
+      "insert": [
+        57200.0,
+        200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9B",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        8100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9C",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        14100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9D",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        20100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Dung",
+      "layer": "DCE_Cot",
+      "id": "C1_9E",
+      "status": "STOPPED",
+      "insert": [
+        57200.0,
+        28200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        7500.0,
+        0.0
+      ],
+      "base": [
+        3750.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        0.0
+      ],
+      "p2": [
+        15000.0,
+        0.0
+      ],
+      "base": [
+        11250.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        0.0
+      ],
+      "p2": [
+        22000.0,
+        0.0
+      ],
+      "base": [
+        18500.0,
+        -1800.0
+      ],
+      "actual_measurement": 7000.0,
+      "dim_text": "7000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        0.0
+      ],
+      "p2": [
+        28500.0,
+        0.0
+      ],
+      "base": [
+        25250.0,
+        -1800.0
+      ],
+      "actual_measurement": 6500.0,
+      "dim_text": "6500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        28500.0,
+        0.0
+      ],
+      "p2": [
+        35000.0,
+        0.0
+      ],
+      "base": [
+        31750.0,
+        -1800.0
+      ],
+      "actual_measurement": 6500.0,
+      "dim_text": "6500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        35000.0,
+        0.0
+      ],
+      "p2": [
+        42000.0,
+        0.0
+      ],
+      "base": [
+        38500.0,
+        -1800.0
+      ],
+      "actual_measurement": 7000.0,
+      "dim_text": "7000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        0.0
+      ],
+      "p2": [
+        49500.0,
+        0.0
+      ],
+      "base": [
+        45750.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        0.0
+      ],
+      "p2": [
+        57000.0,
+        0.0
+      ],
+      "base": [
+        53250.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        0.0,
+        8000.0
+      ],
+      "base": [
+        -1800.0,
+        4000.0
+      ],
+      "actual_measurement": 8000.0,
+      "dim_text": "8000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        8000.0
+      ],
+      "p2": [
+        0.0,
+        14000.0
+      ],
+      "base": [
+        -1800.0,
+        11000.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        14000.0
+      ],
+      "p2": [
+        0.0,
+        20000.0
+      ],
+      "base": [
+        -1800.0,
+        17000.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        20000.0
+      ],
+      "p2": [
+        0.0,
+        28000.0
+      ],
+      "base": [
+        -1800.0,
+        24000.0
+      ],
+      "actual_measurement": 8000.0,
+      "dim_text": "8000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_2_OVERALL",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        57000.0,
+        0.0
+      ],
+      "base": [
+        28500.0,
+        -3000.0
+      ],
+      "actual_measurement": 57000.0,
+      "dim_text": "57000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_2_OVERALL",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        0.0,
+        28000.0
+      ],
+      "base": [
+        -3000.0,
+        14000.0
+      ],
+      "actual_measurement": 28000.0,
+      "dim_text": "28000"
+    },
+    {
+      "type": "SCHEDULE_TABLE",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        59450.0,
+        35890.0,
+        75250.0,
+        42500.0
+      ],
+      "columns_headers": [
+        "STT",
+        "MÃ DẦM/SÀN",
+        "TIẾT DIỆN",
+        "BÊ TÔNG",
+        "VỊ TRÍ",
+        "NHỊP L (m)",
+        "SL",
+        "GHI CHÚ"
+      ],
+      "col_widths": [
+        1074.4,
+        2266.9,
+        2083.2,
+        1715.7,
+        2569.7,
+        2266.9,
+        1546.0,
+        2277.2
+      ],
+      "rows": [
+        [
+          "1",
+          "D1A, D1D",
+          "400x800",
+          "B30",
+          "Dầm khung biên",
+          "6.35-9.33",
+          "16",
+          "Thép CB500-V"
+        ],
+        [
+          "2",
+          "D1B, D1C",
+          "500x900",
+          "B30",
+          "Dầm khung chính",
+          "6.35-9.33",
+          "12",
+          "Thép CB500-V"
+        ],
+        [
+          "3",
+          "D2",
+          "300x700",
+          "B30",
+          "Dầm khung ngang",
+          "8.37-9.87",
+          "24",
+          "Thép CB500-V"
+        ],
+        [
+          "4",
+          "DP1",
+          "250x600",
+          "B30",
+          "Dầm phụ chia ô",
+          "8.37-9.07",
+          "8",
+          "Thép CB500-V"
+        ],
+        [
+          "5",
+          "DG1, DG2",
+          "400x800",
+          "B30",
+          "Dầm giằng vách",
+          "2.70-3.40",
+          "6",
+          "Gia cường đai"
+        ],
+        [
+          "6",
+          "DL1",
+          "200x400",
+          "B30",
+          "Dầm lanh tô cửa",
+          "1.60",
+          "3",
+          "Đai chống nứt"
+        ],
+        [
+          "7",
+          "S1",
+          "h=150",
+          "B30",
+          "Sàn điển hình",
+          "3.17x8.37",
+          "Toàn sàn",
+          "2 lớp Ø10a150"
+        ],
+        [
+          "8",
+          "S2",
+          "h=120",
+          "B30",
+          "Sàn WC/Logia",
+          "Khu WC",
+          "4 ô",
+          "Hạ âm -0.050m"
+        ]
+      ],
+      "cell_width_factors": [
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ]
+      ],
+      "row_count": 8
+    },
+    {
+      "type": "LEGEND_BOX",
+      "block": "DCE_Legend_Block",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        59450.0,
+        23790.0,
+        75250.0,
+        35290.0
+      ],
+      "notes_lines": [
+        "GHI CHÚ KỸ THUẬT & CHỈ DẪN THI CÔNG (TCVN 5574:2018 & TCVN 9386:2025):",
+        "1. Bê tông: Cột, Vách, Đài móng cấp bền B35 (Rb=19.5 MPa); Dầm, Sàn cấp bền B30 (Rb=17.0 MPa).",
+        "2. Cốt thép dọc chịu lực d >= 10mm dùng thép CB500-V (Rs=435 MPa); thép đai dùng CB240-T / CB400-V.",
+        "3. Chiều dày sàn điển hình hs = 150mm; sàn khu vệ sinh và logia S2 (hs = 120mm) hạ âm đồng nhất -0.050m.",
+        "4. Lớp bê tông bảo vệ: Cột/Vách a_bv = 35mm; Dầm a_bv = 25mm; Sàn a_bv = 20mm; Đài móng a_bv = 50mm.",
+        "5. Tải trọng sàn điển hình: Tĩnh tải hoàn thiện HTT = 1.5 kN/m2; Hoạt tải sử dụng HT = 5.0 kN/m2.",
+        "6. Độ võng giới hạn sàn f_max <= L/250; bề rộng khe nứt giới hạn a_crc <= 0.3mm (môi trường trong nhà).",
+        "7. Định vị trắc đạc búng mực tim trục và mép cột/vách tuân thủ nghiêm ngặt chuỗi kích thước DCE_Setout."
+      ],
+      "legend_items": [
+        "SÀN CHUẨN (+0.000)",
+        "SÀN HẠ CỐT WC/LOGIA (-0.050 - ANSI31)",
+        "LỖ MỞ THÔNG TẦNG (DCE_VoidX)"
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TitleBlock_A1",
+      "layer": "DCE_Frame",
+      "insert": [
+        -7500.0,
+        -15500.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "layout_style": "SINGLE_FULL_VIEWPORT",
+      "outer_bbox": [
+        -7500.0,
+        -15500.0,
+        76600.0,
+        43900.0
+      ],
+      "inner_bbox": [
+        -5000.0,
+        -14500.0,
+        75600.0,
+        42900.0
+      ],
+      "sidebar_divider_x": 59100.0,
+      "title_block_bbox": [
+        59100.0,
+        -14500.0,
+        75600.0,
+        -9000.0
+      ],
+      "title_band_bbox": [
+        -5000.0,
+        -14500.0,
+        58700.0,
+        -12100.0
+      ],
+      "drawing_title_pos": [
+        28500.0,
+        -13300.0
+      ],
+      "attribs": {
+        "CHU_DAU_TU": "TỔNG CÔNG TY ĐẦU TƯ PHÁT TRIỂN ĐÔ THỊ",
+        "TEN_DU_AN": "THÁP CAO ỐC VĂN PHÒNG & THƯƠNG MẠI 40 TẦNG + 2 HẦM",
+        "HANG_MUC": "KẾT CẤU PHẦN THÂN (H ~ 135.0m)",
+        "DIA_DIEM": "TP. HỒ CHÍ MINH",
+        "DON_VI_TVTK": "DCE PRO STRUCTURAL PARTNERS",
+        "CHU_NHIEM": "TS.KS. NGUYỄN VĂN A",
+        "CHU_TRI_KC": "KS. NGUYỄN TIẾN ĐỨC",
+        "NGUOI_THIET_KE": "KS. LÊ THÀNH LÂM",
+        "KIEM_TRA": "KS. PHẠM LƯU PHÚC",
+        "TEN_BAN_VE": "MẶT BẰNG KẾT CẤU DẦM - SÀN TẦNG ĐIỂN HÌNH",
+        "TY_LE": "1/100",
+        "KY_HIEU_BV": "KC-03"
+      }
+    }
+  ],
+  "provenance": {
+    "dxf_sha256": "a5e3b3e4166ec55c943a195f2614f2063b39a3be9b489bf26fd17874ad2f1358",
+    "schema_version": "1.0",
+    "generator": "DCEProCADPlanEngineV4"
+  }
+}

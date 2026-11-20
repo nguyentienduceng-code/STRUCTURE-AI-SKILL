@@ -1,0 +1,412 @@
+{
+  "project_code": "09_DCE_CAD_BLOCK_SEMANTICS_V6",
+  "phase": "A1_INDEPENDENT_ACCEPTANCE",
+  "overall_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
+  "c2_sheet_set_audit": {
+    "passed": true,
+    "manifest_sha256": "715360066e75eeb48499b1fbe8b8a81d1be709b04ad4c66bbc4322331a03284e",
+    "recorded_sha256": "715360066e75eeb48499b1fbe8b8a81d1be709b04ad4c66bbc4322331a03284e",
+    "sha256_match": true,
+    "sheets_verified": 5,
+    "kc04_dual_vp_ok": true,
+    "kc04_disjoint_ok": true,
+    "observation_note": "KC-04 has two real paperspace VIEWPORTs (VP_BOTTOM and VP_TOP) with disjoint strip sets, currently sharing paper_bbox [15, 15, 405, 270] in fixture manifest.",
+    "sheets": [
+      {
+        "sheet_no": "KC-02",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-02_C2_A3.dxf",
+        "size_bytes": 20462,
+        "sha256": "787e72f99063e44e28e2ef54121aaaf8bca20f7bdd5b105ac4db2c3713fce77d",
+        "frame_a3_ok": true,
+        "frame_bounds_mm": [
+          0.0,
+          0.0,
+          420.0,
+          297.0
+        ],
+        "paperspace_viewports": [
+          {
+            "layer": "VP_MODEL",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          },
+          {
+            "layer": "VP_MODEL",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          }
+        ],
+        "modelspace_rebar_top_lines": 2,
+        "modelspace_rebar_bottom_lines": 2,
+        "title_texts": [
+          "KC-02 - MAT BANG DINH VI COT VACH - REV C2-TEST"
+        ]
+      },
+      {
+        "sheet_no": "KC-03",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-03_C2_A3.dxf",
+        "size_bytes": 19916,
+        "sha256": "7d4701b61dad1955894a67adc3ac3154d5f4fc596ae5949800d09fc3a31415f9",
+        "frame_a3_ok": true,
+        "frame_bounds_mm": [
+          0.0,
+          0.0,
+          420.0,
+          297.0
+        ],
+        "paperspace_viewports": [
+          {
+            "layer": "VP_MODEL",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          }
+        ],
+        "modelspace_rebar_top_lines": 2,
+        "modelspace_rebar_bottom_lines": 2,
+        "title_texts": [
+          "KC-03 - MAT BANG KET CAU DAM SAN - REV C2-TEST"
+        ]
+      },
+      {
+        "sheet_no": "KC-04",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dxf",
+        "size_bytes": 20482,
+        "sha256": "0188e96d1260a42275c4ba65df0e8150f653ee5b0f15616875f20c3015fd3cde",
+        "frame_a3_ok": true,
+        "frame_bounds_mm": [
+          0.0,
+          0.0,
+          420.0,
+          297.0
+        ],
+        "paperspace_viewports": [
+          {
+            "layer": "VP_BOTTOM",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          },
+          {
+            "layer": "VP_TOP",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          }
+        ],
+        "modelspace_rebar_top_lines": 2,
+        "modelspace_rebar_bottom_lines": 2,
+        "title_texts": [
+          "KC-04 - MAT BANG THEP SAN TANG 2 (LOP DUOI + LOP TREN) - REV C2-TEST"
+        ]
+      },
+      {
+        "sheet_no": "KC-06",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-06_C2_A3.dxf",
+        "size_bytes": 19911,
+        "sha256": "099b4a925fbebb602190c0e2b183c8ab0a7752c7807e2403606cbcb61c3b42f4",
+        "frame_a3_ok": true,
+        "frame_bounds_mm": [
+          0.0,
+          0.0,
+          420.0,
+          297.0
+        ],
+        "paperspace_viewports": [
+          {
+            "layer": "VP_MODEL",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          }
+        ],
+        "modelspace_rebar_top_lines": 2,
+        "modelspace_rebar_bottom_lines": 2,
+        "title_texts": [
+          "KC-06 - CHI TIET DAM TANG 2 - REV C2-TEST"
+        ]
+      },
+      {
+        "sheet_no": "KC-07",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-07_C2_A3.dxf",
+        "size_bytes": 19925,
+        "sha256": "a5fe8b9f547cecc9182e4a71982ebaa8e2d63df642860eeed4a7c4b21e77c03d",
+        "frame_a3_ok": true,
+        "frame_bounds_mm": [
+          0.0,
+          0.0,
+          420.0,
+          297.0
+        ],
+        "paperspace_viewports": [
+          {
+            "layer": "VP_MODEL",
+            "center": [
+              210.0,
+              142.5
+            ],
+            "width": 390.0,
+            "height": 255.0,
+            "view_height": 3000.0
+          }
+        ],
+        "modelspace_rebar_top_lines": 2,
+        "modelspace_rebar_bottom_lines": 2,
+        "title_texts": [
+          "KC-07 - CHI TIET COT BTCT VA KET CAU THEP - REV C2-TEST"
+        ]
+      }
+    ]
+  },
+  "g2_steel_and_semantic_audit": {
+    "passed": true,
+    "g2_dxf_sha256": "709ef9adf2ba8b514bba3d1b98021a779fc005968ed6e8b96ec3a3cd03c645c4",
+    "roundtrip": {
+      "passed": true,
+      "uniform_scale_ok": true,
+      "dynamic_block_refs_count": 0,
+      "commercial_xdata_count": 0,
+      "geometry_checks_count": 7,
+      "extracted_blocks_count": 6
+    },
+    "capability_warnings": [
+      "UNSUPPORTED_BLOCK_BEHAVIOR",
+      "UNSUPPORTED_COMMERCIAL_XDATA_DISABLED"
+    ],
+    "semantic_gates": {
+      "floor_and_column_continuity": true,
+      "design_group_consistency": true,
+      "detail_target_resolution": true,
+      "linkage_completeness": true,
+      "rebar_top_bottom_separation": true
+    },
+    "total_elements": 12
+  },
+  "c1_mutation_and_override_audit": {
+    "passed": true,
+    "baseline_dxf": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\codex\\a1_kc03_baseline_v6.dxf",
+    "baseline_sha256": "eade03c26189e9e9f605be75b6eb6270ae00ad9cd3ad5de90bae3b1feb7be6f9",
+    "baseline_v6_status": "OK_V6",
+    "mutated_dxf": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\codex\\a1_kc03_mutated_v6.dxf",
+    "mutated_sha256": "36c34cbc2025a3dffa8d0b51f4e0eabdf89fb46d15e7ab99272d4aa03fe0512d",
+    "mutated_v6_status": "OK_V6",
+    "checks": {
+      "beam_mut_ok": true,
+      "beam_untouched_ok": true,
+      "scale_mut_ok": true,
+      "slab_mut_ok": true,
+      "drop_mut_ok": true,
+      "level_mut_ok": true,
+      "immutable_id_ok": true,
+      "manual_override_ok": true,
+      "leader_ok": true
+    },
+    "baseline_sample": {
+      "scale_labels": [
+        "1/100"
+      ],
+      "levels": [
+        "+12.600"
+      ],
+      "slab_0": {
+        "200": "150"
+      }
+    },
+    "mutated_sample": {
+      "beam_0": {
+        "TENDAM": "D1A_MOD (250x450)",
+        "TL": "1/75"
+      },
+      "scale_labels": [
+        "1/75"
+      ],
+      "levels": [
+        "+8.400"
+      ],
+      "slab_0": {
+        "200": "180"
+      }
+    }
+  },
+  "dce_cad_compliance_profiles": {
+    "checked_files": [
+      {
+        "label": "KC-01_v50",
+        "path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_TongMatBang_v50_DA_SUA_KHUNG.dxf",
+        "sha256": "92f7f75a083443976b9bcea22154629454502998fe229471c839c3c2355c3694",
+        "total_entities": 294,
+        "physical": {
+          "status": "PASS",
+          "physical_status": "PASS",
+          "issues_count": 0
+        },
+        "full": {
+          "status": "FAIL",
+          "gates_passed": 3,
+          "gates_total": 20,
+          "gates_failed": 13,
+          "gates_unverified": 4,
+          "full_compliance_verified": false,
+          "metadata_issues": []
+        }
+      },
+      {
+        "label": "KC-02_v50",
+        "path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DinhViCotVach_v50_DA_SUA_KHUNG.dxf",
+        "sha256": "3b470aefc5750f0ea772580672cdb361626a8616b6c3eefdf5b2aefed7c2680f",
+        "total_entities": 430,
+        "physical": {
+          "status": "PASS",
+          "physical_status": "PASS",
+          "issues_count": 0
+        },
+        "full": {
+          "status": "FAIL",
+          "gates_passed": 1,
+          "gates_total": 20,
+          "gates_failed": 15,
+          "gates_unverified": 4,
+          "full_compliance_verified": false,
+          "metadata_issues": []
+        }
+      },
+      {
+        "label": "KC-03_v50",
+        "path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-03_KetCauDamSan_v50_DA_SUA_KHUNG.dxf",
+        "sha256": "eab372dd785bc2e1554e784a1cc3d046a2792b3f0f2e15f624ea85ccf7f47c77",
+        "total_entities": 491,
+        "physical": {
+          "status": "PASS",
+          "physical_status": "PASS",
+          "issues_count": 0
+        },
+        "full": {
+          "status": "FAIL",
+          "gates_passed": 2,
+          "gates_total": 20,
+          "gates_failed": 14,
+          "gates_unverified": 4,
+          "full_compliance_verified": false,
+          "metadata_issues": []
+        }
+      },
+      {
+        "label": "A1_KC03_v6_baseline",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\codex\\a1_kc03_baseline_v6.dxf",
+        "sha256": "eade03c26189e9e9f605be75b6eb6270ae00ad9cd3ad5de90bae3b1feb7be6f9",
+        "total_entities": 530,
+        "physical": {
+          "status": "PASS",
+          "physical_status": "PASS",
+          "issues_count": 0
+        },
+        "full": {
+          "status": "NEEDS_REVIEW",
+          "gates_passed": 0,
+          "gates_total": 20,
+          "gates_failed": 0,
+          "gates_unverified": 20,
+          "full_compliance_verified": false,
+          "metadata_issues": [
+            "Missing plan metadata field: scale"
+          ]
+        }
+      },
+      {
+        "label": "C2_KC04_A3",
+        "path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dxf",
+        "sha256": "0188e96d1260a42275c4ba65df0e8150f653ee5b0f15616875f20c3015fd3cde",
+        "total_entities": 5,
+        "physical": {
+          "status": "PASS",
+          "physical_status": "PASS",
+          "issues_count": 0
+        },
+        "full": {
+          "status": "NEEDS_REVIEW",
+          "gates_passed": 0,
+          "gates_total": 20,
+          "gates_failed": 0,
+          "gates_unverified": 20,
+          "full_compliance_verified": false,
+          "metadata_issues": [
+            "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_sheet_set\\KC-04_C2_A3.dce_audit.json"
+          ]
+        }
+      }
+    ]
+  },
+  "capability_matrix": [
+    {
+      "capability": "Block Catalog & Form 2.dxf / KC-03 ATTDEF extraction",
+      "status": "PASS",
+      "evidence": "98 VERIFIED_DXF blocks + SHA-256 hashes in dce_block_catalog.json"
+    },
+    {
+      "capability": "Semantic Block Binding & Save/Reopen Round-Trip (Concrete + Steel)",
+      "status": "PASS",
+      "evidence": "Dce_KhTenDam, DCE_Slab tag, DCE_Drop mark, Dce_CaoTrinh, Dce-ThepTam, Dce_BP_*, Dce_AnchorExpansion round-trip verified"
+    },
+    {
+      "capability": "Immutable Structural Element Registry & Cross-Sheet 5-Gate Validator",
+      "status": "PASS",
+      "evidence": "element_id preserved on rename/resize; 5/5 gates + TOP/BOTTOM filter_rebar_strips_by_face PASS"
+    },
+    {
+      "capability": "C1 V6 Plan Engine, Tag Placement & Manual Override Preservation",
+      "status": "PASS",
+      "evidence": "Live parameter mutations propagate to INSERT/ATTRIB; OK_V6 sidecar emitted; manual overrides kept"
+    },
+    {
+      "capability": "Steel 1:1 mm Static Vector DXF & Uniform Scale Guard",
+      "status": "PASS",
+      "evidence": "7/7 Steel H/I/Box/Channel/Pipe/Baseplate bboxes matched 1:1 mm; xscale==yscale enforced"
+    },
+    {
+      "capability": "C2 Multi-Sheet A3 Manifest & Dual TOP/BOTTOM Paperspace Viewports",
+      "status": "PASS",
+      "evidence": "5 A3 DXFs (KC-02..KC-07) emitted; KC-04 carries VP_BOTTOM + VP_TOP with disjoint rebar strips"
+    },
+    {
+      "capability": "Form 2_Steel.dwg Binary/WASM Metadata Ingestion",
+      "status": "PARTIAL",
+      "evidence": "34 Steel blocks loaded via template_catalog.json with confidence=PARTIAL_DWG_WASM_READ_76 (warning=76); geometry bbox not from DWG entities"
+    },
+    {
+      "capability": "Dynamic Block Parameter Evaluation (ObjectARX / AcDbEvalGraph)",
+      "status": "UNVERIFIED",
+      "evidence": "UNSUPPORTED_BLOCK_BEHAVIOR in headless ezdxf runtime; safely falls back to STATIC_2D_ACCURATE (0 anonymous *U blocks)"
+    },
+    {
+      "capability": "Commercial DCE XData Injection & Native AutoCAD Plot / DWG Save",
+      "status": "UNVERIFIED",
+      "evidence": "DceSteelRebar/SYS_XData_App disabled headlessly (commercial_xdata_count=0); A3 sheet visual plot requires AutoCAD/TrueView PDF check"
+    }
+  ]
+}

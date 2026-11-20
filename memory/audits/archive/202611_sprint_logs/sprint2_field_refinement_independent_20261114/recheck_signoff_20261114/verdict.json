@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-11-14T14:19:16.892244+07:00",
+  "requested_recheck_status": "PASS",
+  "scoped_signoff": "APPROVED",
+  "scope": "Original F1-F4 probes, KC-01/KC-02 RGB preview equality, full 30-suite regression.",
+  "checks": {
+    "F1_no_source_micro_leader_suppressed": true,
+    "F2_layer_failure_fails_closed": true,
+    "F3_dry_run_creates_no_layers": true,
+    "F4_existing_color_normalized": true,
+    "both_previews_exact_rgb_match": true,
+    "full_regression_30_of_30": true
+  },
+  "additional_product_geometry_checks": {
+    "KC-01": true,
+    "KC-02": true
+  },
+  "regression_wall_seconds": 130.7012670999975,
+  "compliance_diagnostics": {
+    "KC-01": {
+      "api_status": "PASS",
+      "api_issues": [],
+      "gates_passed": 5,
+      "gates_total": 20,
+      "failed_gate_ids": [
+        "G8.02",
+        "G8.03",
+        "G8.04",
+        "G8.05",
+        "G8.06",
+        "G8.07",
+        "G8.08",
+        "G8.09",
+        "G8.10",
+        "G8.11",
+        "G8.12",
+        "G8.17",
+        "G8.18",
+        "G8.19",
+        "G8.20"
+      ],
+      "all_20_gates_passed": false
+    },
+    "KC-02": {
+      "api_status": "PASS",
+      "api_issues": [],
+      "gates_passed": 5,
+      "gates_total": 20,
+      "failed_gate_ids": [
+        "G8.02",
+        "G8.03",
+        "G8.04",
+        "G8.05",
+        "G8.06",
+        "G8.07",
+        "G8.08",
+        "G8.09",
+        "G8.10",
+        "G8.11",
+        "G8.12",
+        "G8.17",
+        "G8.18",
+        "G8.19",
+        "G8.20"
+      ],
+      "all_20_gates_passed": false
+    }
+  },
+  "full_20_gate_compliance_signoff": "NOT_APPROVED",
+  "followup": "F5: physical PASS does not establish 20/20 gate PASS; audit API ignores failed gate results.",
+  "publication_or_github_push_authorized": false,
+  "confidence_level": "HIGH"
+}

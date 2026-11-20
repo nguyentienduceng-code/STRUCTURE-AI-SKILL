@@ -1,0 +1,162 @@
+[
+  {
+    "file": "KC-02_C2_A3.dxf",
+    "views": [
+      {
+        "layer": "VP_MODEL",
+        "model_window": [
+          8750.0,
+          10750.0,
+          18250.0,
+          17250.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 0,
+        "circles_total": 0
+      },
+      {
+        "layer": "VP_MODEL",
+        "model_window": [
+          8750.0,
+          11750.0,
+          18250.0,
+          18250.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 0,
+        "circles_total": 0
+      }
+    ],
+    "paperspace_schedule_texts": [
+      "MUC LUC BAN VE",
+      ">KC-02 MAT BANG DINH VI",
+      " KC-03 MAT BANG KET CAU",
+      " KC-04 MAT BANG THEP SA",
+      " KC-06 CHI TIET DAM TAN",
+      " KC-07 CHI TIET COT BTC",
+      "GHI CHU & BANG KE KC-02"
+    ]
+  },
+  {
+    "file": "KC-03_C2_A3.dxf",
+    "views": [
+      {
+        "layer": "VP_MODEL",
+        "model_window": [
+          9250.0,
+          7375.0,
+          26750.0,
+          20625.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 0,
+        "circles_total": 0
+      }
+    ],
+    "paperspace_schedule_texts": [
+      "MUC LUC BAN VE",
+      " KC-02 MAT BANG DINH VI",
+      ">KC-03 MAT BANG KET CAU",
+      " KC-04 MAT BANG THEP SA",
+      " KC-06 CHI TIET DAM TAN",
+      " KC-07 CHI TIET COT BTC"
+    ]
+  },
+  {
+    "file": "KC-04_C2_A3.dxf",
+    "views": [
+      {
+        "layer": "VP_BOTTOM",
+        "model_window": [
+          8750.0,
+          10750.0,
+          18250.0,
+          17250.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 0,
+        "circles_total": 0
+      },
+      {
+        "layer": "VP_TOP",
+        "model_window": [
+          8750.0,
+          11750.0,
+          18250.0,
+          18250.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 0,
+        "circles_total": 0
+      }
+    ],
+    "paperspace_schedule_texts": [
+      "MUC LUC BAN VE",
+      " KC-02 MAT BANG DINH VI",
+      " KC-03 MAT BANG KET CAU",
+      ">KC-04 MAT BANG THEP SA",
+      " KC-06 CHI TIET DAM TAN",
+      " KC-07 CHI TIET COT BTC",
+      "GHI CHU & BANG KE KC-04",
+      "VP DUOI: THEP LOP DUOI (FREEZE REBAR_TOP)",
+      "VP TREN: THEP LOP TREN (FREEZE REBAR_BOTTOM)"
+    ]
+  },
+  {
+    "file": "KC-06_C2_A3.dxf",
+    "views": [
+      {
+        "layer": "VP_MODEL",
+        "model_window": [
+          11250.0,
+          10375.0,
+          28750.0,
+          23625.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 5,
+        "circles_total": 5
+      }
+    ],
+    "paperspace_schedule_texts": [
+      "MUC LUC BAN VE",
+      " KC-02 MAT BANG DINH VI",
+      " KC-03 MAT BANG KET CAU",
+      " KC-04 MAT BANG THEP SA",
+      ">KC-06 CHI TIET DAM TAN",
+      " KC-07 CHI TIET COT BTC"
+    ]
+  },
+  {
+    "file": "KC-07_C2_A3.dxf",
+    "views": [
+      {
+        "layer": "VP_MODEL",
+        "model_window": [
+          11250.0,
+          10375.0,
+          28750.0,
+          23625.0
+        ],
+        "schedule_visible": 0,
+        "schedule_total": 62,
+        "circles_visible": 24,
+        "circles_total": 24
+      }
+    ],
+    "paperspace_schedule_texts": [
+      "MUC LUC BAN VE",
+      " KC-02 MAT BANG DINH VI",
+      " KC-03 MAT BANG KET CAU",
+      " KC-04 MAT BANG THEP SA",
+      " KC-06 CHI TIET DAM TAN",
+      ">KC-07 CHI TIET COT BTC"
+    ]
+  }
+]

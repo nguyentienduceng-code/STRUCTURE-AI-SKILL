@@ -1,0 +1,306 @@
+{
+  "memory/audits/sprint2_collision_completion_20261114/benchmark_reproduce.py": {
+    "bytes": 3884,
+    "sha256": "4c7774b28b0e1d65955182c3b68604151aa7cab7a62cb5b334d115252c478913"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/benchmark.json": {
+    "bytes": 181925,
+    "sha256": "3bf2645842934a829189fbdba49b0c7ff4b39df00392920603ed9eac81cb1247"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/runtime_paths.json": {
+    "bytes": 529,
+    "sha256": "b6ed25ddea1850b173b511677e2ac9fa6aeb774a106a510d9a7102c24b7f5c24"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/PLAN.md": {
+    "bytes": 2146,
+    "sha256": "b689c798d7bb34b4915190895b8e86c7857cf80cc2902083931c0eceaac7c6ef"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/KC-01_before.png": {
+    "bytes": 385875,
+    "sha256": "d525029d28df712d7983b00c92de13cbde83acfe18a58ee65bfe69fea73868a4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/KC-01_after.png": {
+    "bytes": 386206,
+    "sha256": "b989eca2f61b14bce652641087303d3cacdb9869e2cf9b88ba0afb4efc98d96c"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/KC-02_before.png": {
+    "bytes": 682708,
+    "sha256": "ddabe9c43d9e0c3221b10ac58e30931a2db4144f613e1b9417582b58ae6f99d2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/KC-02_after.png": {
+    "bytes": 657036,
+    "sha256": "2030619e231dd67bfb0d63af6703af6dc1207fed386a9b129d1f40a2615d768a"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/previews.json": {
+    "bytes": 477,
+    "sha256": "6be9ffcad14e2a31e994667eab47bd362b3cda070c0d0d83c6748a7d5fcca8b4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/verify_outputs.py": {
+    "bytes": 2549,
+    "sha256": "5219bf6cf09d5d0ec1d411ad8ae3374049d9e019001cb406f293cfd7a697c30c"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/verification.json": {
+    "bytes": 2613,
+    "sha256": "47ac235fc2f64bf0a5f457cffa3b8ec4eff379879e6726e9de93712d60f6cfc7"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/ACCEPTANCE.md": {
+    "bytes": 9935,
+    "sha256": "da97ad803791cacac4bb35a6648e878bae16c12704d14241749d7550feb2dbd1"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/source_hashes.json": {
+    "bytes": 1079,
+    "sha256": "3ca1c298a287d97e53feea87a919894b98e427e05226cd3af18114777188c71e"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/render_previews.py": {
+    "bytes": 899,
+    "sha256": "10865d48bf8f67867fbe9abd7c5cbba6253c910ea2eb15e8210f4391ffb2a111"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_01.log": {
+    "bytes": 3557,
+    "sha256": "8a0397b65d13be851330e7a6c48359275fdb3a3c0ac28199a120e8e4ae0b64b3"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_02.log": {
+    "bytes": 2590,
+    "sha256": "72a13a54f48da668c1744fc3ef8b349771046b61894caab3d41993639f188225"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_03.log": {
+    "bytes": 5031,
+    "sha256": "5cbf182877268b2991fd682008ff3c0cedfc243381f0a50154be5846abebf59e"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_04.log": {
+    "bytes": 7956,
+    "sha256": "5846d00f41b3511457e55559fd273d432c9d0c0c0e81f2ab334a15fb2b6c5384"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_05.log": {
+    "bytes": 1163,
+    "sha256": "3e792ea43e10894e56769b6fdb2f28aebbfbcee78de14f587e5cca261c38076a"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_06.log": {
+    "bytes": 1718,
+    "sha256": "f98d88803908000683884b00472b3bb2e407edf63dbdfe69001be84fcf00d917"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_07.log": {
+    "bytes": 327,
+    "sha256": "3f0f9e6a57c73c48ea3513854364340d418cd57d9a240feaf627b9beda3fefd4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_08.log": {
+    "bytes": 333,
+    "sha256": "e98e768c7774995f0f05de76d89e1db83895999343d37699cfeb2c8354f6e3e4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_09.log": {
+    "bytes": 5497,
+    "sha256": "5bcc4cbfa8006dd3f337ba68ce0ae52e6a5d0b72ecc8ed09369bf518676061ef"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_10.log": {
+    "bytes": 2481,
+    "sha256": "27294f29a4544c1814d1f79e6a973fd1c1e291d1ce65dc177af806ebbf8e7f8a"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_11.log": {
+    "bytes": 3455,
+    "sha256": "521c94bf9904c76115addc6c1642242e802fda9ff7387ae8677acc35e5d8bc92"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_12.log": {
+    "bytes": 20416,
+    "sha256": "3f8f231a5fee52ee3f003bf960451c4ae1ebc81177baf2435fed071b74ddcb0b"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_13.log": {
+    "bytes": 3304,
+    "sha256": "7be081fb67ec53db17caf3f2bdad81fc2853674204237c52305a3f9242bdbae2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_14.log": {
+    "bytes": 375,
+    "sha256": "2e34988d4fe8bb8b94e9549646bc01bc684cb566d1fb4d8b044534d75ba84cb2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_15.log": {
+    "bytes": 332,
+    "sha256": "56d3da751c06ca14ae8d3f688914d646113bf5d29e4570b3b62d4a9204c74022"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_16.log": {
+    "bytes": 10820,
+    "sha256": "d56f2baebfe1f53f04c03b570feaf8f411f1ce67deede8745a74d1642ed02c99"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_17.log": {
+    "bytes": 1976,
+    "sha256": "67d8a1d626651de9231d14e2f04a62be23e314481561a4c912015f1142f46892"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_18.log": {
+    "bytes": 822,
+    "sha256": "04e5238ad794d7b3b919eccf8871c8304ec14d5e0c306a2b29ea245079d0e591"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_19.log": {
+    "bytes": 363,
+    "sha256": "43e8c20dd48afd3142d651a05c26d0b8795a9e3987dd55929908091ba5f4fbca"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_20.log": {
+    "bytes": 3289,
+    "sha256": "f12394e89063fea4275813f8ffefc390e753f557088156682b94e979b2500334"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_21.log": {
+    "bytes": 4339,
+    "sha256": "6bc3a7aa98764bbdc179a56ba38d3eedf6a9b136f4b7719fd5948f783771ddd2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_22.log": {
+    "bytes": 5951,
+    "sha256": "5c865f132102ff87c75c9c4d372279f85c70e6b108f69be55d847776cdf09c39"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_23.log": {
+    "bytes": 8661,
+    "sha256": "9ae068fd89ee1d15e4276bf753bd07d1ea84f1362f1476c4fe2ef3d0873c2319"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_24.log": {
+    "bytes": 3862,
+    "sha256": "ba445415cc74f8085342ea386a72ce8360edf4c14e411e2d31a44c5395bfdced"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_25.log": {
+    "bytes": 5732,
+    "sha256": "6080a20d769a4bf51c53ab8000845dbf7f1efb18094343724c10b0992d4dc639"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_26.log": {
+    "bytes": 6057,
+    "sha256": "477e053878b5f145faaedd9f8ca92b3b44232906c1ca74ab012aa833bbc5c578"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_27.log": {
+    "bytes": 333,
+    "sha256": "705253fbfded4392c88be2b6d2f52f05919d5fdccf9d7a9021c1680e7301015f"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_28.log": {
+    "bytes": 2967,
+    "sha256": "845cef83679c01c73743f6621e683ef6ff7f4ff01c7039ca0481e493cbc48475"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_29.log": {
+    "bytes": 2539,
+    "sha256": "c6e8b87af01f030fc21993893d012e9fc28189255dd765b799de197e9554f8a4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/suite_30.log": {
+    "bytes": 1006,
+    "sha256": "091a7ac0eb5dc4c7645591ec7f33e510f01f8706cab95dfa62942b1899e763e4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/full_tests/timings.json": {
+    "bytes": 5302,
+    "sha256": "f72c4f5cf230ef5283b46781dbd69c1cf36245a98bcfe75609b76a4506109074"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_01.log": {
+    "bytes": 3557,
+    "sha256": "60adc5edf717266e590790fe99dc51c9b8cc87483ade589de6459e5be8f3ecd3"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_02.log": {
+    "bytes": 2590,
+    "sha256": "3ea23dca1ccfb14335f7782dc9f72d3dd45b9e7b1607ce094e956df571021e83"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_03.log": {
+    "bytes": 5031,
+    "sha256": "5d8679a57b24feedb91c421a947c4af368a8a62f674c21b094b186a134a0c456"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_04.log": {
+    "bytes": 7956,
+    "sha256": "38bbf0d24618d5ad8c3daa0011e8dcb41a50bee5b4041809ca361a29f95b50f4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_05.log": {
+    "bytes": 1163,
+    "sha256": "6280076e7d8ddc274ce9199881afacc7f28ca0e86b24cfcc7ca7e6f8a85d27c2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_06.log": {
+    "bytes": 1718,
+    "sha256": "cf04f3c15cbf7398ba683e056ab166061c834158a238dc5cd8dfead71c400c9e"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_07.log": {
+    "bytes": 327,
+    "sha256": "4463f85851f89a85cb04d1984f219fb6cd35b3ce9ccfa6184fdcb23d23e51ad1"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_08.log": {
+    "bytes": 333,
+    "sha256": "d0eb22a7d788271fcee4d414bf4e2faf27c78faf81e087aff80cea21329b4971"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_09.log": {
+    "bytes": 5497,
+    "sha256": "f504504032b1f9d60abfc47e36c2aa3712f234f0e0f6d599b0619a38e6a2227a"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_10.log": {
+    "bytes": 2481,
+    "sha256": "794bdf2f6bd9fc402d4b1e3dc4ef9fdab4d8c3eef90510f169bec7b981995b19"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_11.log": {
+    "bytes": 3455,
+    "sha256": "12ba070b12fef068365cad0bf613a797830f0e519606d19de20dddec83820db4"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_12.log": {
+    "bytes": 20416,
+    "sha256": "6b2de9201075b63dccc51f4047415886b4949bf54de3849bac785bc4c71387ff"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_13.log": {
+    "bytes": 3304,
+    "sha256": "ab280469dec8bde1f627e3b58424a247fd0e5082ec77606546000031b075e5d0"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_14.log": {
+    "bytes": 375,
+    "sha256": "5e511a172a231b50ba1556c60e9c88004badb0bec829e280a31c050459f39927"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_15.log": {
+    "bytes": 332,
+    "sha256": "96160fced9caa971550d46fe13411b3e2e69dba736b70aeeaffdd8db82973c83"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_16.log": {
+    "bytes": 10820,
+    "sha256": "9c4d8425de40830c64bb18a6544bc28e718422447ea491a3d99dab64bc03abf6"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_17.log": {
+    "bytes": 1976,
+    "sha256": "9de933e1f093575918de0f373f89f4094033f779b288e4d2e2fb7b9fac2025f5"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_18.log": {
+    "bytes": 822,
+    "sha256": "b98f819c528b0ecf4e7a1b3a36b0b1e8ed4a43160ec28a7d8e669fdb0702b25c"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_19.log": {
+    "bytes": 363,
+    "sha256": "554ce4777f1f72ea6075ecbf52a4232422352a255c6435434a23960b3ce39377"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_20.log": {
+    "bytes": 3289,
+    "sha256": "988dbefe5b3c70c40390a01375b69e1f9b54e822bc07197e11027696cf101be9"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_21.log": {
+    "bytes": 4339,
+    "sha256": "7548387721d02294eb4ad99ee1445615d7ab0ce47b9d99f96887ef8b50cbb1cb"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_22.log": {
+    "bytes": 5951,
+    "sha256": "b18be5e15e4818304a887ca7febd1348740b4229ee580e325d5197795bd0b72a"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_23.log": {
+    "bytes": 8661,
+    "sha256": "96f43c24a4090c2d5c708fa224c8407fbe5a20d21a9c751d3ec9d01bbf265c00"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_24.log": {
+    "bytes": 3862,
+    "sha256": "986ea7d1be32fe1babd09604308fa9be4b7ee38fcba645ab2948302e053751c7"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_25.log": {
+    "bytes": 5732,
+    "sha256": "4faf826ae6289e62da5df19ed2167b070255b25c54e38c02726dd5fee24490b2"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_26.log": {
+    "bytes": 6057,
+    "sha256": "7735ed36512b21be22c80e3ea438d265035e292bb7b0b42a5a397c6dc319ff04"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_27.log": {
+    "bytes": 333,
+    "sha256": "fe32bc808fb488d414271a89bc43ce5d6df120020941ec5c9669df09cfa4b747"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_28.log": {
+    "bytes": 2724,
+    "sha256": "535007896495b3a86896d8fc360e9e2325ec72c9d60ada0b7cb993772322f66f"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_29.log": {
+    "bytes": 2539,
+    "sha256": "74697b771b975bb7f3e0b2f5bb9977268e81e34ba654936e1ebe1fcdf11629df"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/suite_30.log": {
+    "bytes": 1007,
+    "sha256": "c7830e8cd51b5bf0173ac42c9d03c0a17556f693ab5e6c2674a254148573b8da"
+  },
+  "memory/audits/sprint2_collision_completion_20261114/final_full_tests/timings.json": {
+    "bytes": 5296,
+    "sha256": "44c5f2682cd3a232e75bec1cd369520c58c1236041c7cc322c7fd5887fdc3b13"
+  }
+}

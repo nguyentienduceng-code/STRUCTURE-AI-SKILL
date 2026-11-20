@@ -19,8 +19,10 @@ Triển khai ngày 2026-11-14 tại lớp adapter; engine CAD giữ nguyên.
 - Phiên `edit_entity` trên Drive được ánh xạ ổn định bằng SHA-256 sang
   `sessions/`. Caller có thể dùng tên cũ hoặc `session_dir` thực tế trả về.
   HEAD, candidate, revision DXF, SVG và khóa phiên đều nằm local.
-- DXF nguồn chỉ đọc. Các đường dẫn xuất DXF/DWG do caller chủ động chọn
-  vẫn là dữ liệu đầu ra lâu dài, không thuộc phạm vi scratch guard.
+- DXF nguồn chỉ đọc. `render_cad_plan` và `resolve_cad_collisions` tạo DXF UUID
+  local; đường dẫn yêu cầu chỉ là gợi ý. Caller đọc `output_dxf` thực tế.
+  Xuất bản bản sao sản phẩm sang thư mục bàn giao là bước riêng được User cho phép.
+  `pdf_path` của generator là PDF đầu vào, không phải nơi xuất file.
 
 ## Vòng đời preview
 

@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DUAL_AGENT_BUS v3.4 Dual-Plane Schema",
+  "description": "Tach lop Control Plane (lock, SHA-256, receipt chay ngam) va Presentation Plane (Phieu Tham Tra 3 y tieng Viet + ProductDeliverableGate) cho 2D Cognitive Dispatcher.",
+  "schema_version": "3.4.0",
+  "type": "object",
+  "required": [
+    "bus_version",
+    "task_id",
+    "status",
+    "dispatch_2d",
+    "bus_meta",
+    "human_handoff"
+  ],
+  "properties": {
+    "bus_version": {
+      "type": "string",
+      "const": "3.4"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "task_title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "IN_PROGRESS",
+        "NEEDS_PROJECT_CONFIRMATION",
+        "BLOCKED_GATE",
+        "COMPLETED",
+        "CANCELLED"
+      ]
+    },
+    "dispatch_2d": {
+      "type": "object",
+      "required": [
+        "domain_skill",
+        "engagement_mode",
+        "claude_role",
+        "allow_script_patch",
+        "enforce_deliverable_gate",
+        "enforce_jargon_linter"
+      ],
+      "properties": {
+        "domain_skill": { "type": "string" },
+        "domain_confidence": { "type": "number" },
+        "engagement_mode": {
+          "type": "string",
+          "enum": ["PRODUCT_COLLAB", "SYSTEM_UPGRADE"]
+        },
+        "mode_confidence": { "type": "number" },
+        "claude_role": {
+          "type": "string",
+          "enum": ["LEAD_AUDITOR_TCVN", "SOFTWARE_ARCHITECT"]
+        },
+        "allow_script_patch": { "type": "boolean" },
+        "deliverable_dir_posix": { "type": ["string", "null"] },
+        "deliverable_dir_win": { "type": ["string", "null"] },
+        "expected_extensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "enforce_deliverable_gate": { "type": "boolean" },
+        "enforce_jargon_linter": { "type": "boolean" }
+      }
+    },
+    "bus_meta": {
+      "type": "object",
+      "description": "Control Plane chay ngam (v3.3 atomic lock, receipts, SHA-256). Khong hien thi trong bao cao nguoi dung o che do PRODUCT_COLLAB.",
+      "required": ["lock_owner", "task_started_at_epoch", "evidence_hashes", "receipts"],
+      "properties": {
+        "lock_owner": { "type": "string" },
+        "lock_acquired_at_iso": { "type": "string" },
+        "task_started_at_epoch": { "type": "number" },
+        "lease_ttl_sec": { "type": "integer", "default": 600 },
+        "report_gate_p1": { "type": "string" },
+        "mcp_perception_p2": { "type": "boolean" },
+        "evidence_hashes": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "receipts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agent": { "type": "string" },
+              "event": { "type": "string" },
+              "timestamp_iso": { "type": "string" },
+              "gate_status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "human_handoff": {
+      "type": "object",
+      "description": "Presentation Plane danh cho nguoi dung ky thuat va Claude o vai tro Chu tri Tham tra.",
+      "required": ["handover_prompt", "user_report_vi", "deliverable_gate_status"],
+      "properties": {
+        "handover_prompt": { "type": "string" },
+        "source_scripts": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "user_report_vi": { "type": "string" },
+        "deliverable_gate_status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "PASS",
+            "BYPASSED_SYSTEM_MODE",
+            "BLOCKED_INVALID_DIR",
+            "BLOCKED_MISSING_DELIVERABLE",
+            "BLOCKED_JARGON_VIOLATION"
+          ]
+        },
+        "deliverable_gate_message_vi": { "type": "string" },
+        "verified_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "example_product_collab": {
+    "bus_version": "3.4",
+    "task_id": "TASK-20261120-LIENCHIEU-01",
+    "task_title": "Rà soát tờ trình và thuyết minh khảo sát địa chất Liên Chiểu Đà Nẵng",
+    "status": "COMPLETED",
+    "dispatch_2d": {
+      "domain_skill": "SKILL_GEOTECH",
+      "domain_confidence": 1.0,
+      "engagement_mode": "PRODUCT_COLLAB",
+      "mode_confidence": 1.0,
+      "claude_role": "LEAD_AUDITOR_TCVN",
+      "allow_script_patch": true,
+      "deliverable_dir_posix": "G:/My Drive/Google AI Studio/01_Projects/17_LIEN_CHIEU_DA_NANG/04_Deliverables_ToTrinh",
+      "deliverable_dir_win": "G:\\My Drive\\Google AI Studio\\01_Projects\\17_LIEN_CHIEU_DA_NANG\\04_Deliverables_ToTrinh",
+      "expected_extensions": [".docx", ".pdf", ".dxf", ".xlsx"],
+      "enforce_deliverable_gate": true,
+      "enforce_jargon_linter": true
+    },
+    "bus_meta": {
+      "lock_owner": "claude_auditor",
+      "lock_acquired_at_iso": "2026-11-20T04:58:00+00:00",
+      "task_started_at_epoch": 1795064280.0,
+      "lease_ttl_sec": 600,
+      "report_gate_p1": "PASS",
+      "mcp_perception_p2": true,
+      "evidence_hashes": {
+        "G:/My Drive/Google AI Studio/01_Projects/17_LIEN_CHIEU_DA_NANG/04_Deliverables_ToTrinh/ToTrinh_KhaoSat_DiaChat_LienChieu_Rev02.docx": "<sha256_computed_silently>"
+      },
+      "receipts": [
+        {
+          "agent": "gemini_maker",
+          "event": "HANDOVER_CREATED",
+          "timestamp_iso": "2026-11-20T04:58:00+00:00",
+          "gate_status": "PENDING"
+        },
+        {
+          "agent": "claude_auditor",
+          "event": "HANDOVER_COMPLETED",
+          "timestamp_iso": "2026-11-20T05:06:12+00:00",
+          "gate_status": "PASS"
+        }
+      ]
+    },
+    "human_handoff": {
+      "handover_prompt": "PHIẾU GIAO THẨM TRA HỒ SƠ DỰ ÁN...",
+      "source_scripts": [
+        "01_Projects/17_LIEN_CHIEU_DA_NANG/03_Scripts/build_totrinh_diachat.py"
+      ],
+      "user_report_vi": "1. Đã sửa: Chuẩn hóa bảng chỉ tiêu cơ lý đất theo TCVN 9362:2012 và thể thức văn bản Nghị định 30/2020/NĐ-CP.\n2. File hoàn chỉnh: G:\\My Drive\\Google AI Studio\\01_Projects\\17_LIEN_CHIEU_DA_NANG\\04_Deliverables_ToTrinh\\ToTrinh_KhaoSat_DiaChat_LienChieu_Rev02.docx\n3. Kết luận: Đạt yêu cầu bàn giao Chủ đầu tư.",
+      "deliverable_gate_status": "PASS",
+      "deliverable_gate_message_vi": "Đạt cổng nghiệm thu hồ sơ (1 tệp: ToTrinh_KhaoSat_DiaChat_LienChieu_Rev02.docx).",
+      "verified_files": [
+        "ToTrinh_KhaoSat_DiaChat_LienChieu_Rev02.docx"
+      ]
+    }
+  }
+}

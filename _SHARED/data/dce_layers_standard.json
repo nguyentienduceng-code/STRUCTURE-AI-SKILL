@@ -1,0 +1,1114 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-11-15T12:11:58.678577+00:00",
+  "title": "DCE Pro (Form 2) + DCE STEEL Unified Layer Standard (Multi-Device SSOT)",
+  "provenance": {
+    "base_template": "Form 2.dxf / DCE_Master_Seed_Template.dxf (46 layers)",
+    "dce_steel_source": "C:\\Dce Pro\\AddinSteelCad\\DbimSteelAutocad.dll -> DbimSteelAutocad.DceLayerName + Form 2_Steel.dwg",
+    "system_txt_source": "C:\\Dce Pro\\System\\VN_Layer*.txt",
+    "ctb_reference": "monochrome.ctb + group-code 370 positive lineweights (1/100 mm)"
+  },
+  "counts": {
+    "total_layers": 86,
+    "form2_btct_46": 46,
+    "dce_steel_16": 16,
+    "dce_plan_extensions_17": 16,
+    "compat_aliases_8": 8
+  },
+  "dbim_linetypes": [
+    "DASHDOT2_DBIM",
+    "HIDDEN_DBIM",
+    "BEAM HIDEN_DBIM",
+    "CENTER2_DBIM"
+  ],
+  "header_defaults": {
+    "INSUNITS": 4,
+    "MEASUREMENT": 1,
+    "LTSCALE": 100.0,
+    "ENTITY_LTSCALE_DBIM_1_100": 0.9
+  },
+  "profiles": {
+    "dce_native": "Màu ACI gốc Form 2.dxf + DCE Steel (dùng cho AutoCAD nền tối & monochrome.ctb)",
+    "light_bg_plot": "Màu độ tương phản cao trên nền trắng (Rule 12b + Visual Gate ezdxf PNG / in PDF sáng)"
+  },
+  "light_bg_plot_overrides": {
+    "DCE_Frame": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 35
+    },
+    "DCE_Schedule": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 25
+    },
+    "DCE_TKT-TEXT": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Note": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "Dce_text": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Text": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Truc": {
+      "color": 1,
+      "linetype": "DASHDOT2_DBIM",
+      "lineweight": 15
+    },
+    "DCE_Dim": {
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 15
+    },
+    "DCE_Setout": {
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 15
+    },
+    "DCE_Cot": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 35
+    },
+    "DCE_Hatch": {
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13
+    },
+    "DCE_Beam": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 30
+    },
+    "DCE_MainBeam": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 30
+    },
+    "DCE_NetThay": {
+      "color": 7,
+      "linetype": "BEAM HIDEN_DBIM",
+      "lineweight": 18
+    },
+    "DCE_NetDut": {
+      "color": 8,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 15
+    },
+    "DCE_BaoBeTong": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 20
+    },
+    "DCE_VoidX": {
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Name": {
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Symbol": {
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Leader": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18
+    },
+    "DCE_Flange": {
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 30
+    },
+    "DCE_Web": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 25
+    },
+    "DCE_Plate": {
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25
+    },
+    "DCE_Purlin": {
+      "color": 5,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 18
+    },
+    "DCE_SubBeam": {
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 20
+    },
+    "DCE_Coc": {
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 20
+    }
+  },
+  "layers": [
+    {
+      "name": "0",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer mặc định AutoCAD"
+    },
+    {
+      "name": "DCE_Name",
+      "color": 142,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Nhãn tên cấu kiện, mặt cắt, dầm"
+    },
+    {
+      "name": "DCE_KT",
+      "color": 142,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Kích thước / ký hiệu kỹ thuật DCE"
+    },
+    {
+      "name": "Defpoints",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 5,
+      "template_lineweight": 5,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Điểm định nghĩa Dim không in"
+    },
+    {
+      "name": "DCE_Dim",
+      "color": 254,
+      "linetype": "Continuous",
+      "lineweight": 9,
+      "template_lineweight": 9,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường kích thước chuẩn Dce_*MV"
+    },
+    {
+      "name": "DCE_Block",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 9,
+      "template_lineweight": 9,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Block ký hiệu trục, tiêu đề"
+    },
+    {
+      "name": "DCE_MCZiCZac",
+      "color": 144,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường cắt ziczac mặt cắt"
+    },
+    {
+      "name": "Dce_text",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Văn bản thuyết minh, ghi chú"
+    },
+    {
+      "name": "DCE_BaoBeTong",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường bao bê tông dầm, cột, sàn"
+    },
+    {
+      "name": "DCE_ThepChu",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cốt thép chịu lực chính"
+    },
+    {
+      "name": "DCE_ThepDai",
+      "color": 220,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cốt thép đai / thép cấu tạo"
+    },
+    {
+      "name": "DCE_Truc",
+      "color": 8,
+      "linetype": "DASHDOT2_DBIM",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 70,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường tim lưới trục (DASHDOT2_DBIM)"
+    },
+    {
+      "name": "DCE_NetKhuat",
+      "color": 9,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 5,
+      "template_lineweight": 5,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Nét khuất / lót tham chiếu kiến trúc"
+    },
+    {
+      "name": "DCE_NetDut",
+      "color": 8,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 5,
+      "template_lineweight": 5,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Nét đứt cấu kiện ẩn / nhịp khuất"
+    },
+    {
+      "name": "DCE_Hatch",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 30,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Hatch vật liệu bê tông / thép / vùng hạ cốt"
+    },
+    {
+      "name": "DCE_Gen_Open",
+      "color": 144,
+      "linetype": "CENTER2_DBIM",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Ký hiệu hộp kỹ thuật / lỗ mở (CENTER2_DBIM)"
+    },
+    {
+      "name": "AREAS",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Vùng tính diện tích"
+    },
+    {
+      "name": "POINTS",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Điểm định vị"
+    },
+    {
+      "name": "DCE_ThepChu.TTT",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cốt thép chủ mặt cắt / thống kê TTT"
+    },
+    {
+      "name": "DCE_ThepDai.TTT",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cốt thép đai mặt cắt / thống kê TTT"
+    },
+    {
+      "name": "DCE_Nhip",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường nhịp / dầm biên nhịp"
+    },
+    {
+      "name": "DCE_TKT-TEXT",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Chữ khung tên và bảng thống kê thép"
+    },
+    {
+      "name": "DCE_Symbol",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 9,
+      "template_lineweight": 9,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Ký hiệu cao trình, sàn hạ, tag sàn"
+    },
+    {
+      "name": "DCE_WIPEOUT",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Vùng che nền Wipeout"
+    },
+    {
+      "name": "DCE_TenNhip",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Nhãn tên nhịp dầm"
+    },
+    {
+      "name": "DCE_GoiDam",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Ký hiệu gối tựa dầm"
+    },
+    {
+      "name": "DCE_SUB-COLN_T---",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cột phân vùng T (DCE Pro)"
+    },
+    {
+      "name": "DCE_SUB-COWA_----",
+      "color": 210,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cột / vách phân vùng COWA (VN_LayerCot)"
+    },
+    {
+      "name": "DCE_SUB-COLN_S---",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cột phân vùng S (DCE Pro)"
+    },
+    {
+      "name": "DCE_NetThay",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Nét thấy / dầm tham chiếu (BEAM HIDEN_DBIM trên MB cột)"
+    },
+    {
+      "name": "DCE_Lanh_To",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Dầm lanh tô cửa mở / khu vệ sinh (VN_LayerVeSinh)"
+    },
+    {
+      "name": "DCE_BottomBars",
+      "color": 1,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 40,
+      "template_lineweight": 40,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cốt thép lớp dưới sàn (HIDDEN_DBIM)"
+    },
+    {
+      "name": "DCE_Beam",
+      "color": 2,
+      "linetype": "BEAM HIDEN_DBIM",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Dầm BTCT / dầm phụ (BEAM HIDEN_DBIM trong Form 2)"
+    },
+    {
+      "name": "DCE_CDD",
+      "color": 142,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Cao độ / đường dẫn chi tiết DCE"
+    },
+    {
+      "name": "DCE_ChiaDoiTuong",
+      "color": 51,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường chia đối tượng / phân đoạn"
+    },
+    {
+      "name": "DCE_Note",
+      "color": 117,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": -3,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Khung ghi chú kỹ thuật"
+    },
+    {
+      "name": "XREF.COLUMN WALL$0$S_SUB-COLN_T---",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer Form 2.dxf (XREF.COLUMN WALL$0$S_SUB-COLN_T---)"
+    },
+    {
+      "name": "XREF.COLUMN WALL$0$S_Hatch block",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 30,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer Form 2.dxf (XREF.COLUMN WALL$0$S_Hatch block)"
+    },
+    {
+      "name": "XREF.COLUMN WALL$0$S_SUB-COLN_S---",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer Form 2.dxf (XREF.COLUMN WALL$0$S_SUB-COLN_S---)"
+    },
+    {
+      "name": "DCE_Coc",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Tim và biên dạng cọc móng"
+    },
+    {
+      "name": "DCE_TextCoc",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Tên và ghi chú cọc móng"
+    },
+    {
+      "name": "DCE_Coc3D",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đối tượng cọc 3D"
+    },
+    {
+      "name": "DCE_Dim2",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 5,
+      "template_lineweight": 5,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đường kích thước phụ / chi tiết"
+    },
+    {
+      "name": "Dce_ViTriThep",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Đánh dấu vị trí thanh thép"
+    },
+    {
+      "name": "DCE_Hatch @ 1",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 30,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer Form 2.dxf (DCE_Hatch @ 1)"
+    },
+    {
+      "name": "XREF.COLUMN WALL$0$S_Hatch block @ 1",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 30,
+      "group": "form2_btct_46",
+      "source": "Form 2.dxf / DCE_Master_Seed_Template.dxf",
+      "note": "Layer Form 2.dxf (XREF.COLUMN WALL$0$S_Hatch block @ 1)"
+    },
+    {
+      "name": "DCE_MainBeam",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_MainBeam",
+      "note": "Dầm / kèo chính kết cấu thép & BTCT"
+    },
+    {
+      "name": "DCE_SubBeam",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_SubBeam",
+      "note": "Dầm phụ kết cấu thép / sàn"
+    },
+    {
+      "name": "DCE_Flange",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_STEEL_FLANGE",
+      "note": "Cánh thép hình I/H/C"
+    },
+    {
+      "name": "DCE_Web",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_STEEL_WEB",
+      "note": "Bụng thép hình I/H/C"
+    },
+    {
+      "name": "DCE_Plate",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_STEEL_PL",
+      "note": "Bản mã, bản đế, sườn tăng cứng thép"
+    },
+    {
+      "name": "DCE_Bracing",
+      "color": 3,
+      "linetype": "DASHDOT2_DBIM",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_BR",
+      "note": "Hệ giằng mái, giằng cột thép"
+    },
+    {
+      "name": "DCE_Purlin",
+      "color": 2,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_PURLIN",
+      "note": "Xà gồ C/Z mái và tường"
+    },
+    {
+      "name": "DCE_Rod",
+      "color": 1,
+      "linetype": "CENTER2_DBIM",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_TYXG",
+      "note": "Ty giằng, thanh kéo giằng"
+    },
+    {
+      "name": "DCE_Weld",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_WELD",
+      "note": "Ký hiệu & đường hàn liên kết thép"
+    },
+    {
+      "name": "DCE_Tole",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 80,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_TOLE",
+      "note": "Tôn lợp mái / vách / sàn deck"
+    },
+    {
+      "name": "DCE_Pipe",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_Pipe",
+      "note": "Thép ống tròn kết cấu"
+    },
+    {
+      "name": "DCE_Tube",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_Tube",
+      "note": "Thép hộp vuông / chữ nhật"
+    },
+    {
+      "name": "DCE_L",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_L",
+      "note": "Thép góc L"
+    },
+    {
+      "name": "DCE_U",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_U",
+      "note": "Thép chữ U / C"
+    },
+    {
+      "name": "DCE_TopBars",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 40,
+      "template_lineweight": 40,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "DbimSteelAutocad.DceLayerName.DCE_TopBars",
+      "note": "Cốt thép lớp trên sàn (đối xứng DCE_BottomBars)"
+    },
+    {
+      "name": "DCE_ThepSanGC",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "dce_steel_16",
+      "source": "C:\\Dce Pro\\System\\VN_LayerThepGc.txt",
+      "note": "Cốt thép gia cường gối/bụng sàn"
+    },
+    {
+      "name": "DCE_Cot",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Cột BTCT mặt bằng định vị"
+    },
+    {
+      "name": "DCE_Vach",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Vách / lõi cứng BTCT"
+    },
+    {
+      "name": "DCE_Boundary_Zone",
+      "color": 1,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Vùng biên vách chịu lực (Boundary Element)"
+    },
+    {
+      "name": "DCE_Setout",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Đường kích thước định vị trắc đạc cột/vách"
+    },
+    {
+      "name": "DCE_Schedule",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Bảng thống kê cấu kiện & vật liệu"
+    },
+    {
+      "name": "DCE_Frame",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 50,
+      "template_lineweight": 50,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Khung bản vẽ A0/A1/A3 & khung tên"
+    },
+    {
+      "name": "DCE_CouplingBeam",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Dầm nối lõi cứng (Coupling Beam)"
+    },
+    {
+      "name": "DCE_VoidX",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 60,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Lỗ rỗng xuyên sàn & nét gạch chéo X"
+    },
+    {
+      "name": "DCE_Thep_Chu",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 40,
+      "template_lineweight": 40,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Cốt thép chủ mặt cắt / bảng vẽ"
+    },
+    {
+      "name": "DCE_Thep_Dai",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Cốt thép đai mặt cắt / bảng vẽ"
+    },
+    {
+      "name": "DCE_Core",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Biên lõi cứng / thang máy / MEP shaft"
+    },
+    {
+      "name": "DCE_GapOpen",
+      "color": 3,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Cửa mở thang máy / lỗ mở nét đứt"
+    },
+    {
+      "name": "DCE_Leader",
+      "color": 250,
+      "linetype": "Continuous",
+      "lineweight": 13,
+      "template_lineweight": 13,
+      "screening": 80,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Đường dẫn leader chú thích né đè chữ"
+    },
+    {
+      "name": "DCE_RanhDat",
+      "color": 1,
+      "linetype": "DASHDOT2_DBIM",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Ranh giới khu đất pháp lý"
+    },
+    {
+      "name": "DCE_ChiGioi",
+      "color": 6,
+      "linetype": "HIDDEN_DBIM",
+      "lineweight": 20,
+      "template_lineweight": 20,
+      "screening": 100,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Chỉ giới xây dựng / khoảng lùi"
+    },
+    {
+      "name": "DCE_Road",
+      "color": 8,
+      "linetype": "Continuous",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 70,
+      "group": "dce_plan_extensions_17",
+      "source": "cad_plan_engine.py + dce_cad_compliance_checker.py",
+      "note": "Đường giao thông / vỉa hè tiếp giáp"
+    },
+    {
+      "name": "DCE_Steel_Sect",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 30,
+      "template_lineweight": 30,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "Compat alias trong dce_steel_adapter.py (khuyên dùng DCE_Flange/DCE_Web)"
+    },
+    {
+      "name": "DCE_Steel_Plate",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "Compat alias trong dce_steel_adapter.py (khuyên dùng DCE_Plate)"
+    },
+    {
+      "name": "DCE_Steel_Bolt",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "Compat bu lông kết cấu thép trong dce_steel_adapter.py"
+    },
+    {
+      "name": "REBAR_TOP",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "PaperSpace/C2 tách lớp thép lớp trên"
+    },
+    {
+      "name": "REBAR_BOTTOM",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "PaperSpace/C2 tách lớp thép lớp dưới"
+    },
+    {
+      "name": "VP_TOP",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "PaperSpace C2 viewport trên"
+    },
+    {
+      "name": "VP_BOTTOM",
+      "color": 5,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "PaperSpace C2 viewport dưới"
+    },
+    {
+      "name": "VP_MODEL",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "compat_aliases_8",
+      "source": "dce_steel_adapter.py / cad_sheet_set.py",
+      "note": "PaperSpace C2 viewport mô hình"
+    }
+  ]
+}

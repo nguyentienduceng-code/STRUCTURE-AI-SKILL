@@ -1,0 +1,27 @@
+{
+  "tier": "selected",
+  "registered_suites": 30,
+  "selected_suites": 3,
+  "all_passed": true,
+  "wall_seconds": 34.057192000000214,
+  "suites": [
+    {
+      "number": 18,
+      "name": "18. DCE CAD Compliance & Zero White Text Lock (25 tests)",
+      "passed": true,
+      "wall_seconds": 13.546501500000886
+    },
+    {
+      "number": 29,
+      "name": "29. MCP DCE-CAD Server & Vision Tools (12 tests)",
+      "passed": true,
+      "wall_seconds": 14.782444199998281
+    },
+    {
+      "number": 30,
+      "name": "30. CAD Scene Index & Collision Solver (Sprint 2 Anti-Collision) (35 tests)",
+      "passed": true,
+      "wall_seconds": 5.679530999997951
+    }
+  ]
+}

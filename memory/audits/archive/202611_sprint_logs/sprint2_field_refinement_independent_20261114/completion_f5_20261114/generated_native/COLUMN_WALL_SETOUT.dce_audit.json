@@ -1,0 +1,7811 @@
+{
+  "engine_version": "4.7.1",
+  "dxf_version": "AC1021",
+  "scale": 100.0,
+  "mode": "COLUMN_WALL_SETOUT",
+  "layout_style": "SINGLE_FULL_VIEWPORT",
+  "template_reused": false,
+  "layout_spec": {
+    "sheet_size": "A1",
+    "scale": 100.0,
+    "scale_label": "1/100",
+    "dimstyle_dce": "Dce_100MV",
+    "dimstyle_main": "DCE_DIM_MAIN_100",
+    "dimstyle_setout": "DCE_DIM_COT_100",
+    "viewport_fill_ratio": 1.016,
+    "sidebar_divider_x": 68600.0,
+    "sidebar_bbox": [
+      68600.0,
+      3000.0,
+      85100.0,
+      60400.0
+    ],
+    "title_block_bbox": [
+      68600.0,
+      3000.0,
+      85100.0,
+      8500.0
+    ],
+    "title_band_bbox": [
+      4500.0,
+      3000.0,
+      68000.0,
+      5400.0
+    ],
+    "canvas_bbox": [
+      4800.0,
+      5800.0,
+      68000.0,
+      60100.0
+    ]
+  },
+  "blocks_defined": {
+    "DCE_Truc_Bubble": {
+      "source_alias": "KyHieuTruc",
+      "radius_paper": 4.0,
+      "crosshair_ticks": [
+        [
+          [
+            -5.5,
+            0
+          ],
+          [
+            -4.0,
+            0
+          ]
+        ],
+        [
+          [
+            4.0,
+            0
+          ],
+          [
+            5.5,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            -5.5
+          ],
+          [
+            0,
+            -4.0
+          ]
+        ],
+        [
+          [
+            0,
+            4.0
+          ],
+          [
+            0,
+            5.5
+          ]
+        ]
+      ],
+      "attdefs": {
+        "SH_TRUC": {
+          "insert": [
+            0.0,
+            0.0
+          ],
+          "align": "MIDDLE_CENTER",
+          "height": 2.8
+        }
+      }
+    },
+    "DCE_Cot_Block": {
+      "source_alias": "Cot_Tiep",
+      "description": "Block Cột đi tiếp lên tầng trên (1x1mm: LWPOLYLINE + SOLID HATCH)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "has_solid_hatch": true,
+      "has_border_lwpolyline": true,
+      "hatch_layer": "DCE_Hatch",
+      "border_layer": "DCE_Cot"
+    },
+    "DCE_Cot_Dung": {
+      "source_alias": "Cot_Dung",
+      "description": "Block Cột dừng tại tầng hiện tại (1x1mm: LWPOLYLINE + 2 đường chéo chữ X)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "has_cross_x": true,
+      "has_border_lwpolyline": true,
+      "border_layer": "DCE_Cot"
+    },
+    "DCE_Coc_Block": {
+      "source_alias": "KyHieuCoc",
+      "description": "Block Cọc BTCT / Cọc khoan nhồi định vị tại tâm (1x1mm)",
+      "unit_size": [
+        1.0,
+        1.0
+      ],
+      "basepoint": [
+        0.0,
+        0.0
+      ]
+    },
+    "DCE_TenCauKien": {
+      "source_alias": "TenCauKien",
+      "healed_from_template": true,
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "divider_line": [
+        [
+          -4.8,
+          0.0
+        ],
+        [
+          4.8,
+          0.0
+        ]
+      ],
+      "attdefs": {
+        "SOCAUKIEN": {
+          "insert": [
+            0.0,
+            0.6
+          ],
+          "align": "BOTTOM_CENTER",
+          "height": 2.4
+        },
+        "TENCAUKIEN": {
+          "insert": [
+            0.0,
+            -0.6
+          ],
+          "align": "TOP_CENTER",
+          "height": 1.9
+        }
+      }
+    },
+    "DCE_KyHieuSan": {
+      "source_alias": "CaoDo_San",
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "radius_paper": 3.5,
+      "attdefs": {
+        "MA_SAN": {
+          "insert": [
+            0.0,
+            0.5
+          ],
+          "align": "BOTTOM_CENTER",
+          "height": 1.8
+        },
+        "CAO_DO": {
+          "insert": [
+            0.0,
+            -0.5
+          ],
+          "align": "TOP_CENTER",
+          "height": 1.8
+        }
+      }
+    },
+    "DCE_SH_Thep": {
+      "source_alias": "SH_Thep",
+      "basepoint": [
+        0.0,
+        0.0
+      ],
+      "radius_paper": 2.2,
+      "attdefs": {
+        "SO_HIEU": {
+          "insert": [
+            0.0,
+            0.0
+          ],
+          "align": "MIDDLE_CENTER",
+          "height": 2.0
+        },
+        "QUY_CACH": {
+          "insert": [
+            3.0,
+            0.0
+          ],
+          "align": "MIDDLE_LEFT",
+          "height": 2.0
+        }
+      }
+    },
+    "DCE_TitleBlock_A1": {
+      "source_alias": "KhungTen_DCE",
+      "outer_size_paper": [
+        841.0,
+        594.0
+      ],
+      "inner_margins_paper": {
+        "left": 25.0,
+        "top": 10.0,
+        "right": 10.0,
+        "bottom": 10.0
+      },
+      "drawing_zone_width_paper": 641.0,
+      "schedule_zone_width_paper": 165.0,
+      "attdefs": [
+        "CHU_DAU_TU",
+        "TEN_DU_AN",
+        "HANG_MUC",
+        "DIA_DIEM",
+        "DON_VI_TVTK",
+        "CHU_NHIEM",
+        "CHU_TRI_KC",
+        "NGUOI_THIET_KE",
+        "KIEM_TRA",
+        "TEN_BAN_VE",
+        "TY_LE",
+        "KY_HIEU_BV"
+      ]
+    }
+  },
+  "dimstyles_defined": {
+    "DCE_DIM_MAIN_100": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 2.2,
+      "dimasz": 1.5,
+      "dimexe": 1.2,
+      "dimexo": 1.5,
+      "dimgap": 0.6,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    },
+    "DCE_DIM_COT_100": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 1.8,
+      "dimasz": 1.0,
+      "dimexe": 0.9,
+      "dimexo": 0.8,
+      "dimgap": 0.5,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimtix": 1,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    },
+    "Dce_100MV": {
+      "dimtxsty": "DCE_TEXT_DIM",
+      "dimscale": 100.0,
+      "dimtxt": 2.2,
+      "dimasz": 1.5,
+      "dimexe": 1.2,
+      "dimexo": 1.2,
+      "dimgap": 0.6,
+      "dimtad": 1,
+      "dimtih": 0,
+      "dimtoh": 0,
+      "dimdec": 0,
+      "dimlfac": 1.0,
+      "arrow": "_ARCHTICK"
+    }
+  },
+  "layers_defined": {
+    "DCE_Cot": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Vach": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Boundary_Zone": {
+      "color": 1,
+      "linetype": "HIDDEN2",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Hatch": {
+      "color": 253,
+      "linetype": "CONTINUOUS",
+      "lineweight": 9,
+      "screening": 30
+    },
+    "DCE_Truc": {
+      "color": 1,
+      "linetype": "CENTER2",
+      "lineweight": 13,
+      "screening": 70
+    },
+    "DCE_Dim": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 15,
+      "screening": 100
+    },
+    "DCE_Setout": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 100
+    },
+    "DCE_Name": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_NetThay": {
+      "color": 8,
+      "linetype": "HIDDEN2",
+      "lineweight": 18,
+      "screening": 60
+    },
+    "DCE_CouplingBeam": {
+      "color": 6,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_VoidX": {
+      "color": 8,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 60
+    },
+    "DCE_Thep_Chu": {
+      "color": 1,
+      "linetype": "CONTINUOUS",
+      "lineweight": 40,
+      "screening": 100
+    },
+    "DCE_Thep_Dai": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Schedule": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Frame": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 50,
+      "screening": 100
+    },
+    "DCE_BaoBeTong": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_MainBeam": {
+      "color": 3,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Beam": {
+      "color": 2,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Leader": {
+      "color": 250,
+      "linetype": "CONTINUOUS",
+      "lineweight": 13,
+      "screening": 80
+    },
+    "DCE_Note": {
+      "color": 250,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "Dce_text": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Block": {
+      "color": 7,
+      "linetype": "CONTINUOUS",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Symbol": {
+      "color": 140,
+      "linetype": "CONTINUOUS",
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Core": {
+      "color": 4,
+      "linetype": "CONTINUOUS",
+      "lineweight": 30,
+      "screening": 100
+    },
+    "DCE_GapOpen": {
+      "color": 3,
+      "linetype": "HIDDEN2",
+      "lineweight": 15,
+      "screening": 100
+    },
+    "DCE_Lanh_To": {
+      "color": 1,
+      "linetype": "CONTINUOUS",
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_RanhDat": {
+      "color": 1,
+      "linetype": "CENTER2",
+      "lineweight": 30,
+      "screening": 100
+    },
+    "DCE_ChiGioi": {
+      "color": 6,
+      "linetype": "HIDDEN2",
+      "lineweight": 20,
+      "screening": 100
+    },
+    "DCE_Road": {
+      "color": 8,
+      "linetype": "CONTINUOUS",
+      "lineweight": 15,
+      "screening": 70
+    }
+  },
+  "entities_log": [
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_ELEV_1",
+      "bbox": [
+        22400.0,
+        8400.0,
+        28100.0,
+        11200.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG MÁY TM1"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_ELEV_2",
+      "bbox": [
+        28900.0,
+        8400.0,
+        34600.0,
+        11200.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG MÁY TM2"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_STAIR",
+      "bbox": [
+        22400.0,
+        16800.0,
+        28100.0,
+        19600.0
+      ],
+      "has_cross_x": true,
+      "label": "THANG BỘ L1"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_VoidX",
+      "id": "VOID_MEP",
+      "bbox": [
+        28900.0,
+        16800.0,
+        34600.0,
+        19600.0
+      ],
+      "has_cross_x": true,
+      "label": "MEP SHAFT"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_CouplingBeam",
+      "id": "CB1",
+      "bbox": [
+        24200.0,
+        11200.0,
+        26300.0,
+        11600.0
+      ],
+      "label": "CB1 (400x900)"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_CouplingBeam",
+      "id": "CB2",
+      "bbox": [
+        30700.0,
+        11200.0,
+        32800.0,
+        11600.0
+      ],
+      "label": "CB2 (400x900)"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.1",
+      "p1": [
+        700.0,
+        0.0
+      ],
+      "p2": [
+        7150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        3925.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.2",
+      "p1": [
+        8050.0,
+        0.0
+      ],
+      "p2": [
+        14650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        11350.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.3",
+      "p1": [
+        15550.0,
+        0.0
+      ],
+      "p2": [
+        21650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        18600.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.4",
+      "p1": [
+        22550.0,
+        0.0
+      ],
+      "p2": [
+        28150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        25350.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.5",
+      "p1": [
+        29050.0,
+        0.0
+      ],
+      "p2": [
+        34650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        31850.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.6",
+      "p1": [
+        35550.0,
+        0.0
+      ],
+      "p2": [
+        41650.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        38600.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.7",
+      "p1": [
+        42550.0,
+        0.0
+      ],
+      "p2": [
+        49150.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        45850.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1A.8",
+      "p1": [
+        50050.0,
+        0.0
+      ],
+      "p2": [
+        56700.0,
+        0.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        53375.0,
+        400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.1",
+      "p1": [
+        550.0,
+        8000.0
+      ],
+      "p2": [
+        6950.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        3750.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.2",
+      "p1": [
+        8050.0,
+        8000.0
+      ],
+      "p2": [
+        14450.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        11250.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_L.3",
+      "p1": [
+        15550.0,
+        8000.0
+      ],
+      "p2": [
+        22000.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        18775.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.1",
+      "p1": [
+        35000.0,
+        8000.0
+      ],
+      "p2": [
+        41450.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        38225.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.2",
+      "p1": [
+        42550.0,
+        8000.0
+      ],
+      "p2": [
+        48950.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        45750.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1B_R.3",
+      "p1": [
+        50050.0,
+        8000.0
+      ],
+      "p2": [
+        56650.0,
+        8000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        53350.0,
+        8450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.1",
+      "p1": [
+        550.0,
+        14000.0
+      ],
+      "p2": [
+        6950.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        3750.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.2",
+      "p1": [
+        8050.0,
+        14000.0
+      ],
+      "p2": [
+        14450.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        11250.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_L.3",
+      "p1": [
+        15550.0,
+        14000.0
+      ],
+      "p2": [
+        22000.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        18775.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.1",
+      "p1": [
+        35000.0,
+        14000.0
+      ],
+      "p2": [
+        41450.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        38225.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.2",
+      "p1": [
+        42550.0,
+        14000.0
+      ],
+      "p2": [
+        48950.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        45750.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1C_R.3",
+      "p1": [
+        50050.0,
+        14000.0
+      ],
+      "p2": [
+        56650.0,
+        14000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        53350.0,
+        14450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.1",
+      "p1": [
+        550.0,
+        20000.0
+      ],
+      "p2": [
+        6950.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        3750.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.2",
+      "p1": [
+        8050.0,
+        20000.0
+      ],
+      "p2": [
+        14450.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        11250.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_L.3",
+      "p1": [
+        15550.0,
+        20000.0
+      ],
+      "p2": [
+        22000.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        18775.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.1",
+      "p1": [
+        35000.0,
+        20000.0
+      ],
+      "p2": [
+        41450.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        38225.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.2",
+      "p1": [
+        42550.0,
+        20000.0
+      ],
+      "p2": [
+        48950.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        45750.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1D_R.3",
+      "p1": [
+        50050.0,
+        20000.0
+      ],
+      "p2": [
+        56650.0,
+        20000.0
+      ],
+      "width": 500.0,
+      "depth": 900.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        53350.0,
+        20450.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.1",
+      "p1": [
+        700.0,
+        28000.0
+      ],
+      "p2": [
+        7150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        3925.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.2",
+      "p1": [
+        8050.0,
+        28000.0
+      ],
+      "p2": [
+        14650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        11350.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.3",
+      "p1": [
+        15550.0,
+        28000.0
+      ],
+      "p2": [
+        21650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        18600.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.4",
+      "p1": [
+        22550.0,
+        28000.0
+      ],
+      "p2": [
+        28150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        25350.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.5",
+      "p1": [
+        29050.0,
+        28000.0
+      ],
+      "p2": [
+        34650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        31850.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.6",
+      "p1": [
+        35550.0,
+        28000.0
+      ],
+      "p2": [
+        41650.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        38600.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.7",
+      "p1": [
+        42550.0,
+        28000.0
+      ],
+      "p2": [
+        49150.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        45850.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D1E.8",
+      "p1": [
+        50050.0,
+        28000.0
+      ],
+      "p2": [
+        56700.0,
+        28000.0
+      ],
+      "width": 400.0,
+      "depth": 800.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        53375.0,
+        28400.0
+      ],
+      "beam_label_rotation": 0.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.1",
+      "p1": [
+        0.0,
+        700.0
+      ],
+      "p2": [
+        0.0,
+        7500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        -350.0,
+        4100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.2",
+      "p1": [
+        0.0,
+        8700.0
+      ],
+      "p2": [
+        0.0,
+        13500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        -350.0,
+        11100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.3",
+      "p1": [
+        0.0,
+        14700.0
+      ],
+      "p2": [
+        0.0,
+        19500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        -350.0,
+        17100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_1.4",
+      "p1": [
+        0.0,
+        20700.0
+      ],
+      "p2": [
+        0.0,
+        27700.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        -350.0,
+        24200.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.1",
+      "p1": [
+        7500.0,
+        700.0
+      ],
+      "p2": [
+        7500.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        7150.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.2",
+      "p1": [
+        7500.0,
+        8700.0
+      ],
+      "p2": [
+        7500.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        7150.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.3",
+      "p1": [
+        7500.0,
+        14700.0
+      ],
+      "p2": [
+        7500.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        7150.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_2.4",
+      "p1": [
+        7500.0,
+        20700.0
+      ],
+      "p2": [
+        7500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        7150.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.1",
+      "p1": [
+        15000.0,
+        700.0
+      ],
+      "p2": [
+        15000.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        14650.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.2",
+      "p1": [
+        15000.0,
+        8700.0
+      ],
+      "p2": [
+        15000.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        14650.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.3",
+      "p1": [
+        15000.0,
+        14700.0
+      ],
+      "p2": [
+        15000.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        14650.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_3.4",
+      "p1": [
+        15000.0,
+        20700.0
+      ],
+      "p2": [
+        15000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        14650.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_4B",
+      "p1": [
+        22000.0,
+        700.0
+      ],
+      "p2": [
+        22000.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        21650.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_4T",
+      "p1": [
+        22000.0,
+        20000.0
+      ],
+      "p2": [
+        22000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        21650.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_5B",
+      "p1": [
+        28500.0,
+        700.0
+      ],
+      "p2": [
+        28500.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        28150.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_5T",
+      "p1": [
+        28500.0,
+        20000.0
+      ],
+      "p2": [
+        28500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        28150.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_6B",
+      "p1": [
+        35000.0,
+        700.0
+      ],
+      "p2": [
+        35000.0,
+        8000.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        34650.0,
+        4350.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_6T",
+      "p1": [
+        35000.0,
+        20000.0
+      ],
+      "p2": [
+        35000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        34650.0,
+        23750.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.1",
+      "p1": [
+        42000.0,
+        700.0
+      ],
+      "p2": [
+        42000.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        41650.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.2",
+      "p1": [
+        42000.0,
+        8700.0
+      ],
+      "p2": [
+        42000.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        41650.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.3",
+      "p1": [
+        42000.0,
+        14700.0
+      ],
+      "p2": [
+        42000.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        41650.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_7.4",
+      "p1": [
+        42000.0,
+        20700.0
+      ],
+      "p2": [
+        42000.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        41650.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.1",
+      "p1": [
+        49500.0,
+        700.0
+      ],
+      "p2": [
+        49500.0,
+        7300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        49150.0,
+        4000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.2",
+      "p1": [
+        49500.0,
+        8700.0
+      ],
+      "p2": [
+        49500.0,
+        13300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        49150.0,
+        11000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.3",
+      "p1": [
+        49500.0,
+        14700.0
+      ],
+      "p2": [
+        49500.0,
+        19300.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        49150.0,
+        17000.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_8.4",
+      "p1": [
+        49500.0,
+        20700.0
+      ],
+      "p2": [
+        49500.0,
+        27500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        49150.0,
+        24100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.1",
+      "p1": [
+        57000.0,
+        700.0
+      ],
+      "p2": [
+        57000.0,
+        7500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        56650.0,
+        4100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.2",
+      "p1": [
+        57000.0,
+        8700.0
+      ],
+      "p2": [
+        57000.0,
+        13500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        56650.0,
+        11100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.3",
+      "p1": [
+        57000.0,
+        14700.0
+      ],
+      "p2": [
+        57000.0,
+        19500.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        56650.0,
+        17100.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "id": "D2_9.4",
+      "p1": [
+        57000.0,
+        20700.0
+      ],
+      "p2": [
+        57000.0,
+        27700.0
+      ],
+      "width": 300.0,
+      "depth": 700.0,
+      "is_secondary": false,
+      "clipped_at_column_faces": true,
+      "has_beam_label": false,
+      "beam_label_text": "",
+      "beam_label_pos": [
+        56650.0,
+        24200.0
+      ],
+      "beam_label_rotation": 90.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "1",
+      "p1": [
+        0.0,
+        -3800.0
+      ],
+      "p2": [
+        0.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        0.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "1"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        0.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "1"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "2",
+      "p1": [
+        7500.0,
+        -3800.0
+      ],
+      "p2": [
+        7500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        7500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "2"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        7500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "2"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "3",
+      "p1": [
+        15000.0,
+        -3800.0
+      ],
+      "p2": [
+        15000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        15000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "3"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        15000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "3"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "4",
+      "p1": [
+        22000.0,
+        -3800.0
+      ],
+      "p2": [
+        22000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        22000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "4"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        22000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "4"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "5",
+      "p1": [
+        28500.0,
+        -3800.0
+      ],
+      "p2": [
+        28500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        28500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "5"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        28500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "5"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "6",
+      "p1": [
+        35000.0,
+        -3800.0
+      ],
+      "p2": [
+        35000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        35000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "6"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        35000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "6"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "7",
+      "p1": [
+        42000.0,
+        -3800.0
+      ],
+      "p2": [
+        42000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        42000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "7"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        42000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "7"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "8",
+      "p1": [
+        49500.0,
+        -3800.0
+      ],
+      "p2": [
+        49500.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        49500.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "8"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        49500.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "8"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "9",
+      "p1": [
+        57000.0,
+        -3800.0
+      ],
+      "p2": [
+        57000.0,
+        29400.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        57000.0,
+        -4200.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "9"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        57000.0,
+        29800.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "9"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "A",
+      "p1": [
+        -3800.0,
+        0.0
+      ],
+      "p2": [
+        58400.0,
+        0.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        0.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "A"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        0.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "A"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "B",
+      "p1": [
+        -3800.0,
+        8000.0
+      ],
+      "p2": [
+        58400.0,
+        8000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        8000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "B"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        8000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "B"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "C",
+      "p1": [
+        -3800.0,
+        14000.0
+      ],
+      "p2": [
+        58400.0,
+        14000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        14000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "C"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        14000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "C"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "D",
+      "p1": [
+        -3800.0,
+        20000.0
+      ],
+      "p2": [
+        58400.0,
+        20000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        20000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "D"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        20000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "D"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "axis": "E",
+      "p1": [
+        -3800.0,
+        28000.0
+      ],
+      "p2": [
+        58400.0,
+        28000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        -4200.0,
+        28000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "E"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "layer": "DCE_Dim",
+      "insert": [
+        58800.0,
+        28000.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "attribs": {
+        "SH_TRUC": "E"
+      },
+      "radius": 400.0
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W1",
+      "bbox": [
+        22000.0,
+        8000.0,
+        22400.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "W1",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        20000.0
+      ],
+      "p2": [
+        22400.0,
+        20000.0
+      ],
+      "base": [
+        22200.0,
+        20350.0
+      ],
+      "actual_measurement": 400.0,
+      "dim_text": "400"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W2",
+      "bbox": [
+        34600.0,
+        8000.0,
+        35000.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "W2",
+      "axis_dir": "X",
+      "p1": [
+        34600.0,
+        20000.0
+      ],
+      "p2": [
+        35000.0,
+        20000.0
+      ],
+      "base": [
+        34800.0,
+        20350.0
+      ],
+      "actual_measurement": 400.0,
+      "dim_text": "400"
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "id": "W3",
+      "bbox": [
+        22000.0,
+        19600.0,
+        35000.0,
+        20000.0
+      ],
+      "has_solid_hatch": true,
+      "be_length": 600.0,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "W3",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        20000.0
+      ],
+      "p2": [
+        22400.0,
+        20000.0
+      ],
+      "base": [
+        22200.0,
+        20350.0
+      ],
+      "actual_measurement": 400.0,
+      "dim_text": "400"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_1A",
+      "status": "CONTINUOUS",
+      "insert": [
+        200.0,
+        200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1A",
+      "axis_dir": "X",
+      "p1": [
+        -300.0,
+        700.0
+      ],
+      "p2": [
+        0.0,
+        700.0
+      ],
+      "base": [
+        0.0,
+        1100.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1A",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        700.0
+      ],
+      "p2": [
+        700.0,
+        700.0
+      ],
+      "base": [
+        0.0,
+        1100.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1A",
+      "axis_dir": "Y",
+      "p1": [
+        700.0,
+        -300.0
+      ],
+      "p2": [
+        700.0,
+        0.0
+      ],
+      "base": [
+        1100.0,
+        0.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1A",
+      "axis_dir": "Y",
+      "p1": [
+        700.0,
+        0.0
+      ],
+      "p2": [
+        700.0,
+        700.0
+      ],
+      "base": [
+        1100.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C1_1A",
+      "insert": [
+        -840.0,
+        -540.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        -1320.0,
+        -800.0,
+        -360.0,
+        -280.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C1_1A",
+        "TENCAUKIEN": "(1000x1000)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1B",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        8100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1B",
+      "axis_dir": "X",
+      "p1": [
+        -350.0,
+        7500.0
+      ],
+      "p2": [
+        0.0,
+        7500.0
+      ],
+      "base": [
+        0.0,
+        7100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1B",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        7500.0
+      ],
+      "p2": [
+        550.0,
+        7500.0
+      ],
+      "base": [
+        0.0,
+        7100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1B",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        7500.0
+      ],
+      "p2": [
+        550.0,
+        8000.0
+      ],
+      "base": [
+        950.0,
+        8000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1B",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        8000.0
+      ],
+      "p2": [
+        550.0,
+        8700.0
+      ],
+      "base": [
+        950.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_1B",
+      "insert": [
+        -890.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        -1370.0,
+        8680.0,
+        -410.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_1B",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1C",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        14100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1C",
+      "axis_dir": "X",
+      "p1": [
+        -350.0,
+        13500.0
+      ],
+      "p2": [
+        0.0,
+        13500.0
+      ],
+      "base": [
+        0.0,
+        13100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1C",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        13500.0
+      ],
+      "p2": [
+        550.0,
+        13500.0
+      ],
+      "base": [
+        0.0,
+        13100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1C",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        13500.0
+      ],
+      "p2": [
+        550.0,
+        14000.0
+      ],
+      "base": [
+        950.0,
+        14000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1C",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        14000.0
+      ],
+      "p2": [
+        550.0,
+        14700.0
+      ],
+      "base": [
+        950.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_1C",
+      "insert": [
+        -890.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        -1370.0,
+        14680.0,
+        -410.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_1C",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_1D",
+      "status": "CONTINUOUS",
+      "insert": [
+        100.0,
+        20100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1D",
+      "axis_dir": "X",
+      "p1": [
+        -350.0,
+        19500.0
+      ],
+      "p2": [
+        0.0,
+        19500.0
+      ],
+      "base": [
+        0.0,
+        19100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1D",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        19500.0
+      ],
+      "p2": [
+        550.0,
+        19500.0
+      ],
+      "base": [
+        0.0,
+        19100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1D",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        19500.0
+      ],
+      "p2": [
+        550.0,
+        20000.0
+      ],
+      "base": [
+        950.0,
+        20000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_1D",
+      "axis_dir": "Y",
+      "p1": [
+        550.0,
+        20000.0
+      ],
+      "p2": [
+        550.0,
+        20700.0
+      ],
+      "base": [
+        950.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_1D",
+      "insert": [
+        -890.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        -1370.0,
+        20680.0,
+        -410.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_1D",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_1E",
+      "status": "CONTINUOUS",
+      "insert": [
+        200.0,
+        28200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1E",
+      "axis_dir": "X",
+      "p1": [
+        -300.0,
+        27700.0
+      ],
+      "p2": [
+        0.0,
+        27700.0
+      ],
+      "base": [
+        0.0,
+        27300.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1E",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        27700.0
+      ],
+      "p2": [
+        700.0,
+        27700.0
+      ],
+      "base": [
+        0.0,
+        27300.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1E",
+      "axis_dir": "Y",
+      "p1": [
+        700.0,
+        27700.0
+      ],
+      "p2": [
+        700.0,
+        28000.0
+      ],
+      "base": [
+        1100.0,
+        28000.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_1E",
+      "axis_dir": "Y",
+      "p1": [
+        700.0,
+        28000.0
+      ],
+      "p2": [
+        700.0,
+        28700.0
+      ],
+      "base": [
+        1100.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C1_1E",
+      "insert": [
+        -840.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        -1320.0,
+        28680.0,
+        -360.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C1_1E",
+        "TENCAUKIEN": "(1000x1000)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_2A",
+      "status": "CONTINUOUS",
+      "insert": [
+        7600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2A",
+      "axis_dir": "X",
+      "p1": [
+        7150.0,
+        700.0
+      ],
+      "p2": [
+        7500.0,
+        700.0
+      ],
+      "base": [
+        7500.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2A",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        700.0
+      ],
+      "p2": [
+        8050.0,
+        700.0
+      ],
+      "base": [
+        7500.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2A",
+      "axis_dir": "Y",
+      "p1": [
+        7150.0,
+        -500.0
+      ],
+      "p2": [
+        7150.0,
+        0.0
+      ],
+      "base": [
+        6750.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2A",
+      "axis_dir": "Y",
+      "p1": [
+        7150.0,
+        0.0
+      ],
+      "p2": [
+        7150.0,
+        700.0
+      ],
+      "base": [
+        6750.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_2A",
+      "insert": [
+        8590.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        8110.0,
+        -1000.0,
+        9070.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_2A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2B",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2B",
+      "axis_dir": "X",
+      "p1": [
+        6950.0,
+        7300.0
+      ],
+      "p2": [
+        7500.0,
+        7300.0
+      ],
+      "base": [
+        7500.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2B",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        7300.0
+      ],
+      "p2": [
+        8050.0,
+        7300.0
+      ],
+      "base": [
+        7500.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2B",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        7300.0
+      ],
+      "p2": [
+        6950.0,
+        8000.0
+      ],
+      "base": [
+        6550.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2B",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        8000.0
+      ],
+      "p2": [
+        6950.0,
+        8700.0
+      ],
+      "base": [
+        6550.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_2B",
+      "insert": [
+        8590.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        8110.0,
+        8680.0,
+        9070.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_2B",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2C",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2C",
+      "axis_dir": "X",
+      "p1": [
+        6950.0,
+        13300.0
+      ],
+      "p2": [
+        7500.0,
+        13300.0
+      ],
+      "base": [
+        7500.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2C",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        13300.0
+      ],
+      "p2": [
+        8050.0,
+        13300.0
+      ],
+      "base": [
+        7500.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2C",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        13300.0
+      ],
+      "p2": [
+        6950.0,
+        14000.0
+      ],
+      "base": [
+        6550.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2C",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        14000.0
+      ],
+      "p2": [
+        6950.0,
+        14700.0
+      ],
+      "base": [
+        6550.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_2C",
+      "insert": [
+        8590.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        8110.0,
+        14680.0,
+        9070.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_2C",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_2D",
+      "status": "CONTINUOUS",
+      "insert": [
+        7500.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2D",
+      "axis_dir": "X",
+      "p1": [
+        6950.0,
+        19300.0
+      ],
+      "p2": [
+        7500.0,
+        19300.0
+      ],
+      "base": [
+        7500.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2D",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        19300.0
+      ],
+      "p2": [
+        8050.0,
+        19300.0
+      ],
+      "base": [
+        7500.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2D",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        19300.0
+      ],
+      "p2": [
+        6950.0,
+        20000.0
+      ],
+      "base": [
+        6550.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_2D",
+      "axis_dir": "Y",
+      "p1": [
+        6950.0,
+        20000.0
+      ],
+      "p2": [
+        6950.0,
+        20700.0
+      ],
+      "base": [
+        6550.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_2D",
+      "insert": [
+        8590.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        8110.0,
+        20680.0,
+        9070.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_2D",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_2E",
+      "status": "CONTINUOUS",
+      "insert": [
+        7600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2E",
+      "axis_dir": "X",
+      "p1": [
+        7150.0,
+        27500.0
+      ],
+      "p2": [
+        7500.0,
+        27500.0
+      ],
+      "base": [
+        7500.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2E",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        27500.0
+      ],
+      "p2": [
+        8050.0,
+        27500.0
+      ],
+      "base": [
+        7500.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2E",
+      "axis_dir": "Y",
+      "p1": [
+        7150.0,
+        27500.0
+      ],
+      "p2": [
+        7150.0,
+        28000.0
+      ],
+      "base": [
+        6750.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_2E",
+      "axis_dir": "Y",
+      "p1": [
+        7150.0,
+        28000.0
+      ],
+      "p2": [
+        7150.0,
+        28700.0
+      ],
+      "base": [
+        6750.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_2E",
+      "insert": [
+        8590.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        8110.0,
+        28680.0,
+        9070.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_2E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_3A",
+      "status": "CONTINUOUS",
+      "insert": [
+        15100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3A",
+      "axis_dir": "X",
+      "p1": [
+        14650.0,
+        700.0
+      ],
+      "p2": [
+        15000.0,
+        700.0
+      ],
+      "base": [
+        15000.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3A",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        700.0
+      ],
+      "p2": [
+        15550.0,
+        700.0
+      ],
+      "base": [
+        15000.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3A",
+      "axis_dir": "Y",
+      "p1": [
+        14650.0,
+        -500.0
+      ],
+      "p2": [
+        14650.0,
+        0.0
+      ],
+      "base": [
+        14250.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3A",
+      "axis_dir": "Y",
+      "p1": [
+        14650.0,
+        0.0
+      ],
+      "p2": [
+        14650.0,
+        700.0
+      ],
+      "base": [
+        14250.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_3A",
+      "insert": [
+        16090.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        15610.0,
+        -1000.0,
+        16570.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_3A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3B",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3B",
+      "axis_dir": "X",
+      "p1": [
+        14450.0,
+        7300.0
+      ],
+      "p2": [
+        15000.0,
+        7300.0
+      ],
+      "base": [
+        15000.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3B",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        7300.0
+      ],
+      "p2": [
+        15550.0,
+        7300.0
+      ],
+      "base": [
+        15000.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3B",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        7300.0
+      ],
+      "p2": [
+        14450.0,
+        8000.0
+      ],
+      "base": [
+        14050.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3B",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        8000.0
+      ],
+      "p2": [
+        14450.0,
+        8700.0
+      ],
+      "base": [
+        14050.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_3B",
+      "insert": [
+        16090.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        15610.0,
+        8680.0,
+        16570.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_3B",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3C",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3C",
+      "axis_dir": "X",
+      "p1": [
+        14450.0,
+        13300.0
+      ],
+      "p2": [
+        15000.0,
+        13300.0
+      ],
+      "base": [
+        15000.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3C",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        13300.0
+      ],
+      "p2": [
+        15550.0,
+        13300.0
+      ],
+      "base": [
+        15000.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3C",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        13300.0
+      ],
+      "p2": [
+        14450.0,
+        14000.0
+      ],
+      "base": [
+        14050.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3C",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        14000.0
+      ],
+      "p2": [
+        14450.0,
+        14700.0
+      ],
+      "base": [
+        14050.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_3C",
+      "insert": [
+        16090.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        15610.0,
+        14680.0,
+        16570.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_3C",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_3D",
+      "status": "CONTINUOUS",
+      "insert": [
+        15000.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3D",
+      "axis_dir": "X",
+      "p1": [
+        14450.0,
+        19300.0
+      ],
+      "p2": [
+        15000.0,
+        19300.0
+      ],
+      "base": [
+        15000.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3D",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        19300.0
+      ],
+      "p2": [
+        15550.0,
+        19300.0
+      ],
+      "base": [
+        15000.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3D",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        19300.0
+      ],
+      "p2": [
+        14450.0,
+        20000.0
+      ],
+      "base": [
+        14050.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_3D",
+      "axis_dir": "Y",
+      "p1": [
+        14450.0,
+        20000.0
+      ],
+      "p2": [
+        14450.0,
+        20700.0
+      ],
+      "base": [
+        14050.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_3D",
+      "insert": [
+        16090.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        15610.0,
+        20680.0,
+        16570.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_3D",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_3E",
+      "status": "CONTINUOUS",
+      "insert": [
+        15100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3E",
+      "axis_dir": "X",
+      "p1": [
+        14650.0,
+        27500.0
+      ],
+      "p2": [
+        15000.0,
+        27500.0
+      ],
+      "base": [
+        15000.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3E",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        27500.0
+      ],
+      "p2": [
+        15550.0,
+        27500.0
+      ],
+      "base": [
+        15000.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3E",
+      "axis_dir": "Y",
+      "p1": [
+        14650.0,
+        27500.0
+      ],
+      "p2": [
+        14650.0,
+        28000.0
+      ],
+      "base": [
+        14250.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_3E",
+      "axis_dir": "Y",
+      "p1": [
+        14650.0,
+        28000.0
+      ],
+      "p2": [
+        14650.0,
+        28700.0
+      ],
+      "base": [
+        14250.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_3E",
+      "insert": [
+        16090.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        15610.0,
+        28680.0,
+        16570.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_3E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_4A",
+      "status": "CONTINUOUS",
+      "insert": [
+        22100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4A",
+      "axis_dir": "X",
+      "p1": [
+        21650.0,
+        700.0
+      ],
+      "p2": [
+        22000.0,
+        700.0
+      ],
+      "base": [
+        22000.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4A",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        700.0
+      ],
+      "p2": [
+        22550.0,
+        700.0
+      ],
+      "base": [
+        22000.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4A",
+      "axis_dir": "Y",
+      "p1": [
+        21650.0,
+        -500.0
+      ],
+      "p2": [
+        21650.0,
+        0.0
+      ],
+      "base": [
+        21250.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4A",
+      "axis_dir": "Y",
+      "p1": [
+        21650.0,
+        0.0
+      ],
+      "p2": [
+        21650.0,
+        700.0
+      ],
+      "base": [
+        21250.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_4A",
+      "insert": [
+        23090.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        22610.0,
+        -1000.0,
+        23570.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_4A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_4E",
+      "status": "CONTINUOUS",
+      "insert": [
+        22100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4E",
+      "axis_dir": "X",
+      "p1": [
+        21650.0,
+        27500.0
+      ],
+      "p2": [
+        22000.0,
+        27500.0
+      ],
+      "base": [
+        22000.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4E",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        27500.0
+      ],
+      "p2": [
+        22550.0,
+        27500.0
+      ],
+      "base": [
+        22000.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4E",
+      "axis_dir": "Y",
+      "p1": [
+        21650.0,
+        27500.0
+      ],
+      "p2": [
+        21650.0,
+        28000.0
+      ],
+      "base": [
+        21250.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_4E",
+      "axis_dir": "Y",
+      "p1": [
+        21650.0,
+        28000.0
+      ],
+      "p2": [
+        21650.0,
+        28700.0
+      ],
+      "base": [
+        21250.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_4E",
+      "insert": [
+        23090.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        22610.0,
+        28680.0,
+        23570.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_4E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_5A",
+      "status": "CONTINUOUS",
+      "insert": [
+        28600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5A",
+      "axis_dir": "X",
+      "p1": [
+        28150.0,
+        700.0
+      ],
+      "p2": [
+        28500.0,
+        700.0
+      ],
+      "base": [
+        28500.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5A",
+      "axis_dir": "X",
+      "p1": [
+        28500.0,
+        700.0
+      ],
+      "p2": [
+        29050.0,
+        700.0
+      ],
+      "base": [
+        28500.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5A",
+      "axis_dir": "Y",
+      "p1": [
+        28150.0,
+        -500.0
+      ],
+      "p2": [
+        28150.0,
+        0.0
+      ],
+      "base": [
+        27750.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5A",
+      "axis_dir": "Y",
+      "p1": [
+        28150.0,
+        0.0
+      ],
+      "p2": [
+        28150.0,
+        700.0
+      ],
+      "base": [
+        27750.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_5A",
+      "insert": [
+        29590.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        29110.0,
+        -1000.0,
+        30070.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_5A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_5E",
+      "status": "CONTINUOUS",
+      "insert": [
+        28600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5E",
+      "axis_dir": "X",
+      "p1": [
+        28150.0,
+        27500.0
+      ],
+      "p2": [
+        28500.0,
+        27500.0
+      ],
+      "base": [
+        28500.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5E",
+      "axis_dir": "X",
+      "p1": [
+        28500.0,
+        27500.0
+      ],
+      "p2": [
+        29050.0,
+        27500.0
+      ],
+      "base": [
+        28500.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5E",
+      "axis_dir": "Y",
+      "p1": [
+        28150.0,
+        27500.0
+      ],
+      "p2": [
+        28150.0,
+        28000.0
+      ],
+      "base": [
+        27750.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_5E",
+      "axis_dir": "Y",
+      "p1": [
+        28150.0,
+        28000.0
+      ],
+      "p2": [
+        28150.0,
+        28700.0
+      ],
+      "base": [
+        27750.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_5E",
+      "insert": [
+        29590.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        29110.0,
+        28680.0,
+        30070.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_5E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_6A",
+      "status": "CONTINUOUS",
+      "insert": [
+        35100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6A",
+      "axis_dir": "X",
+      "p1": [
+        34650.0,
+        700.0
+      ],
+      "p2": [
+        35000.0,
+        700.0
+      ],
+      "base": [
+        35000.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6A",
+      "axis_dir": "X",
+      "p1": [
+        35000.0,
+        700.0
+      ],
+      "p2": [
+        35550.0,
+        700.0
+      ],
+      "base": [
+        35000.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6A",
+      "axis_dir": "Y",
+      "p1": [
+        34650.0,
+        -500.0
+      ],
+      "p2": [
+        34650.0,
+        0.0
+      ],
+      "base": [
+        34250.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6A",
+      "axis_dir": "Y",
+      "p1": [
+        34650.0,
+        0.0
+      ],
+      "p2": [
+        34650.0,
+        700.0
+      ],
+      "base": [
+        34250.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_6A",
+      "insert": [
+        36090.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        35610.0,
+        -1000.0,
+        36570.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_6A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_6E",
+      "status": "CONTINUOUS",
+      "insert": [
+        35100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6E",
+      "axis_dir": "X",
+      "p1": [
+        34650.0,
+        27500.0
+      ],
+      "p2": [
+        35000.0,
+        27500.0
+      ],
+      "base": [
+        35000.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6E",
+      "axis_dir": "X",
+      "p1": [
+        35000.0,
+        27500.0
+      ],
+      "p2": [
+        35550.0,
+        27500.0
+      ],
+      "base": [
+        35000.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6E",
+      "axis_dir": "Y",
+      "p1": [
+        34650.0,
+        27500.0
+      ],
+      "p2": [
+        34650.0,
+        28000.0
+      ],
+      "base": [
+        34250.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_6E",
+      "axis_dir": "Y",
+      "p1": [
+        34650.0,
+        28000.0
+      ],
+      "p2": [
+        34650.0,
+        28700.0
+      ],
+      "base": [
+        34250.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_6E",
+      "insert": [
+        36090.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        35610.0,
+        28680.0,
+        36570.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_6E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_7A",
+      "status": "CONTINUOUS",
+      "insert": [
+        42100.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7A",
+      "axis_dir": "X",
+      "p1": [
+        41650.0,
+        700.0
+      ],
+      "p2": [
+        42000.0,
+        700.0
+      ],
+      "base": [
+        42000.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7A",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        700.0
+      ],
+      "p2": [
+        42550.0,
+        700.0
+      ],
+      "base": [
+        42000.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7A",
+      "axis_dir": "Y",
+      "p1": [
+        41650.0,
+        -500.0
+      ],
+      "p2": [
+        41650.0,
+        0.0
+      ],
+      "base": [
+        41250.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7A",
+      "axis_dir": "Y",
+      "p1": [
+        41650.0,
+        0.0
+      ],
+      "p2": [
+        41650.0,
+        700.0
+      ],
+      "base": [
+        41250.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_7A",
+      "insert": [
+        43090.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        42610.0,
+        -1000.0,
+        43570.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_7A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7B",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7B",
+      "axis_dir": "X",
+      "p1": [
+        41450.0,
+        7300.0
+      ],
+      "p2": [
+        42000.0,
+        7300.0
+      ],
+      "base": [
+        42000.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7B",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        7300.0
+      ],
+      "p2": [
+        42550.0,
+        7300.0
+      ],
+      "base": [
+        42000.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7B",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        7300.0
+      ],
+      "p2": [
+        41450.0,
+        8000.0
+      ],
+      "base": [
+        41050.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7B",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        8000.0
+      ],
+      "p2": [
+        41450.0,
+        8700.0
+      ],
+      "base": [
+        41050.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_7B",
+      "insert": [
+        43090.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        42610.0,
+        8680.0,
+        43570.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_7B",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7C",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7C",
+      "axis_dir": "X",
+      "p1": [
+        41450.0,
+        13300.0
+      ],
+      "p2": [
+        42000.0,
+        13300.0
+      ],
+      "base": [
+        42000.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7C",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        13300.0
+      ],
+      "p2": [
+        42550.0,
+        13300.0
+      ],
+      "base": [
+        42000.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7C",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        13300.0
+      ],
+      "p2": [
+        41450.0,
+        14000.0
+      ],
+      "base": [
+        41050.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7C",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        14000.0
+      ],
+      "p2": [
+        41450.0,
+        14700.0
+      ],
+      "base": [
+        41050.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_7C",
+      "insert": [
+        43090.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        42610.0,
+        14680.0,
+        43570.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_7C",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_7D",
+      "status": "CONTINUOUS",
+      "insert": [
+        42000.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7D",
+      "axis_dir": "X",
+      "p1": [
+        41450.0,
+        19300.0
+      ],
+      "p2": [
+        42000.0,
+        19300.0
+      ],
+      "base": [
+        42000.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7D",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        19300.0
+      ],
+      "p2": [
+        42550.0,
+        19300.0
+      ],
+      "base": [
+        42000.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7D",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        19300.0
+      ],
+      "p2": [
+        41450.0,
+        20000.0
+      ],
+      "base": [
+        41050.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_7D",
+      "axis_dir": "Y",
+      "p1": [
+        41450.0,
+        20000.0
+      ],
+      "p2": [
+        41450.0,
+        20700.0
+      ],
+      "base": [
+        41050.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_7D",
+      "insert": [
+        43090.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        42610.0,
+        20680.0,
+        43570.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_7D",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_7E",
+      "status": "CONTINUOUS",
+      "insert": [
+        42100.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7E",
+      "axis_dir": "X",
+      "p1": [
+        41650.0,
+        27500.0
+      ],
+      "p2": [
+        42000.0,
+        27500.0
+      ],
+      "base": [
+        42000.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7E",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        27500.0
+      ],
+      "p2": [
+        42550.0,
+        27500.0
+      ],
+      "base": [
+        42000.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7E",
+      "axis_dir": "Y",
+      "p1": [
+        41650.0,
+        27500.0
+      ],
+      "p2": [
+        41650.0,
+        28000.0
+      ],
+      "base": [
+        41250.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_7E",
+      "axis_dir": "Y",
+      "p1": [
+        41650.0,
+        28000.0
+      ],
+      "p2": [
+        41650.0,
+        28700.0
+      ],
+      "base": [
+        41250.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_7E",
+      "insert": [
+        43090.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        42610.0,
+        28680.0,
+        43570.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_7E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_8A",
+      "status": "CONTINUOUS",
+      "insert": [
+        49600.0,
+        100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8A",
+      "axis_dir": "X",
+      "p1": [
+        49150.0,
+        700.0
+      ],
+      "p2": [
+        49500.0,
+        700.0
+      ],
+      "base": [
+        49500.0,
+        1100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8A",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        700.0
+      ],
+      "p2": [
+        50050.0,
+        700.0
+      ],
+      "base": [
+        49500.0,
+        1100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8A",
+      "axis_dir": "Y",
+      "p1": [
+        49150.0,
+        -500.0
+      ],
+      "p2": [
+        49150.0,
+        0.0
+      ],
+      "base": [
+        48750.0,
+        0.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8A",
+      "axis_dir": "Y",
+      "p1": [
+        49150.0,
+        0.0
+      ],
+      "p2": [
+        49150.0,
+        700.0
+      ],
+      "base": [
+        48750.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_8A",
+      "insert": [
+        50590.0,
+        -740.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        50110.0,
+        -1000.0,
+        51070.0,
+        -480.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_8A",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8B",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        8000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8B",
+      "axis_dir": "X",
+      "p1": [
+        48950.0,
+        7300.0
+      ],
+      "p2": [
+        49500.0,
+        7300.0
+      ],
+      "base": [
+        49500.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8B",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        7300.0
+      ],
+      "p2": [
+        50050.0,
+        7300.0
+      ],
+      "base": [
+        49500.0,
+        6900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8B",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        7300.0
+      ],
+      "p2": [
+        48950.0,
+        8000.0
+      ],
+      "base": [
+        48550.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8B",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        8000.0
+      ],
+      "p2": [
+        48950.0,
+        8700.0
+      ],
+      "base": [
+        48550.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_8B",
+      "insert": [
+        50590.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        50110.0,
+        8680.0,
+        51070.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_8B",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8C",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        14000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8C",
+      "axis_dir": "X",
+      "p1": [
+        48950.0,
+        13300.0
+      ],
+      "p2": [
+        49500.0,
+        13300.0
+      ],
+      "base": [
+        49500.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8C",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        13300.0
+      ],
+      "p2": [
+        50050.0,
+        13300.0
+      ],
+      "base": [
+        49500.0,
+        12900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8C",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        13300.0
+      ],
+      "p2": [
+        48950.0,
+        14000.0
+      ],
+      "base": [
+        48550.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8C",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        14000.0
+      ],
+      "p2": [
+        48950.0,
+        14700.0
+      ],
+      "base": [
+        48550.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_8C",
+      "insert": [
+        50590.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        50110.0,
+        14680.0,
+        51070.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_8C",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C3_8D",
+      "status": "CONTINUOUS",
+      "insert": [
+        49500.0,
+        20000.0
+      ],
+      "xscale": 1100.0,
+      "yscale": 1400.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8D",
+      "axis_dir": "X",
+      "p1": [
+        48950.0,
+        19300.0
+      ],
+      "p2": [
+        49500.0,
+        19300.0
+      ],
+      "base": [
+        49500.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8D",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        19300.0
+      ],
+      "p2": [
+        50050.0,
+        19300.0
+      ],
+      "base": [
+        49500.0,
+        18900.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8D",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        19300.0
+      ],
+      "p2": [
+        48950.0,
+        20000.0
+      ],
+      "base": [
+        48550.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C3_8D",
+      "axis_dir": "Y",
+      "p1": [
+        48950.0,
+        20000.0
+      ],
+      "p2": [
+        48950.0,
+        20700.0
+      ],
+      "base": [
+        48550.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C3_8D",
+      "insert": [
+        50590.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        50110.0,
+        20680.0,
+        51070.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C3_8D",
+        "TENCAUKIEN": "(1100x1400)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_8E",
+      "status": "CONTINUOUS",
+      "insert": [
+        49600.0,
+        28100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8E",
+      "axis_dir": "X",
+      "p1": [
+        49150.0,
+        27500.0
+      ],
+      "p2": [
+        49500.0,
+        27500.0
+      ],
+      "base": [
+        49500.0,
+        27100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8E",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        27500.0
+      ],
+      "p2": [
+        50050.0,
+        27500.0
+      ],
+      "base": [
+        49500.0,
+        27100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8E",
+      "axis_dir": "Y",
+      "p1": [
+        49150.0,
+        27500.0
+      ],
+      "p2": [
+        49150.0,
+        28000.0
+      ],
+      "base": [
+        48750.0,
+        28000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_8E",
+      "axis_dir": "Y",
+      "p1": [
+        49150.0,
+        28000.0
+      ],
+      "p2": [
+        49150.0,
+        28700.0
+      ],
+      "base": [
+        48750.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_8E",
+      "insert": [
+        50590.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        50110.0,
+        28680.0,
+        51070.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_8E",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C1_9A",
+      "status": "CONTINUOUS",
+      "insert": [
+        57200.0,
+        200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9A",
+      "axis_dir": "X",
+      "p1": [
+        56700.0,
+        700.0
+      ],
+      "p2": [
+        57000.0,
+        700.0
+      ],
+      "base": [
+        57000.0,
+        1100.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9A",
+      "axis_dir": "X",
+      "p1": [
+        57000.0,
+        700.0
+      ],
+      "p2": [
+        57700.0,
+        700.0
+      ],
+      "base": [
+        57000.0,
+        1100.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9A",
+      "axis_dir": "Y",
+      "p1": [
+        56700.0,
+        -300.0
+      ],
+      "p2": [
+        56700.0,
+        0.0
+      ],
+      "base": [
+        56300.0,
+        0.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9A",
+      "axis_dir": "Y",
+      "p1": [
+        56700.0,
+        0.0
+      ],
+      "p2": [
+        56700.0,
+        700.0
+      ],
+      "base": [
+        56300.0,
+        0.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C1_9A",
+      "insert": [
+        58240.0,
+        -540.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        57760.0,
+        -800.0,
+        58720.0,
+        -280.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C1_9A",
+        "TENCAUKIEN": "(1000x1000)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9B",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        8100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9B",
+      "axis_dir": "X",
+      "p1": [
+        56650.0,
+        7500.0
+      ],
+      "p2": [
+        57000.0,
+        7500.0
+      ],
+      "base": [
+        57000.0,
+        7100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9B",
+      "axis_dir": "X",
+      "p1": [
+        57000.0,
+        7500.0
+      ],
+      "p2": [
+        57550.0,
+        7500.0
+      ],
+      "base": [
+        57000.0,
+        7100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9B",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        7500.0
+      ],
+      "p2": [
+        56650.0,
+        8000.0
+      ],
+      "base": [
+        56250.0,
+        8000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9B",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        8000.0
+      ],
+      "p2": [
+        56650.0,
+        8700.0
+      ],
+      "base": [
+        56250.0,
+        8000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_9B",
+      "insert": [
+        58090.0,
+        8940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        57610.0,
+        8680.0,
+        58570.0,
+        9200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_9B",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9C",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        14100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9C",
+      "axis_dir": "X",
+      "p1": [
+        56650.0,
+        13500.0
+      ],
+      "p2": [
+        57000.0,
+        13500.0
+      ],
+      "base": [
+        57000.0,
+        13100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9C",
+      "axis_dir": "X",
+      "p1": [
+        57000.0,
+        13500.0
+      ],
+      "p2": [
+        57550.0,
+        13500.0
+      ],
+      "base": [
+        57000.0,
+        13100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9C",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        13500.0
+      ],
+      "p2": [
+        56650.0,
+        14000.0
+      ],
+      "base": [
+        56250.0,
+        14000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9C",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        14000.0
+      ],
+      "p2": [
+        56650.0,
+        14700.0
+      ],
+      "base": [
+        56250.0,
+        14000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_9C",
+      "insert": [
+        58090.0,
+        14940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        57610.0,
+        14680.0,
+        58570.0,
+        15200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_9C",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "layer": "DCE_Cot",
+      "id": "C2_9D",
+      "status": "CONTINUOUS",
+      "insert": [
+        57100.0,
+        20100.0
+      ],
+      "xscale": 900.0,
+      "yscale": 1200.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9D",
+      "axis_dir": "X",
+      "p1": [
+        56650.0,
+        19500.0
+      ],
+      "p2": [
+        57000.0,
+        19500.0
+      ],
+      "base": [
+        57000.0,
+        19100.0
+      ],
+      "actual_measurement": 350.0,
+      "dim_text": "350"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9D",
+      "axis_dir": "X",
+      "p1": [
+        57000.0,
+        19500.0
+      ],
+      "p2": [
+        57550.0,
+        19500.0
+      ],
+      "base": [
+        57000.0,
+        19100.0
+      ],
+      "actual_measurement": 550.0,
+      "dim_text": "550"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9D",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        19500.0
+      ],
+      "p2": [
+        56650.0,
+        20000.0
+      ],
+      "base": [
+        56250.0,
+        20000.0
+      ],
+      "actual_measurement": 500.0,
+      "dim_text": "500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C2_9D",
+      "axis_dir": "Y",
+      "p1": [
+        56650.0,
+        20000.0
+      ],
+      "p2": [
+        56650.0,
+        20700.0
+      ],
+      "base": [
+        56250.0,
+        20000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C2_9D",
+      "insert": [
+        58090.0,
+        20940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        57610.0,
+        20680.0,
+        58570.0,
+        21200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C2_9D",
+        "TENCAUKIEN": "(900x1200)"
+      }
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Dung",
+      "layer": "DCE_Cot",
+      "id": "C1_9E",
+      "status": "STOPPED",
+      "insert": [
+        57200.0,
+        28200.0
+      ],
+      "xscale": 1000.0,
+      "yscale": 1000.0,
+      "rotation": 0.0
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9E",
+      "axis_dir": "X",
+      "p1": [
+        56700.0,
+        27700.0
+      ],
+      "p2": [
+        57000.0,
+        27700.0
+      ],
+      "base": [
+        57000.0,
+        27300.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9E",
+      "axis_dir": "X",
+      "p1": [
+        57000.0,
+        27700.0
+      ],
+      "p2": [
+        57700.0,
+        27700.0
+      ],
+      "base": [
+        57000.0,
+        27300.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9E",
+      "axis_dir": "Y",
+      "p1": [
+        56700.0,
+        27700.0
+      ],
+      "p2": [
+        56700.0,
+        28000.0
+      ],
+      "base": [
+        56300.0,
+        28000.0
+      ],
+      "actual_measurement": 300.0,
+      "dim_text": "300"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Setout",
+      "dimstyle": "DCE_DIM_COT_100",
+      "target_id": "C1_9E",
+      "axis_dir": "Y",
+      "p1": [
+        56700.0,
+        28000.0
+      ],
+      "p2": [
+        56700.0,
+        28700.0
+      ],
+      "base": [
+        56300.0,
+        28000.0
+      ],
+      "actual_measurement": 700.0,
+      "dim_text": "700"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TenCauKien",
+      "layer": "DCE_Name",
+      "id": "C1_9E",
+      "insert": [
+        58240.0,
+        28940.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "rotation": 0.0,
+      "bbox": [
+        57760.0,
+        28680.0,
+        58720.0,
+        29200.0
+      ],
+      "attribs": {
+        "SOCAUKIEN": "C1_9E",
+        "TENCAUKIEN": "(1000x1000)"
+      }
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        7500.0,
+        0.0
+      ],
+      "base": [
+        3750.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        7500.0,
+        0.0
+      ],
+      "p2": [
+        15000.0,
+        0.0
+      ],
+      "base": [
+        11250.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        15000.0,
+        0.0
+      ],
+      "p2": [
+        22000.0,
+        0.0
+      ],
+      "base": [
+        18500.0,
+        -1800.0
+      ],
+      "actual_measurement": 7000.0,
+      "dim_text": "7000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        22000.0,
+        0.0
+      ],
+      "p2": [
+        28500.0,
+        0.0
+      ],
+      "base": [
+        25250.0,
+        -1800.0
+      ],
+      "actual_measurement": 6500.0,
+      "dim_text": "6500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        28500.0,
+        0.0
+      ],
+      "p2": [
+        35000.0,
+        0.0
+      ],
+      "base": [
+        31750.0,
+        -1800.0
+      ],
+      "actual_measurement": 6500.0,
+      "dim_text": "6500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        35000.0,
+        0.0
+      ],
+      "p2": [
+        42000.0,
+        0.0
+      ],
+      "base": [
+        38500.0,
+        -1800.0
+      ],
+      "actual_measurement": 7000.0,
+      "dim_text": "7000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        42000.0,
+        0.0
+      ],
+      "p2": [
+        49500.0,
+        0.0
+      ],
+      "base": [
+        45750.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X",
+      "p1": [
+        49500.0,
+        0.0
+      ],
+      "p2": [
+        57000.0,
+        0.0
+      ],
+      "base": [
+        53250.0,
+        -1800.0
+      ],
+      "actual_measurement": 7500.0,
+      "dim_text": "7500"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        0.0,
+        8000.0
+      ],
+      "base": [
+        -1800.0,
+        4000.0
+      ],
+      "actual_measurement": 8000.0,
+      "dim_text": "8000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        8000.0
+      ],
+      "p2": [
+        0.0,
+        14000.0
+      ],
+      "base": [
+        -1800.0,
+        11000.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        14000.0
+      ],
+      "p2": [
+        0.0,
+        20000.0
+      ],
+      "base": [
+        -1800.0,
+        17000.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        20000.0
+      ],
+      "p2": [
+        0.0,
+        28000.0
+      ],
+      "base": [
+        -1800.0,
+        24000.0
+      ],
+      "actual_measurement": 8000.0,
+      "dim_text": "8000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_2_OVERALL",
+      "axis_dir": "X",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        57000.0,
+        0.0
+      ],
+      "base": [
+        28500.0,
+        -3000.0
+      ],
+      "actual_measurement": 57000.0,
+      "dim_text": "57000"
+    },
+    {
+      "type": "DIMENSION",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_100",
+      "tier": "TIER_2_OVERALL",
+      "axis_dir": "Y",
+      "p1": [
+        0.0,
+        0.0
+      ],
+      "p2": [
+        0.0,
+        28000.0
+      ],
+      "base": [
+        -3000.0,
+        14000.0
+      ],
+      "actual_measurement": 28000.0,
+      "dim_text": "28000"
+    },
+    {
+      "type": "SCHEDULE_TABLE",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        59450.0,
+        37130.0,
+        75250.0,
+        42500.0
+      ],
+      "columns_headers": [
+        "STT",
+        "MÃ CK",
+        "TIẾT DIỆN",
+        "BÊ TÔNG",
+        "THÉP DỌC",
+        "THÉP ĐAI",
+        "SL"
+      ],
+      "col_widths": [
+        1278.3,
+        4101.6,
+        2478.7,
+        2041.5,
+        2260.1,
+        2361.5,
+        1278.3
+      ],
+      "rows": [
+        [
+          "1",
+          "C1A, C11A, C1D, C11D",
+          "700x1000",
+          "B35",
+          "20 Ø25",
+          "Ø10a100/200",
+          "4"
+        ],
+        [
+          "2",
+          "C2A, C10A, C2D, C10D",
+          "600x2000",
+          "B35",
+          "28 Ø28",
+          "Ø10a100/200",
+          "4"
+        ],
+        [
+          "3",
+          "C3A..C9A, C3D..C9D",
+          "600x2200",
+          "B35",
+          "32 Ø28",
+          "Ø10a100/200",
+          "10"
+        ],
+        [
+          "4",
+          "C1B, C11B, C1C, C11C",
+          "800x1800",
+          "B35",
+          "32 Ø28",
+          "Ø10a100/200",
+          "4"
+        ],
+        [
+          "5",
+          "C2B, C10B, C2C, C10C",
+          "800x2400",
+          "B35",
+          "36 Ø32",
+          "Ø10a100/200",
+          "4"
+        ],
+        [
+          "6",
+          "W1, W2, W3 (Lõi cứng)",
+          "tw=400/500",
+          "B35",
+          "2L Ø18a150",
+          "Ø10a150",
+          "3"
+        ]
+      ],
+      "cell_width_factors": [
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ],
+        [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ]
+      ],
+      "row_count": 6
+    },
+    {
+      "type": "LEGEND_BOX",
+      "block": "DCE_Legend_Block",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        59450.0,
+        25030.0,
+        75250.0,
+        36530.0
+      ],
+      "notes_lines": [
+        "GHI CHÚ KỸ THUẬT & CHỈ DẪN THI CÔNG (TCVN 5574:2018 & TCVN 9386:2025):",
+        "1. Bê tông: Cột, Vách, Đài móng cấp bền B35 (Rb=19.5 MPa); Dầm, Sàn cấp bền B30 (Rb=17.0 MPa).",
+        "2. Cốt thép dọc chịu lực d >= 10mm dùng thép CB500-V (Rs=435 MPa); thép đai dùng CB240-T / CB400-V.",
+        "3. Chiều dày sàn điển hình hs = 150mm; sàn khu vệ sinh và logia S2 (hs = 120mm) hạ âm đồng nhất -0.050m.",
+        "4. Lớp bê tông bảo vệ: Cột/Vách a_bv = 35mm; Dầm a_bv = 25mm; Sàn a_bv = 20mm; Đài móng a_bv = 50mm.",
+        "5. Tải trọng sàn điển hình: Tĩnh tải hoàn thiện HTT = 1.5 kN/m2; Hoạt tải sử dụng HT = 5.0 kN/m2.",
+        "6. Độ võng giới hạn sàn f_max <= L/250; bề rộng khe nứt giới hạn a_crc <= 0.3mm (môi trường trong nhà).",
+        "7. Định vị trắc đạc búng mực tim trục và mép cột/vách tuân thủ nghiêm ngặt chuỗi kích thước DCE_Setout."
+      ],
+      "legend_items": [
+        "CỘT ĐI TIẾP LÊN TẦNG TRÊN (DCE_Cot_Block)",
+        "CỘT DỪNG TẠI TẦNG HIỆN TẠI (DCE_Cot_Dung)"
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_TitleBlock_A1",
+      "layer": "DCE_Frame",
+      "insert": [
+        -7500.0,
+        -15500.0
+      ],
+      "scale": [
+        100.0,
+        100.0
+      ],
+      "layout_style": "SINGLE_FULL_VIEWPORT",
+      "outer_bbox": [
+        -7500.0,
+        -15500.0,
+        76600.0,
+        43900.0
+      ],
+      "inner_bbox": [
+        -5000.0,
+        -14500.0,
+        75600.0,
+        42900.0
+      ],
+      "sidebar_divider_x": 59100.0,
+      "title_block_bbox": [
+        59100.0,
+        -14500.0,
+        75600.0,
+        -9000.0
+      ],
+      "title_band_bbox": [
+        -5000.0,
+        -14500.0,
+        58700.0,
+        -12100.0
+      ],
+      "drawing_title_pos": [
+        28500.0,
+        -13300.0
+      ],
+      "attribs": {
+        "CHU_DAU_TU": "TỔNG CÔNG TY ĐẦU TƯ PHÁT TRIỂN ĐÔ THỊ",
+        "TEN_DU_AN": "THÁP CAO ỐC VĂN PHÒNG & THƯƠNG MẠI 40 TẦNG + 2 HẦM",
+        "HANG_MUC": "KẾT CẤU PHẦN THÂN (H ~ 135.0m)",
+        "DIA_DIEM": "TP. HỒ CHÍ MINH",
+        "DON_VI_TVTK": "DCE PRO STRUCTURAL PARTNERS",
+        "CHU_NHIEM": "TS.KS. NGUYỄN VĂN A",
+        "CHU_TRI_KC": "KS. NGUYỄN TIẾN ĐỨC",
+        "NGUOI_THIET_KE": "KS. LÊ THÀNH LÂM",
+        "KIEM_TRA": "KS. PHẠM LƯU PHÚC",
+        "TEN_BAN_VE": "MẶT BẰNG ĐỊNH VỊ CỘT - VÁCH TẦNG ĐIỂN HÌNH",
+        "TY_LE": "1/100",
+        "KY_HIEU_BV": "KC-02"
+      }
+    }
+  ],
+  "provenance": {
+    "dxf_sha256": "0629cbb328f3fb480bf182a28132e2c635e797f9b1a7fa2ac015376ce83c42ae",
+    "schema_version": "1.0",
+    "generator": "DCEProCADPlanEngineV4"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_Goc_ChuaNeChu.dxf": {
+    "sha256": "5d3f048e513b7eb0e8ce07aab85163134fa3df23763e451b7476b3670957801a",
+    "bytes": 2146567,
+    "mtime_ns": 1794628182825000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dxf": {
+    "sha256": "d393d359cdb2c941aa1ea0bde4241216c406a409802d620d613239af09153c9e",
+    "bytes": 2153315,
+    "mtime_ns": 1794630522820000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_Goc_ChuaNeChu.dxf": {
+    "sha256": "c7c08db4a002fcf651f3c3e10e324cf556840b1a90a9115184448e99acbf8ab1",
+    "bytes": 2186843,
+    "mtime_ns": 1794628189886000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dxf": {
+    "sha256": "01a0293abc275dfe896fee4ff5d357bb40fa91ce44935fc9acd157ec5236bf8d",
+    "bytes": 2189371,
+    "mtime_ns": 1794630527289000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_before.png": {
+    "sha256": "d525029d28df712d7983b00c92de13cbde83acfe18a58ee65bfe69fea73868a4",
+    "bytes": 385875,
+    "mtime_ns": 1794628282384000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_after.png": {
+    "sha256": "b989eca2f61b14bce652641087303d3cacdb9869e2cf9b88ba0afb4efc98d96c",
+    "bytes": 386206,
+    "mtime_ns": 1794628286116000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_before.png": {
+    "sha256": "ddabe9c43d9e0c3221b10ac58e30931a2db4144f613e1b9417582b58ae6f99d2",
+    "bytes": 682708,
+    "mtime_ns": 1794628291012000000
+  },
+  "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_after.png": {
+    "sha256": "2030619e231dd67bfb0d63af6703af6dc1207fed386a9b129d1f40a2615d768a",
+    "bytes": 657036,
+    "mtime_ns": 1794628295933000000
+  },
+  "G:\\My Drive\\Google AI Studio\\.agents\\tools\\cad_collision_solver.py": {
+    "sha256": "c31b4a4227deb2785fa43a5c5bf5d51912c4f96bcd2a74d54efbb6fa979c0215",
+    "bytes": 23533,
+    "mtime_ns": 1794630517704000000
+  },
+  "G:\\My Drive\\Google AI Studio\\.agents\\tools\\cad_scene_index.py": {
+    "sha256": "05f4ff1bcc2004a2972318540843793479a421d1246bc6b135d2c8d377bd5ff0",
+    "bytes": 14196,
+    "mtime_ns": 1794627891899000000
+  },
+  "G:\\My Drive\\Google AI Studio\\.agents\\skills\\Technical_Illustrator\\cad_integration\\cad_plan_engine.py": {
+    "sha256": "a7812d8ae4a85588c87908af71553b6b165076b6bb37a91aa29d35fb947ed631",
+    "bytes": 80958,
+    "mtime_ns": 1794630271972000000
+  },
+  "G:\\My Drive\\Google AI Studio\\.agents\\tests\\test_cad_collision_solver.py": {
+    "sha256": "6cb906da89874f3fc8b96ff78763b8b0cb612a43f81489343184768b42e112d7",
+    "bytes": 23184,
+    "mtime_ns": 1794630583425000000
+  },
+  "G:\\My Drive\\Google AI Studio\\.agents\\skills\\SKILL_VERIFY\\scripts\\dce_cad_compliance_checker.py": {
+    "sha256": "d887b472b653cc8fc29538612ae1000bc744735115719bf31dd0af9b86ffe6bc",
+    "bytes": 14791,
+    "mtime_ns": 1794369112423000000
+  }
+}

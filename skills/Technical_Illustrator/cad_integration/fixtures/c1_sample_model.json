@@ -1,0 +1,1037 @@
+{
+  "_comment": "TEST FIXTURE DATA FOR CLAUDE C1 INTEGRATION - NOT FOR ACTUAL CONSTRUCTION USE",
+  "project_name": "DCE_V6_C1_INTEGRATION_TEST_MODEL",
+  "version": "6.0.0",
+  "L_total": 12.0,
+  "B_total": 10.0,
+  "grid_x": {
+    "1": 0.0,
+    "2": 4.0,
+    "3": 8.0,
+    "4": 12.0
+  },
+  "grid_y": {
+    "A": 0.0,
+    "B": 5.0,
+    "C": 10.0
+  },
+  "columns": [
+    {
+      "element_id": "COL_C1_AXIS_1A",
+      "name": "C1",
+      "x": 0.0,
+      "y": 0.0,
+      "bx": 0.2,
+      "by": 0.3,
+      "size": "200x300",
+      "conc": "B30",
+      "thep_do": "6D18",
+      "thep_dai": "d6a100/200",
+      "status": "CONTINUOUS",
+      "floor_id": "TANG_2",
+      "detail_ref": {
+        "sheet_number": "KC.08",
+        "drawing_id": "DETAIL_COL_C1",
+        "target_exists": true
+      },
+      "mark": "C1",
+      "location": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 300,
+        "concrete_grade": "B30",
+        "rebar_long": "6D18",
+        "stirrup": "d6a100/200"
+      },
+      "geometry_refs": [
+        "ENT_COL_1A_POLY"
+      ],
+      "tag_refs": [
+        "TAG_COL_1A_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_COL_ROW_01"
+      ]
+    },
+    {
+      "element_id": "COL_C2_AXIS_2B",
+      "name": "C2",
+      "x": 4.0,
+      "y": 5.0,
+      "bx": 0.2,
+      "by": 0.2,
+      "size": "200x200",
+      "conc": "B25",
+      "thep_do": "4D16",
+      "thep_dai": "d6a100/150",
+      "status": "STOPPED",
+      "floor_id": "TANG_2",
+      "detail_ref": {
+        "sheet_number": "KC.08",
+        "drawing_id": "DETAIL_COL_C2",
+        "target_exists": true
+      },
+      "mark": "C2",
+      "location": {
+        "x": 4000.0,
+        "y": 5000.0
+      },
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 200,
+        "concrete_grade": "B25",
+        "rebar_long": "4D16",
+        "stirrup": "d6a100/150"
+      },
+      "geometry_refs": [
+        "ENT_COL_2B_POLY"
+      ],
+      "tag_refs": [
+        "TAG_COL_2B_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_COL_ROW_02"
+      ]
+    }
+  ],
+  "shear_walls": [],
+  "beams_x": [
+    {
+      "element_id": "BEAM_D1A_SPAN1_LVL2",
+      "name": "D1A",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 0.0,
+      "y0": 0.0,
+      "x1": 4.0,
+      "y1": 0.0,
+      "orientation": "X_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D20",
+      "rebar_bot": "3D20",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D1A_SPAN2_LVL2",
+      "name": "D1A",
+      "span_id": "SPAN_2",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 4.0,
+      "y0": 0.0,
+      "x1": 8.0,
+      "y1": 0.0,
+      "orientation": "X_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D20",
+      "rebar_bot": "3D20",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    }
+  ],
+  "beams_y": [
+    {
+      "element_id": "BEAM_D2_Y_AXIS_LVL2",
+      "name": "D2",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D22",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 0.0,
+      "y0": 0.0,
+      "x1": 0.0,
+      "y1": 5.0,
+      "orientation": "Y_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D22",
+      "rebar_bot": "3D22",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.24",
+        "drawing_id": "DETAIL_BEAM_D2",
+        "target_exists": true
+      }
+    }
+  ],
+  "secondary_beams": [
+    {
+      "element_id": "BEAM_DSKEW_LVL2",
+      "name": "DX1",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_SKEW_200x350",
+      "size": "200x350",
+      "b": 0.2,
+      "h": 0.35,
+      "x0": 8.0,
+      "y0": 0.0,
+      "x1": 12.0,
+      "y1": 4.0,
+      "orientation": "SKEW_45DEG",
+      "angle_deg": 45.0,
+      "rebar_top": "2D18+1D16",
+      "rebar_bot": "3D18",
+      "stirrup": "d6a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.25",
+        "drawing_id": "DETAIL_BEAM_DX1",
+        "target_exists": true
+      }
+    }
+  ],
+  "main_beams": [
+    {
+      "element_id": "BEAM_D1A_SPAN1_LVL2",
+      "name": "D1A",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 0.0,
+      "y0": 0.0,
+      "x1": 4.0,
+      "y1": 0.0,
+      "orientation": "X_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D20",
+      "rebar_bot": "3D20",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D1A_SPAN2_LVL2",
+      "name": "D1A",
+      "span_id": "SPAN_2",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 4.0,
+      "y0": 0.0,
+      "x1": 8.0,
+      "y1": 0.0,
+      "orientation": "X_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D20",
+      "rebar_bot": "3D20",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D2_Y_AXIS_LVL2",
+      "name": "D2",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D22",
+      "size": "200x400",
+      "b": 0.2,
+      "h": 0.4,
+      "x0": 0.0,
+      "y0": 0.0,
+      "x1": 0.0,
+      "y1": 5.0,
+      "orientation": "Y_AXIS",
+      "angle_deg": 0.0,
+      "rebar_top": "3D22",
+      "rebar_bot": "3D22",
+      "stirrup": "d8a100/150",
+      "detail_ref": {
+        "sheet_number": "KC.24",
+        "drawing_id": "DETAIL_BEAM_D2",
+        "target_exists": true
+      }
+    }
+  ],
+  "slab_tags": [
+    {
+      "element_id": "SLAB_S1_MAIN_LVL2",
+      "mark": "S1",
+      "x": 2.8,
+      "y": 3.0,
+      "label": "S1 (h=120)",
+      "type": "standard",
+      "thickness_mm": 120,
+      "level_m": 3.8,
+      "panel_mm": [
+        0.0,
+        0.0,
+        4.0,
+        5.0
+      ],
+      "panel_bounds_mm": [
+        0.0,
+        0.0,
+        4000.0,
+        5000.0
+      ],
+      "openings_mm": [
+        [
+          1000.0,
+          1000.0,
+          1800.0,
+          2000.0
+        ]
+      ]
+    },
+    {
+      "element_id": "SLAB_S2_WC_DROP_LVL2",
+      "mark": "S2",
+      "x": 6.0,
+      "y": 2.5,
+      "label": "S2 (h=100)",
+      "type": "drop",
+      "drop": "-0.050",
+      "drop_mm": 50,
+      "thickness_mm": 100,
+      "level_m": 3.75,
+      "drop_box_mm": [
+        4000.0,
+        5000.0
+      ],
+      "panel_mm": [
+        4.0,
+        0.0,
+        8.0,
+        5.0
+      ],
+      "panel_bounds_mm": [
+        4000.0,
+        0.0,
+        8000.0,
+        5000.0
+      ],
+      "openings_mm": []
+    }
+  ],
+  "voids": [
+    {
+      "name": "OPENING_MEP_01",
+      "type": "MEP_SHAFT",
+      "x": 1.4,
+      "y": 1.5,
+      "w": 0.8,
+      "h": 1.0
+    }
+  ],
+  "site_data": {
+    "lot_w": 18.0,
+    "lot_h": 16.0,
+    "bldg_offset_x": 3.0,
+    "bldg_offset_y": 3.0,
+    "setback_front": 3.0,
+    "setback_rear": 1.5,
+    "setback_side": 1.5,
+    "vn2000_origin_x": 1198200.0,
+    "vn2000_origin_y": 604300.0,
+    "roads": [],
+    "ramps": []
+  },
+  "slab_level_m": 3.8,
+  "slab_level_pos_m": 6.0,
+  "slab_level_pos_m_y": 5.0,
+  "sheet_scale_label": "1/100",
+  "section_cuts": [
+    {
+      "name": "1-1",
+      "x": 2.0,
+      "y": 0.0,
+      "scale_label": "1/20",
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    }
+  ],
+  "grid_system": {
+    "x_axes": [
+      {
+        "name": "1",
+        "coord": 0.0
+      },
+      {
+        "name": "2",
+        "coord": 4000.0
+      },
+      {
+        "name": "3",
+        "coord": 8000.0
+      },
+      {
+        "name": "4",
+        "coord": 12000.0
+      }
+    ],
+    "y_axes": [
+      {
+        "name": "A",
+        "coord": 0.0
+      },
+      {
+        "name": "B",
+        "coord": 5000.0
+      },
+      {
+        "name": "C",
+        "coord": 10000.0
+      }
+    ]
+  },
+  "floors": [
+    {
+      "floor_id": "TANG_1",
+      "elevation_m": 0.0,
+      "height_mm": 3800
+    },
+    {
+      "floor_id": "TANG_2",
+      "elevation_m": 3.8,
+      "height_mm": 3400
+    },
+    {
+      "floor_id": "TANG_3",
+      "elevation_m": 7.2,
+      "height_mm": 3400
+    },
+    {
+      "floor_id": "ROOF",
+      "elevation_m": 10.6,
+      "height_mm": 3000
+    }
+  ],
+  "columns_v6": [
+    {
+      "element_id": "COL_C1_AXIS_1A",
+      "category": "COLUMN",
+      "mark": "C1",
+      "floor_id": "TANG_2",
+      "status": "CONTINUOUS",
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 300,
+        "concrete_grade": "B30",
+        "rebar_long": "6D18",
+        "stirrup": "d6a100/200"
+      },
+      "location": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "geometry_refs": [
+        "ENT_COL_1A_POLY"
+      ],
+      "tag_refs": [
+        "TAG_COL_1A_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_COL_ROW_01"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.08",
+        "drawing_id": "DETAIL_COL_C1",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "COL_C2_AXIS_2B",
+      "category": "COLUMN",
+      "mark": "C2",
+      "floor_id": "TANG_2",
+      "status": "STOPPED",
+      "status_note": "Cot dung o Tang 2, khong vuon len Tang 3",
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 200,
+        "concrete_grade": "B25",
+        "rebar_long": "4D16",
+        "stirrup": "d6a100/150"
+      },
+      "location": {
+        "x": 4000.0,
+        "y": 5000.0
+      },
+      "geometry_refs": [
+        "ENT_COL_2B_POLY"
+      ],
+      "tag_refs": [
+        "TAG_COL_2B_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_COL_ROW_02"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.08",
+        "drawing_id": "DETAIL_COL_C2",
+        "target_exists": true
+      }
+    }
+  ],
+  "beams_v6": [
+    {
+      "element_id": "BEAM_D1A_SPAN1_LVL2",
+      "category": "BEAM",
+      "mark": "D1A",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "orientation": "X_AXIS",
+      "start_point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 4000.0,
+        "y": 0.0
+      },
+      "length_mm": 4000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D20",
+        "rebar_bot": "3D20",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D1A_S1_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D1A_S1_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D1A_S1"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D1A_SPAN2_LVL2",
+      "category": "BEAM",
+      "mark": "D1A",
+      "span_id": "SPAN_2",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "orientation": "X_AXIS",
+      "start_point": {
+        "x": 4000.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 8000.0,
+        "y": 0.0
+      },
+      "length_mm": 4000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D20",
+        "rebar_bot": "3D20",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D1A_S2_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D1A_S2_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D1A_S2"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D2_Y_AXIS_LVL2",
+      "category": "BEAM",
+      "mark": "D2",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D22",
+      "design_group_note": "Cung tiet dien 200x400 voi D1A nhung khac nhom thep (3D22 vs 3D20)",
+      "orientation": "Y_AXIS",
+      "start_point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 0.0,
+        "y": 5000.0
+      },
+      "length_mm": 5000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D22",
+        "rebar_bot": "3D22",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D2_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D2_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D2"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.24",
+        "drawing_id": "DETAIL_BEAM_D2",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_DSKEW_LVL2",
+      "category": "BEAM",
+      "mark": "DX1",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_SKEW_200x350",
+      "orientation": "SKEW_45DEG",
+      "angle_deg": 45.0,
+      "start_point": {
+        "x": 8000.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 12000.0,
+        "y": 4000.0
+      },
+      "length_mm": 5656.85,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 350,
+        "rebar_top": "2D18+1D16",
+        "rebar_bot": "3D18",
+        "stirrup": "d6a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_DX1_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_DX1_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_DX1"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.25",
+        "drawing_id": "DETAIL_BEAM_DX1",
+        "target_exists": true
+      }
+    }
+  ],
+  "slabs_v6": [
+    {
+      "element_id": "SLAB_S1_MAIN_LVL2",
+      "category": "SLAB",
+      "mark": "S1",
+      "floor_id": "TANG_2",
+      "thickness_mm": 120,
+      "level_m": 3.8,
+      "drop_mm": 0,
+      "boundary_polygon": [
+        {
+          "x": 0.0,
+          "y": 0.0
+        },
+        {
+          "x": 4000.0,
+          "y": 0.0
+        },
+        {
+          "x": 4000.0,
+          "y": 5000.0
+        },
+        {
+          "x": 0.0,
+          "y": 5000.0
+        }
+      ],
+      "openings": [
+        {
+          "opening_id": "OPENING_MEP_01",
+          "polygon": [
+            {
+              "x": 1000.0,
+              "y": 1000.0
+            },
+            {
+              "x": 1800.0,
+              "y": 1000.0
+            },
+            {
+              "x": 1800.0,
+              "y": 2000.0
+            },
+            {
+              "x": 1000.0,
+              "y": 2000.0
+            }
+          ],
+          "type": "MEP_SHAFT"
+        }
+      ],
+      "tag_refs": [
+        "TAG_SLAB_S1_INSERT"
+      ],
+      "tag_suggested_pos": {
+        "x": 2800.0,
+        "y": 3000.0
+      }
+    },
+    {
+      "element_id": "SLAB_S2_WC_DROP_LVL2",
+      "category": "SLAB",
+      "mark": "S2",
+      "floor_id": "TANG_2",
+      "thickness_mm": 100,
+      "level_m": 3.75,
+      "drop_mm": 50,
+      "note": "San ve sinh ha cot 50mm (cao trinh +3.750 so voi san chinh +3.800)",
+      "boundary_polygon": [
+        {
+          "x": 4000.0,
+          "y": 0.0
+        },
+        {
+          "x": 8000.0,
+          "y": 0.0
+        },
+        {
+          "x": 8000.0,
+          "y": 5000.0
+        },
+        {
+          "x": 4000.0,
+          "y": 5000.0
+        }
+      ],
+      "openings": [],
+      "tag_refs": [
+        "TAG_SLAB_S2_INSERT",
+        "TAG_DROP_S2_INSERT"
+      ],
+      "tag_suggested_pos": {
+        "x": 6000.0,
+        "y": 2500.0
+      }
+    }
+  ],
+  "steel_members": [
+    {
+      "element_id": "STEEL_COL_H200_01",
+      "category": "STEEL_MEMBER",
+      "mark": "SC1",
+      "floor_id": "ROOF",
+      "profile_name": "H200x200x8x12",
+      "baseplate_spec": {
+        "size_mm": [
+          350,
+          350,
+          16
+        ],
+        "bolt_spec": "M20",
+        "bolt_count": 4
+      },
+      "capability_declaration": {
+        "status": "SUPPORTED",
+        "mode": "STATIC_2D_ACCURATE"
+      }
+    }
+  ],
+  "beams": [
+    {
+      "element_id": "BEAM_D1A_SPAN1_LVL2",
+      "category": "BEAM",
+      "mark": "D1A",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "orientation": "X_AXIS",
+      "start_point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 4000.0,
+        "y": 0.0
+      },
+      "length_mm": 4000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D20",
+        "rebar_bot": "3D20",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D1A_S1_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D1A_S1_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D1A_S1"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D1A_SPAN2_LVL2",
+      "category": "BEAM",
+      "mark": "D1A",
+      "span_id": "SPAN_2",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D20",
+      "orientation": "X_AXIS",
+      "start_point": {
+        "x": 4000.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 8000.0,
+        "y": 0.0
+      },
+      "length_mm": 4000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D20",
+        "rebar_bot": "3D20",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D1A_S2_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D1A_S2_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D1A_S2"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.23",
+        "drawing_id": "DETAIL_BEAM_D1A",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_D2_Y_AXIS_LVL2",
+      "category": "BEAM",
+      "mark": "D2",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_200x400_3D22",
+      "design_group_note": "Cung tiet dien 200x400 voi D1A nhung khac nhom thep (3D22 vs 3D20)",
+      "orientation": "Y_AXIS",
+      "start_point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 0.0,
+        "y": 5000.0
+      },
+      "length_mm": 5000.0,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 400,
+        "rebar_top": "3D22",
+        "rebar_bot": "3D22",
+        "stirrup": "d8a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_D2_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_D2_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_D2"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.24",
+        "drawing_id": "DETAIL_BEAM_D2",
+        "target_exists": true
+      }
+    },
+    {
+      "element_id": "BEAM_DSKEW_LVL2",
+      "category": "BEAM",
+      "mark": "DX1",
+      "span_id": "SPAN_1",
+      "floor_id": "TANG_2",
+      "design_group_id": "GRP_BEAM_SKEW_200x350",
+      "orientation": "SKEW_45DEG",
+      "angle_deg": 45.0,
+      "start_point": {
+        "x": 8000.0,
+        "y": 0.0
+      },
+      "end_point": {
+        "x": 12000.0,
+        "y": 4000.0
+      },
+      "length_mm": 5656.85,
+      "section_profile": {
+        "b_mm": 200,
+        "h_mm": 350,
+        "rebar_top": "2D18+1D16",
+        "rebar_bot": "3D18",
+        "stirrup": "d6a100/150"
+      },
+      "geometry_refs": [
+        "ENT_BEAM_DX1_LINES"
+      ],
+      "tag_refs": [
+        "TAG_BEAM_DX1_INSERT"
+      ],
+      "schedule_refs": [
+        "SCHED_BEAM_DX1"
+      ],
+      "detail_ref": {
+        "sheet_number": "KC.25",
+        "drawing_id": "DETAIL_BEAM_DX1",
+        "target_exists": true
+      }
+    }
+  ],
+  "slabs": [
+    {
+      "element_id": "SLAB_S1_MAIN_LVL2",
+      "category": "SLAB",
+      "mark": "S1",
+      "floor_id": "TANG_2",
+      "thickness_mm": 120,
+      "level_m": 3.8,
+      "drop_mm": 0,
+      "boundary_polygon": [
+        {
+          "x": 0.0,
+          "y": 0.0
+        },
+        {
+          "x": 4000.0,
+          "y": 0.0
+        },
+        {
+          "x": 4000.0,
+          "y": 5000.0
+        },
+        {
+          "x": 0.0,
+          "y": 5000.0
+        }
+      ],
+      "openings": [
+        {
+          "opening_id": "OPENING_MEP_01",
+          "polygon": [
+            {
+              "x": 1000.0,
+              "y": 1000.0
+            },
+            {
+              "x": 1800.0,
+              "y": 1000.0
+            },
+            {
+              "x": 1800.0,
+              "y": 2000.0
+            },
+            {
+              "x": 1000.0,
+              "y": 2000.0
+            }
+          ],
+          "type": "MEP_SHAFT"
+        }
+      ],
+      "tag_refs": [
+        "TAG_SLAB_S1_INSERT"
+      ],
+      "tag_suggested_pos": {
+        "x": 2800.0,
+        "y": 3000.0
+      }
+    },
+    {
+      "element_id": "SLAB_S2_WC_DROP_LVL2",
+      "category": "SLAB",
+      "mark": "S2",
+      "floor_id": "TANG_2",
+      "thickness_mm": 100,
+      "level_m": 3.75,
+      "drop_mm": 50,
+      "note": "San ve sinh ha cot 50mm (cao trinh +3.750 so voi san chinh +3.800)",
+      "boundary_polygon": [
+        {
+          "x": 4000.0,
+          "y": 0.0
+        },
+        {
+          "x": 8000.0,
+          "y": 0.0
+        },
+        {
+          "x": 8000.0,
+          "y": 5000.0
+        },
+        {
+          "x": 4000.0,
+          "y": 5000.0
+        }
+      ],
+      "openings": [],
+      "tag_refs": [
+        "TAG_SLAB_S2_INSERT",
+        "TAG_DROP_S2_INSERT"
+      ],
+      "tag_suggested_pos": {
+        "x": 6000.0,
+        "y": 2500.0
+      }
+    }
+  ]
+}

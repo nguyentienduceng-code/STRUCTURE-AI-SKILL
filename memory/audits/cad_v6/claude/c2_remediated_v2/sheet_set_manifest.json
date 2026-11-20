@@ -1,0 +1,177 @@
+{
+  "project_name": "G2_STEEL_AND_SHEET_SET_FIXTURE",
+  "paper_size": "A3_LANDSCAPE",
+  "floor_order": [
+    "F1_TANG1",
+    "F2_TANG2",
+    "F3_MAI"
+  ],
+  "detail_targets": [
+    "KC-06/MC-BM-D1A",
+    "KC-07/CT-COL-C1",
+    "KC-07/CT-BP-BD01",
+    "KC-07/CT-BP-BD02",
+    "KC-07/CT-GUSSET-01"
+  ],
+  "revision": "C2-REMEDIATED-V2",
+  "sheets": [
+    {
+      "sheet_no": "KC-02",
+      "title": "MAT BANG DINH VI COT VACH",
+      "paper_size": "A3_LANDSCAPE",
+      "viewports": [
+        {
+          "viewport_id": "VP_COL_F1",
+          "floor_id": "F1_TANG1",
+          "content_face": null,
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            15.0,
+            205.0,
+            145.0
+          ],
+          "strip_ids": [],
+          "drawing_id": null,
+          "detail_marks": []
+        },
+        {
+          "viewport_id": "VP_COL_F2",
+          "floor_id": "F2_TANG2",
+          "content_face": null,
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            150.0,
+            205.0,
+            280.0
+          ],
+          "strip_ids": [],
+          "drawing_id": null,
+          "detail_marks": []
+        }
+      ]
+    },
+    {
+      "sheet_no": "KC-03",
+      "title": "MAT BANG KET CAU DAM SAN",
+      "paper_size": "A3_LANDSCAPE",
+      "viewports": [
+        {
+          "viewport_id": "VP_BEAM_F2",
+          "floor_id": "F2_TANG2",
+          "content_face": null,
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            15.0,
+            365.0,
+            280.0
+          ],
+          "strip_ids": [],
+          "drawing_id": null,
+          "detail_marks": []
+        }
+      ]
+    },
+    {
+      "sheet_no": "KC-04",
+      "title": "MAT BANG THEP SAN TANG 2 (LOP DUOI + LOP TREN)",
+      "paper_size": "A3_LANDSCAPE",
+      "viewports": [
+        {
+          "viewport_id": "VP_SLAB_BOT",
+          "floor_id": "F2_TANG2",
+          "content_face": "BOTTOM",
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            15.0,
+            205.0,
+            145.0
+          ],
+          "strip_ids": [
+            "RS_F2_BOT_X1",
+            "RS_F2_BOT_Y1"
+          ],
+          "drawing_id": null,
+          "detail_marks": []
+        },
+        {
+          "viewport_id": "VP_SLAB_TOP",
+          "floor_id": "F2_TANG2",
+          "content_face": "TOP",
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            150.0,
+            205.0,
+            280.0
+          ],
+          "strip_ids": [
+            "RS_F2_TOP_X1",
+            "RS_F2_TOP_Y1"
+          ],
+          "drawing_id": null,
+          "detail_marks": []
+        }
+      ]
+    },
+    {
+      "sheet_no": "KC-06",
+      "title": "CHI TIET DAM TANG 2",
+      "paper_size": "A3_LANDSCAPE",
+      "viewports": [
+        {
+          "viewport_id": "VP_BM_DET",
+          "floor_id": null,
+          "content_face": null,
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            15.0,
+            365.0,
+            280.0
+          ],
+          "strip_ids": [],
+          "drawing_id": "MC-BM-D1A",
+          "detail_marks": []
+        }
+      ]
+    },
+    {
+      "sheet_no": "KC-07",
+      "title": "CHI TIET COT BTCT VA KET CAU THEP",
+      "paper_size": "A3_LANDSCAPE",
+      "viewports": [
+        {
+          "viewport_id": "VP_STEEL_DET",
+          "floor_id": null,
+          "content_face": null,
+          "scale": 50.0,
+          "rotation": 0.0,
+          "paper_bbox": [
+            15.0,
+            15.0,
+            365.0,
+            280.0
+          ],
+          "strip_ids": [],
+          "drawing_id": null,
+          "detail_marks": [
+            "CT-COL-C1",
+            "CT-BP-BD01",
+            "CT-BP-BD02",
+            "CT-GUSSET-01"
+          ]
+        }
+      ]
+    }
+  ]
+}

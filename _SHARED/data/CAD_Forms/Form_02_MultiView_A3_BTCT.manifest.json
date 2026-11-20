@@ -1,0 +1,124 @@
+{
+  "template_contract_version": "1.0",
+  "form_id": "FORM_02_MULTIVIEW_A3_BTCT",
+  "title_vi": "Form 02 — Bản vẽ Triển khai Nhiều Khung nhìn (Khổ A3 Ngang)",
+  "sheet_size": "A3",
+  "frame_mm": [
+    42000.0,
+    29700.0
+  ],
+  "source_space": "MODEL",
+  "titleblock_block": "DCE_TITLEBLOCK_A3",
+  "required_zones": {
+    "VIEWPORT_TOP": "DCE_ZONE_VIEWPORT_TOP",
+    "VIEWPORT_BOTTOM": "DCE_ZONE_VIEWPORT_BOTTOM",
+    "TABLE": "DCE_ZONE_TABLE",
+    "NOTE": "DCE_ZONE_NOTE",
+    "KEYPLAN": "DCE_ZONE_KEYPLAN",
+    "TITLEBLOCK": "DCE_TITLEBLOCK_A3"
+  },
+  "zone_aliases": {
+    "VIEWPORT_TOP": [
+      "DCE_ZONE_VP_TOP"
+    ],
+    "VIEWPORT_BOTTOM": [
+      "DCE_ZONE_VP_BOT"
+    ]
+  },
+  "required_title_tags": [
+    "TEN_CONG_TRINH",
+    "TEN_BAN_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "allowlist_title_tags": [
+    "CHU_DAU_TU",
+    "DIA_DIEM",
+    "DIA_DIEM_2",
+    "CONG_TY",
+    "DIA_CHI_CTY",
+    "EMAIL_CTY",
+    "TEL_CTY",
+    "GIAM_DOC",
+    "KIEM_TRA",
+    "THIET_KE",
+    "THE_HIEN",
+    "TEN_CONG_TRINH",
+    "HANG_MUC",
+    "TEN_BAN_VE",
+    "BUOC_TK",
+    "NAM",
+    "NGAY_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "preserve_user_styles": true,
+  "min_supported_dxf_version": "AC1021",
+  "profile": "multiview_a3",
+  "agent_owned_appid": "DCE_AGENT_OWNED",
+  "dxf_sha256": "3d22e20ade1648b2f996ac3e5f320f58ffdeffb1d449ba0527f00b3a4af2f3ce",
+  "dxf_version": "AC1021",
+  "roundtrip_status": "FULL",
+  "zones_wcs_snapshot": {
+    "VIEWPORT_TOP": [
+      [
+        700.0,
+        15250.0,
+        28300.0,
+        29200.0
+      ]
+    ],
+    "VIEWPORT_BOTTOM": [
+      [
+        700.0,
+        650.0,
+        28300.0,
+        14500.0
+      ]
+    ],
+    "TABLE": [
+      [
+        700.0,
+        15250.0,
+        11200.0,
+        18600.0
+      ]
+    ],
+    "NOTE": [
+      [
+        28500.0,
+        650.0,
+        36400.0,
+        14500.0
+      ]
+    ],
+    "KEYPLAN": [
+      [
+        36950.0,
+        22200.0,
+        41750.0,
+        29350.0
+      ]
+    ]
+  },
+  "detected_title_tags": [
+    "CHU_DAU_TU",
+    "DIA_DIEM",
+    "DIA_DIEM_2",
+    "CONG_TY",
+    "DIA_CHI_CTY",
+    "EMAIL_CTY",
+    "TEL_CTY",
+    "GIAM_DOC",
+    "KIEM_TRA",
+    "THIET_KE",
+    "THE_HIEN",
+    "TEN_CONG_TRINH",
+    "HANG_MUC",
+    "TEN_BAN_VE",
+    "BUOC_TK",
+    "NAM",
+    "KY_HIEU",
+    "TY_LE"
+  ]
+}

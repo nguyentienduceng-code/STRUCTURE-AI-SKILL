@@ -1,0 +1,3339 @@
+[
+  {
+    "sheet": "KC-01",
+    "engine_method": "render_sheet_kc02",
+    "description": "57m x 28m typical floor geometry, 40-storey tower scenario; not a solver-verified project",
+    "entities": 430,
+    "movable_labels": 27,
+    "units": 4,
+    "source": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\sprint2_audit_20261114\\KC-01.dxf",
+    "source_sha256": "b8b8db4cfaaf61bb5c51a463119e12685186e3ce8a60a3934018c6c4838e34cc",
+    "runs": [
+      {
+        "wall_seconds": 0.6891319000005751,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 8,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\56bdffe1653a4a3f8641a2faccd3031d.dxf",
+        "initial_collision_count": 34,
+        "displacements_planned": 22,
+        "displacements_applied": 22,
+        "leaders_created": 22,
+        "plans": [
+          {
+            "handle": "3503F",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35045",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22600.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3504B",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28960.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35051",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35210.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35057",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44540.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3505D",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53650.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35063",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60110.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35069",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66680.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3506F",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35075",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              14600.0,
+              35430.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35087",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              73400.0,
+              35430.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3508D",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              14600.0,
+              24460.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3509F",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              73400.0,
+              24460.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "350A5",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              15653.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AB",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              22600.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B1",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              28960.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              35210.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350BD",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              44540.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C3",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              53650.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C9",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              60110.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350CF",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              66680.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              15653.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.6601522000000841,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 8,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\6e7dff84a6bf41da881ba9abcfdbe3d0.dxf",
+        "initial_collision_count": 34,
+        "displacements_planned": 22,
+        "displacements_applied": 22,
+        "leaders_created": 22,
+        "plans": [
+          {
+            "handle": "3503F",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35045",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22600.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3504B",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28960.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35051",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35210.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35057",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44540.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3505D",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53650.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35063",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60110.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35069",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66680.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3506F",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35075",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              14600.0,
+              35430.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35087",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              73400.0,
+              35430.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3508D",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              14600.0,
+              24460.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3509F",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              73400.0,
+              24460.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "350A5",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              15653.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AB",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              22600.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B1",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              28960.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              35210.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350BD",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              44540.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C3",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              53650.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C9",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              60110.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350CF",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              66680.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              15653.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.7749564000005194,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 8,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\16df2a3d8376475b93a4fada6250aba0.dxf",
+        "initial_collision_count": 34,
+        "displacements_planned": 22,
+        "displacements_applied": 22,
+        "leaders_created": 22,
+        "plans": [
+          {
+            "handle": "3503F",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              44700.0
+            ],
+            "to": [
+              16203.5,
+              45053.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35045",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              44400.0
+            ],
+            "to": [
+              22600.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3504B",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              44400.0
+            ],
+            "to": [
+              28960.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35051",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              44400.0
+            ],
+            "to": [
+              35210.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35057",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              44400.0
+            ],
+            "to": [
+              44540.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3505D",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              44400.0
+            ],
+            "to": [
+              53650.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35063",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              44400.0
+            ],
+            "to": [
+              60110.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "35069",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              44400.0
+            ],
+            "to": [
+              66680.0,
+              44400.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "3506F",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              44700.0
+            ],
+            "to": [
+              71796.5,
+              45053.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "35075",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              35430.0
+            ],
+            "to": [
+              14600.0,
+              35430.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "35087",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              35430.0
+            ],
+            "to": [
+              73400.0,
+              35430.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3508D",
+            "text": "TenCauKien",
+            "from": [
+              15900.0,
+              24460.0
+            ],
+            "to": [
+              14600.0,
+              24460.0
+            ],
+            "delta": [
+              -1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "3509F",
+            "text": "TenCauKien",
+            "from": [
+              72100.0,
+              24460.0
+            ],
+            "to": [
+              73400.0,
+              24460.0
+            ],
+            "delta": [
+              1300.0,
+              0.0
+            ],
+            "distance_mm": 1300.0,
+            "needs_leader": true,
+            "cost": 1300.0
+          },
+          {
+            "handle": "350A5",
+            "text": "TenCauKien",
+            "from": [
+              15850.0,
+              15300.0
+            ],
+            "to": [
+              16203.5,
+              15653.5
+            ],
+            "delta": [
+              353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          },
+          {
+            "handle": "350AB",
+            "text": "TenCauKien",
+            "from": [
+              21850.0,
+              15600.0
+            ],
+            "to": [
+              22600.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B1",
+            "text": "TenCauKien",
+            "from": [
+              28210.0,
+              15600.0
+            ],
+            "to": [
+              28960.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "TenCauKien",
+            "from": [
+              34460.0,
+              15600.0
+            ],
+            "to": [
+              35210.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350BD",
+            "text": "TenCauKien",
+            "from": [
+              43790.0,
+              15600.0
+            ],
+            "to": [
+              44540.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C3",
+            "text": "TenCauKien",
+            "from": [
+              52900.0,
+              15600.0
+            ],
+            "to": [
+              53650.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350C9",
+            "text": "TenCauKien",
+            "from": [
+              59360.0,
+              15600.0
+            ],
+            "to": [
+              60110.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350CF",
+            "text": "TenCauKien",
+            "from": [
+              65930.0,
+              15600.0
+            ],
+            "to": [
+              66680.0,
+              15600.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "TenCauKien",
+            "from": [
+              72150.0,
+              15300.0
+            ],
+            "to": [
+              71796.5,
+              15653.5
+            ],
+            "delta": [
+              -353.5,
+              353.5
+            ],
+            "distance_mm": 499.9,
+            "needs_leader": true,
+            "cost": 499.9
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      }
+    ],
+    "max_wall_seconds": 0.7749564000005194,
+    "fixed_entities_preserved": 403,
+    "moved_labels_in_frame_or_schedule": 0,
+    "remaining_details": [
+      {
+        "entity_handle": "3507B",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 566570.8
+      },
+      {
+        "entity_handle": "3507B",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3514A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35081",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 566570.8
+      },
+      {
+        "entity_handle": "35081",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "35182",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35093",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 566570.8
+      },
+      {
+        "entity_handle": "35093",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3514A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35099",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 566570.8
+      },
+      {
+        "entity_handle": "35099",
+        "entity_text": "TenCauKien",
+        "colliding_with_handle": "35182",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      }
+    ]
+  },
+  {
+    "sheet": "KC-02",
+    "engine_method": "render_sheet_kc03",
+    "description": "57m x 28m typical floor geometry, 40-storey tower scenario; not a solver-verified project",
+    "entities": 491,
+    "movable_labels": 59,
+    "units": 4,
+    "source": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\sprint2_audit_20261114\\KC-02.dxf",
+    "source_sha256": "dc03bae14bff4537bde169f04e1f328c6c112e3d0a0cd0d187b073f21778983f",
+    "runs": [
+      {
+        "wall_seconds": 0.7480275000016263,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 142,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\333976ed6e0343ecb014fc49c10c7984.dxf",
+        "initial_collision_count": 177,
+        "displacements_planned": 13,
+        "displacements_applied": 13,
+        "leaders_created": 13,
+        "plans": [
+          {
+            "handle": "350AB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              18850.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350B1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25030.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "Dce_KhTenDam",
+            "from": [
+              31335.0,
+              43500.0
+            ],
+            "to": [
+              31335.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350BD",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              40044.1,
+              44369.1
+            ],
+            "delta": [
+              919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C3",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              47425.9,
+              44369.1
+            ],
+            "delta": [
+              -919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C9",
+            "text": "Dce_KhTenDam",
+            "from": [
+              56130.0,
+              43500.0
+            ],
+            "to": [
+              56130.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350CF",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              43550.0
+            ],
+            "to": [
+              62645.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69040.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35123",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              18850.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "3514D",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              69040.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "351C5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.851874100000714,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 142,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\eff47e56816f4b97b8e2938f0d6224ab.dxf",
+        "initial_collision_count": 177,
+        "displacements_planned": 13,
+        "displacements_applied": 13,
+        "leaders_created": 13,
+        "plans": [
+          {
+            "handle": "350AB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              18850.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350B1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25030.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "Dce_KhTenDam",
+            "from": [
+              31335.0,
+              43500.0
+            ],
+            "to": [
+              31335.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350BD",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              40044.1,
+              44369.1
+            ],
+            "delta": [
+              919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C3",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              47425.9,
+              44369.1
+            ],
+            "delta": [
+              -919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C9",
+            "text": "Dce_KhTenDam",
+            "from": [
+              56130.0,
+              43500.0
+            ],
+            "to": [
+              56130.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350CF",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              43550.0
+            ],
+            "to": [
+              62645.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69040.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35123",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              18850.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "3514D",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              69040.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "351C5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      },
+      {
+        "wall_seconds": 0.794423999999708,
+        "status": "NEEDS_REVIEW",
+        "remaining_collision_count": 142,
+        "leader_conflicts": [],
+        "apply_errors": [],
+        "coordinate_units": "drawing units; 300mm threshold requires INSUNITS=4",
+        "units_verified_mm": true,
+        "output_dxf": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\64b6d7d479d84789b7561e6759239067.dxf",
+        "initial_collision_count": 177,
+        "displacements_planned": 13,
+        "displacements_applied": 13,
+        "leaders_created": 13,
+        "plans": [
+          {
+            "handle": "350AB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              43850.0
+            ],
+            "to": [
+              18850.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "350B1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              25030.0,
+              43550.0
+            ],
+            "to": [
+              25030.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350B7",
+            "text": "Dce_KhTenDam",
+            "from": [
+              31335.0,
+              43500.0
+            ],
+            "to": [
+              31335.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350BD",
+            "text": "Dce_KhTenDam",
+            "from": [
+              39125.0,
+              43450.0
+            ],
+            "to": [
+              40044.1,
+              44369.1
+            ],
+            "delta": [
+              919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C3",
+            "text": "Dce_KhTenDam",
+            "from": [
+              48345.0,
+              43450.0
+            ],
+            "to": [
+              47425.9,
+              44369.1
+            ],
+            "delta": [
+              -919.1,
+              919.1
+            ],
+            "distance_mm": 1299.8,
+            "needs_leader": true,
+            "cost": 1299.8
+          },
+          {
+            "handle": "350C9",
+            "text": "Dce_KhTenDam",
+            "from": [
+              56130.0,
+              43500.0
+            ],
+            "to": [
+              56130.0,
+              44500.0
+            ],
+            "delta": [
+              0.0,
+              1000.0
+            ],
+            "distance_mm": 1000.0,
+            "needs_leader": true,
+            "cost": 1000.0
+          },
+          {
+            "handle": "350CF",
+            "text": "Dce_KhTenDam",
+            "from": [
+              62645.0,
+              43550.0
+            ],
+            "to": [
+              62645.0,
+              44300.0
+            ],
+            "delta": [
+              0.0,
+              750.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "350D5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              43850.0
+            ],
+            "to": [
+              69040.0,
+              44350.0
+            ],
+            "delta": [
+              0.0,
+              500.0
+            ],
+            "distance_mm": 500.0,
+            "needs_leader": true,
+            "cost": 500.0
+          },
+          {
+            "handle": "35123",
+            "text": "Dce_KhTenDam",
+            "from": [
+              18850.0,
+              17350.0
+            ],
+            "to": [
+              18850.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "3514D",
+            "text": "Dce_KhTenDam",
+            "from": [
+              69040.0,
+              17350.0
+            ],
+            "to": [
+              69040.0,
+              15750.0
+            ],
+            "delta": [
+              0.0,
+              -1600.0
+            ],
+            "distance_mm": 1600.0,
+            "needs_leader": true,
+            "cost": 1600.0
+          },
+          {
+            "handle": "351C5",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              21130.0
+            ],
+            "to": [
+              73475.0,
+              21130.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351CB",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72700.0,
+              29945.0
+            ],
+            "to": [
+              73450.0,
+              29945.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          },
+          {
+            "handle": "351D1",
+            "text": "Dce_KhTenDam",
+            "from": [
+              72725.0,
+              38815.0
+            ],
+            "to": [
+              73475.0,
+              38815.0
+            ],
+            "delta": [
+              750.0,
+              0.0
+            ],
+            "distance_mm": 750.0,
+            "needs_leader": true,
+            "cost": 750.0
+          }
+        ],
+        "requested_output_dxf": "G:/My Drive/forbidden_collision_output.dxf",
+        "file_written": true
+      }
+    ],
+    "max_wall_seconds": 0.851874100000714,
+    "fixed_entities_preserved": 432,
+    "moved_labels_in_frame_or_schedule": 0,
+    "remaining_details": [
+      {
+        "entity_handle": "350DB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350DB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351DB",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "350DB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351DC",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "350E1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350E1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "350DF",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350E1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "350E0",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 752062.1
+      },
+      {
+        "entity_handle": "350E1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35209",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Name",
+        "overlap_area": 52723.1
+      },
+      {
+        "entity_handle": "350E7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 843104.4
+      },
+      {
+        "entity_handle": "350ED",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 843104.4
+      },
+      {
+        "entity_handle": "350F3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350F3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "350F1",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350F3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "350F2",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 750824.1
+      },
+      {
+        "entity_handle": "350F9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "350F9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351FF",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "350F9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35200",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "350FF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35105",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35105",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35103",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35105",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35104",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "3510B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 843104.4
+      },
+      {
+        "entity_handle": "35111",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 843104.4
+      },
+      {
+        "entity_handle": "35117",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35117",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35115",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35117",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35116",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "3511D",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35129",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35129",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E1",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35129",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E2",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3512F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35135",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35135",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3525E",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3513B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "3513B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3526C",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35141",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35147",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 836581.6
+      },
+      {
+        "entity_handle": "35147",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351ED",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35147",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351EE",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35153",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35153",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35151",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 37746.6
+      },
+      {
+        "entity_handle": "35153",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35152",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 37746.6
+      },
+      {
+        "entity_handle": "35159",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35159",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35157",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35159",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35158",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3515F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "3515F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3515D",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 37746.6
+      },
+      {
+        "entity_handle": "3515F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3515E",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 37746.6
+      },
+      {
+        "entity_handle": "35165",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35165",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35163",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35165",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35164",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35165",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35249",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3516B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "3516B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35169",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3516B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3516A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3516B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35249",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35171",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35171",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3516F",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35171",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35170",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35171",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35249",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35177",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35177",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35175",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35177",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35176",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35177",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35250",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3517D",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "3517D",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3517B",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3517D",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3517C",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3517D",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35250",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35183",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35183",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35181",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35183",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35182",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35183",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35257",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35189",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35189",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35187",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35189",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35188",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35189",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35257",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3518F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "3518F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3518D",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3518F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3518E",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3518F",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35265",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35195",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "35195",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35193",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35195",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35194",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35195",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35265",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3519B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "3519B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35199",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3519B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35273",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "3519B",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3519A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351A1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3519F",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35273",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A1",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351A0",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351A7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351A5",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351A6",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351A7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3527A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351AD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351AD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351AB",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351AD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351AC",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351AD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3527A",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351B3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351B1",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35281",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351B2",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351B9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351B7",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35281",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351B9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351B8",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351BF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 751956.5
+      },
+      {
+        "entity_handle": "351BF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351BD",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351BF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35281",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Truc",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351BF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351BE",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_MainBeam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351D7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351D7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351D5",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351D7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351D6",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351D7",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35227",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 319500.0
+      },
+      {
+        "entity_handle": "351DD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351DD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351DB",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351DD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351DC",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351DD",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3520D",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 341465.9
+      },
+      {
+        "entity_handle": "351E3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351E3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E1",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351E3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3522A",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 342000.0
+      },
+      {
+        "entity_handle": "351E3",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E2",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351E9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351E9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E7",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351E9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35210",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 377465.9
+      },
+      {
+        "entity_handle": "351E9",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351E8",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351EF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351EF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351ED",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351EF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351EE",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351EF",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35239",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 342000.0
+      },
+      {
+        "entity_handle": "351F5",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351F5",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351F3",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351F5",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351F4",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351F5",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35221",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 377465.9
+      },
+      {
+        "entity_handle": "351FB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "351FB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351F9",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "351FB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3523C",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 319500.0
+      },
+      {
+        "entity_handle": "351FB",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351FA",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35201",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "3502E",
+        "colliding_with_type": "LWPOLYLINE",
+        "colliding_with_layer": "DCE_BaoBeTong",
+        "overlap_area": 830116.0
+      },
+      {
+        "entity_handle": "35201",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "351FF",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      },
+      {
+        "entity_handle": "35201",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35224",
+        "colliding_with_type": "INSERT",
+        "colliding_with_layer": "DCE_Symbol",
+        "overlap_area": 341465.9
+      },
+      {
+        "entity_handle": "35201",
+        "entity_text": "Dce_KhTenDam",
+        "colliding_with_handle": "35200",
+        "colliding_with_type": "LINE",
+        "colliding_with_layer": "DCE_Beam",
+        "overlap_area": 16776.3
+      }
+    ]
+  }
+]

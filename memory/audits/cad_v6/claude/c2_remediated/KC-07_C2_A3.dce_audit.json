@@ -1,0 +1,200 @@
+{
+  "dxf_sha256": "068de322a3a95f11f410259d58c324157d130fe98084451b50b2aea679cc34e5",
+  "sheet_no": "KC-07",
+  "entity_map": {
+    "COL_C1_F1": {
+      "geometry_handles": [
+        "3A"
+      ],
+      "source_refs": [
+        "H_C1_F1_G"
+      ],
+      "tag_refs": [
+        "H_C1_F1_T"
+      ],
+      "schedule_refs": [
+        "SCH_C1"
+      ],
+      "tag_handle": "42"
+    },
+    "COL_C1_F2": {
+      "geometry_handles": [
+        "46"
+      ],
+      "source_refs": [
+        "H_C1_F2_G"
+      ],
+      "tag_refs": [
+        "H_C1_F2_T"
+      ],
+      "schedule_refs": [
+        "SCH_C1"
+      ],
+      "tag_handle": "48"
+    },
+    "BM_D1A_F2_S1": {
+      "geometry_handles": [
+        "4C"
+      ],
+      "source_refs": [
+        "H_D1A_S1_G"
+      ],
+      "tag_refs": [
+        "H_D1A_S1_T"
+      ],
+      "schedule_refs": [
+        "SCH_D1A"
+      ],
+      "tag_handle": "4E"
+    },
+    "BM_D1A_F2_S2": {
+      "geometry_handles": [
+        "52"
+      ],
+      "source_refs": [
+        "H_D1A_S2_G"
+      ],
+      "tag_refs": [
+        "H_D1A_S2_T"
+      ],
+      "schedule_refs": [
+        "SCH_D1A"
+      ],
+      "tag_handle": "54"
+    },
+    "STEEL_COL_C1": {
+      "geometry_handles": [
+        "58"
+      ],
+      "source_refs": [
+        "STEEL_COL_C1"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_SC1"
+      ],
+      "tag_handle": "59"
+    },
+    "STEEL_BM_B1": {
+      "geometry_handles": [
+        "5D"
+      ],
+      "source_refs": [
+        "STEEL_BM_B1"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_SB1"
+      ],
+      "tag_handle": "5E"
+    },
+    "STEEL_BOX_BX1": {
+      "geometry_handles": [
+        "62"
+      ],
+      "source_refs": [
+        "STEEL_BOX_BX1"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_SBX1"
+      ],
+      "tag_handle": "63"
+    },
+    "STEEL_CH_U1": {
+      "geometry_handles": [
+        "67"
+      ],
+      "source_refs": [
+        "STEEL_CH_U1"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_SU1"
+      ],
+      "tag_handle": "68"
+    },
+    "STEEL_PP_P1": {
+      "geometry_handles": [
+        "6C"
+      ],
+      "source_refs": [
+        "STEEL_PP_P1"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_SP1"
+      ],
+      "tag_handle": "6D"
+    },
+    "STEEL_BP_01": {
+      "geometry_handles": [
+        "71"
+      ],
+      "source_refs": [
+        "STEEL_BP_01"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_BP_01"
+      ]
+    },
+    "STEEL_BP_02": {
+      "geometry_handles": [
+        "72"
+      ],
+      "source_refs": [
+        "STEEL_BP_02"
+      ],
+      "tag_refs": [],
+      "schedule_refs": [
+        "SCH_BP_02"
+      ]
+    },
+    "RS_F2_BOT_X1": {
+      "geometry_handles": [
+        "73"
+      ],
+      "source_refs": [
+        "RS_F2_BOT_X1"
+      ],
+      "face": "BOTTOM",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_BOT_Y1": {
+      "geometry_handles": [
+        "74"
+      ],
+      "source_refs": [
+        "RS_F2_BOT_Y1"
+      ],
+      "face": "BOTTOM",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_TOP_X1": {
+      "geometry_handles": [
+        "75"
+      ],
+      "source_refs": [
+        "RS_F2_TOP_X1"
+      ],
+      "face": "TOP",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_TOP_Y1": {
+      "geometry_handles": [
+        "76"
+      ],
+      "source_refs": [
+        "RS_F2_TOP_Y1"
+      ],
+      "face": "TOP",
+      "tag_refs": [],
+      "schedule_refs": []
+    }
+  },
+  "viewport_count": 1
+}

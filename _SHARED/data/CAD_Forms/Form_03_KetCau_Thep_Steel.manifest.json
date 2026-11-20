@@ -1,0 +1,96 @@
+{
+  "template_contract_version": "1.0",
+  "form_id": "FORM_03_KETCAU_THEP_STEEL",
+  "title_vi": "Form 03 — Kết cấu Thép & Liên kết (DCE STEEL, Khổ A1)",
+  "sheet_size": "A1",
+  "frame_mm": [
+    84100.0,
+    59400.0
+  ],
+  "source_space": "MODEL",
+  "titleblock_block": "DCE_TITLEBLOCK_A1",
+  "required_zones": {
+    "VIEWPORT_MAIN": "DCE_ZONE_VIEWPORT_MAIN",
+    "TABLE_STEEL": "DCE_ZONE_TABLE",
+    "NOTE": "DCE_ZONE_NOTE",
+    "TITLEBLOCK": "DCE_TITLEBLOCK_A1"
+  },
+  "zone_aliases": {
+    "VIEWPORT_MAIN": [
+      "DCE_ZONE_VIEWPORT"
+    ]
+  },
+  "required_title_tags": [
+    "TEN_CONG_TRINH",
+    "TEN_BAN_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "allowlist_title_tags": [
+    "CHU_DAU_TU",
+    "DIA_DIEM",
+    "DIA_DIEM_2",
+    "CONG_TY",
+    "DIA_CHI_CTY",
+    "EMAIL_CTY",
+    "TEL_CTY",
+    "GIAM_DOC",
+    "KIEM_TRA",
+    "THIET_KE",
+    "THE_HIEN",
+    "TEN_CONG_TRINH",
+    "HANG_MUC",
+    "TEN_BAN_VE",
+    "BUOC_TK",
+    "NAM",
+    "NGAY_VE",
+    "KY_HIEU",
+    "TY_LE"
+  ],
+  "preserve_user_styles": true,
+  "min_supported_dxf_version": "AC1021",
+  "profile": "steel",
+  "agent_owned_appid": "DCE_AGENT_OWNED",
+  "dxf_sha256": "b1ea02dbcf65858e1f729637895965b5a3df643ff8f7ecce423d774df816329f",
+  "dxf_version": "AC1021",
+  "roundtrip_status": "FULL",
+  "zones_wcs_snapshot": {
+    "VIEWPORT_MAIN": [
+      [
+        2800.0,
+        1500.0,
+        71500.0,
+        57900.0
+      ]
+    ],
+    "TABLE_STEEL": [
+      [
+        72500.0,
+        33000.0,
+        83600.0,
+        57900.0
+      ]
+    ],
+    "NOTE": [
+      [
+        72500.0,
+        15600.0,
+        83600.0,
+        32200.0
+      ]
+    ]
+  },
+  "detected_title_tags": [
+    "CHU_DAU_TU",
+    "CONG_TY",
+    "TEN_CONG_TRINH",
+    "DIA_DIEM",
+    "TEN_BAN_VE",
+    "CHU_TRI",
+    "THIET_KE",
+    "KIEM_TRA",
+    "TY_LE",
+    "BUOC_TK",
+    "KY_HIEU"
+  ]
+}

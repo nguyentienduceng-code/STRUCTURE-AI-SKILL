@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://google-ai-studio.local/schemas/model_schema.json",
+  "title": "DCE Structural Model SSOT Schema (P0-OPS)",
+  "type": "object",
+  "required": ["model_id", "model_version", "standards_ref", "project"],
+  "additionalProperties": true,
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "standards_ref": {
+      "type": "object",
+      "required": ["version_lock", "standards"],
+      "additionalProperties": true,
+      "properties": {
+        "version_lock": {
+          "type": "string",
+          "minLength": 1
+        },
+        "standards": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": ["project_name", "grid_x", "grid_y"],
+      "additionalProperties": true,
+      "properties": {
+        "project_name": { "type": "string", "minLength": 1 },
+        "scale": { "type": "number", "exclusiveMinimum": 0 },
+        "L_total": { "type": "number", "exclusiveMinimum": 0 },
+        "B_total": { "type": "number", "exclusiveMinimum": 0 },
+        "grid_x": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "grid_y": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "sheets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sheet_no", "title", "viewports"],
+        "additionalProperties": true,
+        "properties": {
+          "sheet_no": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "viewports": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "slot", "title", "origin_mm", "slab_outline"],
+              "additionalProperties": true,
+              "properties": {
+                "id": { "type": "string", "minLength": 1 },
+                "slot": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "origin_mm": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": { "type": "number" }
+                },
+                "slab_outline": {
+                  "type": "array",
+                  "minItems": 3
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "mark", "b_mm", "h_mm"],
+                    "additionalProperties": true,
+                    "properties": {
+                      "id": { "type": "string", "minLength": 1 },
+                      "mark": { "type": "string", "minLength": 1 },
+                      "b_mm": { "type": "number", "exclusiveMinimum": 0 },
+                      "h_mm": { "type": "number", "exclusiveMinimum": 0 }
+                    }
+                  }
+                },
+                "piles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["x", "y", "size_m"],
+                    "additionalProperties": true,
+                    "properties": {
+                      "x": { "type": "number" },
+                      "y": { "type": "number" },
+                      "size_m": { "type": "number", "exclusiveMinimum": 0 }
+                    }
+                  }
+                },
+                "beams": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["mark", "size"],
+                    "additionalProperties": true,
+                    "properties": {
+                      "mark": { "type": "string", "minLength": 1 },
+                      "size": { "type": "string", "minLength": 1 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anyOf": [
+    { "required": ["sheets"] },
+    {
+      "required": ["project"],
+      "properties": {
+        "project": { "required": ["L_total", "B_total"] }
+      }
+    }
+  ]
+}

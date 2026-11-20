@@ -137,7 +137,14 @@ def render_dxf_to_png(
     layout = doc.layouts.get(layout_name)
     msp = doc.modelspace()
     n_ent = sum(1 for _ in msp)
-    cfg = config if config is not None else Configuration()
+    if config is not None:
+        cfg = config
+    elif str(bg).upper() == "#FFFFFF":
+        # Light paper preview uses MONOCHROME_LIGHT_BG so authentic dark-bg DCE ACI colors
+        # (yellow ACI 2, cyan ACI 4, light gray ACI 254) render crisp dark ink without mutating the DXF.
+        cfg = Configuration(color_policy=ColorPolicy.MONOCHROME_LIGHT_BG)
+    else:
+        cfg = Configuration()
 
     t0 = time.time()
     preview_id, dst = allocate_preview()
@@ -220,7 +227,7 @@ def _render_crop(doc, layout, layout_name, dst: Path, dpi: int,
         Frontend(RenderContext(doc), backend, cfg).draw_layout(layout, finalize=True)
         ax.set_xlim(min_x, max_x)
         ax.set_ylim(min_y, max_y)
-        ax.set_aspect("equal")
+        ax.set_aspect("equal", adjustable="box")
         ax.axis("off")
         fig.savefig(dst, dpi=dpi, facecolor=bg, bbox_inches="tight", pad_inches=0.1)
     finally:

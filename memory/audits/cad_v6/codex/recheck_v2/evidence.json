@@ -1,0 +1,1648 @@
+[
+  {
+    "file": "KC-02_C2_A3.dxf",
+    "hash": "74368857677ac43321c07522e9ed6754be0d77d96c010d339261359fac7ff18b",
+    "model_counts": {
+      "LWPOLYLINE": 24,
+      "INSERT": 27,
+      "TEXT": 47,
+      "LINE": 31,
+      "DIMENSION": 5,
+      "HATCH": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 4,
+      "LINE": 2,
+      "TEXT": 13,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          205.0,
+          145.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      },
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          150.0,
+          205.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [
+      0.0
+    ],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [],
+    "missing_schedule_entries": [],
+    "missing_plate": false,
+    "dimstyles": {
+      "DCE_DIM_MAIN_50": 3,
+      "DCE_DIM_COT_50": 2
+    },
+    "raw_dict_attributes": [],
+    "provenance_present": true,
+    "geometry_signature": "d4999cd570da13f3d3c96f3b2175324797357840212cd9cc03ec788fd42cad21",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-02_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 135,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 27,
+          "axis_bubbles": 6,
+          "member_tags": 8,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 5,
+          "dce_compliant_dimensions": 5,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": true,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-02_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 135,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 27,
+          "axis_bubbles": 6,
+          "member_tags": 8,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 5,
+          "dce_compliant_dimensions": 5,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": true,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "PASS",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 16,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "DXF_VERSION_AND_SYNTAX",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Chuẩn DXF=AC1021 (Mode=COLUMN_WALL_SETOUT, Scale=1/50), Cụm logic=35, Thực thể hình học DXF=153."
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 22 Layer chuẩn DCE Pro (bao gồm 15 Layer gốc + mở rộng) kèm mã 370 Lineweight & Screening."
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_50 (2.2mm) & DCE_DIM_COT_50 (1.8mm), mũi tên _ARCHTICK."
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (6 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (4 cột: 3 đi tiếp DCE_Cot_Block, 1 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "SETOUT_TRUE_DIMENSIONS",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[COLUMN_WALL_SETOUT] Có 2 chuỗi Linear Dimension định vị (DCE_DIM_COT_50), 0 LEADER, 0 lệch số Dim."
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "TAG_ATTSYNC_IMMUNITY",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại [0.0, -1.0] và [0.0, 1.0] (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "SCOPE_SEPARATION_LOCK",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[COLUMN_WALL_SETOUT] Hệ dầm tham chiếu (4 đoạn nhịp) đã cắt mép cột trên DCE_NetThay, 0 nhãn dầm gây nhiễu."
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 1 vách có vùng biên B.E. (TCVN 9386:2025), 1 dầm nối lõi CB và 1 lỗ mở VoidX."
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[COLUMN_WALL_SETOUT] Đã kiểm tra hộp bao AABB của 4 nhãn DCE_TenCauKien: 0 xung đột đè chữ."
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Tỷ lệ chuẩn S=1/50, Khung=42050x29700mm, Đồng bộ DimStyle=Dce_50MV & DCE_DIM_MAIN_50."
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 6 đường trục & 6 đầu trục với 4 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 39 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "COLUMN_SECTION_REBAR_RULES",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-03_C2_A3.dxf",
+    "hash": "47614e6658246f795ae8406df997a19c632bb57ac2af616632e65827c59fde0b",
+    "model_counts": {
+      "LWPOLYLINE": 21,
+      "INSERT": 25,
+      "TEXT": 51,
+      "LINE": 31,
+      "DIMENSION": 3,
+      "HATCH": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 3,
+      "LINE": 2,
+      "TEXT": 12,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [],
+    "missing_schedule_entries": [],
+    "missing_plate": false,
+    "dimstyles": {
+      "DCE_DIM_MAIN_50": 3
+    },
+    "raw_dict_attributes": [],
+    "provenance_present": true,
+    "geometry_signature": "89dc4766b500909c4f40f4e39739f3fcb47ff3c04f2552009cd4355f7508578d",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-03_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 132,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 25,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-03_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 132,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 25,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "PASS",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 16,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "DXF_VERSION_AND_SYNTAX",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Chuẩn DXF=AC1021 (Mode=BEAM_SLAB_FRAMING, Scale=1/50), Cụm logic=31, Thực thể hình học DXF=148."
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 22 Layer chuẩn DCE Pro (bao gồm 15 Layer gốc + mở rộng) kèm mã 370 Lineweight & Screening."
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_50 (2.2mm) & DCE_DIM_COT_50 (1.8mm), mũi tên _ARCHTICK."
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (6 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (4 cột: 3 đi tiếp DCE_Cot_Block, 1 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "SETOUT_TRUE_DIMENSIONS",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[BEAM_SLAB_FRAMING] Đã tắt 100% Dim định vị cột trên DCE_Setout đúng quy chuẩn tách bạch mặt bằng."
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "TAG_ATTSYNC_IMMUNITY",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại [0.0, -1.0] và [0.0, 1.0] (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "SCOPE_SEPARATION_LOCK",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[BEAM_SLAB_FRAMING] Đủ 4 đoạn dầm đã cắt mép cột kèm nhãn dầm, 2 ký hiệu sàn DCE_KyHieuSan, tắt 100% nhãn cột."
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 1 vách có vùng biên B.E. (TCVN 9386:2025), 1 dầm nối lõi CB và 1 lỗ mở VoidX."
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[BEAM_SLAB_FRAMING] Đã kiểm tra vị trí 2 ký hiệu sàn DCE_KyHieuSan và nhãn dầm: 0 xung đột đè chữ."
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Tỷ lệ chuẩn S=1/50, Khung=42050x29700mm, Đồng bộ DimStyle=Dce_50MV & DCE_DIM_MAIN_50."
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 6 đường trục & 6 đầu trục với 4 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 39 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "COLUMN_SECTION_REBAR_RULES",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-04_C2_A3.dxf",
+    "hash": "6e36666adb4760f88d98ab646c1e99c8b2a5f8d2f8b4aeb9852805c60de00661",
+    "model_counts": {
+      "LWPOLYLINE": 25,
+      "INSERT": 23,
+      "TEXT": 51,
+      "LINE": 27,
+      "DIMENSION": 3,
+      "HATCH": 1
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 4,
+      "LINE": 2,
+      "TEXT": 15,
+      "VIEWPORT": 2
+    },
+    "viewports": [
+      {
+        "layer": "VP_BOTTOM",
+        "bbox": [
+          15.0,
+          15.0,
+          205.0,
+          145.0
+        ],
+        "scale": 50.0,
+        "frozen": [
+          "REBAR_TOP"
+        ]
+      },
+      {
+        "layer": "VP_TOP",
+        "bbox": [
+          15.0,
+          150.0,
+          205.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": [
+          "REBAR_BOTTOM"
+        ]
+      }
+    ],
+    "overlap": [
+      0.0
+    ],
+    "resolved_handles": 28,
+    "recorded_handles": 28,
+    "missing_tag_entries": [],
+    "missing_schedule_entries": [],
+    "missing_plate": false,
+    "dimstyles": {
+      "DCE_DIM_MAIN_50": 3
+    },
+    "raw_dict_attributes": [],
+    "provenance_present": true,
+    "geometry_signature": "b8ba0062b9c8e4194362384a28eacb06098ba1717fe2d627275a4831761dc809",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-04_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 130,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 4
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 4
+          }
+        ],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-04_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 130,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 4
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 4
+          }
+        ],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "PASS",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 16,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "DXF_VERSION_AND_SYNTAX",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Chuẩn DXF=AC1021 (Mode=SLAB_REBAR_PLAN, Scale=1/50), Cụm logic=33, Thực thể hình học DXF=150."
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 22 Layer chuẩn DCE Pro (bao gồm 15 Layer gốc + mở rộng) kèm mã 370 Lineweight & Screening."
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_50 (2.2mm) & DCE_DIM_COT_50 (1.8mm), mũi tên _ARCHTICK."
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (6 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (4 cột: 3 đi tiếp DCE_Cot_Block, 1 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "SETOUT_TRUE_DIMENSIONS",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[SLAB_REBAR_PLAN] Đã tắt 100% Dim định vị cột trên DCE_Setout đúng quy chuẩn tách bạch mặt bằng."
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "TAG_ATTSYNC_IMMUNITY",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại [0.0, -1.0] và [0.0, 1.0] (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "SCOPE_SEPARATION_LOCK",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[SLAB_REBAR_PLAN] Đủ 4 dải thép sàn Lớp Trên/Lớp Dưới (DCE_Thep_Chu + DCE_Thep_Dai + DCE_SH_Thep), tắt 100% nhãn dầm/cột."
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 1 vách có vùng biên B.E. (TCVN 9386:2025), 1 dầm nối lõi CB và 1 lỗ mở VoidX."
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[SLAB_REBAR_PLAN] Đã kiểm tra vị trí toàn bộ nhãn trên mặt bằng: 0 xung đột đè chữ."
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Tỷ lệ chuẩn S=1/50, Khung=42050x29700mm, Đồng bộ DimStyle=Dce_50MV & DCE_DIM_MAIN_50."
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 6 đường trục & 6 đầu trục với 4 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 39 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "COLUMN_SECTION_REBAR_RULES",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-06_C2_A3.dxf",
+    "hash": "19986b74016184bd57e258c034125a5f192daf6943475b937ccb06879ab83f69",
+    "model_counts": {
+      "LWPOLYLINE": 24,
+      "INSERT": 23,
+      "TEXT": 48,
+      "LINE": 56,
+      "DIMENSION": 3,
+      "HATCH": 1,
+      "CIRCLE": 5
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 3,
+      "LINE": 2,
+      "TEXT": 12,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [],
+    "missing_schedule_entries": [],
+    "missing_plate": false,
+    "dimstyles": {
+      "DCE_DIM_MAIN_50": 3
+    },
+    "raw_dict_attributes": [],
+    "provenance_present": true,
+    "geometry_signature": "91219a47d57cf2ddaf8ab662c29cddf7508cdc74744fb0dd3e28d3d214442b36",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-06_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 160,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-06_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 160,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "PASS",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 16,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "DXF_VERSION_AND_SYNTAX",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Chuẩn DXF=AC1021 (Mode=DETAIL_BEAM, Scale=1/50), Cụm logic=29, Thực thể hình học DXF=176."
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 22 Layer chuẩn DCE Pro (bao gồm 15 Layer gốc + mở rộng) kèm mã 370 Lineweight & Screening."
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_50 (2.2mm) & DCE_DIM_COT_50 (1.8mm), mũi tên _ARCHTICK."
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (6 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (4 cột: 3 đi tiếp DCE_Cot_Block, 1 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "SETOUT_TRUE_DIMENSIONS",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_BEAM] Đã tắt 100% Dim định vị cột trên DCE_Setout đúng quy chuẩn tách bạch mặt bằng."
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "TAG_ATTSYNC_IMMUNITY",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại [0.0, -1.0] và [0.0, 1.0] (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "SCOPE_SEPARATION_LOCK",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_BEAM] Hệ dầm tham chiếu (4 đoạn nhịp) đã cắt mép cột trên DCE_NetThay, 0 nhãn dầm gây nhiễu."
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 1 vách có vùng biên B.E. (TCVN 9386:2025), 1 dầm nối lõi CB và 1 lỗ mở VoidX."
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_BEAM] Đã kiểm tra vị trí toàn bộ nhãn trên mặt bằng: 0 xung đột đè chữ."
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Tỷ lệ chuẩn S=1/50, Khung=42050x29700mm, Đồng bộ DimStyle=Dce_50MV & DCE_DIM_MAIN_50."
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 6 đường trục & 6 đầu trục với 4 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 39 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "COLUMN_SECTION_REBAR_RULES",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "file": "KC-07_C2_A3.dxf",
+    "hash": "e9ad767dbaaee5e8897a15c68c926dd66b9051a157a58b6088fdde20a3982dbd",
+    "model_counts": {
+      "LWPOLYLINE": 26,
+      "INSERT": 23,
+      "TEXT": 51,
+      "LINE": 27,
+      "DIMENSION": 3,
+      "HATCH": 1,
+      "CIRCLE": 24
+    },
+    "paper_counts": {
+      "LWPOLYLINE": 3,
+      "LINE": 2,
+      "TEXT": 12,
+      "VIEWPORT": 1
+    },
+    "viewports": [
+      {
+        "layer": "VP_MODEL",
+        "bbox": [
+          15.0,
+          15.0,
+          365.0,
+          280.0
+        ],
+        "scale": 50.0,
+        "frozen": []
+      }
+    ],
+    "overlap": [],
+    "resolved_handles": 24,
+    "recorded_handles": 24,
+    "missing_tag_entries": [],
+    "missing_schedule_entries": [],
+    "missing_plate": false,
+    "dimstyles": {
+      "DCE_DIM_MAIN_50": 3
+    },
+    "raw_dict_attributes": [],
+    "provenance_present": true,
+    "geometry_signature": "6e93c41bb2b71bd79c99f021a01bea93d6442dcce69e819f6ab48eea8b8dc545",
+    "top_hash_matches": true,
+    "compliance": {
+      "physical": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-07_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 155,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "physical",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "NOT_RUN",
+        "gates_registered": 20,
+        "gates_total": 0,
+        "gates_passed": 0,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 0,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": []
+      },
+      "plan": {
+        "file_path": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v2\\KC-07_C2_A3.dxf",
+        "status": "PASS",
+        "dxf_version": "AC1021",
+        "total_entities": 155,
+        "audit_errors": [],
+        "audit_fixes_count": 0,
+        "illegal_layers": [],
+        "non_dce_layers": [],
+        "blocks": {
+          "total_inserts": 23,
+          "axis_bubbles": 6,
+          "member_tags": 4,
+          "title_blocks": 1
+        },
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "graphic_sanity": {
+          "has_concrete_solid_hatch": true,
+          "has_standard_frame": true,
+          "has_schedule_table": true,
+          "has_setting_out_dims": false,
+          "beam_void_clashes": 0
+        },
+        "issues": [],
+        "schema_version": "2.0",
+        "profile": "plan",
+        "physical_status": "PASS",
+        "physical_issues": [],
+        "gate_issues": [],
+        "metadata_issues": [],
+        "detail_audits": {},
+        "gate_status": "PASS",
+        "gates_registered": 20,
+        "gates_total": 20,
+        "gates_passed": 16,
+        "gates_failed": 0,
+        "gates_unverified": 0,
+        "gates_not_applicable": 4,
+        "full_compliance_verified": false,
+        "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+        "gate_results": [
+          {
+            "gate_id": "G8.01",
+            "gate_name": "DXF_VERSION_AND_SYNTAX",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Chuẩn DXF=AC1021 (Mode=DETAIL_STEEL, Scale=1/50), Cụm logic=29, Thực thể hình học DXF=171."
+          },
+          {
+            "gate_id": "G8.02",
+            "gate_name": "DCE_LAYER_AND_CTB_MATRIX",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 22 Layer chuẩn DCE Pro (bao gồm 15 Layer gốc + mở rộng) kèm mã 370 Lineweight & Screening."
+          },
+          {
+            "gate_id": "G8.03",
+            "gate_name": "DIMSTYLE_DUAL_HIERARCHY",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã khởi tạo cặp DimStyle phân cấp DCE_DIM_MAIN_50 (2.2mm) & DCE_DIM_COT_50 (1.8mm), mũi tên _ARCHTICK."
+          },
+          {
+            "gate_id": "G8.04",
+            "gate_name": "AXIS_BUBBLE_NO_CROSSING",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (6 đầu trục) dùng Block DCE_Truc_Bubble; 0 đường trục cắt xuyên qua chữ tên trục."
+          },
+          {
+            "gate_id": "G8.05",
+            "gate_name": "COLUMN_PARAMETRIC_BLOCK",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% (4 cột: 3 đi tiếp DCE_Cot_Block, 1 cột dừng DCE_Cot_Dung) chuẩn tỷ lệ B, H."
+          },
+          {
+            "gate_id": "G8.06",
+            "gate_name": "SETOUT_TRUE_DIMENSIONS",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_STEEL] Đã tắt 100% Dim định vị cột trên DCE_Setout đúng quy chuẩn tách bạch mặt bằng."
+          },
+          {
+            "gate_id": "G8.07",
+            "gate_name": "TAG_ATTSYNC_IMMUNITY",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Block DCE_TenCauKien có ATTDEF chuẩn hóa tại [0.0, -1.0] và [0.0, 1.0] (triệt tiêu lỗi lệch 700mm khi ATTSYNC)."
+          },
+          {
+            "gate_id": "G8.08",
+            "gate_name": "SCOPE_SEPARATION_LOCK",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_STEEL] Hệ dầm tham chiếu (4 đoạn nhịp) đã cắt mép cột trên DCE_NetThay, 0 nhãn dầm gây nhiễu."
+          },
+          {
+            "gate_id": "G8.09",
+            "gate_name": "SHEAR_WALL_AND_CORE_DETAIL",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đủ 1 vách có vùng biên B.E. (TCVN 9386:2025), 1 dầm nối lõi CB và 1 lỗ mở VoidX."
+          },
+          {
+            "gate_id": "G8.10",
+            "gate_name": "EXTERIOR_HIERARCHY_ORDER",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Thứ tự biên ngoài chuẩn xác: Mép nhà -> Dim liên trục (-18S) -> Dim tổng (-30S) -> Đầu trục (-42S)."
+          },
+          {
+            "gate_id": "G8.11",
+            "gate_name": "TITLEBLOCK_AND_FRAME_FIT",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% Mặt bằng, Hệ Dim biên, Đầu trục và Bảng thống kê nằm gọn trong lòng khung trong A1 (0% tràn lề)."
+          },
+          {
+            "gate_id": "G8.12",
+            "gate_name": "ZERO_TEXT_CLASH_AUDITOR",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "[DETAIL_STEEL] Đã kiểm tra vị trí toàn bộ nhãn trên mặt bằng: 0 xung đột đè chữ."
+          },
+          {
+            "gate_id": "G8.17",
+            "gate_name": "SCALE_FRAME_DIMSTYLE_SYNC",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Tỷ lệ chuẩn S=1/50, Khung=42050x29700mm, Đồng bộ DimStyle=Dce_50MV & DCE_DIM_MAIN_50."
+          },
+          {
+            "gate_id": "G8.18",
+            "gate_name": "ZERO_GLOBAL_LAYOUT_INTRUSION",
+            "severity": "CRITICAL",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 6 đường trục & 6 đầu trục với 4 vùng cấm (Sidebar/TitleBlock/TitleBand): 0 xâm phạm."
+          },
+          {
+            "gate_id": "G8.19",
+            "gate_name": "SCHEDULE_TABLE_CELL_CONTAINMENT",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "Đã kiểm tra 39 ô dữ liệu Bảng thống kê với Adaptive Column Widths: 0 ô bị tràn chữ."
+          },
+          {
+            "gate_id": "G8.20",
+            "gate_name": "BEAM_LABEL_ORIENTATION_AND_LW",
+            "severity": "MAJOR",
+            "passed": true,
+            "status": "PASS",
+            "applicable": true,
+            "detail": "100% nhãn dầm dọc xoay 90° chuẩn TCVN (0 lỗi góc xoay); 100% Layer có mã nhóm 370 Lineweight CTB."
+          },
+          {
+            "gate_id": "G8.13",
+            "gate_name": "BEAM_ELEVATION_SEISMIC_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.14",
+            "gate_name": "COLUMN_SECTION_REBAR_RULES",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.15",
+            "gate_name": "WALL_BOUNDARY_ELEMENT_DETAIL",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          },
+          {
+            "gate_id": "G8.16",
+            "gate_name": "REBAR_BBS_SCHEDULE_SYNC",
+            "severity": "CRITICAL",
+            "passed": null,
+            "status": "NOT_APPLICABLE",
+            "applicable": false,
+            "detail": "Ngoài phạm vi plan."
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "sheet": "KC-01",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\04bda8608e614c0f949aff4b2058ddf5.dxf",
+    "sha256": "53bd75f422171d4b96f5f6c921264ddd79f75b5aa7d59e76ba1200ca9317cec8",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  },
+  {
+    "sheet": "KC-01",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\b1e78726638e4fe08fe8137dd041ebe8.dxf",
+    "sha256": "ed034f8492c573115ac3afd8c5bb3fc67ca15c5b9071f224e525a333a4e17208",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  },
+  {
+    "sheet": "KC-01",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\26288fd0bdd5495ba07b307f9b7aee60.dxf",
+    "sha256": "829236bd28ed85c8aab4a31e50f0d5148221082189c004afbeceb80697c6762b",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  },
+  {
+    "sheet": "KC-02",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\91af1d5a6d3a4ccc94987e8d53e31c91.dxf",
+    "sha256": "871348b2c4e4485fa08fc628fe832277855407c63fed3ff26a5198e6011d43a9",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  },
+  {
+    "sheet": "KC-02",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\118acb1faf534a3785402098d3a70a29.dxf",
+    "sha256": "07620ef3e06848778f14274a3aac59fc29608966a9a2b6e0107adda82d9c7133",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  },
+  {
+    "sheet": "KC-02",
+    "file": "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\dce-cad\\temp\\207b7e721ab74533b14957b370db9c71.dxf",
+    "sha256": "23dbeba10192d056374f616cb16faa3e014e57f77e986bc80ded020988a5d6cf",
+    "source_preserved": true,
+    "fixed_entities_preserved": true,
+    "annotation_content_and_style_preserved": true,
+    "label_collisions": 0,
+    "leader_conflicts": 0,
+    "repeat_displacements": 0
+  }
+]

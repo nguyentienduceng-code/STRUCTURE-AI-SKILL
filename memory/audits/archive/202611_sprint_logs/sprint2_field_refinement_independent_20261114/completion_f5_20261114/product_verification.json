@@ -1,0 +1,698 @@
+[
+  {
+    "sheet": "KC-01",
+    "remaining_collision_count": 0,
+    "leader_conflicts": [],
+    "leaders": 25,
+    "min_length_mm": 264.0934515688932,
+    "max_length_mm": 689.4047707486388,
+    "micro_leaders": 0,
+    "wrong_leader_layer_or_color": 0,
+    "physical_audit": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dxf",
+      "status": "PASS",
+      "dxf_version": "AC1021",
+      "total_entities": 455,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [],
+      "blocks": {
+        "total_inserts": 57,
+        "axis_bubbles": 30,
+        "member_tags": 26,
+        "title_blocks": 1
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": true,
+        "beam_void_clashes": 0
+      },
+      "issues": [],
+      "schema_version": "2.0",
+      "profile": "physical",
+      "physical_status": "PASS",
+      "physical_issues": [],
+      "gate_issues": [],
+      "metadata_issues": [],
+      "detail_audits": {},
+      "gate_status": "NOT_RUN",
+      "gates_registered": 20,
+      "gates_total": 0,
+      "gates_passed": 0,
+      "gates_failed": 0,
+      "gates_unverified": 0,
+      "gates_not_applicable": 0,
+      "full_compliance_verified": false,
+      "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+      "gate_results": []
+    },
+    "full_audit": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dxf",
+      "status": "NEEDS_REVIEW",
+      "dxf_version": "AC1021",
+      "total_entities": 455,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [],
+      "blocks": {
+        "total_inserts": 57,
+        "axis_bubbles": 30,
+        "member_tags": 26,
+        "title_blocks": 1
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": true,
+        "beam_void_clashes": 0
+      },
+      "issues": [
+        "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.13 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.14 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.15 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.16 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "schema_version": "2.0",
+      "profile": "full",
+      "physical_status": "PASS",
+      "physical_issues": [],
+      "gate_issues": [
+        "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.13 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.14 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.15 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.16 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "metadata_issues": [
+        "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "detail_audits": {},
+      "gate_status": "UNVERIFIED",
+      "gates_registered": 20,
+      "gates_total": 20,
+      "gates_passed": 0,
+      "gates_failed": 0,
+      "gates_unverified": 20,
+      "gates_not_applicable": 0,
+      "full_compliance_verified": false,
+      "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+      "gate_results": [
+        {
+          "gate_id": "G8.01",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.02",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.03",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.04",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.05",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.06",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.07",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.08",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.09",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.10",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.11",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.12",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.13",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.14",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.15",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.16",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.17",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.18",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.19",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.20",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-01_DA_NE_CHU_LeaderLine.dce_audit.json"
+        }
+      ]
+    },
+    "benchmarks": [
+      {
+        "wall_seconds_load_solve_save": 0.8945352000009734,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 25
+      },
+      {
+        "wall_seconds_load_solve_save": 0.8000753999986046,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 25
+      },
+      {
+        "wall_seconds_load_solve_save": 0.851100600000791,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 25
+      }
+    ]
+  },
+  {
+    "sheet": "KC-02",
+    "remaining_collision_count": 0,
+    "leader_conflicts": [],
+    "leaders": 8,
+    "min_length_mm": 157.6603001364274,
+    "max_length_mm": 704.756521690781,
+    "micro_leaders": 0,
+    "wrong_leader_layer_or_color": 0,
+    "physical_audit": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dxf",
+      "status": "PASS",
+      "dxf_version": "AC1021",
+      "total_entities": 499,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [],
+      "blocks": {
+        "total_inserts": 108,
+        "axis_bubbles": 30,
+        "member_tags": 76,
+        "title_blocks": 2
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": false,
+        "beam_void_clashes": 0
+      },
+      "issues": [],
+      "schema_version": "2.0",
+      "profile": "physical",
+      "physical_status": "PASS",
+      "physical_issues": [],
+      "gate_issues": [],
+      "metadata_issues": [],
+      "detail_audits": {},
+      "gate_status": "NOT_RUN",
+      "gates_registered": 20,
+      "gates_total": 0,
+      "gates_passed": 0,
+      "gates_failed": 0,
+      "gates_unverified": 0,
+      "gates_not_applicable": 0,
+      "full_compliance_verified": false,
+      "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+      "gate_results": []
+    },
+    "full_audit": {
+      "file_path": "G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dxf",
+      "status": "NEEDS_REVIEW",
+      "dxf_version": "AC1021",
+      "total_entities": 499,
+      "audit_errors": [],
+      "audit_fixes_count": 0,
+      "illegal_layers": [],
+      "non_dce_layers": [],
+      "blocks": {
+        "total_inserts": 108,
+        "axis_bubbles": 30,
+        "member_tags": 76,
+        "title_blocks": 2
+      },
+      "dimensions": {
+        "total_dimensions": 15,
+        "dce_compliant_dimensions": 15,
+        "non_dce_dimensions": []
+      },
+      "graphic_sanity": {
+        "has_concrete_solid_hatch": true,
+        "has_standard_frame": true,
+        "has_schedule_table": true,
+        "has_setting_out_dims": false,
+        "beam_void_clashes": 0
+      },
+      "issues": [
+        "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.13 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.14 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.15 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.16 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "schema_version": "2.0",
+      "profile": "full",
+      "physical_status": "PASS",
+      "physical_issues": [],
+      "gate_issues": [
+        "[G8.01 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.02 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.03 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.04 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.05 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.06 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.07 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.08 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.09 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.10 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.11 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.12 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.13 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.14 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.15 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.16 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.17 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.18 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.19 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json",
+        "[G8.20 UNVERIFIED] REQUIRED_EVIDENCE: Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "metadata_issues": [
+        "Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+      ],
+      "detail_audits": {},
+      "gate_status": "UNVERIFIED",
+      "gates_registered": 20,
+      "gates_total": 20,
+      "gates_passed": 0,
+      "gates_failed": 0,
+      "gates_unverified": 20,
+      "gates_not_applicable": 0,
+      "full_compliance_verified": false,
+      "evidence_basis": "Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.",
+      "gate_results": [
+        {
+          "gate_id": "G8.01",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.02",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.03",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.04",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.05",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.06",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.07",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.08",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.09",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.10",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.11",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.12",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.13",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.14",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.15",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.16",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.17",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.18",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.19",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        },
+        {
+          "gate_id": "G8.20",
+          "gate_name": "REQUIRED_EVIDENCE",
+          "severity": "CRITICAL",
+          "passed": null,
+          "status": "UNVERIFIED",
+          "applicable": true,
+          "detail": "Không thể kiểm chứng: Missing bound audit sidecar: G:\\My Drive\\Google AI Studio\\01_Projects\\03_Sprint2_KetQua_NeChu_CAD\\KC-02_DA_NE_CHU_LeaderLine.dce_audit.json"
+        }
+      ]
+    },
+    "benchmarks": [
+      {
+        "wall_seconds_load_solve_save": 0.9820800999987114,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 8
+      },
+      {
+        "wall_seconds_load_solve_save": 1.0006075999990571,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 8
+      },
+      {
+        "wall_seconds_load_solve_save": 1.1287168999988353,
+        "status": "OK",
+        "remaining_collision_count": 0,
+        "leaders_created": 8
+      }
+    ]
+  }
+]

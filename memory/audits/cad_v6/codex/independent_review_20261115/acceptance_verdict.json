@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "gates": {
+    "structural_content": false,
+    "viewport_nonoverlap": false,
+    "viewport_scale": false,
+    "face_filters": false,
+    "sidecars": false,
+    "c1_fixture_mutations": true,
+    "g2_fixture_roundtrip": true
+  }
+}

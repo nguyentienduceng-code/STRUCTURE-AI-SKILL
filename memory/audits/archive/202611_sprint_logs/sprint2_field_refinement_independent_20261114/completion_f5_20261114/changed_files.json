@@ -1,0 +1,19 @@
+[
+  "tools/mcp_dce_cad_server.py",
+  "tools/mcp_config.json",
+  "tools/cad_collision_solver.py",
+  "skills/SKILL_VERIFY/scripts/dce_cad_compliance_checker.py",
+  "skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+  "skills/SKILL_VERIFY/SKILL.md",
+  "skills/Technical_Illustrator/SKILL.md",
+  "skills/SKILL_INDEX.md",
+  "skills/CHANGELOG.md",
+  "tests/run_all_tests.py",
+  "tests/test_dce_cad_compliance.py",
+  "tests/test_mcp_dce_cad_server.py",
+  "tests/test_cad_collision_solver.py",
+  "docs/DCE_VIRTUAL_DRIVE_GUARD.md",
+  "docs/RFC_MCP_DCE_CAD_PERCEPTION_LOOP.md",
+  "docs/MCP_DCE_CAD_CONTRACT.md",
+  "memory\\audits\\sprint2_field_refinement_independent_20261114\\SPRINT2_SIGN_OFF_v2_20261114.md"
+]

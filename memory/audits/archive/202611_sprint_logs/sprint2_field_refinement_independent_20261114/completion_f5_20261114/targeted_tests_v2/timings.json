@@ -1,0 +1,21 @@
+{
+  "tier": "selected",
+  "registered_suites": 30,
+  "selected_suites": 2,
+  "all_passed": true,
+  "wall_seconds": 27.38666000000012,
+  "suites": [
+    {
+      "number": 18,
+      "name": "18. DCE CAD Compliance & Zero White Text Lock (24 tests)",
+      "passed": true,
+      "wall_seconds": 12.237991400001192
+    },
+    {
+      "number": 29,
+      "name": "29. MCP DCE-CAD Server & Vision Tools (12 tests)",
+      "passed": true,
+      "wall_seconds": 15.129154799997195
+    }
+  ]
+}

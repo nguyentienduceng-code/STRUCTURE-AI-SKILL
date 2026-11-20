@@ -130,7 +130,8 @@ class TestSkillVerifyCadAuditor(unittest.TestCase):
     def test_04_audit_passes_on_deliverable_plan(self):
         # Kiểm toán KC-02: Mặt bằng định vị cột vách (deliverable hoặc tự sinh độc lập)
         plan_path = self._resolve_or_generate("mat_bang_cot_vach_tang_dien_hinh.dxf", "KC-02")
-        result = audit_dxf_compliance(plan_path)
+        result = audit_dxf_compliance(plan_path, profile='physical')
+        self.assertFalse(result['full_compliance_verified'])
         self.assertEqual(result['status'], 'PASS', f"Bản vẽ KC-02 không đạt kiểm toán: {result.get('issues')}")
         self.assertEqual(len(result['illegal_layers']), 0)
         self.assertGreater(result['blocks']['axis_bubbles'], 0, "Bản vẽ phải có block bong bóng trục.")
@@ -141,7 +142,7 @@ class TestSkillVerifyCadAuditor(unittest.TestCase):
     def test_04b_audit_passes_on_beam_slab_plan(self):
         # Kiểm toán KC-03: Mặt bằng kết cấu dầm sàn tầng điển hình
         beam_path = self._resolve_or_generate("mat_bang_dam_san_tang_dien_hinh.dxf", "KC-03")
-        result = audit_dxf_compliance(beam_path)
+        result = audit_dxf_compliance(beam_path, profile='physical')
         self.assertEqual(result['status'], 'PASS', f"Bản vẽ KC-03 không đạt kiểm toán: {result.get('issues')}")
         self.assertEqual(len(result['illegal_layers']), 0)
         self.assertGreater(result['blocks']['axis_bubbles'], 0, "Bản vẽ dầm sàn phải có block bong bóng trục.")
@@ -150,7 +151,7 @@ class TestSkillVerifyCadAuditor(unittest.TestCase):
     def test_04c_audit_passes_on_master_layout_plan(self):
         # Kiểm toán KC-01: Tổng mặt bằng kết cấu & định vị công trình
         master_path = self._resolve_or_generate("mat_bang_tong_the_ket_cau.dxf", "KC-01")
-        result = audit_dxf_compliance(master_path)
+        result = audit_dxf_compliance(master_path, profile='physical')
         self.assertEqual(result['status'], 'PASS', f"Bản vẽ KC-01 không đạt kiểm toán: {result.get('issues')}")
         self.assertEqual(len(result['illegal_layers']), 0)
         self.assertGreater(result['blocks']['axis_bubbles'], 0, "Bản vẽ tổng mặt bằng phải có block bong bóng trục.")
@@ -286,7 +287,7 @@ class TestDceV5OffsetAndRevitConversion(unittest.TestCase):
         # Sau khi thêm offset: model chuẩn (không offset) xuất KC-02 phải audit PASS
         tmp = os.path.join(self._tempdir(), "v5_kc02.dxf")
         export_dce_plan(tmp, sheet_type="KC-02")
-        res = audit_dxf_compliance(tmp)
+        res = audit_dxf_compliance(tmp, profile='physical')
         self.assertEqual(res['status'], 'PASS', f"KC-02 regression FAIL: {res.get('issues')}")
 
     @classmethod
@@ -302,6 +303,148 @@ class TestDceV5OffsetAndRevitConversion(unittest.TestCase):
         if getattr(cls, '_t', None):
             shutil.rmtree(cls._t, ignore_errors=True)
 
+
+class TestComplianceStatusContract(unittest.TestCase):
+    """F5: physical evidence must never silently certify semantic gates."""
+
+    @classmethod
+    def setUpClass(cls):
+        from cad_plan_engine import build_sample_40_story_tower_plan
+        cls.temp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.temp.name)
+        cls.legacy = cls.root / 'legacy.dxf'
+        export_dce_plan(str(cls.legacy))
+        cls.semantic = cls.root / 'semantic.dxf'
+        build_sample_40_story_tower_plan(str(cls.semantic))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temp.cleanup()
+
+    def test_default_requires_semantic_evidence(self):
+        result = audit_dxf_compliance(str(self.legacy))
+        self.assertEqual(result['physical_status'], 'PASS')
+        self.assertEqual(result['status'], 'NEEDS_REVIEW')
+        self.assertEqual(result['gates_unverified'], 20)
+        self.assertEqual(result['gates_passed'], 0)
+        self.assertFalse(result['full_compliance_verified'])
+        self.assertTrue(result['issues'])
+
+    def test_physical_profile_is_explicit_and_limited(self):
+        result = audit_dxf_compliance(str(self.legacy), profile='physical')
+        self.assertEqual(result['status'], 'PASS')
+        self.assertEqual(result['gates_total'], 0)
+        self.assertEqual(result['gate_status'], 'NOT_RUN')
+        self.assertFalse(result['full_compliance_verified'])
+
+    def test_failed_gate_cannot_be_masked_by_physical_pass(self):
+        from unittest.mock import patch
+        from dce_cad_compliance_checker import GateResult
+        gate = GateResult('G8.18', 'LAYOUT', 'CRITICAL', False, 'actual intrusion')
+        with patch('dce_cad_compliance_checker.DCECADComplianceCheckerV4.run_all_gates', return_value=(False, [gate])):
+            result = audit_dxf_compliance(str(self.legacy))
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['gates_failed'], 1)
+        self.assertIn('G8.18', '\n'.join(result['issues']))
+
+    def test_missing_detail_drawings_are_not_passed(self):
+        result = audit_dxf_compliance(str(self.semantic))
+        detail = [g for g in result['gate_results'] if g['gate_id'] in ('G8.13', 'G8.14', 'G8.15', 'G8.16')]
+        self.assertEqual(len(detail), 4)
+        self.assertTrue(all(g['status'] == 'UNVERIFIED' and g['passed'] is None for g in detail))
+        self.assertNotEqual(result['status'], 'PASS')
+
+    def test_plan_profile_does_not_count_detail_gates_as_pass(self):
+        result = audit_dxf_compliance(str(self.semantic), profile='plan')
+        self.assertEqual(result['status'], 'PASS', result['issues'])
+        self.assertEqual(result['physical_status'], 'PASS')
+        self.assertEqual(result['gates_not_applicable'], 4)
+        self.assertEqual(result['gates_passed'], 16)
+        self.assertFalse(result['full_compliance_verified'])
+        doc = ezdxf.readfile(self.semantic)
+        self.assertGreater(len(doc.modelspace().query('DIMENSION')), 0)
+        self.assertTrue(any(e.dxftype() == 'HATCH' for e in doc.blocks.get('DCE_Cot_Block')))
+        self.assertGreater(len(doc.modelspace().query('INSERT')[0].attribs), 0)
+
+    def test_native_damage_cannot_be_hidden_by_rebinding_metadata(self):
+        import hashlib, json
+        path = self.root / 'native_damage.dxf'
+        doc = ezdxf.readfile(self.semantic)
+        for dimension in list(doc.modelspace().query('DIMENSION')):
+            doc.modelspace().delete_entity(dimension)
+        doc.saveas(path)
+        metadata = json.loads(self.semantic.with_suffix('.dce_audit.json').read_text(encoding='utf-8'))
+        metadata['provenance']['dxf_sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+        path.with_suffix('.dce_audit.json').write_text(json.dumps(metadata),encoding='utf-8')
+        result = audit_dxf_compliance(str(path), profile='plan')
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('G8.06', '\n'.join(result['gate_issues']))
+
+    def test_generator_metadata_does_not_override_physical_errors(self):
+        from unittest.mock import patch
+        with patch('dce_cad_compliance_checker._audit_physical_dxf', return_value={'status': 'FAIL', 'issues': ['physical damage']}):
+            result = audit_dxf_compliance(str(self.semantic), profile='plan')
+        self.assertEqual(result['gate_status'], 'PASS')
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('physical damage', result['issues'])
+
+    def test_dxf_change_invalidates_sidecar_hash(self):
+        import shutil
+        path = self.root / 'changed.dxf'
+        shutil.copyfile(self.semantic, path)
+        shutil.copyfile(self.semantic.with_suffix('.dce_audit.json'), path.with_suffix('.dce_audit.json'))
+        # A valid DXF comment changes the file without relying on its saveability.
+        path.write_bytes(b'999\nCHANGED\n' + path.read_bytes())
+        result = audit_dxf_compliance(str(path), profile='plan')
+        self.assertEqual(result['gates_unverified'], 16)
+        self.assertNotEqual(result['status'], 'PASS')
+        self.assertIn('SHA256', '\n'.join(result['metadata_issues']))
+
+    def test_malformed_metadata_is_reported_not_crashed(self):
+        import shutil
+        path = self.root / 'malformed.dxf'
+        shutil.copyfile(self.legacy, path)
+        path.with_suffix('.dce_audit.json').write_text('{bad', encoding='utf-8')
+        result = audit_dxf_compliance(str(path))
+        self.assertEqual(result['status'], 'NEEDS_REVIEW')
+        self.assertEqual(result['gates_unverified'], 20)
+
+    def test_invalid_profile_missing_and_corrupt_files_fail_closed(self):
+        self.assertEqual(audit_dxf_compliance(str(self.legacy), profile='unknown')['status'], 'ERROR')
+        self.assertEqual(audit_dxf_compliance(str(self.root / 'absent.dxf'))['status'], 'FAIL')
+        bad = self.root / 'corrupt.dxf'
+        bad.write_text('not a dxf', encoding='utf-8')
+        self.assertEqual(audit_dxf_compliance(str(bad))['status'], 'FAIL')
+
+    def test_cli_matches_api_status_and_does_not_write_input(self):
+        import hashlib, json, subprocess
+        script = AGENTS_ROOT / 'skills/SKILL_VERIFY/scripts/dce_cad_compliance_checker.py'
+        before = hashlib.sha256(self.legacy.read_bytes()).hexdigest()
+        for profile, expected_exit in (('full', 1), ('physical', 0)):
+            result = subprocess.run([sys.executable, '-B', str(script), str(self.legacy), '--profile', profile],
+                capture_output=True, text=True, encoding='utf-8', timeout=30)
+            self.assertEqual(result.returncode, expected_exit, result.stderr)
+            self.assertEqual(json.loads(result.stdout)['status'], audit_dxf_compliance(str(self.legacy), profile)['status'])
+        self.assertEqual(hashlib.sha256(self.legacy.read_bytes()).hexdigest(), before)
+
+
+
+class TestDynamicFramePlacement(unittest.TestCase):
+    def test_scaled_frame_center_and_sidebar_clearance(self):
+        for scale in (125,150):
+            for method in ('render_sheet_kc02','render_sheet_kc03'):
+                engine=DcePlanEngine(build_structural_model(),scale_spec={'scale':scale,'paper_mm':(841,594)}).setup()
+                getattr(engine,method)()
+                self.assertAlmostEqual(engine.ox+engine.L/2,2000+(25+(841-255)/2)*scale)
+                self.assertAlmostEqual(engine.oy+engine.B/2,2000+594*scale/2)
+                frames=list(engine.msp.query('LWPOLYLINE[layer=="DCE_Frame"]'))
+                self.assertTrue(any(abs(max(p[0] for p in e.get_points())-min(p[0] for p in e.get_points())-841*scale)<1e-6 for e in frames))
+                sidebar=2000+(841-230)*scale
+                for entity in engine.msp.query('LINE[layer=="DCE_Truc"]'):
+                    self.assertLess(max(entity.dxf.start.x,entity.dxf.end.x),sidebar-10*scale)
+                for entity in engine.msp.query('INSERT'):
+                    if entity.dxf.name=='DCE_Plan header 1':
+                        self.assertTrue(all(a.dxf.true_color==0x1E3246 for a in entity.attribs))
 
 if __name__ == '__main__':
     unittest.main()

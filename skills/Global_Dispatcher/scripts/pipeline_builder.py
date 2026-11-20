@@ -19,7 +19,7 @@ Output JSON:
 """
 
 import sys
-if sys.stdout.encoding != 'utf-8':
+if getattr(sys.stdout, 'reconfigure', None) and sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 import json
@@ -323,7 +323,10 @@ class PipelineBuilder:
         if not isinstance(prompt, str) or not prompt.strip():
             raise ValueError('Prompt must be a non-empty string')
         if classify is None:
-            from intent_classifier import IntentClassifier
+            if __package__:
+                from .intent_classifier import IntentClassifier
+            else:
+                from intent_classifier import IntentClassifier
             classifier = IntentClassifier(self.db_path)
             classify = lambda text: classifier.classify(text, plan_workflow=False)
         text = self._ascii(prompt).replace("\n", ";")
@@ -375,7 +378,7 @@ class PipelineBuilder:
                     (r'\b(?:lap|xuat|export)\b.*\bphu luc\b', 'SKILL_PHULUC'),
                     (r'\b(?:kiem chung|cross-check|verify|verification)\b', 'SKILL_VERIFY'),
                     (r'\b(?:chi phi|cost|boq)\b', 'Cost_Estimator'),
-                    (r'\b(?:tinh|thiet ke|calculate|design)\s+(?:cot thep|dam|cot|san|mong|lien ket|beam|column|foundation)\b', 'Structural_Design_Engineer'),
+                    (r'\b(?:tinh|thiet ke|calculate|design)\s+(?:lai\s+)?(?:cot thep|dam|cot|san|mong|lien ket|beam|column|foundation)\b', 'Structural_Design_Engineer'),
                     (r'\b(?:lap|xuat)\s+to trinh\b', 'Design_Evaluation'),
                 ]
                 if not part.startswith('@'):

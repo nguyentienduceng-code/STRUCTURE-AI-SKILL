@@ -1,0 +1,72 @@
+{
+  "c1": {
+    "passed": true,
+    "baseline_dxf": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\codex\\independent_review_20261115\\a1_kc03_baseline_v6.dxf",
+    "baseline_sha256": "3e1f4841e3c6fa79d00efc89ef50883eda910dfb849b110688a21ee9dc3b2ac0",
+    "baseline_v6_status": "OK_V6",
+    "mutated_dxf": "G:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\codex\\independent_review_20261115\\a1_kc03_mutated_v6.dxf",
+    "mutated_sha256": "1d4085e92d215a6d68e4608fb994dc2229e5d2d3c2bbdf70c84fa527da42a231",
+    "mutated_v6_status": "OK_V6",
+    "checks": {
+      "beam_mut_ok": true,
+      "beam_untouched_ok": true,
+      "scale_mut_ok": true,
+      "slab_mut_ok": true,
+      "drop_mut_ok": true,
+      "level_mut_ok": true,
+      "immutable_id_ok": true,
+      "manual_override_ok": true,
+      "leader_ok": true
+    },
+    "baseline_sample": {
+      "scale_labels": [
+        "1/100"
+      ],
+      "levels": [
+        "+12.600"
+      ],
+      "slab_0": {
+        "200": "150"
+      }
+    },
+    "mutated_sample": {
+      "beam_0": {
+        "TENDAM": "D1A_MOD (250x450)",
+        "TL": "1/75"
+      },
+      "scale_labels": [
+        "1/75"
+      ],
+      "levels": [
+        "+8.400"
+      ],
+      "slab_0": {
+        "200": "180"
+      }
+    }
+  },
+  "g2": {
+    "passed": true,
+    "g2_dxf_sha256": "709ef9adf2ba8b514bba3d1b98021a779fc005968ed6e8b96ec3a3cd03c645c4",
+    "roundtrip": {
+      "passed": true,
+      "uniform_scale_ok": true,
+      "dynamic_block_refs_count": 0,
+      "commercial_xdata_count": 0,
+      "geometry_checks_count": 7,
+      "extracted_blocks_count": 6
+    },
+    "capability_warnings": [
+      "UNSUPPORTED_BLOCK_BEHAVIOR",
+      "UNSUPPORTED_COMMERCIAL_XDATA_DISABLED"
+    ],
+    "semantic_gates": {
+      "floor_and_column_continuity": true,
+      "design_group_consistency": true,
+      "detail_target_resolution": true,
+      "linkage_completeness": true,
+      "rebar_top_bottom_separation": true
+    },
+    "total_elements": 12
+  }
+}

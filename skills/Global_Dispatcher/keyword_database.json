@@ -1,0 +1,357 @@
+{
+  "version": "2.0.0",
+  "schema": "2d_cognitive_dispatcher",
+  "config": {
+    "project_roots": [
+      "01_Projects",
+      "01_Structural_Projects"
+    ],
+    "deliverable_subdir": "04_Deliverables_ToTrinh",
+    "deliverable_extensions": [
+      ".docx",
+      ".pdf",
+      ".dxf",
+      ".xlsx"
+    ],
+    "low_confidence_threshold": 0.35,
+    "project_match_min_score": 0.38,
+    "project_ambiguity_margin": 0.12,
+    "explicit_overrides": {
+      "/prod": "PRODUCT_COLLAB",
+      "/product": "PRODUCT_COLLAB",
+      "/sys": "SYSTEM_UPGRADE",
+      "/system": "SYSTEM_UPGRADE",
+      "/solo": "SOLO_EXECUTION"
+    }
+  },
+  "system_core_paths": [
+    ".agents/",
+    ".agents\\",
+    ".claude/",
+    ".claude\\",
+    "sync_bus.py",
+    "handover_task.py",
+    "intent_classifier.py",
+    "keyword_database.json",
+    "project_target_resolver.py",
+    "mcp_dce_cad_server.py",
+    "run_all_tests.py",
+    "AGENTS.md",
+    "SKILL.md",
+    "DUAL_AGENT_BUS.json",
+    "SPEC_P2_MCP",
+    "citation_grounding_auditor.py",
+    "input_provenance_guard.py"
+  ],
+  "jargon_blacklist_product_vi": [
+    "SSOT",
+    "unpack",
+    "receipt",
+    "RECEIPTS",
+    "SHA-256",
+    "evidence_hashes",
+    "action_type",
+    "gate=PASS",
+    "force=False",
+    "mock",
+    "IPC",
+    "POSIX",
+    "bus_meta",
+    "stdout",
+    "stderr",
+    "pytest",
+    "refactor"
+  ],
+  "engagement_modes": {
+    "PRODUCT_COLLAB": {
+      "description": "Phối hợp Gemini (Maker) và Claude (Chủ trì Thẩm tra TCVN) để xuất hồ sơ dự án hoàn chỉnh vào 04_Deliverables_ToTrinh/.",
+      "keywords": {
+        "xuất hồ sơ": 0.55,
+        "xuất file": 0.45,
+        "xuất word": 0.5,
+        "xuất docx": 0.5,
+        "xuất pdf": 0.5,
+        "xuất dxf": 0.5,
+        "xuất excel": 0.45,
+        "hồ sơ hoàn chỉnh": 0.55,
+        "04_Deliverables_ToTrinh": 0.7,
+        "tờ trình": 0.45,
+        "thuyết minh": 0.4,
+        "bản vẽ": 0.35,
+        "rà soát tờ trình": 0.55,
+        "rà soát hồ sơ": 0.5,
+        "thẩm tra đồ án": 0.55,
+        "thẩm tra hồ sơ": 0.55,
+        "bàn giao chủ đầu tư": 0.55,
+        "chủ đầu tư": 0.35,
+        "biện pháp thi công": 0.4,
+        "bptc": 0.35,
+        "dự án": 0.3,
+        "công trình": 0.25,
+        "phụ lục tính toán": 0.4,
+        "khảo sát địa chất": 0.35,
+        "đóng dấu": 0.35,
+        "nghị định 30": 0.4
+      },
+      "script_patch_signals": [
+        "sửa script",
+        "chạy lại script",
+        "vá script",
+        "xuất lại file",
+        "xuất lại word",
+        "xuất lại pdf",
+        "lỗi tràn bảng",
+        "lỗi tràn chữ",
+        "lỗi font",
+        "build docx",
+        "build pdf",
+        "build dxf"
+      ]
+    },
+    "SYSTEM_UPGRADE": {
+      "description": "Nâng cấp công cụ, skill, Bus IPC, MCP server, validator và bộ kiểm thử tự động trong .agents/.",
+      "keywords": {
+        "nâng cấp hệ thống": 0.65,
+        "nâng cấp skill": 0.6,
+        "dual agent": 0.6,
+        "dual-agent": 0.6,
+        "bus ipc": 0.65,
+        "mcp server": 0.65,
+        "kiểm thử tự động": 0.55,
+        "test suite": 0.55,
+        "unit test": 0.5,
+        "dispatcher": 0.55,
+        "classifier": 0.55,
+        "validator": 0.5,
+        "report gate": 0.55,
+        "perception loop": 0.55,
+        "tối ưu script": 0.45,
+        "viết tool": 0.5,
+        "hook": 0.4,
+        "pipeline": 0.4,
+        "kiến trúc agent": 0.55,
+        "multi-agent": 0.55,
+        "schema json": 0.45,
+        "refactor": 0.45,
+        "v3.3": 0.5,
+        "regression test": 0.5,
+        "auto_register": 0.5
+      }
+    },
+    "SOLO_EXECUTION": {
+      "description": "Hỏi đáp lý thuyết, tra cứu tiêu chuẩn, tính nhanh 1 cấu kiện trong 1 lượt mà không kích hoạt Bus IPC.",
+      "keywords": {
+        "giải thích": 0.45,
+        "so sánh lý thuyết": 0.5,
+        "tra cứu": 0.45,
+        "tiêu chuẩn quy định": 0.45,
+        "công thức tính": 0.4,
+        "tính nhanh": 0.45,
+        "ví dụ minh họa": 0.45,
+        "là gì": 0.4,
+        "khác nhau thế nào": 0.45,
+        "hỏi nhanh": 0.5,
+        "không cần chuyển ca": 0.65,
+        "làm trực tiếp": 0.6,
+        "tóm tắt ngắn": 0.4
+      }
+    }
+  },
+  "domain_skills": {
+    "SKILL_GEOTECH": {
+      "label": "Địa kỹ thuật & Khảo sát địa chất",
+      "keywords": {
+        "địa chất": 0.5,
+        "khảo sát địa chất": 0.6,
+        "hố khoan": 0.45,
+        "spt": 0.45,
+        "cpt": 0.45,
+        "mực nước ngầm": 0.4,
+        "sức chịu tải đất nền": 0.5,
+        "lún nền": 0.45,
+        "báo cáo khảo sát": 0.45,
+        "tcvn 9362": 0.5
+      }
+    },
+    "SKILL_STRUCTURAL_RC": {
+      "label": "Kết cấu Bê tông Cốt thép (TCVN 5574:2018)",
+      "keywords": {
+        "bê tông cốt thép": 0.5,
+        "btct": 0.45,
+        "tính dầm": 0.45,
+        "tính cột": 0.45,
+        "tính sàn": 0.45,
+        "vách cứng": 0.45,
+        "cốt thép": 0.4,
+        "tcvn 5574": 0.55,
+        "độ võng": 0.35,
+        "bề rộng vết nứt": 0.45,
+        "chọc thủng": 0.45
+      }
+    },
+    "SKILL_STEEL_PEB": {
+      "label": "Kết cấu Thép & Nhà Công nghiệp (TCVN 5575:2024)",
+      "keywords": {
+        "kết cấu thép": 0.55,
+        "nhà thép": 0.5,
+        "peb": 0.5,
+        "khung zamil": 0.5,
+        "xà gồ": 0.45,
+        "bu lông neo": 0.45,
+        "liên kết hàn": 0.45,
+        "bản mã": 0.4,
+        "tcvn 5575": 0.55,
+        "nhà công nghiệp": 0.45
+      }
+    },
+    "SKILL_CAD_DCE": {
+      "label": "Triển khai Bản vẽ CAD Kết cấu (DCE Pro)",
+      "keywords": {
+        "bản vẽ cad": 0.55,
+        "dxf": 0.5,
+        "dwg": 0.5,
+        "autocad": 0.5,
+        "mặt bằng kết cấu": 0.45,
+        "triển khai bản vẽ": 0.5,
+        "khung tên": 0.4,
+        "dimstyle": 0.45,
+        "layer dce": 0.55,
+        "tcvn 5571": 0.5
+      }
+    },
+    "SKILL_FORMWORK_SHORING": {
+      "label": "Cốp pha, Giàn giáo & Hệ chống đỡ",
+      "keywords": {
+        "cốp pha": 0.55,
+        "ván khuôn": 0.5,
+        "giàn giáo": 0.5,
+        "ringlock": 0.5,
+        "chống tăng": 0.45,
+        "xà gồ thép hộp": 0.45,
+        "hệ chống đỡ": 0.45
+      }
+    },
+    "SKILL_FOUNDATION_PILE": {
+      "label": "Nền móng & Cọc (TCVN 10304:2014)",
+      "keywords": {
+        "móng cọc": 0.55,
+        "cọc khoan nhồi": 0.55,
+        "cọc ép": 0.5,
+        "đài cọc": 0.5,
+        "móng đơn": 0.45,
+        "móng băng": 0.45,
+        "tường vây": 0.5,
+        "cọc đại trà": 0.45,
+        "tcvn 10304": 0.55
+      }
+    },
+    "SKILL_SEISMIC_WIND": {
+      "label": "Tải trọng Gió & Động đất (TCVN 2737:2023 / 9386:2025)",
+      "keywords": {
+        "tải trọng gió": 0.55,
+        "động đất": 0.55,
+        "tcvn 2737": 0.6,
+        "tcvn 9386": 0.6,
+        "tổ hợp tải trọng": 0.5,
+        "phổ phản ứng": 0.5,
+        "chuyển vị đỉnh": 0.45,
+        "story drift": 0.45
+      }
+    },
+    "SKILL_AUDIT_EVALUATION": {
+      "label": "Thẩm tra Thiết kế & Phát hành RFI/NCR",
+      "keywords": {
+        "thẩm tra": 0.55,
+        "rà soát bản vẽ": 0.5,
+        "rfi": 0.5,
+        "ncr": 0.5,
+        "khoanh lỗi": 0.5,
+        "báo cáo thẩm tra": 0.6,
+        "red-team": 0.45,
+        "đối chiếu cad": 0.5
+      }
+    },
+    "SKILL_REPORT_TMTT": {
+      "label": "Thuyết minh Tính toán & Tờ trình (Nghị định 30)",
+      "keywords": {
+        "thuyết minh tính toán": 0.6,
+        "tmtt": 0.55,
+        "phụ lục tính toán": 0.55,
+        "tờ trình": 0.5,
+        "nghị định 30": 0.55,
+        "omml": 0.5,
+        "calculation sheet": 0.5,
+        "gate 7": 0.45,
+        "thuyết minh": 0.4
+      }
+    },
+    "SKILL_BPTC_CONSTRUCTION": {
+      "label": "Biện pháp Thi công (BPTC) & Cẩu tháp / Vận thăng",
+      "keywords": {
+        "biện pháp thi công": 0.6,
+        "bptc": 0.55,
+        "cẩu tháp": 0.55,
+        "gông cẩu": 0.55,
+        "neo cẩu": 0.55,
+        "vận thăng": 0.5,
+        "đào đất": 0.45,
+        "hệ shoring": 0.5
+      }
+    },
+    "SKILL_BIM_ETABS_SAP": {
+      "label": "Mô hình Phân tích ETABS / SAP2000 / SAFE",
+      "keywords": {
+        "etabs": 0.55,
+        "sap2000": 0.55,
+        "safe": 0.45,
+        "e2k": 0.55,
+        "s2k": 0.55,
+        "nội lực": 0.4,
+        "mô hình phân tích": 0.45,
+        "oapi": 0.5
+      }
+    },
+    "SKILL_PMO_CONTRACT": {
+      "label": "Quản lý Dự án, Tiến độ & Pháp lý Hợp đồng",
+      "keywords": {
+        "tiến độ": 0.45,
+        "hợp đồng": 0.45,
+        "biên bản nghiệm thu": 0.5,
+        "công văn": 0.45,
+        "pmo": 0.5,
+        "qcvn 03": 0.45,
+        "qcvn 06": 0.45
+      }
+    },
+    "SKILL_QS_COSTING": {
+      "label": "Bóc tách Khối lượng (QS) & Dự toán",
+      "keywords": {
+        "khối lượng": 0.45,
+        "boq": 0.55,
+        "dự toán": 0.55,
+        "bóc tách": 0.5,
+        "thống kê thép": 0.5,
+        "đơn giá": 0.45
+      }
+    },
+    "SKILL_SYSTEM_ENGINEERING": {
+      "label": "Kiến trúc Hệ thống Multi-Agent & DevOps (.agents)",
+      "keywords": {
+        "dual agent": 0.6,
+        "dual-agent": 0.6,
+        "bus ipc": 0.6,
+        "mcp server": 0.6,
+        "intent_classifier": 0.65,
+        "global_dispatcher": 0.65,
+        "nâng cấp hệ thống": 0.55,
+        "nâng cấp skill": 0.55,
+        "kiểm thử tự động": 0.55,
+        "test suite": 0.55,
+        "validator": 0.45,
+        "report gate": 0.55,
+        "perception loop": 0.55,
+        "run_all_tests": 0.6
+      }
+    }
+  }
+}

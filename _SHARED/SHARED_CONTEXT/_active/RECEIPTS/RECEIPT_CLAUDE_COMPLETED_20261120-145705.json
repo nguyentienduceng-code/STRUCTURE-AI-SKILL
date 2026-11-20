@@ -1,0 +1,23 @@
+{
+  "receipt_id": "RCP_20261120-145705_CLAUDE_COMPLETED",
+  "issued_at": "2026-11-20T14:57:05.305279+07:00",
+  "project_code": "T",
+  "action_type": "CAD",
+  "sender": "CLAUDE",
+  "target": "GEMINI",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [
+    "out/p.png"
+  ],
+  "report_file": ".agents/memory/audits/t/claude/C1_RESULT.md",
+  "evidence_hashes": {
+    "out/p.png": null,
+    ".agents/tools/sync_bus.py": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "2590b944fc77097760e3a3840f4618c267816b8f4cdb824cd257fbc408217223",
+  "signature": "CLAUDE@20261120-145705"
+}

@@ -1,0 +1,18 @@
+{
+  "receipt_id": "RCP_20261120-151205_CODEX_COMPLETED",
+  "issued_at": "2026-11-20T15:12:05.625685+07:00",
+  "project_code": "",
+  "action_type": "UNSPECIFIED",
+  "sender": "CODEX",
+  "target": "",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": "",
+  "evidence_hashes": {},
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "6bea9360d838c92fd944fe4220fcd6c03adb550a13d84f05ad2dcc7c19d02f8e",
+  "signature": "CODEX@20261120-151205"
+}

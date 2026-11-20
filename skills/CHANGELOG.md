@@ -1,5 +1,42 @@
 # CHANGELOG — Toan bo Bo Skills Ky Nang Ket Cau
 
+## 2026-11-19 — SKILL_DUAL_AGENT_BRIDGE v3.3.0: Product-First Handoff (Evidence-Based Gate + RECEIPTS + P1 Report Gate)
+
+Phát triển tiếp từ phân tích `DUAL_AGENT_ANTIGRAVITY_ORCHESTRATION_ANALYSIS.md` (bất đối xứng "ra thẳng sản phẩm" Antigravity vs Claude Code). 4 nâng cấp:
+
+1. **Product-First Schema**: `auto_handoff` nhận thêm `deliverable` (sản phẩm mong đợi), `evidence_files` (bằng chứng phải khai báo), `acceptance_cmd` (lệnh chạy lại được). Chỉ ghi vào payload khi khai báo — ca legacy chạy đúng như v3.2.
+2. **Visual Gate v2 (Evidence-Based)**: kích hoạt theo `--action-type` (CAD/DOCX/REPORT_VISUAL → bắt buộc; CODE/META/INFRA/TEST/DOCS → miễn; không khai báo → fallback keyword v3.2). Cờ `--check-evidence-on-disk` bắt file bằng chứng **thật sự tồn tại trên đĩa** (băm SHA-256) — không chấp nhận danh khai suông.
+3. **RECEIPTS (phiếu nghiệm thu)**: ca `NEED_REVIEW`/`COMPLETED` và MỌI `--force` sinh receipt JSON vào `.agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/` (hash bằng chứng, trạng thái gate, lý do force, chữ ký) — vá đúng lỗ hổng "bypass vô danh" của v3.2.
+4. **P1 Report Gate (chuẩn RESULT.md theo ca)**: ca GATED (CAD/DOCX/REPORT_VISUAL) **bắt buộc kèm báo cáo pha** (`report_file` = RESULT.md) tồn tại trên đĩa khi khép ca / request review. Cờ `--emit-report` sinh skeleton **5 mục cố định** đọc máy được (SCOPE_DELIVERED / VERIFICATION_COMMAND / RESULTS / CONSTRAINTS / HANDOFF_CONTRACT), layout chuẩn cad_v6 `<project>/<agent>/<PHASE>_RESULT.md` (chuẩn hóa cách 2 phía ĐANG đặt file — KHÔNG phát minh layout mới), **không ghi đè** file đã tồn tại.
+
+**Nghiệm thu:** 39/39 unit tests PASS (7 gốc + 11 v3.2 + 11 v3.3 Product-First/RECEIPTS + 10 P1 Report Gate, trong đó có regression test bắt lỗi unpack `generate_handoff_memo`). CLI chain smoke-test sandbox: (a) CAD không bằng chứng + `--check-evidence-on-disk` → BLOCK; (b) bằng chứng thật + `--emit-report` → skeleton `cad_v6/claude/C1_RESULT.md` (layout chuẩn cad_v6) + PASS + RECEIPT; (c) `--force` → RECEIPT audit (force_reason + bus_sha256). Repo thật không bị nhiễm artifact test.
+
+- SKILL_DUAL_AGENT_BRIDGE: 3.2.0 → **3.3.0** (kèm P1 Report Gate)
+- sync_bus SSOT: v3.2 → **v3.3**
+
+## 2026-11-19 — SKILL_DUAL_AGENT_BRIDGE v3.2.0: Nâng Cấp Kiến Trúc Dual-Agent (4 Trọng tâm)
+
+Claude đã nghiên cứu `PROPOSAL_DUAL_AGENT_V32_RESEARCH.md` và triển khai 4 nâng cấp kiến trúc:
+
+1. **SSOT Khử trùng lặp (Trọng tâm 1)**: `.agents/tools/sync_bus.py` là nguồn sự thật duy nhất; `.agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py` chuyển thành **thin wrapper** (đại diện CLI + import SSOT, alias vào `sys.modules["sync_bus"]` để bảo toàn monkey-patch của test suite). `diff` giữa 2 file trước đây = byte-identical (49.7KB x2); nay chỉ còn 1 nguồn logic duy nhất.
+2. **Lease/Heartbeat (Trọng tâm 2)**: ca IN_PROGRESS kèm `lease_expire_at` + `last_heartbeat` (mặc định 60 phút, env `DUAL_AGENT_LEASE_MIN` override). Lệnh `--heartbeat` gia hạn. Khi lease hết hạn, đối tác được **auto-claim không cần `--force`**. Bus legacy không có mốc thời gian vẫn được bảo vệ (bắt buộc `--force`) — bảo toàn hành vi 7/7 test cũ.
+3. **Project-Scoped Path Resolver (Trọng tâm 3)**: `to_relative_path` chuẩn hóa mọi artifact về workspace root; `detect_modified_files` hỗ trợ `project_dir`; cờ CLI `--project-dir <path>` thu hẹp phạm vi scan tránh gom nhầm artifact dự án khác.
+4. **Visual Gate — Điều 12d Enforcer (Trọng tâm 4)**: task CAD/Bản vẽ (keywords: cad, bản vẽ, dxf, dwg, dce, render, preview...) bắt buộc ≥1 bằng chứng nghiệm thu (`preview.png` / log verification) trong `artifacts_modified` trước khi đặt `PENDING` / `NEED_REVIEW` / `COMPLETED`; `--force` để bỏ qua. Memo giao ban tự render trạng thái Lease + kết quả Visual Gate.
+
+**Nghiệm thu:** 18/18 unit tests PASS (7 gốc + 11 test v3.2 mới trong `tests/test_dual_agent_bridge.py`). CLI chain `claim_task.py` / `handover_task.py` → wrapper → SSOT hoạt động; Visual Gate block CAD handover không bằng chứng (xác nhận qua sandbox workspace riêng, không đụng bus thật).
+
+- SKILL_DUAL_AGENT_BRIDGE: 3.1.0 → **3.2.0**
+- sync_bus SSOT: v3.0 → **v3.2**
+
+## 2026-11-14 — CAD compliance F5 và MCP
+
+- SKILL_VERIFY 3.4.0: full mặc định, physical/plan tường minh; thiếu bằng chứng không PASS; sidecar SHA256.
+- Technical_Illustrator 1.7.0: bổ sung quy trình block/tag DCE, catalog/binding, naming và liên kết cấu kiện; phân biệt INSERT/ATTRIB và Dynamic Block Steel.
+- Technical_Illustrator 1.6.0: bổ sung quy trình bộ tờ kết cấu, đối chiếu hồ sơ Cát Lái với ba DXF Agent, kiểm coverage và đặc tả viewport/thép sàn.
+- Technical_Illustrator 1.5.0: hướng dẫn 8 MCP tools, output local, revision khi commit và lifecycle preview.
+- Generator V4.7.1: xuất entity DIMENSION/ATTRIB/HATCH thật và reopen audit; checker đối chiếu một số khai báo trực tiếp với entity native.
+- Tài liệu hợp đồng: `../docs/MCP_DCE_CAD_CONTRACT.md`. Giữ mọi thay đổi local, chưa push GitHub.
+
 > **Pham vi:** Ghi nhan thay doi cua **MOI skill** trong `.agents/skills/`.
 > **Cap nhat lon nhat:** 2026-11-13 (v7.5 / Master SKILL_PHULUC v3.1.0, Global_Dispatcher v2.0.0, Grounding & Suite #22–25)
 
