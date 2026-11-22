@@ -164,6 +164,47 @@ class TestCadBptcEngine(unittest.TestCase):
             g25 = next(g for g in audit_res["gate_results"] if g["gate_id"] == "G8.25")
             self.assertEqual(g25["status"], "FAIL")
 
+    def test_06_bp01_out_of_bounds_crane_fails_g825(self):
+        """Tâm cẩu và SafeZone nằm ngoài ranh giới công trường BP-01 phải khiến G8.25 FAIL."""
+        with tempfile.TemporaryDirectory(prefix="bptc_bp01_oob_") as tmpdir:
+            out_dxf = Path(tmpdir) / "BP-01_OutOfBounds.dxf"
+            self.engine.generate_bp01_site_plan(
+                site_w_m=80.0,
+                site_h_m=50.0,
+                crane_pos=(60.0, 0.0),
+                crane_radius_m=55.0,
+                output_dxf=str(out_dxf),
+            )
+            audit_res = dcc.audit_dxf_compliance(str(out_dxf), profile="bptc")
+            self.assertEqual(audit_res["status"], "FAIL")
+            g25 = next(g for g in audit_res["gate_results"] if g["gate_id"] == "G8.25")
+            self.assertEqual(g25["status"], "FAIL")
+
+    def test_07_bp02_missing_cell_scale_label_fails_g824(self):
+        """Xóa nhãn tỷ lệ 1/10 của ô chi tiết CT-01 trên BP-02 phải khiến G8.24 FAIL."""
+        with tempfile.TemporaryDirectory(prefix="bptc_bp02_g24_") as tmpdir:
+            out_dxf = Path(tmpdir) / "BP-02_NoCellScaleLabel.dxf"
+            self.engine.generate_bp02_tower_crane_tie(output_dxf=str(out_dxf))
+            doc = ezdxf.readfile(str(out_dxf))
+            msp = doc.modelspace()
+            for ent in [
+                e for e in msp
+                if e.dxftype() == "TEXT" and "1/10" in str(getattr(e.dxf, "text", ""))
+            ]:
+                msp.delete_entity(ent)
+            doc.saveas(str(out_dxf))
+            out_json = out_dxf.with_suffix(".bptc_audit.json")
+            dossier = json.loads(out_json.read_text(encoding="utf-8"))
+            new_sha = hashlib.sha256(out_dxf.read_bytes()).hexdigest()
+            dossier["sha256_sync_hash"] = new_sha
+            dossier["provenance"]["dxf_sha256"] = new_sha
+            out_json.write_text(json.dumps(dossier, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            audit_res = dcc.audit_dxf_compliance(str(out_dxf), profile="bptc")
+            self.assertEqual(audit_res["status"], "FAIL")
+            g24 = next(g for g in audit_res["gate_results"] if g["gate_id"] == "G8.24")
+            self.assertEqual(g24["status"], "FAIL")
+
 
 if __name__ == "__main__":
     unittest.main()

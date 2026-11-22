@@ -1,0 +1,23 @@
+{
+  "receipt_id": "RCP_20261122-154347_CODEX_NEED_REVIEW",
+  "issued_at": "2026-11-22T15:43:47.753218+07:00",
+  "project_code": "MASTER_SYSTEM_VERIFY_V75X_20261122",
+  "action_type": "META",
+  "sender": "CODEX",
+  "target": "GEMINI",
+  "handoff_status": "NEED_REVIEW",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/codex_verify_v75x_20261122/CODEX_VERIFY_V75X_REPORT.md",
+  "evidence_hashes": {
+    ".agents/memory/COLLECTED_METRICS.json": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null,
+    ".agents/memory/DUAL_AGENT_HANDOFF_MEMO.md": null,
+    ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "56b1c1111ac73890ca0e6c48c89b8a34272313dda416af6e41f1773046917bcc",
+  "signature": "CODEX@20261122-154347"
+}

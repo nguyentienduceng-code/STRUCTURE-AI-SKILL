@@ -1,0 +1,23 @@
+{
+  "receipt_id": "RCP_20261122-154742_GEMINI_COMPLETED",
+  "issued_at": "2026-11-22T15:47:42.043646+07:00",
+  "project_code": "MASTER_SYSTEM_VERIFY_V75X_20261122",
+  "action_type": "META",
+  "sender": "GEMINI",
+  "target": "GEMINI",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/codex_verify_v75x_20261122/CODEX_VERIFY_V75X_REPORT.md",
+  "evidence_hashes": {
+    ".agents/memory/COLLECTED_METRICS.json": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null,
+    ".agents/memory/DUAL_AGENT_HANDOFF_MEMO.md": null,
+    ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "1c2e0eefeb6a71dec13c4c541d172ed9497692d1c7f8c678460a68d32cb92f54",
+  "signature": "GEMINI@20261122-154742"
+}

@@ -438,12 +438,12 @@ def resolve_standard_basis(
         }
     hoặc None nếu không tra được.
     """
-    sg = _get_standards_graph(graph)
-    if sg is None:
-        return None
-
     node_id = resolve_element_node(element_id, element_type)
     if not node_id:
+        return None
+
+    sg = _get_standards_graph(graph)
+    if sg is None:
         return None
 
     try:

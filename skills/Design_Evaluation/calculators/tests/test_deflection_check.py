@@ -14,46 +14,61 @@ if str(_CALC_DIR) not in sys.path:
 
 from deflection_check import (  # noqa: E402
     calculate_deflection,
+    get_tcvn_2737_2023_table_g1_limit_mm,
     get_tcvn_2737_2023_table_g1_limit_ratio,
 )
 
 
 def test_table_g1_breakpoints_and_interpolation_h_le_6m():
-    """Kiểm tra các mốc Bảng G.1 (chiều cao phòng <= 6 m) và nội suy tuyến tính."""
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(0.5) == 120.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(1.0) == 120.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(3.0) == 150.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(4.5) == 175.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(6.0) == 200.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(9.0) == 225.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(12.0) == 250.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(18.0) == 275.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(24.0) == 300.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(30.0) == 300.0
+    """Kiểm tra nội suy tuyến tính trực tiếp độ võng giới hạn f_u (mm) cho phòng <= 6 m."""
+    assert round(get_tcvn_2737_2023_table_g1_limit_mm(0.5), 2) == 4.17
+    assert round(get_tcvn_2737_2023_table_g1_limit_mm(1.0), 2) == 8.33
+    assert get_tcvn_2737_2023_table_g1_limit_mm(3.0) == 20.0
+    # Trung điểm 3m (20 mm) và 6m (30 mm) -> 25.00 mm (ratio = 4500/25 = 180.0)
+    assert get_tcvn_2737_2023_table_g1_limit_mm(4.5) == 25.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(6.0) == 30.0
+    # Trung điểm 6m (30 mm) và 12m (48 mm) -> 39.00 mm (ratio = 9000/39 = 230.77)
+    assert get_tcvn_2737_2023_table_g1_limit_mm(9.0) == 39.0
+    assert get_tcvn_2737_2023_table_g1_limit_ratio(9.0) == 230.77
+    assert get_tcvn_2737_2023_table_g1_limit_mm(12.0) == 48.0
+    # Trung điểm 12m (48 mm) và 24m (80 mm) -> 64.00 mm (ratio = 18000/64 = 281.25)
+    assert get_tcvn_2737_2023_table_g1_limit_mm(18.0) == 64.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(24.0) == 80.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(30.0) == 100.0
 
 
 def test_table_g1_room_height_gt_6m_and_cantilever():
     """Kiểm tra nhánh h > 6 m (Chú thích 3) và cấu kiện công xôn (Chú thích 1: L_eff = 2L)."""
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(6.0, room_height_le_6m=False) == 200.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(12.0, room_height_le_6m=False) == 216.67
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(24.0, room_height_le_6m=False) == 250.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(36.0, room_height_le_6m=False) == 300.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(6.0, room_height_le_6m=False) == 30.0
+    # Giữa 6m (30 mm) và 24m (96 mm): 30 + (96-30)*(12-6)/(24-6) = 52.00 mm
+    assert get_tcvn_2737_2023_table_g1_limit_mm(12.0, room_height_le_6m=False) == 52.0
+    assert get_tcvn_2737_2023_table_g1_limit_ratio(12.0, room_height_le_6m=False) == 230.77
+    assert get_tcvn_2737_2023_table_g1_limit_mm(24.0, room_height_le_6m=False) == 96.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(36.0, room_height_le_6m=False) == 120.0
     assert get_tcvn_2737_2023_table_g1_limit_ratio(40.0, room_height_le_6m=False) == 300.0
 
-    # Công xôn L = 3 m -> L_eff = 6 m -> L/200; L = 6 m -> L_eff = 12 m -> L/250
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(3.0, cantilever=True) == 200.0
-    assert get_tcvn_2737_2023_table_g1_limit_ratio(6.0, cantilever=True) == 250.0
+    # Công xôn vươn L = 3 m -> L_eff = 6 m -> f_u = 30.00 mm; vươn L = 6 m -> L_eff = 12 m -> f_u = 48.00 mm
+    assert get_tcvn_2737_2023_table_g1_limit_mm(3.0, cantilever=True) == 30.0
+    assert get_tcvn_2737_2023_table_g1_limit_mm(6.0, cantilever=True) == 48.0
+
+    # Kiểm tra tính độ võng công xôn: delta_e = M*L^2/(4*E*I), L_eff = 2L = 6m -> Allowable_mm = 30.0
+    cant_res = calculate_deflection(L=3.0, M=40.0, E=30e6, I_eff=5.4e-3, cantilever=True)
+    assert cant_res["cantilever"] is True
+    assert cant_res["L_eff_m"] == 6.0
+    assert cant_res["Allowable_mm"] == 30.0
+    # delta_e = 0.25 * 40 * 9 / (30e6 * 5.4e-3) * 1000 = 0.5556 mm; coeff=2 -> 1.11 mm
+    assert cant_res["Deflection_mm"] == 1.11
 
     raised = False
     try:
-        get_tcvn_2737_2023_table_g1_limit_ratio(0.0)
+        get_tcvn_2737_2023_table_g1_limit_mm(0.0)
     except ValueError:
         raised = True
     assert raised, "L_m <= 0 phải ném ValueError"
 
 
 def test_calculate_deflection_default_tcvn_2737_2023():
-    """Mặc định dùng TCVN 2737:2023 Bảng G.1 với L=6m -> limit_ratio=200 (Allowable=30mm)."""
+    """Mặc định dùng TCVN 2737:2023 Bảng G.1 với L=6m -> Allowable=30.00mm."""
     res = calculate_deflection(L=6.0, M=80.0, E=30e6, I_eff=5.4e-3)
     assert res["Standard"] == "TCVN 2737:2023"
     assert res["Standard_Mode"] == "TCVN_2737_2023"
@@ -66,6 +81,16 @@ def test_calculate_deflection_default_tcvn_2737_2023():
     cit = res["Calculation_Logs"][-1]["Citation"]
     assert cit["Ma_TC"] == "TCVN 2737:2023"
     assert "Bảng G.1" in cit["Bang_Hinh"]
+
+
+def test_calculate_deflection_span_9m_boundary_fail():
+    """Ca biên nhịp 9 m (h<=6 m): f_u = 39.00 mm (không phải 40.00 mm), võng 39.48 mm -> FAIL."""
+    res = calculate_deflection(L=9.0, M=379.0, E=30e6, I_eff=0.0054)
+    assert res["Allowable_mm"] == 39.0
+    assert res["Deflection_mm"] == 39.48
+    assert res["Status"] == "FAIL"
+    assert res["Rating"] == "RED"
+    assert res["utilization_ratio"] > 1.0
 
 
 def test_calculate_deflection_legacy_comparison_mode():
@@ -88,7 +113,6 @@ def test_calculate_deflection_override_and_fail_status():
     assert res["limit_ratio"] == 400.0
     assert res["Allowable_mm"] == 15.0
     assert res["Limit_Source"] == "user_override"
-    # Với L=6, M=80, E=30e6, I=5.4e-3, coeff=2: delta_e=1.85mm -> delta_lt=3.70mm -> PASS
     assert res["Status"] == "PASS"
 
     fail_res = calculate_deflection(L=6.0, M=400.0, E=30e6, I_eff=5.4e-3, limit_ratio=400.0)
@@ -105,7 +129,8 @@ def test_deflection_cli_modes():
         capture_output=True, text=True, encoding="utf-8", check=True,
     )
     data1 = json.loads(cp1.stdout)
-    assert data1["limit_ratio"] == 216.67
+    assert data1["Allowable_mm"] == 52.0
+    assert data1["limit_ratio"] == 230.77
     assert data1["Standard"] == "TCVN 2737:2023"
 
     cp2 = subprocess.run(
@@ -122,7 +147,8 @@ if __name__ == "__main__":
     test_table_g1_breakpoints_and_interpolation_h_le_6m()
     test_table_g1_room_height_gt_6m_and_cantilever()
     test_calculate_deflection_default_tcvn_2737_2023()
+    test_calculate_deflection_span_9m_boundary_fail()
     test_calculate_deflection_legacy_comparison_mode()
     test_calculate_deflection_override_and_fail_status()
     test_deflection_cli_modes()
-    print("[OK] test_deflection_check.py: 6/6 tests passed.")
+    print("[OK] test_deflection_check.py: 7/7 tests passed.")

@@ -48,11 +48,13 @@ Nhằm giải quyết triệt để vấn đề bố trí các chi tiết cấu 
 | **Mở rộng v5.0 (Thép & BPTC)** | `G8.21` | `BOLT_SPACING_EDGE_CLEARANCE` | `STEEL_PEB`, `BP-02` | Bước bu lông $p \ge 2.5 d_0$, mép $e \ge 1.5 d_0$ (TCVN 5575:2024) |
 | | `G8.22` | `WELD_SYMBOL_AND_LEG_SIZE` | `STEEL_PEB`, `BP-02` | 100% mối hàn ghi đủ $h_f$ và $l_w$ trên `DCE_Steel_Weld` |
 | | `G8.23` | `STEEL_SECTION_BOM_PARITY` | `STEEL_PEB`, `BP-02` | Khớp 100% khối lượng thép BOM và các cấu kiện (sai số $\le 0.5\%$) |
-| | `G8.24` | `MULTI_SCALE_VIEWPORT_PARITY` | `STEEL_PEB`, `BP-02` | Bố cục `COMPOSITE_DETAIL_GRID` chuẩn xác không đè lấn |
-| | `G8.25` | `BPTC_CLEARANCE_AND_ANCHOR_CHECK` | `BPTC` | Khoảng hở an toàn thiết bị cẩu (`BP-01` SafeZone) & bu lông neo (`BP-02`) theo QCVN 18:2021/BXD |
+| | `G8.24` | `MULTI_SCALE_VIEWPORT_PARITY` | `STEEL_PEB`, `BP-02` | Bố cục `COMPOSITE_DETAIL_GRID` đúng số ô chi tiết, mỗi ô chứa đúng nhãn tỷ lệ/tiêu đề tương ứng |
+| | `G8.25` | `BPTC_CLEARANCE_AND_ANCHOR_CHECK` | `BPTC` | `BP-01`: tâm thiết bị & vòng `SafeZone` nằm trong ranh giới công trường/khung bản vẽ; `BP-02`: đủ thiết bị, thanh giằng, neo & bu lông hợp lệ theo QCVN 18:2021/BXD |
+
+> **Phạm vi kiểm chứng của Bộ lọc 25 cổng (`G8.01–G8.25`):** Các cổng trên kiểm chứng cấu trúc thực thể/hình học DXF, chuẩn lớp/tỷ lệ DCE và tính nhất quán với sidecar gắn SHA-256. Những hạng mục đòi hỏi chứng minh nội lực hoặc liên kết độc lập (như chiều sâu neo vào vách BTCT hoặc độ bền tiết diện từ mô hình ETABS/SAP2000) phải do hồ sơ tính toán kỹ thuật xác nhận riêng, không thay thế bằng kiểm tra hình học DXF.
 
 ---
 
 ## 4. Hợp Đồng Dữ Liệu Đồng Bộ SSOT
 
-Mọi bản vẽ xuất ra từ `CadSteelPebEngine` hoặc `CadBptcEngine` đều sinh tệp sidecar song hành `.steel_audit.json` hoặc `.bptc_audit.json` chứa mã băm SHA-256 trên byte DXF thật (`sha256_sync_hash` và `provenance.dxf_sha256`), danh mục `members`, `connections`, và `bom_summary`. Khi một tham số kỹ thuật trong `calc_state.json` thay đổi, hệ thống liên SKILL (`design-evaluation-audit`, `skill-phuluc-tmtt`, `SKILL_VERIFY`) sẽ tự động phát hiện sai lệch và đồng bộ khép kín.
+Mọi bản vẽ xuất ra từ `CadSteelPebEngine` hoặc `CadBptcEngine` đều sinh tệp sidecar song hành `.steel_audit.json` hoặc `.bptc_audit.json` chứa mã băm SHA-256 trên byte DXF thật (`sha256_sync_hash` và `provenance.dxf_sha256`), danh mục `members`, `connections`, và `bom_summary`. Khi một tham số kỹ thuật trong `calc_state.json` thay đổi, hệ thống liên SKILL (`design-evaluation-audit`, `skill-phuluc-tmtt`, `SKILL_VERIFY`) đối chiếu sai lệch giữa dữ liệu hình học DXF và hồ sơ tính toán nguồn.

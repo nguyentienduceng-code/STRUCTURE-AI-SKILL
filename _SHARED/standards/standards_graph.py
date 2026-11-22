@@ -903,8 +903,23 @@ class StandardsGraph:
         self.upsert_edge("CLAUSE_AISI_Z_PURLIN", "CHECK_PURLIN_DEFLECTION", "verified_by")
 
 
-# Helper singleton
-standards_graph = StandardsGraph()
+class _LazyStandardsGraph:
+    """Proxy khởi tạo lười để import `standards_graph` không tạo DB trên đĩa khi chưa dùng."""
+
+    def __init__(self) -> None:
+        self._instance: Optional[StandardsGraph] = None
+
+    def _get(self) -> StandardsGraph:
+        if self._instance is None:
+            self._instance = StandardsGraph()
+        return self._instance
+
+    def __getattr__(self, name: str):
+        return getattr(self._get(), name)
+
+
+# Helper singleton (lazy-initialized so importing module does not create DB on disk)
+standards_graph = _LazyStandardsGraph()
 
 if __name__ == '__main__':
     print("=== TEST NHANH ĐỒ THỊ TRI THỨC TIÊU CHUẨN (STANDARDS GRAPH v2.0) ===")

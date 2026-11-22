@@ -1,10 +1,10 @@
 {
   "work_ticket": {
     "bus_version": "3.4",
-    "task_id": "MASTER_SYSTEM_AUDIT_20261122",
-    "task_title": "/sys Kiểm toán độc lập toàn bộ hệ thống .agents @ commit ac3b80f theo 6 trục (50/50 suites --full, DCE Pro v5.0 & K1-K5, đồng bộ SSOT/drift, liêm chính tiêu chuẩn & calculators, 2D Dispatcher & Dual-Agent Bus v3.4, giá trị thực chiến 01_Projects/) và đề xuất Phương án Định hướng Phát triển (v7.5 -> v8.0+) kèm Next Sprint Backlog 5-7 task nguyên tử. Read-only: không sửa code, không commit/push.",
+    "task_id": "MASTER_SYSTEM_VERIFY_V75X_20261122",
+    "task_title": "/sys Kiểm toán xác nhận độc lập hệ thống .agents @ commit d7707bd trên 4 hạng mục P0-1..P0-4 (chạy 50/50 suites --full với snapshot 0 rò rỉ RECEIPTS/traces/standards_graph.db, kiểm chứng 25 cổng evidence-based DCE Pro v5.0 & BP-01, đối chiếu deflection_check.py Bảng G.1 TCVN 2737:2023 & audit_zero_white_text) & xuất biên bản xác nhận vào CODEX_VERIFY_V75X_REPORT.md. Read-only: không sửa code, không commit/push.",
     "status": "QUEUED",
-    "request_id": "49fef5772ac447999eb0d7ea5b80e21d",
+    "request_id": "1b2170d1c6f74235a21e7d57ef9a69b1",
     "workspace": "G:\\My Drive\\Google AI Studio",
     "dispatch_2d": {
       "domain_skill": "SKILL_GEOTECH",
@@ -37,9 +37,100 @@
       "enforce_jargon_linter": false,
       "required_extensions": [],
       "primary_skill": "Design_Evaluation",
-      "skill_workflow": null,
+      "skill_workflow": {
+        "pipeline_id": "PL-DES-SKI-20261122-001",
+        "created_at": "2026-11-22T15:35:43.341996",
+        "context": "/sys Kiểm toán xác nhận độc lập hệ thống .agents @ commit d7707bd trên 4 hạng mục P0-1..P0-4 (chạy 50/50 suites --full với snapshot 0 rò rỉ RECEIPTS/traces/standards_graph.db, kiểm chứng 25 cổng evidence-based DCE Pro v5.0 & BP-01, đối chiếu deflection_check.py Bảng G.1 TCVN 2737:2023 & audit_zero_white_text) & xuất biên bản xác nhận vào CODEX_VERIFY_V75X_REPORT.md. Read-only: không sửa code, không commit/push. MASTER_SYSTEM_VERIFY_V75X_20261122",
+        "total_skills": 2,
+        "requires_pre_approval": true,
+        "max_repair_iterations": 3,
+        "stages": [
+          {
+            "stage": 1,
+            "skill": "Design_Evaluation",
+            "skill_id": "DE",
+            "display_name": "Design Evaluation (Quản lý Thiết kế / QLTK)",
+            "entry_points": [
+              "SKILLKC.md",
+              "SKILL_REPORT.md"
+            ],
+            "is_placeholder": false,
+            "estimated_sub_steps": 3,
+            "depends_on": [],
+            "requires_review_gate": true,
+            "auto_trigger": [
+              "POST-EVAL-01",
+              "POST-EVAL-02",
+              "POST-DEV-001"
+            ],
+            "owner": "PARTNER_AGENT"
+          },
+          {
+            "stage": 2,
+            "skill": "SKILL_VERIFY",
+            "skill_id": "VER",
+            "display_name": "SKILL_VERIFY (Kiểm chứng Chéo & Kiểm soát Xung đột)",
+            "entry_points": [
+              "SKILL.md"
+            ],
+            "is_placeholder": false,
+            "estimated_sub_steps": 2,
+            "depends_on": [
+              1
+            ],
+            "requires_review_gate": false,
+            "auto_trigger": [],
+            "owner": "PARTNER_AGENT"
+          }
+        ],
+        "handoff_schemas": [
+          {
+            "from": "Design_Evaluation",
+            "to": "SKILL_VERIFY",
+            "schema_type": "calc_to_verify",
+            "auto_generate": true
+          }
+        ],
+        "review_gates": [
+          {
+            "after_stage": 1,
+            "skill": "Design_Evaluation",
+            "action": "USER_APPROVAL",
+            "message": "Review kết quả Design_Evaluation trước khi tiếp tục"
+          }
+        ],
+        "parallel_opportunities": [],
+        "estimated_steps": 5,
+        "warnings": [],
+        "execution_instructions": "## Hướng dẫn thực thi Pipeline\n\n### Stage 1: Design_Evaluation\n1. Đọc `SKILL.md` của **Design_Evaluation**\n2. Thực thi theo entry point\n3. Thu thập output JSON\n4. ⚠️ **REVIEW GATE** — Trình bày kết quả và chờ User duyệt\n5. Tạo handoff JSON → chuyển sang Stage 2\n\n### Stage 2: SKILL_VERIFY\n1. Đọc `SKILL.md` của **SKILL_VERIFY**\n2. Thực thi theo entry point\n3. Thu thập output JSON\n",
+        "skills": [
+          "Design_Evaluation",
+          "SKILL_VERIFY"
+        ],
+        "schema_version": "2.0",
+        "graph_type": "DAG",
+        "edges": [
+          {
+            "from": 1,
+            "to": 2
+          }
+        ],
+        "topological_order": [
+          1,
+          2
+        ],
+        "execution_batches": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
       "skill_files": [
-        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\Design_Evaluation\\SKILL.md"
+        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\Design_Evaluation\\SKILL.md",
+        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\SKILL_VERIFY\\SKILL.md"
       ],
       "expected_files": [],
       "project_identity": null,
@@ -48,8 +139,8 @@
     },
     "bus_meta": {
       "lock_owner": "gemini_maker",
-      "lock_acquired_at_iso": "2026-11-22T07:45:56.156759+00:00",
-      "task_started_at_epoch": 1795333556.1567595,
+      "lock_acquired_at_iso": "2026-11-22T08:35:43.316057+00:00",
+      "task_started_at_epoch": 1795336543.3160574,
       "lease_ttl_sec": 600,
       "report_gate_p1": "PENDING",
       "mcp_perception_p2": true,
@@ -58,13 +149,13 @@
         {
           "agent": "gemini_maker",
           "event": "HANDOVER_CREATED",
-          "timestamp_iso": "2026-11-22T07:45:56.156759+00:00",
+          "timestamp_iso": "2026-11-22T08:35:43.316057+00:00",
           "gate_status": "PENDING"
         }
       ]
     },
     "human_handoff": {
-      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: /sys Kiểm toán độc lập toàn bộ hệ thống .agents @ commit ac3b80f theo 6 trục (50/50 suites --full, DCE Pro v5.0 & K1-K5, đồng bộ SSOT/drift, liêm chính tiêu chuẩn & calculators, 2D Dispatcher & Dual-Agent Bus v3.4, giá trị thực chiến 01_Projects/) và đề xuất Phương án Định hướng Phát triển (v7.5 -> v8.0+) kèm Next Sprint Backlog 5-7 task nguyên tử. Read-only: không sửa code, không commit/push.\nDomain: SKILL_GEOTECH | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
+      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: /sys Kiểm toán xác nhận độc lập hệ thống .agents @ commit d7707bd trên 4 hạng mục P0-1..P0-4 (chạy 50/50 suites --full với snapshot 0 rò rỉ RECEIPTS/traces/standards_graph.db, kiểm chứng 25 cổng evidence-based DCE Pro v5.0 & BP-01, đối chiếu deflection_check.py Bảng G.1 TCVN 2737:2023 & audit_zero_white_text) & xuất biên bản xác nhận vào CODEX_VERIFY_V75X_REPORT.md. Read-only: không sửa code, không commit/push.\nDomain: SKILL_GEOTECH | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
       "source_scripts": [],
       "user_report_vi": "",
       "deliverable_gate_status": "PENDING",
@@ -73,49 +164,49 @@
     }
   },
   "project_context": {
-    "project_code": "MASTER_SYSTEM_AUDIT_20261122",
-    "project_purpose": "Kiểm toán độc lập toàn hệ thống .agents @ ac3b80f (50/50 suites, DCE Pro v5.0 + K1-K5, SSOT, 2D Dispatcher, thực chiến dự án) & đề xuất lộ trình phát triển v7.5 -> v8.0+",
-    "role_distribution": "Gemini: System Coordinator (đã hoàn tất commit ac3b80f); Codex: Chief Systems Architect & Independent Auditor (Read-Only Audit + Roadmap Proposal)",
+    "project_code": "MASTER_SYSTEM_VERIFY_V75X_20261122",
+    "project_purpose": "Kiểm toán xác nhận độc lập Sprint v7.5.x P0-1..P0-4 tại commit d7707bd (clean checkout 50/50, 0 test pollution, DCE Pro v5.0 evidence-based gates & BP-01, TCVN 2737:2023 Bảng G.1)",
+    "role_distribution": "Gemini: Implementation & Commit d7707bd; Codex: Chief Systems Architect & Independent Verifier (Read-Only Confirmation)",
     "action_type": "META"
   },
   "last_updated_by": "GEMINI",
-  "timestamp": "2026-11-22T15:12:52.187493+07:00",
+  "timestamp": "2026-11-22T15:47:42.008951+07:00",
   "handoff_status": "COMPLETED",
   "current_holder": "IDLE",
-  "summary": "Đã nghiệm thu báo cáo kiểm toán độc lập của Codex (4/4 tiêu chí ĐẠT, EVIDENCE.zip khớp SHA-256 0cd223a30beb005d, tuân thủ Read-Only). Đóng ca MASTER_SYSTEM_AUDIT_20261122 và triển khai gói 4 hạng mục P0 của Sprint v7.5.x.",
+  "summary": "Đã tiếp nhận báo cáo kiểm toán xác nhận độc lập của Codex (CODEX_VERIFY_V75X_REPORT.md, SHA-256 EVIDENCE.zip ea5aa53faf11f992). Triển khai vá 3 điểm còn mở: lazy standards_graph.py (P0-2), G8.24/G8.25 hình học & SPEC (P0-3), nội suy trực tiếp f_u Bảng G.1 & công xôn (P0-4).",
   "artifacts_modified": [
+    ".agents/memory/COLLECTED_METRICS.json",
     ".agents/memory/DUAL_AGENT_BUS.json",
     ".agents/memory/DUAL_AGENT_HANDOFF_MEMO.md",
-    ".agents/docs/BAO_CAO_PHAT_TRIEN_DIEU_PHOI_AI.md"
+    ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md"
   ],
   "next_action_for_partner": {
     "target_agent": "GEMINI",
-    "task_description": "/sys Kiểm toán độc lập toàn bộ hệ thống .agents @ commit ac3b80f theo 6 trục (50/50 suites --full, DCE Pro v5.0 & K1-K5, đồng bộ SSOT/drift, liêm chính tiêu chuẩn & calculators, 2D Dispatcher & Dual-Agent Bus v3.4, giá trị thực chiến 01_Projects/) và đề xuất Phương án Định hướng Phát triển (v7.5 -> v8.0+) kèm Next Sprint Backlog 5-7 task nguyên tử. Read-only: không sửa code, không commit/push.",
+    "task_description": "/sys Kiểm toán xác nhận độc lập hệ thống .agents @ commit d7707bd trên 4 hạng mục P0-1..P0-4 (chạy 50/50 suites --full với snapshot 0 rò rỉ RECEIPTS/traces/standards_graph.db, kiểm chứng 25 cổng evidence-based DCE Pro v5.0 & BP-01, đối chiếu deflection_check.py Bảng G.1 TCVN 2737:2023 & audit_zero_white_text) & xuất biên bản xác nhận vào CODEX_VERIFY_V75X_REPORT.md. Read-only: không sửa code, không commit/push.",
     "target_files": [
-      ".agents/AGENTS.md",
-      ".agents/docs/STRATEGIC_ALIGNMENT_GEMINI_CODEX.md",
-      ".agents/docs/BAO_CAO_PHAT_TRIEN_DIEU_PHOI_AI.md",
-      ".agents/docs/TECHNICAL_DEBT.md",
-      ".agents/skills/SKILL_INDEX.md",
-      ".agents/skills/STANDARDS_LOCK.md",
+      ".agents/tools/sync_bus.py",
       ".agents/skills/SKILL_VERIFY/scripts/dce_cad_compliance_checker.py",
-      ".agents/skills/Technical_Illustrator/cad_integration/cad_steel_primitives.py",
       ".agents/skills/Technical_Illustrator/cad_integration/cad_bptc_engine.py",
-      ".agents/skills/Technical_Illustrator/cad_integration/cad_steel_peb_engine.py",
-      ".agents/tools/sync_bus.py"
+      ".agents/skills/Design_Evaluation/calculators/deflection_check.py",
+      ".agents/skills/Design_Evaluation/calculators/tests/test_deflection_check.py",
+      ".agents/skills/STANDARDS_LOCK.md",
+      ".agents/docs/SPEC_DCE_PRO_V5.md",
+      ".agents/docs/CHIEN_LUOC_NANG_CAP_CAD_DCE_PRO_V5.md",
+      ".agents/tests/test_cad_bptc_engine.py",
+      ".agents/tests/test_cognitive_and_control_systems.py"
     ],
     "acceptance_criteria": [
-      "1. Chạy độc lập đủ 50/50 suites (--full), audit_zero_white_text.py và sync_bus.py --validate kèm bằng chứng stdout/exit code",
-      "2. Thẩm tra mã nguồn DCE Pro v5.0 + K1-K5, phát hiện drift SSOT, test pollution và đánh giá 2D Dispatcher/Bus v3.4",
-      "3. Xuất báo cáo kiểm toán & lộ trình phát triển 3 chân trời + Next Sprint Backlog vào .agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md",
-      "4. Read-only hoàn toàn: không tự sửa code, không commit/push"
+      "1. Xác nhận 4/4 hạng mục P0-1..P0-4 tại commit d7707bd khớp yêu cầu kiểm toán trước đó",
+      "2. Chạy độc lập run_all_tests.py --full đạt 50/50 PASS với 0 rò rỉ vào RECEIPTS/, traces/ và standards_graph.db",
+      "3. Xác nhận audit_zero_white_text.py = 0 warnings và sync_bus.py --validate đạt 100%",
+      "4. Xuất báo cáo xác nhận vào .agents/memory/audits/codex_verify_v75x_20261122/CODEX_VERIFY_V75X_REPORT.md và chuyển bus sang NEED_REVIEW (Read-Only, không sửa code/commit/push)"
     ],
     "command": "python .agents/tests/run_all_tests.py --full",
-    "deliverable": ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md",
+    "deliverable": ".agents/memory/audits/codex_verify_v75x_20261122/CODEX_VERIFY_V75X_REPORT.md",
     "acceptance_cmd": "python .agents/tests/run_all_tests.py --full",
-    "report_file": ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md"
+    "report_file": ".agents/memory/audits/codex_verify_v75x_20261122/CODEX_VERIFY_V75X_REPORT.md"
   },
   "Verification_Status": "CONFIRMED_AND_HANDED_OFF",
-  "claim_timestamp": "2026-11-22T14:48:26.022902+07:00",
-  "last_heartbeat": "2026-11-22T14:48:26.022902+07:00"
+  "claim_timestamp": "2026-11-22T15:36:36.525457+07:00",
+  "last_heartbeat": "2026-11-22T15:36:36.526472+07:00"
 }

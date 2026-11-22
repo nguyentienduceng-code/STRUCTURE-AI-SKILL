@@ -778,45 +778,67 @@ class DCECADComplianceCheckerV4:
                 f"vs nhãn DXF ({f'{dxf_bom_wt:.1f} kg' if dxf_bom_wt is not None else 'MISSING'})."
             ))
 
-        # G8.24: MULTI_SCALE_VIEWPORT_PARITY (đối soát bố cục COMPOSITE_DETAIL_GRID với khung DCE_Frame trong DXF)
+        # G8.24: MULTI_SCALE_VIEWPORT_PARITY (đối soát từng ô chi tiết DCE_Frame với nhãn cell_id + tỷ lệ nằm bên trong ô)
         if is_site_logistics or layout.get("mode") == "SINGLE_SITE_PLAN":
             self.results.append(GateResult(
                 "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", None,
                 "Tổng mặt bằng BP-01 bố cục SINGLE_SITE_PLAN đơn tỷ lệ.", applicable=False
             ))
-        elif msp is None:
+        elif msp is None or outer_frame is None:
             self.results.append(GateResult(
                 "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", False,
-                f"Không đọc được khung ô chi tiết DXF: {dxf_read_err or 'ezdxf unavailable'}"
+                f"Không đọc được khung ô chi tiết DCE_Frame DXF: {dxf_read_err or 'missing outer DCE_Frame'}"
             ))
         else:
-            closed_frame_cnt = sum(
-                1 for e in msp
-                if e.dxftype() == "LWPOLYLINE" and e.dxf.layer.lower() == "dce_frame" and bool(getattr(e, "closed", False))
-            )
-            scale_labels_ok = True
+            ox0, oy0, ox1, oy1, oarea = outer_frame
+            non_outer_24 = [b for b in frame_boxes if abs(b[4] - oarea) > 1.0]
+            sb_min_24 = min(frame_dividers) if frame_dividers else (ox1 - 0.30 * (ox1 - ox0))
+            tb_boxes_24 = [b for b in non_outer_24 if b[0] >= sb_min_24 - 1.0 and b[1] <= oy0 + 0.05 * (oy1 - oy0)]
+            cell_boxes_24 = [b for b in non_outer_24 if b not in tb_boxes_24 and b[2] <= sb_min_24 + 1.0]
+
+            text_pts = []
+            for ent in texts_in_msp:
+                txt_val = _extract_text_str(ent)
+                ins_pt = ent.dxf.insert
+                text_pts.append((float(ins_pt.x), float(ins_pt.y), txt_val))
+
+            matched_boxes = set()
+            unmatched_cells: List[str] = []
             for cell in detail_cells:
+                cid = str(cell.get("cell_id", "") or "").strip()
                 s_val = cell.get("scale")
-                if s_val:
-                    lbl = f"1/{int(float(s_val))}"
-                    if not any(
-                        lbl in str(e.dxf.text if e.dxftype() == "TEXT" else e.text)
-                        for e in msp if e.dxftype() in ("TEXT", "MTEXT")
-                    ):
-                        scale_labels_ok = False
+                lbl = f"1/{int(float(s_val))}" if s_val else ""
+                found_idx = None
+                for idx_b, cb in enumerate(cell_boxes_24):
+                    if idx_b in matched_boxes:
+                        continue
+                    for tx, ty, txt_val in text_pts:
+                        if (cb[0] - 50.0 <= tx <= cb[2] + 50.0) and (cb[1] - 50.0 <= ty <= cb[3] + 50.0):
+                            cid_ok = (not cid) or (cid in txt_val)
+                            lbl_ok = (not lbl) or (lbl in txt_val)
+                            if cid_ok and lbl_ok:
+                                found_idx = idx_b
+                                break
+                    if found_idx is not None:
+                        break
+                if found_idx is not None:
+                    matched_boxes.add(found_idx)
+                else:
+                    unmatched_cells.append(f"{cid or '?'}({lbl or '?'})")
+
             g24_pass = (
                 layout.get("mode") == "COMPOSITE_DETAIL_GRID"
                 and len(detail_cells) > 0
-                and closed_frame_cnt >= len(detail_cells) + 1
-                and scale_labels_ok
+                and len(cell_boxes_24) >= len(detail_cells)
+                and len(unmatched_cells) == 0
             )
             self.results.append(GateResult(
                 "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", g24_pass,
-                f"Bố cục COMPOSITE_DETAIL_GRID: {len(detail_cells)} ô chi tiết, "
-                f"{closed_frame_cnt} khung DCE_Frame kín DXF, nhãn_tỷ_lệ={scale_labels_ok}."
+                f"Bố cục COMPOSITE_DETAIL_GRID: {len(detail_cells)} ô khai báo, "
+                f"{len(cell_boxes_24)} khung ô DCE_Frame, chưa khớp={unmatched_cells}."
             ))
 
-        # G8.25: BPTC_CLEARANCE_AND_ANCHOR_CHECK (đo thực thể BPTC thực tế trong DXF)
+        # G8.25: BPTC_CLEARANCE_AND_ANCHOR_CHECK (kiểm chứng hình học BPTC thực tế trong DXF)
         if self.profile == "bptc":
             if msp is None:
                 g25_pass = False
@@ -830,16 +852,59 @@ class DCECADComplianceCheckerV4:
                     if e.dxftype() == "CIRCLE" and e.dxf.layer.lower() == "dce_bptc_safezone" and float(e.dxf.radius) > 0.0
                 ]
                 if is_site_logistics:
-                    g25_pass = equip_cnt > 0 and len(safezone_circles) > 0
+                    site_boxes: List[Tuple[float, float, float, float]] = []
+                    equip_centers: List[Tuple[float, float]] = []
+                    for e in msp:
+                        ln_low = e.dxf.layer.lower()
+                        if ln_low == "dce_truc" and e.dxftype() == "LWPOLYLINE" and bool(getattr(e, "closed", False)):
+                            pts = list(e.get_points("xy"))
+                            if len(pts) >= 4:
+                                xs = [p[0] for p in pts]
+                                ys = [p[1] for p in pts]
+                                site_boxes.append((min(xs), min(ys), max(xs), max(ys)))
+                        elif ln_low == "dce_bptc_equip":
+                            if e.dxftype() == "LWPOLYLINE":
+                                pts = list(e.get_points("xy"))
+                                if pts:
+                                    equip_centers.append((
+                                        sum(p[0] for p in pts) / len(pts),
+                                        sum(p[1] for p in pts) / len(pts),
+                                    ))
+                            elif e.dxftype() == "CIRCLE":
+                                equip_centers.append((float(e.dxf.center.x), float(e.dxf.center.y)))
+
+                    oob_safezones = 0
+                    detached_safezones = 0
+                    for sz in safezone_circles:
+                        scx, scy = float(sz.dxf.center.x), float(sz.dxf.center.y)
+                        in_frame = outer_frame is not None and (
+                            outer_frame[0] <= scx <= outer_frame[2] and outer_frame[1] <= scy <= outer_frame[3]
+                        )
+                        in_site = any(
+                            sb[0] <= scx <= sb[2] and sb[1] <= scy <= sb[3] for sb in site_boxes
+                        )
+                        if not (in_frame and in_site):
+                            oob_safezones += 1
+                        if not any(math.hypot(scx - ex, scy - ey) <= 100.0 for ex, ey in equip_centers):
+                            detached_safezones += 1
+
+                    g25_pass = (
+                        len(equip_centers) > 0
+                        and len(safezone_circles) > 0
+                        and len(site_boxes) > 0
+                        and oob_safezones == 0
+                        and detached_safezones == 0
+                    )
                     g25_msg = (
-                        f"Kiểm chứng DXF BPTC BP-01 (QCVN 18:2021/BXD): Equip={equip_cnt}, "
-                        f"SafeZoneCircle={len(safezone_circles)}."
+                        f"Kiểm chứng hình học DXF BPTC BP-01 (QCVN 18:2021/BXD): Equip={equip_cnt}, "
+                        f"SafeZoneCircle={len(safezone_circles)}, SiteBox={len(site_boxes)}, "
+                        f"OutOfBounds={oob_safezones}, Detached={detached_safezones}."
                     )
                 else:
                     g25_pass = equip_cnt > 0 and tie_cnt > 0 and anchor_cnt > 0 and g21_pass
                     g25_msg = (
-                        f"Kiểm chứng DXF BPTC thực tế (QCVN 18:2021/BXD): Equip={equip_cnt}, "
-                        f"Tie={tie_cnt}, Anchor={anchor_cnt}, BoltCheck={'PASS' if g21_pass else 'FAIL'}."
+                        f"Kiểm chứng hình học DXF BPTC BP-02 (QCVN 18:2021/BXD, chưa thay kiểm toán chiều sâu neo độc lập): "
+                        f"Equip={equip_cnt}, Tie={tie_cnt}, Anchor={anchor_cnt}, BoltCheck={'PASS' if g21_pass else 'FAIL'}."
                     )
             self.results.append(GateResult(
                 "G8.25", "BPTC_CLEARANCE_AND_ANCHOR_CHECK", "CRITICAL", g25_pass, g25_msg
@@ -1585,7 +1650,7 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
         'gates_failed': len(failures), 'gates_unverified': len(unknown),
         'gates_not_applicable': sum(not r.applicable for r in results),
         'full_compliance_verified': ((profile == 'full' and status == 'PASS' and len(results) == 20) or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25 and sum(r.applicable and r.passed is True for r in results) > 0)),
-        'evidence_basis': 'Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.',
+        'evidence_basis': 'Physical DXF geometry/layer/label checks + SHA256-bound sidecar parity; does not certify independent structural solver or anchor embedment calculations.',
         'gate_results': [{'gate_id': r.gate_id, 'gate_name': r.gate_name, 'severity': r.severity,
                          'passed': r.passed, 'status': r.status, 'applicable': r.applicable,
                          'detail': r.detail} for r in results],
