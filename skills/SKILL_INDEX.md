@@ -338,7 +338,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
 **References:**  
 | File | Chức năng |  
 |------|-----------|  
-| `references/SPEC_DCE_PRO_V5.md` | Đặc tả kỹ thuật DCE Pro v5.0 (`COMPOSITE_DETAIL_GRID`, 3 Profile Layers, 25 cổng) |  
+| `../../docs/SPEC_DCE_PRO_V5.md` | Đặc tả kỹ thuật DCE Pro v5.0 (`COMPOSITE_DETAIL_GRID`, 3 Profile Layers, 25 cổng) |  
 | `references/MODE_2D_GUIDE.md` | Hướng dẫn vẽ 2D + Error handling |  
 | `references/MODE_3D_GUIDE.md` | Hướng dẫn render 3D |  
 | `references/PROMPT_TEMPLATES.md` | 8 prompt templates cho 3D |  
@@ -469,18 +469,18 @@ Khi có phản hồi → Cập nhật vào phân tích
   
 **Vai trò:** Phụ lục Tính toán Kết cấu Chuyên nghiệp  
   
-**Entry Point:** `SKILL.md` — Step-by-step calculation sheets cho thẩm tra  
+**Entry Point:** `SKILL.md` — Step-by-step calculation sheets cho thẩm tra (`15` Markdown templates + `2` DOCX templates + `audit_phuluc_docx.py` 8 tiêu chí)  
   
 **Trigger Keywords:** "phụ lục tính toán", "thuyết minh chi tiết", "calculation sheet", "bảng tính kết cấu"  
   
 | Loại Template | File | Mô tả |  
 |---------------|------|--------|  
-| **TMTT Đầy đủ** | `TMTT_FULL.md` | Thuyết minh đầy đủ 12 chương |  
-| **TMTT Bê tông** | `PARTIAL_BE_TONG.md` | Phụ lục kết cấu BTCT |  
-| **TMTT Thép** | `PARTIAL_THEP.md` | Phụ lục kết cấu thép |  
-| **Dầm BTCT** | `APPENDIX_BEAM_RC.md` | Dầm bê tông cốt thép |  
-| **Cột BTCT** | `APPENDIX_COLUMN_RC.md` | Cột bê tông cốt thép |  
-| **Dầm thép** | `APPENDIX_STEEL_BEAM.md` | Dầm kết cấu thép |  
+| **TMTT Đầy đủ** | `TMTT_FULL.md`, `TMTT_FULL_INTEGRATED.md`, `TMTT_STANDARD.md` | Thuyết minh đầy đủ & Tích hợp chuẩn TVTK |  
+| **TMTT Bê tông / Thép** | `PARTIAL_BE_TONG.md`, `PARTIAL_THEP.md` | Phụ lục kết cấu BTCT & Kết cấu thép |  
+| **Cấu kiện BTCT & Móng** | `APPENDIX_BEAM_RC.md` (nếu tách), `APPENDIX_COLUMN_RC.md`, `APPENDIX_SLAB_RC.md`, `APPENDIX_PILE_FOUNDATION.md`, `APPENDIX_STAIR_RC.md`, `APPENDIX_STRIP_FOUNDATION.md` | Cột, Sàn, Móng cọc, Cầu thang bộ, Móng băng |  
+| **Công trình Ngầm & BPTC** | `APPENDIX_WATER_TANK.md`, `APPENDIX_RETAINING_WALL.md`, `APPENDIX_HOIST_CRANE.md`, `APPENDIX_FORMWORK_SHORING.md` | Bể nước ngầm, Tường chắn, Cần trục tháp, Cốp pha & Cây chống |  
+| **Khung Thép Tiền chế** | `APPENDIX_STEEL_PORTAL_FRAME.md` | Khung kèo thép tiền chế PEB |  
+| **Word Chuẩn Bộ 1 & 2** | `MAU_01_CHUAN_BKTECHS_TEMPLATE.docx`, `MAU_02_CHUAN_TVTK_DA_HANG_MUC_TEMPLATE.docx` | Phôi Word xuất bản cho Bộ 1 BKTECHS & Bộ 2 TVTK |  
   
 **Điểm khác biệt với SKILL_CALC_REPORT:**  
 - SKILL_CALC_REPORT: Tóm tắt, internal review  
@@ -522,18 +522,18 @@ Khi có phản hồi → Cập nhật vào phân tích
   
 ## 3.10 SKILL_TEMPWORKS (v1.0.0)  
   
-**Vai trò:** Kỹ sư Temporary Works AI — Thiết kế cốp pha sàn, cây chống, biện pháp thi công  
+**Vai trò:** Kỹ sư Temporary Works AI — Thiết kế cốp pha sàn/cột/tường, cây chống, biện pháp thi công  
   
-**Entry Point:** `SKILL.md` → `calculators/calc_formwork_slab.py`  
+**Entry Point:** `SKILL.md` → `calculators/` (4 calculators Production)  
   
 **Trigger Keywords:** "cốp pha", "coffa", "cây chống", "shoring", "bracing", "temporary works", "ván khuôn", "giàn giáo"  
   
 | Module | Script | Chức năng | Tiêu chuẩn |  
 |--------|--------|-----------|------------|  
 | **MODULE 1 (ACTIVE)** | `calc_formwork_slab.py` | Thiết kế cốp pha sàn (ván, dầm phụ, dầm chính, cây chống) | **ACI 347-04 / TCVN 4453:1995** |  
-| MODULE 2 (Planned) | `calc_formwork_column.py` | Thiết kế cốp pha cột | ACI 347-04 / TCVN 4453:1995 |  
-| MODULE 3 (Planned) | `calc_formwork_wall.py` | Thiết kế cốp pha tường & áp lực bê tông tươi | ACI 347-04 / TCVN 4453:1995 |  
-| MODULE 4 (Planned) | `calc_stability.py` | Kiểm tra ổn định tổng thể hệ chống & reshoring | ACI 347.2R-17 / TCVN 5575:2024 |  
+| **MODULE 2 (ACTIVE)** | `calc_formwork_column.py` | Thiết kế cốp pha cột & kiểm tra gông cột | **ACI 347-04 / TCVN 4453:1995** |  
+| **MODULE 3 (ACTIVE)** | `calc_formwork_wall.py` | Thiết kế cốp pha tường & áp lực bê tông tươi | **ACI 347-04 / TCVN 4453:1995** |  
+| **MODULE 4 (ACTIVE)** | `calc_shoring_system.py` | Kiểm tra ổn định tổng thể hệ chống & reshoring | **ACI 347.2R-17 / TCVN 5575:2024** |  
   
 ---  
   
@@ -598,13 +598,14 @@ User Request
   
 ## 5. STANDARDS LOCK SUMMARY  
   
-| Lĩnh vực | Chuẩn (Hồ sơ mới — STANDARDS_LOCK v3.1.0) | Cũ / Hết hiệu lực (Đối chiếu) | Ghi chú bắt buộc |
+| Lĩnh vực | Chuẩn (Hồ sơ mới — STANDARDS_LOCK v3.3.0) | Cũ / Hết hiệu lực (Đối chiếu) | Ghi chú bắt buộc |
 |-----------|-------------------|-----------------|---|
-| Phân cấp công trình (Cấp Đặc biệt, I–IV) | **TT 34/2026/TT-BXD** (từ 01/07/2026) & **TT 06/2021/TT-BXD** | TT 02/2025/TT-BXD, TT 03/2016/TT-BXD | Xét đủ **6 tiêu chí Mục 2.1.1 Bảng 2 Phụ lục II** (Chiều cao, Số tầng, **GFA > 30.000 m² = Cấp I**, Nhịp, Độ sâu ngầm đến mặt trên sàn hầm sâu nhất, Số tầng hầm) |
+| Phân cấp công trình (Cấp Đặc biệt, I–IV) & Quản lý HĐXD | **TT 34/2026/TT-BXD** (hiệu lực 01/07/2026), **NĐ 217/2026/NĐ-CP** & **Luật XD 135/2025/QH15** | TT 06/2021/TT-BXD, TT 02/2025/TT-BXD, NĐ 175/2024/NĐ-CP | Xét đủ **6 tiêu chí Mục 2.1.1 Bảng 2 Phụ lục II TT 34/2026** (`GFA > 30.000 m² = Cấp I`); thẩm tra kiểm tính độc lập theo **Đ.41, Mẫu 02 & Mẫu 12 NĐ 217/2026** (`QCVN/3b` & `QCVN/3c`) |
 | Cấp hậu quả & Tuổi thọ thiết kế | **QCVN 03:2022/BXD** | QCVN 03:2012/BXD | **KHÔNG dùng để phân cấp I–IV**. Quy định Cấp hậu quả `C1–C3` (Phụ lục A) & Tuổi thọ thiết kế (`Bảng 1`: Mức 3 ≥ 50 năm cho nhà dân dụng/TTTM) |
+| An toàn trong thi công xây dựng | **QCVN 18:2021/BXD** (`TT 16/2021/TT-BXD`) | QCVN 18:2014/BXD | `QCVN/7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf` — Giàn giáo (2.2), chống đỡ tạm (2.3), cần trục tháp/thiết bị nâng (2.4), đào đất & công trình ngầm (2.8) |
 | Khảo sát ĐKT nhà cao tầng | **TCVN 9363:2012** & **TCVN 4419:1987** | — | TKCS: `50–200m` (Đ.5.2.4.2); TKKT: `20–30m` & `>= 1/3` hố khoan khống chế (Đ.5.3.6.3, Phụ lục D); Cấp ĐCCT theo **Đ.3.5 & PL2 TCVN 4419:1987** |
 | Thí nghiệm SPT & Ăn mòn nước ngầm | **TCVN 9351:2022**, **TCVN 12041:2017**, **TCVN 9346:2012** | TCVN 9351:2012, **TCVN 3994:1985 (Hết HL)** | Cấm dùng độc lập `TCVN 3994:1985` để kết luận ăn mòn nước ngầm |
-| Tải trọng | **TCVN 2737:2023** | TCVN 2737:1995 | — |
+| Tải trọng & Giới hạn võng | **TCVN 2737:2023** *(Điều 11 & Phụ lục G, Bảng G.1)* | TCVN 2737:1995 | Nội suy tuyến tính $f_u$ theo Phụ lục G Bảng G.1 (thay thế Phụ lục M TCVN 5574:2018) |
 | Động đất | **TCVN 9386:2025 (P1+P5)** | TCVN 9386:2012 | — |
 | BTCT | **TCVN 5574:2018** | TCVN 5574:2012 | — |
 | Thép | **TCVN 5575:2024** | TCVN 5575:2012 | — |
@@ -639,6 +640,15 @@ SKILL_CALC_REPORT xuất Thuyết minh
 ```  
 SKILL_FORENSIC thu thập chứng cứ → back_calculation →   
 hypothesis_ranker → remedial_solution → Forensic Report  
+```  
+
+### 6.4 Luồng Đọc Bản Vẽ Thẩm Tra & Đối Chiếu Phụ Lục (TVTT & CĐT/QLTK — Tầng 1)  
+```text  
+CAD_DEEP_READER (cad_deep_reader.py) + SKILL_BIM_COORDINATION (clash_detector.py, 3 lớp bản vẽ)  
+  + SKILL_VERIFY (drawing_calc_crosscheck.py: EMF Parser, Dim giả, As bản vẽ vs As tính, #REF!)  
+  → Design_Evaluation (7 Cổng Thẩm tra & Tính toán Kiểm chứng)  
+  → SKILL_PHULUC (Phụ lục Kiểm chứng) + Cost_Estimator (VE khi η ≤ 0.70)  
+  → SKILL_RFI (RFI/NCR + 4 Điều khoản Chế tài CĐT) → Báo cáo Thẩm tra / Tờ trình CĐT / Hồ sơ Khoanh lỗi  
 ```  
   
 ---  
@@ -704,7 +714,7 @@ python parallel_review_workflow.py --project DUAN_A --scope "beam,column" --outp
   
 ---  
   
-## 8. QUICK REFERENCE  
+## 9. QUICK REFERENCE  
   
 ### Tình huống → Skill  
 | Tình huống | Skill |  

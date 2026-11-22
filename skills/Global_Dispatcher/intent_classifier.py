@@ -131,7 +131,13 @@ class IntentClassifier2D:
         matched: List[str] = []
         for phrase, weight in kw_map.items():
             phrase_norm = normalize_vn(phrase)
-            if phrase_norm and phrase_norm in prompt_norm:
+            if not phrase_norm:
+                continue
+            if len(phrase_norm) <= 4:
+                hit = bool(re.search(rf"(?<![a-z0-9]){re.escape(phrase_norm)}(?![a-z0-9])", prompt_norm))
+            else:
+                hit = phrase_norm in prompt_norm
+            if hit:
                 score += float(weight)
                 matched.append(phrase)
         return min(1.0, round(score, 4)), matched
@@ -176,15 +182,19 @@ class IntentClassifier2D:
             return "GENERAL", 0.0, []
 
         # Tie-breakers per Rule 0.4 and tie_breakers in keyword_database.json
-        # TB-04: Geotechnical keywords take precedence
+        top_score = max(s for s, _ in matches.values())
+
+        # TB-04: Geotechnical keywords take precedence only when score is competitive or > low_confidence_threshold
         if "SKILL_GEOTECH" in matches:
             score, hits = matches["SKILL_GEOTECH"]
-            return "SKILL_GEOTECH", score, hits
+            if score >= top_score or score > self.low_confidence_threshold:
+                return "SKILL_GEOTECH", score, hits
 
         # TB-06: Temporary works keywords take precedence (unless primary SDE calculation)
         if "SKILL_TEMPWORKS" in matches and "Structural_Design_Engineer" not in matches:
             score, hits = matches["SKILL_TEMPWORKS"]
-            return "SKILL_TEMPWORKS", score, hits
+            if score >= top_score or score > self.low_confidence_threshold:
+                return "SKILL_TEMPWORKS", score, hits
 
         # TB-01 & TB-02: SDE vs DE
         has_sde = "Structural_Design_Engineer" in matches
@@ -228,8 +238,12 @@ class IntentClassifier2D:
             else:
                 needs_confirm = True
 
-        # Ensure SYSTEM_UPGRADE never ends up with domain_confidence == 0.0
-        if engagement_mode == MODE_SYSTEM and (domain_skill == "GENERAL" or domain_confidence < 0.35):
+        # Ensure SYSTEM_UPGRADE never ends up with domain_confidence == 0.0 or captured by weak /sys domain hits
+        if engagement_mode == MODE_SYSTEM and (
+            domain_skill == "GENERAL"
+            or domain_confidence <= self.low_confidence_threshold
+            or matched_signals.get("explicit_override") == "/sys"
+        ):
             domain_skill = "SKILL_SYSTEM_ENGINEERING"
             domain_confidence = max(domain_confidence, mode_confidence)
 

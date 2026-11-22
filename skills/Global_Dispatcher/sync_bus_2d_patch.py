@@ -67,7 +67,7 @@ def approve_drafts(ticket, response, drafts):
     """The host supplies the user's answer after displaying these draft results."""
     if not _approved_response(response):
         raise ValueError("Cần xác nhận rõ ràng của người dùng theo Điều 3.")
-    if not drafts or ticket.get("status") != "QUEUED":
+    if not drafts or ticket.get("status") not in {"QUEUED", "IN_PROGRESS", "NEED_REVIEW"}:
         raise ValueError("Cần phiếu đã sẵn sàng và bản nháp đã trình người dùng.")
     return {
         "request_id": ticket["request_id"], "approved_at": time.time(),
@@ -162,9 +162,11 @@ class SyncBus2DAdapter:
             checks_design = stage["skill"] in {"SKILL_VERIFY", "Design_Evaluation"}
             stage["owner"] = owners.get("verify", maker) if checks_design else maker
         primary = skills["primary_skill"]
-        if mode == MODE_SYSTEM and not primary:
+        if mode == MODE_SYSTEM and (not primary or clf["domain_skill"] in ("SKILL_SYSTEM_ENGINEERING", "SKILL_DUAL_AGENT_BRIDGE")):
             primary = ("SKILL_DUAL_AGENT_BRIDGE" if re.search(r"\b(?:sync bus|dual agent|ban giao ca)\b", intent)
                        else "Global_Dispatcher")
+            workflow = {}
+            skills["workflow"] = None
         skill_names = workflow.get("skills") or ([primary] if primary else [])
         skill_files = [str(Path(__file__).resolve().parent.parent / name / "SKILL.md") for name in dict.fromkeys(skill_names)]
         dispatch = {

@@ -274,9 +274,24 @@ class ClashDetector:
         return "UNKNOWN"
 
     def to_json(self) -> Dict:
-        """Export to JSON"""
+        """Export to JSON with Deterministic Standard_Method & Calculation_Logs."""
+        summary = self.get_summary()
+        counts_by_disc = {disc: len(elems) for disc, elems in self.elements.items()}
+        calc_logs = [
+            {
+                "step": 1,
+                "desc": "Kiểm tra va chạm không gian 3D (AABB Overlap & Clearance Check)",
+                "counts_by_discipline": counts_by_disc,
+                "tolerance_mm": self.tolerance,
+                "hard_clashes": summary["by_type"].get("HARD", 0),
+                "clearance_clashes": summary["by_type"].get("CLEARANCE", 0),
+                "total_clashes": summary["total_clashes"],
+            }
+        ]
         return {
-            "summary": self.get_summary(),
+            "Standard_Method": "TCVN 5574:2018 + QCVN 06:2022/BXD + ISO 16739-1:2018 (AABB Spatial Clash Audit)",
+            "Calculation_Logs": calc_logs,
+            "summary": summary,
             "clashes": [asdict(c) for c in self.clashes],
             "metadata": {
                 "tolerance_mm": self.tolerance,
@@ -286,9 +301,65 @@ class ClashDetector:
         }
 
 
-def demo():
+def _bbox_from_element_dict(elem: Dict) -> Optional[BoundingBox]:
+    """Build BoundingBox from explicit element geometry; return None if missing bounds."""
+    bbox = elem.get("bbox")
+    if isinstance(bbox, dict) and isinstance(bbox.get("min"), (list, tuple)) and isinstance(bbox.get("max"), (list, tuple)):
+        if len(bbox["min"]) == 3 and len(bbox["max"]) == 3:
+            return BoundingBox(*[float(v) for v in bbox["min"]], *[float(v) for v in bbox["max"]])
+    if all(k in elem for k in ("min_x", "min_y", "min_z", "max_x", "max_y", "max_z")):
+        return BoundingBox(
+            float(elem["min_x"]), float(elem["min_y"]), float(elem["min_z"]),
+            float(elem["max_x"]), float(elem["max_y"]), float(elem["max_z"]),
+        )
+    coord = elem.get("coord")
+    dims = elem.get("dimensions_mm")
+    if isinstance(coord, dict) and all(k in coord for k in ("x", "y", "z")) and isinstance(dims, (list, tuple)) and len(dims) == 3:
+        x, y, z = float(coord["x"]), float(coord["y"]), float(coord["z"])
+        dx, dy, dz = float(dims[0]), float(dims[1]), float(dims[2])
+        return BoundingBox(x, y, z, x + dx, y + dy, z + dz)
+    return None
+
+
+def load_elements_from_file(filepath: str, tolerance_mm: float = 50) -> ClashDetector:
+    """Load elements with explicit 3D bounding boxes from JSON or IFC file (no demo fallback)."""
+    from pathlib import Path
+    import importlib.util
+
+    path = Path(filepath)
+    if not path.is_file():
+        raise FileNotFoundError(f"File không tồn tại: {filepath}")
+
+    detector = ClashDetector(tolerance_mm=tolerance_mm)
+    suffix = path.suffix.lower()
+    if suffix == ".json":
+        payload = json.loads(path.read_text(encoding="utf-8-sig"))
+        elems = payload.get("elements", payload if isinstance(payload, list) else [])
+    elif suffix == ".ifc":
+        ifc_parser_path = Path(__file__).resolve().parents[3] / "tools" / "ifc_parser.py"
+        spec = importlib.util.spec_from_file_location("_tier_ifc_parser", ifc_parser_path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        parsed = mod.parse_ifc(str(path))
+        elems = parsed.get("elements", [])
+    else:
+        raise ValueError(f"Định dạng chưa hỗ trợ cho ClashDetector: {path.suffix}")
+
+    for item in elems:
+        if not isinstance(item, dict):
+            continue
+        bbox = _bbox_from_element_dict(item)
+        if bbox is None:
+            continue
+        elem_type = str(item.get("type", "")).replace("Ifc", "")
+        name = str(item.get("name") or item.get("id") or item.get("guid") or "Unnamed")
+        detector.add_element(elem_type, name, bbox, properties=item)
+    return detector
+
+
+def demo(tolerance_mm: float = 50) -> ClashDetector:
     """Demo with sample elements"""
-    detector = ClashDetector(tolerance_mm=50)
+    detector = ClashDetector(tolerance_mm=tolerance_mm)
 
     # Add structure elements
     detector.add_element("Beam", "B1-200x400",
@@ -343,15 +414,21 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="BIM Clash Detection")
-    parser.add_argument("--ifc", help="IFC file path (not implemented - use demo)")
+    parser.add_argument("--input", "-i", help="JSON/IFC file path containing elements with bounding boxes")
+    parser.add_argument("--ifc", help="IFC file path")
+    parser.add_argument("--demo", action="store_true", help="Run built-in demo dataset")
     parser.add_argument("--tolerance", type=float, default=50,
                        help="Clash tolerance in mm")
     parser.add_argument("--output", "-o", help="Output JSON file")
 
     args = parser.parse_args()
 
-    # For demo purposes, use built-in sample data
-    detector = demo()
+    source_path = args.input or args.ifc
+    if source_path and not args.demo:
+        detector = load_elements_from_file(source_path, tolerance_mm=args.tolerance)
+        detector.detect_clashes()
+    else:
+        detector = demo(tolerance_mm=args.tolerance)
 
     # Output JSON
     if args.output:

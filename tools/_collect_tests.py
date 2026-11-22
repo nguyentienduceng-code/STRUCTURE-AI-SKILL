@@ -167,6 +167,7 @@ def _parse_rd_patches(stdout: str) -> Optional[tuple[int, int, int]]:
 
 
 PARSER_BY_HINT = [
+    ("[auto]", _parse_unittest),
     ("CAD Semantics v6 C2", _parse_unittest),
     ("CAD Semantics v6 C1", _parse_unittest),
     ("Dynamic Sheet-Scale Governor", _parse_unittest),
@@ -227,6 +228,9 @@ def _load_suites_from(tests_dir: Path) -> list[tuple[str, list[str]]]:
         spec.loader.exec_module(mod)
     except Exception:
         return []
+    auto_reg = getattr(mod, "_auto_register_unregistered", None)
+    if callable(auto_reg):
+        auto_reg()
     suites = getattr(mod, "SUITES", [])
     return [(name, cmd) for name, cmd in suites]
 

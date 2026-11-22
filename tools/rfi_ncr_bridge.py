@@ -5,9 +5,9 @@ rfi_ncr_bridge.py — P4.2 Round-Trip RFI/NCR Report Engine (Step 1: findings)
 
 Specification: `CLAUDE_P4_SPEC_AND_COMPLEX_TASKS.md`, TÁC VỤ P4.2, §3.2.
 
-Bridges the **Bộ lọc 8** (`dce_cad_compliance_checker.audit_dxf_compliance`, 20 cổng
-`G8.01..G8.20`) to **legal findings** per the Vietnamese construction-contract
-regime (Nghị định 175/2024/NĐ-CP, Thông tư 34/2026/TT-BXD, FIDIC White Book) and
+Bridges the **Bộ lọc 8** (`dce_cad_compliance_checker.audit_dxf_compliance`, 25 cổng
+`G8.01..G8.25`) to **legal findings** per the Vietnamese construction-contract
+regime (Nghị định 217/2026/NĐ-CP thay thế Nghị định 175/2024/NĐ-CP, Thông tư 34/2026/TT-BXD, QCVN 18:2021/BXD, FIDIC White Book) and
 emits machine-checkable NCR / RFI records.
 
 Severity -> document routing (spec §3.2.1):
@@ -83,6 +83,16 @@ _GATE_TAXONOMY: Dict[str, Dict[str, str]] = {
     "G8.16": {"doc": "RFI", "sev": "MAJOR", "basis": "Điều 12d (bảng thống kê thép).", "fix": "Đối soát BBS d²/162.2, tổng tấn khớp."},
     "G8.19": {"doc": "RFI", "sev": "MAJOR", "basis": "Điều 12e (cỡ chữ bảng).", "fix": "Tăng Adaptive Column Widths cho bảng thống kê."},
     "G8.20": {"doc": "RFI", "sev": "MAJOR", "basis": "Điều 12d (hướng nhãn dầm).", "fix": "Xoay 90° nhãn dầm dọc, đủ mã 370 Lineweight."},
+    "G8.21": {"doc": "NCR", "sev": "CRITICAL", "basis": "TCVN 5575:2024 (bu lông & đường hàn PEB).",
+              "fix": "Chuẩn hóa khoảng cách mép/tâm bu lông >= 1.5 d0 / 2.5 d0 và ký hiệu đường hàn TCVN."},
+    "G8.22": {"doc": "NCR", "sev": "CRITICAL", "basis": "TCVN 5575:2024 (sai lệch tổng khối lượng BOM thép > 1%).",
+              "fix": "Đối soát lại bảng thống kê vật tư thép và tiết diện trên bản vẽ PEB."},
+    "G8.23": {"doc": "RFI", "sev": "MAJOR", "basis": "Điều 12d (bố cục đa tỷ lệ COMPOSITE_DETAIL_GRID).",
+              "fix": "Tách riêng tỷ lệ khung chi tiết và khung mặt bằng theo quy chuẩn COMPOSITE_DETAIL_GRID."},
+    "G8.24": {"doc": "NCR", "sev": "CRITICAL", "basis": "QCVN 18:2021/BXD (vùng nguy hiểm BPTC & bán kính cẩu tháp).",
+              "fix": "Hiệu chỉnh tọa độ vùng nguy hiểm, vùng cấm rơi và bán kính hoạt động cần trục tháp theo QCVN 18:2021/BXD."},
+    "G8.25": {"doc": "NCR", "sev": "CRITICAL", "basis": "Điều 12d (đứt liên kết XData handle thép & bảng thống kê).",
+              "fix": "Gắn lại XData DCE_PRO (group code 1005 LINK_HANDLE) đồng bộ nét thép và dòng thống kê TK."},
 }
 
 

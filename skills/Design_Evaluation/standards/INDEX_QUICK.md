@@ -9,11 +9,13 @@
 
 | Mã | Keyword & Phạm vi chính xác | File PDF / Ghi chú |
 |----|-----------------------------|--------------------|
-| **Thông tư 34/2026/TT-BXD** | cấp công trình (**Đặc biệt, Cấp I, II, III, IV**), quy mô công suất (Phụ lục I), quy mô kết cấu (**Bảng 2 Phụ lục II**: GFA Cấp I `> 30,000 m²`, độ sâu ngầm Cấp II `6 ÷ 18m` tính tới mặt trên sàn hầm sâu nhất) | Hiệu lực từ **01/07/2026**, thay thế `TT 06/2021/TT-BXD` và `TT 02/2025/TT-BXD` (`3a. Thong tu 02-2025_TT-BXD...pdf`) |
+| **Thông tư 34/2026/TT-BXD** | cấp công trình (**Đặc biệt, Cấp I, II, III, IV**), quy mô công suất (Phụ lục I), quy mô kết cấu (**Bảng 2 Phụ lục II**: GFA Cấp I `> 30,000 m²`, độ sâu ngầm Cấp II `6 ÷ 18m` tính tới mặt trên sàn hầm sâu nhất) | `3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf` *(Hiệu lực 01/07/2026, thay thế TT 06/2021 & TT 02/2025)* |
+| **Nghị định 217/2026/NĐ-CP** | quản lý hoạt động XD theo **Luật XD 135/2025/QH15**, BIM (Đ.8), thiết kế (Đ.16–25), thẩm tra thiết kế — **kiểm tính độc lập TVTT (Điều 41, Mẫu số 02 & Mẫu số 12 PL I)** | `3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf` *(Hiệu lực 01/07/2026, thay thế NĐ 175/2024/NĐ-CP)* |
 | **QCVN 03:2022/BXD** | phân cấp phục vụ thiết kế: **Cấp hậu quả (`C1, C2, C3` — Mục 2.1 & Phụ lục A, KHÔNG dùng ký hiệu CC1-CC3)**, **Thời hạn sử dụng theo thiết kế (`Mức 1: <25 năm, Mức 2: ≥25 năm, Mức 3: ≥50 năm dân dụng thông thường, Mức 4: ≥100 năm công trình biểu tượng` — Mục 2.2.2 Bảng 1)**, phân loại kỹ thuật về cháy | `3. QCVN 03-2022_PHAN CAP CONG TRINH.pdf` *(Lưu ý: QCVN 03:2022 KHÔNG phân cấp I, II, III, IV)* |
 | **QCVN 01:2021/BXD** | quy hoạch, khoảng lùi, mật độ xây dựng | ⚠ Chưa có PDF 2021 trong thư viện — chỉ có bản đối chiếu `1. QCVN01-2012_QUY HOACH XAY DUNG.pdf` (bản cũ đối chiếu: `QCVN 01:2012`) |
 | **QCVN 02:2022/BXD** | vùng gió, vùng động đất, mưa, nhiệt độ | `2. QCVN02-2022_SO LIEU DIEU KIEN TU NHIEN...pdf` |
 | **QCVN 06:2022/BXD + Sửa đổi 1:2023** | PCCC, khoang cháy, thoát nạn, bậc chịu lửa (kèm Sửa đổi 1:2023) | `6. QCVN 06-2022_AN TOAN VE CHAY CHO NHA VA CONG TRINH.pdf` + `6a. SUA DOI BO SUNG QCVN 06-2022.pdf` |
+| **QCVN 18:2021/BXD** | an toàn thi công xây dựng: công trường (2.1), giàn giáo (2.2), chống đỡ tạm (2.3), thiết bị nâng/cần trục tháp (2.4), đào đất & ngầm (2.8) | `7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf` |
 
 ## TCVN — `standards/TCVN/`
 

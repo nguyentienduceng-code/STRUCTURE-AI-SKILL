@@ -120,6 +120,20 @@ def _lease_duration_min() -> int:
         return LEASE_DURATION_MIN_DEFAULT
 
 
+def _effective_lease_seconds(data: Optional[dict] = None) -> float:
+    """Thời hạn thuê ca hiệu lực (giây): ưu tiên env DUAL_AGENT_LEASE_MIN -> work_ticket.bus_meta.lease_ttl_sec -> mặc định 60 phút."""
+    if os.environ.get(LEASE_DURATION_ENV, "").strip():
+        return float(_lease_duration_min() * 60)
+    if isinstance(data, dict):
+        ticket_ttl = ((data.get("work_ticket") or {}).get("bus_meta") or {}).get("lease_ttl_sec")
+        try:
+            if ticket_ttl is not None and float(ticket_ttl) > 0:
+                return float(ticket_ttl)
+        except (TypeError, ValueError):
+            pass
+    return float(LEASE_DURATION_MIN_DEFAULT * 60)
+
+
 def _now_aware() -> datetime:
     return datetime.now().astimezone()
 
@@ -129,7 +143,7 @@ def _is_lease_expired(data: dict) -> bool:
     Ca IN_PROGRESS có HẾT HẠN THUÊ (lease) hay không?
     - Có `lease_expire_at` (bản v3.2+): so sánh tuyệt đối với giờ hiện tại.
     - Chỉ có `last_heartbeat` / `claim_timestamp` / `timestamp` (bản v3.0):
-      tính cửa sổ theo LEASE_DURATION (mặc định 60 phút).
+      tính cửa sổ theo thời hạn thuê ca hiệu lực (mặc định 60 phút).
     - Không có mốc thời gian nào (bus legacy): trả False (VẪN BẢO VỆ —
       yêu cầu --force để tiếp quản, tránh ghi đè một ca treo không rõ nguồn gốc).
     """
@@ -146,7 +160,7 @@ def _is_lease_expired(data: dict) -> bool:
         anchor = _parse_iso(str(data.get("timestamp", "")))
     if anchor is None:
         return False  # bus không có mốc thời gian -> vẫn giữ bảo vệ
-    return (now - anchor).total_seconds() > LEASE_DURATION_MIN_DEFAULT * 60
+    return (now - anchor).total_seconds() > _effective_lease_seconds(data)
 
 
 # Bộ nhận diện task nhóm CAD/Bản vẽ/Báo cáo (Visual & Real-Model Gate — Điều 12d).
@@ -821,7 +835,7 @@ def _refresh_lease(data: dict, agent: str) -> None:
     data["last_heartbeat"] = now.isoformat()
     if str(data.get("handoff_status", "")).upper() == "IN_PROGRESS":
         data["lease_holder"] = agent
-        data["lease_expire_at"] = (now + timedelta(minutes=_lease_duration_min())).isoformat()
+        data["lease_expire_at"] = (now + timedelta(seconds=_effective_lease_seconds(data))).isoformat()
 
 
 
@@ -1463,6 +1477,8 @@ def claim_task(agent: str, force: bool = False) -> dict:
         data["current_holder"] = agent
         data["Verification_Status"] = "IN_PROGRESS"
         data["claim_timestamp"] = datetime.now().astimezone().isoformat()
+        if isinstance(data.get("work_ticket"), dict):
+            data["work_ticket"]["status"] = "IN_PROGRESS"
         _refresh_lease(data, agent)
         _atomic_write_json(BUS_PATH, data)
         generate_handoff_memo(data, MEMO_PATH)
@@ -1511,6 +1527,8 @@ def complete_task(
         data["last_updated_by"] = agent
         data["timestamp"] = datetime.now().astimezone().isoformat()
         data["Verification_Status"] = "CONFIRMED_AND_HANDED_OFF"
+        if isinstance(data.get("work_ticket"), dict):
+            data["work_ticket"]["status"] = "COMPLETED"
         if summary:
             data["summary"] = summary
         if files:
@@ -1581,6 +1599,8 @@ def request_review(
         data["last_updated_by"] = agent
         data["timestamp"] = datetime.now().astimezone().isoformat()
         data["Verification_Status"] = "REVIEW_REQUIRED"
+        if isinstance(data.get("work_ticket"), dict):
+            data["work_ticket"]["status"] = "NEED_REVIEW"
         if summary:
             data["summary"] = summary
         if "next_action_for_partner" in data:

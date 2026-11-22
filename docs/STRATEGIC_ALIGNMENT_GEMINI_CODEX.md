@@ -97,3 +97,18 @@ Sau khi đối chiếu tài liệu [tu-dong-hoa-trien-khai-ket-cau-dbim.md] và 
 Cả hai tác tử (Gemini & Codex) hoàn toàn nhất trí với định hướng của User:
 > **"Không cạnh tranh với ETABS/Plaxis về giải phương trình cơ học phức tạp. Thay vào đó, tập trung biến hệ thống AI Agent thành Công cụ Trợ lý Kỹ thuật số 1 Việt Nam về Tư duy Phân tích Số liệu, Tự động Lập Thuyết minh, Dàn trang Bản vẽ Kỹ thuật và Kiểm soát Thẩm tra Hồ sơ."**
 
+---
+
+## 6. CẬP NHẬT ĐỊNH HƯỚNG CHIẾN LƯỢC 3 TẦNG ĐỘC LẬP (2026-11-22 — v8.0)
+
+Theo chỉ đạo trực tiếp của Giám đốc Kỹ thuật ngày 2026-11-22, toàn bộ kiến trúc phát triển hệ thống `.agents` được tổ chức thành **3 Tầng (Tier) độc lập, cô lập lỗi tuyệt đối** (chi tiết tại [`docs/MASTER_STRATEGY_3_TIERS_V8.md`](./MASTER_STRATEGY_3_TIERS_V8.md)):
+
+1. **Tầng 1 (Trụ cột Cốt lõi — Hoàn thiện & Khóa cứng Trước):**
+   - **Pháp lý & Tiêu chuẩn:** `STANDARDS_LOCK v3.3.0`, `StandardsGraph`, kiểm soát dẫn chứng PDF và phân cấp công trình (`TT 34/2026/TT-BXD`, `QCVN 03:2022/BXD`).
+   - **Đọc Bản vẽ Thẩm tra & Phụ lục Hồ sơ:** Đọc `.dxf`/`.dwg` (`CAD_DEEP_READER`), trích xuất bảng `EMF` nhúng trong `.docx`, kiểm lỗi công thức Excel, đối chiếu lưới trục — mặt bằng — mặt cắt — tag thép (`SKILL_BIM_COORDINATION` + `SKILL_VERIFY`).
+   - **Hệ thống Skills Tính toán Cơ bản & Lập Phụ lục Xác định:** 14 Skills Production (`122` Python scripts) thực thi tính toán có log xác định và xuất Phụ lục thuyết minh (`SKILL_PHULUC`).
+   - **Phân tích Tư duy & Hỗ trợ Ra Quyết định cho Chuyên viên TVTT và CĐT/QLTK:** Tách bạch luồng kiểm chứng tiêu chuẩn + hồ sơ khoanh lỗi (TVTT) với luồng tối ưu chi phí VE + Tờ trình + Phiếu RFI/NCR & 4 điều khoản chế tài hợp đồng (CĐT).
+2. **Tầng 2 (Mở rộng Kỹ năng Vẽ — 2D CAD & 3D Revit/BIM):** Sinh bản vẽ CAD 2D DCE Pro (`Technical_Illustrator`, 25 cổng `G8.01–G8.25`, `accoreconsole.exe`) và kết nối đọc-chỉ mô hình 3D Revit/IFC (`BIMwright` / `Horizun` read-only pilot, `IfcOpenShell`), cô lập hoàn toàn khỏi nhân Tầng 1.
+3. **Tầng 3 (Kết hợp ETABS / SAFE / SAP2000):** Chỉ thực hiện trích xuất nội lực ($M, N, V$, phản lực, chuyển vị) qua bảng xuất hoặc COM OAPI (`tools/etabs_com_reader.py`) truyền chuẩn hóa về Tầng 1 kiểm chứng.
+
+

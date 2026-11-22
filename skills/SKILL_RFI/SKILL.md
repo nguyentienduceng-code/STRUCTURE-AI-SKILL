@@ -7,7 +7,7 @@ status: PRODUCTION_READY
 description: >
   Hệ thống Phân loại Mức độ Nghiêm trọng (Critical / Major / Minor), Phát hành Phiếu Yêu cầu Làm rõ (RFI),
   Biên bản Không phù hợp (NCR) & Bộ 4 Điều khoản Chế tài Hợp đồng TVTK chuẩn Pháp lý Xây dựng Việt Nam
-  (Nghị định 175/2024/NĐ-CP, TT 34/2026/TT-BXD, Nghị định 37/2015/NĐ-CP & Thông lệ FIDIC White Book).
+  (Nghị định 217/2026/NĐ-CP hiệu lực 01/07/2026 thay thế Nghị định 175/2024/NĐ-CP, TT 34/2026/TT-BXD, Luật XD 135/2025/QH15, Nghị định 37/2015/NĐ-CP & Thông lệ FIDIC White Book).
 ---
 
 # SKILL_RFI — QUẢN TRỊ PHIẾU RFI, BIÊN BẢN NCR & KHUNG CHẾ TÀI HỢP ĐỒNG (v1.4.0)
@@ -27,7 +27,7 @@ Mọi báo cáo thẩm tra và bảng tổng hợp khi gọi `SKILL_RFI` bắt b
 6. **Thời hạn phản hồi (SLA) & Điều kiện mở khóa (Release Condition):** Thời hạn phản hồi bắt buộc là **05 ngày làm việc** (SLA 5 Working Days) và hồ sơ TVTK phải nộp lại đầy đủ (Văn bản giải trình + Bản vẽ Rev.01 + Thuyết minh hiệu đính) để đóng NCR.
 
 ## 3. KHUNG CHẾ TÀI HỢP ĐỒNG 4 ĐIỀU KHOẢN DÀNH CHO CHỦ ĐẦU TƯ (ARGON BENCHMARK)
-Để Chủ đầu tư nắm quyền kiểm soát tuyệt đối và khóa chặt trách nhiệm của đơn vị Tư vấn Thiết kế, `SKILL_RFI` tích hợp 04 điều khoản chế tài hợp đồng mẫu:
+Để Chủ đầu tư nắm quyền kiểm soát tuyệt đối và khóa chặt trách nhiệm của đơn vị Tư vấn Thiết kế (đối chiếu **Nghị định 217/2026/NĐ-CP** hiệu lực 01/07/2026 thay thế `Nghị định 175/2024/NĐ-CP`, cùng `Nghị định 37/2015/NĐ-CP`), `SKILL_RFI` tích hợp 04 điều khoản chế tài hợp đồng mẫu:
 1. **Điều khoản 1 — Chặn điểm nghiệm thu (Milestone Hold Point):**
    - *Quy tắc:* Khi hồ sơ thiết kế tồn tại bất kỳ lỗi `CRITICAL (Hold Point)` nào chưa được TVTK giải trình và khắc phục đạt yêu cầu của Đơn vị Thẩm tra, Chủ đầu tư có quyền **từ chối ký Biên bản Nghiệm thu Hồ sơ Thiết kế** của giai đoạn tương ứng.
 2. **Điều khoản 2 — Phạt vi phạm chất lượng thiết kế (Design Quality Penalty):**

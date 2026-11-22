@@ -7,7 +7,7 @@ Zero-dependency, Pure Python, không cần Vector DB hay server nặng nề.
 Nâng cấp v2.0 (Roadmap §2.1):
   - WAL Checkpoint & Quản lý Bộ nhớ: checkpoint(mode="TRUNCATE"), PRAGMA synchronous=NORMAL, cache_size=-64000 (64MB).
   - Truy vấn Đa chiều (Bidirectional & Inverse Retrieval): query_standard_impact() phân tích tác động ngược từ Tiêu chuẩn/Điều khoản -> Cấu kiện/Phép kiểm.
-  - Phát hiện Mâu thuẫn Phiên bản Tiêu chuẩn (Standard Conflict Detector): Tự động đối chiếu STANDARDS_LOCK v3.1.0, tạo cạnh CONFLICT_WITH và kích hoạt mã lỗi E004.
+  - Phát hiện Mâu thuẫn Phiên bản Tiêu chuẩn (Standard Conflict Detector): Tự động đối chiếu STANDARDS_LOCK v3.3.0, tạo cạnh CONFLICT_WITH và kích hoạt mã lỗi E004.
   - Mở rộng Hạt giống Tri thức (Seed v2.0): Bao phủ TCVN mới nhất (2737:2023, 5574:2018, 5575:2024, 9386:2025, 10304:2025, TT 34/2026) và Kết cấu thép Công nghiệp Bourbon (AISC 360-10, MBMA 2012, AISI S100-2007, ASCE 7-10).
 """
 
@@ -46,7 +46,7 @@ CREATE INDEX IF NOT EXISTS source_idx ON edges(source);
 CREATE INDEX IF NOT EXISTS target_idx ON edges(target);
 """
 
-# Danh mục Phiên bản Khóa Cứng theo STANDARDS_LOCK.md v3.1.0 (Canonical Active vs Legacy/Deprecated)
+# Danh mục Phiên bản Khóa Cứng theo STANDARDS_LOCK.md v3.3.0 (Canonical Active vs Legacy/Deprecated)
 NORM_STANDARDS_LOCK: Dict[str, Dict[str, Any]] = {
     "TCVN 2737": {
         "active": "TCVN 2737:2023",
@@ -119,6 +119,18 @@ NORM_STANDARDS_LOCK: Dict[str, Dict[str, Any]] = {
         "active_id": "TT_34_2026_BXD",
         "deprecated": ["TT 06/2021/TT-BXD", "TT 02/2025/TT-BXD", "TT 03/2016/TT-BXD"],
         "domain": "Phân cấp công trình quản lý xây dựng",
+    },
+    "QCVN 18": {
+        "active": "QCVN 18:2021/BXD",
+        "active_id": "QCVN_18_2021",
+        "deprecated": ["QCVN 18:2014/BXD"],
+        "domain": "An toàn trong thi công xây dựng",
+    },
+    "ND QUAN LY XD": {
+        "active": "Nghị định 217/2026/NĐ-CP",
+        "active_id": "ND_217_2026_CP",
+        "deprecated": ["Nghị định 175/2024/NĐ-CP", "Nghị định 15/2021/NĐ-CP"],
+        "domain": "Quản lý hoạt động đầu tư xây dựng & thẩm tra thiết kế",
     },
 }
 
@@ -476,6 +488,10 @@ class StandardsGraph:
         if m_tt:
             return "TT PHAN CAP", m_tt.group(1)
 
+        m_nd = re.search(r"(?:NGHỊ\s*ĐỊNH|NĐ)\s*(175/2024|15/2021|217/2026)", s_upper)
+        if m_nd:
+            return "ND QUAN LY XD", m_nd.group(1)
+
         m_std = re.search(r"(TCVN|TCXDVN|QCVN)\s*(\d+)\s*[:\-]\s*(\d{4})", s_upper)
         if m_std:
             prefix = "TCVN" if m_std.group(1) == "TCXDVN" else m_std.group(1)
@@ -667,6 +683,22 @@ class StandardsGraph:
             "status": "ACTIVE",
             "scope": "Xét 6 tiêu chí quy mô kết cấu tại Mục 2.1.1 Bảng 2 Phụ lục II (GFA > 30.000 m² = Cấp I)"
         }, auto_detect_conflict=False)
+        self.upsert_node("ND_217_2026_CP", {
+            "type": "standard",
+            "name": "Nghị định 217/2026/NĐ-CP",
+            "title": "Quy định chi tiết Luật Xây dựng 135/2025/QH15 về quản lý hoạt động xây dựng",
+            "version": "2026",
+            "status": "ACTIVE",
+            "scope": "Hiệu lực 01/07/2026 thay thế NĐ 175/2024/NĐ-CP; BIM (Đ.8), thiết kế (Đ.16-25), kiểm tính độc lập khi thẩm tra (Đ.41, Mẫu 02 & Mẫu 12)"
+        }, auto_detect_conflict=False)
+        self.upsert_node("QCVN_18_2021", {
+            "type": "standard",
+            "name": "QCVN 18:2021/BXD",
+            "title": "Quy chuẩn kỹ thuật quốc gia về An toàn trong thi công xây dựng",
+            "version": "2021",
+            "status": "ACTIVE",
+            "scope": "Thay thế QCVN 18:2014/BXD; Giàn giáo (2.2), chống đỡ tạm (2.3), thiết bị nâng/cần trục tháp (2.4), đào đất & công trình ngầm (2.8)"
+        }, auto_detect_conflict=False)
 
         # 1b. Các tiêu chuẩn Quốc tế cho Nhà thép Tiền chế & Công nghiệp (Bourbon Project Knowledge)
         self.upsert_node("AISC_360_10", {
@@ -739,8 +771,15 @@ class StandardsGraph:
             "type": "clause",
             "standard": "TCVN 5574:2018",
             "clause_no": "Điều 8.2",
-            "title": "Kiểm tra độ võng và bề rộng khe nứt trạng thái giới hạn thứ hai (SLS)",
-            "summary": "Độ võng dài hạn f <= f_max (L/200 - L/250); bề rộng vết nứt a_crc <= 0.3mm (dài hạn) / 0.4mm (ngắn hạn)"
+            "title": "Tính toán độ cứng, độ cong, độ võng và bề rộng khe nứt (SLS)",
+            "summary": "Tính độ cong 1/r, độ cứng tiết diện nứt I_eff và bề rộng vết nứt a_crc <= 0.3mm (dài hạn) / 0.4mm (ngắn hạn); giới hạn độ võng cho phép [f_u] tra theo TCVN 2737:2023 Phụ lục G (Bảng G.1)"
+        })
+        self.upsert_node("CLAUSE_2737_DEFLECTION", {
+            "type": "clause",
+            "standard": "TCVN 2737:2023",
+            "clause_no": "Điều 11 & Phụ lục G (Bảng G.1)",
+            "title": "Giới hạn độ võng và chuyển vị công trình (dầm, sàn, công xôn)",
+            "summary": "Dầm/sàn có vách ngăn giòn f_u <= L/250; thông thường L<=6m -> L/200, 6m<L<24m nội suy tuyến tính Bảng G.1, L>=24m -> L/300; công xôn dùng L_eff = 2*L_cantilever"
         })
         self.upsert_node("CLAUSE_5574_PUNCHING", {
             "type": "clause",
@@ -783,6 +822,20 @@ class StandardsGraph:
             "clause_no": "Chapter C & D",
             "title": "Thiết kế xà gồ thép dập nguội Z nối chồng mí liên tục chịu tải gió tốc mái và Solar",
             "summary": "Tăng chiều dày xà gồ Z ở 2 nhịp biên chịu gió hút lớn; bố trí giằng ty khống chế võng f <= L/150 (tĩnh+hoạt) và L/120 (gió)"
+        })
+        self.upsert_node("CLAUSE_217_2026_DESIGN_AUDIT", {
+            "type": "clause",
+            "standard": "Nghị định 217/2026/NĐ-CP",
+            "clause_no": "Điều 41 & Mẫu số 02, Mẫu số 12 Phụ lục I",
+            "title": "Thẩm tra thiết kế xây dựng & kiểm tính độc lập của TVTT",
+            "summary": "Nhà thầu thẩm tra thiết kế xây dựng phải kiểm tính độc lập các nội dung an toàn công trình để đối chiếu với kết quả tính toán của TVTK"
+        })
+        self.upsert_node("CLAUSE_QCVN18_TEMPWORKS_CRANE", {
+            "type": "clause",
+            "standard": "QCVN 18:2021/BXD",
+            "clause_no": "Mục 2.2, 2.3, 2.4 & 2.8",
+            "title": "An toàn giàn giáo, kết cấu chống đỡ tạm, thiết bị nâng & đào đất công trình ngầm",
+            "summary": "Quy chuẩn an toàn thi công cho hệ giàn giáo, chống đỡ tạm, cần trục tháp/cẩu tháp và công tác đào đất, thi công hố đào sâu"
         })
 
         # 3. Các cấu kiện kết cấu (Elements)
@@ -864,6 +917,7 @@ class StandardsGraph:
         self.upsert_edge("ELEMENT_BEAM", "CLAUSE_5574_MOMENT", "governed_by")
         self.upsert_edge("ELEMENT_BEAM", "CLAUSE_5574_SHEAR", "governed_by")
         self.upsert_edge("ELEMENT_BEAM", "CLAUSE_5574_DEFLECTION", "governed_by")
+        self.upsert_edge("ELEMENT_BEAM", "CLAUSE_2737_DEFLECTION", "governed_by")
         self.upsert_edge("ELEMENT_BEAM", "CLAUSE_2737_COMBINATION", "loaded_by")
 
         # Element Column & Wall & Slab & Pile
@@ -873,6 +927,7 @@ class StandardsGraph:
         self.upsert_edge("ELEMENT_WALL", "CLAUSE_5574_SHEAR", "governed_by")
         self.upsert_edge("ELEMENT_SLAB", "CLAUSE_5574_MOMENT", "governed_by")
         self.upsert_edge("ELEMENT_SLAB", "CLAUSE_5574_DEFLECTION", "governed_by")
+        self.upsert_edge("ELEMENT_SLAB", "CLAUSE_2737_DEFLECTION", "governed_by")
         self.upsert_edge("ELEMENT_SLAB", "CLAUSE_5574_PUNCHING", "governed_by")
         self.upsert_edge("ELEMENT_PILE_FOUNDATION", "CLAUSE_10304_PILE_CAP", "governed_by")
         self.upsert_edge("ELEMENT_PILE_FOUNDATION", "CLAUSE_5574_PUNCHING", "governed_by")
@@ -888,16 +943,20 @@ class StandardsGraph:
         self.upsert_edge("CLAUSE_5574_MOMENT", "TCVN_5574_2018", "part_of")
         self.upsert_edge("CLAUSE_5574_SHEAR", "TCVN_5574_2018", "part_of")
         self.upsert_edge("CLAUSE_5574_DEFLECTION", "TCVN_5574_2018", "part_of")
+        self.upsert_edge("CLAUSE_2737_DEFLECTION", "TCVN_2737_2023", "part_of")
         self.upsert_edge("CLAUSE_5574_PUNCHING", "TCVN_5574_2018", "part_of")
         self.upsert_edge("CLAUSE_2737_COMBINATION", "TCVN_2737_2023", "part_of")
         self.upsert_edge("CLAUSE_5575_GAMMA_M0", "TCVN_5575_2024", "part_of")
         self.upsert_edge("CLAUSE_10304_PILE_CAP", "TCVN_10304_2025", "part_of")
         self.upsert_edge("CLAUSE_MBMA_DEFLECTION", "MBMA_2012", "part_of")
         self.upsert_edge("CLAUSE_AISI_Z_PURLIN", "AISI_S100_2007", "part_of")
+        self.upsert_edge("CLAUSE_217_2026_DESIGN_AUDIT", "ND_217_2026_CP", "part_of")
+        self.upsert_edge("CLAUSE_QCVN18_TEMPWORKS_CRANE", "QCVN_18_2021", "part_of")
 
         # Clauses -> Checks
         self.upsert_edge("CLAUSE_5574_MOMENT", "CHECK_MOMENT_ETA", "verified_by")
         self.upsert_edge("CLAUSE_5574_DEFLECTION", "CHECK_DEFLECTION_RATIO", "verified_by")
+        self.upsert_edge("CLAUSE_2737_DEFLECTION", "CHECK_DEFLECTION_RATIO", "verified_by")
         self.upsert_edge("CLAUSE_5574_PUNCHING", "CHECK_PUNCHING_ETA", "verified_by")
         self.upsert_edge("CLAUSE_MBMA_DEFLECTION", "CHECK_PEB_DRIFT_RATIO", "verified_by")
         self.upsert_edge("CLAUSE_AISI_Z_PURLIN", "CHECK_PURLIN_DEFLECTION", "verified_by")

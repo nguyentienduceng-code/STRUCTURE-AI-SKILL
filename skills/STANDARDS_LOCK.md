@@ -26,10 +26,11 @@
 | Bảo vệ chống ăn mòn BT & BTCT | **TCVN 12041:2017** + **TCVN 9346:2012** | TCVN 3994:1985 (Hết HL) | `TCVN/16...pdf` — Tuyệt đối không viện dẫn TCVN 3994:1985 cho hồ sơ mới |
 | Thi công & nghiệm thu BTCT | **TCVN 4453:1995** | — | `TCVN/11. TCVN 4453-1995_...pdf` |
 | Cốp pha & Chống tạm (Tempworks) | **TCVN 4453:1995** + **ACI 347-04** + **ACI 347.2R-17** | — | — |
-| Cấp công trình (Quản lý XD) | **Thông tư 34/2026/TT-BXD** (hiệu lực 01/07/2026) | TT 06/2021/TT-BXD, TT 02/2025/TT-BXD | Phân cấp Đặc biệt, I, II, III, IV theo Phụ lục I (công suất) & Bảng 2 Phụ lục II (quy mô kết cấu) |
+| Cấp công trình & Quản lý hoạt động XD | **Thông tư 34/2026/TT-BXD** (hiệu lực 01/07/2026, kèm **NĐ 217/2026/NĐ-CP** & **Luật XD 135/2025/QH15**) | TT 06/2021/TT-BXD, TT 02/2025/TT-BXD, NĐ 175/2024/NĐ-CP | `QCVN/3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf` + `QCVN/3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf` — Phân cấp Đặc biệt, I–IV theo Phụ lục I & Bảng 2 Phụ lục II TT 34/2026; quản lý thiết kế & thẩm tra theo Điều 41, Mẫu số 02 & Mẫu số 12 Phụ lục I NĐ 217/2026 |
 | Phân cấp phục vụ Thiết kế XD | **QCVN 03:2022/BXD** (Thông tư 05/2022/TT-BXD) | QCVN 03:2012/BXD | `QCVN/3. QCVN 03-2022_...pdf` — Chỉ phân Cấp hậu quả (C1, C2, C3), Thời hạn sử dụng (Mức 1–4) & PCCC |
 | Số liệu tự nhiên (vùng gió, động đất) | **QCVN 02:2022/BXD** | QCVN 02:2009/BXD | `QCVN/2. QCVN02-2022_...pdf` |
 | An toàn cháy | **QCVN 06:2022/BXD + Sửa đổi 1:2023** | QCVN 06:2022 | `QCVN/6.` + `QCVN/6a.` |
+| An toàn trong thi công xây dựng | **QCVN 18:2021/BXD** (Thông tư 16/2021/TT-BXD) | QCVN 18:2014/BXD | `QCVN/7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf` — An toàn công trường (Mục 2.1), giàn giáo (Mục 2.2), kết cấu chống đỡ tạm (Mục 2.3), thiết bị nâng/cần trục tháp (Mục 2.4), đào đất & công trình ngầm (Mục 2.8) |
 | Nhà chung cư | **QCVN 04:2021/BXD** | — | `QCVN/4. QCVN 04-2021_...pdf` |
 | Quy hoạch xây dựng | **QCVN 01:2021/BXD** | QCVN 01:2012/BXD | `QCVN/1. QCVN01-2021_...pdf` |
 | Tương quan SPT | **Bowles (1997) + Database TP.HCM** | — | — |
@@ -117,6 +118,16 @@
      - **Tỷ lệ điểm khoan lấy mẫu và thí nghiệm hiện trường (Điều 5.3.6.4)**: Không ít hơn **2/3 (`66.7%`)** tổng số điểm khảo sát.
      - **Khảo sát cho hố đào sâu (Điều 5.3.7.6)**: Độ sâu thăm dò nên lấy từ **`2 đến 3 lần` chiều sâu hố đào**; phạm vi mặt bằng khảo sát rộng hơn phạm vi hố đào từ `2 đến 3 lần` chiều sâu hố đào.
 4. **Nguyên tắc bố trí mạng lưới theo `TCVN 4419:1987`**: Quy định tại **Điều 3.19** (bước TKKT và BVTC phải bố trí theo các trục chính của móng hoặc theo chu vi của nhà và công trình thiết kế; không có "Điều 3.4 & Bảng 2").
+
+### 3.4. Quy định Pháp lý về Quản lý Thiết kế & Thẩm tra Thiết kế Xây dựng (`Nghị định 217/2026/NĐ-CP` & `Luật Xây dựng 135/2025/QH15`)
+1. **Hiệu lực & Văn bản thay thế (Điều 75 Nghị định 217/2026/NĐ-CP)**: Có hiệu lực từ **01/07/2026**, **thay thế `Nghị định 175/2024/NĐ-CP`** (Khoản 2 Điều 75); điều khoản chuyển tiếp cho hồ sơ đã trình/duyệt trước 01/07/2026 quy định tại **Điều 76**.
+2. **Quản lý Khảo sát, Thiết kế & BIM**:
+   - **Ứng dụng Mô hình Thông tin Công trình (BIM)** & giải pháp công nghệ số tại **Điều 8**; **Áp dụng tiêu chuẩn** tại **Điều 9**.
+   - **Khảo sát xây dựng** tại **Điều 10–15**; **Các bước thiết kế, nhiệm vụ thiết kế, quy cách & nội dung hồ sơ thiết kế** tại **Điều 16–25**.
+3. **Thẩm tra Thiết kế Xây dựng (Kiểm tính độc lập của TVTT)**:
+   - Quy định tại **Điều 41** (thẩm định, thẩm tra thiết kế triển khai sau khi dự án được phê duyệt), **Mẫu số 02** (Báo cáo kết quả thẩm tra thiết kế cơ sở/FEED/TKKT trong Báo cáo NCKT) và **Mẫu số 12 Phụ lục I** (Báo cáo kết quả thẩm tra thiết kế xây dựng triển khai sau khi dự án được phê duyệt).
+   - Theo **Mẫu số 12 Phụ lục I**, nhà thầu thẩm tra thiết kế xây dựng **phải kiểm tính độc lập** các nội dung liên quan đến an toàn công trình để đối chiếu so sánh với kết quả tính toán do TVTK lập làm cơ sở kết luận thẩm tra.
+4. **An toàn trong Thi công Xây dựng (`QCVN 18:2021/BXD`)**: Áp dụng bắt buộc cho biện pháp thi công trên công trường — An toàn công trường (`Mục 2.1`), Giàn giáo (`Mục 2.2`), Kết cấu chống đỡ tạm (`Mục 2.3`), Thiết bị nâng/cần trục tháp (`Mục 2.4`), Đào đất & thi công công trình ngầm (`Mục 2.8`).
 
 ---
 

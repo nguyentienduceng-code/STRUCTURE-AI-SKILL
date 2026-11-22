@@ -15,10 +15,12 @@ Khi AI cần tra cứu tiêu chuẩn, hãy dùng `grep_search` trên file PDF t�
 | 1 | QCVN 01:2021/BXD | Quy hoạch xây dựng | 2021 | Quy hoạch đô thị, khoảng lùi, mật độ xây dựng (bản cũ đối chiếu: QCVN 01:2012) | ⚠ **Chưa có PDF 2021 trong thư viện** — thư viện hiện chỉ có bản 2012: `1. QCVN01-2012_QUY HOACH XAY DUNG.pdf` (bản đối chiếu, **không dùng cho hồ sơ mới**) |
 | 2 | QCVN 02:2022/BXD | Số liệu điều kiện tự nhiên | 2022 | Vùng gió, vùng động đất, mưa, nhiệt độ theo địa phương | `2. QCVN02-2022_SO LIEU DIEU KIEN TU NHIEN DUNG TRONG XAY DUNG.pdf` |
 | 3 | **QCVN 03:2022/BXD** | Phân cấp công trình phục vụ thiết kế | 2022 | **Chỉ phân cấp theo 3 tiêu chí thiết kế:** (1) Cấp hậu quả **`C1, C2, C3`** tại Mục 2.1 & Phụ lục A (không dùng ký hiệu `CC1–CC3`); (2) Thời hạn sử dụng theo thiết kế tại **Mục 2.2.2 Bảng 1** (`Mức 1: <25 năm`, `Mức 2: ≥25 năm`, `Mức 3: ≥50 năm` cho dân dụng/công nghiệp thông thường, `Mức 4: ≥100 năm` cho công trình biểu tượng/độc đáo); (3) Phân loại kỹ thuật về cháy. **Không phân cấp I, II, III, IV.** | `3. QCVN 03-2022_PHAN CAP CONG TRINH.pdf` |
-| 3a | **Thông tư 34/2026/TT-BXD** | Quy định chi tiết về cấp công trình xây dựng phục vụ quản lý hoạt động xây dựng | 2026 | **Hiệu lực từ 01/07/2026** (thay thế `TT 06/2021/TT-BXD` và `TT 02/2025/TT-BXD`). Phân cấp **Đặc biệt, I, II, III, IV** theo **Phụ lục I** (quy mô công suất) và **Bảng 2 Phụ lục II** (quy mô kết cấu: المục 2.1.1 GFA Cấp I `> 30,000 m²`; Độ sâu ngầm Cấp II `6 ÷ 18m` tính tới mặt trên sàn hầm sâu nhất). | Đối chiếu chuyển tiếp: `3a. Thong tu 02-2025_TT-BXD...pdf` & `TT 06/2021/TT-BXD` |
+| 3b | **Thông tư 34/2026/TT-BXD** | Quy định chi tiết về cấp công trình xây dựng phục vụ quản lý hoạt động xây dựng | 2026 | **Hiệu lực từ 01/07/2026** (thay thế `TT 06/2021/TT-BXD` và `TT 02/2025/TT-BXD`). Phân cấp **Đặc biệt, I, II, III, IV** theo **Phụ lục I** (quy mô công suất) và **Bảng 2 Phụ lục II** (quy mô kết cấu: Mục 2.1.1 GFA Cấp I `> 30,000 m²`; Độ sâu ngầm Cấp II `6 ÷ 18m` tính tới mặt trên sàn hầm sâu nhất). | `3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf` (kèm `.docx`; chuyển tiếp cũ: `3a. Thong tu 02-2025_TT-BXD...pdf`) |
+| 3c | **Nghị định 217/2026/NĐ-CP** | Quy định chi tiết một số điều của Luật Xây dựng số `135/2025/QH15` về quản lý hoạt động xây dựng | 2026 | **Hiệu lực từ 01/07/2026** (thay thế `NĐ 175/2024/NĐ-CP` theo khoản 2 Điều 75). Quy định BIM (Điều 8), khảo sát (Điều 10–15), thiết kế (Điều 16–25), thẩm định & **thẩm tra thiết kế xây dựng — kiểm tính độc lập của TVTT tại Điều 41, Mẫu số 02 & Mẫu số 12 Phụ lục I**. | `3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf` (kèm `.docx`) |
 | 4 | QCVN 04:2021 | Nhà chung cư | 2021 | Yêu cầu kỹ thuật nhà chung cư | `4. QCVN 04-2021_NHA CHUNG CU.pdf` |
 | 5 | QCVN 05:2008 | An toàn sinh mạng | 2008 | An toàn kết cấu, sức khỏe con người | `5. QCVN 05-2008_AN TOAN SINH MANG VA SUC KHOE.pdf` |
 | 6 | **QCVN 06:2022/BXD + Sửa đổi 1:2023** | An toàn cháy cho nhà và công trình | 2022 (SĐ 2023) | Khoang cháy, lối thoát nạn, bậc chịu lửa, khoảng cách PCCC | `6. QCVN 06-2022_AN TOAN VE CHAY CHO NHA VA CONG TRINH.pdf` + `6a. SUA DOI BO SUNG QCVN 06-2022.pdf` |
+| 7 | **QCVN 18:2021/BXD** | An toàn trong thi công xây dựng (`TT 16/2021/TT-BXD`) | 2021 | Thay thế `QCVN 18:2014/BXD`. An toàn công trường (Mục 2.1), giàn giáo (Mục 2.2), kết cấu chống đỡ tạm (Mục 2.3), thiết bị nâng/cần trục tháp (Mục 2.4), đào đất & công trình ngầm (Mục 2.8) | `7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf` (kèm `.docx`) |
 
 ---
 
@@ -95,6 +97,11 @@ Khi AI cần tra cứu tiêu chuẩn, hãy dùng `grep_search` trên file PDF t�
 | 15 | TCVN 9381:2012 | Đánh giá mức độ nguy hiểm | 2012 | Phân hạng nguy hiểm công trình | `15...pdf` |
 | 16 | **TCVN 9346:2012** | Kết cấu BT & BTCT - Yêu cầu bảo vệ chống ăn mòn trong môi trường biển | 2012 | Bảo vệ kết cấu BT & BTCT trong môi trường xâm thực/biển | `16...pdf` |
 | 16a | **TCVN 12041:2017** | Kết cấu BT & BTCT - Yêu cầu chung về thiết kế độ bền lâu và tuổi thọ trong môi trường xâm thực | 2017 | **Thay thế `TCVN 3993:1985` và `TCVN 3994:1985` (đã hết hiệu lực)**; đánh giá mức độ ăn mòn hóa học của nước ngầm lên bê tông & cốt thép | Văn bản chuẩn TCVN 12041:2017 |
+
+### Nhóm H: Tài liệu Hướng dẫn & Tập huấn TCVN Mới
+*Lưu trữ tại `00_Template_&_Standards/Tieu_Chuan_TCVN/` (không chép vào `standards/TCVN/` để tránh trùng mã PDF khi kiểm toán trích dẫn):*
+- `4.1.1 1746602171Huong-dan-TCVN-2737-2023-Phan-1-.pdf` — Tài liệu hướng dẫn áp dụng `TCVN 2737:2023` (Phần 1).
+- `4.1 Tap huan hoi thao TCVN 5575-2024.pdf` — Tài liệu tập huấn hội thảo `TCVN 5575:2024` (Thiết kế kết cấu thép).
 
 ---
 

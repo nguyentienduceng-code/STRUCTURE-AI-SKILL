@@ -376,14 +376,39 @@ def validate_cdc(data: dict, logs: list) -> list:
             "elements": [e["name"] for e in no_mat[:5]],
         })
 
-    # CDC-04: Kiểm tra cao độ tầng hợp lý (> 2200mm, < 8000mm)
-    storeys = data.get("storeys", [])
+    # CDC-04: Kiểm tra cao độ tầng (cho phép tầng hầm/ngầm có cao độ âm, bắt tầng nổi âm & bước tầng bất hợp lý)
+    import unicodedata
+
+    def _is_underground_storey(name: str) -> bool:
+        raw = unicodedata.normalize("NFKC", str(name or "")).lower().replace("đ", "d")
+        ascii_name = "".join(c for c in unicodedata.normalize("NFD", raw) if unicodedata.category(c) != "Mn")
+        ascii_name = re.sub(r"[^a-z0-9]+", " ", ascii_name).strip()
+        return bool(re.search(
+            r"\b(?:b\d+|sub\s*\d*|base|basement|tang\s*ham|ham|mong|foundation|pit|underground)\b",
+            ascii_name,
+        ))
+
+    storeys = sorted(data.get("storeys", []), key=lambda item: float(item.get("elevation_mm", 0) or 0))
     for s in storeys:
-        if s.get("elevation_mm", 0) < 0:
+        elev = float(s.get("elevation_mm", 0) or 0)
+        if elev < 0 and not _is_underground_storey(s.get("name", "")):
             issues.append({
                 "rule": "CDC-04",
                 "severity": "HIGH",
-                "desc": f"Tầng '{s['name']}' có cao độ âm: {s['elevation_mm']}mm",
+                "desc": f"Tầng nổi '{s.get('name', '')}' có cao độ âm bất thường: {elev}mm",
+            })
+    for idx in range(len(storeys) - 1):
+        z1 = float(storeys[idx].get("elevation_mm", 0) or 0)
+        z2 = float(storeys[idx + 1].get("elevation_mm", 0) or 0)
+        dz = z2 - z1
+        if dz < 2200 or dz > 12000:
+            issues.append({
+                "rule": "CDC-04",
+                "severity": "HIGH",
+                "desc": (
+                    f"Chiều cao bước tầng giữa '{storeys[idx].get('name', '')}' ({z1}mm) "
+                    f"và '{storeys[idx + 1].get('name', '')}' ({z2}mm) bất hợp lý: {dz}mm"
+                ),
             })
 
     # CDC-05 đến CDC-08: Placeholder — cần dữ liệu hình học MEP

@@ -60,7 +60,7 @@ def run_conflict_checks(graph: dict) -> dict:
                 "CDC-01", "CRITICAL", "KC + KT",
                 f"Giai đoạn hồ sơ không đồng bộ (KC: {struc_stage} > KT: {arch_stage})",
                 f"Hồ sơ Kết cấu đã ở giai đoạn {struc_stage} trong khi Kiến trúc mới ở giai đoạn {arch_stage}.",
-                "Phê duyệt hồ sơ Kiến trúc trước và rà soát đồng bộ lại Kết cấu theo Nghị định 15/2021/NĐ-CP.",
+                "Phê duyệt hồ sơ Kiến trúc trước và rà soát đồng bộ lại Kết cấu theo Nghị định 217/2026/NĐ-CP (thay thế Nghị định 175/2024/NĐ-CP & Nghị định 15/2021/NĐ-CP).",
                 5
             )
 
@@ -165,6 +165,24 @@ def run_conflict_checks(graph: dict) -> dict:
             )
 
     # --- CDC-06: Kiểm tra đường truyền tải cột & Cột mồ côi ---
+    import unicodedata
+    import re
+
+    _BASE_STORY_TOKENS = {
+        "T1", "F1", "1F", "L1", "GF", "G", "TANG_1", "TANG 1", "TRET", "TANG_TRET", "TANG TRET",
+        "B1", "B2", "B3", "BASE", "BASEMENT", "HAM", "TANG_HAM", "TANG HAM",
+    }
+
+    def _has_base_or_ground_story(stories) -> bool:
+        for st in (stories or []):
+            raw = unicodedata.normalize("NFKC", str(st or "")).lower().replace("đ", "d")
+            ascii_st = "".join(c for c in unicodedata.normalize("NFD", raw) if unicodedata.category(c) != "Mn")
+            norm_space = re.sub(r"\s+", " ", ascii_st.upper()).strip()
+            norm_under = norm_space.replace(" ", "_")
+            if norm_space in _BASE_STORY_TOKENS or norm_under in _BASE_STORY_TOKENS:
+                return True
+        return False
+
     columns = graph.get("elements", {}).get("columns", [])
     for col in columns:
         cid = col.get("id", "?")
@@ -172,7 +190,7 @@ def run_conflict_checks(graph: dict) -> dict:
         has_foundation = col.get("has_foundation", True)
         in_arch = col.get("in_arch_plan", True)
 
-        if not has_foundation or (stories_present and "T1" not in stories_present and "F1" not in stories_present and "Tang_1" not in stories_present):
+        if not has_foundation or (stories_present and not _has_base_or_ground_story(stories_present)):
             add_issue(
                 "CDC-06", "MAJOR", "KC + KT",
                 f"Cột {cid} xuất hiện tại {stories_present} nhưng thiếu cột tầng dưới / móng đỡ",
@@ -229,7 +247,21 @@ def run_conflict_checks(graph: dict) -> dict:
     warning_cnt = sum(1 for i in issues if i["Severity"] == "WARNING")
     status = "CRITICAL" if critical_cnt > 0 else ("MAJOR" if major_cnt > 0 else ("WARNING" if warning_cnt > 0 else "PASS"))
 
+    calc_logs = [
+        {
+            "step": 1,
+            "desc": "Đối chiếu xung đột chéo đa bộ môn theo 8 quy tắc CDC-01 -> CDC-08",
+            "disciplines_checked": list(docs.keys()),
+            "columns_checked": len(columns),
+            "beams_checked": len(beams),
+            "issues_found": len(issues),
+            "overall_status": status,
+        }
+    ]
+
     return {
+        "Standard_Method": "TCVN 5574:2018 + TCVN 10304:2025 + Nghị định 217/2026/NĐ-CP + TT 34/2026/TT-BXD",
+        "Calculation_Logs": calc_logs,
         "Verification_Type": "Cross-Document-Conflict-Control",
         "Timestamp": datetime.now().isoformat(),
         "Project_Name": graph.get("project_name", "N/A"),
