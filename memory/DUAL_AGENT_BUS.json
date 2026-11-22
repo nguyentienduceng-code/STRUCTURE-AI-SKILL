@@ -1,10 +1,10 @@
 {
   "work_ticket": {
     "bus_version": "3.4",
-    "task_id": "MASTER_STRATEGY_V8_STANDARDS_SYNC_20261122",
-    "task_title": "/sys Nhận ca kiểm toán chéo & làm việc chung trên bản hoàn thiện Tầng 1 (Chiến lược 3 Tầng v8.0) và Cập nhật Tiêu chuẩn Pháp lý 2026: (1) Rà soát các file mới/đã sửa trong working tree (bao gồm cả 5 bản vá Tầng 1 mới cập nhật); (2) Kiểm chứng PDF Citation Grounding (S23), R&D Patches (S21), Phase 2 Tools (Suite 9), Sprint 2 Conflict Control (Suite 8), P4 RFI/NCR, Dispatcher 2D Modes và chạy full regression run_all_tests.py --full (50/50 suites); (3) Xác nhận COMPLETED hoặc NEED_REVIEW để chốt git commit.",
+    "task_id": "TIER2_PHASE2A_REVIEW_AND_2B_DESIGN_20261122",
+    "task_title": "/sys Kiểm toán độc lập 8 tệp Tầng 2 Giai đoạn 2A (mcp_dce_cad_server.py, MCP_DCE_CAD_CONTRACT.md, cad_plan_engine.py, dce_xdata_bridge.py, bim_model_translator.py, revit_family_parameter_mapper.py, sync_bus_2d_patch.py, test_tier2_phase2a_foundation.py), chạy run_all_tests.py --full & audit_zero_white_text.py, đồng thời đưa ra phản biện kỹ thuật và giải pháp tối ưu nhất của Claude cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only Pilot + IFC) trước khi triển khai 2B",
     "status": "COMPLETED",
-    "request_id": "59c788a2083348969b8e0092b63b23c0",
+    "request_id": "6e2552b767f74a8db5662e6472081298",
     "workspace": "G:\\My Drive\\Google AI Studio",
     "dispatch_2d": {
       "domain_skill": "SKILL_SYSTEM_ENGINEERING",
@@ -36,10 +36,10 @@
       "enforce_deliverable_gate": false,
       "enforce_jargon_linter": false,
       "required_extensions": [],
-      "primary_skill": "Global_Dispatcher",
+      "primary_skill": "SKILL_DUAL_AGENT_BRIDGE",
       "skill_workflow": null,
       "skill_files": [
-        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\Global_Dispatcher\\SKILL.md"
+        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\SKILL_DUAL_AGENT_BRIDGE\\SKILL.md"
       ],
       "expected_files": [],
       "project_identity": null,
@@ -48,8 +48,8 @@
     },
     "bus_meta": {
       "lock_owner": "gemini_maker",
-      "lock_acquired_at_iso": "2026-11-22T14:20:23.170665+00:00",
-      "task_started_at_epoch": 1795357223.1706653,
+      "lock_acquired_at_iso": "2026-11-22T15:02:56.666048+00:00",
+      "task_started_at_epoch": 1795359776.6660483,
       "lease_ttl_sec": 600,
       "report_gate_p1": "PENDING",
       "mcp_perception_p2": true,
@@ -58,13 +58,13 @@
         {
           "agent": "gemini_maker",
           "event": "HANDOVER_CREATED",
-          "timestamp_iso": "2026-11-22T14:20:23.170665+00:00",
+          "timestamp_iso": "2026-11-22T15:02:56.666048+00:00",
           "gate_status": "PENDING"
         }
       ]
     },
     "human_handoff": {
-      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: /sys Nhận ca kiểm toán chéo & làm việc chung trên bản hoàn thiện Tầng 1 (Chiến lược 3 Tầng v8.0) và Cập nhật Tiêu chuẩn Pháp lý 2026: (1) Rà soát các file mới/đã sửa trong working tree (bao gồm cả 5 bản vá Tầng 1 mới cập nhật); (2) Kiểm chứng PDF Citation Grounding (S23), R&D Patches (S21), Phase 2 Tools (Suite 9), Sprint 2 Conflict Control (Suite 8), P4 RFI/NCR, Dispatcher 2D Modes và chạy full regression run_all_tests.py --full (50/50 suites); (3) Xác nhận COMPLETED hoặc NEED_REVIEW để chốt git commit.\nDomain: SKILL_SYSTEM_ENGINEERING | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
+      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: /sys Kiểm toán độc lập 8 tệp Tầng 2 Giai đoạn 2A (mcp_dce_cad_server.py, MCP_DCE_CAD_CONTRACT.md, cad_plan_engine.py, dce_xdata_bridge.py, bim_model_translator.py, revit_family_parameter_mapper.py, sync_bus_2d_patch.py, test_tier2_phase2a_foundation.py), chạy run_all_tests.py --full & audit_zero_white_text.py, đồng thời đưa ra phản biện kỹ thuật và giải pháp tối ưu nhất của Claude cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only Pilot + IFC) trước khi triển khai 2B\nDomain: SKILL_SYSTEM_ENGINEERING | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
       "source_scripts": [],
       "user_report_vi": "",
       "deliverable_gate_status": "PENDING",
@@ -73,64 +73,49 @@
     }
   },
   "project_context": {
-    "project_code": "MASTER_STRATEGY_V8_STANDARDS_SYNC_20261122",
-    "project_purpose": "Đồng bộ Chiến lược Kiến trúc 3 Tầng v8.0, hoàn thiện Tầng 1 (TVTT/CĐT, /sys dispatch, IFC CDC-04, Cross-Doc CDC-01/06, ClashDetector, RFI/NCR G8.21-25) và cập nhật thư viện tiêu chuẩn/pháp lý 2026 (TT 34/2026/TT-BXD, NĐ 217/2026/NĐ-CP, QCVN 18:2021/BXD)",
-    "role_distribution": "Gemini: Triển khai Chiến lược v8.0, cập nhật STANDARDS_LOCK v3.3.0 / standards_graph.py và vá dứt điểm các lỗi Tầng 1; Claude: Chủ trì Thẩm định Kiến trúc & Kiểm toán Độc lập 50/50 suites trước khi chốt commit",
+    "project_code": "TIER2_PHASE2A_REVIEW_AND_2B_DESIGN_20261122",
+    "project_purpose": "Kiểm toán độc lập Tầng 2 — Giai đoạn 2A (Xương sống dữ liệu, XData element_id/role, MCP 5 profiles, BIM/Revit mapper) và đề xuất giải pháp tối ưu của Claude cho Giai đoạn 2B (AutoCAD 2021 Native DWG + Snapshot Diff) & 2C (Revit 2024 Read-Only Pilot + IFC)",
+    "role_distribution": "Gemini: Triển khai Tầng 2 Giai đoạn 2A & đẩy mốc Tầng 1 lên GitHub (b0614d0); Claude: Chủ trì Kiểm toán Độc lập Giai đoạn 2A (51/51 suites) & Đề xuất Giải pháp Kiến trúc Tối ưu cho Tầng 2B/2C",
     "action_type": "META"
   },
   "last_updated_by": "CLAUDE",
-  "timestamp": "2026-11-22T21:43:27.646845+07:00",
+  "timestamp": "2026-11-22T22:17:27.855987+07:00",
   "handoff_status": "COMPLETED",
   "current_holder": "IDLE",
-  "summary": "Đã kiểm toán bản cập nhật Gemini: 5 vá Tầng 1 xác nhận; E004 bắt đúng NĐ 175/2024 và QCVN 18:2014; audit_zero_white_text 0 warnings; run_all_tests.py --full 50/50 PASS trong 303.17s.",
+  "summary": "Đã kiểm tra 8 tệp Tầng 2A, suite riêng 6/6 PASS, full regression 51/51 PASS trong 313.06s, audit_zero_white_text 0 warnings. Đề xuất 2B/2C chi tiết đã lưu tại memory/audits/TIER2_PHASE2A_REVIEW_2B_2C_ARCHITECTURE.md.",
   "artifacts_modified": [
-    ".agents/_SHARED/standards/standards_graph.py",
-    ".agents/docs/DEEPRESEARCH_CONTEXT_HE_THONG_VA_CAD_REVIT_V8.md",
-    ".agents/docs/MASTER_STRATEGY_3_TIERS_V8.md",
-    ".agents/docs/STRATEGIC_ALIGNMENT_GEMINI_CODEX.md",
-    ".agents/docs/TECHNICAL_DEBT.md",
-    ".agents/skills/Design_Evaluation/standards/INDEX.md",
-    ".agents/skills/Design_Evaluation/standards/INDEX_QUICK.md",
-    ".agents/skills/Design_Evaluation/standards/QCVN/3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf",
-    ".agents/skills/Design_Evaluation/standards/QCVN/3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf",
-    ".agents/skills/Design_Evaluation/standards/QCVN/7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf",
-    ".agents/skills/Global_Dispatcher/intent_classifier.py",
+    ".agents/docs/MCP_DCE_CAD_CONTRACT.md",
     ".agents/skills/Global_Dispatcher/sync_bus_2d_patch.py",
-    ".agents/skills/SKILL_BIM_COORDINATION/scripts/clash_detector.py",
-    ".agents/skills/SKILL_INDEX.md",
-    ".agents/skills/SKILL_RFI/SKILL.md",
-    ".agents/skills/SKILL_VERIFY/scripts/cross_doc_conflict_checker.py",
-    ".agents/skills/STANDARDS_LOCK.md",
-    ".agents/tools/_collect_tests.py",
-    ".agents/tools/ifc_parser.py",
-    ".agents/tools/rfi_ncr_bridge.py",
-    ".agents/tools/sync_bus.py",
+    ".agents/skills/Technical_Illustrator/cad_integration/bim_model_translator.py",
+    ".agents/skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+    ".agents/skills/Technical_Illustrator/cad_integration/revit_family_parameter_mapper.py",
+    ".agents/tools/dce_xdata_bridge.py",
+    ".agents/tools/mcp_dce_cad_server.py",
+    ".agents/tests/test_tier2_phase2a_foundation.py",
     ".agents/memory/DUAL_AGENT_BUS.json"
   ],
   "next_action_for_partner": {
     "target_agent": "CLAUDE",
-    "task_description": "/sys Nhận ca kiểm toán chéo & làm việc chung trên bản hoàn thiện Tầng 1 (Chiến lược 3 Tầng v8.0) và Cập nhật Tiêu chuẩn Pháp lý 2026: (1) Rà soát các file mới/đã sửa trong working tree (bao gồm cả 5 bản vá Tầng 1 mới cập nhật); (2) Kiểm chứng PDF Citation Grounding (S23), R&D Patches (S21), Phase 2 Tools (Suite 9), Sprint 2 Conflict Control (Suite 8), P4 RFI/NCR, Dispatcher 2D Modes và chạy full regression run_all_tests.py --full (50/50 suites); (3) Xác nhận COMPLETED hoặc NEED_REVIEW để chốt git commit.",
+    "task_description": "/sys Kiểm toán độc lập 8 tệp Tầng 2 Giai đoạn 2A (mcp_dce_cad_server.py, MCP_DCE_CAD_CONTRACT.md, cad_plan_engine.py, dce_xdata_bridge.py, bim_model_translator.py, revit_family_parameter_mapper.py, sync_bus_2d_patch.py, test_tier2_phase2a_foundation.py), chạy run_all_tests.py --full & audit_zero_white_text.py, đồng thời đưa ra phản biện kỹ thuật và giải pháp tối ưu nhất của Claude cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only Pilot + IFC) trước khi triển khai 2B",
     "target_files": [
+      ".agents/tools/mcp_dce_cad_server.py",
+      ".agents/tools/dce_xdata_bridge.py",
+      ".agents/skills/Technical_Illustrator/cad_integration/cad_plan_engine.py",
+      ".agents/skills/Technical_Illustrator/cad_integration/bim_model_translator.py",
+      ".agents/skills/Technical_Illustrator/cad_integration/revit_family_parameter_mapper.py",
       ".agents/skills/Global_Dispatcher/sync_bus_2d_patch.py",
-      ".agents/skills/SKILL_BIM_COORDINATION/scripts/clash_detector.py",
-      ".agents/tools/ifc_parser.py",
-      ".agents/skills/SKILL_VERIFY/scripts/cross_doc_conflict_checker.py",
-      ".agents/tools/rfi_ncr_bridge.py",
-      ".agents/skills/STANDARDS_LOCK.md",
-      ".agents/_SHARED/standards/standards_graph.py",
-      ".agents/docs/MASTER_STRATEGY_3_TIERS_V8.md",
-      ".agents/docs/DEEPRESEARCH_CONTEXT_HE_THONG_VA_CAD_REVIT_V8.md"
+      ".agents/tests/test_tier2_phase2a_foundation.py"
     ],
     "acceptance_criteria": [
-      "1. Xác nhận 3 PDF tiêu chuẩn/pháp lý mới trong standards/QCVN/ (3b TT 34/2026, 3c NĐ 217/2026, 7 QCVN 18:2021) VERIFIED qua CitationGroundingAuditor và StandardsGraph bắt đúng E004",
-      "2. Kiểm chứng 5 điểm vá Tầng 1 (sync_bus_2d_patch /sys, clash_detector --input/--ifc, ifc_parser CDC-04 tầng hầm, cross_doc_conflict_checker CDC-01/CDC-06, rfi_ncr_bridge G8.21..G8.25)",
-      "3. Chạy full regression run_all_tests.py --full đạt 50/50 PASS và audit_zero_white_text.py = 0 warnings"
+      "1. Xác nhận 8 tệp Tầng 2A không gây hồi quy Tầng 1 và đạt 100% PASS trên run_all_tests.py --full (51/51 suites) + audit_zero_white_text.py (0 warnings)",
+      "2. Đánh giá trực diện thiết kế XData DCE_ELEMENT_ID (element_id, role), Canonical Model và bim_model_translator/revit_family_parameter_mapper (chỉ rõ điểm cần tối ưu thêm nếu có)",
+      "3. Đề xuất giải pháp kiến trúc tối ưu cụ thể cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only + IFC) kèm phân công Gemini-Claude"
     ],
     "command": "python .agents/tools/sync_bus.py --claim --agent CLAUDE",
-    "deliverable": "Biên bản/kết quả nghiệm thu chéo của Claude trên DUAL_AGENT_BUS.json (COMPLETED hoặc NEED_REVIEW) trước khi git commit",
+    "deliverable": "Kết quả kiểm toán Tầng 2A + Đề xuất giải pháp tối ưu Tầng 2B/2C của Claude trên DUAL_AGENT_BUS.json (hoặc biên bản trong .agents/memory/audits/)",
     "acceptance_cmd": "python .agents/tests/run_all_tests.py --full"
   },
   "Verification_Status": "CONFIRMED_AND_HANDED_OFF",
-  "claim_timestamp": "2026-11-22T21:32:26.147555+07:00",
-  "last_heartbeat": "2026-11-22T21:32:26.147555+07:00"
+  "claim_timestamp": "2026-11-22T22:04:34.266730+07:00",
+  "last_heartbeat": "2026-11-22T22:15:07.005004+07:00"
 }

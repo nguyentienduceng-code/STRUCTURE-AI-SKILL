@@ -26,6 +26,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -91,13 +92,15 @@ def _col_to_bim(col: Dict[str, Any], ctx: str) -> Dict[str, Any]:
     """Translate a column element to the BIM intermediate node.
 
     Coordinates: model centre `x/y` in metres; offsets `offset_x_mm/offset_y_mm`
-    are mm (handled by `column_revit_center`). Section `b_mm`/`h_mm` are ALREADY
-    mm — passed through as-is.
+    and edge fallbacks `x0/x1/y0/y1` are mm. Section `b_mm`/`h_mm` are ALREADY mm.
     """
     kind = str(col.get("kind", "RC")).upper()
     is_steel = "STEEL" in kind or "H" in kind
+    elem_id = col.get("element_id")
     rec: Dict[str, Any] = {
-        "bim_id": f"COL-{ctx}-{col.get('id', col.get('mark', '?'))}",
+        "bim_id": f"COL-{ctx}-{elem_id or col.get('id', col.get('mark', '?'))}",
+        "element_id": elem_id,
+        "floor_id": col.get("floor_id") or ctx,
         "element_type": "column",
         "ifc4_type": _ELEMENT_TARGETS["column"]["ifc4"],
         "revit_family": _ELEMENT_TARGETS["column"]["revit_family"],
@@ -120,14 +123,14 @@ def _col_to_bim(col: Dict[str, Any], ctx: str) -> Dict[str, Any]:
             "ssot_uuid": rc.get("ssot_uuid", ""),
         }
     else:
-        # x0/x1 are column edges in mm; centre = (x0+x1)/2 when both exist.
+        # x0/x1/y0/y1 are column edges in mm; centre = (x0+x1)/2 when both exist.
         # Fallback to x0 alone is a known approximation — flagged Data Missing.
         if col.get("x0") is not None and col.get("x1") is not None:
             x_mm = _num((float(col["x0"]) + float(col["x1"])) / 2.0)
             y_mm = _num((float(col.get("y0", 0)) + float(col.get("y1", 0))) / 2.0)
         else:
-            x_mm = _to_mm(col.get("x0"))
-            y_mm = _to_mm(col.get("y0"))
+            x_mm = _num(col.get("x0"))
+            y_mm = _num(col.get("y0"))
         rec["coordinates"] = {"x_mm": x_mm, "y_mm": y_mm, "ssot_uuid": col.get("ssot_uuid", "")}
         rec["data_missing"].append("column centre coordinate (x) -> Data Missing (edge x0 fallback)")
     if col.get("b_mm") is None or col.get("h_mm") is None:
@@ -143,26 +146,37 @@ def _beam_to_bim(beam: Dict[str, Any], ctx: str) -> Dict[str, Any]:
     Section: `size` is free-text in the model schema; only a strict `B x H`
     (or `BxH`) numeric form is parsed — anything else yields `None` +
     `Data Missing`, never a fabricated section (AGENTS §4).
-    Span: computed only when BOTH endpoints exist on the beam's orientation
-    axis; otherwise `None` + `Data Missing` (a missing endpoint is not a 0 m span).
+    Span: uses Euclidean length when full 2D endpoints `(x0, y0, x1, y1)` are
+    present (handles diagonal beams accurately), or axis difference when only
+    the axis endpoints exist.
     """
     size = str(beam.get("size", "")).strip()
     m = re.match(r"^(\d+(?:\.\d+)?)\s*[xX]\s*(\d+(?:\.\d+)?)$", size)
     bw = float(m.group(1)) if m else None
     bh = float(m.group(2)) if m else None
 
-    orient = beam.get("orient", "X")
+    orient = str(beam.get("orient", "X"))
+    orient_up = orient.upper()
     span: Optional[float] = None
     endpoints_missing = False
-    if orient.upper() == "X" and beam.get("x0") is not None and beam.get("x1") is not None:
+    if orient_up == "X" and beam.get("x0") is not None and beam.get("x1") is not None:
         span = _round4(abs(float(beam["x1"]) - float(beam["x0"])))
-    elif orient.upper() != "X" and beam.get("y0") is not None and beam.get("y1") is not None:
+    elif orient_up == "Y" and beam.get("y0") is not None and beam.get("y1") is not None:
         span = _round4(abs(float(beam["y1"]) - float(beam["y0"])))
+    elif all(beam.get(k) is not None for k in ("x0", "y0", "x1", "y1")):
+        dx = float(beam["x1"]) - float(beam["x0"])
+        dy = float(beam["y1"]) - float(beam["y0"])
+        dz = (float(beam["z1"]) - float(beam["z0"])) if (beam.get("z0") is not None and beam.get("z1") is not None) else 0.0
+        span = _round4(math.sqrt(dx * dx + dy * dy + dz * dz))
     else:
         endpoints_missing = True
 
+    elem_id = beam.get("element_id")
     rec: Dict[str, Any] = {
-        "bim_id": f"BEAM-{ctx}-{beam.get('mark', '?')}",
+        "bim_id": f"BEAM-{ctx}-{elem_id or beam.get('mark', '?')}",
+        "element_id": elem_id,
+        "floor_id": beam.get("floor_id") or ctx,
+        "ssot_uuid": beam.get("ssot_uuid", ""),
         "element_type": "beam",
         "ifc4_type": _ELEMENT_TARGETS["beam"]["ifc4"],
         "revit_family": _ELEMENT_TARGETS["beam"]["revit_family"],
@@ -183,8 +197,12 @@ def _beam_to_bim(beam: Dict[str, Any], ctx: str) -> Dict[str, Any]:
 
 def _wall_to_bim(wall: Dict[str, Any], ctx: str) -> Dict[str, Any]:
     t_mm = _thickness_mm(wall)
+    elem_id = wall.get("element_id")
     rec: Dict[str, Any] = {
-        "bim_id": f"WALL-{ctx}-{wall.get('mark', wall.get('id', '?'))}",
+        "bim_id": f"WALL-{ctx}-{elem_id or wall.get('mark', wall.get('id', '?'))}",
+        "element_id": elem_id,
+        "floor_id": wall.get("floor_id") or ctx,
+        "ssot_uuid": wall.get("ssot_uuid", ""),
         "element_type": "wall",
         "ifc4_type": _ELEMENT_TARGETS["wall"]["ifc4"],
         "revit_family": _ELEMENT_TARGETS["wall"]["revit_family"],
@@ -203,8 +221,12 @@ def _wall_to_bim(wall: Dict[str, Any], ctx: str) -> Dict[str, Any]:
 
 def _slab_to_bim(slab: Dict[str, Any], ctx: str) -> Dict[str, Any]:
     t_mm = _thickness_mm(slab)
+    elem_id = slab.get("element_id")
     rec: Dict[str, Any] = {
-        "bim_id": f"SLAB-{ctx}-{slab.get('id', slab.get('mark', '?'))}",
+        "bim_id": f"SLAB-{ctx}-{elem_id or slab.get('id', slab.get('mark', '?'))}",
+        "element_id": elem_id,
+        "floor_id": slab.get("floor_id") or ctx,
+        "ssot_uuid": slab.get("ssot_uuid", ""),
         "element_type": "slab",
         "ifc4_type": _ELEMENT_TARGETS["slab"]["ifc4"],
         "revit_family": _ELEMENT_TARGETS["slab"]["revit_family"],
@@ -220,6 +242,15 @@ def _slab_to_bim(slab: Dict[str, Any], ctx: str) -> Dict[str, Any]:
 
 def _round4(v: Any) -> Optional[float]:
     return round(float(v), 4) if v is not None else None
+
+
+def _dedupe_bim_id(node: Dict[str, Any], seen_counts: Dict[str, int]) -> Dict[str, Any]:
+    base_id = node["bim_id"]
+    count = seen_counts.get(base_id, 0) + 1
+    seen_counts[base_id] = count
+    if count > 1:
+        node["bim_id"] = f"{base_id}#{count}"
+    return node
 
 
 # ---------------------------------------------------------------------------
@@ -239,6 +270,7 @@ def translate_model_to_bim(model: Dict[str, Any],
                     "beams": {"total": 0, "complete": 0},
                     "walls": {"total": 0, "complete": 0},
                     "slabs": {"total": 0, "complete": 0}}
+    seen_counts: Dict[str, int] = {}
 
     proj = model.get("project", {})
     for sh in model.get("sheets", []):
@@ -247,25 +279,25 @@ def translate_model_to_bim(model: Dict[str, Any],
             vp_id = str(vp.get("id", "?"))
             cctx = f"{ctx}/{vp_id}"
             for col in vp.get("columns", []):
-                node = _col_to_bim(col, cctx)
+                node = _dedupe_bim_id(_col_to_bim(col, cctx), seen_counts)
                 elements["columns"].append(node)
                 completeness["columns"]["total"] += 1
                 if not node["data_missing"]:
                     completeness["columns"]["complete"] += 1
             for bm in vp.get("beams", []):
-                node = _beam_to_bim(bm, cctx)
+                node = _dedupe_bim_id(_beam_to_bim(bm, cctx), seen_counts)
                 elements["beams"].append(node)
                 completeness["beams"]["total"] += 1
                 if not node["data_missing"]:
                     completeness["beams"]["complete"] += 1
             for wl in vp.get("walls", []):
-                node = _wall_to_bim(wl, cctx)
+                node = _dedupe_bim_id(_wall_to_bim(wl, cctx), seen_counts)
                 elements["walls"].append(node)
                 completeness["walls"]["total"] += 1
                 if not node["data_missing"]:
                     completeness["walls"]["complete"] += 1
             for sl in vp.get("slabs", []):
-                node = _slab_to_bim(sl, cctx)
+                node = _dedupe_bim_id(_slab_to_bim(sl, cctx), seen_counts)
                 elements["slabs"].append(node)
                 completeness["slabs"]["total"] += 1
                 if not node["data_missing"]:

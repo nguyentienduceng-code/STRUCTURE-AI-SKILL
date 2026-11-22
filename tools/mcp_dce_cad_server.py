@@ -136,6 +136,7 @@ def render_cad_plan(
     model_json_path: Optional[str] = None,
     v6: bool = True,
     dry_run: bool = False,
+    full_evidence: bool = False,
 ) -> dict:
     """Sinh bản vẽ mặt bằng CAD chuẩn DCE Pro (khung A1, 4 tầng dim, hatch,
     bảng thống kê — Điều 12d). Chỉ xuất CAD (.dxf), không xuất PDF.
@@ -144,6 +145,7 @@ def render_cad_plan(
     "KC-03" (dầm sàn). model_json_path: handoff JSON; để trống => model mặc định.
     v6=True (mặc định): bật tag-placement hình học, registry phần tử bất biến
     và ghi sidecar .dce_audit.json. dry_run=True: build trong bộ nhớ, KHÔNG ghi file.
+    full_evidence=True: nhúng đầy đủ semantic_log_format v4 vào sidecar .dce_audit.json.
     """
     aliases = {'KC-01': 'KC-01', 'KC01': 'KC-01', 'MASTER': 'KC-01', 'TONG_THE': 'KC-01',
                'KC-02': 'KC-02', 'KC02': 'KC-02', 'COT_VACH': 'KC-02',
@@ -168,12 +170,14 @@ def render_cad_plan(
                 str(out), template_path=template_path, pdf_path=pdf_path,
                 sheet_type=canonical, model_json_path=model_json_path,
                 v6=v6, element_registry=registry, dry_run=True,
+                full_evidence=full_evidence,
             )
         msp = eng.doc.modelspace()
         return {
             "status": "DRY_RUN_OK",
             "sheet_type": sheet_type,
             "v6": v6,
+            "full_evidence": full_evidence,
             "would_save_to": str(out),
             "requested_output_dxf": output_dxf_path,
             "modelspace_entities": sum(1 for _ in msp),
@@ -186,7 +190,7 @@ def render_cad_plan(
         eng = cpe.export_dce_plan(
             str(out), template_path=template_path, pdf_path=pdf_path,
             sheet_type=canonical, model_json_path=model_json_path,
-            v6=v6, element_registry=registry,
+            v6=v6, element_registry=registry, full_evidence=full_evidence,
         )
         if v6 and not out.with_suffix(".dce_audit.json").exists() and hasattr(eng, "_v6_write_sidecar"):
             eng._v6_write_sidecar(str(out))
@@ -194,6 +198,7 @@ def render_cad_plan(
         "status": "OK",
         "sheet_type": sheet_type,
         "v6": v6,
+        "full_evidence": full_evidence,
         "output_dxf": str(out),
         "input_pdf": pdf_path,
         "requested_output_dxf": output_dxf_path,
@@ -241,12 +246,13 @@ def release_preview(preview_id: str) -> dict:
 
 
 @_tool()
-def validate_cad(dxf_path: str, profile: Literal['full', 'plan', 'physical'] = 'full',
+def validate_cad(dxf_path: str, profile: Literal['full', 'plan', 'physical', 'steel_peb', 'bptc'] = 'full',
                  beam_dxf_path: Optional[str] = None, colwall_dxf_path: Optional[str] = None) -> dict:
-    """Bộ lọc 8: full mặc định yêu cầu 20 cổng và bằng chứng chi tiết.
-    plan: 16 cổng mặt bằng, 4 cổng chi tiết N/A. physical: chỉ kiểm tra DXF.
+    """Bộ lọc 8: hỗ trợ 5 profile (full, plan, physical, steel_peb, bptc) / 25 cổng G8.01..G8.25.
+    full mặc định yêu cầu 20 cổng BTCT và bằng chứng chi tiết; steel_peb/bptc mở rộng
+    lên G8.21..G8.25. plan: 16 cổng mặt bằng, 4 cổng chi tiết N/A. physical: chỉ kiểm tra DXF.
     Thiếu/stale metadata SHA256 => NEEDS_REVIEW. Đọc status, profile,
-    gate_results và full_compliance_verified; physical PASS không phải 20/20.
+    gate_results và full_compliance_verified; physical PASS không phải tuân thủ đầy đủ.
     Không sửa DXF; trả PASS/FAIL/NEEDS_REVIEW/ERROR.
     """
     chk = _load(CHECK, "dce_checker")

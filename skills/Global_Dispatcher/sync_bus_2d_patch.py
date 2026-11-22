@@ -167,6 +167,7 @@ class SyncBus2DAdapter:
                        else "Global_Dispatcher")
             workflow = {}
             skills["workflow"] = None
+            skills["pipeline"] = None
         skill_names = workflow.get("skills") or ([primary] if primary else [])
         skill_files = [str(Path(__file__).resolve().parent.parent / name / "SKILL.md") for name in dict.fromkeys(skill_names)]
         dispatch = {

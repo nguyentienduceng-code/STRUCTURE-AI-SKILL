@@ -2546,14 +2546,14 @@ class DcePlanEngine:
     # 700x1000 có MẶT TRÁI nằm trên trục: offset_x_mm = 350.
     # Model không khai báo => hành vi cũ giữ nguyên 100% (regression-safe).
     def _col_centers(self, col):
-        """Tâm cột world-coord = (x, y) + offset_x_mm/offset_y_mm (clamp [0..size])."""
+        """Tâm cột world-coord = (x, y) + offset_x_mm/offset_y_mm (clamp [-size..+size])."""
         bx_mm = float(col['bx']) * SCALE_MM
         by_mm = float(col['by']) * SCALE_MM
         off_x = float(col.get('offset_x_mm', 0.0))
         off_y = float(col.get('offset_y_mm', 0.0))
-        if not (0.0 <= off_x <= bx_mm and 0.0 <= off_y <= by_mm):
+        if not (abs(off_x) <= bx_mm and abs(off_y) <= by_mm):
             raise ValueError(
-                f"{col.get('name', '?')}: offset_x_mm/offset_y_mm vượt biên [0..size] — kiểm tra model")
+                f"{col.get('name', '?')}: offset_x_mm/offset_y_mm vượt biên [-size..+size] — kiểm tra model")
         cx = self._wx(col['x']) + off_x
         cy = self._wy(col['y']) + off_y
         return cx, cy

@@ -494,6 +494,109 @@ class DceXDataBridge:
         return errors
 
 
+ELEMENT_ID_APPID = "DCE_ELEMENT_ID"
+ELEMENT_ROLE_PRIMARY = "PRIMARY_GEOM"
+ELEMENT_ROLE_TAG = "ANNOTATION_TAG"
+ELEMENT_ROLE_DETAIL = "DETAIL_VIEW"
+ALLOWED_ELEMENT_ROLES = {
+    ELEMENT_ROLE_PRIMARY,
+    ELEMENT_ROLE_TAG,
+    ELEMENT_ROLE_DETAIL,
+}
+
+
+def attach_element_identity(
+    entity: DXFEntity,
+    element_id: str,
+    role: str = ELEMENT_ROLE_PRIMARY,
+    floor_id: str = "",
+) -> str:
+    """Gắn định danh bất biến `(element_id, role, floor_id)` qua AppID `DCE_ELEMENT_ID`."""
+    if entity is None:
+        raise ValueError("Target DXF entity cannot be None.")
+    elem_str = str(element_id or "").strip()
+    if not elem_str:
+        raise ValueError("element_id must be a non-empty string.")
+    role_str = str(role or ELEMENT_ROLE_PRIMARY).strip().upper()
+    if role_str not in ALLOWED_ELEMENT_ROLES:
+        raise ValueError(
+            f"Unsupported element role '{role}'; expected one of {sorted(ALLOWED_ELEMENT_ROLES)}."
+        )
+    floor_str = str(floor_id or "").strip()
+
+    doc = getattr(entity, "doc", None)
+    if doc is not None and hasattr(doc, "appids") and ELEMENT_ID_APPID not in doc.appids:
+        doc.appids.add(ELEMENT_ID_APPID)
+
+    payload = f"ID={elem_str};ROLE={role_str};FLOOR={floor_str}"
+    if not hasattr(entity, "set_xdata"):
+        raise RuntimeError("Entity does not support set_xdata().")
+    entity.set_xdata(ELEMENT_ID_APPID, [(1000, payload)])
+    return payload
+
+
+def read_element_identity(entity: DXFEntity) -> Optional[Dict[str, str]]:
+    """Đọc `(element_id, role, floor_id)` từ XData `DCE_ELEMENT_ID` trên thực thể DXF."""
+    if entity is None or not hasattr(entity, "has_xdata") or not entity.has_xdata(ELEMENT_ID_APPID):
+        return None
+    raw = list(entity.get_xdata(ELEMENT_ID_APPID))
+    for code, val in raw:
+        if code == 1000:
+            parts: Dict[str, str] = {}
+            for seg in str(val).split(";"):
+                if "=" in seg:
+                    k, v = seg.split("=", 1)
+                    parts[k.strip().upper()] = v.strip()
+            if parts.get("ID"):
+                return {
+                    "element_id": parts["ID"],
+                    "role": parts.get("ROLE") or ELEMENT_ROLE_PRIMARY,
+                    "floor_id": parts.get("FLOOR", ""),
+                }
+    return None
+
+
+def audit_duplicate_primary_owners(doc: Drawing) -> Dict[str, Any]:
+    """Phát hiện trùng `PRIMARY_GEOM` (khi COPY/WBLOCK làm 2 handle giữ cùng `element_id`)."""
+    if doc is None or not hasattr(doc, "modelspace"):
+        return {
+            "status": "ERROR",
+            "error": "Invalid DXF document",
+            "unique_primary_ids": 0,
+            "duplicate_primary_ids": [],
+            "annotations_linked": 0,
+        }
+    owners: Dict[str, List[Dict[str, str]]] = {}
+    annotations_linked = 0
+    for ent in doc.modelspace():
+        ident = read_element_identity(ent)
+        if not ident:
+            continue
+        role = ident["role"]
+        eid = ident["element_id"]
+        if role == ELEMENT_ROLE_PRIMARY:
+            handle = str(getattr(getattr(ent, "dxf", None), "handle", "") or "").upper()
+            owners.setdefault(eid, []).append({
+                "handle": handle,
+                "dxftype": ent.dxftype() if hasattr(ent, "dxftype") else type(ent).__name__,
+                "floor_id": ident["floor_id"],
+            })
+        else:
+            annotations_linked += 1
+
+    duplicates = [
+        {"element_id": eid, "handles": [r["handle"] for r in recs], "records": recs}
+        for eid, recs in sorted(owners.items())
+        if len(recs) >= 2
+    ]
+    return {
+        "status": "CONFLICT" if duplicates else "PASS",
+        "unique_primary_ids": len(owners),
+        "duplicate_primary_ids": duplicates,
+        "annotations_linked": annotations_linked,
+    }
+
+
 def build_calculation_logs(action: str, entity_type: str, fields_count: int) -> List[Dict[str, Any]]:
     """Sinh Calculation_Logs chuẩn 4 thành phần tuân thủ AGENTS.md §5 & §7."""
     return [

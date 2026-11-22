@@ -1,53 +1,40 @@
 # BẢN GIAO BAN & YÊU CẦU PHỐI HỢP LIÊN TÁC TỬ (DYNAMIC DUAL-AGENT HANDOFF v3.2)
 
-> **Dự án:** `MASTER_STRATEGY_V8_STANDARDS_SYNC_20261122` — *Đồng bộ Chiến lược Kiến trúc 3 Tầng v8.0, hoàn thiện Tầng 1 (TVTT/CĐT, /sys dispatch, IFC CDC-04, Cross-Doc CDC-01/06, ClashDetector, RFI/NCR G8.21-25) và cập nhật thư viện tiêu chuẩn/pháp lý 2026 (TT 34/2026/TT-BXD, NĐ 217/2026/NĐ-CP, QCVN 18:2021/BXD)*  
+> **Dự án:** `TIER2_PHASE2A_REVIEW_AND_2B_DESIGN_20261122` — *Kiểm toán độc lập Tầng 2 — Giai đoạn 2A (Xương sống dữ liệu, XData element_id/role, MCP 5 profiles, BIM/Revit mapper) và đề xuất giải pháp tối ưu của Claude cho Giai đoạn 2B (AutoCAD 2021 Native DWG + Snapshot Diff) & 2C (Revit 2024 Read-Only Pilot + IFC)*  
 > **Người gửi:** **CLAUDE** ➔ **Người nhận:** **CLAUDE**  
-> **Thời điểm bàn giao:** `2026-11-22T21:43:27.646845+07:00`  
+> **Thời điểm bàn giao:** `2026-11-22T22:17:27.855987+07:00`  
 > **Trạng thái bàn giao (handoff_status):** `COMPLETED` *(Verification: `CONFIRMED_AND_HANDED_OFF`)*  
 > **Tác tử giữ ca (current_holder):** `IDLE`  
-> **Chế độ phân việc:** Gemini: Triển khai Chiến lược v8.0, cập nhật STANDARDS_LOCK v3.3.0 / standards_graph.py và vá dứt điểm các lỗi Tầng 1; Claude: Chủ trì Thẩm định Kiến trúc & Kiểm toán Độc lập 50/50 suites trước khi chốt commit  
+> **Chế độ phân việc:** Gemini: Triển khai Tầng 2 Giai đoạn 2A & đẩy mốc Tầng 1 lên GitHub (b0614d0); Claude: Chủ trì Kiểm toán Độc lập Giai đoạn 2A (51/51 suites) & Đề xuất Giải pháp Kiến trúc Tối ưu cho Tầng 2B/2C  
 > **Kênh bus nguyên tử:** `.agents/memory/DUAL_AGENT_BUS.json`  
 
 ---
 
 ## 1. MỤC TIÊU DỰ ÁN & NGUYÊN TẮC PHÂN CÔNG
 
-- **Mã dự án:** `MASTER_STRATEGY_V8_STANDARDS_SYNC_20261122`
-- **Mục tiêu chính:** Đồng bộ Chiến lược Kiến trúc 3 Tầng v8.0, hoàn thiện Tầng 1 (TVTT/CĐT, /sys dispatch, IFC CDC-04, Cross-Doc CDC-01/06, ClashDetector, RFI/NCR G8.21-25) và cập nhật thư viện tiêu chuẩn/pháp lý 2026 (TT 34/2026/TT-BXD, NĐ 217/2026/NĐ-CP, QCVN 18:2021/BXD)
+- **Mã dự án:** `TIER2_PHASE2A_REVIEW_AND_2B_DESIGN_20261122`
+- **Mục tiêu chính:** Kiểm toán độc lập Tầng 2 — Giai đoạn 2A (Xương sống dữ liệu, XData element_id/role, MCP 5 profiles, BIM/Revit mapper) và đề xuất giải pháp tối ưu của Claude cho Giai đoạn 2B (AutoCAD 2021 Native DWG + Snapshot Diff) & 2C (Revit 2024 Read-Only Pilot + IFC)
 - **Nguyên tắc phân vai:** Không cố định vai trò; phân việc linh hoạt tùy theo mục tiêu, tiến độ và độ phức tạp kỹ thuật của từng dự án cụ thể.
 
 ---
 
 ## 2. TÓM TẮT TIẾN ĐỘ & KẾT QUẢ ĐÃ THỰC HIỆN
 
-Đã kiểm toán bản cập nhật Gemini: 5 vá Tầng 1 xác nhận; E004 bắt đúng NĐ 175/2024 và QCVN 18:2014; audit_zero_white_text 0 warnings; run_all_tests.py --full 50/50 PASS trong 303.17s.
+Đã kiểm tra 8 tệp Tầng 2A, suite riêng 6/6 PASS, full regression 51/51 PASS trong 313.06s, audit_zero_white_text 0 warnings. Đề xuất 2B/2C chi tiết đã lưu tại memory/audits/TIER2_PHASE2A_REVIEW_2B_2C_ARCHITECTURE.md.
 
 ---
 
 ## 3. DANH MỤC TỆP ĐÃ SỬA ĐỔI / PHÁT SINH (ARTIFACTS MODIFIED - POSIX RELATIVE)
 
-1. `.agents/_SHARED/standards/standards_graph.py`
-2. `.agents/docs/DEEPRESEARCH_CONTEXT_HE_THONG_VA_CAD_REVIT_V8.md`
-3. `.agents/docs/MASTER_STRATEGY_3_TIERS_V8.md`
-4. `.agents/docs/STRATEGIC_ALIGNMENT_GEMINI_CODEX.md`
-5. `.agents/docs/TECHNICAL_DEBT.md`
-6. `.agents/skills/Design_Evaluation/standards/INDEX.md`
-7. `.agents/skills/Design_Evaluation/standards/INDEX_QUICK.md`
-8. `.agents/skills/Design_Evaluation/standards/QCVN/3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf`
-9. `.agents/skills/Design_Evaluation/standards/QCVN/3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf`
-10. `.agents/skills/Design_Evaluation/standards/QCVN/7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf`
-11. `.agents/skills/Global_Dispatcher/intent_classifier.py`
-12. `.agents/skills/Global_Dispatcher/sync_bus_2d_patch.py`
-13. `.agents/skills/SKILL_BIM_COORDINATION/scripts/clash_detector.py`
-14. `.agents/skills/SKILL_INDEX.md`
-15. `.agents/skills/SKILL_RFI/SKILL.md`
-16. `.agents/skills/SKILL_VERIFY/scripts/cross_doc_conflict_checker.py`
-17. `.agents/skills/STANDARDS_LOCK.md`
-18. `.agents/tools/_collect_tests.py`
-19. `.agents/tools/ifc_parser.py`
-20. `.agents/tools/rfi_ncr_bridge.py`
-21. `.agents/tools/sync_bus.py`
-22. `.agents/memory/DUAL_AGENT_BUS.json`
+1. `.agents/docs/MCP_DCE_CAD_CONTRACT.md`
+2. `.agents/skills/Global_Dispatcher/sync_bus_2d_patch.py`
+3. `.agents/skills/Technical_Illustrator/cad_integration/bim_model_translator.py`
+4. `.agents/skills/Technical_Illustrator/cad_integration/cad_plan_engine.py`
+5. `.agents/skills/Technical_Illustrator/cad_integration/revit_family_parameter_mapper.py`
+6. `.agents/tools/dce_xdata_bridge.py`
+7. `.agents/tools/mcp_dce_cad_server.py`
+8. `.agents/tests/test_tier2_phase2a_foundation.py`
+9. `.agents/memory/DUAL_AGENT_BUS.json`
 
 ---
 
@@ -55,23 +42,21 @@
 
 - **Tác tử tiếp nhận:** `CLAUDE`
 - **Nhiệm vụ cụ thể (Task Description):**
-  > /sys Nhận ca kiểm toán chéo & làm việc chung trên bản hoàn thiện Tầng 1 (Chiến lược 3 Tầng v8.0) và Cập nhật Tiêu chuẩn Pháp lý 2026: (1) Rà soát các file mới/đã sửa trong working tree (bao gồm cả 5 bản vá Tầng 1 mới cập nhật); (2) Kiểm chứng PDF Citation Grounding (S23), R&D Patches (S21), Phase 2 Tools (Suite 9), Sprint 2 Conflict Control (Suite 8), P4 RFI/NCR, Dispatcher 2D Modes và chạy full regression run_all_tests.py --full (50/50 suites); (3) Xác nhận COMPLETED hoặc NEED_REVIEW để chốt git commit.
+  > /sys Kiểm toán độc lập 8 tệp Tầng 2 Giai đoạn 2A (mcp_dce_cad_server.py, MCP_DCE_CAD_CONTRACT.md, cad_plan_engine.py, dce_xdata_bridge.py, bim_model_translator.py, revit_family_parameter_mapper.py, sync_bus_2d_patch.py, test_tier2_phase2a_foundation.py), chạy run_all_tests.py --full & audit_zero_white_text.py, đồng thời đưa ra phản biện kỹ thuật và giải pháp tối ưu nhất của Claude cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only Pilot + IFC) trước khi triển khai 2B
 
 - **Tệp tin trọng tâm xử lý (Target Files):**
+  - `.agents/tools/mcp_dce_cad_server.py`
+  - `.agents/tools/dce_xdata_bridge.py`
+  - `.agents/skills/Technical_Illustrator/cad_integration/cad_plan_engine.py`
+  - `.agents/skills/Technical_Illustrator/cad_integration/bim_model_translator.py`
+  - `.agents/skills/Technical_Illustrator/cad_integration/revit_family_parameter_mapper.py`
   - `.agents/skills/Global_Dispatcher/sync_bus_2d_patch.py`
-  - `.agents/skills/SKILL_BIM_COORDINATION/scripts/clash_detector.py`
-  - `.agents/tools/ifc_parser.py`
-  - `.agents/skills/SKILL_VERIFY/scripts/cross_doc_conflict_checker.py`
-  - `.agents/tools/rfi_ncr_bridge.py`
-  - `.agents/skills/STANDARDS_LOCK.md`
-  - `.agents/_SHARED/standards/standards_graph.py`
-  - `.agents/docs/MASTER_STRATEGY_3_TIERS_V8.md`
-  - `.agents/docs/DEEPRESEARCH_CONTEXT_HE_THONG_VA_CAD_REVIT_V8.md`
+  - `.agents/tests/test_tier2_phase2a_foundation.py`
 
 - **Tiêu chí nghiệm thu (Checklist Verification):**
-  - [ ] 1. Xác nhận 3 PDF tiêu chuẩn/pháp lý mới trong standards/QCVN/ (3b TT 34/2026, 3c NĐ 217/2026, 7 QCVN 18:2021) VERIFIED qua CitationGroundingAuditor và StandardsGraph bắt đúng E004
-  - [ ] 2. Kiểm chứng 5 điểm vá Tầng 1 (sync_bus_2d_patch /sys, clash_detector --input/--ifc, ifc_parser CDC-04 tầng hầm, cross_doc_conflict_checker CDC-01/CDC-06, rfi_ncr_bridge G8.21..G8.25)
-  - [ ] 3. Chạy full regression run_all_tests.py --full đạt 50/50 PASS và audit_zero_white_text.py = 0 warnings
+  - [ ] 1. Xác nhận 8 tệp Tầng 2A không gây hồi quy Tầng 1 và đạt 100% PASS trên run_all_tests.py --full (51/51 suites) + audit_zero_white_text.py (0 warnings)
+  - [ ] 2. Đánh giá trực diện thiết kế XData DCE_ELEMENT_ID (element_id, role), Canonical Model và bim_model_translator/revit_family_parameter_mapper (chỉ rõ điểm cần tối ưu thêm nếu có)
+  - [ ] 3. Đề xuất giải pháp kiến trúc tối ưu cụ thể cho Tầng 2B (AutoCAD 2021 accoreconsole.exe Native DWG + Snapshot Diff D1/D1A) và Tầng 2C (Revit 2024 Read-Only + IFC) kèm phân công Gemini-Claude
 
 - **Lệnh điều phối tương thích (Command):**
   > `python .agents/tools/sync_bus.py --claim --agent CLAUDE`

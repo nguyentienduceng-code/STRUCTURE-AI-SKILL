@@ -44,6 +44,7 @@ def map_column_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "ParameterType": "StructuralColumn",
         "FamilyName": node.get("revit_family"),
         "ElementType": "IfcColumn" if node.get("ifc4_type") == "IfcColumn" else "IfcColumn",
+        "Element_ID": node.get("element_id") or node.get("bim_id"),
         "Mark": node.get("mark"),
         "MaterialKind": node.get("material_kind", "concrete"),
         "ConcreteGrade": node.get("concrete_grade"),  # None => Data Missing
@@ -59,7 +60,7 @@ def map_column_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "As_Provided_cm2": rebar.get("as_provided_cm2"),
         "As_Required_cm2": rebar.get("as_required_cm2"),
         "Mu_Pct": rebar.get("mu_pct"),
-        "SSOT_UUID": coords.get("ssot_uuid", ""),
+        "SSOT_UUID": coords.get("ssot_uuid") or node.get("ssot_uuid", ""),
     }
     p["_data_missing"] = list(node.get("data_missing", []))
     return p
@@ -72,6 +73,7 @@ def map_beam_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "ParameterType": "StructuralBeam",
         "FamilyName": node.get("revit_family"),
         "ElementType": "IfcBeam",
+        "Element_ID": node.get("element_id") or node.get("bim_id"),
         "Mark": node.get("mark"),
         "Orientation": node.get("orientation", "X"),
         "Span_m": node.get("span_m"),
@@ -82,6 +84,7 @@ def map_beam_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "Y0_m": coords.get("y0_m"),
         "X1_m": coords.get("x1_m"),
         "Y1_m": coords.get("y1_m"),
+        "SSOT_UUID": node.get("ssot_uuid") or coords.get("ssot_uuid", ""),
     }
     p["_data_missing"] = list(node.get("data_missing", []))
     return p
@@ -93,12 +96,14 @@ def map_wall_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "ParameterType": "StructuralWall",
         "FamilyName": node.get("revit_family"),
         "ElementType": "IfcWallStandardCase",
+        "Element_ID": node.get("element_id") or node.get("bim_id"),
         "Mark": node.get("mark"),
         "Wall_Thickness_mm": node.get("thickness_mm"),
         "Wall_Length_m": node.get("length_m"),
         # _wall_to_bim emits x_mm/y_mm (metres converted via _to_mm).
         "X_mm": coords.get("x_mm"),
         "Y_mm": coords.get("y_mm"),
+        "SSOT_UUID": node.get("ssot_uuid") or coords.get("ssot_uuid", ""),
     }
     p["_data_missing"] = list(node.get("data_missing", []))
     return p
@@ -109,9 +114,11 @@ def map_slab_params(node: Dict[str, Any]) -> Dict[str, Any]:
         "ParameterType": "Slab",
         "FamilyName": node.get("revit_family"),
         "ElementType": "IfcSlab",
+        "Element_ID": node.get("element_id") or node.get("bim_id"),
         "Mark": node.get("mark"),
         "Slab_Thickness_mm": node.get("thickness_mm"),
         "Finished_Level_m": node.get("finished_level_m"),
+        "SSOT_UUID": node.get("ssot_uuid", ""),
     }
     p["_data_missing"] = list(node.get("data_missing", []))
     return p
@@ -126,11 +133,12 @@ _MAPS = {
 
 
 def map_elements_to_revit(bim_payload: Dict[str, Any],
-                         family: str = "StructuralColumnFamily") -> Dict[str, List[Dict[str, Any]]]:
+                         family: Optional[str] = None) -> Dict[str, List[Dict[str, Any]]]:
     """Map every element of a BIM intermediate payload to a flat parameter list.
 
-    `family` is a soft filter; it is recorded on each parameter dict but does
-    not drop other element types (importers need all families).
+    When `family` is None (default), assign each element's semantic `revit_family`
+    (`StructuralColumnFamily`, `StructuralFramingFamily`, `StructuralWallFamily`,
+    `SlabFamily`) instead of overwriting all categories with `StructuralColumnFamily`.
     """
     out: Dict[str, List[Dict[str, Any]]] = {}
     for kind in ("columns", "beams", "walls", "slabs"):
@@ -139,7 +147,7 @@ def map_elements_to_revit(bim_payload: Dict[str, Any],
         for node in nodes:
             fn = _MAPS.get(node.get("element_type", ""), map_column_params)
             rec = fn(node)
-            rec["TargetFamily"] = family
+            rec["TargetFamily"] = family if family is not None else (node.get("revit_family") or rec.get("FamilyName") or "StructuralColumnFamily")
             mapped.append(rec)
         out[kind] = mapped
     return out
