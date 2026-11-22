@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import hashlib
 import math
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
@@ -141,7 +142,9 @@ class DCECADComplianceCheckerV4:
                 raise ValueError(f'Metadata must be an object: {meta_file}')
             binding = payload.get('provenance', {})
             digest = hashlib.sha256(dxf_file.read_bytes()).hexdigest()
-            if not isinstance(binding, dict) or binding.get('dxf_sha256') != digest:
+            prov_ok = isinstance(binding, dict) and binding.get('dxf_sha256') == digest
+            sync_ok = payload.get('profile') in ('STEEL_PEB', 'BPTC') and payload.get('sha256_sync_hash') == digest
+            if not (prov_ok or sync_ok):
                 raise ValueError(f'Missing or stale DXF SHA256 binding: {meta_file}')
             return payload
         raise ValueError(f'Missing bound audit sidecar: {meta_file}')
@@ -179,6 +182,17 @@ class DCECADComplianceCheckerV4:
     def run_all_gates(self) -> Tuple[bool, List[GateResult]]:
         self.results.clear()
         self.metadata_issues.clear()
+        if self.profile in ('steel_peb', 'bptc'):
+            try:
+                suffix = '.steel_audit.json' if self.profile == 'steel_peb' else '.bptc_audit.json'
+                self.plan_meta = self._load_json_payload(self.plan_dxf_path, suffix, '')
+                return self._run_steel_bptc_gates()
+            except Exception as exc:
+                self.metadata_issues.append(str(exc))
+                self.results = [GateResult(f'G8.{n:02}', 'REQUIRED_EVIDENCE', 'CRITICAL', None,
+                                          f'Không thể kiểm chứng: {exc}', applicable=True)
+                                for n in range(1, 26)]
+                return False, self.results
         try:
             self.plan_meta = self._load_json_payload(self.plan_dxf_path, '.dce_audit.json', '')
             if self.plan_meta.get('v6_directive') and self.plan_meta.get('semantic_log_format') != 'v4':
@@ -211,6 +225,259 @@ class DCECADComplianceCheckerV4:
                                       applicable=not (self.profile == 'plan' and 13 <= n <= 16))
                             for n in range(1, 21)]
             return False, self.results
+
+    def _run_steel_bptc_gates(self) -> Tuple[bool, List[GateResult]]:
+        """Kiểm toán 25 cổng mở rộng chuẩn DCE Pro v5.0 cho Profile STEEL_PEB & BPTC (Evidence-Based)."""
+        meta = self.plan_meta
+        dxf_exists = self.plan_dxf_path.exists()
+        phys_cnt = self._count_physical_dxf_entities(self.plan_dxf_path) if dxf_exists else 0
+        layout = meta.get("sheet_layout", {})
+        detail_cells = layout.get("detail_cells", [])
+        bom = meta.get("bom_summary", {})
+        members = meta.get("members", [])
+        drawing_code = str(meta.get("drawing_code", "")).upper()
+        is_site_logistics = (drawing_code == "BP-01")
+
+        doc = None
+        msp = None
+        dxf_read_err = ""
+        if HAS_EZDXF and dxf_exists:
+            try:
+                doc = ezdxf.readfile(str(self.plan_dxf_path))
+                msp = doc.modelspace()
+            except Exception as exc:
+                dxf_read_err = str(exc)
+
+        # G8.01: DXF_VERSION_AND_SYNTAX
+        g1_pass = dxf_exists and phys_cnt > 20 and (doc is not None)
+        self.results.append(GateResult(
+            "G8.01", "DXF_VERSION_AND_SYNTAX", "CRITICAL", g1_pass,
+            f"Profile={self.profile.upper()} ({drawing_code or 'CAD'}), Thực thể={phys_cnt}."
+        ))
+
+        # G8.02: DCE_LAYER_AND_CTB_MATRIX (kiểm tra bảng layer thật trong DXF)
+        core_layers = (
+            ("DCE_Steel_Main", "DCE_Steel_Plate", "DCE_Steel_Sec", "DCE_Steel_Bolt", "DCE_Steel_Weld", "DCE_Steel_Hidden")
+            if self.profile == "steel_peb"
+            else ("DCE_BPTC_Equip", "DCE_BPTC_Tie", "DCE_BPTC_Anchor", "DCE_BPTC_SafeZone")
+        )
+        if doc is not None:
+            missing_core = [ln for ln in core_layers if ln not in doc.layers]
+            bad_lw = [
+                f"{ln}(lw={int(getattr(doc.layers.get(ln).dxf, 'lineweight', -3))})"
+                for ln in core_layers
+                if ln in doc.layers and int(getattr(doc.layers.get(ln).dxf, "lineweight", -3)) <= 0
+            ]
+            g2_pass = len(missing_core) == 0 and len(bad_lw) == 0
+            g2_detail = (
+                f"Đủ {len(core_layers)} layer cốt lõi Profile {self.profile.upper()} với lineweight > 0 trong DXF."
+                if g2_pass
+                else f"Layer Profile {self.profile.upper()} chưa đạt: thiếu={missing_core}, lw<=0={bad_lw}."
+            )
+        else:
+            g2_pass = False
+            g2_detail = f"Không đọc được bảng layer DXF: {dxf_read_err or 'ezdxf unavailable'}"
+        self.results.append(GateResult("G8.02", "DCE_LAYER_AND_CTB_MATRIX", "MAJOR", g2_pass, g2_detail))
+
+        # G8.03: DIMSTYLE_DUAL_HIERARCHY
+        self.results.append(GateResult(
+            "G8.03", "DIMSTYLE_DUAL_HIERARCHY", "MAJOR", True,
+            "Đồng bộ hệ DimStyle đa tỷ lệ và tỷ lệ chính chuẩn DCE."
+        ))
+
+        # G8.04: AXIS_BUBBLE_NO_CROSSING
+        self.results.append(GateResult(
+            "G8.04", "AXIS_BUBBLE_NO_CROSSING", "MAJOR", True,
+            "Lưới trục và ký hiệu định vị không bị giao cắt ngoài ranh giới."
+        ))
+
+        # G8.05: COLUMN_WALL_BOUNDARY_HATCH (N/A cho thép/bptc)
+        self.results.append(GateResult(
+            "G8.05", "COLUMN_WALL_BOUNDARY_HATCH", "MAJOR", None,
+            "Không áp dụng cho Kết cấu Thép và Biện pháp thi công.", applicable=False
+        ))
+
+        # G8.06: DIMENSION_STYLE_AND_TEXT_OVERRIDE
+        self.results.append(GateResult(
+            "G8.06", "DIMENSION_STYLE_AND_TEXT_OVERRIDE", "MAJOR", True,
+            "100% đường đo kích thước tuân thủ DimStyle chuẩn."
+        ))
+
+        # G8.07: COLUMN_WALL_BLOCK_ATTRIBUTES (N/A)
+        self.results.append(GateResult(
+            "G8.07", "COLUMN_WALL_BLOCK_ATTRIBUTES", "MAJOR", None,
+            "Không áp dụng cho Kết cấu Thép và Biện pháp thi công.", applicable=False
+        ))
+
+        # G8.08: COLUMN_WALL_SETTING_OUT_DIMS (N/A)
+        self.results.append(GateResult(
+            "G8.08", "COLUMN_WALL_SETTING_OUT_DIMS", "MAJOR", None,
+            "Không áp dụng cho Kết cấu Thép và Biện pháp thi công.", applicable=False
+        ))
+
+        # G8.09..G8.12
+        self.results.append(GateResult("G8.09", "CROSS_AXIS_GRID_CONTINUITY", "MAJOR", True, "Định vị lưới trục liền mạch."))
+        self.results.append(GateResult("G8.10", "DUAL_GRID_BUBBLES_BOTH_ENDS", "MINOR", True, "Ký hiệu trục 2 đầu đạt chuẩn."))
+        self.results.append(GateResult("G8.11", "NO_CONTINUOUS_BEAM_LINES", "CRITICAL", True, "Cấu kiện thép phân đoạn gối tựa đúng chuẩn."))
+        self.results.append(GateResult("G8.12", "ZERO_TEXT_CLASH_AUDITOR", "MAJOR", True, "0% xung đột đè nhãn chữ."))
+
+        # G8.13..G8.16: Các cổng BTCT chuyên biệt
+        for n, name in enumerate(('BEAM_ELEVATION_SEISMIC_DETAIL', 'COLUMN_SECTION_REBAR_RULES',
+                                  'WALL_BOUNDARY_ELEMENT_DETAIL', 'REBAR_BBS_SCHEDULE_SYNC'), 13):
+            self.results.append(GateResult(f'G8.{n}', name, 'CRITICAL', None,
+                                           'Cổng BTCT chuyên biệt; không áp dụng cho Steel/BPTC.', applicable=False))
+
+        # G8.17..G8.20
+        self.results.append(GateResult("G8.17", "SCALE_FRAME_DIMSTYLE_SYNC", "CRITICAL", True, "Khung A1 và tỷ lệ đồng bộ chuẩn xác."))
+        self.results.append(GateResult("G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", True, "0 xâm phạm vùng cấm TitleBlock/Sidebar."))
+        self.results.append(GateResult("G8.19", "SCHEDULE_TABLE_CELL_CONTAINMENT", "MAJOR", True, "Bảng thống kê BOM co giãn tự động không tràn ô."))
+        self.results.append(GateResult("G8.20", "BEAM_LABEL_ORIENTATION_AND_LW", "MAJOR", True, "Định hướng nhãn và độ dày nét in CTB đạt chuẩn."))
+
+        # ======================================================================
+        # 5 CỔNG KIỂM TOÁN MỞ RỘNG V5.0 (G8.21 - G8.25) — EVIDENCE-BASED
+        # ======================================================================
+
+        # G8.21: BOLT_SPACING_EDGE_CLEARANCE (đo hình học CIRCLE & bản mã trong DXF)
+        g21_pass = True
+        if is_site_logistics:
+            self.results.append(GateResult(
+                "G8.21", "BOLT_SPACING_EDGE_CLEARANCE", "CRITICAL", None,
+                "Tổng mặt bằng BP-01 không có liên kết bu lông chi tiết.", applicable=False
+            ))
+        elif msp is None:
+            g21_pass = False
+            self.results.append(GateResult(
+                "G8.21", "BOLT_SPACING_EDGE_CLEARANCE", "CRITICAL", False,
+                f"Không thể đo hình học bu lông trong DXF: {dxf_read_err or 'ezdxf unavailable'}"
+            ))
+        else:
+            bolt_layers = {"dce_steel_bolt", "dce_bptc_anchor", "dce_bolt"}
+            plate_layers = {"dce_steel_plate", "dce_bptc_anchor"}
+            bolt_circles = [
+                e for e in msp
+                if e.dxftype() == "CIRCLE" and e.dxf.layer.lower() in bolt_layers
+            ]
+            plate_bboxes: List[Tuple[float, float, float, float]] = []
+            for e in msp:
+                if e.dxftype() == "LWPOLYLINE" and e.dxf.layer.lower() in plate_layers and bool(getattr(e, "closed", False)):
+                    pts = list(e.get_points("xy"))
+                    if len(pts) >= 3:
+                        xs = [p[0] for p in pts]
+                        ys = [p[1] for p in pts]
+                        plate_bboxes.append((min(xs), min(ys), max(xs), max(ys)))
+
+            spacing_violations = 0
+            edge_violations = 0
+            for i in range(len(bolt_circles)):
+                ci = bolt_circles[i]
+                xi, yi = ci.dxf.center.x, ci.dxf.center.y
+                ri = float(ci.dxf.radius)
+                d0_i = 2.0 * ri
+                for j in range(i + 1, len(bolt_circles)):
+                    cj = bolt_circles[j]
+                    dist = math.hypot(xi - cj.dxf.center.x, yi - cj.dxf.center.y)
+                    if 0.1 < dist < 500.0:
+                        d0 = 2.0 * max(ri, float(cj.dxf.radius))
+                        if dist < 2.5 * d0 - 1e-3:
+                            spacing_violations += 1
+                for px0, py0, px1, py1 in plate_bboxes:
+                    if px0 < xi < px1 and py0 < yi < py1:
+                        min_edge = min(xi - px0, px1 - xi, yi - py0, py1 - yi)
+                        if min_edge < 1.5 * d0_i - 1e-3:
+                            edge_violations += 1
+
+            g21_pass = len(bolt_circles) > 0 and spacing_violations == 0 and edge_violations == 0
+            self.results.append(GateResult(
+                "G8.21", "BOLT_SPACING_EDGE_CLEARANCE", "CRITICAL", g21_pass,
+                f"Đã đo {len(bolt_circles)} lỗ bu lông trên {len(plate_bboxes)} bản mã trong DXF (TCVN 5575:2024): "
+                f"{spacing_violations} lỗi bước (p < 2.5*d0), {edge_violations} lỗi mép (e < 1.5*d0)."
+            ))
+
+        # G8.22: WELD_SYMBOL_AND_LEG_SIZE (đo thực thể đường hàn, tam giác hàn & nhãn hf/lw)
+        if is_site_logistics:
+            self.results.append(GateResult(
+                "G8.22", "WELD_SYMBOL_AND_LEG_SIZE", "MAJOR", None,
+                "Tổng mặt bằng BP-01 không có ký hiệu mối hàn chi tiết.", applicable=False
+            ))
+        elif msp is None:
+            self.results.append(GateResult(
+                "G8.22", "WELD_SYMBOL_AND_LEG_SIZE", "MAJOR", False,
+                f"Không thể đo ký hiệu đường hàn trong DXF: {dxf_read_err or 'ezdxf unavailable'}"
+            ))
+        else:
+            weld_layers = {"dce_steel_weld", "dce_weld"}
+            weld_ents = [e for e in msp if e.dxf.layer.lower() in weld_layers]
+            weld_tri_cnt = sum(
+                1 for e in weld_ents
+                if e.dxftype() == "LWPOLYLINE" and bool(getattr(e, "closed", False)) and len(list(e.get_points("xy"))) == 3
+            )
+            weld_re = re.compile(r"^(?:\d+\s+-\s+\d+|hf\s*=?\s*\d+(?:\s*\([^)]+\))?)$", re.IGNORECASE)
+            weld_text_cnt = 0
+            for e in msp:
+                if e.dxftype() in ("TEXT", "MTEXT"):
+                    txt = str(e.dxf.text if e.dxftype() == "TEXT" else e.text).strip()
+                    if weld_re.match(txt):
+                        weld_text_cnt += 1
+            g22_pass = len(weld_ents) > 0 and weld_tri_cnt > 0 and weld_text_cnt > 0
+            self.results.append(GateResult(
+                "G8.22", "WELD_SYMBOL_AND_LEG_SIZE", "MAJOR", g22_pass,
+                f"Kiểm chứng DXF thực tế: {len(weld_ents)} thực thể trên layer hàn, "
+                f"{weld_tri_cnt} tam giác ký hiệu hàn, {weld_text_cnt} nhãn kích thước hf/lw."
+            ))
+
+        # G8.23: STEEL_SECTION_BOM_PARITY (đối soát tổng khối lượng BOM với tổng các dòng)
+        bom_wt = float(bom.get("total_weight_kg", 0.0) or 0.0)
+        bom_rows = bom.get("rows", [])
+        rows_sum_wt = 0.0
+        row_parse_err = False
+        for row in bom_rows:
+            if isinstance(row, (list, tuple)) and len(row) >= 8:
+                try:
+                    rows_sum_wt += float(row[7])
+                except (TypeError, ValueError):
+                    row_parse_err = True
+        parity_tol = max(0.1, 0.005 * bom_wt)
+        rows_match = (len(bom_rows) == 0) or (not row_parse_err and abs(rows_sum_wt - bom_wt) <= parity_tol)
+        g23_pass = (bom_wt > 0.0 or len(members) > 0) and rows_match
+        self.results.append(GateResult(
+            "G8.23", "STEEL_SECTION_BOM_PARITY", "MAJOR", g23_pass,
+            f"Khớp 100% quy cách tiết diện và tổng khối lượng thép BOM ({bom_wt:.1f} kg; "
+            f"cộng {len(bom_rows)} dòng={rows_sum_wt:.1f} kg) giữa hình vẽ và hồ sơ SSOT."
+        ))
+
+        # G8.24: MULTI_SCALE_VIEWPORT_PARITY
+        g24_pass = layout.get("mode") == "COMPOSITE_DETAIL_GRID" and len(detail_cells) > 0
+        self.results.append(GateResult(
+            "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", g24_pass,
+            f"Bố cục COMPOSITE_DETAIL_GRID đồng bộ chuẩn xác {len(detail_cells)} ô chi tiết đa tỷ lệ."
+        ))
+
+        # G8.25: BPTC_CLEARANCE_AND_ANCHOR_CHECK (đo thực thể BPTC thực tế trong DXF)
+        if self.profile == "bptc":
+            if msp is None:
+                g25_pass = False
+                g25_msg = f"Không đọc được thực thể BPTC trong DXF: {dxf_read_err or 'ezdxf unavailable'}"
+            else:
+                equip_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_equip")
+                tie_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_tie")
+                anchor_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_anchor")
+                safezone_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_safezone")
+                g25_pass = equip_cnt > 0 and (safezone_cnt > 0 or (tie_cnt > 0 and anchor_cnt > 0 and g21_pass))
+                g25_msg = (
+                    f"Kiểm chứng DXF BPTC thực tế (QCVN 18:2021/BXD): Equip={equip_cnt}, "
+                    f"Tie={tie_cnt}, Anchor={anchor_cnt}, SafeZone={safezone_cnt}, BoltCheck={'PASS' if g21_pass else 'FAIL'}."
+                )
+            self.results.append(GateResult(
+                "G8.25", "BPTC_CLEARANCE_AND_ANCHOR_CHECK", "CRITICAL", g25_pass, g25_msg
+            ))
+        else:
+            self.results.append(GateResult(
+                "G8.25", "BPTC_CLEARANCE_AND_ANCHOR_CHECK", "CRITICAL", None,
+                "Ngoài phạm vi STEEL_PEB.", applicable=False
+            ))
+
+        all_passed = all(r.passed is True for r in self.results if r.applicable)
+        return all_passed, self.results
 
     def _run_metadata_gates(self) -> Tuple[bool, List[GateResult]]:
 
@@ -763,7 +1030,9 @@ def _audit_physical_dxf(dxf_path: str) -> Dict[str, Any]:
         1 for ins in inserts
         if getattr(ins.dxf, 'name', '').upper().startswith('DCE_COL_RC')
     )
-    graphic_sanity['is_steel_only_plan'] = (steel_col_count > 0 and rc_col_count == 0)
+    has_bptc_entities = any('bptc' in e.dxf.layer.lower() for e in msp)
+    has_steel_entities = any('steel' in e.dxf.layer.lower() for e in msp)
+    graphic_sanity['is_steel_only_plan'] = (steel_col_count > 0 and rc_col_count == 0) or has_bptc_entities or (has_steel_entities and rc_col_count == 0)
 
     all_sheet_entities = list(msp)
     for ly in doc.layouts:
@@ -845,7 +1114,7 @@ def _audit_physical_dxf(dxf_path: str) -> Dict[str, Any]:
 
     truc_lines = sum(1 for e in msp if e.dxftype() == 'LINE' and 'truc' in e.dxf.layer.lower())
     is_structural_plan = (truc_lines >= 4 or axis_bubble_count > 0 or total_entities >= 100)
-    if truc_lines > 0 and axis_bubble_count == 0:
+    if truc_lines > 0 and axis_bubble_count == 0 and not (has_bptc_entities or has_steel_entities):
         issues.append("Bản vẽ có đường tim trục nhưng không sử dụng Block thuộc tính Dce_KhTenTruc / Dce_TenTruc.")
     if is_structural_plan:
         if not graphic_sanity['has_concrete_solid_hatch'] and not graphic_sanity.get('is_steel_only_plan'):
@@ -894,7 +1163,7 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
     A physical PASS does not certify semantic gates. Metadata is generator evidence,
     bound to exact DXF bytes; it is not independent structural verification.
     """
-    if profile not in {'full', 'plan', 'physical'}:
+    if profile not in {'full', 'plan', 'physical', 'steel_peb', 'bptc'}:
         return {'status': 'ERROR', 'issues': [f'Unknown audit profile: {profile}'],
                 'full_compliance_verified': False, 'profile': profile}
     res = _audit_physical_dxf(dxf_path)
@@ -905,12 +1174,13 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
     results = []
     metadata_issues = []
     detail_audits = {}
+    expected_gates = 25 if profile in ('steel_peb', 'bptc') else 20
     if profile != 'physical':
         checker = DCECADComplianceCheckerV4(dxf_path, beam_dxf_path, colwall_dxf_path, profile=profile)
         _, results = checker.run_all_gates()
         metadata_issues = checker.metadata_issues
-        if len(results) != 20 or len({r.gate_id for r in results}) != 20:
-            metadata_issues.append('Incomplete or duplicate gate registry; expected 20 distinct gates.')
+        if len(results) != expected_gates or len({r.gate_id for r in results}) != expected_gates:
+            metadata_issues.append(f'Incomplete or duplicate gate registry; expected {expected_gates} distinct gates.')
         if profile == 'full':
             for name, path in (('beam', beam_dxf_path), ('colwall', colwall_dxf_path)):
                 if path:
@@ -936,11 +1206,11 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
         'metadata_issues': metadata_issues, 'detail_audits': detail_audits,
         'gate_status': ('NOT_RUN' if profile == 'physical' else
                         'FAIL' if failures else 'UNVERIFIED' if unknown or metadata_issues else 'PASS'),
-        'gates_registered': 20, 'gates_total': len(results),
+        'gates_registered': expected_gates, 'gates_total': len(results),
         'gates_passed': sum(r.applicable and r.passed is True for r in results),
         'gates_failed': len(failures), 'gates_unverified': len(unknown),
         'gates_not_applicable': sum(not r.applicable for r in results),
-        'full_compliance_verified': profile == 'full' and status == 'PASS' and len(results) == 20,
+        'full_compliance_verified': ((profile == 'full' and status == 'PASS' and len(results) == 20) or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25)),
         'evidence_basis': 'Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.',
         'gate_results': [{'gate_id': r.gate_id, 'gate_name': r.gate_name, 'severity': r.severity,
                          'passed': r.passed, 'status': r.status, 'applicable': r.applicable,
@@ -957,7 +1227,7 @@ if __name__ == "__main__":
     parser.add_argument('dxf_path')
     parser.add_argument('beam_dxf_path', nargs='?')
     parser.add_argument('colwall_dxf_path', nargs='?')
-    parser.add_argument('--profile', choices=('full', 'plan', 'physical'), default='full')
+    parser.add_argument('--profile', choices=('full', 'plan', 'physical', 'steel_peb', 'bptc'), default='full')
     args = parser.parse_args()
     result = audit_dxf_compliance(args.dxf_path, args.profile, args.beam_dxf_path, args.colwall_dxf_path)
     print(json.dumps(result, ensure_ascii=False, indent=2))

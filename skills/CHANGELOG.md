@@ -1,6 +1,67 @@
 # CHANGELOG — Toan bo Bo Skills Ky Nang Ket Cau
 
-## 2026-11-19 — SKILL_DUAL_AGENT_BRIDGE v3.3.0: Product-First Handoff (Evidence-Based Gate + RECEIPTS + P1 Report Gate)
+## 2026-11-22 — v7.5: Hoàn Thiện Backlog K1–K5 (DCE Pro v5.0 Hardening) & Đồng Bộ Hệ Sinh Thái
+
+1. **Khép vòng kiểm toán DCE Pro v5.0 (Backlog K1–K5):**
+   - **K1 (Evidence-Based Gates):** Nâng cấp `G8.02`, `G8.21`, `G8.22`, `G8.23` và `G8.25` trong `dce_cad_compliance_checker.py` đọc và đo trực tiếp thực thể hình học DXF (`CIRCLE`, bản mã, tam giác hàn, nhãn `hf`/`lw`, layer BPTC).
+   - **K2 (DXF Byte SHA-256 Binding):** `cad_bptc_engine.py` (`BP-01`, `BP-02`) và `cad_steel_peb_engine.py` (`ST-01`) băm SHA-256 trên byte tệp DXF thực sau khi lưu; `dce_cad_compliance_checker.py` từ chối sidecar sai hoặc lệch hash.
+   - **K3–K5 (SPEC & Steel Primitives):** Đồng bộ lineweight `DCE_Steel_Plate` (25) / `DCE_Steel_Bolt` (18) trong `SPEC_DCE_PRO_V5.md`; hỗ trợ tiết diện ghép đôi (`2U/2C/2L`), cảnh báo fallback tường minh trong `parse_steel_profile`, và nhãn `hf=... (lw toàn bộ)` khi `lw <= 0`.
+2. **Đồng bộ chỉ mục, metrics & chốt ca Dual-Agent:**
+   - Cập nhật `SKILL_INDEX.md` (v2.3), `_collect_tests.py` (parser cho toàn bộ 33 suites), `run_collectors.py` (`SYSTEM_SNAPSHOT.json` / `COLLECTED_METRICS.json`) và `sync_report.py`.
+   - Hoàn tất đóng ca `SKILL_CAD_DCE_PRO` trên `DUAL_AGENT_BUS.json` sang trạng thái `COMPLETED`.
+
+
+## 2026-11-20 — Technical_Illustrator v5.0.0 & SKILL_VERIFY (25 Gates): Phát Hành Hệ Thống Vẽ CAD Tham Số DCE Pro v5.0 (PEB Thép & BPTC)
+
+Triển khai trọn vẹn 4 Sprint theo Blueprint nâng cấp hệ thống vẽ CAD tham số từ DCE Pro v4.7 lên **v5.0** (`chien_luoc_nang_cap_cad_dce_pro_v5.md`):
+
+1. **Sprint 1 — Lớp nền Đa Tỷ Lệ & Profile Layer:**
+   - **Kiến trúc `COMPOSITE_DETAIL_GRID`:** Tích hợp `DceSheetLayoutPlanner.resolve_composite_grid()` phân vùng Primary Zone (60%, tỷ lệ chính $S_{\text{main}}$) và Detail Grid (40%, 1–4 ô chi tiết $S_i$ mang `DimStyle = Dce_{S_i}MV` và `dimlfac = S_i / S_main`).
+   - **3 Profile Layer chuẩn SSOT:** `BTCT` (15 layers Form 2), `STEEL_PEB` (16 layers, bổ sung `DCE_Steel_Main` lw 50, `DCE_Steel_Plate` lw 35, `DCE_Steel_Sec` lw 25, `DCE_Steel_Bolt` lw 25, `DCE_Steel_Weld` lw 25, `DCE_Steel_Hidden` lw 15), và `BPTC` (12 layers, bổ sung `DCE_BPTC_Equip` lw 35, `DCE_BPTC_Tie` lw 50, `DCE_BPTC_Anchor` lw 25, `DCE_BPTC_SafeZone` lw 18).
+
+2. **Sprint 2 — Thư viện Thép Tham Số & Engine Biện Pháp Thi Công (BPTC):**
+   - **`cad_steel_primitives.py`:** Hỗ trợ vẽ thép hình `H, I, U, C, L, Box, Pipe` (`draw_rolled_section`), cột/kèo tổ hợp vát tiết diện (`draw_tapered_member`), bản mã Shoelace `PL{t}x{B}x{L}` (`draw_gusset_plate`), mảng bu lông TCVN 5575:2024 (`draw_bolt_array`), ký hiệu hàn TCVN $h_f, l_w$ (`draw_weld_symbol_tcvn`) và Bảng thống kê BOM Sidebar co giãn tự động (`compute_steel_bom`).
+   - **`cad_bptc_engine.py`:** Xuất bản vẽ `BP-02` (Hệ cùm neo cần trục tháp QTP125 trên `COMPOSITE_DETAIL_GRID` gồm mặt bằng cùm + 2 ô chi tiết `CT-01` bản mã neo vách và `CT-02` khung ôm tháp) và `BP-01` (Tổng mặt bằng thi công & an toàn cẩu tháp).
+
+3. **Sprint 3 — Engine Thép Tiền Chế PEB & 5 Cổng Kiểm Toán Kỹ Thuật (G8.21–G8.25):**
+   - **`cad_steel_peb_engine.py`:** Xuất bản vẽ `ST-01` (Mặt đứng khung chính PEB nhịp $24\text{ m}$, chiều cao vai $8\text{ m}$, đỉnh kèo $+9.2\text{ m}$, chi tiết nách kèo và đỉnh kèo tỷ lệ 1/15, Sidebar BOM).
+   - **`dce_cad_compliance_checker.py`:** Cài đặt 5 cổng kiểm toán mới `G8.21–G8.25` (Khoảng cách mép bu lông, Ký hiệu hàn, Khớp khối lượng BOM, Viewport đa tỷ lệ, An toàn BPTC) với cờ `--profile steel_peb|bptc|full|plan|physical`.
+
+4. **Sprint 4 — Đồng Bộ Liên SKILL & Phát Hành v5.0:**
+   - Đồng bộ `cad_deep_reader.py` (Design_Evaluation) nhận diện các layer thép và nhóm `BPTC_EQUIP_TIE`.
+   - Ban hành tài liệu đặc tả `SPEC_DCE_PRO_V5.md` và cập nhật `SKILL.md` (Technical_Illustrator v5.0.0).
+
+**Nghiệm thu:**
+- 16/16 Unit Tests CAD mới PASS (`test_cad_composite_grid.py`, `test_cad_steel_primitives.py`, `test_cad_bptc_engine.py`, `test_cad_steel_peb_engine.py`).
+- 24/24 Fast Suites trong `run_all_tests.py` PASS 100% (108.12s), bảo toàn 20/20 cổng BTCT hiện có không hồi quy.
+- Kiểm toán đạt trọn vẹn 25/25 cổng `G8.01–G8.25` (`full_compliance_verified: True`) cho bản vẽ Thép PEB và BPTC.
+
+- Technical_Illustrator: 1.7.0 → **5.0.0**
+- dce_cad_compliance_checker: v4.7 (20 gates) → **v5.0 (25 gates)**
+- SPEC_DCE_PRO: v4.7 → **v5.0.0**
+
+
+## 2026-11-20 — Global_Dispatcher v3.0.0 & SKILL_DUAL_AGENT_BRIDGE v3.4.0: 2D Cognitive Dispatcher & Dual-Plane Bus
+
+Phát triển và hoàn thiện đồng bộ Kiến trúc Nhận thức 2 Chiều (2D Cognitive Dispatcher) và Bus Đa Tác Tử v3.4 theo Điều 0 (`AGENTS.md` v7.5):
+
+1. **Global_Dispatcher v3.0.0:**
+   - **Phân loại 2 chiều độc lập (`intent_classifier.py`):** Chiều 1 `domain_skill` (14 skills thực tế) × Chiều 2 `engagement_mode` (`PRODUCT_COLLAB`, `SYSTEM_UPGRADE`, `SOLO_EXECUTION`).
+   - **Từ điển 2D v2.1.0 (`keyword_database.json`):** 25KB, ánh xạ đầy đủ 14 Production Skills với trọng số định lượng, hệ thống tie-breakers (TB-01 đến TB-06), danh sách đen thuật ngữ dev (`jargon_blacklist_product_vi`), và template pipeline multi-intent.
+   - **Khóa cứng thư mục sản phẩm (`project_target_resolver.py`):** Quét đa gốc (`01_Projects/`, `01_Structural_Projects/`), khóa cứng `04_Deliverables_ToTrinh/`, tự động chặn và yêu cầu xác nhận khi mập mờ dự án (`AMBIGUOUS`).
+   - **Cổng nghiệm thu sản phẩm (`product_deliverable_gate.py`):** Kiểm tra tệp sản phẩm vật lý (`.docx`, `.pdf`, `.dxf`, `.xlsx`), đối soát định danh dự án (`project_identity`), và linter cấm biệt ngữ dev trong báo cáo gửi Tổng Công Trình Sư.
+
+2. **SKILL_DUAL_AGENT_BRIDGE v3.4.0:**
+   - **Kiến trúc Dual-Plane:** Tách bạch 2 lớp Control Plane (`bus_meta`: SHA-256, receipts, atomicity) và Presentation Plane (`human_handoff`: 100% tiếng Việt kỹ thuật theo quy tắc 3 ý).
+   - **Tích hợp Cổng nghiệm thu:** Tự động gọi `ProductDeliverableGate` khi đóng ca `PRODUCT_COLLAB`; tắt Bus IPC khi chạy `SOLO_EXECUTION`.
+   - **Hỗ trợ cờ điều phối mới:** `--agent-selection AUTO|CLAUDE_ONLY|GEMINI_ONLY|DUAL` và `--dispatch-ticket <path>`.
+
+**Nghiệm thu:** 21/21 tests PASS trong `test_dispatcher_2d_modes.py`; 24/24 Fast Suites PASS trong `run_all_tests.py`.
+
+- Global_Dispatcher: 2.0.0 → **3.0.0**
+- SKILL_DUAL_AGENT_BRIDGE: 3.3.0 → **3.4.0**
+- keyword_database.json: 2.0.0 → **2.1.0**
+
 
 Phát triển tiếp từ phân tích `DUAL_AGENT_ANTIGRAVITY_ORCHESTRATION_ANALYSIS.md` (bất đối xứng "ra thẳng sản phẩm" Antigravity vs Claude Code). 4 nâng cấp:
 

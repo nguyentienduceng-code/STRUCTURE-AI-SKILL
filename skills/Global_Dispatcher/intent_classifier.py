@@ -164,18 +164,46 @@ class IntentClassifier2D:
 
     def _classify_domain(self, prompt_norm: str) -> Tuple[str, float, List[str]]:
         domain_cfg: Dict[str, Any] = self.db.get("domain_skills", {})
-        best_skill = "GENERAL"
-        best_score = 0.0
-        best_hits: List[str] = []
+        matches: Dict[str, Tuple[float, List[str]]] = {}
 
         for skill_id, meta in domain_cfg.items():
             kw_map = meta.get("keywords", {})
             score, hits = self._score_keyword_map(prompt_norm, kw_map)
-            if score > best_score or (score == best_score and len(hits) > len(best_hits)):
-                best_skill = skill_id
-                best_score = score
-                best_hits = hits
+            if hits:
+                matches[skill_id] = (score, hits)
 
+        if not matches:
+            return "GENERAL", 0.0, []
+
+        # Tie-breakers per Rule 0.4 and tie_breakers in keyword_database.json
+        # TB-04: Geotechnical keywords take precedence
+        if "SKILL_GEOTECH" in matches:
+            score, hits = matches["SKILL_GEOTECH"]
+            return "SKILL_GEOTECH", score, hits
+
+        # TB-06: Temporary works keywords take precedence (unless primary SDE calculation)
+        if "SKILL_TEMPWORKS" in matches and "Structural_Design_Engineer" not in matches:
+            score, hits = matches["SKILL_TEMPWORKS"]
+            return "SKILL_TEMPWORKS", score, hits
+
+        # TB-01 & TB-02: SDE vs DE
+        has_sde = "Structural_Design_Engineer" in matches
+        has_de = "Design_Evaluation" in matches
+        if has_sde and has_de:
+            sde_score, sde_hits = matches["Structural_Design_Engineer"]
+            de_score, de_hits = matches["Design_Evaluation"]
+            if sde_score >= de_score:
+                return "Structural_Design_Engineer", sde_score, sde_hits
+            else:
+                return "Design_Evaluation", de_score, de_hits
+
+        sorted_matches = sorted(
+            matches.items(),
+            key=lambda item: (item[1][0], len(item[1][1])),
+            reverse=True,
+        )
+        best_skill = sorted_matches[0][0]
+        best_score, best_hits = sorted_matches[0][1]
         return best_skill, best_score, best_hits
 
     def _build_result(

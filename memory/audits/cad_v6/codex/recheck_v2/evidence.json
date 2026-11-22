@@ -70,7 +70,8 @@
           "total_inserts": 27,
           "axis_bubbles": 6,
           "member_tags": 8,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 23
         },
         "dimensions": {
           "total_dimensions": 5,
@@ -82,7 +83,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": true,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -116,7 +118,8 @@
           "total_inserts": 27,
           "axis_bubbles": 6,
           "member_tags": 8,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 23
         },
         "dimensions": {
           "total_dimensions": 5,
@@ -128,7 +131,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": true,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -389,7 +393,8 @@
           "total_inserts": 25,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 21
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -401,7 +406,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -435,7 +441,8 @@
           "total_inserts": 25,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 21
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -447,7 +454,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -734,7 +742,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -746,7 +755,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -789,7 +799,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -801,7 +812,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -1063,7 +1075,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -1075,7 +1088,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -1109,7 +1123,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -1121,7 +1136,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -1383,7 +1399,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -1395,7 +1412,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",
@@ -1429,7 +1447,8 @@
           "total_inserts": 23,
           "axis_bubbles": 6,
           "member_tags": 4,
-          "title_blocks": 1
+          "title_blocks": 1,
+          "attrib_inserts": 19
         },
         "dimensions": {
           "total_dimensions": 3,
@@ -1441,7 +1460,8 @@
           "has_standard_frame": true,
           "has_schedule_table": true,
           "has_setting_out_dims": false,
-          "beam_void_clashes": 0
+          "beam_void_clashes": 0,
+          "is_steel_only_plan": false
         },
         "issues": [],
         "schema_version": "2.0",

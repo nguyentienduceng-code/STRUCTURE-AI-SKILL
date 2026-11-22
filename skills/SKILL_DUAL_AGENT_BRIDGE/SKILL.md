@@ -1,8 +1,8 @@
 ---
 name: SKILL_DUAL_AGENT_BRIDGE
-version: 3.3.0
-last_updated: 2026-11-19
-description: "Giao thức và quy trình chuẩn điều phối làm việc song song hoặc luân phiên giữa Gemini (Antigravity) và Claude (Claude Code / Desktop). Đảm bảo tính nguyên tử của dữ liệu, loại bỏ xung đột file trên Google Drive, khóa phần vùng an toàn, kiểm toán chéo định lượng. v3.2: SSOT chống trùng lặp, Lease/Heartbeat chống ca treo, Project-Scoped Path Resolver, Visual Gate (Điều 12d Enforcer). v3.3: Product-First handoff (deliverable/evidence_files/acceptance_cmd), Visual Gate evidence-based (bằng chứng phải TỒN TẠI trên đĩa, SHA-256), RECEIPTS (mọi --force để lại dấu vết audit), P1 Report Gate (chuẩn RESULT.md 5 mục theo ca, layout cad_v6)."
+version: 3.4.0
+last_updated: 2026-11-20
+description: "Giao thức và quy trình chuẩn điều phối làm việc song song hoặc luân phiên giữa Gemini (Antigravity) và Claude (Claude Code / Desktop). Đảm bảo tính nguyên tử của dữ liệu, loại bỏ xung đột file trên Google Drive, khóa phần vùng an toàn, kiểm toán chéo định lượng. v3.2: SSOT chống trùng lặp, Lease/Heartbeat chống ca treo, Project-Scoped Path Resolver, Visual Gate (Điều 12d Enforcer). v3.3: Product-First handoff (deliverable/evidence_files/acceptance_cmd), Visual Gate evidence-based (bằng chứng phải TỒN TẠI trên đĩa, SHA-256), RECEIPTS (mọi --force để lại dấu vết audit), P1 Report Gate (chuẩn RESULT.md 5 mục theo ca, layout cad_v6). v3.4: 2D Dual-Plane & ProductDeliverableGate (Control Plane / Presentation Plane, Jargon Linter, 04_Deliverables_ToTrinh validation)."
 triggers:
   - "Khi người dùng yêu cầu bàn giao công việc giữa Gemini và Claude"
   - "Khi cần phối hợp 2 AI cùng làm việc đồng thời trên một dự án"
@@ -198,6 +198,23 @@ python .agents/tools/sync_bus.py --auto --sender CLAUDE --target GEMINI \
 > **Nguyên tắc tương thích ngược (v3.2, vẫn hiệu lực):** Bus cũ không có mốc thời gian (legacy) vẫn được bảo vệ — bắt buộc `--force` để tiếp quản; v3.3: bypass đó sinh RECEIPT audit.
 
 ---
+
+---
+
+## 4.3. Nâng cấp Kiến trúc v3.4 (2D Dual-Plane & ProductDeliverableGate — 2026-11-20)
+
+Áp dụng song song với **Điều 0 (`AGENTS.md`)** khi bàn giao qua `sync_bus.py` và `handover_task.py`:
+
+1. **Tách 2 lớp Control Plane / Presentation Plane:**
+   - **Control Plane (`bus_meta`):** Giữ nguyên khóa nguyên tử, `receipts`, `evidence_hashes` (SHA-256) chạy ngầm để chống hỏng file Google Drive.
+   - **Presentation Plane (`human_handoff`):** Ở chế độ `PRODUCT_COLLAB`, mọi báo cáo trả người dùng phải viết 100% tiếng Việt kỹ thuật theo đúng **3 ý**: *(1) Đã sửa gì? (2) File ở đâu? (3) Số liệu đạt hay không?* Cấm biệt ngữ lập trình (`SSOT`, `unpack`, `receipt`, `SHA-256`, `gate=PASS`, `force=False`, `mock`, `IPC`, `POSIX`).
+2. **Cổng Nghiệm thu Hồ sơ (`ProductDeliverableGate`):**
+   - `sync_bus.py` tự động gọi `_verify_product_ticket()` trước khi đóng ca `PRODUCT_COLLAB`.
+   - Từ chối đóng ca (`BLOCKED_MISSING_DELIVERABLE`) nếu chỉ ghi file `.md` vào `.agents/memory/audits/` hoặc `.claude/memory/` mà không có file `.docx`/`.pdf`/`.dxf`/`.xlsx` mới trong `04_Deliverables_ToTrinh/`.
+   - Từ chối đóng ca (`BLOCKED_JARGON_VIOLATION`) nếu báo cáo người dùng lẫn biệt ngữ dev.
+3. **Chọn tác tử & Phiếu công việc (`--agent-selection` & `--dispatch-ticket`):**
+   - `handover_task.py` và `sync_bus.py` hỗ trợ `--agent-selection AUTO|CLAUDE_ONLY|GEMINI_ONLY|DUAL` và `--dispatch-ticket <tệp phiếu JSON>`.
+   - Ở chế độ `SOLO_EXECUTION`, `SyncBus2DAdapter` trả về `None` và **không ghi `DUAL_AGENT_BUS.json`** để triệt tiêu độ trễ.
 
 ## 5. MẪU LỆNH CHUYỂN TIẾP NHANH (PROMPT TEMPLATES)
 

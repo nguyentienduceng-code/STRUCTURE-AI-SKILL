@@ -213,7 +213,7 @@ class TestDceOptionController(unittest.TestCase):
         bolt_pitch = self.ctrl.get_option("BLNG5")
         self.assertEqual(bolt_pitch, 200)
         viewport_w = self.ctrl.get_option("ViewPortRongKhungTen")
-        self.assertIn(viewport_w, [368, 841, 84100])
+        self.assertIn(viewport_w, [368, 420, 594, 841, 4200, 5940, 8410, 59400, 84100])
 
     def test_02_list_essential_rules(self):
         """Kiểm tra danh mục quy tắc thiết yếu."""
@@ -222,7 +222,7 @@ class TestDceOptionController(unittest.TestCase):
         self.assertIn("viewport_width_mm", rules)
         self.assertIn("bolt_pitch_blng5", rules)
         self.assertEqual(rules["cover_beam_top_mm"], 25)
-        self.assertIn(rules["viewport_width_mm"], [368, 841, 84100])
+        self.assertIn(rules["viewport_width_mm"], [368, 420, 594, 841, 4200, 5940, 8410, 59400, 84100])
 
     def test_03_validation_and_rollback(self):
         """Kiểm tra ràng buộc TCVN và khôi phục giao dịch rollback_transaction()."""

@@ -154,11 +154,47 @@ BTCT_CORE_LAYER_NAMES: Tuple[str, ...] = (
     "DCE_Hatch", "DCE_VoidX", "DCE_Leader", "DCE_Schedule", "DCE_Frame",
 )
 
-STEEL_CORE_LAYER_NAMES: Tuple[str, ...] = (
-    "DCE_MainBeam", "DCE_SubBeam", "DCE_Flange", "DCE_Web", "DCE_Plate",
-    "DCE_Bracing", "DCE_Purlin", "DCE_Rod", "DCE_Weld", "DCE_Bolt",
-    "DCE_Truc", "DCE_Dim", "DCE_Name", "DCE_Hatch", "DCE_Schedule", "DCE_Frame",
+STEEL_PEB_LAYER_NAMES: Tuple[str, ...] = (
+    "DCE_Steel_Main", "DCE_Steel_Plate", "DCE_Steel_Sec", "DCE_Steel_Bolt",
+    "DCE_Steel_Weld", "DCE_Steel_Hidden", "DCE_MainBeam", "DCE_SubBeam",
+    "DCE_Bracing", "DCE_Purlin", "DCE_Truc", "DCE_Dim", "DCE_Name",
+    "DCE_Leader", "DCE_Schedule", "DCE_Frame",
 )
+STEEL_CORE_LAYER_NAMES: Tuple[str, ...] = STEEL_PEB_LAYER_NAMES
+
+BPTC_CORE_LAYER_NAMES: Tuple[str, ...] = (
+    "DCE_BPTC_Equip", "DCE_BPTC_Tie", "DCE_BPTC_Anchor", "DCE_BPTC_SafeZone",
+    "DCE_Cot", "DCE_Vach", "DCE_Truc", "DCE_Dim", "DCE_Name",
+    "DCE_Leader", "DCE_Schedule", "DCE_Frame",
+)
+
+
+def get_btct_core_15() -> List[Tuple[str, int, str, int, int]]:
+    """Trả về 15 layer cốt lõi cho bản vẽ Kết cấu Bê tông cốt thép (BTCT)."""
+    return get_profile_layer_matrix("BTCT")
+
+
+def get_dcesteel_core_16() -> List[Tuple[str, int, str, int, int]]:
+    """Trả về 16 layer cốt lõi cho bản vẽ Kết cấu Thép & PEB."""
+    return get_profile_layer_matrix("STEEL_PEB")
+
+
+def get_bptc_core_12() -> List[Tuple[str, int, str, int, int]]:
+    """Trả về 12 layer cốt lõi cho bản vẽ Biện pháp Thi công (BPTC)."""
+    return get_profile_layer_matrix("BPTC")
+
+
+def select_layer_profile(
+    profile_name: str = "BTCT",
+) -> List[Tuple[str, int, str, int, int]]:
+    """Bộ điều phối chọn danh sách layer theo profile: 'BTCT', 'STEEL_PEB', 'BPTC'."""
+    p = str(profile_name).upper().strip()
+    if p in ("STEEL_PEB", "STEEL", "DCESTEEL_CORE", "DCE_STEEL"):
+        return get_dcesteel_core_16()
+    elif p in ("BPTC", "DCE_BPTC", "DCE_BPTC_CORE"):
+        return get_bptc_core_12()
+    else:
+        return get_btct_core_15()
 
 
 def get_profile_layer_matrix(
@@ -166,10 +202,13 @@ def get_profile_layer_matrix(
     custom_names: Optional[Sequence[str]] = None,
 ) -> List[Tuple[str, int, str, int, int]]:
     """Trả về danh sách tuple `(name, color, ltype, lw, screening)` chuẩn hóa theo Profile."""
+    p_norm = str(profile_name).upper().strip()
     if custom_names is not None:
         target_names = list(custom_names)
-    elif profile_name == "DCESTEEL_CORE":
-        target_names = list(STEEL_CORE_LAYER_NAMES)
+    elif p_norm in ("DCESTEEL_CORE", "STEEL_PEB", "STEEL", "DCE_STEEL"):
+        target_names = list(STEEL_PEB_LAYER_NAMES)
+    elif p_norm in ("BPTC", "DCE_BPTC", "DCE_BPTC_CORE"):
+        target_names = list(BPTC_CORE_LAYER_NAMES)
     else:
         target_names = list(BTCT_CORE_LAYER_NAMES)
 
@@ -190,7 +229,12 @@ def get_standard_layer_whitelist() -> Set[str]:
     """Trả về tập tên layer viết thường dùng cho Bộ lọc 8 (`DCE_STANDARD_LAYERS`)."""
     data = load_dce_layer_standard()
     names = {str(item["name"]).lower() for item in data.get("layers", [])}
-    names.update({"0", "defpoints", "dce_text", "dce_bolt"})
+    names.update({
+        "0", "defpoints", "dce_text", "dce_bolt",
+        "dce_steel_main", "dce_steel_plate", "dce_steel_sec", "dce_steel_bolt",
+        "dce_steel_weld", "dce_steel_hidden",
+        "dce_bptc_equip", "dce_bptc_tie", "dce_bptc_anchor", "dce_bptc_safezone",
+    })
     return names
 
 

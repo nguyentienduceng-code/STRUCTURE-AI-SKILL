@@ -167,6 +167,14 @@ def _parse_rd_patches(stdout: str) -> Optional[tuple[int, int, int]]:
 
 
 PARSER_BY_HINT = [
+    ("CAD Semantics v6 C2", _parse_unittest),
+    ("CAD Semantics v6 C1", _parse_unittest),
+    ("Dynamic Sheet-Scale Governor", _parse_unittest),
+    ("CAD Scene Index", _parse_unittest),
+    ("MCP DCE-CAD Server", _parse_unittest),
+    ("DCE Virtual Drive Guard", _parse_unittest),
+    ("CAD Edit Workbench", _parse_unittest),
+    ("Durable Project Orchestration", _parse_unittest),
     ("Cognitive Architecture v2", _parse_unittest),
     ("PDF Citation Grounding", _parse_unittest),
     ("Nonlinear RC Fiber Section", _parse_unittest),

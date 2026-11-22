@@ -297,13 +297,16 @@ class Matrix4x4:
 # ==============================================================================
 
 SEMANTIC_LAYER_RULES: Dict[str, List[str]] = {
-    "GRID_AXIS": ["truc", "axis", "axes", "grid", "luoi", "tim_truc", "s-grid", "a-grid"],
+    "GRID_AXIS": ["truc", "axis", "axes", "grid", "luoi", "tim_truc", "s-grid", "a-grid", "dce_truc"],
     "FOUNDATION": ["mong", "found", "footing", "coc", "pile", "dakieng", "da_kieng", "giang_mong", "s-fndn"],
-    "COLUMN_WALL": ["cot", "col", "vach", "wall", "shear", "co_cot", "s-cols", "s-wall"],
-    "BEAM_SLAB": ["dam", "beam", "san", "slab", "keo", "rafter", "s-beam", "s-slab"],
-    "STEEL_PURLIN_BRACE": ["xago", "xa_go", "purlin", "giang", "brace", "strut", "bulong", "bolt", "suon", "stiff"],
-    "REBAR_TAG": ["thep", "rebar", "cot_thep", "tag_thep", "s-rebar", "steel_bar", "rein"],
-    "DIMENSION_TEXT": ["dim", "kichthuoc", "kich_thuoc", "text", "ghi_chu", "note", "anno", "leader"],
+    "COLUMN_WALL": ["cot", "col", "vach", "wall", "shear", "co_cot", "s-cols", "s-wall", "dce_cot", "dce_vach"],
+    "BEAM_SLAB": ["dam", "beam", "san", "slab", "keo", "rafter", "s-beam", "s-slab", "dce_baobetong"],
+    "STEEL_PURLIN_BRACE": ["xago", "xa_go", "purlin", "giang", "brace", "strut", "bulong", "bolt", "suon", "stiff",
+                           "dce_steel", "steel_main", "steel_sec", "steel_weld", "steel_plate", "steel_bolt",
+                           "dce_mainbeam", "dce_subbeam", "dce_flange", "dce_web", "dce_plate", "dce_weld"],
+    "BPTC_EQUIP_TIE": ["bptc", "dce_bptc", "equip", "tie", "collar", "anchor", "safezone", "can_truc", "cau_thap", "shoring", "vang_chong"],
+    "REBAR_TAG": ["thep", "rebar", "cot_thep", "tag_thep", "s-rebar", "steel_bar", "rein", "dce_thep"],
+    "DIMENSION_TEXT": ["dim", "kichthuoc", "kich_thuoc", "text", "ghi_chu", "note", "anno", "leader", "dce_dim", "dce_name", "dce_schedule"],
 }
 
 

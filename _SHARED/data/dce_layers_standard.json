@@ -9,11 +9,13 @@
     "ctb_reference": "monochrome.ctb + group-code 370 positive lineweights (1/100 mm)"
   },
   "counts": {
-    "total_layers": 86,
+    "total_layers": 94,
     "form2_btct_46": 46,
     "dce_steel_16": 16,
     "dce_plan_extensions_17": 16,
-    "compat_aliases_8": 8
+    "compat_aliases_8": 8,
+    "dce_steel_peb_v5": 4,
+    "dce_bptc_v5": 4
   },
   "dbim_linetypes": [
     "DASHDOT2_DBIM",
@@ -1109,6 +1111,94 @@
       "group": "compat_aliases_8",
       "source": "dce_steel_adapter.py / cad_sheet_set.py",
       "note": "PaperSpace C2 viewport mô hình"
+    },
+    {
+      "name": "DCE_Steel_Main",
+      "color": 7,
+      "linetype": "Continuous",
+      "lineweight": 50,
+      "template_lineweight": 50,
+      "screening": 100,
+      "group": "dce_steel_peb_v5",
+      "source": "cad_steel_peb_engine.py / TCVN 5571:2012",
+      "note": "Cột, kèo khung chính, dầm tổ hợp thép"
+    },
+    {
+      "name": "DCE_Steel_Sec",
+      "color": 4,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_peb_v5",
+      "source": "cad_steel_peb_engine.py / TCVN 5571:2012",
+      "note": "Xà gồ C/Z, giằng mái, giằng cột"
+    },
+    {
+      "name": "DCE_Steel_Weld",
+      "color": 1,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_steel_peb_v5",
+      "source": "cad_steel_primitives.py / TCVN 5571:2012",
+      "note": "Ký hiệu đường hàn góc, đường hàn đối đầu"
+    },
+    {
+      "name": "DCE_Steel_Hidden",
+      "color": 8,
+      "linetype": "Hidden2",
+      "lineweight": 15,
+      "template_lineweight": 15,
+      "screening": 100,
+      "group": "dce_steel_peb_v5",
+      "source": "cad_steel_peb_engine.py / TCVN 5571:2012",
+      "note": "Nét khuất cánh dầm, lỗ bu lông mặt sau"
+    },
+    {
+      "name": "DCE_BPTC_Equip",
+      "color": 6,
+      "linetype": "Continuous",
+      "lineweight": 35,
+      "template_lineweight": 35,
+      "screening": 100,
+      "group": "dce_bptc_v5",
+      "source": "cad_bptc_engine.py / QCVN 18:2021/BXD",
+      "note": "Cần trục tháp, bơm bê tông, xe cẩu"
+    },
+    {
+      "name": "DCE_BPTC_Tie",
+      "color": 3,
+      "linetype": "Continuous",
+      "lineweight": 50,
+      "template_lineweight": 50,
+      "screening": 100,
+      "group": "dce_bptc_v5",
+      "source": "cad_bptc_engine.py / QCVN 18:2021/BXD",
+      "note": "Hệ cùm neo, thanh chống, hệ shoring"
+    },
+    {
+      "name": "DCE_BPTC_Anchor",
+      "color": 2,
+      "linetype": "Continuous",
+      "lineweight": 25,
+      "template_lineweight": 25,
+      "screening": 100,
+      "group": "dce_bptc_v5",
+      "source": "cad_bptc_engine.py / QCVN 18:2021/BXD",
+      "note": "Bu lông hóa chất, ty ren xuyên dầm/vách"
+    },
+    {
+      "name": "DCE_BPTC_SafeZone",
+      "color": 1,
+      "linetype": "Dashed2",
+      "lineweight": 18,
+      "template_lineweight": 18,
+      "screening": 100,
+      "group": "dce_bptc_v5",
+      "source": "cad_bptc_engine.py / QCVN 18:2021/BXD",
+      "note": "Ranh giới an toàn, bán kính cần trục"
     }
   ]
 }

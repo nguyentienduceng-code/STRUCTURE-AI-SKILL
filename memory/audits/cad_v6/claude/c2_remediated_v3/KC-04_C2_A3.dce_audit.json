@@ -1,0 +1,1049 @@
+{
+  "schema_version": "DCE_C2_PROVENANCE_V2",
+  "provenance": {
+    "dxf_sha256": "954a72a0e1eb4b97930020be6e999a0ec22638049b81d0cad5c39c1d2e890b04",
+    "fixture_sha256": "ae84387a39f2205ecec452c964844c42a9da99e3f13e353c00b23a1df9ed66ec",
+    "generator": "cad_sheet_set.C2_REMEDIATED_V2"
+  },
+  "dxf_sha256": "954a72a0e1eb4b97930020be6e999a0ec22638049b81d0cad5c39c1d2e890b04",
+  "sheet_no": "KC-04",
+  "sheet_status": "PASS",
+  "scale": 50.0,
+  "mode": "SLAB_REBAR_PLAN",
+  "dxf_version": "AC1021",
+  "entities_log": [
+    {
+      "type": "INSERT",
+      "block": "DCE_TitleBlock_A1",
+      "handle": "74",
+      "layer": "DCE_Frame",
+      "outer_bbox": [
+        0.0,
+        0.0,
+        42050.0,
+        29700.0
+      ],
+      "inner_bbox": [
+        1250.0,
+        500.0,
+        41550.0,
+        29200.0
+      ],
+      "title_block_bbox": [
+        31000.0,
+        700.0,
+        41000.0,
+        6200.0
+      ],
+      "title_band_bbox": [
+        31000.0,
+        6400.0,
+        41000.0,
+        10000.0
+      ]
+    },
+    {
+      "type": "LEGEND_BOX",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        31000.0,
+        10200.0,
+        41000.0,
+        15500.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        7000.0,
+        7900.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "86",
+      "p1": [
+        7000.0,
+        8100.0
+      ],
+      "p2": [
+        7000.0,
+        21200.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        13000.0,
+        7900.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "8A",
+      "p1": [
+        13000.0,
+        8100.0
+      ],
+      "p2": [
+        13000.0,
+        21200.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        19000.0,
+        7900.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "8E",
+      "p1": [
+        19000.0,
+        8100.0
+      ],
+      "p2": [
+        19000.0,
+        21200.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        4900.0,
+        10000.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "92",
+      "p1": [
+        5100.0,
+        10000.0
+      ],
+      "p2": [
+        20500.0,
+        10000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        4900.0,
+        15000.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "96",
+      "p1": [
+        5100.0,
+        15000.0
+      ],
+      "p2": [
+        20500.0,
+        15000.0
+      ]
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Truc_Bubble",
+      "insert": [
+        4900.0,
+        20000.0
+      ],
+      "radius": 200.0,
+      "layer": "DCE_Truc"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_Truc",
+      "handle": "9A",
+      "p1": [
+        5100.0,
+        20000.0
+      ],
+      "p2": [
+        20500.0,
+        20000.0
+      ]
+    },
+    {
+      "type": "DIMENSION",
+      "handle": "9B",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_50",
+      "p1": [
+        7000.0,
+        10000.0
+      ],
+      "p2": [
+        13000.0,
+        10000.0
+      ],
+      "base": [
+        7000.0,
+        9100.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X"
+    },
+    {
+      "type": "DIMENSION",
+      "handle": "AF",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_50",
+      "p1": [
+        13000.0,
+        10000.0
+      ],
+      "p2": [
+        19000.0,
+        10000.0
+      ],
+      "base": [
+        13000.0,
+        9100.0
+      ],
+      "actual_measurement": 6000.0,
+      "dim_text": "6000",
+      "tier": "TIER_1_GRID_SPAN",
+      "axis_dir": "X"
+    },
+    {
+      "type": "DIMENSION",
+      "handle": "BF",
+      "layer": "DCE_Dim",
+      "dimstyle": "DCE_DIM_MAIN_50",
+      "p1": [
+        7000.0,
+        10000.0
+      ],
+      "p2": [
+        19000.0,
+        10000.0
+      ],
+      "base": [
+        7000.0,
+        8500.0
+      ],
+      "actual_measurement": 12000.0,
+      "dim_text": "12000",
+      "tier": "TIER_2_OVERALL",
+      "axis_dir": "X"
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "handle": "CF",
+      "layer": "DCE_Cot",
+      "xscale": 1.0,
+      "yscale": 1.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Dung",
+      "handle": "D1",
+      "layer": "DCE_Cot",
+      "xscale": 1.0,
+      "yscale": 1.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "handle": "D3",
+      "layer": "DCE_Cot",
+      "xscale": 1.0,
+      "yscale": 1.0
+    },
+    {
+      "type": "INSERT",
+      "block": "DCE_Cot_Block",
+      "handle": "D5",
+      "layer": "DCE_Cot",
+      "xscale": 1.0,
+      "yscale": 1.0
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_Vach",
+      "has_solid_hatch": true,
+      "has_boundary_zone": true
+    },
+    {
+      "type": "LWPOLYLINE",
+      "layer": "DCE_CouplingBeam"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_VoidX"
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "p1": [
+        7150.0,
+        10000.0
+      ],
+      "p2": [
+        12850.0,
+        10000.0
+      ],
+      "clipped_at_column_faces": true,
+      "has_beam_label": false
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "p1": [
+        13150.0,
+        10000.0
+      ],
+      "p2": [
+        18850.0,
+        10000.0
+      ],
+      "clipped_at_column_faces": true,
+      "has_beam_label": false
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "p1": [
+        7150.0,
+        15000.0
+      ],
+      "p2": [
+        12850.0,
+        15000.0
+      ],
+      "clipped_at_column_faces": true,
+      "has_beam_label": false
+    },
+    {
+      "type": "LINE",
+      "layer": "DCE_NetThay",
+      "p1": [
+        7000.0,
+        10150.0
+      ],
+      "p2": [
+        7000.0,
+        14850.0
+      ],
+      "clipped_at_column_faces": true,
+      "has_beam_label": false
+    },
+    {
+      "type": "SCHEDULE_TABLE",
+      "layer": "DCE_Schedule",
+      "bbox": [
+        31000.0,
+        15700.0,
+        41000.0,
+        28700.0
+      ],
+      "col_widths": [
+        2500.0,
+        4000.0,
+        3500.0
+      ],
+      "rows": [
+        [
+          "KY HIEU",
+          "TIET DIEN / QUY CACH",
+          "MA THAM CHIEU"
+        ],
+        [
+          "C1",
+          "300x300 mm",
+          "SCH_C1"
+        ],
+        [
+          "C1",
+          "300x300 mm",
+          "SCH_C1"
+        ],
+        [
+          "D1A",
+          "200x400 mm",
+          "SCH_D1A"
+        ],
+        [
+          "D1A",
+          "200x400 mm",
+          "SCH_D1A"
+        ],
+        [
+          "SC1",
+          "H300x300x10x15",
+          "SCH_SC1"
+        ],
+        [
+          "SB1",
+          "I350x175x7x11",
+          "SCH_SB1"
+        ],
+        [
+          "SBX1",
+          "BOX_200x200x6",
+          "SCH_SBX1"
+        ],
+        [
+          "SU1",
+          "U160x64x5",
+          "SCH_SU1"
+        ],
+        [
+          "SP1",
+          "D219x6.0",
+          "SCH_SP1"
+        ],
+        [
+          "BD-01",
+          "PL400x400x20",
+          "SCH_BP_01"
+        ],
+        [
+          "BD-02",
+          "PL560x420x28",
+          "SCH_BP_02"
+        ],
+        [
+          "GUSSET-01",
+          "PL240x180x14",
+          "SCH_PL_01"
+        ]
+      ],
+      "cell_width_factors": [
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ],
+        [
+          0.7,
+          0.7,
+          0.7
+        ]
+      ]
+    },
+    {
+      "type": "SLAB_REBAR_STRIP",
+      "strip_id": "RS_F2_BOT_X1",
+      "face": "BOTTOM",
+      "layer": "REBAR_BOTTOM",
+      "handle": "16D"
+    },
+    {
+      "type": "SLAB_REBAR_STRIP",
+      "strip_id": "RS_F2_BOT_Y1",
+      "face": "BOTTOM",
+      "layer": "REBAR_BOTTOM",
+      "handle": "16F"
+    },
+    {
+      "type": "SLAB_REBAR_STRIP",
+      "strip_id": "RS_F2_TOP_X1",
+      "face": "TOP",
+      "layer": "REBAR_TOP",
+      "handle": "171"
+    },
+    {
+      "type": "SLAB_REBAR_STRIP",
+      "strip_id": "RS_F2_TOP_Y1",
+      "face": "TOP",
+      "layer": "REBAR_TOP",
+      "handle": "173"
+    }
+  ],
+  "blocks_defined": {
+    "DCE_Cot_Block": {
+      "has_solid_hatch": true,
+      "has_border_lwpolyline": true
+    },
+    "DCE_Cot_Dung": {
+      "has_solid_hatch": true,
+      "has_border_lwpolyline": true
+    },
+    "DCE_TenCauKien": {
+      "attdefs": {
+        "SOCAUKIEN": {
+          "insert": [
+            0.0,
+            -1.0
+          ]
+        },
+        "TENCAUKIEN": {
+          "insert": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "DCE_Truc_Bubble": {
+      "radius": 200.0
+    },
+    "DCE_KyHieuSan": {},
+    "DCE_TitleBlock_A1": {},
+    "DCE_C2_MEMBER": {},
+    "_CLOSEDFILLED": {}
+  },
+  "dimstyles_defined": {
+    "DCE_DIM_MAIN_50": {
+      "dimtxt": 2.2,
+      "dimscale": 50.0,
+      "arrow": "_ARCHTICK"
+    },
+    "DCE_DIM_COT_50": {
+      "dimtxt": 1.8,
+      "dimscale": 50.0,
+      "arrow": "_ARCHTICK"
+    },
+    "Dce_50MV": {
+      "dimtxt": 2.0,
+      "dimscale": 50.0,
+      "arrow": "_ARCHTICK"
+    }
+  },
+  "layers_defined": {
+    "DCE_Cot": {
+      "color": 1,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Vach": {
+      "color": 1,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Boundary_Zone": {
+      "color": 3,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Hatch": {
+      "color": 8,
+      "lineweight": 15,
+      "screening": 100
+    },
+    "DCE_Truc": {
+      "color": 1,
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Dim": {
+      "color": 6,
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Setout": {
+      "color": 2,
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Name": {
+      "color": 2,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_NetThay": {
+      "color": 4,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_CouplingBeam": {
+      "color": 3,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_VoidX": {
+      "color": 5,
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Thep_Chu": {
+      "color": 1,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Thep_Dai": {
+      "color": 3,
+      "lineweight": 18,
+      "screening": 100
+    },
+    "DCE_Schedule": {
+      "color": 7,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Frame": {
+      "color": 7,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "DCE_Block": {
+      "color": 3,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "DCE_Text": {
+      "color": 7,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "REBAR_TOP": {
+      "color": 1,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "REBAR_BOTTOM": {
+      "color": 5,
+      "lineweight": 35,
+      "screening": 100
+    },
+    "VP_TOP": {
+      "color": 1,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "VP_BOTTOM": {
+      "color": 5,
+      "lineweight": 25,
+      "screening": 100
+    },
+    "VP_MODEL": {
+      "color": 7,
+      "lineweight": 25,
+      "screening": 100
+    }
+  },
+  "entity_map": {
+    "COL_C1_F1": {
+      "geometry_handles": [
+        "E9"
+      ],
+      "source_refs": [
+        "H_C1_F1_G"
+      ],
+      "tag_refs": [
+        "H_C1_F1_T"
+      ],
+      "schedule_refs": [
+        "SCH_C1"
+      ],
+      "size": "300x300 mm",
+      "tag_handle": "EA",
+      "tag_handles": [
+        "EA"
+      ],
+      "schedule_handle": "F2",
+      "schedule_handles": [
+        "F1",
+        "F2",
+        "F3"
+      ]
+    },
+    "COL_C1_F2": {
+      "geometry_handles": [
+        "F4"
+      ],
+      "source_refs": [
+        "H_C1_F2_G"
+      ],
+      "tag_refs": [
+        "H_C1_F2_T"
+      ],
+      "schedule_refs": [
+        "SCH_C1"
+      ],
+      "size": "300x300 mm",
+      "tag_handle": "F5",
+      "tag_handles": [
+        "F5"
+      ],
+      "schedule_handle": "FD",
+      "schedule_handles": [
+        "FC",
+        "FD",
+        "FE"
+      ]
+    },
+    "BM_D1A_F2_S1": {
+      "geometry_handles": [
+        "FF"
+      ],
+      "source_refs": [
+        "H_D1A_S1_G"
+      ],
+      "tag_refs": [
+        "H_D1A_S1_T"
+      ],
+      "schedule_refs": [
+        "SCH_D1A"
+      ],
+      "size": "200x400 mm",
+      "tag_handle": "100",
+      "tag_handles": [
+        "100"
+      ],
+      "schedule_handle": "108",
+      "schedule_handles": [
+        "107",
+        "108",
+        "109"
+      ]
+    },
+    "BM_D1A_F2_S2": {
+      "geometry_handles": [
+        "10A"
+      ],
+      "source_refs": [
+        "H_D1A_S2_G"
+      ],
+      "tag_refs": [
+        "H_D1A_S2_T"
+      ],
+      "schedule_refs": [
+        "SCH_D1A"
+      ],
+      "size": "200x400 mm",
+      "tag_handle": "10B",
+      "tag_handles": [
+        "10B"
+      ],
+      "schedule_handle": "113",
+      "schedule_handles": [
+        "112",
+        "113",
+        "114"
+      ]
+    },
+    "STEEL_COL_C1": {
+      "geometry_handles": [
+        "115"
+      ],
+      "source_refs": [
+        "G_STEEL_COL_C1"
+      ],
+      "tag_refs": [
+        "T_STEEL_COL_C1"
+      ],
+      "schedule_refs": [
+        "SCH_SC1"
+      ],
+      "size": "H300x300x10x15",
+      "tag_handle": "116",
+      "tag_handles": [
+        "116"
+      ],
+      "schedule_handle": "11E",
+      "schedule_handles": [
+        "11D",
+        "11E",
+        "11F"
+      ]
+    },
+    "STEEL_BM_B1": {
+      "geometry_handles": [
+        "120"
+      ],
+      "source_refs": [
+        "G_STEEL_BM_B1"
+      ],
+      "tag_refs": [
+        "T_STEEL_BM_B1"
+      ],
+      "schedule_refs": [
+        "SCH_SB1"
+      ],
+      "size": "I350x175x7x11",
+      "tag_handle": "121",
+      "tag_handles": [
+        "121"
+      ],
+      "schedule_handle": "129",
+      "schedule_handles": [
+        "128",
+        "129",
+        "12A"
+      ]
+    },
+    "STEEL_BOX_BX1": {
+      "geometry_handles": [
+        "12B"
+      ],
+      "source_refs": [
+        "G_STEEL_BOX_BX1"
+      ],
+      "tag_refs": [
+        "T_STEEL_BOX_BX1"
+      ],
+      "schedule_refs": [
+        "SCH_SBX1"
+      ],
+      "size": "BOX_200x200x6",
+      "tag_handle": "12C",
+      "tag_handles": [
+        "12C"
+      ],
+      "schedule_handle": "134",
+      "schedule_handles": [
+        "133",
+        "134",
+        "135"
+      ]
+    },
+    "STEEL_CH_U1": {
+      "geometry_handles": [
+        "136"
+      ],
+      "source_refs": [
+        "G_STEEL_CH_U1"
+      ],
+      "tag_refs": [
+        "T_STEEL_CH_U1"
+      ],
+      "schedule_refs": [
+        "SCH_SU1"
+      ],
+      "size": "U160x64x5",
+      "tag_handle": "137",
+      "tag_handles": [
+        "137"
+      ],
+      "schedule_handle": "13F",
+      "schedule_handles": [
+        "13E",
+        "13F",
+        "140"
+      ]
+    },
+    "STEEL_PP_P1": {
+      "geometry_handles": [
+        "141"
+      ],
+      "source_refs": [
+        "G_STEEL_PP_P1"
+      ],
+      "tag_refs": [
+        "T_STEEL_PP_P1"
+      ],
+      "schedule_refs": [
+        "SCH_SP1"
+      ],
+      "size": "D219x6.0",
+      "tag_handle": "142",
+      "tag_handles": [
+        "142"
+      ],
+      "schedule_handle": "14A",
+      "schedule_handles": [
+        "149",
+        "14A",
+        "14B"
+      ]
+    },
+    "STEEL_BP_01": {
+      "geometry_handles": [
+        "14C"
+      ],
+      "source_refs": [
+        "G_STEEL_BP_01"
+      ],
+      "tag_refs": [
+        "T_STEEL_BP_01"
+      ],
+      "schedule_refs": [
+        "SCH_BP_01"
+      ],
+      "size": "PL400x400x20",
+      "tag_handle": "14D",
+      "tag_handles": [
+        "14D"
+      ],
+      "schedule_handle": "155",
+      "schedule_handles": [
+        "154",
+        "155",
+        "156"
+      ]
+    },
+    "STEEL_BP_02": {
+      "geometry_handles": [
+        "157"
+      ],
+      "source_refs": [
+        "G_STEEL_BP_02"
+      ],
+      "tag_refs": [
+        "T_STEEL_BP_02"
+      ],
+      "schedule_refs": [
+        "SCH_BP_02"
+      ],
+      "size": "PL560x420x28",
+      "tag_handle": "158",
+      "tag_handles": [
+        "158"
+      ],
+      "schedule_handle": "160",
+      "schedule_handles": [
+        "15F",
+        "160",
+        "161"
+      ]
+    },
+    "STEEL_PL_01": {
+      "geometry_handles": [
+        "162"
+      ],
+      "source_refs": [
+        "G_STEEL_PL_01"
+      ],
+      "tag_refs": [
+        "T_STEEL_PL_01"
+      ],
+      "schedule_refs": [
+        "SCH_PL_01"
+      ],
+      "size": "PL240x180x14",
+      "tag_handle": "163",
+      "tag_handles": [
+        "163"
+      ],
+      "schedule_handle": "16B",
+      "schedule_handles": [
+        "16A",
+        "16B",
+        "16C"
+      ]
+    },
+    "RS_F2_BOT_X1": {
+      "geometry_handles": [
+        "16D"
+      ],
+      "source_refs": [
+        "RS_F2_BOT_X1"
+      ],
+      "face": "BOTTOM",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_BOT_Y1": {
+      "geometry_handles": [
+        "16F"
+      ],
+      "source_refs": [
+        "RS_F2_BOT_Y1"
+      ],
+      "face": "BOTTOM",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_TOP_X1": {
+      "geometry_handles": [
+        "171"
+      ],
+      "source_refs": [
+        "RS_F2_TOP_X1"
+      ],
+      "face": "TOP",
+      "tag_refs": [],
+      "schedule_refs": []
+    },
+    "RS_F2_TOP_Y1": {
+      "geometry_handles": [
+        "173"
+      ],
+      "source_refs": [
+        "RS_F2_TOP_Y1"
+      ],
+      "face": "TOP",
+      "tag_refs": [],
+      "schedule_refs": []
+    }
+  },
+  "viewport_count": 2,
+  "missing_inputs": []
+}

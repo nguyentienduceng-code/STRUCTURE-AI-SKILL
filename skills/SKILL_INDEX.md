@@ -1,7 +1,7 @@
 # SKILL_INDEX.md — Chỉ mục Tổng hợp Toàn bộ Bộ Skills  
   
 > **Mục đích:** Nguồn sự thật DUY NHẤT về cấu trúc, modules, và dependencies của toàn bộ hệ thống skill.  
-> **Cập nhật:** 2026-11-11 — v2.2 (Synced with AGENTS v7.4, STANDARDS_LOCK v3.3.0 & 14 Production Skills)  
+> **Cập nhật:** 2026-11-22 — v2.3 (Synced with AGENTS v7.5, STANDARDS_LOCK v3.3.0, Technical_Illustrator v5.0.0, Global_Dispatcher v3.0.0, SKILL_DUAL_AGENT_BRIDGE v3.4.0 & 25 CAD Gates)  
 > **Thay thế:** Phần "Cấu trúc Thư mục" trong từng SKILL.md riêng lẻ.  
 > **Entry Point:** Xem `../README.md` trước!  
   
@@ -102,11 +102,16 @@ python SKILL_RFI/scripts/document_renderer.py \\
 ```text
 .agents/skills/
 │
-├── Global_Dispatcher/             ← 🎯 BỘ ĐIỀU PHỐI TRUNG TÂM (v2.0.0 Production)
+├── Global_Dispatcher/             ← 🎯 BỘ ĐIỀU PHỐI TRUNG TÂM (v3.0.0 Production — 2D Cognitive Dispatcher)
 │   ├── SKILL.md
-│   └── scripts/ (intent_classifier.py, keyword_database.json, pipeline_builder.py, approval_gate.py)
+│   ├── intent_classifier.py (Core 2D Classifier Domain × Mode)
+│   ├── project_target_resolver.py (Project Root Scanner)
+│   ├── product_deliverable_gate.py (Deliverable Gate & Jargon Linter)
+│   ├── sync_bus_2d_patch.py (SyncBus2DAdapter v3.4)
+│   ├── keyword_database.json (14 Production Skills + 3 Modes)
+│   └── scripts/ (intent_classifier.py, pipeline_builder.py, approval_gate.py)
 │
-├── AGENTS.md                      ← 📖 ĐỌC TRƯỚC: Quy tắc liên-skill SSOT (v7.4, đồng bộ với .agents/AGENTS.md)
+├── AGENTS.md                      ← 📖 ĐỌC TRƯỚC: Quy tắc liên-skill SSOT (v7.5, đồng bộ với .agents/AGENTS.md)
 ├── SKILL_INDEX.md                 ← Bản đồ điều phối & tra cứu nhanh (file này)
 ├── STANDARDS_LOCK.md              ← Khóa cứng phiên bản tiêu chuẩn (v3.3.0)
 ├── SKILL_BRIDGE.md                ← Giao thức Data Contract & Handoff Schemas
@@ -114,19 +119,19 @@ python SKILL_RFI/scripts/document_renderer.py \\
 │
 ├── Design_Evaluation/             ← 🟢 Review, Thẩm tra 7 Cổng, Tờ trình (v3.4.0)
 ├── Structural_Design_Engineer/    ← 🟢 Tính toán thiết kế, Thuyết minh (v1.3.0)
-├── Technical_Illustrator/         ← 🟢 Vẽ 2D/CAD DCE Pro & Gantt PMO (v1.7.0)
+├── Technical_Illustrator/         ← 🟢 Vẽ 2D/CAD DCE Pro v5.0 & Gantt PMO (v5.0.0)
 ├── Cost_Estimator/                ← 🟢 So sánh chi phí, VE, Carbon (v1.4.0)
 ├── SKILL_FORENSIC/                ← 🟢 Điều tra sự cố kết cấu (v1.2.0)
-├── SKILL_VERIFY/                  ← 🟢 Kiểm chứng 8 tầng & CAD Audit (v3.4.0)
+├── SKILL_VERIFY/                  ← 🟢 Kiểm chứng 8 tầng & CAD Audit 25 cổng (v3.4.0)
 ├── SKILL_RFI/                     ← 🟢 Quản lý RFI / NCR / Submittal (v1.4.0)
 ├── SKILL_PHULUC/                  ← 🟢 Phụ lục tính toán chuyên nghiệp (v3.1.0)
 ├── SKILL_GEOTECH/                 ← 🟢 Địa kỹ thuật & Plaxis (v3.1.0)
 ├── SKILL_TEMPWORKS/               ← 🟢 Thiết kế Cốp pha & Cây chống (v1.0.0)
 ├── Project_Manager/               ← 🟢 Quản lý dự án, Master Schedule MS Project, Phân cấp TT 34/2026 (v2.0.0)
 ├── SKILL_BIM_COORDINATION/        ← 🟢 BIM Coordination & CAD Clash Audit (v1.4.0)
-├── SKILL_DUAL_AGENT_BRIDGE/       ← 🟢 Điều phối Dual-Agent Gemini ↔ Claude qua Bus v3.0 (v3.1.0)
+├── SKILL_DUAL_AGENT_BRIDGE/       ← 🟢 Điều phối Dual-Agent Gemini ↔ Claude qua Bus v3.4 (v3.4.0 Production)
 │
-└── CHANGELOG.md                   ← Lịch sử thay đổi toàn hệ thống (v7.4)
+└── CHANGELOG.md                   ← Lịch sử thay đổi toàn hệ thống (v7.5)
 ```
 
 ### Skill Flow:  
@@ -187,17 +192,20 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ## 3. DANH MỤC ĐẦY ĐỦ CÁC SKILL  
   
-### 3.0 Global_Dispatcher (v2.0.0)  
+### 3.0 Global_Dispatcher (v3.0.0 — 2D Cognitive Dispatcher)  
   
-**Vai trò:** Bộ Điều phối Trung tâm (Central Orchestrator)  
+**Vai trò:** Bộ Điều phối Trung tâm (Central Orchestrator) — Phân loại nhận thức 2 chiều (Domain × Engagement Mode)  
   
-**Entry Point:** `SKILL.md` → `scripts/intent_classifier.py` / `scripts/pipeline_builder.py`  
+**Entry Point:** `SKILL.md` → `intent_classifier.py` / `dispatch_task.py` / `scripts/pipeline_builder.py`  
   
 | Thành phần | File | Chức năng |  
 |------------|------|-----------|  
-| **SKILL** | `SKILL.md` | Hướng dẫn phân loại intent, định tuyến, quản lý pipeline |  
-| **Intent Classifier** | `scripts/intent_classifier.py` | Phân tích prompt ngôn ngữ tự nhiên → Skill + Confidence score (15/15 test passed 100%) |  
-| **Keyword Database** | `scripts/keyword_database.json` | 220+ keywords, regex patterns, tie-breaker rules, pipeline templates |  
+| **SKILL** | `SKILL.md` | Hướng dẫn phân loại 2D intent, định tuyến, quản lý phiếu & pipeline |  
+| **2D Intent Classifier** | `intent_classifier.py` | Phân loại 2 chiều: 14 Domain Skills × 3 Chế độ (Product/System/Solo) |  
+| **Project Target Resolver** | `project_target_resolver.py` | Quét & khóa cứng thư mục dự án `04_Deliverables_ToTrinh/` |  
+| **Product Deliverable Gate** | `product_deliverable_gate.py` | Cổng nghiệm thu file thật (.docx/.pdf/.dxf/.xlsx) & Jargon Linter |  
+| **Sync Bus 2D Patch** | `sync_bus_2d_patch.py` | Adapter tích hợp Dual-Agent Bus v3.4 |  
+| **Keyword Database** | `keyword_database.json` | Từ điển 2D v2.1.0: 14 Skill ID thật, tie-breaker rules, jargon blacklist |  
 | **Pipeline Builder** | `scripts/pipeline_builder.py` | Xây dựng pipeline tự động khi cần 2+ skills, xác định review gates và handoff schemas |  
   
 ---  
@@ -280,9 +288,9 @@ python SKILL_RFI/scripts/document_renderer.py \\
   
 ---  
   
-### 3.3 Technical_Illustrator (v1.7.0)
+### 3.3 Technical_Illustrator (v5.0.0)
   
-**Vai trò:** Minh họa Kỹ thuật & Tiến độ PMO  
+**Vai trò:** Minh họa Kỹ thuật, Bản vẽ CAD Tham số DCE Pro v5.0 & Tiến độ PMO  
   
 **Entry Point:** `SKILL.md`  
   
@@ -306,7 +314,10 @@ python SKILL_RFI/scripts/document_renderer.py \\
 | `draw_pile_cap.py` | `--type --L --B --H --pile_d --n_piles` | Đài cọc |  
 | `draw_weld_detail.py` | `--type --plate_t --weld_type` | Chi tiết hàn |  
 | `draw_moment_diagram.py` | `--input --output` | Biểu đồ nội lực (M, V, N) SVG/DXF |  
-| `cad_integration/cad_plan_engine.py` | `--output --template --pdf` | **Bản vẽ CAD Mặt bằng Cột Vách & KC-03 chuẩn DCE Pro v6** |  
+| `cad_integration/cad_plan_engine.py` | `--output --template --pdf` | **Bản vẽ CAD Mặt bằng Cột Vách & KC-03 chuẩn DCE Pro v6 + `COMPOSITE_DETAIL_GRID`** |  
+| `cad_integration/cad_steel_primitives.py` | `parse_steel_profile`, `draw_bolt_array`, `draw_weld_symbol_tcvn`, `compute_steel_bom` | **Thư viện Hình học Tham số Thép & BPTC (TCVN 5575:2024)** |  
+| `cad_integration/cad_bptc_engine.py` | `generate_bp01_site_plan`, `generate_bp02_tower_crane_tie` | **Bản vẽ BPTC `BP-01` & `BP-02` (QCVN 18:2021/BXD) + `.bptc_audit.json`** |  
+| `cad_integration/cad_steel_peb_engine.py` | `generate_st01_main_frame` | **Bản vẽ Kết cấu Thép PEB `ST-01` + `.steel_audit.json`** |  
 | `cad_integration/dce_dxf_generator.py` | DXF template | Bản vẽ CAD dầm sàn |  
 | `cad_integration/dce_block_catalog.py` | DXF / Steel catalog JSON | Quét ATTDEF/SHA-256 (`132` blocks, gồm `34` Steel `PARTIAL_DWG_WASM_READ_76`) |  
 | `cad_integration/dce_block_binding.py` | `Insert` + `DceBlockSpec` | `bind_block_attributes()`, `extract_semantic_values()` |  
@@ -327,6 +338,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
 **References:**  
 | File | Chức năng |  
 |------|-----------|  
+| `references/SPEC_DCE_PRO_V5.md` | Đặc tả kỹ thuật DCE Pro v5.0 (`COMPOSITE_DETAIL_GRID`, 3 Profile Layers, 25 cổng) |  
 | `references/MODE_2D_GUIDE.md` | Hướng dẫn vẽ 2D + Error handling |  
 | `references/MODE_3D_GUIDE.md` | Hướng dẫn render 3D |  
 | `references/PROMPT_TEMPLATES.md` | 8 prompt templates cho 3D |  
@@ -403,7 +415,7 @@ python SKILL_RFI/scripts/document_renderer.py \\
 | **Bộ lọc 5** | `drawing_calc_crosscheck.py` | Đối soát hàm lượng thép & kích thước hình học 4 chiều (Drawing-Tag-Calc) |  
 | **Bộ lọc 6** | `drawing_calc_crosscheck.py` | Quét lỗi công thức bảng tính (#VALUE!, #REF!, ô gộp mất liên kết) |  
 | **Bộ lọc 7** | `cad_deep_reader.py` (v1.1.0) | Kiểm chứng đồ thị không gian CAD, bắt lỗi Dimension Text Override > 2% |  
-| **Bộ lọc 8** | `dce_cad_compliance_checker.py` (v2.0) | Kiểm toán tuân thủ chuẩn CAD DCE Pro & Graphic Sanity Auditor (Điều 12d AGENTS.md) |  
+| **Bộ lọc 8** | `dce_cad_compliance_checker.py` (v5.0) | Kiểm toán tuân thủ chuẩn CAD DCE Pro & Graphic Sanity Auditor (**25 cổng G8.01–G8.25** cho `BTCT`, `STEEL_PEB`, `BPTC`, Điều 12d AGENTS.md) |  
   
 **Thresholds chuẩn:**  
 | Loại | Ngưỡng Warning | Ngưỡng Critical |  
@@ -533,7 +545,7 @@ Khi có phản hồi → Cập nhật vào phân tích
 |-------|------------|-----------|---------|  
 | **Project_Manager** | ✅ v2.0.0 Production | Quản lý dự án, Master Schedule MS Project (Gantt 8 cột + CPM 300 DPI, msproject_xml_engine), EVM/CPM, KPI ISO | "lập tiến độ", "quản lý rủi ro", "Master Schedule", "Gantt", "MS Project", "EVM" |  
 | **SKILL_BIM_COORDINATION** | ✅ v1.4.0 Production | Clash detection giữa kết cấu và kiến trúc/MEP, kiểm tra thông thủy, lỗ mở dầm, đối chiếu lưới trục | "clash detection", "BIM review", "xung đột kỹ thuật", "phối hợp MEP", "lỗ mở dầm" |  
-| **SKILL_DUAL_AGENT_BRIDGE** | ✅ v3.1.0 Production | Giao thức phối hợp liên tác tử Gemini ↔ Claude (Relay, Partitioned Parallel, Red-Team Audit) qua bus v3.0 | "bàn giao Claude", "phối hợp 2 AI", "thẩm tra đối kháng", "sync bus", "handoff memo" |  
+| **SKILL_DUAL_AGENT_BRIDGE** | ✅ v3.4.0 Production | Giao thức phối hợp liên tác tử Gemini ↔ Claude qua Bus v3.4 (Control Plane / Presentation Plane, ProductDeliverableGate, Jargon Linter) | "bàn giao Claude", "phối hợp 2 AI", "thẩm tra đối kháng", "sync bus", "handoff memo" |  
   
 ---  
   
@@ -724,6 +736,7 @@ python parallel_review_workflow.py --project DUAN_A --scope "beam,column" --outp
   
 | Version | Date | Changes |  
 |---------|------|---------|  
+| 2.3 | 2026-11-22 | Synced Technical_Illustrator v5.0.0 (PEB/BPTC + COMPOSITE_DETAIL_GRID), Global_Dispatcher v3.0.0, SKILL_DUAL_AGENT_BRIDGE v3.4.0, and 25 CAD Gates (G8.01–G8.25) |
 | 2.2 | 2026-11-11 | Synced all 14 production skills, fixed emoji UTF-8 & directory layout, added SKILL_DUAL_AGENT_BRIDGE v3.1.0 |
 | 2.1 | 2026-10-21 | Synced with STANDARDS_LOCK v3.1.0 & TT 34/2026/TT-BXD |
 | 1.9 | 2026-09-27 | Agentic Workflow Infrastructure P1 (Handoff Validation & Confidence Score) |  

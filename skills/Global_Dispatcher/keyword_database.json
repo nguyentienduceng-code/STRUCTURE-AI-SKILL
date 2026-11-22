@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "schema": "2d_cognitive_dispatcher",
+  "version": "2.1.0",
+  "schema": "2d_cognitive_dispatcher_synced",
   "config": {
     "project_roots": [
       "01_Projects",
@@ -158,180 +158,520 @@
     }
   },
   "domain_skills": {
-    "SKILL_GEOTECH": {
-      "label": "Địa kỹ thuật & Khảo sát địa chất",
+    "Design_Evaluation": {
+      "label": "Design Evaluation (Quản lý Thiết kế / QLTK)",
+      "role": "Đại diện Chủ đầu tư / QLTK — review, thẩm tra, nghiệm thu",
+      "entry_points": [
+        "SKILLKC.md",
+        "SKILL_REPORT.md"
+      ],
       "keywords": {
-        "địa chất": 0.5,
-        "khảo sát địa chất": 0.6,
-        "hố khoan": 0.45,
-        "spt": 0.45,
-        "cpt": 0.45,
-        "mực nước ngầm": 0.4,
-        "sức chịu tải đất nền": 0.5,
-        "lún nền": 0.45,
-        "báo cáo khảo sát": 0.45,
-        "tcvn 9362": 0.5
+        "review": 0.55,
+        "thẩm tra": 0.55,
+        "thẩm định": 0.55,
+        "nghiệm thu": 0.55,
+        "NCR": 0.55,
+        "tờ trình": 0.55,
+        "trình duyệt": 0.55,
+        "lập tờ trình": 0.55,
+        "bóc tách khối lượng": 0.55,
+        "bóc khối lượng": 0.55,
+        "so sánh phương án": 0.55,
+        "hoàn công": 0.55,
+        "đối chiếu tiêu chuẩn": 0.55,
+        "review bản vẽ": 0.55,
+        "kiểm tra hồ sơ": 0.55,
+        "QC": 0.55,
+        "QA": 0.55,
+        "xuất báo cáo": 0.55,
+        "soạn báo cáo": 0.55,
+        "xuất Word": 0.55,
+        "lập báo cáo": 0.55,
+        "xuất dự toán": 0.55,
+        "đánh giá biện pháp thi công": 0.55,
+        "xử lý NCR": 0.55,
+        "xử lý sự cố nhẹ": 0.55,
+        "check thép": 0.35,
+        "check võng": 0.35,
+        "kiểm tra TCVN": 0.35,
+        "đánh giá": 0.35,
+        "nhận xét": 0.35,
+        "góp ý": 0.35,
+        "phản biện": 0.35,
+        "audit": 0.35,
+        "inspection": 0.35,
+        "submission review": 0.35,
+        "shop drawing review": 0.35,
+        "as-built": 0.35,
+        "hồ sơ hoàn thành": 0.35,
+        "biên bản": 0.35,
+        "protocol": 0.35,
+        "checklist": 0.35,
+        "xuất Excel": 0.35,
+        "xuất XLSX": 0.35,
+        "dashboard": 0.35
       }
     },
-    "SKILL_STRUCTURAL_RC": {
-      "label": "Kết cấu Bê tông Cốt thép (TCVN 5574:2018)",
+    "Structural_Design_Engineer": {
+      "label": "Structural Design Engineer (Kỹ sư Thiết kế)",
+      "role": "Đơn vị thiết kế — tự tính ra tiết diện / cốt thép / bu lông / đường hàn",
+      "entry_points": [
+        "SKILL_CALC.md",
+        "SKILL_CONNECTION.md",
+        "SKILL_CALC_REPORT.md"
+      ],
       "keywords": {
+        "thuyết minh tính toán": 0.55,
+        "calculation sheet": 0.55,
+        "tính liên kết": 0.55,
+        "tính bu lông": 0.55,
+        "tính đường hàn": 0.55,
+        "tính bản mã": 0.55,
+        "chiều dài neo": 0.55,
+        "tính toán kết cấu": 0.55,
+        "thiết kế kết cấu": 0.55,
+        "tính cốt thép": 0.55,
+        "thiết kế dầm": 0.55,
+        "thiết kế cột": 0.55,
+        "tính móng cọc": 0.55,
+        "tính võng nứt": 0.55,
+        "chi tiết liên kết": 0.55,
+        "neo cốt thép": 0.55,
+        "tính tiết diện": 0.55,
+        "chọn tiết diện": 0.55,
+        "tính thép": 0.55,
+        "thép dầm": 0.35,
+        "thép cột": 0.35,
+        "thép sàn": 0.35,
+        "thép móng": 0.35,
+        "ULS": 0.35,
+        "SLS": 0.35,
+        "trạng thái giới hạn": 0.35,
+        "uốn": 0.35,
+        "xoắn": 0.35,
+        "nén": 0.35,
+        "moment": 0.35,
+        "lực cắt": 0.35,
+        "lực dọc": 0.35,
+        "ổn định tổng thể": 0.35,
+        "ổn định cục bộ": 0.35,
+        "LTB": 0.35,
+        "lateral torsional buckling": 0.35,
+        "dầm thép": 0.35,
+        "cột thép": 0.35,
+        "dầm BTCT": 0.35,
+        "cột BTCT": 0.35,
+        "sàn BTCT": 0.35,
+        "vách BTCT": 0.35,
+        "steel design": 0.35,
+        "RC design": 0.35,
+        "connection design": 0.35,
+        "bolt design": 0.35,
+        "weld design": 0.35,
         "bê tông cốt thép": 0.5,
         "btct": 0.45,
-        "tính dầm": 0.45,
-        "tính cột": 0.45,
-        "tính sàn": 0.45,
-        "vách cứng": 0.45,
-        "cốt thép": 0.4,
         "tcvn 5574": 0.55,
-        "độ võng": 0.35,
-        "bề rộng vết nứt": 0.45,
-        "chọc thủng": 0.45
-      }
-    },
-    "SKILL_STEEL_PEB": {
-      "label": "Kết cấu Thép & Nhà Công nghiệp (TCVN 5575:2024)",
-      "keywords": {
-        "kết cấu thép": 0.55,
-        "nhà thép": 0.5,
-        "peb": 0.5,
-        "khung zamil": 0.5,
-        "xà gồ": 0.45,
-        "bu lông neo": 0.45,
-        "liên kết hàn": 0.45,
-        "bản mã": 0.4,
         "tcvn 5575": 0.55,
-        "nhà công nghiệp": 0.45
+        "độ võng": 0.4,
+        "tính dầm": 0.5,
+        "tính cột": 0.5,
+        "tính sàn": 0.5,
+        "kết cấu thép": 0.5
       }
     },
-    "SKILL_CAD_DCE": {
-      "label": "Triển khai Bản vẽ CAD Kết cấu (DCE Pro)",
+    "SKILL_PHULUC": {
+      "label": "SKILL_PHULUC (Phụ lục Tính toán)",
+      "role": "Phụ lục tính toán step-by-step đầy đủ cho thẩm tra",
+      "entry_points": [
+        "templates/TMTT_FULL.md",
+        "templates/PARTIAL_BE_TONG.md",
+        "templates/PARTIAL_THEP.md"
+      ],
       "keywords": {
-        "bản vẽ cad": 0.55,
-        "dxf": 0.5,
-        "dwg": 0.5,
-        "autocad": 0.5,
-        "mặt bằng kết cấu": 0.45,
-        "triển khai bản vẽ": 0.5,
-        "khung tên": 0.4,
-        "dimstyle": 0.45,
-        "layer dce": 0.55,
-        "tcvn 5571": 0.5
+        "phụ lục tính toán": 0.55,
+        "phụ lục kết cấu": 0.55,
+        "thuyết minh chi tiết": 0.55,
+        "bảng tính kết cấu": 0.55,
+        "giải trình kỹ thuật": 0.55,
+        "báo cáo kỹ thuật đầy đủ": 0.55,
+        "TMTT": 0.55,
+        "thuyết minh tính toán đầy đủ": 0.55,
+        "appendix": 0.55,
+        "calculation appendix": 0.55,
+        "step-by-step": 0.35,
+        "từng bước": 0.35,
+        "đầy đủ 12 chương": 0.35,
+        "phụ lục bê tông": 0.35,
+        "phụ lục thép": 0.35,
+        "phụ lục dầm": 0.35,
+        "phụ lục cột": 0.35
       }
     },
-    "SKILL_FORMWORK_SHORING": {
-      "label": "Cốp pha, Giàn giáo & Hệ chống đỡ",
+    "Technical_Illustrator": {
+      "label": "Technical Illustrator (Minh họa Kỹ thuật)",
+      "role": "Vẽ hình minh họa 2D/3D — CHỈ là skill phụ trợ khi có nội dung tính toán",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "vẽ minh họa": 0.55,
+        "tạo ảnh phương án": 0.55,
+        "render phối cảnh": 0.55,
+        "vẽ mặt cắt": 0.55,
+        "vẽ chi tiết thép": 0.55,
+        "sơ đồ biện pháp thi công": 0.55,
+        "trực quan hóa": 0.55,
+        "visualization": 0.55,
+        "vẽ bản vẽ": 0.55,
+        "vẽ 2D": 0.55,
+        "vẽ 3D": 0.55,
+        "render 3D": 0.55,
+        "phối cảnh 3D": 0.55,
+        "vẽ chi tiết": 0.55,
+        "chi tiết cấu tạo": 0.55,
+        "vẽ nút khung": 0.55,
+        "mặt cắt ngang": 0.35,
+        "mặt cắt dọc": 0.35,
+        "hình ảnh minh họa": 0.35,
+        "biểu đồ": 0.35,
+        "draw section": 0.35,
+        "draw detail": 0.35,
+        "draw foundation": 0.35,
+        "draw beam": 0.35,
+        "vẽ đài cọc": 0.35,
+        "vẽ móng": 0.35,
+        "vẽ dầm": 0.35,
+        "DXF": 0.35,
+        "CAD": 0.35,
+        "nút khung": 0.35
+      }
+    },
+    "Cost_Estimator": {
+      "label": "Cost Estimator (Phân tích Chi phí)",
+      "role": "So sánh chi phí, Value Engineering, Embodied Carbon",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "value engineering": 0.55,
+        "VE": 0.55,
+        "tối ưu chi phí": 0.55,
+        "so sánh chi phí": 0.55,
+        "phân tích chi phí": 0.55,
+        "tối ưu ngân sách": 0.55,
+        "giảm hàm lượng thép": 0.55,
+        "CAPEX": 0.55,
+        "embodied carbon": 0.55,
+        "ROI phương án": 0.55,
+        "tính carbon": 0.55,
+        "carbon footprint": 0.55,
+        "đơn giá": 0.55,
+        "dự toán chi phí": 0.55,
+        "tiết kiệm": 0.55,
+        "tiết kiệm chi phí": 0.55,
+        "BOQ": 0.35,
+        "bill of quantities": 0.35,
+        "đơn giá vật liệu": 0.35,
+        "nhân công": 0.35,
+        "chi phí lãi vay": 0.35,
+        "tiến độ chi phí": 0.35,
+        "giảm vật liệu": 0.35,
+        "tối ưu vật liệu": 0.35,
+        "LEED": 0.35,
+        "green building": 0.35,
+        "so sánh BTCT vs thép": 0.35,
+        "so sánh phương án chi phí": 0.35,
+        "schedule impact": 0.35,
+        "hidden cost": 0.35
+      }
+    },
+    "SKILL_FORENSIC": {
+      "label": "SKILL_FORENSIC (Điều tra Sự cố)",
+      "role": "Điều tra nguyên nhân sự cố, back-calculation, hypothesis ranking",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "sự cố": 0.55,
+        "sập": 0.55,
+        "nứt nghiêm trọng": 0.55,
+        "điều tra nguyên nhân": 0.55,
+        "NCR nghiêm trọng": 0.55,
+        "phân tích hư hỏng": 0.55,
+        "back-calculation": 0.55,
+        "tính toán ngược": 0.55,
+        "failure investigation": 0.55,
+        "collapse": 0.55,
+        "structural failure": 0.55,
+        "bị nứt": 0.55,
+        "vết nứt": 0.55,
+        "nguyên nhân nứt": 0.55,
+        "kiểm tra nguyên nhân": 0.55,
+        "nứt xéo": 0.55,
+        "nứt cột": 0.55,
+        "nứt dầm": 0.55,
+        "biến dạng": 0.35,
+        "lún lệch": 0.35,
+        "nguyên nhân sập": 0.35,
+        "giả thuyết": 0.35,
+        "hypothesis": 0.35,
+        "forensic": 0.35,
+        "root cause": 0.35,
+        "remedial": 0.35,
+        "phương án xử lý sự cố": 0.35,
+        "thí nghiệm kiểm chứng": 0.35
+      }
+    },
+    "SKILL_VERIFY": {
+      "label": "SKILL_VERIFY (Kiểm chứng Chéo & Kiểm soát Xung đột)",
+      "role": "Cross-check kết quả, kiểm soát xung đột hồ sơ chéo (CDC-01 đến CDC-08)",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "kiểm chứng": 0.55,
+        "verify": 0.55,
+        "cross-check": 0.55,
+        "so sánh kết quả": 0.55,
+        "kiểm chứng chéo": 0.55,
+        "phát hiện mâu thuẫn": 0.55,
+        "sai lệch": 0.55,
+        "cross verification": 0.55,
+        "double check": 0.55,
+        "xung đột hồ sơ": 0.55,
+        "kiểm soát xung đột": 0.55,
+        "cross-doc conflict": 0.55,
+        "CDC": 0.55,
+        "CDC-01": 0.55,
+        "CDC-02": 0.55,
+        "CDC-03": 0.55,
+        "CDC-04": 0.55,
+        "CDC-05": 0.55,
+        "CDC-06": 0.55,
+        "CDC-07": 0.55,
+        "CDC-08": 0.55,
+        "đồ thị sự thật": 0.55,
+        "project truth graph": 0.55,
+        "so sánh ETABS": 0.35,
+        "so sánh SAP2000": 0.35,
+        "variance": 0.35,
+        "inconsistency": 0.35,
+        "kiểm tra nhất quán": 0.35,
+        "standard conflict": 0.35,
+        "xung đột tiêu chuẩn": 0.35,
+        "phiên bản tiêu chuẩn": 0.35,
+        "lệch cao độ tầng": 0.35,
+        "lệch lưới trục": 0.35,
+        "xung đột mác bê tông": 0.35,
+        "xung đột vật liệu": 0.35,
+        "cột mồ côi": 0.35,
+        "tĩnh không dầm": 0.35,
+        "tĩnh không mep": 0.35,
+        "mũi cọc địa chất": 0.35,
+        "giai đoạn hồ sơ không đồng bộ": 0.35
+      }
+    },
+    "SKILL_RFI": {
+      "label": "SKILL_RFI (Quản lý Giao dịch Kỹ thuật)",
+      "role": "Quản lý RFI, NCR, Submittal, Change Order với các bên",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "tạo RFI": 0.55,
+        "theo dõi RFI": 0.55,
+        "phản hồi RFI": 0.55,
+        "RFI quá hạn": 0.55,
+        "submittal": 0.55,
+        "change order": 0.55,
+        "shop drawing": 0.55,
+        "transmittal": 0.55,
+        "giao dịch kỹ thuật": 0.55,
+        "document lifecycle": 0.55,
+        "nhà thầu": 0.35,
+        "contractor": 0.35,
+        "subcontractor": 0.35,
+        "chủ đầu tư": 0.35,
+        "owner": 0.35,
+        "CSHT": 0.35,
+        "deadline": 0.35,
+        "theo dõi": 0.35,
+        "tracking": 0.35,
+        "leo thang": 0.35,
+        "escalation": 0.35,
+        "phản hồi": 0.35,
+        "response": 0.35
+      }
+    },
+    "SKILL_GEOTECH": {
+      "label": "SKILL_GEOTECH (Địa kỹ thuật)",
+      "role": "Phân tích ĐCCT, tính thông số Plaxis, tương quan SPT/CPT",
+      "entry_points": [
+        "SKILL.md"
+      ],
+      "keywords": {
+        "thông số đất": 0.55,
+        "SPT": 0.55,
+        "CPT": 0.55,
+        "CPTu": 0.55,
+        "Plaxis input": 0.55,
+        "Plaxis": 0.55,
+        "E50": 0.55,
+        "Hardening Soil": 0.55,
+        "Mohr-Coulomb": 0.55,
+        "tường vây": 0.55,
+        "EA EI": 0.55,
+        "ứng suất hữu hiệu": 0.55,
+        "phân tích địa chất": 0.55,
+        "ĐCCT": 0.55,
+        "hố đào sâu": 0.55,
+        "biện pháp thi công hầm": 0.55,
+        "Soft Soil Creep": 0.55,
+        "thông số Plaxis": 0.55,
+        "địa chất công trình": 0.55,
+        "khảo sát địa chất": 0.55,
+        "cừ Larsen": 0.35,
+        "cừ thép": 0.35,
+        "diaphragm wall": 0.35,
+        "base heave": 0.35,
+        "strut": 0.35,
+        "waling": 0.35,
+        "OCR": 0.35,
+        "K0": 0.35,
+        "Su": 0.35,
+        "undrained": 0.35,
+        "tương quan SPT": 0.35,
+        "tương quan CPT": 0.35,
+        "geostatic stress": 0.35,
+        "effective stress": 0.35,
+        "pile load test": 0.35,
+        "Davisson": 0.35,
+        "Chin-Kondner": 0.35,
+        "plane strain ratio": 0.35,
+        "báo cáo địa chất": 0.55,
+        "thuyết minh địa chất": 0.55
+      }
+    },
+    "SKILL_TEMPWORKS": {
+      "label": "SKILL_TEMPWORKS (Thiết kế Cốp pha & Biện pháp thi công)",
+      "role": "Thiết kế cốp pha sàn, cây chống, kiểm tra ổn định thi công",
+      "entry_points": [
+        "SKILL.md",
+        "calculators/calc_formwork_slab.py"
+      ],
       "keywords": {
         "cốp pha": 0.55,
-        "ván khuôn": 0.5,
-        "giàn giáo": 0.5,
-        "ringlock": 0.5,
-        "chống tăng": 0.45,
-        "xà gồ thép hộp": 0.45,
-        "hệ chống đỡ": 0.45
+        "coffa": 0.55,
+        "cây chống": 0.55,
+        "shoring": 0.55,
+        "bracing": 0.55,
+        "temporary works": 0.55,
+        "ván khuôn": 0.55,
+        "giàn giáo": 0.55,
+        "scaffolding": 0.55,
+        "hệ giằng": 0.55,
+        "cốp pha sàn": 0.55,
+        "cốp pha dầm": 0.55,
+        "cốp pha cột": 0.55,
+        "cốp pha tường": 0.55,
+        "cây chống đơn": 0.55,
+        "giáo nêm": 0.55,
+        "giáo ringlock": 0.55,
+        "giáo đĩa": 0.55,
+        "ván ép phủ phim": 0.55,
+        "xà gồ cốp pha": 0.55,
+        "đà giáo": 0.55,
+        "tải trọng thi công": 0.35,
+        "construction load": 0.35,
+        "formwork": 0.35,
+        "propping": 0.35,
+        "reshoring": 0.35,
+        "chống phụ": 0.35,
+        "ổn định thi công": 0.35,
+        "falsework": 0.35
       }
     },
-    "SKILL_FOUNDATION_PILE": {
-      "label": "Nền móng & Cọc (TCVN 10304:2014)",
+    "Project_Manager": {
+      "label": "Project Manager (Quản lý Dự án & Tiến độ PMO)",
+      "role": "Quản lý vòng đời dự án, lộ trình pháp lý, ĐTM, PCCC",
+      "entry_points": [
+        "SKILL.md",
+        "scripts/project_grading.py",
+        "scripts/msproject_bridge.py"
+      ],
       "keywords": {
-        "móng cọc": 0.55,
-        "cọc khoan nhồi": 0.55,
-        "cọc ép": 0.5,
-        "đài cọc": 0.5,
-        "móng đơn": 0.45,
-        "móng băng": 0.45,
-        "tường vây": 0.5,
-        "cọc đại trà": 0.45,
-        "tcvn 10304": 0.55
+        "lập tiến độ": 0.55,
+        "quản lý rủi ro": 0.55,
+        "tài liệu pháp lý": 0.55,
+        "milestone": 0.55,
+        "Gantt chart": 0.55,
+        "tiến độ thi công": 0.55,
+        "ĐTM": 0.55,
+        "đánh giá tác động môi trường": 0.55,
+        "PCCC": 0.55,
+        "phòng cháy chữa cháy": 0.55,
+        "Master Schedule": 0.55,
+        "MS Project": 0.55,
+        "phân cấp công trình": 0.55,
+        "EVM": 0.55,
+        "CPM": 0.55,
+        "risk register": 0.35,
+        "risk matrix": 0.35,
+        "WBS": 0.35,
+        "critical path": 0.35,
+        "stakeholder": 0.35,
+        "project timeline": 0.35
       }
     },
-    "SKILL_SEISMIC_WIND": {
-      "label": "Tải trọng Gió & Động đất (TCVN 2737:2023 / 9386:2025)",
+    "SKILL_BIM_COORDINATION": {
+      "label": "SKILL_BIM_COORDINATION (BIM & CAD Clash Audit)",
+      "role": "Clash detection giữa KC và MEP, IFC analysis",
+      "entry_points": [
+        "SKILL.md"
+      ],
       "keywords": {
-        "tải trọng gió": 0.55,
-        "động đất": 0.55,
-        "tcvn 2737": 0.6,
-        "tcvn 9386": 0.6,
-        "tổ hợp tải trọng": 0.5,
-        "phổ phản ứng": 0.5,
-        "chuyển vị đỉnh": 0.45,
-        "story drift": 0.45
+        "clash detection": 0.55,
+        "BIM review": 0.55,
+        "IFC analysis": 0.55,
+        "xung đột kỹ thuật": 0.55,
+        "BIM coordination": 0.55,
+        "model review": 0.55,
+        "lỗ mở dầm": 0.55,
+        "thông thủy": 0.55,
+        "đối chiếu lưới trục": 0.55,
+        "IFC": 0.35,
+        "Revit": 0.35,
+        "Navisworks": 0.35,
+        "MEP clash": 0.35,
+        "structural clash": 0.35,
+        "coordination report": 0.35
       }
     },
-    "SKILL_AUDIT_EVALUATION": {
-      "label": "Thẩm tra Thiết kế & Phát hành RFI/NCR",
+    "SKILL_DUAL_AGENT_BRIDGE": {
+      "label": "SKILL_DUAL_AGENT_BRIDGE (Cầu nối Gemini ↔ Claude)",
+      "role": "Điều phối bàn giao ca trực, khóa phân vùng và thẩm tra đối kháng giữa Gemini và Claude qua Bus v3.0",
+      "entry_points": [
+        "SKILL.md",
+        "scripts/quick_status.py",
+        "scripts/claim_task.py",
+        "scripts/handover_task.py"
+      ],
       "keywords": {
-        "thẩm tra": 0.55,
-        "rà soát bản vẽ": 0.5,
-        "rfi": 0.5,
-        "ncr": 0.5,
-        "khoanh lỗi": 0.5,
-        "báo cáo thẩm tra": 0.6,
-        "red-team": 0.45,
-        "đối chiếu cad": 0.5
-      }
-    },
-    "SKILL_REPORT_TMTT": {
-      "label": "Thuyết minh Tính toán & Tờ trình (Nghị định 30)",
-      "keywords": {
-        "thuyết minh tính toán": 0.6,
-        "tmtt": 0.55,
-        "phụ lục tính toán": 0.55,
-        "tờ trình": 0.5,
-        "nghị định 30": 0.55,
-        "omml": 0.5,
-        "calculation sheet": 0.5,
-        "gate 7": 0.45,
-        "thuyết minh": 0.4
-      }
-    },
-    "SKILL_BPTC_CONSTRUCTION": {
-      "label": "Biện pháp Thi công (BPTC) & Cẩu tháp / Vận thăng",
-      "keywords": {
-        "biện pháp thi công": 0.6,
-        "bptc": 0.55,
-        "cẩu tháp": 0.55,
-        "gông cẩu": 0.55,
-        "neo cẩu": 0.55,
-        "vận thăng": 0.5,
-        "đào đất": 0.45,
-        "hệ shoring": 0.5
-      }
-    },
-    "SKILL_BIM_ETABS_SAP": {
-      "label": "Mô hình Phân tích ETABS / SAP2000 / SAFE",
-      "keywords": {
-        "etabs": 0.55,
-        "sap2000": 0.55,
-        "safe": 0.45,
-        "e2k": 0.55,
-        "s2k": 0.55,
-        "nội lực": 0.4,
-        "mô hình phân tích": 0.45,
-        "oapi": 0.5
-      }
-    },
-    "SKILL_PMO_CONTRACT": {
-      "label": "Quản lý Dự án, Tiến độ & Pháp lý Hợp đồng",
-      "keywords": {
-        "tiến độ": 0.45,
-        "hợp đồng": 0.45,
-        "biên bản nghiệm thu": 0.5,
-        "công văn": 0.45,
-        "pmo": 0.5,
-        "qcvn 03": 0.45,
-        "qcvn 06": 0.45
-      }
-    },
-    "SKILL_QS_COSTING": {
-      "label": "Bóc tách Khối lượng (QS) & Dự toán",
-      "keywords": {
-        "khối lượng": 0.45,
-        "boq": 0.55,
-        "dự toán": 0.55,
-        "bóc tách": 0.5,
-        "thống kê thép": 0.5,
-        "đơn giá": 0.45
+        "bàn giao Claude": 0.55,
+        "bàn giao Gemini": 0.55,
+        "phối hợp 2 AI": 0.55,
+        "sync bus": 0.55,
+        "handoff memo": 0.55,
+        "DUAL_AGENT_BUS": 0.55,
+        "thẩm tra đối kháng": 0.55,
+        "bàn giao task": 0.55,
+        "nhận ca": 0.55,
+        "claim task": 0.55,
+        "Red-Team Audit": 0.35,
+        "bus IPC": 0.35,
+        "kiểm toán bus": 0.35,
+        "Dual-Agent": 0.35,
+        "file_ipc": 0.35
       }
     },
     "SKILL_SYSTEM_ENGINEERING": {
@@ -352,6 +692,141 @@
         "perception loop": 0.55,
         "run_all_tests": 0.6
       }
+    }
+  },
+  "tie_breakers": {
+    "description": "Khi 2+ skills cùng match, áp dụng tie-breaker rules theo thứ tự ưu tiên",
+    "rules": [
+      {
+        "rule_id": "TB-01",
+        "condition": "SDE_keywords_present AND NOT DE_keywords_present",
+        "winner": "Structural_Design_Engineer",
+        "reason": "Có keyword tính toán thiết kế, không có keyword review/thẩm tra"
+      },
+      {
+        "rule_id": "TB-02",
+        "condition": "DE_keywords_present AND NOT SDE_keywords_present",
+        "winner": "Design_Evaluation",
+        "reason": "Có keyword review/thẩm tra, không có keyword tính toán thiết kế"
+      },
+      {
+        "rule_id": "TB-03",
+        "condition": "SDE_keywords_present AND DE_keywords_present",
+        "winner": "PIPELINE:SDE→DE",
+        "reason": "Cả tính toán và review → chạy nối tiếp: tính trước, review sau"
+      },
+      {
+        "rule_id": "TB-04",
+        "condition": "GEO_keywords_present",
+        "winner": "SKILL_GEOTECH",
+        "reason": "Keyword địa kỹ thuật luôn thắng tuyệt đối"
+      },
+      {
+        "rule_id": "TB-05",
+        "condition": "TI_only AND has_calculation_context",
+        "winner": "DELEGATE_TO_PRIMARY",
+        "reason": "Technical_Illustrator không bao giờ là skill chính khi có nội dung tính toán"
+      },
+      {
+        "rule_id": "TB-06",
+        "condition": "TW_keywords_present",
+        "winner": "SKILL_TEMPWORKS",
+        "reason": "Keyword cốp pha, ván khuôn, cây chống, temporary works luôn thắng tuyệt đối"
+      }
+    ]
+  },
+  "pipeline_templates": {
+    "design_then_review": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Design_Evaluation"
+      ],
+      "trigger_keywords": [
+        "tính rồi review",
+        "tính lại rồi lập tờ trình",
+        "thiết kế xong báo cáo",
+        "rồi lập tờ trình",
+        "rồi trình duyệt",
+        "rồi thẩm tra",
+        "rồi review",
+        "tính.*rồi.*(lập tờ trình|trình duyệt|báo cáo|review)"
+      ],
+      "description": "Tính toán thiết kế → Review Gate → Xuất báo cáo"
+    },
+    "design_then_draw": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Technical_Illustrator"
+      ],
+      "trigger_keywords": [
+        "tính rồi vẽ",
+        "tính.*rồi vẽ",
+        "rồi vẽ mặt cắt",
+        "rồi vẽ chi tiết",
+        "rồi vẽ",
+        "thiết kế xong vẽ",
+        "tính.*rồi.*vẽ"
+      ],
+      "description": "Tính toán thiết kế → Vẽ hình minh họa 2D"
+    },
+    "geotech_then_design": {
+      "skills": [
+        "SKILL_GEOTECH",
+        "Structural_Design_Engineer"
+      ],
+      "trigger_keywords": [
+        "phân tích đất rồi thiết kế móng",
+        "SPT xong tính móng"
+      ],
+      "description": "Phân tích địa chất → Thiết kế móng/cọc"
+    },
+    "design_then_cost": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "thiết kế xong tính chi phí",
+        "tính rồi so sánh chi phí"
+      ],
+      "description": "Thiết kế → Phân tích chi phí / VE"
+    },
+    "full_review_pipeline": {
+      "skills": [
+        "Design_Evaluation",
+        "SKILL_VERIFY",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "review toàn diện",
+        "thẩm tra đầy đủ",
+        "full audit"
+      ],
+      "description": "Review → Kiểm chứng → Phân tích chi phí"
+    },
+    "design_then_tempworks": {
+      "skills": [
+        "Structural_Design_Engineer",
+        "SKILL_TEMPWORKS"
+      ],
+      "trigger_keywords": [
+        "tính sàn rồi tính cốp pha",
+        "thiết kế xong tính ván khuôn",
+        "tính sàn xong tính coffa"
+      ],
+      "description": "Thiết kế kết cấu sàn → Thiết kế hệ cốp pha & cây chống"
+    },
+    "tempworks_then_cost": {
+      "skills": [
+        "SKILL_TEMPWORKS",
+        "Cost_Estimator"
+      ],
+      "trigger_keywords": [
+        "tính cốp pha rồi tính chi phí",
+        "tính coffa xong dự toán",
+        "dự toán cốp pha"
+      ],
+      "description": "Thiết kế cốp pha → Dự toán chi phí ván khuôn & cây chống"
     }
   }
 }

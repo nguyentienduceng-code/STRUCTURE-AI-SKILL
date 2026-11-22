@@ -1,7 +1,7 @@
 ---
 name: Global_Dispatcher
-version: 2.0.0
-last_updated: 2026-11-12
+version: 3.0.0
+last_updated: 2026-11-20
 description: "Bộ điều phối trung tâm — Tự động phân loại yêu cầu người dùng và định tuyến đến đúng Skill phù hợp nhất. Giảm cognitive load cho User: chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên."
 triggers:
   - "Mọi yêu cầu mới từ User khi chưa rõ Skill nào"
@@ -13,7 +13,7 @@ triggers:
 
 > **Vai trò:** Entry point DUY NHẤT cho mọi yêu cầu kỹ thuật. Phân loại, định tuyến, và quản lý pipeline.  
 > **Nguyên tắc:** User chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên → Dispatcher tự xử lý phần còn lại.  
-> **Version:** 2.0.0 — 2026-11-12
+> **Version:** 3.0.0 (2D Cognitive Dispatcher) — 2026-11-20
 
 ---
 
@@ -33,18 +33,18 @@ triggers:
 ### 1.1 Bước 1: Chạy Intent Classifier
 
 ```bash
-python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/scripts/intent_classifier.py" \
-    --prompt "<PROMPT CỦA USER>" \
-    --top 3 \
-    --verbose
+python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/intent_classifier.py" \
+    "<PROMPT CỦA USER>" \
+    --workspace "g:/My Drive/Google AI Studio"
 ```
 
-**Đọc output JSON** và xác định:
-- `primary_skill` — Skill được chọn
-- `confidence` — Mức tin cậy (0.0 → 1.0)
-- `confidence_level` — HIGH / MEDIUM / LOW
-- `is_pipeline` — Có cần chạy nhiều skill không
-- `pipeline` — Nếu là pipeline, thứ tự chạy
+**Đọc output JSON 2 chiều** và xác định:
+- `domain_skill` & `domain_confidence` — 1 trong 14 Skill thực tế (13 skill kỹ thuật + `SKILL_SYSTEM_ENGINEERING`)
+- `engagement_mode` & `mode_confidence` — `PRODUCT_COLLAB` | `SYSTEM_UPGRADE` | `SOLO_EXECUTION`
+- `deliverable_dir_win` / `deliverable_dir_posix` — Thư mục khóa cứng `04_Deliverables_ToTrinh/` (nếu `PRODUCT_COLLAB`)
+- `needs_project_confirmation` — Nếu `true`, BẮT BUỘC dừng hỏi xác nhận đúng dự án trước khi tạo phiếu
+- `use_dual_agent_bus` — `false` ở `SOLO_EXECUTION` (tắt Bus IPC, chạy 1 lượt)
+- `allow_script_patch` — `true` nếu là prompt lai cần sửa script build cục bộ của dự án rồi xuất lại hồ sơ
 
 ### Chọn tác tử và chạy phiếu công việc
 
@@ -298,10 +298,13 @@ Mọi handoff JSON được tạo bởi pipeline_builder.py tuân thủ schema t
 ```
 Global_Dispatcher/
 ├── SKILL.md                          ← (file này)
+├── intent_classifier.py              ← Core 2D Cognitive Classifier (Domain × Mode)
+├── project_target_resolver.py        ← Quét 01_Projects & 01_Structural_Projects
+├── product_deliverable_gate.py       ← Cổng nghiệm thu file thật + Jargon Linter
+├── sync_bus_2d_patch.py              ← Cầu nối SyncBus2DAdapter v3.4
+├── keyword_database.json             ← Từ điển 2D (14 Skill ID thật + 3 Chế độ)
 └── scripts/
-    ├── intent_classifier.py          ← Core classifier (200+ keywords)
-    ├── keyword_database.json         ← Keyword → Skill mapping database
-    └── pipeline_builder.py           ← Multi-skill pipeline builder
+    └── pipeline_builder.py           ← Ghép chuỗi multi-skill (dùng chung 14 Skill ID thật)
 ```
 
 ---

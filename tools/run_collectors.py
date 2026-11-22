@@ -66,11 +66,15 @@ def run_all_collectors() -> dict:
         "calculators": calculators_data
     }
 
-    # 1. Ghi memory/COLLECTED_METRICS.json
+    # 1. Ghi memory/COLLECTED_METRICS.json (cả trong .agents/memory và workspace/memory)
+    metrics_json = json.dumps(metrics, ensure_ascii=False, indent=2)
+    agents_metrics_file = AGENTS_ROOT / "memory" / "COLLECTED_METRICS.json"
+    agents_metrics_file.parent.mkdir(parents=True, exist_ok=True)
+    agents_metrics_file.write_text(metrics_json, encoding="utf-8")
     metrics_file = WORKSPACE_ROOT / "memory" / "COLLECTED_METRICS.json"
     metrics_file.parent.mkdir(parents=True, exist_ok=True)
-    metrics_file.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[COLLECTOR] ✅ Đã lưu dữ liệu đầy đủ tại: {metrics_file}")
+    metrics_file.write_text(metrics_json, encoding="utf-8")
+    print(f"[COLLECTOR] ✅ Đã lưu dữ liệu đầy đủ tại: {agents_metrics_file} & {metrics_file}")
 
     # 2. Tạo snapshot siêu nhẹ (< 3KB) cho Claude tại scratch/repo_digest.json và SYSTEM_SNAPSHOT.json
     digest = {

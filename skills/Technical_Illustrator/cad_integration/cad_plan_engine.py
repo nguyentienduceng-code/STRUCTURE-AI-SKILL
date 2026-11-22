@@ -57,9 +57,23 @@ def _import_sibling(name: str):
 # ==============================================================================
 
 @dataclass
+class CompositeCellSpec:
+    """Đặc tả ô chi tiết độc lập trong chế độ COMPOSITE_DETAIL_GRID (v5.0)."""
+    cell_id: str                            # Mã định danh: "CT-01", "CT-02", ...
+    bbox: Tuple[float, float, float, float] # (x0, y0, x1, y1) tọa độ Model mm của ô
+    scale_S: float                          # Tỷ lệ chi tiết S_i (ví dụ 10.0, 15.0, 20.0)
+    scale_label: str                        # "1/10", "1/15", "1/20", ...
+    dim_style: str                          # DimStyle: "Dce_10MV", "Dce_15MV", ...
+    dimlfac: float                          # Hệ số đo dimlfac = scale_S / S_main
+    title: str                              # Tiêu đề ô: "CHI TIẾT BẢN MÃ NEO VÁCH"
+    title_pos: Tuple[float, float]          # Tọa độ (x, y) đặt nhãn tiêu đề ô
+    inner_origin: Tuple[float, float] = (0.0, 0.0) # Tọa độ gốc chèn đối tượng chi tiết
+
+
+@dataclass
 class SheetLayoutSpec:
     sheet_size: str          # "A1" (841x594) hoặc "A0" (1189x841)
-    layout_mode: str         # "SINGLE_FULL_VIEWPORT" | "DUAL_VERTICAL_VIEWPORT"
+    layout_mode: str         # "SINGLE_FULL_VIEWPORT" | "DUAL_VERTICAL_VIEWPORT" | "COMPOSITE_DETAIL_GRID"
     scale: float             # Hệ số tỷ lệ S* (VD: 50.0, 100.0, 150.0, 200.0)
     scale_label: str         # "1/100", "1/200", ...
     dimstyle_dce: str        # "Dce_100MV", "Dce_200MV", ...
@@ -89,6 +103,7 @@ class SheetLayoutSpec:
     tier4_bubble_rad: float
     axis_right_ext: float
     axis_top_ext: float
+    detail_cells: List[CompositeCellSpec] = field(default_factory=list)
 
 
 class DceSheetLayoutPlanner:
@@ -235,6 +250,162 @@ class DceSheetLayoutPlanner:
             tier4_bubble_rad=bub_r_p * S,
             axis_right_ext=ext_rt_p * S,
             axis_top_ext=ext_rt_p * S,
+        )
+
+    @classmethod
+    def resolve_composite_grid(
+        cls,
+        model_w_mm: float,
+        model_h_mm: float,
+        detail_specs: Optional[List[Dict[str, Any]]] = None,
+        preferred_scale: Optional[float] = None,
+        sheet_size: str = "A1",
+        primary_ratio: float = 0.60,
+    ) -> SheetLayoutSpec:
+        """
+        Quy hoạch Lưới Chi Tiết Đa Tỷ Lệ (COMPOSITE_DETAIL_GRID — v5.0):
+        - WORK_ZONE chia thành:
+          1. PRIMARY_ZONE (chiếm 55-65%): Mặt bằng hoặc khung chính tỷ lệ S_main.
+          2. DETAIL_CELL[1..N] (chiếm 35-45%): Lưới xếp dọc (1x2, 1x3) hoặc 2x2 cho các ô chi tiết độc lập.
+        - Mỗi ô chi tiết mang tỷ lệ S_i độc lập, DimStyle = Dce_{S_i}MV, dimlfac = S_i / S_main.
+        """
+        chosen_sheet = sheet_size.upper()
+        pw, ph = cls.PAPER_SIZES_MM.get(chosen_sheet, (841.0, 594.0))
+
+        margin_left, margin_other = 25.0, 10.0
+        sidebar_w_paper = 165.0 if chosen_sheet == "A1" else 200.0
+        sidebar_gap_paper = 6.0
+        title_band_h_paper = 24.0
+
+        c_x0_p = margin_left + 3.0
+        c_x1_p = (pw - margin_other - sidebar_w_paper) - sidebar_gap_paper
+        c_y0_p = margin_other + title_band_h_paper + 4.0
+        c_y1_p = ph - margin_other - 3.0
+
+        avail_w_p = c_x1_p - c_x0_p
+        avail_h_p = c_y1_p - c_y0_p
+
+        p_ratio = max(0.50, min(primary_ratio, 0.70))
+        primary_w_p = avail_w_p * p_ratio
+        detail_w_p = avail_w_p * (1.0 - p_ratio)
+        divider_x_p = c_x0_p + primary_w_p
+
+        pad_p = 48.0
+        net_primary_w = max(primary_w_p - pad_p, 10.0)
+        net_primary_h = max(avail_h_p - pad_p, 10.0)
+        raw_scale = max(model_w_mm / net_primary_w, model_h_mm / net_primary_h)
+
+        if preferred_scale is not None:
+            S = float(preferred_scale)
+        else:
+            candidates = [float(s) for s in cls.STANDARD_SCALES if s >= raw_scale * 0.95]
+            S = candidates[0] if candidates else float(cls.STANDARD_SCALES[-1])
+
+        fx0, fy0 = 0.0, 0.0
+        in_x0, in_y0 = margin_left * S, margin_other * S
+        in_x1, in_y1 = (pw - margin_other) * S, (ph - margin_other) * S
+        sb_div_x = in_x1 - sidebar_w_paper * S
+
+        specs_list = list(detail_specs or [])
+        n_cells = len(specs_list)
+        cells: List[CompositeCellSpec] = []
+
+        if n_cells > 0:
+            cell_gap_p = 5.0
+            total_gap_p = cell_gap_p * (n_cells - 1)
+            cell_h_p = (avail_h_p - total_gap_p) / n_cells
+
+            for idx, spec in enumerate(specs_list):
+                cid = spec.get("cell_id", f"CT-{idx+1:02d}")
+                title = spec.get("title", f"CHI TIẾT {cid}")
+                s_i = float(spec.get("scale", 10.0))
+
+                cell_y0_p = c_y0_p + (n_cells - 1 - idx) * (cell_h_p + cell_gap_p)
+                cell_y1_p = cell_y0_p + cell_h_p
+                cell_x0_p = divider_x_p + cell_gap_p
+                cell_x1_p = c_x1_p
+
+                box_m = (
+                    round(cell_x0_p * S, 1),
+                    round(cell_y0_p * S, 1),
+                    round(cell_x1_p * S, 1),
+                    round(cell_y1_p * S, 1),
+                )
+                dimlfac = round(s_i / S, 4)
+                title_pos = (
+                    round((box_m[0] + box_m[2]) / 2.0, 1),
+                    round(box_m[1] + 8.0 * S, 1),
+                )
+                inner_orig = (
+                    round((box_m[0] + box_m[2]) / 2.0, 1),
+                    round((box_m[1] + box_m[3]) / 2.0, 1),
+                )
+
+                cells.append(
+                    CompositeCellSpec(
+                        cell_id=cid,
+                        bbox=box_m,
+                        scale_S=s_i,
+                        scale_label=f"1/{int(s_i)}",
+                        dim_style=f"Dce_{int(s_i)}MV",
+                        dimlfac=dimlfac,
+                        title=title,
+                        title_pos=title_pos,
+                        inner_origin=inner_orig,
+                    )
+                )
+
+        canvas_x0_m = fx0 + c_x0_p * S
+        canvas_y0_m = fy0 + c_y0_p * S
+        canvas_x1_m = fx0 + divider_x_p * S
+        canvas_y1_m = fy0 + c_y1_p * S
+
+        plan_x0 = canvas_x0_m + (primary_w_p * S - model_w_mm) / 2.0
+        plan_y0 = canvas_y0_m + (avail_h_p * S - model_h_mm) / 2.0
+
+        sb_x0 = sb_div_x + sidebar_gap_paper * S
+        sb_w = sidebar_w_paper * S - sidebar_gap_paper * 2.0 * S
+        tb_x0 = in_x1 - sidebar_w_paper * S
+        tb_y0 = in_y0
+        tb_w = sidebar_w_paper * S
+        tb_h = 55.0 * S
+
+        title_band_bbox = (in_x0, in_y0, sb_div_x - sidebar_gap_paper * S, in_y0 + title_band_h_paper * S)
+        title_x = plan_x0 + model_w_mm / 2.0
+        title_y = in_y0 + (title_band_h_paper * 0.52) * S
+
+        return SheetLayoutSpec(
+            sheet_size=chosen_sheet,
+            layout_mode="COMPOSITE_DETAIL_GRID",
+            scale=S,
+            scale_label=f"1/{int(S)}",
+            dimstyle_dce=f"Dce_{int(S)}MV",
+            dimstyle_main=f"DCE_DIM_MAIN_{int(S)}",
+            dimstyle_setout=f"DCE_DIM_COT_{int(S)}",
+            frame_x0=fx0,
+            frame_y0=fy0,
+            frame_w=pw * S,
+            frame_h=ph * S,
+            inner_bbox=(in_x0, in_y0, in_x1, in_y1),
+            canvas_bbox=(canvas_x0_m, canvas_y0_m, canvas_x1_m, canvas_y1_m),
+            sidebar_bbox=(sb_div_x, in_y0, in_x1, in_y1),
+            title_block_bbox=(tb_x0, tb_y0, tb_x0 + tb_w, tb_y0 + tb_h),
+            title_band_bbox=title_band_bbox,
+            plan_x0=round(plan_x0, 1),
+            plan_y0=round(plan_y0, 1),
+            sidebar_divider_x=round(sb_div_x, 1),
+            sidebar_x0=round(sb_x0, 1),
+            sidebar_w=round(sb_w, 1),
+            title_header_pos=(round(title_x, 1), round(title_y, 1)),
+            viewport_fill_ratio=0.75,
+            tier1_setout_dist=8.0 * S,
+            tier2_bay_dim_dist=18.0 * S,
+            tier3_tot_dim_dist=30.0 * S,
+            tier4_bubble_dist=42.0 * S,
+            tier4_bubble_rad=4.0 * S,
+            axis_right_ext=18.0 * S,
+            axis_top_ext=18.0 * S,
+            detail_cells=cells,
         )
 
     @staticmethod

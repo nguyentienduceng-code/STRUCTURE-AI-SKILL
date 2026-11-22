@@ -22,6 +22,9 @@ for _p in (_DISPATCHER_DIR, _THIS_DIR):
     if _p.exists() and str(_p) not in sys.path:
         sys.path.insert(0, str(_p))
 
+if "intent_classifier" in sys.modules and not hasattr(sys.modules["intent_classifier"], "IntentClassifier2D"):
+    del sys.modules["intent_classifier"]
+
 from intent_classifier import IntentClassifier2D, MODE_PRODUCT, MODE_SOLO, MODE_SYSTEM
 from product_deliverable_gate import JargonLinter, ProductDeliverableGate
 from sync_bus_2d_patch import SyncBus2DAdapter, approve_drafts
@@ -87,7 +90,7 @@ class TestDispatcher2DModes(unittest.TestCase):
     def test_03_solo_execution_disables_bus_ipc(self) -> None:
         prompt = "Giải thích nhanh công thức tính độ võng sàn BTCT theo TCVN 5574:2018"
         res = self.classifier.classify(prompt)
-        self.assertEqual(res.domain_skill, "SKILL_STRUCTURAL_RC")
+        self.assertIn(res.domain_skill, ("Structural_Design_Engineer", "SKILL_STRUCTURAL_RC"))
         self.assertEqual(res.engagement_mode, MODE_SOLO)
         self.assertFalse(res.use_dual_agent_bus)
         self.assertEqual(res.claude_role, "NONE")

@@ -1,10 +1,10 @@
 ---
 name: Technical_Illustrator
-version: 1.7.0
-last_updated: 2026-11-15
-description: "Kỹ sư Minh họa Kỹ thuật & Tiến độ PMO AI chuyên sinh bản vẽ mặt cắt 2D chính xác (Python), Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI Split View 8 cột + CPM + Landscape Word Section Break) và ảnh mô phỏng 3D (AI Render). Kích hoạt khi nhắc đến: vẽ minh họa, vẽ mặt cắt, vẽ chi tiết thép, vẽ biểu đồ tiến độ, sơ đồ Gantt, timeline dự án, sơ đồ biện pháp thi công."
+version: 5.0.0
+last_updated: 2026-11-20
+description: "Kỹ sư Minh họa Kỹ thuật, Bản vẽ CAD Tham số DCE Pro v5.0 (BTCT, Thép PEB & BPTC) & Tiến độ PMO AI chuyên sinh bản vẽ mặt cắt 2D chính xác (Python), bản vẽ CAD đa tỷ lệ COMPOSITE_DETAIL_GRID, Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI) và ảnh mô phỏng 3D (AI Render). Kích hoạt khi nhắc đến: vẽ minh họa, vẽ mặt cắt, vẽ chi tiết thép, CAD DCE Pro, vẽ BPTC, cùm neo cần trục tháp, kết cấu thép PEB, biểu đồ tiến độ."
 ---
-# Technical Illustrator — SKILL Entry Point (v1.7.0)
+# Technical Illustrator — SKILL Entry Point (v5.0.0 DCE Pro Multi-Scale & Multi-Material)
 
 ## Tổng quan
 
@@ -92,6 +92,9 @@ DXF trên bản sao; chưa hỗ trợ sửa DWG trực tiếp hoặc chọn đ�
 | `dce_steel_adapter.py` | Adapter Kết cấu Thép 1:1 mm | `render_steel_components_to_dxf()`, `verify_steel_dxf_roundtrip()`, `validate_uniform_block_scale()`, ma trận `STATIC_2D_ACCURATE` vs `UNSUPPORTED_BLOCK_BEHAVIOR` |
 | `cad_tag_placement.py` | Lập lịch Đặt Nhãn & Chống Đè | `TagPlacementPlanner` (giữ manual override `element_id`/`view_id`, tự bật `leader` khi vướng lỗ/vật cản) |
 | `cad_sheet_set.py` | Bộ Tờ A3 & Viewport Kép TOP/BOTTOM | `SheetSetManifest`, `export_sheet_set()` (kiểm 5 cổng trước xuất, PaperSpace `VP_TOP`/`VP_BOTTOM` tách lớp) |
+| `cad_steel_primitives.py` | Thư viện Hình học Tham số Thép v5.0 | `draw_rolled_section`, `draw_tapered_member`, `draw_gusset_plate`, `draw_bolt_array`, `draw_weld_symbol_tcvn`, `compute_steel_bom` (TCVN 5575:2024) |
+| `cad_bptc_engine.py` | Engine Biện pháp Thi công BPTC v5.0 | `CadBptcEngine`, bản vẽ `BP-01` (Site Plan) & `BP-02` (Hệ cùm neo cẩu tháp QTP125 trên `COMPOSITE_DETAIL_GRID`) |
+| `cad_steel_peb_engine.py` | Engine Kết cấu Thép Tiền chế PEB v5.0 | `CadSteelPebEngine`, bản vẽ `ST-01` (Khung chính PEB vát tiết diện nhịp 24m) & `ST-03..04` liên kết bu lông 8.8 |
 
 ## Hướng dẫn Gọi Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py`)
 
@@ -108,6 +111,7 @@ python ".agents/skills/Technical_Illustrator/scripts/ms_project_gantt.py" \
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **5.0.0** | **2026-11-20** | **Phát hành DCE Pro v5.0**: Bố cục đa tỷ lệ `COMPOSITE_DETAIL_GRID`, 3 Profile Layer (`BTCT`, `STEEL_PEB`, `BPTC`), thư viện hình học tham số `cad_steel_primitives.py`, Engine Biện pháp thi công `cad_bptc_engine.py` (cùm neo cẩu tháp QTP125), Engine Kết cấu Thép `cad_steel_peb_engine.py` (khung PEB nhịp 24m) và 5 cổng kiểm toán mở rộng `G8.21–G8.25` (TCVN 5575:2024 & QCVN 18:2021/BXD). |
 | **1.7.0** | **2026-11-15** | Đối chiếu block/ATTRIB thực trong KC-03 và Form 2; bổ sung định danh dầm/sàn, catalog/binding, bố trí tag, tích hợp Steel và điều kiện kiểm thử. |
 | **1.6.0** | **2026-11-15** | Bổ sung quy trình bộ tờ kết cấu, ma trận coverage, đối chiếu PDF Cát Lái với 3 DXF v5.0, hợp đồng dữ liệu viewport/thép sàn và cổng nghiệm thu xuyên tờ. |
 | **1.5.0** | **2026-11-14** | Đồng bộ 8 MCP tools, output local, revision bắt buộc và phạm vi nghiệm thu physical/plan/full. |
