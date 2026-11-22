@@ -60,10 +60,13 @@ class CadBptcEngine:
         self._ensure_bptc_layers()
 
     def _ensure_bptc_layers(self) -> None:
-        """Đảm bảo đầy đủ 12 layer của Profile BPTC trong tài liệu DXF."""
+        """Đảm bảo đầy đủ layer của Profile BPTC và các layer thép liên quan trong tài liệu DXF."""
         if not self.doc:
             return
-        bptc_layers = cls.select_layer_profile("BPTC")
+        bptc_layers = cls.select_layer_profile("BPTC") + [
+            item for item in cls.select_layer_profile("STEEL_PEB")
+            if item[0].startswith("DCE_Steel_")
+        ]
         existing_layers = {ly.dxf.name for ly in self.doc.layers}
         for name, color, ltype, lw, screening in bptc_layers:
             if name not in existing_layers:
@@ -75,6 +78,7 @@ class CadBptcEngine:
                         "lineweight": lw,
                     },
                 )
+                existing_layers.add(name)
 
     # ==========================================================================
     # BP-02: CHI TIẾT HỆ CÙM NEO CẦN TRỤC THÁP (TOWER CRANE TIE COLLAR)
@@ -463,6 +467,12 @@ class CadBptcEngine:
             "title": "Tổng mặt bằng thi công & An toàn cần trục",
             "crane_radius_m": crane_radius_m,
             "sha256_sync_hash": "IN_MEMORY_UNSAVED",
+            "sheet_layout": {
+                "mode": "SINGLE_SITE_PLAN",
+                "sheet_size": layout_spec.sheet_size,
+                "primary_scale": layout_spec.scale,
+                "detail_cells": [],
+            },
         }
         if output_dxf:
             out_p = Path(output_dxf).resolve()

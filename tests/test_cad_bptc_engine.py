@@ -105,6 +105,15 @@ class TestCadBptcEngine(unittest.TestCase):
             self.assertEqual(res["sha256_sync_hash"], real_sha)
             self.assertEqual(res["provenance"]["dxf_sha256"], real_sha)
 
+            audit_res = dcc.audit_dxf_compliance(str(out_dxf), profile="bptc")
+            self.assertEqual(audit_res["status"], "PASS", f"BP-01 audit issues: {audit_res.get('issues')}")
+            self.assertTrue(audit_res.get("full_compliance_verified"))
+            by_id = {g["gate_id"]: g for g in audit_res["gate_results"]}
+            self.assertEqual(by_id["G8.21"]["status"], "NOT_APPLICABLE")
+            self.assertEqual(by_id["G8.22"]["status"], "NOT_APPLICABLE")
+            self.assertEqual(by_id["G8.24"]["status"], "NOT_APPLICABLE")
+            self.assertEqual(by_id["G8.25"]["status"], "PASS")
+
     def test_04_bptc_g825_evidence_based_fail(self):
         """Xóa thực thể thiết bị DCE_BPTC_Equip trên DXF phải khiến G8.25 FAIL (K1)."""
         with tempfile.TemporaryDirectory(prefix="bptc_neg_") as tmpdir:
@@ -113,6 +122,34 @@ class TestCadBptcEngine(unittest.TestCase):
             doc = ezdxf.readfile(str(out_dxf))
             msp = doc.modelspace()
             for ent in [e for e in msp if e.dxf.layer.lower() == "dce_bptc_equip"]:
+                msp.delete_entity(ent)
+            doc.saveas(str(out_dxf))
+            out_json = out_dxf.with_suffix(".bptc_audit.json")
+            dossier = json.loads(out_json.read_text(encoding="utf-8"))
+            new_sha = hashlib.sha256(out_dxf.read_bytes()).hexdigest()
+            dossier["sha256_sync_hash"] = new_sha
+            dossier["provenance"]["dxf_sha256"] = new_sha
+            out_json.write_text(json.dumps(dossier, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            audit_res = dcc.audit_dxf_compliance(str(out_dxf), profile="bptc")
+            self.assertEqual(audit_res["status"], "FAIL")
+            g25 = next(g for g in audit_res["gate_results"] if g["gate_id"] == "G8.25")
+            self.assertEqual(g25["status"], "FAIL")
+
+    def test_05_bp01_missing_safezone_fails_g825(self):
+        """Xóa vùng an toàn DCE_BPTC_SafeZone trên BP-01 phải khiến G8.25 FAIL."""
+        with tempfile.TemporaryDirectory(prefix="bptc_bp01_neg_") as tmpdir:
+            out_dxf = Path(tmpdir) / "BP-01_NoSafeZone.dxf"
+            self.engine.generate_bp01_site_plan(
+                site_w_m=80.0,
+                site_h_m=50.0,
+                crane_pos=(5.0, -2.0),
+                crane_radius_m=60.0,
+                output_dxf=str(out_dxf),
+            )
+            doc = ezdxf.readfile(str(out_dxf))
+            msp = doc.modelspace()
+            for ent in [e for e in msp if e.dxf.layer.lower() == "dce_bptc_safezone"]:
                 msp.delete_entity(ent)
             doc.saveas(str(out_dxf))
             out_json = out_dxf.with_suffix(".bptc_audit.json")

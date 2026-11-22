@@ -570,18 +570,22 @@ class TestStandardsGraphIntegration(unittest.TestCase):
 
     def test_decide_eta_with_standards_failsafe_when_graph_unavailable(self):
         """Đồ thị không khả dụng (graph=None nhưng import lỗi) -> không crash."""
-        # Pass graph=None: policy_engine sẽ tự import StandardsGraph.
-        # Ở đây ta xác nhận nếu trả về None thì quyết định vẫn đúng.
-        d = decide_eta_with_standards({"eta_M": 0.8}, element_type="dầm")
+        import policy_engine
+        from unittest import mock
+        with mock.patch.dict(policy_engine._standards_graph_cache, {"instance": None}, clear=True):
+            d = decide_eta_with_standards({"eta_M": 0.8}, element_type="dầm")
         # Hành vi eta luôn đúng (không phụ thuộc đồ thị có sẵn không)
         self.assertIn(d.action, (Action.PASS, Action.TRIGGER_VE, Action.REPAIR))
 
     def test_post_eval_trigger_propagates_standard_basis(self):
         """POST-EVAL-01 phải nhúng standard_basis + citations vào details."""
-        res = evaluate_trigger(
-            "POST-EVAL-01",
-            {"design_results": {"eta_M": 0.5}, "element_type": "dầm"},
-        )
+        import policy_engine
+        from unittest import mock
+        with mock.patch.dict(policy_engine._standards_graph_cache, {"instance": self.sg}, clear=True):
+            res = evaluate_trigger(
+                "POST-EVAL-01",
+                {"design_results": {"eta_M": 0.5}, "element_type": "dầm"},
+            )
         self.assertTrue(res.fired)  # η=0.5 <= 0.70 -> VE
         self.assertIn("standard_basis", res.details)
         self.assertIn("standard_citations", res.details)

@@ -99,15 +99,18 @@ def test_deprecated_scripts():
         "draw_tham_da.py"
     ]
 
+    scripts_folder = SKILLS_ROOT / "Technical_Illustrator" / "scripts"
     deprecated_folder = Path(__file__).parent.parent / "_deprecated"
-    if deprecated_folder.exists():
-        log_test("_deprecated folder exists", True)
-    else:
-        deprecated_folder = SKILLS_ROOT / "Technical_Illustrator" / "scripts" / "_deprecated"
-        log_test("_deprecated folder exists", deprecated_folder.exists())
+    if not deprecated_folder.exists():
+        deprecated_folder = scripts_folder / "_deprecated"
+    all_absent = all(not (scripts_folder / f).exists() for f in deprecated_files)
+    log_test(
+        "Deprecated migration verified",
+        deprecated_folder.exists() or all_absent,
+        message=str(deprecated_folder) if deprecated_folder.exists() else "All deprecated scripts absent from scripts/",
+    )
 
     # Check scripts are NOT in main folder
-    scripts_folder = SKILLS_ROOT / "Technical_Illustrator" / "scripts"
     for f in deprecated_files:
         path = scripts_folder / f
         if path.exists():

@@ -44,9 +44,9 @@ Mở rộng hàm `select_layer_profile(profile_name)` trả về cấu hình lay
 | Profile | Nhóm Layer bổ sung | Màu ACI | Kiểu nét | Lineweight (`370`) | Vai trò kỹ thuật |
 |---|---|---|---|---|---|
 | `STEEL_PEB` | `DCE_Steel_Main` | 7 (White) | `CONTINUOUS` | `50` (`0.50 mm`) | Cột, kèo khung chính, dầm tổ hợp |
-| `STEEL_PEB` | `DCE_Steel_Plate` | 3 (Green) | `CONTINUOUS` | `35` (`0.35 mm`) | Bản mã, mặt bích, sườn tăng cứng |
+| `STEEL_PEB` | `DCE_Steel_Plate` | 6 (Magenta) | `CONTINUOUS` | `25` (`0.25 mm`) | Bản mã, mặt bích, sườn tăng cứng |
 | `STEEL_PEB` | `DCE_Steel_Sec` | 4 (Cyan) | `CONTINUOUS` | `25` (`0.25 mm`) | Xà gồ C/Z, giằng mái, giằng cột |
-| `STEEL_PEB` | `DCE_Steel_Bolt` | 2 (Yellow) | `CONTINUOUS` | `25` (`0.25 mm`) | Bu lông cường độ cao, bu lông neo |
+| `STEEL_PEB` | `DCE_Steel_Bolt` | 1 (Red) | `CONTINUOUS` | `18` (`0.18 mm`) | Bu lông cường độ cao, bu lông neo |
 | `STEEL_PEB` | `DCE_Steel_Weld` | 1 (Red) | `CONTINUOUS` | `25` (`0.25 mm`) | Ký hiệu đường hàn góc, đường hàn đối đầu |
 | `STEEL_PEB` | `DCE_Steel_Hidden` | 8 (Gray) | `HIDDEN2` | `15` (`0.15 mm`) | Nét khuất cánh dầm, lỗ bu lông mặt sau |
 | `BPTC` | `DCE_BPTC_Equip` | 6 (Magenta) | `CONTINUOUS` | `35` (`0.35 mm`) | Cần trục tháp, bơm bê tông, xe cẩu |

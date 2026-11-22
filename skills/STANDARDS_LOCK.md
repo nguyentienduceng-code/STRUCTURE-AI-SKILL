@@ -48,7 +48,7 @@
 | `Design_Evaluation/calculators/wind_load_calc.py` | TCVN 2737:2023 | TCVN 2737:2023 | ✅ Khớp |
 | `Design_Evaluation/calculators/earthquake_load_calc.py` | TCVN 9386:2025 (P1 + P5) | TCVN 9386:2025 | ✅ Khớp |
 | `Design_Evaluation/calculators/rc_flexure_design.py` | TCVN 5574:2018 | TCVN 5574:2018 | ✅ Khớp |
-| `Design_Evaluation/calculators/deflection_check.py` | TCVN 5574:2018 (PL M) | TCVN 5574:2018 | ✅ Khớp |
+| `Design_Evaluation/calculators/deflection_check.py` | TCVN 2737:2023 (Điều 11 & Phụ lục G, Bảng G.1) | TCVN 2737:2023 | ✅ Khớp (thay thế Phụ lục M TCVN 5574:2018 theo Lời nói đầu tr. 5; hỗ trợ `TCVN_5574_2018_LEGACY` khi đối chiếu) |
 | `Design_Evaluation/calculators/steel_member_check.py` | TCVN 5575:2012 | TCVN 5575:2024 | ⚠ **Lệch** — dùng cho hồ sơ đối chiếu theo 2012 |
 | `Design_Evaluation/calculators/steel_member_check_v2024.py` | TCVN 5575:2024 | TCVN 5575:2024 | ✅ Khớp — dùng cho hồ sơ mới (khuyến nghị) |
 | `Design_Evaluation/calculators/foundation_bearing.py` | TCVN 9362:2012 Đ.4.3.5 | TCVN 9362:2012 | ✅ Khớp |
@@ -88,7 +88,7 @@
 | `γ_n` (hệ số tầm quan trọng) | **C1: 0.87 · C2: 1.00 · C3: 1.15** | Hệ số tầm quan trọng theo Cấp hậu quả công trình | TCVN 2737:2023 Phụ lục H (Bảng H.1) |
 | `α_R` (BTCT, CB400-V) | 0.39 | Giới hạn `α_m` chống phá hoại giòn | TCVN 5574:2018 |
 | `μ_min` (dầm BTCT) | 0.05 % | Hàm lượng cốt thép tối thiểu | TCVN 5574:2018 |
-| `[f]` võng dầm | L/250 (mặc định) — L/400 với dầm đỡ tường/kính | Độ võng cho phép | TCVN 5574:2018 Phụ lục M |
+| `[f]` võng dầm/sàn (theo nhịp L và chiều cao phòng h) | h≤6m: L/120 (1m)–L/150 (3m)–L/200 (6m)–L/250 (12m)–L/300 (≥24m); h>6m: từ 24m L/250, ≥36m L/300 (công xôn dùng L_eff=2L) | Độ võng đứng giới hạn thẩm mỹ-kết cấu | **TCVN 2737:2023 Điều 11 & Phụ lục G (Bảng G.1)** *(thay thế Phụ lục M TCVN 5574:2018)* |
 
 ### 3.2. Quy tắc Phân cấp Công trình Xây dựng (Bắt buộc trích dẫn chính xác)
 1. **Phân biệt rõ 2 hệ thống phân cấp**:

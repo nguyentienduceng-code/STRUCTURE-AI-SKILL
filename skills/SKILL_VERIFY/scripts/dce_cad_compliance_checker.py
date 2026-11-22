@@ -248,14 +248,28 @@ class DCECADComplianceCheckerV4:
             except Exception as exc:
                 dxf_read_err = str(exc)
 
-        # G8.01: DXF_VERSION_AND_SYNTAX
-        g1_pass = dxf_exists and phys_cnt > 20 and (doc is not None)
+        shared_ctx_dir = Path(__file__).resolve().parents[3] / "_SHARED" / "SHARED_CONTEXT"
+        if str(shared_ctx_dir) not in sys.path:
+            sys.path.insert(0, str(shared_ctx_dir))
+        try:
+            from cad_layer_standard import get_layer_specs  # type: ignore
+            ssot_specs = get_layer_specs(profile="dce_native")
+        except Exception:
+            ssot_specs = {}
+        ssot_lower = {k.lower(): v for k, v in ssot_specs.items()}
+
+        # G8.01: DXF_VERSION_AND_SYNTAX (kiểm tra AC1021, audit errors và thực thể thực)
+        audit_err_cnt = len(doc.audit().errors) if doc is not None else 1
+        dxf_ver = getattr(doc, "dxfversion", "") if doc is not None else ""
+        min_phys = 4 if is_site_logistics else 20
+        g1_pass = dxf_exists and (doc is not None) and dxf_ver == "AC1021" and audit_err_cnt == 0 and phys_cnt >= min_phys
         self.results.append(GateResult(
             "G8.01", "DXF_VERSION_AND_SYNTAX", "CRITICAL", g1_pass,
-            f"Profile={self.profile.upper()} ({drawing_code or 'CAD'}), Thực thể={phys_cnt}."
+            f"Profile={self.profile.upper()} ({drawing_code or 'CAD'}), DXF={dxf_ver or 'N/A'}, "
+            f"AuditErrors={audit_err_cnt}, Thực thể={phys_cnt}."
         ))
 
-        # G8.02: DCE_LAYER_AND_CTB_MATRIX (kiểm tra bảng layer thật trong DXF)
+        # G8.02: DCE_LAYER_AND_CTB_MATRIX (đối chiếu bảng layer thật trong DXF với SSOT cad_layer_standard)
         core_layers = (
             ("DCE_Steel_Main", "DCE_Steel_Plate", "DCE_Steel_Sec", "DCE_Steel_Bolt", "DCE_Steel_Weld", "DCE_Steel_Hidden")
             if self.profile == "steel_peb"
@@ -263,33 +277,125 @@ class DCECADComplianceCheckerV4:
         )
         if doc is not None:
             missing_core = [ln for ln in core_layers if ln not in doc.layers]
-            bad_lw = [
-                f"{ln}(lw={int(getattr(doc.layers.get(ln).dxf, 'lineweight', -3))})"
-                for ln in core_layers
-                if ln in doc.layers and int(getattr(doc.layers.get(ln).dxf, "lineweight", -3)) <= 0
-            ]
-            g2_pass = len(missing_core) == 0 and len(bad_lw) == 0
+            bad_lw: List[str] = []
+            ssot_mismatch: List[str] = []
+            for ln in core_layers:
+                if ln not in doc.layers:
+                    continue
+                ly = doc.layers.get(ln)
+                lw = int(getattr(ly.dxf, "lineweight", -3))
+                col = abs(int(getattr(ly.dxf, "color", 7)))
+                if lw <= 0:
+                    bad_lw.append(f"{ln}(lw={lw})")
+                sp = ssot_specs.get(ln)
+                if sp and (lw != int(sp["lineweight"]) or col != abs(int(sp["color"]))):
+                    ssot_mismatch.append(f"{ln}(dxf={col}/{lw} vs ssot={sp['color']}/{sp['lineweight']})")
+            g2_pass = len(missing_core) == 0 and len(bad_lw) == 0 and len(ssot_mismatch) == 0
             g2_detail = (
-                f"Đủ {len(core_layers)} layer cốt lõi Profile {self.profile.upper()} với lineweight > 0 trong DXF."
+                f"Đủ {len(core_layers)} layer cốt lõi Profile {self.profile.upper()} khớp SSOT color/lineweight > 0."
                 if g2_pass
-                else f"Layer Profile {self.profile.upper()} chưa đạt: thiếu={missing_core}, lw<=0={bad_lw}."
+                else f"Layer Profile {self.profile.upper()} chưa đạt: thiếu={missing_core}, lw<=0={bad_lw}, mismatch={ssot_mismatch}."
             )
         else:
             g2_pass = False
             g2_detail = f"Không đọc được bảng layer DXF: {dxf_read_err or 'ezdxf unavailable'}"
         self.results.append(GateResult("G8.02", "DCE_LAYER_AND_CTB_MATRIX", "MAJOR", g2_pass, g2_detail))
 
+        # Trích xuất trước tập thực thể DXF phục vụ kiểm toán hình học thực chất G8.03..G8.24
+        dims = [e for e in msp if e.dxftype() == "DIMENSION"] if msp is not None else []
+        truc_lines = (
+            [e for e in msp if e.dxftype() == "LINE" and e.dxf.layer.lower() == "dce_truc"]
+            if msp is not None else []
+        )
+        axis_bubbles = (
+            [
+                e for e in msp
+                if e.dxftype() == "INSERT"
+                and any(k in e.dxf.name.lower() for k in ("khtentruc", "tentruc", "grid_bubble"))
+            ]
+            if msp is not None else []
+        )
+        texts_in_msp = [e for e in msp if e.dxftype() in ("TEXT", "MTEXT")] if msp is not None else []
+        beam_lines = (
+            [e for e in msp if e.dxftype() == "LINE" and e.dxf.layer.lower() in ("dce_beam", "dce_mainbeam")]
+            if msp is not None else []
+        )
+        frame_boxes: List[Tuple[float, float, float, float, float]] = []
+        frame_dividers: List[float] = []
+        if msp is not None:
+            for e in msp:
+                if e.dxf.layer.lower() != "dce_frame":
+                    continue
+                if e.dxftype() == "LWPOLYLINE" and bool(getattr(e, "closed", False)):
+                    pts = list(e.get_points("xy"))
+                    if len(pts) >= 4:
+                        xs = [p[0] for p in pts]
+                        ys = [p[1] for p in pts]
+                        bx0, by0, bx1, by1 = min(xs), min(ys), max(xs), max(ys)
+                        area = max(0.0, (bx1 - bx0) * (by1 - by0))
+                        frame_boxes.append((bx0, by0, bx1, by1, area))
+                elif e.dxftype() == "LINE":
+                    sx, ex = float(e.dxf.start.x), float(e.dxf.end.x)
+                    sy, ey = float(e.dxf.start.y), float(e.dxf.end.y)
+                    if abs(sx - ex) < 1.0 and abs(ey - sy) > 100.0:
+                        frame_dividers.append((sx + ex) / 2.0)
+
+        def _extract_text_str(ent) -> str:
+            if ent.dxftype() == "TEXT":
+                return str(getattr(ent.dxf, "text", "") or "").strip()
+            return str(getattr(ent, "text", "") or "").strip()
+
+        def _extract_text_bbox(ent) -> Optional[Tuple[float, float, float, float, str]]:
+            raw = _extract_text_str(ent)
+            if not raw:
+                return None
+            if ent.dxftype() == "TEXT":
+                ins = ent.dxf.insert
+                h = float(getattr(ent.dxf, "height", 200.0) or 200.0)
+                rot = float(getattr(ent.dxf, "rotation", 0.0) or 0.0) % 180.0
+            else:
+                ins = ent.dxf.insert
+                h = float(getattr(ent.dxf, "char_height", 200.0) or 200.0)
+                rot = 0.0
+            w = max(h, len(raw) * 0.55 * h)
+            if 45.0 <= rot <= 135.0:
+                return (float(ins.x) - h, float(ins.y), float(ins.x), float(ins.y) + w, raw)
+            return (float(ins.x), float(ins.y), float(ins.x) + w, float(ins.y) + h, raw)
+
         # G8.03: DIMSTYLE_DUAL_HIERARCHY
-        self.results.append(GateResult(
-            "G8.03", "DIMSTYLE_DUAL_HIERARCHY", "MAJOR", True,
-            "Đồng bộ hệ DimStyle đa tỷ lệ và tỷ lệ chính chuẩn DCE."
-        ))
+        if msp is None:
+            self.results.append(GateResult("G8.03", "DIMSTYLE_DUAL_HIERARCHY", "MAJOR", False,
+                                           f"Không đọc được DIMENSION trong DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(dims) == 0:
+            self.results.append(GateResult("G8.03", "DIMSTYLE_DUAL_HIERARCHY", "MAJOR", None,
+                                           "Bản vẽ không chứa thực thể DIMENSION để kiểm tra DimStyle.", applicable=False))
+        else:
+            non_dce = [getattr(d.dxf, "dimstyle", "") for d in dims if not str(getattr(d.dxf, "dimstyle", "")).lower().startswith("dce")]
+            g3_pass = len(non_dce) == 0
+            self.results.append(GateResult(
+                "G8.03", "DIMSTYLE_DUAL_HIERARCHY", "MAJOR", g3_pass,
+                f"Đã kiểm {len(dims)} DIMENSION; ngoài chuẩn DCE={non_dce[:5]}."
+            ))
 
         # G8.04: AXIS_BUBBLE_NO_CROSSING
-        self.results.append(GateResult(
-            "G8.04", "AXIS_BUBBLE_NO_CROSSING", "MAJOR", True,
-            "Lưới trục và ký hiệu định vị không bị giao cắt ngoài ranh giới."
-        ))
+        if msp is None:
+            self.results.append(GateResult("G8.04", "AXIS_BUBBLE_NO_CROSSING", "MAJOR", False,
+                                           f"Không đọc được block trục DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(axis_bubbles) < 2:
+            self.results.append(GateResult("G8.04", "AXIS_BUBBLE_NO_CROSSING", "MAJOR", None,
+                                           "Bản vẽ khung/BPTC không sử dụng block ký hiệu lưới trục mặt bằng.", applicable=False))
+        else:
+            cross_cnt = 0
+            for i in range(len(axis_bubbles)):
+                pi = axis_bubbles[i].dxf.insert
+                for j in range(i + 1, len(axis_bubbles)):
+                    pj = axis_bubbles[j].dxf.insert
+                    if math.hypot(pi.x - pj.x, pi.y - pj.y) < 300.0:
+                        cross_cnt += 1
+            self.results.append(GateResult(
+                "G8.04", "AXIS_BUBBLE_NO_CROSSING", "MAJOR", cross_cnt == 0,
+                f"Đã đo {len(axis_bubbles)} block trục; giao cắt={cross_cnt}."
+            ))
 
         # G8.05: COLUMN_WALL_BOUNDARY_HATCH (N/A cho thép/bptc)
         self.results.append(GateResult(
@@ -298,10 +404,23 @@ class DCECADComplianceCheckerV4:
         ))
 
         # G8.06: DIMENSION_STYLE_AND_TEXT_OVERRIDE
-        self.results.append(GateResult(
-            "G8.06", "DIMENSION_STYLE_AND_TEXT_OVERRIDE", "MAJOR", True,
-            "100% đường đo kích thước tuân thủ DimStyle chuẩn."
-        ))
+        if msp is None:
+            self.results.append(GateResult("G8.06", "DIMENSION_STYLE_AND_TEXT_OVERRIDE", "MAJOR", False,
+                                           f"Không đọc được DIMENSION DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(dims) == 0:
+            self.results.append(GateResult("G8.06", "DIMENSION_STYLE_AND_TEXT_OVERRIDE", "MAJOR", None,
+                                           "Bản vẽ không có thực thể DIMENSION để kiểm tra ghi đè text.", applicable=False))
+        else:
+            overrides = [
+                str(getattr(d.dxf, "text", "") or "").strip()
+                for d in dims
+                if str(getattr(d.dxf, "text", "") or "").strip() not in ("", "<>")
+            ]
+            g6_pass = len(overrides) <= 2
+            self.results.append(GateResult(
+                "G8.06", "DIMENSION_STYLE_AND_TEXT_OVERRIDE", "MAJOR", g6_pass,
+                f"Kiểm {len(dims)} DIMENSION; số text override={len(overrides)}."
+            ))
 
         # G8.07: COLUMN_WALL_BLOCK_ATTRIBUTES (N/A)
         self.results.append(GateResult(
@@ -315,11 +434,82 @@ class DCECADComplianceCheckerV4:
             "Không áp dụng cho Kết cấu Thép và Biện pháp thi công.", applicable=False
         ))
 
-        # G8.09..G8.12
-        self.results.append(GateResult("G8.09", "CROSS_AXIS_GRID_CONTINUITY", "MAJOR", True, "Định vị lưới trục liền mạch."))
-        self.results.append(GateResult("G8.10", "DUAL_GRID_BUBBLES_BOTH_ENDS", "MINOR", True, "Ký hiệu trục 2 đầu đạt chuẩn."))
-        self.results.append(GateResult("G8.11", "NO_CONTINUOUS_BEAM_LINES", "CRITICAL", True, "Cấu kiện thép phân đoạn gối tựa đúng chuẩn."))
-        self.results.append(GateResult("G8.12", "ZERO_TEXT_CLASH_AUDITOR", "MAJOR", True, "0% xung đột đè nhãn chữ."))
+        # G8.09: CROSS_AXIS_GRID_CONTINUITY (bỏ qua tim trục bu lông/tâm lỗ < 500mm)
+        grid_axis_lines = [
+            e for e in truc_lines
+            if math.hypot(e.dxf.end.x - e.dxf.start.x, e.dxf.end.y - e.dxf.start.y) >= 500.0
+        ]
+        if msp is None:
+            self.results.append(GateResult("G8.09", "CROSS_AXIS_GRID_CONTINUITY", "MAJOR", False,
+                                           f"Không đọc được lưới trục DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(grid_axis_lines) == 0:
+            self.results.append(GateResult("G8.09", "CROSS_AXIS_GRID_CONTINUITY", "MAJOR", None,
+                                           "Bản vẽ chi tiết/tổng mặt bằng không có đường tim trục công trình dài (>=500mm) trên DCE_Truc.", applicable=False))
+        else:
+            short_axes = [
+                1 for e in grid_axis_lines
+                if math.hypot(e.dxf.end.x - e.dxf.start.x, e.dxf.end.y - e.dxf.start.y) < 2000.0
+            ]
+            g9_pass = len(grid_axis_lines) >= 2 and len(short_axes) == 0
+            self.results.append(GateResult(
+                "G8.09", "CROSS_AXIS_GRID_CONTINUITY", "MAJOR", g9_pass,
+                f"Đã kiểm {len(grid_axis_lines)} đường tim trục chính DCE_Truc; trục gián đoạn (<2000mm)={len(short_axes)}."
+            ))
+
+        # G8.10: DUAL_GRID_BUBBLES_BOTH_ENDS
+        if msp is None:
+            self.results.append(GateResult("G8.10", "DUAL_GRID_BUBBLES_BOTH_ENDS", "MINOR", False,
+                                           f"Không đọc được ký hiệu trục DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(axis_bubbles) == 0:
+            self.results.append(GateResult("G8.10", "DUAL_GRID_BUBBLES_BOTH_ENDS", "MINOR", None,
+                                           "Khung/chi tiết không dùng Block ký hiệu trục 2 đầu dạng mặt bằng sàn.", applicable=False))
+        else:
+            g10_pass = len(axis_bubbles) >= max(2, len(truc_lines))
+            self.results.append(GateResult(
+                "G8.10", "DUAL_GRID_BUBBLES_BOTH_ENDS", "MINOR", g10_pass,
+                f"Số block tên trục={len(axis_bubbles)} so với {len(truc_lines)} đường trục."
+            ))
+
+        # G8.11: NO_CONTINUOUS_BEAM_LINES
+        if msp is None:
+            self.results.append(GateResult("G8.11", "NO_CONTINUOUS_BEAM_LINES", "CRITICAL", False,
+                                           f"Không đọc được nét dầm DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(beam_lines) == 0:
+            self.results.append(GateResult("G8.11", "NO_CONTINUOUS_BEAM_LINES", "CRITICAL", None,
+                                           "Không có nét dầm BTCT DCE_Beam/DCE_MainBeam trên mặt bằng.", applicable=False))
+        else:
+            long_beams = [
+                e for e in beam_lines
+                if math.hypot(e.dxf.end.x - e.dxf.start.x, e.dxf.end.y - e.dxf.start.y) > 25000.0
+            ]
+            self.results.append(GateResult(
+                "G8.11", "NO_CONTINUOUS_BEAM_LINES", "CRITICAL", len(long_beams) == 0,
+                f"Đã kiểm {len(beam_lines)} đoạn dầm; đoạn vượt quá 25m liên tục={len(long_beams)}."
+            ))
+
+        # G8.12: ZERO_TEXT_CLASH_AUDITOR (đo bounding box TEXT/MTEXT thực tế trong DXF)
+        if msp is None:
+            self.results.append(GateResult("G8.12", "ZERO_TEXT_CLASH_AUDITOR", "MAJOR", False,
+                                           f"Không đọc được nhãn chữ DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif len(texts_in_msp) == 0:
+            self.results.append(GateResult("G8.12", "ZERO_TEXT_CLASH_AUDITOR", "MAJOR", False,
+                                           "Bản vẽ DXF không có nhãn chữ TEXT/MTEXT nào."))
+        else:
+            text_boxes = [tb for ent in texts_in_msp for tb in [_extract_text_bbox(ent)] if tb is not None]
+            clashes: List[str] = []
+            for i in range(len(text_boxes)):
+                ax0, ay0, ax1, ay1, atxt = text_boxes[i]
+                for j in range(i + 1, len(text_boxes)):
+                    bx0, by0, bx1, by1, btxt = text_boxes[j]
+                    ox = min(ax1, bx1) - max(ax0, bx0)
+                    oy = min(ay1, by1) - max(ay0, by0)
+                    if ox > 10.0 and oy > 10.0:
+                        clashes.append(f"'{atxt[:18]}'x'{btxt[:18]}'")
+            self.results.append(GateResult(
+                "G8.12", "ZERO_TEXT_CLASH_AUDITOR", "MAJOR", len(clashes) == 0,
+                f"Kiểm bounding-box {len(text_boxes)} nhãn TEXT/MTEXT trong DXF: xung đột={len(clashes)}"
+                + (f" ({', '.join(clashes[:3])})" if clashes else ".")
+            ))
 
         # G8.13..G8.16: Các cổng BTCT chuyên biệt
         for n, name in enumerate(('BEAM_ELEVATION_SEISMIC_DETAIL', 'COLUMN_SECTION_REBAR_RULES',
@@ -327,11 +517,137 @@ class DCECADComplianceCheckerV4:
             self.results.append(GateResult(f'G8.{n}', name, 'CRITICAL', None,
                                            'Cổng BTCT chuyên biệt; không áp dụng cho Steel/BPTC.', applicable=False))
 
-        # G8.17..G8.20
-        self.results.append(GateResult("G8.17", "SCALE_FRAME_DIMSTYLE_SYNC", "CRITICAL", True, "Khung A1 và tỷ lệ đồng bộ chuẩn xác."))
-        self.results.append(GateResult("G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", True, "0 xâm phạm vùng cấm TitleBlock/Sidebar."))
-        self.results.append(GateResult("G8.19", "SCHEDULE_TABLE_CELL_CONTAINMENT", "MAJOR", True, "Bảng thống kê BOM co giãn tự động không tràn ô."))
-        self.results.append(GateResult("G8.20", "BEAM_LABEL_ORIENTATION_AND_LW", "MAJOR", True, "Định hướng nhãn và độ dày nét in CTB đạt chuẩn."))
+        # G8.17: SCALE_FRAME_DIMSTYLE_SYNC (kiểm tỷ lệ bản vẽ khớp kích thước khung DCE_Frame A1/A0)
+        outer_frame = max(frame_boxes, key=lambda b: b[4]) if frame_boxes else None
+        primary_scale = float(layout.get("primary_scale") or meta.get("scale") or 0.0)
+        if msp is None:
+            self.results.append(GateResult("G8.17", "SCALE_FRAME_DIMSTYLE_SYNC", "CRITICAL", False,
+                                           f"Không đọc được khung DCE_Frame trong DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif outer_frame is None or primary_scale <= 0.0:
+            self.results.append(GateResult("G8.17", "SCALE_FRAME_DIMSTYLE_SYNC", "CRITICAL", False,
+                                           f"Thiếu khung DCE_Frame kín ({len(frame_boxes)}) hoặc primary_scale={primary_scale}."))
+        else:
+            fw = outer_frame[2] - outer_frame[0]
+            fh = outer_frame[3] - outer_frame[1]
+            sheet_sz = str(layout.get("sheet_size", "A1")).upper()
+            exp_w, exp_h = (806.0, 574.0) if sheet_sz == "A1" else (1154.0, 821.0)
+            w_err = abs((fw / primary_scale) - exp_w) / exp_w
+            h_err = abs((fh / primary_scale) - exp_h) / exp_h
+            scale_txt_ok = True
+            if layout.get("mode") == "COMPOSITE_DETAIL_GRID":
+                expected_lbl = f"1/{int(primary_scale)}"
+                scale_txt_ok = any(expected_lbl in _extract_text_str(t) for t in texts_in_msp)
+            g17_pass = (w_err <= 0.03 and h_err <= 0.03 and scale_txt_ok)
+            self.results.append(GateResult(
+                "G8.17", "SCALE_FRAME_DIMSTYLE_SYNC", "CRITICAL", g17_pass,
+                f"Khung {sheet_sz} tỷ lệ 1/{int(primary_scale)}: DXF={fw/primary_scale:.1f}x{fh/primary_scale:.1f}mm "
+                f"(chuẩn {exp_w:.0f}x{exp_h:.0f}mm), nhãn_tỷ_lệ={scale_txt_ok}."
+            ))
+
+        # G8.18: ZERO_GLOBAL_LAYOUT_INTRUSION (kiểm xâm phạm giữa detail cell, sidebar và TitleBlock)
+        if msp is None:
+            self.results.append(GateResult("G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", False,
+                                           f"Không đọc được khung layout DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif is_site_logistics or layout.get("mode") == "SINGLE_SITE_PLAN":
+            self.results.append(GateResult("G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", None,
+                                           "Tổng mặt bằng đơn tỷ lệ (BP-01) không dùng vùng cấm TitleBlock/Sidebar đa khung.",
+                                           applicable=False))
+        elif outer_frame is None:
+            self.results.append(GateResult("G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", False,
+                                           "Không tìm thấy khung bao ngoài DCE_Frame để kiểm tra vùng cấm."))
+        else:
+            ox0, oy0, ox1, oy1, oarea = outer_frame
+            non_outer = [b for b in frame_boxes if abs(b[4] - oarea) > 1.0]
+            sb_min = min(frame_dividers) if frame_dividers else (ox1 - 0.30 * (ox1 - ox0))
+            tb_boxes = [b for b in non_outer if b[0] >= sb_min - 1.0 and b[1] <= oy0 + 0.05 * (oy1 - oy0)]
+            cell_boxes = [b for b in non_outer if b not in tb_boxes]
+            intrusions = 0
+            # Kiểm mọi detail cell nằm trong khung ngoài, bên trái đường chia sidebar và không đè lên nhau / titleblock
+            for cb in cell_boxes:
+                if cb[0] < ox0 - 1.0 or cb[2] > sb_min + 1.0 or cb[1] < oy0 - 1.0 or cb[3] > oy1 + 1.0:
+                    intrusions += 1
+                for tb in tb_boxes:
+                    if min(cb[2], tb[2]) > max(cb[0], tb[0]) + 1.0 and min(cb[3], tb[3]) > max(cb[1], tb[1]) + 1.0:
+                        intrusions += 1
+            for i in range(len(cell_boxes)):
+                for j in range(i + 1, len(cell_boxes)):
+                    a, b = cell_boxes[i], cell_boxes[j]
+                    if min(a[2], b[2]) > max(a[0], b[0]) + 1.0 and min(a[3], b[3]) > max(a[1], b[1]) + 1.0:
+                        intrusions += 1
+            # Kiểm thực thể thép/BPTC không xâm lấn vào TitleBlock
+            protected_layers = {"dce_steel_main", "dce_steel_plate", "dce_steel_bolt", "dce_bptc_equip", "dce_bptc_tie", "dce_bptc_anchor"}
+            for e in msp:
+                if e.dxf.layer.lower() not in protected_layers:
+                    continue
+                pts_check: List[Tuple[float, float]] = []
+                if e.dxftype() == "LINE":
+                    pts_check = [(e.dxf.start.x, e.dxf.start.y), (e.dxf.end.x, e.dxf.end.y)]
+                elif e.dxftype() == "CIRCLE":
+                    pts_check = [(e.dxf.center.x, e.dxf.center.y)]
+                elif e.dxftype() == "LWPOLYLINE":
+                    pts_check = [(p[0], p[1]) for p in e.get_points("xy")]
+                for px, py in pts_check:
+                    for tb in tb_boxes:
+                        if tb[0] + 1.0 < px < tb[2] - 1.0 and tb[1] + 1.0 < py < tb[3] - 1.0:
+                            intrusions += 1
+            g18_pass = len(tb_boxes) > 0 and intrusions == 0
+            self.results.append(GateResult(
+                "G8.18", "ZERO_GLOBAL_LAYOUT_INTRUSION", "CRITICAL", g18_pass,
+                f"Kiểm {len(cell_boxes)} ô chi tiết & {len(tb_boxes)} khung tên; số xâm phạm vùng cấm={intrusions}."
+            ))
+
+        # G8.19: SCHEDULE_TABLE_CELL_CONTAINMENT
+        if msp is None:
+            self.results.append(GateResult("G8.19", "SCHEDULE_TABLE_CELL_CONTAINMENT", "MAJOR", False,
+                                           f"Không đọc được bảng thống kê DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        elif is_site_logistics or (float(bom.get("total_weight_kg", 0.0) or 0.0) == 0.0 and not bom.get("rows")):
+            self.results.append(GateResult("G8.19", "SCHEDULE_TABLE_CELL_CONTAINMENT", "MAJOR", None,
+                                           "Bản vẽ không có bảng thống kê BOM (tổng mặt bằng / sơ đồ không kê thép).", applicable=False))
+        else:
+            sched_texts = [t for t in texts_in_msp if t.dxf.layer.lower() == "dce_schedule"]
+            sb_x = min(frame_dividers) if frame_dividers else (outer_frame[0] if outer_frame else 0.0)
+            max_x = outer_frame[2] if outer_frame else 1e18
+            out_of_sb = 0
+            for t in sched_texts:
+                tb = _extract_text_bbox(t)
+                if tb is not None:
+                    # Cho phép chữ khung tên hoặc sidebar; nếu nằm trong sidebar phải nằm trong bề rộng khung
+                    if tb[2] > max_x + 5.0:
+                        out_of_sb += 1
+                    elif float(t.dxf.insert.x) >= sb_x - 1.0 and tb[0] < sb_x - 1.0:
+                        out_of_sb += 1
+            g19_pass = len(sched_texts) >= 8 and out_of_sb == 0
+            self.results.append(GateResult(
+                "G8.19", "SCHEDULE_TABLE_CELL_CONTAINMENT", "MAJOR", g19_pass,
+                f"Kiểm {len(sched_texts)} ô text DCE_Schedule trong bảng BOM; tràn khung={out_of_sb}."
+            ))
+
+        # G8.20: BEAM_LABEL_ORIENTATION_AND_LW (kiểm tra 100% layer thực sự dùng trong modelspace & chiều cao/góc chữ)
+        if msp is None or doc is None:
+            self.results.append(GateResult("G8.20", "BEAM_LABEL_ORIENTATION_AND_LW", "MAJOR", False,
+                                           f"Không kiểm tra được layer/nhãn DXF: {dxf_read_err or 'ezdxf unavailable'}"))
+        else:
+            used_layers = sorted({e.dxf.layer for e in msp if e.dxf.layer.lower() not in ("0", "defpoints")})
+            bad_used_layers: List[str] = []
+            for ln in used_layers:
+                if ln not in doc.layers:
+                    bad_used_layers.append(f"{ln}(missing)")
+                    continue
+                if ssot_lower and ln.lower() not in ssot_lower:
+                    bad_used_layers.append(f"{ln}(non-SSOT)")
+                    continue
+                lw = int(getattr(doc.layers.get(ln).dxf, "lineweight", -3))
+                if lw <= 0:
+                    bad_used_layers.append(f"{ln}(lw={lw})")
+            bad_text_h = sum(
+                1 for t in texts_in_msp
+                if float(getattr(t.dxf, "height", getattr(t.dxf, "char_height", 0.0)) or 0.0) <= 0.0
+            )
+            g20_pass = len(used_layers) > 0 and len(bad_used_layers) == 0 and bad_text_h == 0
+            self.results.append(GateResult(
+                "G8.20", "BEAM_LABEL_ORIENTATION_AND_LW", "MAJOR", g20_pass,
+                f"Kiểm {len(used_layers)} layer thực dùng trong DXF; lỗi SSOT/lineweight={bad_used_layers}, text_h<=0={bad_text_h}."
+            ))
 
         # ======================================================================
         # 5 CỔNG KIỂM TOÁN MỞ RỘNG V5.0 (G8.21 - G8.25) — EVIDENCE-BASED
@@ -425,32 +741,80 @@ class DCECADComplianceCheckerV4:
                 f"{weld_tri_cnt} tam giác ký hiệu hàn, {weld_text_cnt} nhãn kích thước hf/lw."
             ))
 
-        # G8.23: STEEL_SECTION_BOM_PARITY (đối soát tổng khối lượng BOM với tổng các dòng)
-        bom_wt = float(bom.get("total_weight_kg", 0.0) or 0.0)
-        bom_rows = bom.get("rows", [])
-        rows_sum_wt = 0.0
-        row_parse_err = False
-        for row in bom_rows:
-            if isinstance(row, (list, tuple)) and len(row) >= 8:
-                try:
-                    rows_sum_wt += float(row[7])
-                except (TypeError, ValueError):
-                    row_parse_err = True
-        parity_tol = max(0.1, 0.005 * bom_wt)
-        rows_match = (len(bom_rows) == 0) or (not row_parse_err and abs(rows_sum_wt - bom_wt) <= parity_tol)
-        g23_pass = (bom_wt > 0.0 or len(members) > 0) and rows_match
-        self.results.append(GateResult(
-            "G8.23", "STEEL_SECTION_BOM_PARITY", "MAJOR", g23_pass,
-            f"Khớp 100% quy cách tiết diện và tổng khối lượng thép BOM ({bom_wt:.1f} kg; "
-            f"cộng {len(bom_rows)} dòng={rows_sum_wt:.1f} kg) giữa hình vẽ và hồ sơ SSOT."
-        ))
+        # G8.23: STEEL_SECTION_BOM_PARITY (đối soát tổng khối lượng BOM giữa JSON và nhãn DXF)
+        if is_site_logistics:
+            self.results.append(GateResult(
+                "G8.23", "STEEL_SECTION_BOM_PARITY", "MAJOR", None,
+                "Tổng mặt bằng BP-01 không có bảng thống kê cấu kiện thép BOM.", applicable=False
+            ))
+        else:
+            bom_wt = float(bom.get("total_weight_kg", 0.0) or 0.0)
+            bom_rows = bom.get("rows", [])
+            rows_sum_wt = 0.0
+            row_parse_err = False
+            for row in bom_rows:
+                if isinstance(row, (list, tuple)) and len(row) >= 8:
+                    try:
+                        rows_sum_wt += float(row[7])
+                    except (TypeError, ValueError):
+                        row_parse_err = True
+            parity_tol = max(0.2, 0.005 * bom_wt)
+            rows_match = (len(bom_rows) == 0) or (not row_parse_err and abs(rows_sum_wt - bom_wt) <= parity_tol)
+            dxf_bom_wt: Optional[float] = None
+            if msp is not None:
+                bom_pat = re.compile(r"TỔNG\s+KHỐI\s+LƯỢNG\s+THÉP\s*:\s*([0-9]+(?:\.[0-9]+)?)\s*KG", re.IGNORECASE)
+                for e in msp:
+                    if e.dxftype() in ("TEXT", "MTEXT"):
+                        txt = str(e.dxf.text if e.dxftype() == "TEXT" else e.text).strip()
+                        m_bom = bom_pat.search(txt)
+                        if m_bom:
+                            dxf_bom_wt = float(m_bom.group(1))
+                            break
+            dxf_bom_ok = (dxf_bom_wt is not None) and (abs(dxf_bom_wt - bom_wt) <= parity_tol)
+            g23_pass = (bom_wt > 0.0) and rows_match and dxf_bom_ok
+            self.results.append(GateResult(
+                "G8.23", "STEEL_SECTION_BOM_PARITY", "MAJOR", g23_pass,
+                f"Đối soát BOM JSON ({bom_wt:.1f} kg; cộng {len(bom_rows)} dòng={rows_sum_wt:.1f} kg) "
+                f"vs nhãn DXF ({f'{dxf_bom_wt:.1f} kg' if dxf_bom_wt is not None else 'MISSING'})."
+            ))
 
-        # G8.24: MULTI_SCALE_VIEWPORT_PARITY
-        g24_pass = layout.get("mode") == "COMPOSITE_DETAIL_GRID" and len(detail_cells) > 0
-        self.results.append(GateResult(
-            "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", g24_pass,
-            f"Bố cục COMPOSITE_DETAIL_GRID đồng bộ chuẩn xác {len(detail_cells)} ô chi tiết đa tỷ lệ."
-        ))
+        # G8.24: MULTI_SCALE_VIEWPORT_PARITY (đối soát bố cục COMPOSITE_DETAIL_GRID với khung DCE_Frame trong DXF)
+        if is_site_logistics or layout.get("mode") == "SINGLE_SITE_PLAN":
+            self.results.append(GateResult(
+                "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", None,
+                "Tổng mặt bằng BP-01 bố cục SINGLE_SITE_PLAN đơn tỷ lệ.", applicable=False
+            ))
+        elif msp is None:
+            self.results.append(GateResult(
+                "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", False,
+                f"Không đọc được khung ô chi tiết DXF: {dxf_read_err or 'ezdxf unavailable'}"
+            ))
+        else:
+            closed_frame_cnt = sum(
+                1 for e in msp
+                if e.dxftype() == "LWPOLYLINE" and e.dxf.layer.lower() == "dce_frame" and bool(getattr(e, "closed", False))
+            )
+            scale_labels_ok = True
+            for cell in detail_cells:
+                s_val = cell.get("scale")
+                if s_val:
+                    lbl = f"1/{int(float(s_val))}"
+                    if not any(
+                        lbl in str(e.dxf.text if e.dxftype() == "TEXT" else e.text)
+                        for e in msp if e.dxftype() in ("TEXT", "MTEXT")
+                    ):
+                        scale_labels_ok = False
+            g24_pass = (
+                layout.get("mode") == "COMPOSITE_DETAIL_GRID"
+                and len(detail_cells) > 0
+                and closed_frame_cnt >= len(detail_cells) + 1
+                and scale_labels_ok
+            )
+            self.results.append(GateResult(
+                "G8.24", "MULTI_SCALE_VIEWPORT_PARITY", "CRITICAL", g24_pass,
+                f"Bố cục COMPOSITE_DETAIL_GRID: {len(detail_cells)} ô chi tiết, "
+                f"{closed_frame_cnt} khung DCE_Frame kín DXF, nhãn_tỷ_lệ={scale_labels_ok}."
+            ))
 
         # G8.25: BPTC_CLEARANCE_AND_ANCHOR_CHECK (đo thực thể BPTC thực tế trong DXF)
         if self.profile == "bptc":
@@ -461,12 +825,22 @@ class DCECADComplianceCheckerV4:
                 equip_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_equip")
                 tie_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_tie")
                 anchor_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_anchor")
-                safezone_cnt = sum(1 for e in msp if e.dxf.layer.lower() == "dce_bptc_safezone")
-                g25_pass = equip_cnt > 0 and (safezone_cnt > 0 or (tie_cnt > 0 and anchor_cnt > 0 and g21_pass))
-                g25_msg = (
-                    f"Kiểm chứng DXF BPTC thực tế (QCVN 18:2021/BXD): Equip={equip_cnt}, "
-                    f"Tie={tie_cnt}, Anchor={anchor_cnt}, SafeZone={safezone_cnt}, BoltCheck={'PASS' if g21_pass else 'FAIL'}."
-                )
+                safezone_circles = [
+                    e for e in msp
+                    if e.dxftype() == "CIRCLE" and e.dxf.layer.lower() == "dce_bptc_safezone" and float(e.dxf.radius) > 0.0
+                ]
+                if is_site_logistics:
+                    g25_pass = equip_cnt > 0 and len(safezone_circles) > 0
+                    g25_msg = (
+                        f"Kiểm chứng DXF BPTC BP-01 (QCVN 18:2021/BXD): Equip={equip_cnt}, "
+                        f"SafeZoneCircle={len(safezone_circles)}."
+                    )
+                else:
+                    g25_pass = equip_cnt > 0 and tie_cnt > 0 and anchor_cnt > 0 and g21_pass
+                    g25_msg = (
+                        f"Kiểm chứng DXF BPTC thực tế (QCVN 18:2021/BXD): Equip={equip_cnt}, "
+                        f"Tie={tie_cnt}, Anchor={anchor_cnt}, BoltCheck={'PASS' if g21_pass else 'FAIL'}."
+                    )
             self.results.append(GateResult(
                 "G8.25", "BPTC_CLEARANCE_AND_ANCHOR_CHECK", "CRITICAL", g25_pass, g25_msg
             ))
@@ -1210,7 +1584,7 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
         'gates_passed': sum(r.applicable and r.passed is True for r in results),
         'gates_failed': len(failures), 'gates_unverified': len(unknown),
         'gates_not_applicable': sum(not r.applicable for r in results),
-        'full_compliance_verified': ((profile == 'full' and status == 'PASS' and len(results) == 20) or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25)),
+        'full_compliance_verified': ((profile == 'full' and status == 'PASS' and len(results) == 20) or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25 and sum(r.applicable and r.passed is True for r in results) > 0)),
         'evidence_basis': 'Physical DXF checks + SHA256-bound generator metadata; no native AutoCAD or solver verification.',
         'gate_results': [{'gate_id': r.gate_id, 'gate_name': r.gate_name, 'severity': r.severity,
                          'passed': r.passed, 'status': r.status, 'applicable': r.applicable,

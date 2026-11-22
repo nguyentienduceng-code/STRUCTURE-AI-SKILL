@@ -331,12 +331,13 @@ BUS_PATH, MEMO_PATH = get_bus_paths(WORKSPACE_ROOT)
 LOCK_PATH = LOCK_DIR / LOCK_FILENAME
 
 
-def normalize_path(raw_path: str, workspace_root: Path = WORKSPACE_ROOT) -> str:
+def normalize_path(raw_path: str, workspace_root: Optional[Path] = None) -> str:
     """
     Chuẩn hóa đường dẫn tuyệt đối (duy trì tương thích ngược 100%):
     - Loại bỏ tiền tố ổ đĩa cũ (ví dụ H:\\My Drive\\AI AGENT -> G:\\My Drive\\Google AI Studio)
     - Quy đổi đường dẫn tương đối thành tuyệt đối.
     """
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     p_str = str(raw_path).strip()
     if not p_str:
         return ""
@@ -350,19 +351,20 @@ def normalize_path(raw_path: str, workspace_root: Path = WORKSPACE_ROOT) -> str:
     for old_pre in old_prefixes:
         if p_str.lower().startswith(old_pre.lower()):
             rel_part = p_str[len(old_pre):].lstrip("\\/")
-            return str(workspace_root / rel_part)
+            return str(ws_root / rel_part)
 
     p = Path(p_str)
     if not p.is_absolute():
-        return str(workspace_root / p)
+        return str(ws_root / p)
     return str(p)
 
 
-def to_relative_path(raw_path: str, workspace_root: Path = WORKSPACE_ROOT) -> str:
+def to_relative_path(raw_path: str, workspace_root: Optional[Path] = None) -> str:
     """
     Chuẩn hóa đường dẫn thành tương đối từ workspace_root sử dụng ký tự gạch chéo xuôi (POSIX /).
     Loại bỏ tiền tố ổ đĩa cũ (H:\\...), giải quyết triệt để lỗi escape ký tự \\ trên Windows và tiết kiệm token context.
     """
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     p_str = str(raw_path).strip()
     if not p_str:
         return ""
@@ -383,7 +385,7 @@ def to_relative_path(raw_path: str, workspace_root: Path = WORKSPACE_ROOT) -> st
         return p.as_posix()
 
     try:
-        rel = os.path.relpath(str(p), str(workspace_root))
+        rel = os.path.relpath(str(p), str(ws_root))
         if not rel.startswith(".."):
             return Path(rel).as_posix()
     except Exception:
@@ -460,17 +462,18 @@ def _is_cad_task(*texts: str) -> bool:
     return any(k in blob for k in CAD_TASK_KEYWORDS)
 
 
-def _receipts_dir(ws_root: Path = WORKSPACE_ROOT) -> Path:
+def _receipts_dir(ws_root: Optional[Path] = None) -> Path:
     """
     v3.3 — Thư mục RECEIPTS (phiếu nghiệm thu) chuẩn:
     `.agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/` (đã tồn tại trong repo,
     hiện đang trống -> được kích hoạt ở đây). Fallback `.agents/_active_receips/`
     nếu cây _SHARED chưa có (workspace test).
     """
-    primary = ws_root / ".agents" / "_SHARED" / "SHARED_CONTEXT" / "_active" / "RECEIPTS"
-    if (ws_root / ".agents" / "_SHARED" / "SHARED_CONTEXT").is_dir() or primary.exists():
+    root = WORKSPACE_ROOT if ws_root is None else Path(ws_root)
+    primary = root / ".agents" / "_SHARED" / "SHARED_CONTEXT" / "_active" / "RECEIPTS"
+    if (root / ".agents" / "_SHARED" / "SHARED_CONTEXT").is_dir() or primary.exists():
         return primary
-    return ws_root / ".agents" / "_active_receips"
+    return root / ".agents" / "_active_receips"
 
 
 def _gate_action_type(payload: dict) -> str:
@@ -500,16 +503,17 @@ def _gate_applies(payload: dict) -> bool:
     )
 
 
-def _evidence_candidates(payload: dict) -> List[str]:
+def _evidence_candidates(payload: dict, workspace_root: Optional[Path] = None) -> List[str]:
     """
     Danh sách bằng chứng candidate = union(evidence_files khai báo,
-    artifacts_modified). Chuẩn hóa về đường dẫn tuyệt đối để kiểm tra đĩa.
+    artifacts_modified). Chuẩn hóa về đường dẫn tương đối để kiểm tra đĩa.
     """
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     task = payload.get("next_action_for_partner", {})
     raw = list(task.get("evidence_files") or []) + list(payload.get("artifacts_modified") or [])
     seen: List[str] = []
     for r in raw:
-        rp = to_relative_path(str(r), WORKSPACE_ROOT)
+        rp = to_relative_path(str(r), ws_root)
         if rp and rp not in seen:
             seen.append(rp)
     return seen
@@ -517,7 +521,7 @@ def _evidence_candidates(payload: dict) -> List[str]:
 
 def visual_gate_check(
     payload: dict,
-    workspace_root: Path = WORKSPACE_ROOT,
+    workspace_root: Optional[Path] = None,
     check_on_disk: bool = False,
 ) -> Tuple[bool, List[str]]:
     """
@@ -538,13 +542,14 @@ def visual_gate_check(
     if not _gate_applies(payload):
         return True, missing
 
-    cands = _evidence_candidates(payload)
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
+    cands = _evidence_candidates(payload, ws_root)
     # Tầng danh khai: khớp pattern hình ảnh/log
     pattern_hits = [c for c in cands if CAD_EVIDENCE_PATTERN.search(c)]
     if pattern_hits:
         # v3.3: nếu bật kiểm đĩa, file phải TỒN TẠI + được băm (bằng chứng thật)
         if check_on_disk:
-            ok_files, bad_files = _verify_evidence_on_disk(cands, workspace_root)
+            ok_files, bad_files = _verify_evidence_on_disk(cands, ws_root)
             if not ok_files:
                 missing.append("evidence_on_disk (mọi candidate bằng chứng không tồn tại trên đĩa)")
             else:
@@ -556,7 +561,7 @@ def visual_gate_check(
 
     # Không có pattern hit: thử kiếm bằng chứng trên đĩa (nâng cấp v3.3)
     if check_on_disk:
-        ok_files, _ = _verify_evidence_on_disk(cands, workspace_root)
+        ok_files, _ = _verify_evidence_on_disk(cands, ws_root)
         if ok_files:
             return True, missing
         missing.append("evidence (>=1 preview .png/.jpg hoặc log _verification.json — danh khai + tồn tại trên đĩa)")
@@ -568,7 +573,7 @@ def visual_gate_check(
 
 
 def _verify_evidence_on_disk(
-    candidates_rel: List[str], workspace_root: Path = WORKSPACE_ROOT
+    candidates_rel: List[str], workspace_root: Optional[Path] = None
 ) -> Tuple[List[str], List[Tuple[str, str]]]:
     """
     v3.3 — Kiểm tra bằng chứng trên đĩa (SHA-256).
@@ -578,6 +583,7 @@ def _verify_evidence_on_disk(
     hoặc (b) tồn tại trên đĩa (bằng chứng audit .json/.log/.dxg... được ghi nhận
     để receipt, chỉ được ĐẾM khi có kèm file preview/log — theo Điều 12d).
     """
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     ok_files: List[Tuple[str, str]] = []
     bad_files: List[Tuple[str, str]] = []
     for rel in candidates_rel:
@@ -587,7 +593,7 @@ def _verify_evidence_on_disk(
         if not CAD_EVIDENCE_PATTERN.search(rel):
             continue
         try:
-            fp = Path(workspace_root) / rel
+            fp = ws_root / rel
             if fp.exists() and fp.is_file():
                 ok_files.append((rel, _file_hash(fp)))
             else:
@@ -597,15 +603,16 @@ def _verify_evidence_on_disk(
     return ok_files, bad_files
 
 
-def _evidence_hashes(payload: dict, workspace_root: Path = WORKSPACE_ROOT) -> Dict[str, Optional[str]]:
+def _evidence_hashes(payload: dict, workspace_root: Optional[Path] = None) -> Dict[str, Optional[str]]:
     """
     v3.3 — Băm SHA-256 các bằng chứng candidate (evidence_files + artifacts_modified)
     để ghi vào RECEIPT. Trả về {rel_path: sha256|None}:
     - sha256: file bằng chứng (khớp CAD_EVIDENCE_PATTERN) TỒN TẠI trên đĩa.
     - None   : file không tồn tại / không đọc được / không phải bằng chứng visual.
     """
-    cands = _evidence_candidates(payload)
-    ok_files, _bad = _verify_evidence_on_disk(cands, workspace_root)
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
+    cands = _evidence_candidates(payload, ws_root)
+    ok_files, _bad = _verify_evidence_on_disk(cands, ws_root)
     hashes: Dict[str, Optional[str]] = {rel: None for rel in cands}
     for rel, digest in ok_files:
         hashes[rel] = digest
@@ -617,7 +624,7 @@ def write_receipt(
     gate_result,
     reason: str = "",
     force_used: bool = False,
-    workspace_root: Path = WORKSPACE_ROOT,
+    workspace_root: Optional[Path] = None,
 ) -> Optional[Path]:
     """
     v3.3 — Ghi RECEIPT (phiếu nghiệm thu) vào RECEIPTS/ (khóa cứng Điều 12d).
@@ -655,7 +662,8 @@ def write_receipt(
     sender = str(payload.get("last_updated_by", "UNKNOWN")).upper().replace(" ", "_")
     ts = datetime.now().astimezone()
     ts_str = ts.strftime("%Y%m%d-%H%M%S")
-    evidence = _evidence_hashes(payload, workspace_root)
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
+    evidence = _evidence_hashes(payload, ws_root)
     receipt = {
         "receipt_id": f"RCP_{ts_str}_{sender}_{status}",
         "issued_at": ts.isoformat(),
@@ -675,7 +683,7 @@ def write_receipt(
         "signature": f"{sender}@{ts_str}",
     }
     try:
-        rdir = _receipts_dir(workspace_root)
+        rdir = _receipts_dir(ws_root)
         rdir.mkdir(parents=True, exist_ok=True)
         rfile = rdir / f"RECEIPT_{sender}_{status}_{ts_str}.json"
         _atomic_write_json(rfile, receipt)
@@ -696,14 +704,15 @@ def write_receipt(
 # ==============================================================================
 
 def result_report_dir(project_code: str, agent: str = "CLAUDE",
-                      workspace_root: Path = WORKSPACE_ROOT) -> Path:
+                      workspace_root: Optional[Path] = None) -> Path:
     """Thư mục audit theo THỰC TẾ cad_v6 (cả 2 phía đã đặt đúng):
     `.agents/memory/audits/<project_lower>/<agent_lower>/`
     (vd cad_v6/claude/C1_RESULT.md, cad_v6/gemini/G1_RESULT.md).
     P1 CHỈ CHUẨN HÓA layout đang có — không phát minh layout mới khác biệt."""
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     code = (project_code or "MASTER_SYSTEM").strip().lower() or "master_system"
     ag = (agent or "agent").strip().lower() or "agent"
-    return Path(workspace_root) / RESULTS_AUDIT_ROOT / code / ag
+    return ws_root / RESULTS_AUDIT_ROOT / code / ag
 
 
 def result_report_filename(agent: str, phase: str = "SHIFT") -> str:
@@ -722,7 +731,7 @@ def emit_result_report(
     acceptance_cmd: str = "",
     evidence_files: Optional[List[str]] = None,
     phase: str = "SHIFT",
-    workspace_root: Path = WORKSPACE_ROOT,
+    workspace_root: Optional[Path] = None,
 ) -> Path:
     """
     Sinh skeleton RESULT.md (5 mục cố định, tiền-điền metadata) vào thư mục
@@ -730,11 +739,12 @@ def emit_result_report(
     Codex/đối tác đọc máy được. Nếu file đã tồn tại: KHÔNG ghi đè (tránh
     huỷ kết quả ca trước), trả về path hiện có kèm cảnh báo.
     """
-    rdir = result_report_dir(project_code, agent, workspace_root)
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
+    rdir = result_report_dir(project_code, agent, ws_root)
     rdir.mkdir(parents=True, exist_ok=True)
     rpath = rdir / result_report_filename(agent, phase)
     if rpath.exists():
-        print(f"[SYNC_BUS v3.3] ⚠️ RESULT.md đã tồn tại: {to_relative_path(str(rpath), workspace_root)} — "
+        print(f"[SYNC_BUS v3.3] ⚠️ RESULT.md đã tồn tại: {to_relative_path(str(rpath), ws_root)} — "
               "không ghi đè (điền bổ sung thủ công).")
         return rpath
     ts = datetime.now().astimezone().isoformat(timespec="seconds")
@@ -767,13 +777,13 @@ def emit_result_report(
 *Report skeleton sinh tự động bởi `sync_bus.py` v3.3 (Report Gate).*
 """
     _atomic_write_text(rpath, content)
-    print(f"[SYNC_BUS v3.3] 📄 RESULT.md skeleton: {to_relative_path(str(rpath), workspace_root)}")
+    print(f"[SYNC_BUS v3.3] 📄 RESULT.md skeleton: {to_relative_path(str(rpath), ws_root)}")
     return rpath
 
 
 def report_gate_check(
     payload: dict,
-    workspace_root: Path = WORKSPACE_ROOT,
+    workspace_root: Optional[Path] = None,
     check_on_disk: bool = True,
 ) -> Tuple[bool, List[str]]:
     """
@@ -783,6 +793,7 @@ def report_gate_check(
     Ca không gated (CODE/META/INFRA/TEST/DOCS hoặc fallback keyword) -> luôn đạt.
     Trả về (đạt_cờ, danh_mục_thiếu).
     """
+    ws_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     missing: List[str] = []
     act = _gate_action_type(payload)
     if act not in GATED_ACTION_TYPES:
@@ -796,7 +807,7 @@ def report_gate_check(
         )
         return False, missing
     if check_on_disk:
-        rp = Path(workspace_root) / report_rel
+        rp = ws_root / report_rel
         if not (rp.exists() and rp.is_file()):
             missing.append(f"report_file không tồn tại trên đĩa: {report_rel}")
             return False, missing
@@ -819,7 +830,7 @@ def _refresh_lease(data: dict, agent: str) -> None:
 # ==============================================================================
 
 def detect_modified_files(
-    workspace_root: Path = WORKSPACE_ROOT,
+    workspace_root: Optional[Path] = None,
     project_code: Optional[str] = None,
     minutes: float = 120.0,
     max_files: int = 50,
@@ -834,6 +845,7 @@ def detect_modified_files(
       tránh gom nhầm artifact của dự án khác. Trả về đường dẫn tương đối POSIX
       chuẩn hóa về `workspace_root`.
     """
+    workspace_root = WORKSPACE_ROOT if workspace_root is None else Path(workspace_root)
     modified_set: set[str] = set()
     now = time.time()
     time_threshold = now - (minutes * 60)
@@ -1532,7 +1544,7 @@ def complete_task(
         _atomic_write_json(BUS_PATH, data)
         generate_handoff_memo(data, MEMO_PATH)
         # v3.3: RECEIPT cho ca COMPLETED (kết quả nghiệm thu) hoặc --force
-        write_receipt(data, gate_result, reason=reason, force_used=force)
+        write_receipt(data, gate_result, reason=reason, force_used=force, workspace_root=WORKSPACE_ROOT)
 
     print(f"[SYNC_BUS v3.3] ✅ {agent} ĐÃ HOÀN TẤT NHIỆM VỤ (COMPLETED). Toàn bộ tiêu chí đạt yêu cầu!")
     return data
@@ -1601,7 +1613,7 @@ def request_review(
         _atomic_write_json(BUS_PATH, data)
         generate_handoff_memo(data, MEMO_PATH)
         # v3.3: RECEIPT cho ca NEED_REVIEW (lượt review chính thức) hoặc --force
-        write_receipt(data, gate_result, reason=reason, force_used=force)
+        write_receipt(data, gate_result, reason=reason, force_used=force, workspace_root=WORKSPACE_ROOT)
 
     print(f"[SYNC_BUS v3.3] 🔍 {agent} ĐÃ YÊU CẦU KIỂM TRA CHÉO (NEED_REVIEW) TỪ {next_agent}!")
     return data
@@ -1665,11 +1677,12 @@ def _file_hash(path: Path) -> str:
     return h.hexdigest()
 
 
-def scan_gdrive_conflicts(target_dir: Path = WORKSPACE_ROOT) -> List[Dict[str, Any]]:
+def scan_gdrive_conflicts(target_dir: Optional[Path] = None) -> List[Dict[str, Any]]:
     """
     Quét tìm các tệp tin xung đột đồng bộ Google Drive có định dạng: <tên_gốc> (1).<ext>, <tên_gốc> (2).<ext>...
     So sánh với tệp tin gốc về dung lượng, mtime và mã băm SHA-256.
     """
+    target_dir = WORKSPACE_ROOT if target_dir is None else Path(target_dir)
     conflicts = []
     dup_pattern = re.compile(r"^(.*?)\s\((\d+)\)(\.[a-zA-Z0-9_]+)$")
 
@@ -1728,7 +1741,7 @@ def scan_gdrive_conflicts(target_dir: Path = WORKSPACE_ROOT) -> List[Dict[str, A
 
 
 def resolve_gdrive_conflicts(
-    target_dir: Path = WORKSPACE_ROOT,
+    target_dir: Optional[Path] = None,
     dry_run: bool = True,
     backup_dir: Optional[Path] = None
 ) -> List[str]:
@@ -1738,6 +1751,7 @@ def resolve_gdrive_conflicts(
     - Nếu file duplicate mới hơn: sao lưu file cũ, ghi đè bản mới thành file gốc, rồi xóa duplicate.
     - Tuyệt đối không xóa nhầm mã nguồn mới của đồng nghiệp!
     """
+    target_dir = WORKSPACE_ROOT if target_dir is None else Path(target_dir)
     conflicts = scan_gdrive_conflicts(target_dir)
     results = []
 

@@ -56,7 +56,25 @@ from test_cad_multiview_a3 import _build_synthetic_multiview_model
 
 class TestCadOpenFormsAndBlocks(unittest.TestCase):
     def test_01_all_four_forms_exist_and_validate_in_both_tiers(self):
-        for folder in (SSOT_FORMS_DIR, USER_FORMS_DIR):
+        self.assertTrue(SSOT_FORMS_DIR.is_dir(), f"Missing SSOT forms dir: {SSOT_FORMS_DIR}")
+        folders_to_check = [SSOT_FORMS_DIR]
+        if USER_FORMS_DIR.is_dir():
+            folders_to_check.append(USER_FORMS_DIR)
+        else:
+            print(f"[INFO] USER_FORMS_DIR không có ở checkout độc lập ({USER_FORMS_DIR}); kiểm tra tier 2 bằng bản sao tạm.")
+            tmp_ctx = tempfile.TemporaryDirectory()
+            self.addCleanup(tmp_ctx.cleanup)
+            tmp_user_dir = Path(tmp_ctx.name) / "CAD_Forms"
+            tmp_user_dir.mkdir(parents=True)
+            (tmp_user_dir / "README_HUONG_DAN_SUA_FORM_AUTOCAD.md").write_bytes(
+                (SSOT_FORMS_DIR / "README_HUONG_DAN_SUA_FORM_AUTOCAD.md").read_bytes()
+            )
+            for spec in FORM_CATALOG.values():
+                for key in ("filename", "manifest_filename"):
+                    (tmp_user_dir / spec[key]).write_bytes((SSOT_FORMS_DIR / spec[key]).read_bytes())
+            folders_to_check.append(tmp_user_dir)
+
+        for folder in folders_to_check:
             self.assertTrue(folder.is_dir(), f"Missing forms dir: {folder}")
             self.assertTrue((folder / "README_HUONG_DAN_SUA_FORM_AUTOCAD.md").is_file())
             for form_id, spec in FORM_CATALOG.items():
@@ -81,9 +99,31 @@ class TestCadOpenFormsAndBlocks(unittest.TestCase):
             self.assertEqual(r_proj.tier, "project")
             self.assertEqual(r_proj.dxf_path, custom_f2)
 
-            r_user = resolve_form_paths("FORM_02_MULTIVIEW_A3_BTCT", project_dir=Path(td) / "no_forms")
-            self.assertEqual(r_user.tier, "user_standards")
-            self.assertEqual(r_user.dxf_path.parent, USER_FORMS_DIR)
+            if USER_FORMS_DIR.is_dir():
+                r_user = resolve_form_paths("FORM_02_MULTIVIEW_A3_BTCT", project_dir=Path(td) / "no_forms")
+                self.assertEqual(r_user.tier, "user_standards")
+                self.assertEqual(r_user.dxf_path.parent, USER_FORMS_DIR)
+            else:
+                tmp_user = Path(td) / "user_forms"
+                tmp_user.mkdir(parents=True)
+                (tmp_user / "Form_02_MultiView_A3_BTCT.dxf").write_bytes(
+                    (SSOT_FORMS_DIR / "Form_02_MultiView_A3_BTCT.dxf").read_bytes()
+                )
+                r_user = resolve_form_paths(
+                    "FORM_02_MULTIVIEW_A3_BTCT",
+                    project_dir=Path(td) / "no_forms",
+                    user_forms_dir=tmp_user,
+                )
+                self.assertEqual(r_user.tier, "user_standards")
+                self.assertEqual(r_user.dxf_path.parent, tmp_user)
+
+            r_ssot = resolve_form_paths(
+                "FORM_02_MULTIVIEW_A3_BTCT",
+                project_dir=Path(td) / "no_forms",
+                user_forms_dir=Path(td) / "missing_user_forms",
+            )
+            self.assertEqual(r_ssot.tier, "ssot_fallback")
+            self.assertEqual(r_ssot.dxf_path.parent, SSOT_FORMS_DIR)
 
     def test_03_contract_rejects_missing_zone_missing_attdef_and_flags_ucs(self):
         with tempfile.TemporaryDirectory() as td:

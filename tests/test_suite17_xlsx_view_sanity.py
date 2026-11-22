@@ -28,6 +28,7 @@ import xlsx_view_sanity as xs  # noqa: E402
 
 PASS = 0
 FAIL = 0
+SKIP = 0
 
 def check(name, cond, detail=""):
     global PASS, FAIL
@@ -50,6 +51,7 @@ def _sheetviews_xml(path):
 
 
 def main():
+    global PASS, FAIL, SKIP
     print("=" * 72)
     print(" SUITE 17 — XLSX VIEW SANITY (Anti-[Repaired] Regression)")
     print("=" * 72)
@@ -173,7 +175,8 @@ def main():
         if not os.path.exists(fp):
             fp = os.path.join(proj, "Archive_Checklists_Tuan_Cu", fname)
         if not os.path.exists(fp):
-            check(f"C. {fname} — bỏ qua (không tồn tại)", True, f"note: {note}")
+            SKIP += 1
+            print(f"  [SKIP] C. {fname} — bỏ qua (không có dữ liệu dự án ngoài Git; note: {note})")
             continue
         okc, issc = xs.validate_xlsx_file(fp)
         # chỉ file backup là KHÔNG bắt buộc pass; 2 file còn lại bắt buộc pass
@@ -211,7 +214,7 @@ def main():
 
     # ------------------------------------------------------------------
     print("\n" + "=" * 72)
-    print(f" SUITE 17 KẾT QUẢ: {PASS} pass, {FAIL} fail")
+    print(f" SUITE 17 KẾT QUẢ: {PASS} pass, {FAIL} fail, {SKIP} skip")
     print("=" * 72)
     return 0 if FAIL == 0 else 1
 

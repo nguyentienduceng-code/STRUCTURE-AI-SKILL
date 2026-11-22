@@ -16,6 +16,7 @@ if sys.platform == 'win32' and hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8')
 
 import os
+import tempfile
 import time
 import unittest
 from pathlib import Path
@@ -36,32 +37,37 @@ from project_memory import LessonsLearnedRepository, LessonLearned
 
 class TestSystemController(unittest.TestCase):
     def test_circuit_breaker_trip_and_recovery(self):
-        cb = CircuitBreaker("test_etabs", failure_threshold=2, recovery_timeout=0.2)
-        self.assertEqual(cb.state, CircuitState.CLOSED)
-        self.assertTrue(cb.allow_execution())
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            cb = CircuitBreaker(
+                "test_etabs", failure_threshold=2, recovery_timeout=0.2,
+                recorder=BlackboxRecorder(log_dir=Path(td)),
+            )
+            self.assertEqual(cb.state, CircuitState.CLOSED)
+            self.assertTrue(cb.allow_execution())
 
-        # Thất bại lần 1
-        cb.record_failure()
-        self.assertEqual(cb.state, CircuitState.CLOSED)
+            # Thất bại lần 1
+            cb.record_failure()
+            self.assertEqual(cb.state, CircuitState.CLOSED)
 
-        # Thất bại lần 2 -> Tripped
-        cb.record_failure()
-        self.assertEqual(cb.state, CircuitState.OPEN)
-        self.assertFalse(cb.allow_execution())
+            # Thất bại lần 2 -> Tripped
+            cb.record_failure()
+            self.assertEqual(cb.state, CircuitState.OPEN)
+            self.assertFalse(cb.allow_execution())
 
-        # Thử gọi hàm khi OPEN -> Phải ném ngoại lệ
-        with self.assertRaises(CircuitBreakerTripped):
-            cb.call(lambda: "should_fail")
+            # Thử gọi hàm khi OPEN -> Phải ném ngoại lệ
+            with self.assertRaises(CircuitBreakerTripped):
+                cb.call(lambda: "should_fail")
 
-        # Đợi hạ nhiệt 0.25s -> Phải chuyển sang HALF_OPEN
-        time.sleep(0.25)
-        self.assertTrue(cb.allow_execution())
-        self.assertEqual(cb.state, CircuitState.HALF_OPEN)
+            # Đợi hạ nhiệt 0.25s -> Phải chuyển sang HALF_OPEN
+            time.sleep(0.25)
+            self.assertTrue(cb.allow_execution())
+            self.assertEqual(cb.state, CircuitState.HALF_OPEN)
 
-        # Gọi thành công trong HALF_OPEN -> Quay về CLOSED
-        res = cb.call(lambda: "recovered")
-        self.assertEqual(res, "recovered")
-        self.assertEqual(cb.state, CircuitState.CLOSED)
+            # Gọi thành công trong HALF_OPEN -> Quay về CLOSED
+            res = cb.call(lambda: "recovered")
+            self.assertEqual(res, "recovered")
+            self.assertEqual(cb.state, CircuitState.CLOSED)
 
     def test_execution_guard_forbidden_commands(self):
         guard = ExecutionGuard(mode="SAFE")
@@ -104,19 +110,20 @@ class TestSystemController(unittest.TestCase):
         self.assertIn("ping-pong", r_loop["reason"])
 
     def test_blackbox_trace_recorder(self):
-        recorder = BlackboxRecorder()
-        trace_id = recorder.generate_trace_id()
-        self.assertTrue(trace_id.startswith("TRC-"))
+        with tempfile.TemporaryDirectory() as td:
+            recorder = BlackboxRecorder(log_dir=Path(td))
+            trace_id = recorder.generate_trace_id()
+            self.assertTrue(trace_id.startswith("TRC-"))
 
-        span = recorder.start_span(trace_id, actor="Structural_Design_Engineer", action="calculate_beam")
-        time.sleep(0.01)  # tạo độ trễ nhỏ
-        recorder.end_span(span, status="SUCCESS", metadata={"element": "D1"})
+            span = recorder.start_span(trace_id, actor="Structural_Design_Engineer", action="calculate_beam")
+            time.sleep(0.01)  # tạo độ trễ nhỏ
+            recorder.end_span(span, status="SUCCESS", metadata={"element": "D1"})
 
-        self.assertEqual(span.status, "SUCCESS")
-        self.assertGreater(span.duration_ms, 0)
+            self.assertEqual(span.status, "SUCCESS")
+            self.assertGreater(span.duration_ms, 0)
 
-        summary = recorder.export_summary()
-        self.assertGreaterEqual(summary["success_count"], 1)
+            summary = recorder.export_summary()
+            self.assertGreaterEqual(summary["success_count"], 1)
 
 
 class TestStandardsGraph(unittest.TestCase):
@@ -318,25 +325,35 @@ class TestRegressionClaudeReview(unittest.TestCase):
         BUG-005: allow_execution() phải chuyển OPEN->HALF_OPEN nhưng KHÔNG tiêu tốn
         lượt thử, nếu không thì call() ngay sau đó sẽ bị chặn oan.
         """
-        cb = CircuitBreaker("reg_test", failure_threshold=1, recovery_timeout=0.1)
-        cb.record_failure()
-        self.assertEqual(cb.state, CircuitState.OPEN)
-        time.sleep(0.15)
-        self.assertTrue(cb.allow_execution())
-        self.assertEqual(cb.state, CircuitState.HALF_OPEN)
-        # Lượt thử vẫn phải còn -> call() phải chạy được
-        self.assertEqual(cb.call(lambda: "ok"), "ok")
-        self.assertEqual(cb.state, CircuitState.CLOSED)
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            cb = CircuitBreaker(
+                "reg_test", failure_threshold=1, recovery_timeout=0.1,
+                recorder=BlackboxRecorder(log_dir=Path(td)),
+            )
+            cb.record_failure()
+            self.assertEqual(cb.state, CircuitState.OPEN)
+            time.sleep(0.15)
+            self.assertTrue(cb.allow_execution())
+            self.assertEqual(cb.state, CircuitState.HALF_OPEN)
+            # Lượt thử vẫn phải còn -> call() phải chạy được
+            self.assertEqual(cb.call(lambda: "ok"), "ok")
+            self.assertEqual(cb.state, CircuitState.CLOSED)
 
     def test_circuit_breaker_half_open_single_probe(self):
         """BUG-006: HALF_OPEN chỉ cho 1 lượt thử đồng thời."""
-        cb = CircuitBreaker("reg_probe", failure_threshold=1, recovery_timeout=0.05)
-        cb.record_failure()
-        time.sleep(0.1)
-        self.assertTrue(cb._try_acquire_probe())
-        self.assertEqual(cb.state, CircuitState.HALF_OPEN)
-        # Lượt thử thứ 2 phải bị từ chối
-        self.assertFalse(cb._try_acquire_probe())
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            cb = CircuitBreaker(
+                "reg_probe", failure_threshold=1, recovery_timeout=0.05,
+                recorder=BlackboxRecorder(log_dir=Path(td)),
+            )
+            cb.record_failure()
+            time.sleep(0.1)
+            self.assertTrue(cb._try_acquire_probe())
+            self.assertEqual(cb.state, CircuitState.HALF_OPEN)
+            # Lượt thử thứ 2 phải bị từ chối
+            self.assertFalse(cb._try_acquire_probe())
 
     def test_execution_guard_does_not_block_read_tools_by_substring(self):
         """BUG-007: 'recalculate' chứa chuỗi 'calc' không được coi là tool ghi."""
@@ -424,8 +441,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
-                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
+                 mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 res = sync_bus.auto_handoff(
                     sender="GEMINI",
                     target="CLAUDE",
@@ -463,8 +483,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
-                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
+                 mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 # 1. Handoff tạo PENDING
                 sync_bus.auto_handoff(
                     sender="GEMINI",
@@ -497,8 +520,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
-                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo):
+                 mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
+                 mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 sync_bus.auto_handoff(
                     sender="GEMINI",
                     target="CLAUDE",
@@ -731,26 +757,29 @@ class TestRegressionClaudeReview(unittest.TestCase):
 
     def test_approve_unlocks_pending_approval_once(self):
         """Kiểm tra luồng approve(tool_name) mở khóa PENDING_APPROVAL đúng 1 lần (Fix Bug F01)."""
-        ctrl = SystemController()
-        ctrl.set_mode("SAFE")
-        ctrl.loop_breaker.reset()
-        # Lần 1: Chưa approve -> bị chặn PENDING_APPROVAL
-        res1 = ctrl.preflight_check("AgentX", "delete_element", {"id": 101})
-        self.assertFalse(res1["allowed"])
-        self.assertEqual(res1["status"], "PENDING_APPROVAL")
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            ctrl = SystemController()
+            ctrl.recorder = BlackboxRecorder(log_dir=Path(td))
+            ctrl.set_mode("SAFE")
+            ctrl.loop_breaker.reset()
+            # Lần 1: Chưa approve -> bị chặn PENDING_APPROVAL
+            res1 = ctrl.preflight_check("AgentX", "delete_element", {"id": 101})
+            self.assertFalse(res1["allowed"])
+            self.assertEqual(res1["status"], "PENDING_APPROVAL")
 
-        # User gọi approve -> Lần 2 được phép chạy (ALLOWED) và tiêu thụ vé
-        ctrl.approve("delete_element")
-        self.assertTrue(ctrl.is_approved("delete_element"))
-        res2 = ctrl.preflight_check("AgentY", "delete_element", {"id": 101})
-        self.assertTrue(res2["allowed"])
-        self.assertEqual(res2["status"], "ALLOWED")
-        self.assertFalse(ctrl.is_approved("delete_element"))
+            # User gọi approve -> Lần 2 được phép chạy (ALLOWED) và tiêu thụ vé
+            ctrl.approve("delete_element")
+            self.assertTrue(ctrl.is_approved("delete_element"))
+            res2 = ctrl.preflight_check("AgentY", "delete_element", {"id": 101})
+            self.assertTrue(res2["allowed"])
+            self.assertEqual(res2["status"], "ALLOWED")
+            self.assertFalse(ctrl.is_approved("delete_element"))
 
-        # Lần 3: Gọi lại mà không approve mới -> phải chặn lại PENDING_APPROVAL
-        res3 = ctrl.preflight_check("AgentZ", "delete_element", {"id": 102})
-        self.assertFalse(res3["allowed"])
-        self.assertEqual(res3["status"], "PENDING_APPROVAL")
+            # Lần 3: Gọi lại mà không approve mới -> phải chặn lại PENDING_APPROVAL
+            res3 = ctrl.preflight_check("AgentZ", "delete_element", {"id": 102})
+            self.assertFalse(res3["allowed"])
+            self.assertEqual(res3["status"], "PENDING_APPROVAL")
 
     def test_lessons_repository_does_not_pollute_production_file(self):
         """BUG-012: test không được ghi vào file bài học production."""

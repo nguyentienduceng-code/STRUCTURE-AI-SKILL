@@ -1,0 +1,22 @@
+{
+  "receipt_id": "RCP_20261122-150117_CODEX_NEED_REVIEW",
+  "issued_at": "2026-11-22T15:01:17.497568+07:00",
+  "project_code": "MASTER_SYSTEM_AUDIT_20261122",
+  "action_type": "META",
+  "sender": "CODEX",
+  "target": "GEMINI",
+  "handoff_status": "NEED_REVIEW",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/codex_system_audit_20261122/CODEX_INDEPENDENT_AUDIT_AND_ROADMAP.md",
+  "evidence_hashes": {
+    ".agents/memory/DUAL_AGENT_BUS.json": null,
+    ".agents/memory/DUAL_AGENT_HANDOFF_MEMO.md": null,
+    ".agents/docs/BAO_CAO_PHAT_TRIEN_DIEU_PHOI_AI.md": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "cd78e5c988f3cb7c09e93605a72e0abf478dd0910f65fb00f7a8f947d125c247",
+  "signature": "CODEX@20261122-150117"
+}

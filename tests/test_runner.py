@@ -38,9 +38,9 @@ TEST_CASES = [
         "name": "Deflection Check — L=6m M=80kNm",
         "script": "Design_Evaluation/calculators/deflection_check.py",
         "function": "calculate_deflection",
-        "kwargs": {"L": 6000, "M": 80, "E": 30000, "I_eff": 5.4e9},
+        "kwargs": {"L": 6.0, "M": 80, "E": 30e6, "I_eff": 5.4e-3},
         "checks": {
-            "Standard_Method": lambda v: "TCVN 5574" in v,
+            "Standard_Method": lambda v: "TCVN 2737:2023" in v,
         }
     },
     {
