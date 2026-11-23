@@ -48,6 +48,8 @@ class TestMcpDceCadServer(unittest.TestCase):
             "render_cad_plan", "render_preview", "consume_preview",
             "release_preview", "validate_cad", "edit_entity", "convert_to_dwg", "resolve_cad_collisions",
             "auto_layout_and_scale_plan", "export_cad_sheet_set",
+            # Tầng 2B (solo): native DWG snapshot + D1/D1A diff (Core Console)
+            "native_dwg_snapshot", "native_dwg_diff",
         ]
         for et in expected_tools:
             self.assertIn(et, tool_names, f"Thiếu công cụ: {et}")

@@ -39,10 +39,12 @@ quadrantChart
 | **TD-05** | Tầng 1 | Delivery | Mở rộng thư viện template Thuyết minh phụ lục (`SKILL_PHULUC`) | Low | Thấp | Completed | 🟢 Resolved (15 MD + 2 DOCX templates) |
 | **TD-06** | Tầng 3 | Integration | Trích xuất nội lực kiểm chứng hai chiều với ETABS / SAFE / SAP2000 | Medium | Cao | Tầng 3 | 🔵 Partial (`etabs_com_reader.py` v1 done) |
 | **TD-07** | Tầng 1 | Quality Assurance | Đồng bộ Test Coverage trên toàn bộ `run_all_tests.py` & `_collect_tests.py` | Medium | Thấp - TB | Completed | 🟢 Resolved (50/50 Test Suites Full CI) |
+| **TD-08** | Tầng 2 | Integration (BIM) | **Tầng 2C: Revit 2024 Read-Only Connector + IFC (IfcOpenShell) — pilot chưa triển khai** | Medium | Trung bình - Cao | Tầng 2 (pending) | 🟡 Logged (solo 2B đã xong; 2C để làm sau) |
 
 ---
 
 ## 2. CHI TIẾT TỪNG KHOẢN NỢ KỸ THUẬT
+
 
 ### TD-01: Giao tiếp Handoff Trung gian qua Local JSON Files
 - **Trạng thái hiện tại:** 🟢 **Resolved cho môi trường Local/Google Drive** qua Dual-Agent Bus v3.4 (`sync_bus.py`: `FileLock` nguyên tử, Lease/Heartbeat, Project-Scoped Resolver, SHA-256 Receipts, ProductDeliverableGate, Clean-Checkout Zero-Mutation). Phần mở rộng Multi-tenant Cloud API (Redis / In-Memory Broker) giữ tại Roadmap 2027.
@@ -83,6 +85,18 @@ quadrantChart
 
 ### TD-07: Đồng bộ Độ phủ Kiểm thử Tự động trên Toàn bộ Hệ sinh thái
 - **Trạng thái hiện tại:** 🟢 **Resolved 100%** — Bộ kiểm thử `tests/run_all_tests.py --full` chạy **50/50 Test Suites** (`33` suite đăng ký tĩnh + `17` suite tự động đăng ký) và `tools/_collect_tests.py` đã đồng bộ thu thập đầy đủ toàn bộ `50` suites trên `122` Python scripts thuộc 14 skills.
+
+---
+
+### TD-08: Tầng 2C — Revit 2024 Read-Only Connector + IFC (IfcOpenShell) (🟡 Logged, chưa triển khai)
+- **Bối cảnh:** Tầng 2B (AutoCAD 2021 Native DWG + Snapshot Diff D1/D1A) đã được Claude triển khai **độc lập (solo)** và cam kết: `tools/native_dwg_snapshot.py` (bản chụp chính tắc đơn vị chuẩn mm + fingerprint SHA-256), `tools/native_dwg_diff.py` (ghép **chỉ theo** `element_id`, không bao giờ tự ghép theo mark/hình học), `tools/autocad_snapshot_bridge.py` (worker 1 DWG/1 tiến trình, read-only, staging + SHA bất biến, `UNAVAILABLE` trung thực, `native_accept`), `tools/dce_snapshot_plugin.cs` (nguồn plugin .NET read-only `DCE_SNAPSHOT`, đọc `DCE_ELEMENT_ID` + regapp `DCE_BEAM`), bộ test `tests/test_tier2_phase2b_snapshot_diff.py` (17/17 PASS), 2 tool MCP `native_dwg_snapshot`/`native_dwg_diff`. **Nghiệm thu native đã chứng minh trên AutoCAD 2021 thật** (plugin build OK, snapshot read-only DWG thật `immutability_ok=true`).
+- **Phạm vi nợ 2C (đúng theo `memory/audits/TIER2_PHASE2A_REVIEW_2B_2C_ARCHITECTURE.md` §3):**
+  1. **Pilot 10 ngày trên BẢN SAO RVT 2024** (cấm file sản xuất, cấm bridge ghi): connector read-only qua **BIMwright `rvt-mcp v1.2.2`** là ứng viên đầu; benchmark dự phòng **Horizun v4.0.1** trên đúng cùng model + bộ đáp án; chỉ duyệt add-in C# Revit 2024 read-only nếu cả hai thiếu trường thiết yếu.
+  2. **Canonical BIM snapshot + interface 6 hàm** (open readonly → list → batch elements → batch types → fingerprint → close); ghi document identity/build/transform/expected-returned counts. Nguyên tắc: `UniqueId ≠ IfcGlobalId ≠ element_id`; chỉ `element_id` đã duyệt là khóa xuyên CAD↔Revit.
+  3. **IFC là kênh cross-check độc lập với thuật toán diff**: IfcOpenShell cài **version-pinned** trong môi trường cô lập; ghi hash IFC + schema + exporter + timestamp + unit assignments + placement + GlobalId mapping; IfcDiff chỉ là phép kiểm phụ, không coi GlobalId ổn định giữa các lần xuất.
+  4. **5 ca acceptance 2C** (bài thi 2 dầm D1, B–C đổi 250×500→250×600 + đổi D1A, type dùng chung, tag sai, dầm chéo 3-4-5) + chứng minh read-only (danh sách tool/capability, quyền chỉ đọc trên bản sao, hash trước-sau + audit/log).
+- **Tiêu chí đóng nợ (Debt Retirement):** có connector read-only + canonical schema + 5 ca acceptance PASS trên bản sao RVT 2024 thật (đã ẩn dữ liệu), IfcOpenShell pinned và IFC thực cross-check; `element_id` xuyên CAD↔Revit được audit; kỹ sư độc lập ký kết quả. Cấm mở rộng sang ghi Revit trong phase này.
+- **Giới hạn trần nợ (Debt Ceiling):** TD-08 là nợ **Medium**, không làm vượt quá 2 nợ High. **Handoff 2B→2C:** điều kiện khởi động = "2B được nghiệm thu native (reopen/plot DWG trên AutoCAD 2021)" — **ĐÃ ĐẠT** (2026-11-23): plugin `DCE_SNAPSHOT` build OK, snapshot read-only DWG thật `immutability_ok=true`, `native_accept` PASS. 2C (nợ này) chờ tài nguyên: **RVT 2024 bản sao + IfcOpenShell version-pinned + thời gian pilot** (kỹ sư CAD/Revit cung cấp), không chặn vì 2B.
 
 ---
 

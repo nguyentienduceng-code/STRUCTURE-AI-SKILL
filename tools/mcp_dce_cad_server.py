@@ -80,6 +80,8 @@ ODA_EXE = os.environ.get(
     "ODA_FILE_CONVERTER",
     r"C:\Program Files\ODA\ODA File Converter\ODAFileConverter.exe",
 )
+# Tầng 2B (solo) — cầu nối native DWG + snapshot diff (kiến trúc 2B đã duyệt).
+SNAP_BRIDGE = AGENTS / "tools" / "autocad_snapshot_bridge.py"
 # Thư mục mặc định cho session edit + preview (scratch, không ghi đè bản vẽ gốc)
 _EDIT_ROOT_DEFAULT = SCRATCH_ROOT / "sessions"
 
@@ -411,6 +413,80 @@ def convert_to_dwg(dxf_path: str, out_dwg: str = "") -> dict:
     finally:
         shutil.rmtree(conv_in, ignore_errors=True)
         shutil.rmtree(conv_out, ignore_errors=True)
+
+
+# ---------------------------------------------------------------------------
+# 2B (solo) — Native DWG snapshot + D1/D1A diff (AutoCAD 2021 Core Console)
+# ---------------------------------------------------------------------------
+# Bọc MỎNG `autocad_snapshot_bridge` (out-of-process, read-only, staging + SHA
+# bất biến). Thiếu Core Console/plugin => UNAVAILABLE trung thực (KHÔNG báo
+# "native pass"). DXF lane (ezdxf) vẫn chạy độc lập song song.
+
+@_tool()
+def native_dwg_snapshot(dwg_path: str, out_json: str = "", revision: str = "") -> dict:
+    """Chụp snapshot chính tắc mm từ 1 DWG native (AutoCAD 2021 Core Console,
+    read-only). Trả SHA-256 bất biến + fingerprint + counts.
+
+    Chạy ngoài tiến trình: copy staging + accoreconsole + plugin .NET DCE_SNAPSHOT.
+    Thiếu accoreconsole/plugin => UNAVAILABLE + hướng dẫn (không bịa "native pass").
+    out_json (tùy chọn): ghi snapshot đầy đủ ra đường dẫn này.
+    """
+    bridge = _load(SNAP_BRIDGE, "dce_snap_bridge")
+    tc = bridge.detect_toolchain()
+    if not tc.get("native_ready"):
+        return {"status": "UNAVAILABLE", "toolchain": tc,
+                "reason": ("accoreconsole.exe / plugin DCE snapshot chưa sẵn trên host. "
+                           "Đường DXF (ezdxf) vẫn chạy độc lập; không quy thành native pass."),
+                "suggestion": "Cài AutoCAD 2021 + build plugin (autocad_snapshot_bridge build).",
+                "file_written": False}
+    src = Path(dwg_path)
+    if not src.is_file():
+        return {"status": "E001", "error": f"Không tìm thấy file DWG tại: {dwg_path}"}
+    res = bridge.run_snapshot(str(src), revision=revision)
+    if out_json and res.get("snapshot"):
+        bridge.snap.dump_snapshot(res["snapshot"], out_json)
+    snap = res.get("snapshot") or {}
+    return {
+        "status": res["status"],
+        "error": res.get("error"),
+        "immutability_ok": res.get("immutability_ok"),
+        "source_sha256": res.get("source_hash_before"),
+        "record_counts": snap.get("counts"),
+        "fingerprint": snap.get("fingerprint"),
+        "complete": snap.get("completion", {}).get("complete") if snap else None,
+        "snapshot_written": out_json if (out_json and res.get("snapshot")) else None,
+    }
+
+
+@_tool()
+def native_dwg_diff(dwg_a: str, dwg_b: str, rev_a: str = "A", rev_b: str = "B") -> dict:
+    """So 2 DWG native (A cơ sở, B ứng viên) theo element_id (D1/D1A).
+
+    Trả report diff (added/removed/changed + decision classes) + verdict
+    out-of-scope. Thiếu toolchain native => UNAVAILABLE trung thực.
+    """
+    bridge = _load(SNAP_BRIDGE, "dce_snap_bridge")
+    tc = bridge.detect_toolchain()
+    if not tc.get("native_ready"):
+        return {"status": "UNAVAILABLE", "toolchain": tc,
+                "reason": "accoreconsole.exe / plugin DCE snapshot chưa sẵn trên host.",
+                "suggestion": "Cài AutoCAD 2021 + build plugin (autocad_snapshot_bridge build)."}
+    dres = bridge.diff_revisions(str(dwg_a), str(dwg_b), rev_a=rev_a, rev_b=rev_b)
+    if dres.get("status") != "OK":
+        return {"status": dres.get("status"), "error": dres.get("error"),
+                "a_sha256": dres.get("a_hash"), "b_sha256": dres.get("b_hash")}
+    report = dres["diff"]
+    import native_dwg_diff as diff_mod
+    decision = diff_mod.d1d1a_decision(report)
+    return {
+        "status": "OK",
+        "overall": report.get("overall"),
+        "summary": report.get("summary"),
+        "changes": report.get("changes"),
+        "issues": report.get("issues"),
+        "decision": decision,
+        "a_sha256": dres.get("a_hash"), "b_sha256": dres.get("b_hash"),
+    }
 
 
 # ---------------------------------------------------------------------------

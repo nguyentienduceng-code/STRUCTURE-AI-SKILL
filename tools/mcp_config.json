@@ -29,7 +29,9 @@
       "export_cad_sheet_set(model_json_path, sheet_types, target_sheet, force_scale, auto_scale, render_preview, export_pdf, dry_run)",
       "open_form(project_dir, form_id)",
       "diff_form(project_dir, form_id, baseline)",
-      "apply_agent_changes(project_dir, form_id, changes, commit, compliance)"
+      "apply_agent_changes(project_dir, form_id, changes, commit, compliance)",
+      "native_dwg_snapshot(dwg_path, out_json, revision)",
+      "native_dwg_diff(dwg_a, dwg_b, rev_a, rev_b)"
     ],
     "dependencies": ["mcp (pip, 1.x/2.x)", "ezdxf>=1.4,<2", "shapely>=2,<3", "matplotlib", "ODA File Converter (optional, cho convert_to_dwg)"],
     "cad_first_policy": "Muc tieu mac dinh la xuat file CAD (.dxf/.dwg). KHONG tu dong xuat PDF (export_pdf=False) hay preview PNG (render_preview=False) khi nguoi dung khong ghi chu yeu cau.",
