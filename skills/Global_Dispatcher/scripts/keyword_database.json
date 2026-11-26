@@ -8,6 +8,10 @@
   "skills": {
     "Design_Evaluation": {
       "skill_id": "DE",
+      "guide_triggers": {
+        "SKILLKC.md": ["thẩm tra", "thẩm định", "review bản vẽ", "kiểm tra hồ sơ"],
+        "SKILL_REPORT.md": ["tờ trình", "lập báo cáo", "xuất báo cáo", "soạn báo cáo"]
+      },
       "display_name": "Design Evaluation (Quản lý Thiết kế / QLTK)",
       "entry_points": [
         "SKILLKC.md",
@@ -81,6 +85,11 @@
     },
     "Structural_Design_Engineer": {
       "skill_id": "SDE",
+      "guide_triggers": {
+        "SKILL_CALC.md": ["thiết kế dầm", "thiết kế cột", "tính cốt thép", "tính tiết diện", "tính võng"],
+        "SKILL_CONNECTION.md": ["liên kết", "bu lông", "đường hàn", "bản mã"],
+        "SKILL_CALC_REPORT.md": ["thuyết minh tính toán", "báo cáo tính toán"]
+      },
       "display_name": "Structural Design Engineer (Kỹ sư Thiết kế)",
       "entry_points": [
         "SKILL_CALC.md",
@@ -158,6 +167,11 @@
     },
     "SKILL_PHULUC": {
       "skill_id": "PL",
+      "guide_triggers": {
+        "templates/TMTT_FULL.md": ["phụ lục đầy đủ", "phụ lục toàn bộ"],
+        "templates/PARTIAL_BE_TONG.md": ["bê tông", "btct"],
+        "templates/PARTIAL_THEP.md": ["kết cấu thép", "khung thép", "dầm thép", "cột thép"]
+      },
       "display_name": "SKILL_PHULUC (Phụ lục Tính toán)",
       "entry_points": [
         "templates/TMTT_FULL.md",

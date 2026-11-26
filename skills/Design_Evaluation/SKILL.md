@@ -69,7 +69,7 @@ Doc chi tiet trong `references/SKILL_BIM_COORDINATION.md`:
 
 Doc chi tiet trong `references/SKILL_RFI.md`:
 
-- **Task 5.1 & 5.2**: Phan loai `CRITICAL (Hold Point -> NCR)`, `MAJOR (RFI)` va `MINOR (RFI)`; xuat ma dinh danh chuan `RFI-DES-YYYYMMDD-NNN` va `NCR-DES-YYYYMMDD-NNN` voi day du 6 truong thong tin dinh luong va che tai tam dung nghiem thu / giu thanh toan theo Nghi dinh 175/2024/ND-CP & Nghi dinh 37/2015/ND-CP.
+- **Task 5.1 & 5.2**: Phan loai `CRITICAL (Hold Point -> NCR)`, `MAJOR (RFI)` va `MINOR (RFI)`; xuat ma dinh danh chuan `RFI-DES-YYYYMMDD-NNN` va `NCR-DES-YYYYMMDD-NNN` voi day du 6 truong thong tin dinh luong va che tai tam dung nghiem thu / giu thanh toan theo Nghi dinh 217/2026/ND-CP (thay the Nghi dinh 175/2024/ND-CP) & Nghi dinh 37/2015/ND-CP.
 
 ### Module 6: `SKILL_REPORT` (Corporate Engineering Publisher v3.3.0 - Gate 6)
 

@@ -1030,7 +1030,7 @@ class DCECADComplianceCheckerV4:
             d for d in dims_on_setout
             if abs(float(d.get("actual_measurement", 0.0)) - float(d.get("dim_text", "0"))) > 1.0
         ]
-        if mode in ("COLUMN_WALL_SETOUT", "FOUNDATION_LAYOUT"):
+        if mode in ("COLUMN_WALL_SETOUT", "FOUNDATION_LAYOUT") or any(str(mode).upper().startswith(p) for p in ("KC.05", "KC.06", "KC.07")):
             g6_pass = len(leaders_on_setout) == 0 and len(dims_on_setout) > 0 and len(fake_dims) == 0
             g6_msg = f"[{mode}] Có {len(dims_on_setout)} chuỗi Linear Dimension định vị (DCE_DIM_COT_{int(S)}), 0 LEADER, 0 lệch số Dim."
         else:
@@ -1125,7 +1125,7 @@ class DCECADComplianceCheckerV4:
         ))
 
         # G8.12: ZERO_TEXT_CLASH_AUDITOR
-        if mode in ("COLUMN_WALL_SETOUT", "FOUNDATION_LAYOUT"):
+        if mode in ("COLUMN_WALL_SETOUT", "FOUNDATION_LAYOUT") or any(str(mode).upper().startswith(p) for p in ("KC.05", "KC.06", "KC.07")):
             tags = [e for e in entities if e.get("block") == "DCE_TenCauKien" and "bbox" in e]
             tag_clashes = 0
             for i in range(len(tags)):
@@ -1593,16 +1593,182 @@ def _audit_physical_dxf(dxf_path: str) -> Dict[str, Any]:
     }
 
 
+def audit_native_detail_gates(dxf_path: str | Path) -> List[GateResult]:
+    """Kiểm toán 3 cổng CAD v6.0 dành cho bản vẽ chi tiết BTCT Open Form_04 (`G8.26` - `G8.28`)."""
+    p = Path(dxf_path)
+    if not p.exists():
+        return [
+            GateResult(gid, gname, sev, False, f"Không tìm thấy tệp DXF: {p}")
+            for gid, gname, sev in (
+                ("G8.26", "NATIVE_DETAIL_ENTITIES", "CRITICAL"),
+                ("G8.27", "PAPERSPACE_AND_BLOCK_BUDGET", "MAJOR"),
+                ("G8.28", "TYPOGRAPHY_MARGIN_AND_BBS_SYNC", "CRITICAL"),
+            )
+        ]
+
+    doc = ezdxf.readfile(str(p))
+    msp = doc.modelspace()
+
+    sidecar: Dict[str, Any] = {}
+    sidecar_p = p.with_suffix(".dce_audit.json")
+    if sidecar_p.exists():
+        try:
+            sidecar = json.loads(sidecar_p.read_text(encoding="utf-8"))
+        except Exception:
+            sidecar = {}
+
+    # G8.26: NATIVE_DETAIL_ENTITIES
+    mode_str = str(sidecar.get("mode", ""))
+    is_vec_reconstructed = mode_str == "DETAIL_VECTOR_RECONSTRUCTED"
+    n_tot = 0
+    n_line = 0
+    n_dim = 0
+    n_ins = 0
+    zero_layer_struct = 0
+    struct_types = {"LINE", "LWPOLYLINE", "CIRCLE", "ARC", "HATCH", "DIMENSION", "INSERT"}
+    for ent in msp:
+        n_tot += 1
+        t = ent.dxftype()
+        if t == "LINE":
+            n_line += 1
+        elif t == "DIMENSION":
+            n_dim += 1
+        elif t == "INSERT":
+            n_ins += 1
+        if t in struct_types and str(ent.dxf.get("layer", "0")) == "0":
+            zero_layer_struct += 1
+
+    line_ratio = n_line / max(1, n_tot)
+    g26_pass = (
+        not is_vec_reconstructed
+        and line_ratio < 0.50
+        and n_dim >= 25
+        and n_ins >= 30
+        and zero_layer_struct == 0
+    )
+    g26_detail = (
+        f"mode={mode_str or 'N/A'}, total={n_tot}, LINE={n_line} ({line_ratio:.1%}), "
+        f"DIMENSION={n_dim} (>=25), INSERT={n_ins} (>=30), layer0_struct={zero_layer_struct}."
+    )
+
+    # G8.27: PAPERSPACE_AND_BLOCK_BUDGET
+    ps_vp_count = 0
+    for ly in doc.layouts:
+        if ly.name != "Model":
+            if any(e.dxftype() == "VIEWPORT" for e in ly):
+                ps_vp_count += 1
+    named_blocks = [b.name for b in doc.blocks if not b.name.startswith("*")]
+    g27_pass = ps_vp_count >= 1 and len(named_blocks) <= 35
+    g27_detail = f"PaperSpace_with_VIEWPORT={ps_vp_count} (>=1), named_blocks={len(named_blocks)} (<=35)."
+
+    # G8.28: TYPOGRAPHY_MARGIN_AND_BBS_SYNC
+    bad_bullet_cnt = 0
+    bad_phi_cnt = 0
+
+    def _scan_text(s: str) -> None:
+        nonlocal bad_bullet_cnt, bad_phi_cnt
+        if "\u25cf" in s:
+            bad_bullet_cnt += 1
+        if "\u00d8" in s or "\u00f8" in s:
+            bad_phi_cnt += 1
+
+    frame_w, frame_h = 0.0, 0.0
+    for ent in msp:
+        if ent.dxftype() == "LWPOLYLINE" and str(ent.dxf.get("layer", "")) == "DCE_Frame":
+            pts = list(ent.get_points("xy"))
+            if pts:
+                xs = [pt[0] for pt in pts]
+                ys = [pt[1] for pt in pts]
+                frame_w = max(frame_w, max(xs))
+                frame_h = max(frame_h, max(ys))
+    if frame_w <= 0.0 or frame_h <= 0.0:
+        extmax = doc.header.get("$EXTMAX", (42000.0, 29700.0, 0.0))
+        frame_w = float(extmax[0]) if float(extmax[0]) > 0 else 42000.0
+        frame_h = float(extmax[1]) if float(extmax[1]) > 0 else 29700.0
+
+    oob_count = 0
+    tk_kl_sum = 0.0
+    tk_rows_seen = 0
+    for ent in msp:
+        t = ent.dxftype()
+        ly = str(ent.dxf.get("layer", ""))
+        if t == "TEXT":
+            _scan_text(str(ent.dxf.text))
+            pt = ent.dxf.insert
+            if ly != "DCE_Frame" and not ly.startswith("DCE_ZONE_"):
+                if not (-10.0 <= pt.x <= frame_w + 10.0 and -10.0 <= pt.y <= frame_h + 10.0):
+                    oob_count += 1
+        elif t == "MTEXT":
+            _scan_text(str(ent.text))
+            pt = ent.dxf.insert
+            if ly != "DCE_Frame" and not ly.startswith("DCE_ZONE_"):
+                if not (-10.0 <= pt.x <= frame_w + 10.0 and -10.0 <= pt.y <= frame_h + 10.0):
+                    oob_count += 1
+        elif t == "INSERT":
+            bname_u = str(ent.dxf.name).upper()
+            pt = ent.dxf.insert
+            if ly != "DCE_Frame" and not ly.startswith("DCE_ZONE_"):
+                if not (-10.0 <= pt.x <= frame_w + 10.0 and -10.0 <= pt.y <= frame_h + 10.0):
+                    oob_count += 1
+            for att in ent.attribs:
+                _scan_text(str(att.dxf.text))
+                if bname_u.startswith("TK") and bname_u != "TKTITLE" and str(att.dxf.tag).upper() == "KL":
+                    try:
+                        tk_kl_sum += float(str(att.dxf.text).strip())
+                        tk_rows_seen += 1
+                    except Exception:
+                        pass
+        elif t == "LINE" and ly != "DCE_Frame" and not ly.startswith("DCE_ZONE_"):
+            for pt in (ent.dxf.start, ent.dxf.end):
+                if not (-10.0 <= pt.x <= frame_w + 10.0 and -10.0 <= pt.y <= frame_h + 10.0):
+                    oob_count += 1
+        elif t == "LWPOLYLINE" and ly != "DCE_Frame" and not ly.startswith("DCE_ZONE_"):
+            for pt in ent.get_points("xy"):
+                if not (-10.0 <= pt[0] <= frame_w + 10.0 and -10.0 <= pt[1] <= frame_h + 10.0):
+                    oob_count += 1
+
+    calc_logs = sidecar.get("Calculation_Logs") or []
+    std_method = str(sidecar.get("Standard_Method") or "").strip()
+    sc_total_kg = sidecar.get("total_steel_kg")
+    log_kg_sum = sum(float(item.get("mass_kg", 0.0)) for item in calc_logs if isinstance(item, dict))
+    bbs_sync_ok = (
+        len(calc_logs) > 0
+        and bool(std_method)
+        and isinstance(sc_total_kg, (int, float))
+        and tk_rows_seen > 0
+        and abs(tk_kl_sum - float(sc_total_kg)) <= 0.50
+        and abs(log_kg_sum - float(sc_total_kg)) <= 0.50
+    )
+
+    g28_pass = (
+        bad_bullet_cnt == 0
+        and bad_phi_cnt == 0
+        and oob_count == 0
+        and bbs_sync_ok
+    )
+    g28_detail = (
+        f"bad_bullet={bad_bullet_cnt}, raw_phi={bad_phi_cnt}, oob={oob_count}, "
+        f"TK_rows={tk_rows_seen}, TK_KL_sum={tk_kl_sum:.2f}kg, sidecar_kg={sc_total_kg}, "
+        f"logs_cnt={len(calc_logs)}, std={'YES' if std_method else 'NO'}."
+    )
+
+    return [
+        GateResult("G8.26", "NATIVE_DETAIL_ENTITIES", "CRITICAL", g26_pass, g26_detail),
+        GateResult("G8.27", "PAPERSPACE_AND_BLOCK_BUDGET", "MAJOR", g27_pass, g27_detail),
+        GateResult("G8.28", "TYPOGRAPHY_MARGIN_AND_BBS_SYNC", "CRITICAL", g28_pass, g28_detail),
+    ]
+
+
 def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
                          beam_dxf_path: Optional[str] = None,
                          colwall_dxf_path: Optional[str] = None) -> Dict[str, Any]:
-    """Read-only audit: full (20 gates), plan (16 + 4 N/A), physical (DXF only).
+    """Read-only audit: full (20 gates), plan (16 + 4 N/A), physical (DXF only), detail_v6 (G8.26-G8.28).
 
     Full is the safe default. Missing/stale evidence is NEEDS_REVIEW, never PASS.
     A physical PASS does not certify semantic gates. Metadata is generator evidence,
     bound to exact DXF bytes; it is not independent structural verification.
     """
-    if profile not in {'full', 'plan', 'physical', 'steel_peb', 'bptc'}:
+    if profile not in {'full', 'plan', 'physical', 'steel_peb', 'bptc', 'detail_v6'}:
         return {'status': 'ERROR', 'issues': [f'Unknown audit profile: {profile}'],
                 'full_compliance_verified': False, 'profile': profile}
     res = _audit_physical_dxf(dxf_path)
@@ -1613,8 +1779,15 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
     results = []
     metadata_issues = []
     detail_audits = {}
-    expected_gates = 25 if profile in ('steel_peb', 'bptc') else 20
-    if profile != 'physical':
+    if profile in ('steel_peb', 'bptc'):
+        expected_gates = 25
+    elif profile == 'detail_v6':
+        expected_gates = 3
+    else:
+        expected_gates = 20
+    if profile == 'detail_v6':
+        results = audit_native_detail_gates(dxf_path)
+    elif profile != 'physical':
         checker = DCECADComplianceCheckerV4(dxf_path, beam_dxf_path, colwall_dxf_path, profile=profile)
         _, results = checker.run_all_gates()
         metadata_issues = checker.metadata_issues
@@ -1649,7 +1822,11 @@ def audit_dxf_compliance(dxf_path: str, profile: str = 'full',
         'gates_passed': sum(r.applicable and r.passed is True for r in results),
         'gates_failed': len(failures), 'gates_unverified': len(unknown),
         'gates_not_applicable': sum(not r.applicable for r in results),
-        'full_compliance_verified': ((profile == 'full' and status == 'PASS' and len(results) == 20) or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25 and sum(r.applicable and r.passed is True for r in results) > 0)),
+        'full_compliance_verified': (
+            (profile == 'full' and status == 'PASS' and len(results) == 20)
+            or (profile in ('steel_peb', 'bptc') and status == 'PASS' and len(results) == 25 and sum(r.applicable and r.passed is True for r in results) > 0)
+            or (profile == 'detail_v6' and status == 'PASS' and len(results) == 3)
+        ),
         'evidence_basis': 'Physical DXF geometry/layer/label checks + SHA256-bound sidecar parity; does not certify independent structural solver or anchor embedment calculations.',
         'gate_results': [{'gate_id': r.gate_id, 'gate_name': r.gate_name, 'severity': r.severity,
                          'passed': r.passed, 'status': r.status, 'applicable': r.applicable,
@@ -1666,7 +1843,7 @@ if __name__ == "__main__":
     parser.add_argument('dxf_path')
     parser.add_argument('beam_dxf_path', nargs='?')
     parser.add_argument('colwall_dxf_path', nargs='?')
-    parser.add_argument('--profile', choices=('full', 'plan', 'physical', 'steel_peb', 'bptc'), default='full')
+    parser.add_argument('--profile', choices=('full', 'plan', 'physical', 'steel_peb', 'bptc', 'detail_v6'), default='full')
     args = parser.parse_args()
     result = audit_dxf_compliance(args.dxf_path, args.profile, args.beam_dxf_path, args.colwall_dxf_path)
     print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -913,6 +913,9 @@ def run_tests(classifier: IntentClassifier, cases: list = None) -> dict:
 
 
 def main():
+    sys.path.insert(0, str(SCRIPT_DIR.parent))
+    from agent_selection import AGENT_CHOICES
+
     parser = argparse.ArgumentParser(description="Intent Classifier v2.0")
     parser.add_argument("--prompt", type=str, help="Prompt cần phân loại")
     parser.add_argument("--top", type=int, default=3, help="Số lượng kết quả trả về")
@@ -921,7 +924,7 @@ def main():
     parser.add_argument("--test-cognitive", action="store_true", help="Chạy bộ kiểm thử nhận thức nâng cao")
     parser.add_argument("--db", type=str, default=None, help="Đường dẫn keyword_database.json")
 
-    parser.add_argument("--agent-selection", choices=("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"))
+    parser.add_argument("--agent-selection", choices=AGENT_CHOICES)
     parser.add_argument("--workspace", default=None, help="Workspace chứa thư mục dự án")
     args = parser.parse_args()
     classifier = IntentClassifier(db_path=args.db)
@@ -954,7 +957,6 @@ def main():
 
     # This CLI keeps the domain classifier's fields and publishes the same
     # operational routing used by the handover adapter.
-    sys.path.insert(0, str(SCRIPT_DIR.parent))
     from intent_classifier import IntentClassifier2D, task_intent_text
     result = classifier.classify(task_intent_text(args.prompt), top_n=args.top, verbose=args.verbose)
     result["prompt"] = args.prompt

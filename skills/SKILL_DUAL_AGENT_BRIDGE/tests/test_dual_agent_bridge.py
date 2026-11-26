@@ -61,6 +61,7 @@ class TestDualAgentBridge(unittest.TestCase):
         payload = {'handoff_status': 'IN_PROGRESS', 'current_holder': 'CODEX'}
         target.write_text(json.dumps(payload), encoding='utf-8')
         with patch.multiple(sync_bus, BUS_PATH=target, MEMO_PATH=self.test_path/'memo.md',
+                            ACTIVE_POINTER_PATH=self.test_path/'_CA_HIEN_TAI.md',
                             LOCK_PATH=self.test_path/'lock', WORKSPACE_ROOT=self.test_path), \
                 patch.object(sync_bus, 'generate_handoff_memo'):
             before = target.read_bytes()
@@ -128,7 +129,8 @@ class TestV32Upgrades(unittest.TestCase):
             'Verification_Status': 'CONFIRMED_AND_HANDED_OFF'
         }
         self.ctx = patch.multiple(
-            sync_bus, BUS_PATH=self.bus, MEMO_PATH=self.memo, LOCK_PATH=self.lock,
+            sync_bus, BUS_PATH=self.bus, MEMO_PATH=self.memo,
+            ACTIVE_POINTER_PATH=self.test_path/'_CA_HIEN_TAI.md', LOCK_PATH=self.lock,
             WORKSPACE_ROOT=self.test_path,
         )
         self.ctx.start()
@@ -260,7 +262,8 @@ class TestV33ProductFirst(unittest.TestCase):
         }
         self.bus.write_text(json.dumps(self.payload), encoding='utf-8')
         self._patcher = patch.multiple(
-            sync_bus, BUS_PATH=self.bus, MEMO_PATH=self.memo, LOCK_PATH=self.lock,
+            sync_bus, BUS_PATH=self.bus, MEMO_PATH=self.memo,
+            ACTIVE_POINTER_PATH=self.test_path/'_CA_HIEN_TAI.md', LOCK_PATH=self.lock,
             WORKSPACE_ROOT=self.test_path
         )
         self._patcher.start()

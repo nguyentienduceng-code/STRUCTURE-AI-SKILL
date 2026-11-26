@@ -232,23 +232,11 @@ class NonDestructivePatcher:
 
     def _baseline_form_path(self) -> Optional[Path]:
         spec = cfc.FORM_CATALOG.get(self.form_id)
-        stem = Path(spec["filename"]).stem if spec else "Form"
-        rev_dir = self.project_dir / "forms" / "revisions"
         if self.baseline == "prev_rev":
-            # Sort by the numeric revision suffix (v002 < v010) — a plain
-            # lexicographic sort would rank v9 after v10 with >=10 revisions.
-            def _rev_no(p: Path) -> Optional[int]:
-                m = re.match(rf"^{re.escape(stem)}_v(\d+)\.dxf$", p.name)
-                return int(m.group(1)) if m else None
-            revs = [p for p in rev_dir.glob(f"{stem}_v*.dxf")] if rev_dir.is_dir() else []
-            revs.sort(key=lambda p: (_rev_no(p) is None, _rev_no(p) or 0, p.name))
-            if len(revs) >= 2:
-                return revs[-2]
-            if len(revs) == 1:
-                return revs[0]
-            # No prior revision exists: diffing against the SSOT master would be
-            # a silent baseline swap that changes the diff result, so surface it
-            # as E001 instead (the caller can pass baseline="ssot" explicitly).
+            previous = cfc.previous_form_revision(self.project_dir, spec["filename"]) if spec else None
+            if previous is not None:
+                return previous
+            rev_dir = self.project_dir / "forms" / "revisions"
             raise mdf.DiffValidationError(
                 "E001_FILE_NOT_FOUND",
                 f"Baseline 'prev_rev' requested for '{self.form_id}' but no prior "

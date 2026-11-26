@@ -78,11 +78,63 @@ class TestC1V6Engine(unittest.TestCase):
         out, eng, reg = self.export(model)
         self.assertTrue(out.is_file())
         self.assertEqual(eng.v6, True)
-        self.assertEqual(len(reg.elements), len(model["beams_x"] + model["beams_y"] + model["secondary_beams"]))
+        # Vòng định danh 2B: registry giờ chứa TOÀN BỘ cấu kiện mang XData
+        # (dầm + cột + vách), không chỉ dầm như trước. Đếm đúng theo model để
+        # giữ bất biến "mọi entity có DCE_ELEMENT_ID đều có registry element khớp".
+        expected_ids = (len(model["beams_x"] + model["beams_y"] + model["secondary_beams"])
+                       + len(model["columns"]) + len(model["shear_walls"]))
+        self.assertEqual(len(reg.elements), expected_ids)
         side = json.loads(out.with_suffix(".dce_audit.json").read_text(encoding="utf-8"))
         self.assertEqual(side["v6_status"], "OK_V6")
         self.assertEqual(side["element_registry"]["total_elements"], len(reg.elements))
         self.assertEqual(reg.validate_integrity()["total_registered"], len(reg.elements))
+
+    def test_v6_registry_content_oracle(self):
+        """Oracle NỘI DUNG registry (không chỉ đếm) — bảo đảm 3 điều của việc 2B:
+        (a) mọi element_id DETERMINISTIC, KHÔNG UUID;
+        (b) KHÔNG có duplicate-key bị silently overwrite (dict elements[eid]=elem);
+        (c) sidecar total_elements == len(reg.elements) VÀ bộ key 1-1 (không drift).
+        Chốt theo định danh nghiệp vụ, không theo hình học.
+        """
+        model = self.cpe.build_structural_model()
+        out, eng, reg = self.export(model)
+        expected_ids = (len(model["beams_x"] + model["beams_y"] + model["secondary_beams"])
+                       + len(model["columns"]) + len(model["shear_walls"]))
+
+        # (a) KHÔNG UUID + phải là định danh nghiệp vụ (tiền tố cấu kiện),
+        #    không bịa/hàng đợi ngẫu nhiên. Kiên định với naming sau này:
+        #    chỉ bắt tiền tố, không pin toàn bộ format.
+        import re
+        uuid_re = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                             re.IGNORECASE)
+        bad_uuid = [k for k in reg.elements if uuid_re.match(k)]
+        self.assertEqual(bad_uuid, [], "element_id UUID bất ngờ: %r" % bad_uuid)
+        structural_prefix = ("COL_", "WALL_", "BEAM_", "BM_")
+        bad_prefix = [k for k in reg.elements
+                      if not k or not k.startswith(structural_prefix)]
+        self.assertEqual(bad_prefix, [],
+                         "element_id không mang tiền tố cấu kiện: %r" % bad_prefix)
+
+        # (b) KHÔNG duplicate-key bị silently overwrite.
+        #     register() ghi collision (2 phân tử KHÁC NHAU cùng eid) vào list;
+        #     đồng thời dict Python tự loại key trùng, nên bộ key phải đúng số
+        #     cấu kiện vật lý model (112) — mất 1 va chạm => thiếu 1 key => fail.
+        self.assertEqual(reg.register_collisions, [],
+                         "VA CHẠM element_id (2 phân tử khác nhau cùng key): %r"
+                         % reg.register_collisions)
+        self.assertEqual(len(set(reg.elements)), len(reg.elements))
+        self.assertEqual(len(reg.elements), expected_ids,
+                         "registry thiếu cấu kiện (overwrite/lỗi đếm): %d != %d"
+                         % (len(reg.elements), expected_ids))
+        # mọi value.element_id phải đúng dict-key của nó (liên kết toàn vẹn).
+        for key, elem in reg.elements.items():
+            self.assertEqual(elem.element_id, key, "key/value lệch: %r vs %r" % (key, elem.element_id))
+
+        # (c) sidecar 1-1 với registry (đếm + bộ key khớp, không drift).
+        side = json.loads(out.with_suffix(".dce_audit.json").read_text(encoding="utf-8"))
+        side_reg = side["element_registry"]
+        self.assertEqual(side_reg["total_elements"], expected_ids)
+        self.assertEqual(set(side_reg["elements"].keys()), set(reg.elements.keys()))
 
     def test_custom_thickness_level_and_scale_round_trip(self):
         model = self.cpe.build_structural_model()

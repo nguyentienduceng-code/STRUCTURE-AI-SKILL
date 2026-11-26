@@ -16,6 +16,10 @@ import argparse
 import json
 import re
 import sys
+
+if hasattr(sys.stdout, "reconfigure") and sys.stdout.encoding != "utf-8":
+    sys.stdout.reconfigure(encoding="utf-8")
+
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -160,6 +164,9 @@ class IntentClassifier2D:
         for token in self.system_core_paths:
             if token.lower() in lowered:
                 hits.append(token)
+        if ".agents/" not in hits and ".agents\\" not in hits:
+            if re.search(r'(?i)(?:^|[\s"\'`(\[,/@\\])\.agents(?=$|[\s"\'`\)\],/\\])', prompt):
+                hits.append(".agents")
         return hits
 
     def _detect_script_patch_signals(self, prompt_norm: str) -> List[str]:
@@ -269,7 +276,7 @@ class IntentClassifier2D:
             deliverable_dir_posix=deliv_posix,
             deliverable_dir_win=deliv_win,
             use_dual_agent_bus=use_bus,
-            claude_role={"GEMINI_ONLY": "NONE", "CLAUDE_ONLY": "EXECUTOR"}.get(choice, claude_role),
+            claude_role={"GEMINI_ONLY": "NONE", "CODEX_ONLY": "NONE", "CLAUDE_ONLY": "EXECUTOR"}.get(choice, claude_role),
             agent_selection=choice,
             execution_plan=execution_plan(engagement_mode, choice),
             enforce_deliverable_gate=(engagement_mode == MODE_PRODUCT),

@@ -50,13 +50,13 @@
 | `Design_Evaluation/calculators/earthquake_load_calc.py` | TCVN 9386:2025 (P1 + P5) | TCVN 9386:2025 | ✅ Khớp |
 | `Design_Evaluation/calculators/rc_flexure_design.py` | TCVN 5574:2018 | TCVN 5574:2018 | ✅ Khớp |
 | `Design_Evaluation/calculators/deflection_check.py` | TCVN 2737:2023 (Điều 11 & Phụ lục G, Bảng G.1) | TCVN 2737:2023 | ✅ Khớp (thay thế Phụ lục M TCVN 5574:2018 theo Lời nói đầu tr. 5; hỗ trợ `TCVN_5574_2018_LEGACY` khi đối chiếu) |
-| `Design_Evaluation/calculators/steel_member_check.py` | TCVN 5575:2012 | TCVN 5575:2024 | ⚠ **Lệch** — dùng cho hồ sơ đối chiếu theo 2012 |
+| `Design_Evaluation/calculators/tests/steel_member_check_2012_deprecated.py` *(chuyển từ `calculators/steel_member_check.py`)* | TCVN 5575:2012 | TCVN 5575:2024 | ⚠ **Đã loại bỏ khỏi luồng chính** — chỉ giữ đối chiếu test hồ sơ cũ |
 | `Design_Evaluation/calculators/steel_member_check_v2024.py` | TCVN 5575:2024 | TCVN 5575:2024 | ✅ Khớp — dùng cho hồ sơ mới (khuyến nghị) |
 | `Design_Evaluation/calculators/foundation_bearing.py` | TCVN 9362:2012 Đ.4.3.5 | TCVN 9362:2012 | ✅ Khớp |
 | `Project_Manager/scripts/project_grading.py` | TT 34/2026/TT-BXD + QCVN 03:2022/BXD | TT 34/2026/TT-BXD + QCVN 03:2022/BXD | ✅ Khớp (v2.0 — xét đủ GFA, chiều cao, số tầng, độ sâu ngầm, số tầng ngầm, C1-C3) |
 | `Structural_Design_Engineer/scripts/calc_rc_section.py` | TCVN 5574:2018 | TCVN 5574:2018 | ✅ Khớp |
-| `Structural_Design_Engineer/scripts/calc_steel_beam.py` | **EN 1993-1-1** (Eurocode 3) | TCVN 5575:2024 | ⚠ **Eurocode** — dùng cho hồ sơ cũ/đối chiếu quốc tế, KHÔNG phải TCVN |
-| `Structural_Design_Engineer/scripts/calc_steel_connection.py` | **EN 1993-1-8** (Eurocode 3 Part 1-8) | TCVN 5575:2024 | ⚠ **Eurocode** — dùng cho hồ sơ cũ/đối chiếu quốc tế, KHÔNG phải TCVN |
+| `Structural_Design_Engineer/scripts/_deprecated/calc_steel_beam.py` *(đã gỡ/lưu trữ khỏi `scripts/`)* | **EN 1993-1-1** (Eurocode 3) | TCVN 5575:2024 | ⚠ **Eurocode (Deprecated)** — không còn dùng cho hồ sơ mới |
+| `Structural_Design_Engineer/scripts/_deprecated/calc_steel_connection.py` *(đã gỡ/lưu trữ khỏi `scripts/`)* | **EN 1993-1-8** (Eurocode 3 Part 1-8) | TCVN 5575:2024 | ⚠ **Eurocode (Deprecated)** — không còn dùng cho hồ sơ mới |
 | `Structural_Design_Engineer/scripts/calc_steel_beam_tcvn.py` | **TCVN 5575:2024** | TCVN 5575:2024 | ✅ Khớp — thay thế calc_steel_beam.py cho hồ sơ mới |
 | `Structural_Design_Engineer/scripts/calc_steel_connection_tcvn.py` | **TCVN 5575:2024** | TCVN 5575:2024 | ✅ Khớp — thay thế calc_steel_connection.py cho hồ sơ mới |
 | `Structural_Design_Engineer/scripts/calc_slab.py` | TCVN 5574:2018 | TCVN 5574:2018 | ✅ Khớp |

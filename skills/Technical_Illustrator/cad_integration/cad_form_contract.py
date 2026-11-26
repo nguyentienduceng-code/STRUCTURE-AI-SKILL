@@ -25,6 +25,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
 import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -229,6 +230,25 @@ def build_default_manifest(form_id: str) -> Dict[str, Any]:
         "profile": spec["profile"],
         "agent_owned_appid": AGENT_OWNED_APPID,
     }
+
+
+def previous_form_revision(project_dir: Path, filename: str) -> Optional[Path]:
+    """Select the preceding numbered snapshot, or the sole snapshot if only one exists."""
+    directory = project_dir / "forms" / "revisions"
+    stem = Path(filename).stem
+    pattern = re.compile(rf"{re.escape(stem)}_v([0-9]+)", re.IGNORECASE)
+    snapshots = {}
+    for path in sorted(directory.glob(f"{stem}_v*.dxf")):
+        match = pattern.fullmatch(path.stem)
+        if match and path.is_file():
+            version = int(match.group(1))
+            # Prefer the writer's canonical name when legacy padding differs.
+            if version not in snapshots or path.stem == f"{stem}_v{version:03d}":
+                snapshots[version] = path
+    versions = sorted(snapshots)
+    if not versions:
+        return None
+    return snapshots[versions[-2] if len(versions) > 1 else versions[0]]
 
 
 def resolve_form_paths(

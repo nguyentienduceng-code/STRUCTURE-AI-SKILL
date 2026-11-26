@@ -21,7 +21,6 @@ if hasattr(sys.stdout, "reconfigure") and sys.stdout.encoding != 'utf-8':
 
 import hashlib
 import json
-import uuid
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple, Union
 
@@ -47,7 +46,7 @@ class StructuralElement:
         status: str = "CONTINUOUS",
         metadata: Optional[Dict[str, Any]] = None,
     ):
-        self.element_id = element_id or f"{category.upper()}_{uuid.uuid4().hex[:10].upper()}"
+        self.element_id = element_id or ""  # rỗng => CadElementRegistry.register điền deterministic (không UUID)
         self.category = category.upper()  # BEAM, COLUMN, SLAB, WALL, FOUNDATION, STEEL_MEMBER
         self.mark = mark                  # Ten hien thi (vd: D1A, C1) - co the thay doi
         self.span_id = span_id            # Vd: SPAN_1, SPAN_2 (cho dam nhieu nhip cung mark)
@@ -157,11 +156,33 @@ class CadElementRegistry:
     def __init__(self, project_name: str = "DCE_PROJECT"):
         self.project_name = project_name
         self.elements: Dict[str, StructuralElement] = {}
+        # Ghi nhận VA CHẠM overwrite: cùng element_id nhưng 2 phân tử KHÁC NHAU.
+        # Vì dict elements[eid]=elem silently overwrite, va chạm này KHÔNG crash;
+        # đây là hook để test oracle bắt được (rủi ro duplicate-key thật).
+        # Không đưa vào to_dict()/sidecar — chỉ là diagnostic in-memory.
+        self.register_collisions: List[Dict[str, Any]] = []
 
     def register(self, element: StructuralElement) -> str:
-        """Dang ky mot phan tu vao registry. Tra ve element_id."""
+        """Dang ky mot phan tu vao registry. Tra ve element_id.
+
+        Khi element_id rong: điền deterministic theo (category + thu tu dang ky) —
+        `CAT_{nnn}` — DEE NHEON UUID (de cung input => cung id, ben vung qua revision).
+        CAC caller determinstic (C1 adapter, _v6_register_element) luôn truyen id;
+        nha nang nay chi la an toan cuoi.
+        """
         if not element.element_id:
-            element.element_id = f"{element.category}_{uuid.uuid4().hex[:10].upper()}"
+            cat = (element.category or "ELEM").upper()
+            n = sum(1 for e in self.elements.values() if e.category == cat)
+            element.element_id = f"{cat}_{n:03d}"
+        existing = self.elements.get(element.element_id)
+        if existing is not None and existing is not element:
+            # VA CHẠM: cùng element_id nhưng 2 phân tử KHÁC NHAU (dict silently
+            # overwrite) — ghi nhận để test oracle bắt; không crash, không bịa.
+            self.register_collisions.append({
+                "element_id": element.element_id,
+                "category": element.category,
+                "mark": element.mark,
+            })
         self.elements[element.element_id] = element
         return element.element_id
 

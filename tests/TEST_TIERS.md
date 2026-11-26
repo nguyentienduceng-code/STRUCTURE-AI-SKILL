@@ -8,9 +8,8 @@ python .agents/tests/run_all_tests.py --full --report-dir memory/audits/ci_run
 python .agents/tests/run_all_tests.py --suite 13 --suite 23 --report-dir memory/audits/targeted_run
 ```
 
-No flags still runs all registered suites. Full currently means **27 suites**,
-including the original 24 plus project pipeline, durable orchestration and CAD
-workbench. Fast runs 17 explicitly listed suites, including real-PDF citation
+No flags still runs all registered suites. Full currently means **60 suites**,
+including 36 explicitly listed suites plus 24 auto-registered suites (`_auto_register_unregistered()`). Fast runs **27 explicitly listed suites**, including real-PDF citation
 grounding; it is development feedback, not full certification. Fast and explicit
 suite selection cannot be combined. Unknown suite IDs exit with an error.
 

@@ -1,0 +1,369 @@
+{
+  "tier": "full",
+  "registered_suites": 60,
+  "selected_suites": 60,
+  "all_passed": true,
+  "wall_seconds": 440.0068295000001,
+  "suites": [
+    {
+      "number": 1,
+      "name": "1. Integration Test (64 checks)",
+      "passed": true,
+      "wall_seconds": 0.6419655999998213
+    },
+    {
+      "number": 2,
+      "name": "2. Regression Calculator Test (13 calculators)",
+      "passed": true,
+      "wall_seconds": 0.37593029999970895
+    },
+    {
+      "number": 3,
+      "name": "3. Pre-Execution Approval Gate (32 tests)",
+      "passed": true,
+      "wall_seconds": 0.47167799999988347
+    },
+    {
+      "number": 4,
+      "name": "4. Intent Classifier Benchmark (17 tests)",
+      "passed": true,
+      "wall_seconds": 0.28592269999990094
+    },
+    {
+      "number": 5,
+      "name": "5. E2E Pipeline Workflow",
+      "passed": true,
+      "wall_seconds": 0.28747569999995903
+    },
+    {
+      "number": 6,
+      "name": "6. DE Calculators Unit Tests (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.5818020000006072
+    },
+    {
+      "number": 7,
+      "name": "7. Sprint 1 Reporting & TCVN Tests (4 tests)",
+      "passed": true,
+      "wall_seconds": 1.5266776999997091
+    },
+    {
+      "number": 8,
+      "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.20824609999999666
+    },
+    {
+      "number": 9,
+      "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
+      "passed": true,
+      "wall_seconds": 0.3455973999998605
+    },
+    {
+      "number": 10,
+      "name": "10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)",
+      "passed": true,
+      "wall_seconds": 5.63965030000054
+    },
+    {
+      "number": 11,
+      "name": "11. Sprint 3.4 DCE Deep Integration Tests (16 tests)",
+      "passed": true,
+      "wall_seconds": 6.475578900000073
+    },
+    {
+      "number": 12,
+      "name": "12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)",
+      "passed": true,
+      "wall_seconds": 1.8595902999995815
+    },
+    {
+      "number": 13,
+      "name": "13. Sprint 5 Comprehensive Verification & Reporting (17 tests)",
+      "passed": true,
+      "wall_seconds": 2.980319100000088
+    },
+    {
+      "number": 14,
+      "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
+      "passed": true,
+      "wall_seconds": 2.3726386999996976
+    },
+    {
+      "number": 15,
+      "name": "15. Sync Report System Consistency (14 tests)",
+      "passed": true,
+      "wall_seconds": 0.7813732000004165
+    },
+    {
+      "number": 16,
+      "name": "16. Cognitive & System Control Engine (40 tests)",
+      "passed": true,
+      "wall_seconds": 7.45803689999957
+    },
+    {
+      "number": 17,
+      "name": "17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)",
+      "passed": true,
+      "wall_seconds": 0.836221900000055
+    },
+    {
+      "number": 18,
+      "name": "18. DCE CAD Compliance & Zero White Text Lock (25 tests)",
+      "passed": true,
+      "wall_seconds": 28.279364799999712
+    },
+    {
+      "number": 19,
+      "name": "19. Dual-Agent Bridge & Bus IPC (7 tests)",
+      "passed": true,
+      "wall_seconds": 1.873331199999484
+    },
+    {
+      "number": 20,
+      "name": "20. Cognitive Brain v2.0 Benchmark (10 tests)",
+      "passed": true,
+      "wall_seconds": 0.38159410000025673
+    },
+    {
+      "number": 21,
+      "name": "21. R&D & Structural TCVN Regression Patches (20 checks)",
+      "passed": true,
+      "wall_seconds": 1.6116840000004231
+    },
+    {
+      "number": 22,
+      "name": "22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)",
+      "passed": true,
+      "wall_seconds": 0.9545140999998694
+    },
+    {
+      "number": 23,
+      "name": "23. PDF Citation Grounding & Input Provenance Guard (62 tests)",
+      "passed": true,
+      "wall_seconds": 3.5742482999994536
+    },
+    {
+      "number": 24,
+      "name": "24. Nonlinear RC Fiber Section P-Mx-My 3D (23 tests)",
+      "passed": true,
+      "wall_seconds": 5.8197737999998935
+    },
+    {
+      "number": 25,
+      "name": "25. Project Data Adapter & E2E Batch Pipeline (34 tests)",
+      "passed": true,
+      "wall_seconds": 22.168952899999567
+    },
+    {
+      "number": 26,
+      "name": "26. Durable Project Orchestration & Agent Roles (39 tests)",
+      "passed": true,
+      "wall_seconds": 57.69237649999923
+    },
+    {
+      "number": 27,
+      "name": "27. CAD Edit Workbench (9 tests)",
+      "passed": true,
+      "wall_seconds": 3.3462054999999964
+    },
+    {
+      "number": 28,
+      "name": "28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)",
+      "passed": true,
+      "wall_seconds": 10.169421799999327
+    },
+    {
+      "number": 29,
+      "name": "29. MCP DCE-CAD Server & Vision Tools (12 tests)",
+      "passed": true,
+      "wall_seconds": 35.72138210000048
+    },
+    {
+      "number": 30,
+      "name": "30. CAD Scene Index & Collision Solver (Sprint 2 Anti-Collision) (35 tests)",
+      "passed": true,
+      "wall_seconds": 7.225753599999734
+    },
+    {
+      "number": 31,
+      "name": "31. Dynamic Sheet-Scale Governor & SSOT Layout (Directive v5.0) (11 tests)",
+      "passed": true,
+      "wall_seconds": 3.7789030999992974
+    },
+    {
+      "number": 32,
+      "name": "32. CAD Semantics v6 C1 Renderer & Tag Placement (6 tests)",
+      "passed": true,
+      "wall_seconds": 4.298727100000178
+    },
+    {
+      "number": 33,
+      "name": "33. CAD Semantics v6 C2 Sheet Set & Dual Viewport (3 tests)",
+      "passed": true,
+      "wall_seconds": 26.47657529999924
+    },
+    {
+      "number": 34,
+      "name": "34. Bootstrap Matrix — hook fail-closed wrapper (4 tests)",
+      "passed": true,
+      "wall_seconds": 0.928517099999226
+    },
+    {
+      "number": 35,
+      "name": "35. MCP machine-local installer (3 tests)",
+      "passed": true,
+      "wall_seconds": 0.16537499999867578
+    },
+    {
+      "number": 36,
+      "name": "36. Release manifest & registry tool (4 tests)",
+      "passed": true,
+      "wall_seconds": 0.5784220000005007
+    },
+    {
+      "number": 37,
+      "name": "37. [auto] test_antigravity_dual_bus_hook (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 0.8073096999996778
+    },
+    {
+      "number": 38,
+      "name": "38. [auto] test_bim_translator (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 1.8541138999989926
+    },
+    {
+      "number": 39,
+      "name": "39. [auto] test_cad_bptc_engine (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 11.098420300000726
+    },
+    {
+      "number": 40,
+      "name": "40. [auto] test_cad_composite_grid (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 0.6759554000000207
+    },
+    {
+      "number": 41,
+      "name": "41. [auto] test_cad_evidence_contract (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 2.183135700001003
+    },
+    {
+      "number": 42,
+      "name": "42. [auto] test_cad_layer_standard (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 2.4343933000000106
+    },
+    {
+      "number": 43,
+      "name": "43. [auto] test_cad_multiview_a3 (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 4.110752800001137
+    },
+    {
+      "number": 44,
+      "name": "44. [auto] test_cad_open_forms_and_blocks (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 9.01821370000107
+    },
+    {
+      "number": 45,
+      "name": "45. [auto] test_cad_rc_detail_form04 (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 5.487070700000913
+    },
+    {
+      "number": 46,
+      "name": "46. [auto] test_cad_sprint3_xref_workbook (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 7.58278319999954
+    },
+    {
+      "number": 47,
+      "name": "47. [auto] test_cad_steel_peb_engine (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 9.771699799999624
+    },
+    {
+      "number": 48,
+      "name": "48. [auto] test_cad_steel_primitives (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 0.582684999999401
+    },
+    {
+      "number": 49,
+      "name": "49. [auto] test_dce_block_semantics (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 4.230738100000963
+    },
+    {
+      "number": 50,
+      "name": "50. [auto] test_dispatcher_2d_modes (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 9.023352899999736
+    },
+    {
+      "number": 51,
+      "name": "51. [auto] test_dual_bus_v36_communication (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 0.6298568999991403
+    },
+    {
+      "number": 52,
+      "name": "52. [auto] test_p0_ops_workspace_and_lineage (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 10.694837900000493
+    },
+    {
+      "number": 53,
+      "name": "53. [auto] test_p1_schema_gate_and_merge_lane (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 23.712343000001056
+    },
+    {
+      "number": 54,
+      "name": "54. [auto] test_p2_p3_paperspace_and_4forms (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 18.587194300000192
+    },
+    {
+      "number": 55,
+      "name": "55. [auto] test_p4_interactive_form (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 36.625516200001584
+    },
+    {
+      "number": 56,
+      "name": "56. [auto] test_p4_rfi_ncr_generator (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 17.896714200000133
+    },
+    {
+      "number": 57,
+      "name": "57. [auto] test_tier2_phase2a_foundation (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 5.326945200000409
+    },
+    {
+      "number": 58,
+      "name": "58. [auto] test_tier2_phase2b_snapshot_diff (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 4.208401199999571
+    },
+    {
+      "number": 59,
+      "name": "59. [auto] test_universal_doc_reader (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 3.6787377999989985
+    },
+    {
+      "number": 60,
+      "name": "60. [auto] test_workspace_claude_safety_hook (auto-registered unit suite)",
+      "passed": true,
+      "wall_seconds": 0.9925327000000834
+    }
+  ]
+}

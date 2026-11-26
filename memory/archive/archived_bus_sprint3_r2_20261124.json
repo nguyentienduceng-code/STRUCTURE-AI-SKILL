@@ -1,0 +1,175 @@
+{
+  "work_ticket": {
+    "bus_version": "3.4",
+    "task_id": "03_Sprint2_KetQua_NeChu_CAD",
+    "task_title": "Tham tra doc lap goi Sprint 3 R2 gom 3 Xref sach va 8 Workbook DWG tai Sprint3_Xref_Workbook_R2 bang accoreconsole --audit-only va kiem tra SheetSet_Manifest.json",
+    "status": "NEED_REVIEW",
+    "request_id": "f0d2941d81fc4fcea46d9dedd6bd4a77",
+    "workspace": "G:\\My Drive\\Google AI Studio",
+    "dispatch_2d": {
+      "domain_skill": "SKILL_SYSTEM_ENGINEERING",
+      "domain_confidence": 1.0,
+      "engagement_mode": "SYSTEM_UPGRADE",
+      "mode_confidence": 1.0,
+      "claude_role": "SOFTWARE_ARCHITECT",
+      "agent_selection": "AUTO",
+      "use_dual_agent_bus": true,
+      "execution_plan": [
+        {
+          "step": "execute",
+          "owner": "CURRENT_AGENT",
+          "requires": [],
+          "output": "Kết quả theo skill và yêu cầu của ca"
+        },
+        {
+          "step": "verify",
+          "owner": "PARTNER_AGENT",
+          "requires": [
+            "execute"
+          ],
+          "output": "Kết quả kiểm tra và bằng chứng cùng phiên bản"
+        }
+      ],
+      "allow_script_patch": false,
+      "deliverable_dir_posix": null,
+      "deliverable_dir_win": null,
+      "enforce_deliverable_gate": false,
+      "enforce_jargon_linter": false,
+      "required_extensions": [],
+      "primary_skill": "SKILL_DUAL_AGENT_BRIDGE",
+      "skill_workflow": null,
+      "skill_files": [
+        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\SKILL_DUAL_AGENT_BRIDGE\\SKILL.md"
+      ],
+      "guide_files": [],
+      "expected_files": [],
+      "project_identity": null,
+      "independent_review_required": false,
+      "expected_extensions": []
+    },
+    "bus_meta": {
+      "lock_owner": "gemini_maker",
+      "lock_acquired_at_iso": "2026-11-24T15:48:50.057284+00:00",
+      "task_started_at_epoch": 1795535330.0572844,
+      "lease_ttl_sec": 600,
+      "report_gate_p1": "PENDING",
+      "mcp_perception_p2": true,
+      "evidence_hashes": {},
+      "receipts": [
+        {
+          "agent": "gemini_maker",
+          "event": "HANDOVER_CREATED",
+          "timestamp_iso": "2026-11-24T15:48:50.057284+00:00",
+          "gate_status": "PENDING"
+        }
+      ]
+    },
+    "human_handoff": {
+      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: 1) Xác minh Dual-Agent Bridge v3.6 (đọc environment_capabilities, kiểm thử NEED_REVIEW/BLOCKED_RETURN và work_ticket preservation); 2) Chạy python .agents/tools/accoreconsole_adapter.py --audit-only trên 4 DWG KC-03, KC-04, KC-08, KC-09 để xác nhận hook cho phép AUDIT chỉ-đọc; KHÔNG tạo tệp Sprint 3 cho tới khi User chốt 8 vs 7 workbook và DuAn.dst.\nDomain: SKILL_SYSTEM_ENGINEERING | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
+      "source_scripts": [],
+      "user_report_vi": "",
+      "deliverable_gate_status": "PENDING",
+      "deliverable_gate_message_vi": "",
+      "verified_files": []
+    }
+  },
+  "project_context": {
+    "project_code": "03_Sprint2_KetQua_NeChu_CAD",
+    "project_purpose": "Phối hợp liên tác tử theo mục tiêu dự án",
+    "role_distribution": "Linh hoạt tùy mục đích dự án",
+    "action_type": "CODE",
+    "artifact_lifecycle_state": "NATIVE_GENERATED"
+  },
+  "environment_capabilities": {
+    "schema_version": "3.6",
+    "workspace_root_posix": "G:/My Drive/Google AI Studio",
+    "accoreconsole_available": true,
+    "accoreconsole_exe": "C:\\Program Files\\Autodesk\\AutoCAD 2021\\accoreconsole.exe",
+    "accoreconsole_readonly_cmd": "python .agents/tools/accoreconsole_adapter.py --audit-only <path.dwg>",
+    "autocad_snapshot_bridge": ".agents/tools/autocad_snapshot_bridge.py",
+    "python_ezdxf_available": true,
+    "sheet_set_manager_native_dst": false,
+    "live_peer_messaging_between_tabs": false
+  },
+  "last_updated_by": "CLAUDE",
+  "timestamp": "2026-11-24T23:34:19.134591+07:00",
+  "handoff_status": "NEED_REVIEW",
+  "current_holder": "IDLE",
+  "summary": "Thẩm tra độc lập Sprint 3 R2 đạt: 11/11 DWG audit-only 0 errors/0 fixes; 2/2 tests PASS; Rule 12b 522 files, 0 warnings; manifest/hash/Xref 3-way khớp. Hai điều kiện release vẫn HOLD đúng (ARCH BG DWG duyệt + thông tin pháp lý ký tên); native DST chưa có.",
+  "artifacts_modified": [
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_CLAUDE_COMPLETED_20261124-152453.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_CLAUDE_COMPLETED_20261124-230040.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_CLAUDE_NEED_REVIEW_20261123-095133.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_CODEX_COMPLETED_20261123-143828.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_COMPLETED_20261123-100411.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_COMPLETED_20261123-103611.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_PENDING_20261123-101234.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_PENDING_20261123-140033.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_PENDING_20261124-091458.json",
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_PENDING_20261124-224850.json",
+    ".agents/_references_archived/PHAN_TICH_VA_XEP_HANG_MUC_MCP.md",
+    ".agents/docs/PHAN_HOI_KIEM_TOAN_VA_QUY_TRINH_NANG_CAP_CAD_V6.docx",
+    ".agents/docs/PHAN_HOI_KIEM_TOAN_VA_QUY_TRINH_NANG_CAP_CAD_V6.md",
+    ".agents/docs/archived_sample_handoff_memo_20261024.md",
+    ".agents/hooks.json",
+    ".agents/memory/DUAL_AGENT_BUS.json",
+    ".agents/memory/DUAL_AGENT_HANDOFF_MEMO.md",
+    ".agents/memory/_CA_HIEN_TAI.md",
+    ".agents/memory/archive/archived_bus_v2_20261025.json",
+    ".agents/memory/archive/archived_bus_v3_2_tanhy.json",
+    ".agents/memory/archive/archived_memo_calculator_upgrade_proposal.md",
+    ".agents/memory/archive/archived_memo_structure_hub_audit.md",
+    ".agents/memory/archive/archived_memo_tanhy_verification.md",
+    ".agents/memory/archive/archived_root_bus_20261119.json",
+    ".agents/memory/archive/archived_root_memo_20261119.md",
+    ".agents/memory/audits/00_management_qltk",
+    ".agents/memory/audits/02_ss1",
+    ".agents/memory/audits/03_sprint2_ketqua_nechu_cad",
+    ".agents/memory/audits/BRIEF_CODEX_AUDIT_SKILLS_PLUGINS_APPLY.md",
+    ".agents/memory/audits/BRIEF_CODEX_P0_HOOKS_AND_SLIM_AGENTS.md",
+    ".agents/memory/audits/CODEX_DANH_GIA_SKILL_PLUGIN.md",
+    ".agents/memory/audits/CODEX_P0_IMPLEMENTATION_REPORT.md",
+    ".agents/memory/audits/PLAN_TIER2_PHASE2B_SOLO_AND_2C_DEBT.md",
+    ".agents/memory/audits/cad_v6/claude/V2_REMEDIATION_REPORT_V3.md",
+    ".agents/memory/audits/cad_v6/dispatch/archived_bus_before_v6.json",
+    ".agents/memory/audits/cad_v6/dispatch/archived_memo_before_v6.md",
+    ".agents/memory/audits/cad_v6/gemini/A1_V3_FINAL_VERIFICATION_REPORT.md",
+    ".agents/memory/audits/cad_v6/gemini/CAD_V6_S0_S1_RESULT.md",
+    ".agents/memory/audits/cad_v6/gemini/CAD_V6_S2_RESULT.md",
+    ".agents/memory/audits/cad_v6/gemini/CAD_V6_S3_R2_RESULT.md",
+    ".agents/memory/audits/cad_v6/gemini/CAD_V6_S3_RESULT.md",
+    ".agents/memory/audits/cad_v6/gemini/DUAL_BRIDGE_V36_RESULT.md",
+    ".agents/memory/audits/cad_v6/gemini/a1_06_linkage_validation_v3.json",
+    ".agents/memory/projects",
+    ".agents/scratch",
+    ".agents/skills/Technical_Illustrator/cad_integration/cad_rc_detail_engine.py",
+    ".agents/skills/Technical_Illustrator/cad_integration/cad_xref_workbook_builder.py",
+    ".agents/skills/references",
+    ".agents/tests/test_antigravity_dual_bus_hook.py",
+    ".agents/tests/test_cad_rc_detail_form04.py"
+  ],
+  "next_action_for_partner": {
+    "target_agent": "GEMINI",
+    "task_description": "Tham tra doc lap goi Sprint 3 R2 gom 3 Xref sach va 8 Workbook DWG tai Sprint3_Xref_Workbook_R2 bang accoreconsole --audit-only va kiem tra SheetSet_Manifest.json",
+    "target_files": [
+      "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/Sprint3_Xref_Workbook_R2/SheetSet_Manifest.json",
+      "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/Sprint3_Xref_Workbook_R2/01_Xref/02_XREF_ARCH_BG.dwg",
+      "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/Sprint3_Xref_Workbook_R2/01_Xref/03_XREF_TITLEBLOCK_A3.dwg",
+      "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/Sprint3_Xref_Workbook_R2/02_Workbook/01_KC-02_MatBangKetCauNgam.dwg",
+      "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/BAO_CAO_THUC_CHIEN_KETC_CAU_CATLAI_KC02_KC09.md"
+    ],
+    "acceptance_criteria": [
+      "02_XREF_ARCH_BG khong con khoi cau thang gia dinh (6700..10200)",
+      "03_XREF_TITLEBLOCK_A3 de trong 6 truong ky duyet chua xac minh",
+      "11/11 DWG trong Sprint3_Xref_Workbook_R2 dat --audit-only 0 errors",
+      "SheetSet_Manifest.json giu artifact_lifecycle_state=NATIVE_GENERATED va HOLD_PENDING_ARCH_BG_AND_TITLEBLOCK_SIGNATORIES"
+    ],
+    "command": "nhan-ca va tham tra doc lap goi Sprint3_Xref_Workbook_R2",
+    "deliverable": "Bien ban tham tra Sprint 3 R2 xac nhan khac phuc 2 phat hien (ARCH_BG + TITLEBLOCK_A3) va dong ca --complete",
+    "acceptance_cmd": "python .agents/tests/test_cad_sprint3_xref_workbook.py",
+    "report_file": ".agents/memory/audits/cad_v6/gemini/CAD_V6_S3_R2_RESULT.md"
+  },
+  "Verification_Status": "REVIEW_REQUIRED",
+  "claim_timestamp": "2026-11-24T23:29:05.302681+07:00",
+  "last_heartbeat": "2026-11-24T23:29:05.302681+07:00"
+}

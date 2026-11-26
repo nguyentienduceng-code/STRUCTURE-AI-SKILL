@@ -98,3 +98,15 @@ Bắt đầu bằng pilot 10 ngày trên **bản sao RVT 2024**, thử một con
 4. Chỉ sau khi hai adapter tạo cùng canonical snapshot mới mở rộng phạm vi, IFC và tự động hóa; không gộp 2B/2C thành một plugin phụ thuộc chéo.
 
 **Khuyến nghị quyết định:** phê duyệt thiết kế và pilot read-only theo giai đoạn; chưa phê duyệt ghi DWG/RVT tự động hoặc chọn vendor sản xuất cho đến khi acceptance trên file thật đạt và kỹ sư độc lập ký kết quả.
+
+---
+
+## 5. Cập nhật Nghiệm thu Thực thi Tầng 2B (2026-11-22 — Gemini Tiếp quản Hoàn tất)
+
+- **Đã hoàn tất & sửa lỗi API AutoCAD 2021 + JSON:**
+  - `tools/dce_snapshot_plugin.cs`: Chuyển sang `Autodesk.AutoCAD.ApplicationServices.Core`, sửa API `Polyline.Length`/`Closed`, đọc `AttributeReference` qua `Transaction` (`at.Tag`), đọc thêm `DBText`/`MText` & Dynamic Block name, dùng `GetXDataForApplication()`/`ResultBuffer`/`TypedValue`, nhận đầu vào an toàn qua biến môi trường `DCE_SNAPSHOT_OUT`/`DCE_SNAPSHOT_REV`, và sửa lỗi thiếu dấu phẩy JSON trong `PutG()`.
+  - `tools/autocad_snapshot_bridge.py`: Hỗ trợ truyền `Path` trong `build_plugin()`, sinh `.scr` chuẩn `accoreconsole.exe /i ... /s ... /l en-US`, giữ nguyên đường fake-worker test, và xử lý decoding `errors="replace"` cho luồng stdout của Core Console.
+- **Kết quả chạy thật trên AutoCAD 2021 (`R24.0.47.0.0`):**
+  - Biên dịch `dce_snapshot_plugin.dll` (`13,312` bytes) via `csc.exe`: **`OK`** (`0` errors).
+  - End-to-End read-only staging trên `.dwg` thực tế (`02.2 KC - Tân Hỷ - GĐII - 2026.10.20.dwg`): **`status=OK`**, quét được **`14,874` đối tượng**, **`immutability_ok=True`** (`SHA-256` file nguồn trước/sau khớp tuyệt đối).
+  - Unit tests `test_tier2_phase2b_snapshot_diff.py` (`14/14 OK`) & `test_tier2_phase2a_foundation.py` (`6/6 OK`).

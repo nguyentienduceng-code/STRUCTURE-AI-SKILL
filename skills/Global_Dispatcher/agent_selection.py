@@ -5,11 +5,11 @@ from typing import Optional
 
 import unicodedata
 
-AGENT_CHOICES = ("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL")
-SINGLE_AGENT = {"CLAUDE_ONLY": "CLAUDE", "GEMINI_ONLY": "GEMINI"}
+SINGLE_AGENT = {"CLAUDE_ONLY": "CLAUDE", "GEMINI_ONLY": "GEMINI", "CODEX_ONLY": "CODEX"}
+AGENT_CHOICES = ("AUTO", *SINGLE_AGENT, "DUAL")
 
 
-_AGENT = r"(?:claude|germini|gemini)"
+_AGENT = r"(?:claude|germini|gemini|codex)"
 _PAIR = rf"(?:claude\s*(?:\+|\bva\b)\s*(?:gemini|germini)|(?:gemini|germini)\s*(?:\+|\bva\b)\s*claude)"
 _VERB = r"(?:su dung|dung|sai|chay|chon)"
 _DIRECTIVE = re.compile(
@@ -44,7 +44,8 @@ def selected_agents(prompt: str, explicit: Optional[str], project_dir: Optional[
             if match["dual"]:
                 matches.add("DUAL")
             elif match["single"]:
-                matches.add("CLAUDE_ONLY" if match["name"].lower() == "claude" else "GEMINI_ONLY")
+                name = match["name"].upper().replace("GERMINI", "GEMINI")
+                matches.add(f"{name}_ONLY")
             else:
                 matches.add("AUTO")
         if len(matches) > 1:

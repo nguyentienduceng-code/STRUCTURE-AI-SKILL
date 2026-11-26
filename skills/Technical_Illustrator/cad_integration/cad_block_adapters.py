@@ -345,6 +345,8 @@ def insert_or_update_titleblock(
                 if tag in clean_vals:
                     att.dxf.text = clean_vals[tag]
                     att.dxf.color = 256
+                    if tag == "TEN_BAN_VE" and len(clean_vals[tag]) > 22:
+                        att.dxf.width = max(0.62, min(0.85, 21.0 / float(len(clean_vals[tag]))))
                     updated_tags.append(tag)
                 else:
                     preserved_tags.append(tag)
@@ -660,3 +662,66 @@ def insert_plan_header_native(
     if mark_owned:
         mark_agent_owned(bref, "PLAN_HEADER")
     return bref
+
+
+def purge_unused_blocks(
+    doc: ezdxf.document.Drawing,
+    keep_blocks: Optional[Iterable[str]] = None,
+) -> int:
+    """Purge unreferenced block definitions from an exported deliverable in-memory.
+
+    Recursively traces INSERTs across ModelSpace, all PaperSpace layouts, and nested
+    blocks, while preserving system blocks (`*`, `_`), dim arrowheads, and essential
+    DCE structural contract blocks. Never modifies template files on disk.
+    """
+    used: set = set()
+    queue: List[str] = []
+
+    def _enqueue(name: Optional[str]) -> None:
+        if not name:
+            return
+        if name not in used and name in doc.blocks:
+            used.add(name)
+            queue.append(name)
+
+    for layout in doc.layouts:
+        for ent in layout:
+            if ent.dxftype() == "INSERT":
+                _enqueue(getattr(ent.dxf, "name", None))
+
+    # Preserve arrow/leader blocks referenced by DimStyles
+    for ds in doc.dimstyles:
+        for attr in ("dimblk", "dimblk1", "dimblk2", "dimldrblk"):
+            val = getattr(ds.dxf, attr, "")
+            if val:
+                _enqueue(str(val))
+
+    essential = {
+        "Dce_KhTenTruc",
+        "Dce_TenTruc",
+        "DCE_TenCauKien",
+    }
+    for kb in list(essential) + list(keep_blocks or []):
+        _enqueue(str(kb))
+
+    while queue:
+        bname = queue.pop()
+        try:
+            blk = doc.blocks.get(bname)
+        except Exception:
+            continue
+        for ent in blk:
+            if ent.dxftype() == "INSERT":
+                _enqueue(getattr(ent.dxf, "name", None))
+
+    removed = 0
+    for blk in list(doc.blocks):
+        bname = blk.name
+        if bname.startswith("*") or bname.startswith("_") or bname in used:
+            continue
+        try:
+            doc.blocks.delete_block(bname, safe=False)
+            removed += 1
+        except Exception:
+            pass
+    return removed

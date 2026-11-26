@@ -1,11 +1,11 @@
 {
   "schema_version": "DCE_C2_PROVENANCE_V2",
   "provenance": {
-    "dxf_sha256": "de4dcfbfb13cb0331cbad0cf6079173ea51ccebcebd07b9503c26e6ab56b870f",
-    "fixture_sha256": "ae84387a39f2205ecec452c964844c42a9da99e3f13e353c00b23a1df9ed66ec",
+    "dxf_sha256": "adf6b135457a2fa32cf54f52e99a7149f8d043ccd436b9c867fb0a01593c1487",
+    "fixture_sha256": "cc3607c5eb9415fd1de0f6b7d2b1c032b06cbc08197339d35d7884608a55aa47",
     "generator": "cad_sheet_set.C2_REMEDIATED_V2"
   },
-  "dxf_sha256": "de4dcfbfb13cb0331cbad0cf6079173ea51ccebcebd07b9503c26e6ab56b870f",
+  "dxf_sha256": "adf6b135457a2fa32cf54f52e99a7149f8d043ccd436b9c867fb0a01593c1487",
   "sheet_no": "KC-03",
   "sheet_status": "PASS",
   "scale": 50.0,
@@ -520,7 +520,7 @@
     {
       "type": "INSERT",
       "block": "DCE_KyHieuSan",
-      "handle": "176",
+      "handle": "177",
       "layer": "DCE_Name"
     }
   ],
@@ -710,6 +710,11 @@
         "F5",
         "F6",
         "F7"
+      ],
+      "ps_schedule_handles": [
+        "197",
+        "198",
+        "199"
       ]
     },
     "COL_C1_F2": {
@@ -735,6 +740,11 @@
         "100",
         "101",
         "102"
+      ],
+      "ps_schedule_handles": [
+        "19A",
+        "19B",
+        "19C"
       ]
     },
     "BM_D1A_F2_S1": {
@@ -760,6 +770,11 @@
         "10B",
         "10C",
         "10D"
+      ],
+      "ps_schedule_handles": [
+        "19D",
+        "19E",
+        "19F"
       ]
     },
     "BM_D1A_F2_S2": {
@@ -785,6 +800,11 @@
         "116",
         "117",
         "118"
+      ],
+      "ps_schedule_handles": [
+        "1A0",
+        "1A1",
+        "1A2"
       ]
     },
     "STEEL_COL_C1": {
@@ -810,6 +830,11 @@
         "121",
         "122",
         "123"
+      ],
+      "ps_schedule_handles": [
+        "1A3",
+        "1A4",
+        "1A5"
       ]
     },
     "STEEL_BM_B1": {
@@ -835,6 +860,11 @@
         "12C",
         "12D",
         "12E"
+      ],
+      "ps_schedule_handles": [
+        "1A6",
+        "1A7",
+        "1A8"
       ]
     },
     "STEEL_BOX_BX1": {
@@ -860,6 +890,11 @@
         "137",
         "138",
         "139"
+      ],
+      "ps_schedule_handles": [
+        "1A9",
+        "1AA",
+        "1AB"
       ]
     },
     "STEEL_CH_U1": {
@@ -885,6 +920,11 @@
         "142",
         "143",
         "144"
+      ],
+      "ps_schedule_handles": [
+        "1AC",
+        "1AD",
+        "1AE"
       ]
     },
     "STEEL_PP_P1": {
@@ -910,6 +950,11 @@
         "14D",
         "14E",
         "14F"
+      ],
+      "ps_schedule_handles": [
+        "1AF",
+        "1B0",
+        "1B1"
       ]
     },
     "STEEL_BP_01": {
@@ -935,6 +980,11 @@
         "158",
         "159",
         "15A"
+      ],
+      "ps_schedule_handles": [
+        "1B2",
+        "1B3",
+        "1B4"
       ]
     },
     "STEEL_BP_02": {
@@ -960,6 +1010,11 @@
         "163",
         "164",
         "165"
+      ],
+      "ps_schedule_handles": [
+        "1B5",
+        "1B6",
+        "1B7"
       ]
     },
     "STEEL_PL_01": {
@@ -985,6 +1040,11 @@
         "16E",
         "16F",
         "170"
+      ],
+      "ps_schedule_handles": [
+        "1B8",
+        "1B9",
+        "1BA"
       ]
     }
   },

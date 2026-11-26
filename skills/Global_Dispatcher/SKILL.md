@@ -1,7 +1,7 @@
 ---
 name: Global_Dispatcher
-version: 3.0.0
-last_updated: 2026-11-20
+version: 3.1.0
+last_updated: 2026-11-23
 description: "Bộ điều phối trung tâm — Tự động phân loại yêu cầu người dùng và định tuyến đến đúng Skill phù hợp nhất. Giảm cognitive load cho User: chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên."
 triggers:
   - "Mọi yêu cầu mới từ User khi chưa rõ Skill nào"
@@ -13,7 +13,7 @@ triggers:
 
 > **Vai trò:** Entry point DUY NHẤT cho mọi yêu cầu kỹ thuật. Phân loại, định tuyến, và quản lý pipeline.  
 > **Nguyên tắc:** User chỉ cần nói yêu cầu bằng ngôn ngữ tự nhiên → Dispatcher tự xử lý phần còn lại.  
-> **Version:** 3.0.0 (2D Cognitive Dispatcher) — 2026-11-20
+> **Version:** 3.1.0 (2D Cognitive Dispatcher) — 2026-11-23
 
 ---
 
@@ -50,7 +50,7 @@ python "g:/My Drive/Google AI Studio/.agents/skills/Global_Dispatcher/intent_cla
 
 Đọc `primary_skill`, chuỗi `pipeline` và `dispatch_2d.execution_plan`. Tác tử chạy skill theo phụ thuộc trong kế hoạch. Dùng `--workspace` để định vị dự án khi chạy từ thư mục khác. Đặt mặc định qua `dispatch_task.py set-default --workspace <workspace> --project-dir <dự án> --agent-selection CLAUDE_ONLY`. Lệnh nhận `--agent-selection AUTO|CLAUDE_ONLY|GEMINI_ONLY|DUAL` hoặc chỉ dẫn như “riêng ca này chỉ dùng Claude”. Đặt mặc định lâu dài bằng tệp văn bản UTF-8 `.agent-selection` ở gốc đúng dự án, nội dung là một trong bốn giá trị. Khi người dùng yêu cầu đặt mặc định, xác định đúng dự án trước khi lưu.
 
-Đọc lần lượt từng tệp trong `dispatch_2d.skill_files` theo thứ tự và phụ thuộc của `skill_workflow.stages`. Nếu ca chỉ có một skill, dùng tệp hướng dẫn của skill chính.
+Đọc lần lượt từng tệp trong `dispatch_2d.skill_files` theo thứ tự và phụ thuộc của `skill_workflow.stages`. Ở mỗi bước, mở SKILL.md của skill tương ứng rồi đọc các mô-đun trong `guide_files` của bước đó khi đến lượt thực hiện. Với phiếu một skill, danh sách mô-đun nằm tại `dispatch_2d.guide_files`. Khi danh sách trống hoặc dùng phiếu cũ, theo hướng dẫn trong SKILL.md chính.
 
 1. Chuẩn bị phiếu bằng `dispatch_task.py prepare --workspace <đường dẫn tuyệt đối> --ticket <tệp cục bộ mới> --prompt "<yêu cầu>"`. Với sản phẩm, truyền `--expected-file <tên tệp>` cho từng đầu ra và `--project-identity "<mã hoặc tên công trình trong nguồn duyệt>"`. Khi bỏ qua định danh, cổng dùng tên thư mục dự án. Thêm `--independent-review` nếu cần người kiểm tra độc lập. Khi có nhiều dự án phù hợp, xác nhận đích rồi lập phiếu lại.
 2. Với một tác tử, thực hiện các bước tại chỗ. Khi thiếu công cụ, báo đúng bước cần hỗ trợ. Với hai tác tử, truyền phiếu qua `sync_bus.py --auto --dispatch-ticket <phiếu>` cùng thông tin ca. Hai bên dùng cùng danh mục đầu ra và nguồn đã xác nhận.

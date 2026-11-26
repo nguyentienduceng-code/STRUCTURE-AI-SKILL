@@ -168,6 +168,9 @@ def _parse_rd_patches(stdout: str) -> Optional[tuple[int, int, int]]:
 
 PARSER_BY_HINT = [
     ("[auto]", _parse_unittest),
+    ("Bootstrap Matrix", _parse_unittest),
+    ("MCP machine-local installer", _parse_unittest),
+    ("Release manifest", _parse_unittest),
     ("CAD Semantics v6 C2", _parse_unittest),
     ("CAD Semantics v6 C1", _parse_unittest),
     ("Dynamic Sheet-Scale Governor", _parse_unittest),
@@ -235,9 +238,11 @@ def _load_suites_from(tests_dir: Path) -> list[tuple[str, list[str]]]:
     return [(name, cmd) for name, cmd in suites]
 
 
-def _run_one_suite(name: str, cmd: list[str], timeout: int = 300) -> SuiteResult:
+def _run_one_suite(name: str, cmd: list[str], timeout: int = 300, cwd: Optional[Path] = None) -> SuiteResult:
     """Chạy 1 suite, parse output, trả về SuiteResult."""
+    import os
     start = time.time()
+    test_env = {**os.environ, "PYTHONUTF8": "1"}
     try:
         proc = subprocess.run(
             cmd,
@@ -245,6 +250,8 @@ def _run_one_suite(name: str, cmd: list[str], timeout: int = 300) -> SuiteResult
             text=True,
             encoding="utf-8",
             errors="replace",
+            env=test_env,
+            cwd=cwd,
             timeout=timeout,
         )
         elapsed = time.time() - start
@@ -312,7 +319,7 @@ def run_all_test_suites(
     result = TestRunResult()
     total_start = time.time()
     for name, cmd in suites_def:
-        sr = _run_one_suite(name, cmd, timeout=suite_timeout_sec)
+        sr = _run_one_suite(name, cmd, timeout=suite_timeout_sec, cwd=tests_dir.parent.parent)
         result.suites.append(sr)
         if not sr.passed:
             result.all_passed = False

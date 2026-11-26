@@ -15,7 +15,6 @@ Kiem tra:
 
 import os
 import json
-import re
 import sys
 from pathlib import Path
 
@@ -23,6 +22,9 @@ from pathlib import Path
 if sys.platform == 'win32':
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from _collect_skills import SkillFrontmatterError, read_skill
 
 # Configuration
 SKILLS_ROOT = (Path(__file__).parent / "skills") if (Path(__file__).parent / "skills").exists() else (Path(__file__).parent.parent / "skills")
@@ -68,13 +70,12 @@ def test_version_sync():
     versions = {}
     for skill, path in skill_files.items():
         if path.exists():
-            content = path.read_text(encoding='utf-8')
-            match = re.search(r'version:\s*([\d.]+)', content)
-            if match:
-                versions[skill] = match.group(1)
-                log_test(f"{skill} version", True, message=f"v{versions[skill]}")
+            try:
+                versions[skill] = read_skill(path).version
+            except SkillFrontmatterError as exc:
+                log_test(f"{skill} metadata", False, message=str(exc))
             else:
-                log_test(f"{skill} version", False, message="No version found in frontmatter")
+                log_test(f"{skill} version", True, message=f"v{versions[skill]}")
         else:
             log_test(f"{skill} exists", False, message=f"File not found: {path}")
 

@@ -33,6 +33,8 @@ try:
     from ezdxf.enums import TextEntityAlignment
     HAS_EZDXF = True
 except ImportError:
+    ezdxf = None  # type: ignore[assignment]
+    TextEntityAlignment = None  # type: ignore[assignment]
     HAS_EZDXF = False
 
 
@@ -2873,17 +2875,23 @@ class DcePlanEngine:
     # ------------------------------------------------------------------
     def render_columns_walls_kc02(self):
         msp = self.msp
-        for col in self.model['columns']:
+        floor_id = self.model.get('floor_id', '')
+        for idx, col in enumerate(self.model['columns']):
             bx = col['bx'] * SCALE_MM; by = col['by'] * SCALE_MM
             cx, cy = self._col_centers(col)
             x0, y0 = cx - bx / 2.0, cy - by / 2.0
             x1, y1 = cx + bx / 2.0, cy + by / 2.0
             pts = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
-            msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
+            poly = msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
             self._solid_hatch(pts)
             self._insert_member_tag(cx, cy, by, col['name'], col['size'])
+            eid = col.get('element_id') or f"COL_{col['name']}_{idx:02d}"
+            self._v6_register_element('COLUMN', eid, col['name'],
+                                      {'size': col.get('size', ''), 'b_mm': bx, 'h_mm': by})
+            self._attach_identity(poly, eid, "PRIMARY_GEOM", floor_id,
+                                  beam_fields={'mark': col['name'], 'b_mm': bx, 'h_mm': by})
 
-        for w in self.model['shear_walls']:
+        for widx, w in enumerate(self.model['shear_walls']):
             x0 = self._wx(w['x0']); y0 = self._wy(w['y0'])
             x1 = self._wx(w['x1']); y1 = self._wy(w['y1'])
             tw = w['tw'] * SCALE_MM
@@ -2893,8 +2901,12 @@ class DcePlanEngine:
             else:
                 pts = [(min(x0, x1), y0 - tw/2), (max(x0, x1), y0 - tw/2),
                        (max(x0, x1), y0 + tw/2), (min(x0, x1), y0 + tw/2)]
-            msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
+            poly = msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
             self._solid_hatch(pts)
+            weid = f"WALL_{w['name']}_{widx:02d}"
+            self._v6_register_element('WALL', weid, w['name'], {'thickness_mm': tw})
+            self._attach_identity(poly, weid, "PRIMARY_GEOM", floor_id,
+                                  beam_fields={'mark': w['name'], 'b_mm': tw})
         return self
 
     def _insert_member_tag(self, cx, cy, by_mm, name, size):
@@ -2928,10 +2940,16 @@ class DcePlanEngine:
 
     def render_beams_reference(self):
         msp = self.msp
-        for bm in self.model['main_beams']:
+        floor_id = self.model.get('floor_id', '')
+        for idx, bm in enumerate(self.model['main_beams']):
             x0, y0 = self._wx(bm['x0']), self._wy(bm['y0'])
             x1, y1 = self._wx(bm['x1']), self._wy(bm['y1'])
-            msp.add_line((x0, y0), (x1, y1), dxfattribs={'layer': 'DCE_NetThay'})
+            ln = msp.add_line((x0, y0), (x1, y1), dxfattribs={'layer': 'DCE_NetThay'})
+            eid = bm.get('element_id') or f"BEAM_{bm.get('name', 'REF')}_{idx:02d}"
+            self._v6_register_element('BEAM', eid, bm.get('name', ''),
+                                      {'size': bm.get('size', '')})
+            self._attach_identity(ln, eid, "PRIMARY_GEOM", floor_id,
+                                  beam_fields={'mark': bm.get('name', '')})
         return self
 
     def render_arch_underlay(self):
@@ -2944,8 +2962,10 @@ class DcePlanEngine:
 
     def _add_fitted_table_text(self, text: str, x: float, y: float, max_width: float,
                                height: float = 170.0, layer: str = 'DCE_Schedule',
-                               align: TextEntityAlignment = TextEntityAlignment.MIDDLE_CENTER):
+                               align: Optional[Any] = None):
         """Place table/title text fitted safely inside max_width using mineral ink."""
+        if align is None and TextEntityAlignment is not None:
+            align = TextEntityAlignment.MIDDLE_CENTER
         s = str(text or "")
         avail = max(float(max_width) * 0.88, 200.0)
         est_w = max(len(s), 1) * height * 0.72
@@ -3104,15 +3124,16 @@ class DcePlanEngine:
         dy = y1 - y0
         L = math.hypot(dx, dy)
         if L < 10.0:
-            return
+            return []
         nx = -dy / L * (b_mm / 2.0)
         ny = dx / L * (b_mm / 2.0)
         p1_a = (x0 + nx, y0 + ny)
         p2_a = (x1 + nx, y1 + ny)
         p1_b = (x0 - nx, y0 - ny)
         p2_b = (x1 - nx, y1 - ny)
-        msp.add_line(p1_a, p2_a, dxfattribs={'layer': layer})
-        msp.add_line(p1_b, p2_b, dxfattribs={'layer': layer})
+        ent_a = msp.add_line(p1_a, p2_a, dxfattribs={'layer': layer})
+        ent_b = msp.add_line(p1_b, p2_b, dxfattribs={'layer': layer})
+        return [ent_a, ent_b]
 
     def _add_beam_tag(self, mx, my, text, rot_deg=0.0):
         msp = self.msp
@@ -3138,17 +3159,23 @@ class DcePlanEngine:
 
     def render_columns_walls_supports(self):
         msp = self.msp
-        for col in self.model['columns']:
+        floor_id = self.model.get('floor_id', '')
+        for idx, col in enumerate(self.model['columns']):
             bx = col['bx'] * SCALE_MM; by = col['by'] * SCALE_MM
             cx, cy = self._col_centers(col)
             pts = [
                 (cx - bx/2, cy - by/2), (cx + bx/2, cy - by/2),
                 (cx + bx/2, cy + by/2), (cx - bx/2, cy + by/2)
             ]
-            msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
+            poly = msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
             self._solid_hatch(pts)
+            eid = col.get('element_id') or f"COL_{col['name']}_{idx:02d}"
+            self._v6_register_element('COLUMN', eid, col['name'],
+                                      {'size': col.get('size', ''), 'b_mm': bx, 'h_mm': by})
+            self._attach_identity(poly, eid, "PRIMARY_GEOM", floor_id,
+                                  beam_fields={'mark': col['name'], 'b_mm': bx, 'h_mm': by})
 
-        for w in self.model['shear_walls']:
+        for widx, w in enumerate(self.model['shear_walls']):
             x0 = self._wx(w['x0']); y0 = self._wy(w['y0'])
             x1 = self._wx(w['x1']); y1 = self._wy(w['y1'])
             tw = w['tw'] * SCALE_MM
@@ -3158,8 +3185,12 @@ class DcePlanEngine:
             else:
                 pts = [(min(x0, x1), y0 - tw/2), (max(x0, x1), y0 - tw/2),
                        (max(x0, x1), y0 + tw/2), (min(x0, x1), y0 + tw/2)]
-            msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
+            poly = msp.add_lwpolyline(pts, close=True, dxfattribs={'layer': 'DCE_BaoBeTong'})
             self._solid_hatch(pts)
+            weid = f"WALL_{w['name']}_{widx:02d}"
+            self._v6_register_element('WALL', weid, w['name'], {'thickness_mm': tw})
+            self._attach_identity(poly, weid, "PRIMARY_GEOM", floor_id,
+                                  beam_fields={'mark': w['name'], 'b_mm': tw})
         return self
 
     def render_beams_kc03(self):
@@ -3289,6 +3320,41 @@ class DcePlanEngine:
         tl = self.model.get('sheet_scale_label')
         return str(tl) if tl else None
 
+    # ── Vòng định danh (Tier 2B/2C): nhúng DCE_ELEMENT_ID + DCE_BEAM XData ─────
+    _BEAM_REGAPP = "DCE_BEAM"
+
+    def _attach_identity(self, entity, element_id, role, floor_id, beam_fields=None):
+        """Nhúng định danh bất biến (element_id, role, floor) + nghiệp vụ (mark/b/h)
+        lên thực thể DXF qua regapp `DCE_ELEMENT_ID` + `DCE_BEAM` — CÙNG regapp mà
+        native snapshot 2B (ezdxf lane + .NET plugin) đọc, để diff D1/D1A khớp trên
+        output engine thật chứ không chỉ fixture. Additive: không đổi hình học/layer.
+        Bridge vắng (ezdxf/tools) => không crash, không bịa XData (entity thiếu
+        identity -> UNMATCHED trung thực)."""
+        if entity is None or not element_id:
+            return
+        try:
+            import importlib
+            tools_dir = str(AGENTS_ROOT / "tools")
+            if tools_dir not in sys.path:
+                sys.path.insert(0, tools_dir)
+            xdata = importlib.import_module("dce_xdata_bridge")
+            xdata.attach_element_identity(entity, element_id, role=role, floor_id=floor_id)
+            if beam_fields:
+                parts = [f"MARK={beam_fields.get('mark', '')}"]
+                if beam_fields.get("b_mm") is not None:
+                    parts.append(f"B={float(beam_fields['b_mm']):.1f}")
+                if beam_fields.get("h_mm") is not None:
+                    parts.append(f"H={float(beam_fields['h_mm']):.1f}")
+                payload = ";".join(parts)
+                if self._BEAM_REGAPP not in self.doc.appids:
+                    self.doc.appids.add(self._BEAM_REGAPP)
+                entity.set_xdata(self._BEAM_REGAPP, [(1000, payload)])
+        except Exception as ex:
+            if self.v6:
+                self._v6_diag("IDENTITY_ATTACH_FAILED",
+                               f"Không nhúng identity {element_id}: {ex}",
+                               {"element_id": element_id})
+
     def _v6_register_element(self, category: str, element_id: str, mark: str,
                              section: Dict[str, Any]) -> None:
         """Kết nối registry (G1): tạo/lấy element, giữ element_id bất biến."""
@@ -3318,16 +3384,17 @@ class DcePlanEngine:
                      + list(self.model['secondary_beams']))
         obstacles = self._v6_beam_obstacles(all_beams)
         tl = self._v6_beam_scale_label()
+        floor_id = self.model.get('floor_id', '')
 
         for idx, bm in enumerate(all_beams):
             x0, y0 = self._wx(bm['x0']), self._wy(bm['y0'])
             x1, y1 = self._wx(bm['x1']), self._wy(bm['y1'])
             b_mm = bm['b'] * SCALE_MM
             layer = 'DCE_MainBeam' if idx < len(self.model['beams_x']) + len(self.model['beams_y']) else 'DCE_Beam'
-            self._draw_beam_double_line(x0, y0, x1, y1, b_mm, layer)
+            beam_ents = self._draw_beam_double_line(x0, y0, x1, y1, b_mm, layer)
 
             # element_id bất biến theo hình học (không phải tên hiển thị — tag guide §2)
-            eid = bm.get('element_id') or f"BM_{idx:03d}"
+            eid = bm.get('element_id') or f"BEAM_{bm.get('name', 'REF')}_{idx:02d}"
             display = f"{bm['name']} ({bm['size']})"
             plan = planner.plan_beam_tag(display, x0, y0, x1, y1,
                                           obstacles=obstacles, element_id=eid, view_id="model")
@@ -3335,6 +3402,17 @@ class DcePlanEngine:
                                       {'size': bm['size'], 'b_mm': bm.get('b', 0) * 1000,
                                        'h_mm': bm.get('h', 0) * 1000,
                                        'spans': [f"SEG_{idx:03d}"]})
+            # Vòng định danh 2B/2C: nét 1 (cạnh a) = PRIMARY (record hình học
+            # chính tắc của cấu kiện); nét 2 (cạnh b) = DETAIL_VIEW (hình học phụ
+            # cùng eid — KHÔNG đếm là PRIMARY thứ 2, tránh DUPLICATE_PRIMARY).
+            if beam_ents:
+                self._attach_identity(beam_ents[0], eid, "PRIMARY_GEOM", floor_id,
+                                      beam_fields={'mark': bm['name'], 'b_mm': b_mm,
+                                                   'h_mm': bm.get('h', 0) * SCALE_MM})
+                for extra in beam_ents[1:]:
+                    self._attach_identity(extra, eid, "DETAIL_VIEW", floor_id,
+                                          beam_fields={'mark': bm['name'], 'b_mm': b_mm,
+                                                       'h_mm': bm.get('h', 0) * SCALE_MM})
 
             attrs = {'TENDAM': display}
             if tl:

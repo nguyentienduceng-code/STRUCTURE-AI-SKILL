@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0",
-  "captured_at": "2026-11-22T14:37:29",
+  "captured_at": "2026-11-25T21:20:02",
   "all_passed": true,
-  "total_elapsed_sec": 152.56819105148315,
-  "grand_total_passed": 854,
+  "total_elapsed_sec": 347.09391832351685,
+  "grand_total_passed": 1088,
   "grand_total_failed": 0,
   "unparsed_suites": [],
   "suites": [
     {
       "name": "1. Integration Test (64 checks)",
       "passed": true,
-      "elapsed_sec": 0.23795223236083984,
+      "elapsed_sec": 0.21948480606079102,
       "passed_count": 64,
       "failed_count": 0,
       "total_count": 64,
@@ -20,7 +20,7 @@
     {
       "name": "2. Regression Calculator Test (13 calculators)",
       "passed": true,
-      "elapsed_sec": 0.31404566764831543,
+      "elapsed_sec": 0.20578837394714355,
       "passed_count": 13,
       "failed_count": 0,
       "total_count": 13,
@@ -30,7 +30,7 @@
     {
       "name": "3. Pre-Execution Approval Gate (32 tests)",
       "passed": true,
-      "elapsed_sec": 0.23118925094604492,
+      "elapsed_sec": 0.21277689933776855,
       "passed_count": 32,
       "failed_count": 0,
       "total_count": 32,
@@ -40,7 +40,7 @@
     {
       "name": "4. Intent Classifier Benchmark (17 tests)",
       "passed": true,
-      "elapsed_sec": 0.1748039722442627,
+      "elapsed_sec": 0.17297983169555664,
       "passed_count": 17,
       "failed_count": 0,
       "total_count": 17,
@@ -50,7 +50,7 @@
     {
       "name": "5. E2E Pipeline Workflow",
       "passed": true,
-      "elapsed_sec": 0.14904141426086426,
+      "elapsed_sec": 0.1705641746520996,
       "passed_count": 5,
       "failed_count": 0,
       "total_count": 5,
@@ -60,17 +60,17 @@
     {
       "name": "6. DE Calculators Unit Tests (10 tests)",
       "passed": true,
-      "elapsed_sec": 0.1309528350830078,
-      "passed_count": 10,
+      "elapsed_sec": 0.3042757511138916,
+      "passed_count": 17,
       "failed_count": 0,
-      "total_count": 10,
+      "total_count": 17,
       "timed_out": false,
       "error": ""
     },
     {
       "name": "7. Sprint 1 Reporting & TCVN Tests (4 tests)",
       "passed": true,
-      "elapsed_sec": 1.0912785530090332,
+      "elapsed_sec": 1.1305139064788818,
       "passed_count": 4,
       "failed_count": 0,
       "total_count": 4,
@@ -80,7 +80,7 @@
     {
       "name": "8. Sprint 2 Cross-Doc Conflict Control Tests (3 tests)",
       "passed": true,
-      "elapsed_sec": 0.15071702003479004,
+      "elapsed_sec": 0.18195009231567383,
       "passed_count": 3,
       "failed_count": 0,
       "total_count": 3,
@@ -90,7 +90,7 @@
     {
       "name": "9. Sprint 3 Phase 2 CAD/BIM/ETABS Tools (61 tests)",
       "passed": true,
-      "elapsed_sec": 0.2523193359375,
+      "elapsed_sec": 0.24823927879333496,
       "passed_count": 61,
       "failed_count": 0,
       "total_count": 61,
@@ -100,7 +100,7 @@
     {
       "name": "10. Sprint 3 Phase 3 DCE Pro Integration Tests (19 tests)",
       "passed": true,
-      "elapsed_sec": 2.8113322257995605,
+      "elapsed_sec": 2.8193483352661133,
       "passed_count": 19,
       "failed_count": 0,
       "total_count": 19,
@@ -110,7 +110,7 @@
     {
       "name": "11. Sprint 3.4 DCE Deep Integration Tests (16 tests)",
       "passed": true,
-      "elapsed_sec": 3.3666539192199707,
+      "elapsed_sec": 3.5373756885528564,
       "passed_count": 16,
       "failed_count": 0,
       "total_count": 16,
@@ -120,7 +120,7 @@
     {
       "name": "12. Sprint 4 Document Intelligence & Conflict Detection (70 tests)",
       "passed": true,
-      "elapsed_sec": 0.9393103122711182,
+      "elapsed_sec": 0.8938198089599609,
       "passed_count": 70,
       "failed_count": 0,
       "total_count": 70,
@@ -130,7 +130,7 @@
     {
       "name": "13. Sprint 5 Comprehensive Verification & Reporting (17 tests)",
       "passed": true,
-      "elapsed_sec": 0.9470207691192627,
+      "elapsed_sec": 2.3611581325531006,
       "passed_count": 17,
       "failed_count": 0,
       "total_count": 17,
@@ -140,7 +140,7 @@
     {
       "name": "14. Policy Engine & Multi-Trigger Rules (55 tests)",
       "passed": true,
-      "elapsed_sec": 1.8374335765838623,
+      "elapsed_sec": 1.6459975242614746,
       "passed_count": 55,
       "failed_count": 0,
       "total_count": 55,
@@ -150,17 +150,17 @@
     {
       "name": "15. Sync Report System Consistency (14 tests)",
       "passed": true,
-      "elapsed_sec": 0.7264842987060547,
-      "passed_count": 14,
+      "elapsed_sec": 0.5857744216918945,
+      "passed_count": 15,
       "failed_count": 0,
-      "total_count": 14,
+      "total_count": 15,
       "timed_out": false,
       "error": ""
     },
     {
       "name": "16. Cognitive & System Control Engine (40 tests)",
       "passed": true,
-      "elapsed_sec": 5.870294094085693,
+      "elapsed_sec": 5.328714370727539,
       "passed_count": 40,
       "failed_count": 0,
       "total_count": 40,
@@ -170,7 +170,7 @@
     {
       "name": "17. XLSX View Sanity — Anti-[Repaired] (regression openpyxl sheetViews/MergedCell)",
       "passed": true,
-      "elapsed_sec": 0.578606128692627,
+      "elapsed_sec": 0.5742905139923096,
       "passed_count": 15,
       "failed_count": 0,
       "total_count": 15,
@@ -180,7 +180,7 @@
     {
       "name": "18. DCE CAD Compliance & Zero White Text Lock (25 tests)",
       "passed": true,
-      "elapsed_sec": 14.820849895477295,
+      "elapsed_sec": 14.797772884368896,
       "passed_count": 26,
       "failed_count": 0,
       "total_count": 26,
@@ -190,7 +190,7 @@
     {
       "name": "19. Dual-Agent Bridge & Bus IPC (7 tests)",
       "passed": true,
-      "elapsed_sec": 0.753096342086792,
+      "elapsed_sec": 1.1699082851409912,
       "passed_count": 39,
       "failed_count": 0,
       "total_count": 39,
@@ -200,7 +200,7 @@
     {
       "name": "20. Cognitive Brain v2.0 Benchmark (10 tests)",
       "passed": true,
-      "elapsed_sec": 0.2702782154083252,
+      "elapsed_sec": 0.25601887702941895,
       "passed_count": 10,
       "failed_count": 0,
       "total_count": 10,
@@ -210,7 +210,7 @@
     {
       "name": "21. R&D & Structural TCVN Regression Patches (20 checks)",
       "passed": true,
-      "elapsed_sec": 1.154175043106079,
+      "elapsed_sec": 1.2281394004821777,
       "passed_count": 20,
       "failed_count": 0,
       "total_count": 20,
@@ -220,7 +220,7 @@
     {
       "name": "22. Cognitive Architecture v2 — Dynamic DAG, Cycles, Budget & JSONL (47 tests)",
       "passed": true,
-      "elapsed_sec": 0.605351448059082,
+      "elapsed_sec": 0.6331608295440674,
       "passed_count": 47,
       "failed_count": 0,
       "total_count": 47,
@@ -230,17 +230,17 @@
     {
       "name": "23. PDF Citation Grounding & Input Provenance Guard (62 tests)",
       "passed": true,
-      "elapsed_sec": 2.806086778640747,
-      "passed_count": 62,
+      "elapsed_sec": 2.4190101623535156,
+      "passed_count": 63,
       "failed_count": 0,
-      "total_count": 62,
+      "total_count": 63,
       "timed_out": false,
       "error": ""
     },
     {
       "name": "24. Nonlinear RC Fiber Section P-Mx-My 3D (23 tests)",
       "passed": true,
-      "elapsed_sec": 2.5918962955474854,
+      "elapsed_sec": 2.7921829223632812,
       "passed_count": 23,
       "failed_count": 0,
       "total_count": 23,
@@ -250,7 +250,7 @@
     {
       "name": "25. Project Data Adapter & E2E Batch Pipeline (34 tests)",
       "passed": true,
-      "elapsed_sec": 9.669008255004883,
+      "elapsed_sec": 9.991539716720581,
       "passed_count": 34,
       "failed_count": 0,
       "total_count": 34,
@@ -260,7 +260,7 @@
     {
       "name": "26. Durable Project Orchestration & Agent Roles (39 tests)",
       "passed": true,
-      "elapsed_sec": 37.043936014175415,
+      "elapsed_sec": 36.541685581207275,
       "passed_count": 39,
       "failed_count": 0,
       "total_count": 39,
@@ -270,7 +270,7 @@
     {
       "name": "27. CAD Edit Workbench (9 tests)",
       "passed": true,
-      "elapsed_sec": 1.7956461906433105,
+      "elapsed_sec": 1.870905876159668,
       "passed_count": 9,
       "failed_count": 0,
       "total_count": 9,
@@ -280,7 +280,7 @@
     {
       "name": "28. DCE Virtual Drive Guard & MCP Preview Lifecycle (18 tests)",
       "passed": true,
-      "elapsed_sec": 5.492671966552734,
+      "elapsed_sec": 5.797730445861816,
       "passed_count": 18,
       "failed_count": 0,
       "total_count": 18,
@@ -290,7 +290,7 @@
     {
       "name": "29. MCP DCE-CAD Server & Vision Tools (12 tests)",
       "passed": true,
-      "elapsed_sec": 17.80856680870056,
+      "elapsed_sec": 18.6503963470459,
       "passed_count": 13,
       "failed_count": 0,
       "total_count": 13,
@@ -300,7 +300,7 @@
     {
       "name": "30. CAD Scene Index & Collision Solver (Sprint 2 Anti-Collision) (35 tests)",
       "passed": true,
-      "elapsed_sec": 5.72072958946228,
+      "elapsed_sec": 5.826590061187744,
       "passed_count": 35,
       "failed_count": 0,
       "total_count": 35,
@@ -310,7 +310,7 @@
     {
       "name": "31. Dynamic Sheet-Scale Governor & SSOT Layout (Directive v5.0) (11 tests)",
       "passed": true,
-      "elapsed_sec": 3.6379806995391846,
+      "elapsed_sec": 3.824596643447876,
       "passed_count": 11,
       "failed_count": 0,
       "total_count": 11,
@@ -320,7 +320,217 @@
     {
       "name": "32. CAD Semantics v6 C1 Renderer & Tag Placement (6 tests)",
       "passed": true,
-      "elapsed_sec": 3.542104482650757,
+      "elapsed_sec": 4.276476144790649,
+      "passed_count": 7,
+      "failed_count": 0,
+      "total_count": 7,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "33. CAD Semantics v6 C2 Sheet Set & Dual Viewport (3 tests)",
+      "passed": true,
+      "elapsed_sec": 26.861645936965942,
+      "passed_count": 9,
+      "failed_count": 0,
+      "total_count": 9,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "34. Bootstrap Matrix — hook fail-closed wrapper (4 tests)",
+      "passed": true,
+      "elapsed_sec": 0.8255877494812012,
+      "passed_count": 4,
+      "failed_count": 0,
+      "total_count": 4,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "35. MCP machine-local installer (3 tests)",
+      "passed": true,
+      "elapsed_sec": 0.1646568775177002,
+      "passed_count": 3,
+      "failed_count": 0,
+      "total_count": 3,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "36. Release manifest & registry tool (4 tests)",
+      "passed": true,
+      "elapsed_sec": 0.46717000007629395,
+      "passed_count": 4,
+      "failed_count": 0,
+      "total_count": 4,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "37. [auto] test_antigravity_dual_bus_hook (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 0.8444788455963135,
+      "passed_count": 8,
+      "failed_count": 0,
+      "total_count": 8,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "38. [auto] test_bim_translator (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 1.812096118927002,
+      "passed_count": 9,
+      "failed_count": 0,
+      "total_count": 9,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "39. [auto] test_cad_bptc_engine (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 11.520408391952515,
+      "passed_count": 7,
+      "failed_count": 0,
+      "total_count": 7,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "40. [auto] test_cad_composite_grid (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 0.6721904277801514,
+      "passed_count": 3,
+      "failed_count": 0,
+      "total_count": 3,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "41. [auto] test_cad_evidence_contract (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 2.1128599643707275,
+      "passed_count": 4,
+      "failed_count": 0,
+      "total_count": 4,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "42. [auto] test_cad_layer_standard (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 2.4413511753082275,
+      "passed_count": 5,
+      "failed_count": 0,
+      "total_count": 5,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "43. [auto] test_cad_multiview_a3 (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 3.9995696544647217,
+      "passed_count": 2,
+      "failed_count": 0,
+      "total_count": 2,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "44. [auto] test_cad_open_forms_and_blocks (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 9.305193185806274,
+      "passed_count": 5,
+      "failed_count": 0,
+      "total_count": 5,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "45. [auto] test_cad_rc_detail_form04 (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 5.64624547958374,
+      "passed_count": 4,
+      "failed_count": 0,
+      "total_count": 4,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "46. [auto] test_cad_sprint3_xref_workbook (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 7.854511976242065,
+      "passed_count": 2,
+      "failed_count": 0,
+      "total_count": 2,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "47. [auto] test_cad_steel_peb_engine (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 9.551820516586304,
+      "passed_count": 5,
+      "failed_count": 0,
+      "total_count": 5,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "48. [auto] test_cad_steel_primitives (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 0.6267971992492676,
+      "passed_count": 9,
+      "failed_count": 0,
+      "total_count": 9,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "49. [auto] test_dce_block_semantics (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 4.176767587661743,
+      "passed_count": 13,
+      "failed_count": 0,
+      "total_count": 13,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "50. [auto] test_dispatcher_2d_modes (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 8.092950582504272,
+      "passed_count": 22,
+      "failed_count": 0,
+      "total_count": 22,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "51. [auto] test_dual_bus_v36_communication (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 0.6200501918792725,
+      "passed_count": 3,
+      "failed_count": 0,
+      "total_count": 3,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "52. [auto] test_p0_ops_workspace_and_lineage (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 11.094861268997192,
+      "passed_count": 5,
+      "failed_count": 0,
+      "total_count": 5,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "53. [auto] test_p1_schema_gate_and_merge_lane (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 24.85072374343872,
       "passed_count": 6,
       "failed_count": 0,
       "total_count": 6,
@@ -328,9 +538,69 @@
       "error": ""
     },
     {
-      "name": "33. CAD Semantics v6 C2 Sheet Set & Dual Viewport (3 tests)",
+      "name": "54. [auto] test_p2_p3_paperspace_and_4forms (auto-registered unit suite)",
       "passed": true,
-      "elapsed_sec": 25.042368173599243,
+      "elapsed_sec": 19.591720581054688,
+      "passed_count": 3,
+      "failed_count": 0,
+      "total_count": 3,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "55. [auto] test_p4_interactive_form (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 35.89541840553284,
+      "passed_count": 14,
+      "failed_count": 0,
+      "total_count": 14,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "56. [auto] test_p4_rfi_ncr_generator (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 13.394554853439331,
+      "passed_count": 9,
+      "failed_count": 0,
+      "total_count": 9,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "57. [auto] test_tier2_phase2a_foundation (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 5.121070384979248,
+      "passed_count": 6,
+      "failed_count": 0,
+      "total_count": 6,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "58. [auto] test_tier2_phase2b_snapshot_diff (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 4.082139492034912,
+      "passed_count": 19,
+      "failed_count": 0,
+      "total_count": 19,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "59. [auto] test_universal_doc_reader (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 3.8161349296569824,
+      "passed_count": 41,
+      "failed_count": 0,
+      "total_count": 41,
+      "timed_out": false,
+      "error": ""
+    },
+    {
+      "name": "60. [auto] test_workspace_claude_safety_hook (auto-registered unit suite)",
+      "passed": true,
+      "elapsed_sec": 0.9787678718566895,
       "passed_count": 7,
       "failed_count": 0,
       "total_count": 7,

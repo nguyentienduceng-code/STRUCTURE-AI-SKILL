@@ -1,0 +1,140 @@
+{
+  "work_ticket": {
+    "bus_version": "3.4",
+    "task_id": "MASTER_SYSTEM",
+    "task_title": "Fix cac ton dong da may tram tren .agents/ va .claude/: (1) Don whitelist/duong dan cung C:\\Users\\ADMIN, C:\\dev, D:\\booktok-app, D:\\AI VIDEO trong .claude/settings.json & settings.local.json va xoa .agents/hooks.json.recovery-backup; (2) Thay C:/Users/ADMIN/AppData/Local/Temp trong dce_round2_*.py bang tempfile.gettempdir() hoac archive; (3) Cap nhat .agents/tools/mcp_config.json chuan da may tram (py -3) + script setup MCP dce-cad cho may moi (C:\\Users\\user\\.gemini\\antigravity\\mcp_config.json chua co); (4) Dong bo CODEX vao agent_selection.py / dispatch_task.py neu phu hop; (5) Chay test hook + dispatcher + run_all_tests --fast truoc khi dong ca (--complete --agent CODEX).",
+    "status": "COMPLETED",
+    "request_id": "d2e95f17af76416b96cb5708221750a5",
+    "workspace": "G:\\My Drive\\Google AI Studio",
+    "dispatch_2d": {
+      "domain_skill": "SKILL_SYSTEM_ENGINEERING",
+      "domain_confidence": 0.6,
+      "engagement_mode": "SYSTEM_UPGRADE",
+      "mode_confidence": 0.95,
+      "claude_role": "SOFTWARE_ARCHITECT",
+      "agent_selection": "AUTO",
+      "use_dual_agent_bus": true,
+      "execution_plan": [
+        {
+          "step": "execute",
+          "owner": "CURRENT_AGENT",
+          "requires": [],
+          "output": "Kết quả theo skill và yêu cầu của ca"
+        },
+        {
+          "step": "verify",
+          "owner": "PARTNER_AGENT",
+          "requires": [
+            "execute"
+          ],
+          "output": "Kết quả kiểm tra và bằng chứng cùng phiên bản"
+        }
+      ],
+      "allow_script_patch": false,
+      "deliverable_dir_posix": null,
+      "deliverable_dir_win": null,
+      "enforce_deliverable_gate": false,
+      "enforce_jargon_linter": false,
+      "required_extensions": [],
+      "primary_skill": "Global_Dispatcher",
+      "skill_workflow": null,
+      "skill_files": [
+        "G:\\My Drive\\Google AI Studio\\.agents\\skills\\Global_Dispatcher\\SKILL.md"
+      ],
+      "guide_files": [],
+      "expected_files": [],
+      "project_identity": null,
+      "independent_review_required": false,
+      "expected_extensions": []
+    },
+    "bus_meta": {
+      "lock_owner": "gemini_maker",
+      "lock_acquired_at_iso": "2026-11-25T10:10:43.850393+00:00",
+      "task_started_at_epoch": 1795601443.8503938,
+      "lease_ttl_sec": 600,
+      "report_gate_p1": "PENDING",
+      "mcp_perception_p2": true,
+      "evidence_hashes": {},
+      "receipts": [
+        {
+          "agent": "gemini_maker",
+          "event": "HANDOVER_CREATED",
+          "timestamp_iso": "2026-11-25T10:10:43.850393+00:00",
+          "gate_status": "PENDING"
+        }
+      ]
+    },
+    "human_handoff": {
+      "handover_prompt": "[SYSTEM_UPGRADE HANDOVER - v3.4]\nTask: Fix cac ton dong da may tram tren .agents/ va .claude/: (1) Don whitelist/duong dan cung C:\\Users\\ADMIN, C:\\dev, D:\\booktok-app, D:\\AI VIDEO trong .claude/settings.json & settings.local.json va xoa .agents/hooks.json.recovery-backup; (2) Thay C:/Users/ADMIN/AppData/Local/Temp trong dce_round2_*.py bang tempfile.gettempdir() hoac archive; (3) Cap nhat .agents/tools/mcp_config.json chuan da may tram (py -3) + script setup MCP dce-cad cho may moi (C:\\Users\\user\\.gemini\\antigravity\\mcp_config.json chua co); (4) Dong bo CODEX vao agent_selection.py / dispatch_task.py neu phu hop; (5) Chay test hook + dispatcher + run_all_tests --fast truoc khi dong ca (--complete --agent CODEX).\nDomain: SKILL_SYSTEM_ENGINEERING | Executor: assigned agent | Role: Software Architect / DevOps\nTarget files: (core .agents/ modules)\nRequirements:\n1. Follow the v3.3 dual-agent protocol.\n2. Keep changes scoped to .agents/tools/, .agents/skills/, or .agents/memory/audits/.\n3. Run regression tests via run_all_tests.py before marking COMPLETED.",
+      "source_scripts": [],
+      "user_report_vi": "",
+      "deliverable_gate_status": "PENDING",
+      "deliverable_gate_message_vi": "",
+      "verified_files": []
+    }
+  },
+  "project_context": {
+    "project_code": "MASTER_SYSTEM",
+    "project_purpose": "Chuan hoa da may tram (user vs ADMIN), don cau hinh cu & tich hop MCP/Codex",
+    "role_distribution": "Linh hoạt tùy mục đích dự án",
+    "action_type": "CODE"
+  },
+  "environment_capabilities": {
+    "schema_version": "3.6",
+    "workspace_root_posix": "G:/My Drive/Google AI Studio",
+    "accoreconsole_available": true,
+    "accoreconsole_exe": "C:\\Program Files\\Autodesk\\AutoCAD 2021\\accoreconsole.exe",
+    "accoreconsole_readonly_cmd": "python .agents/tools/accoreconsole_adapter.py --audit-only <path.dwg>",
+    "autocad_snapshot_bridge": ".agents/tools/autocad_snapshot_bridge.py",
+    "python_ezdxf_available": true,
+    "sheet_set_manager_native_dst": false,
+    "live_peer_messaging_between_tabs": false
+  },
+  "last_updated_by": "CODEX",
+  "timestamp": "2026-11-25T17:22:47.045965+07:00",
+  "handoff_status": "COMPLETED",
+  "current_holder": "IDLE",
+  "summary": "Hoàn tất 5 hạng mục MASTER_SYSTEM. Đã dọn quyền trỏ máy cũ, xóa bản sao hook, chuyển 3 script DCE sang thư mục tạm cục bộ, đăng ký dce-cad qua py -3 và đồng bộ CODEX_ONLY. Kiểm thử đạt Antigravity 8/8, Claude safety 7/7, dispatcher 22/22, bus v3.6 3/3, fast 24/24 suite. Kết nối MCP thật liệt kê đủ 15 công cụ.",
+  "artifacts_modified": [
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".agents/memory/audits/dce_round2_20261114/analysis_tools/dce_round2_scan.py",
+    ".agents/memory/audits/dce_round2_20261114/analysis_tools/dce_round2_precision.py",
+    ".agents/memory/audits/dce_round2_20261114/analysis_tools/dce_round2_finalize.py",
+    ".agents/tools/mcp_config.json",
+    ".agents/tools/setup_dce_cad_mcp.py",
+    ".agents/skills/Global_Dispatcher/agent_selection.py",
+    ".agents/skills/Global_Dispatcher/dispatch_task.py",
+    ".agents/skills/Global_Dispatcher/intent_classifier.py",
+    ".agents/skills/Global_Dispatcher/product_deliverable_gate.py",
+    ".agents/skills/Global_Dispatcher/scripts/intent_classifier.py",
+    ".agents/tools/sync_bus.py",
+    ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/handover_task.py",
+    ".agents/tests/test_dispatcher_2d_modes.py",
+    ".agents/tests/test_mcp_dce_cad_server.py"
+  ],
+  "next_action_for_partner": {
+    "target_agent": "CODEX",
+    "task_description": "Fix cac ton dong da may tram tren .agents/ va .claude/: (1) Don whitelist/duong dan cung C:\\Users\\ADMIN, C:\\dev, D:\\booktok-app, D:\\AI VIDEO trong .claude/settings.json & settings.local.json va xoa .agents/hooks.json.recovery-backup; (2) Thay C:/Users/ADMIN/AppData/Local/Temp trong dce_round2_*.py bang tempfile.gettempdir() hoac archive; (3) Cap nhat .agents/tools/mcp_config.json chuan da may tram (py -3) + script setup MCP dce-cad cho may moi (C:\\Users\\user\\.gemini\\antigravity\\mcp_config.json chua co); (4) Dong bo CODEX vao agent_selection.py / dispatch_task.py neu phu hop; (5) Chay test hook + dispatcher + run_all_tests --fast truoc khi dong ca (--complete --agent CODEX).",
+    "target_files": [
+      ".claude/settings.json",
+      ".claude/settings.local.json",
+      ".agents/hooks.json",
+      ".agents/tools/mcp_config.json",
+      ".agents/skills/Global_Dispatcher/agent_selection.py",
+      ".agents/skills/Global_Dispatcher/dispatch_task.py",
+      ".agents/memory/audits/dce_round2_20261114/analysis_tools/dce_round2_precision.py"
+    ],
+    "acceptance_criteria": [
+      "0 con hardcode C:/Users/ADMIN trong .claude/settings.json va active tools",
+      "Xoa .agents/hooks.json.recovery-backup",
+      "Cap nhat mcp_config.json + script setup MCP may moi",
+      "test_antigravity_dual_bus_hook.py + test_workspace_claude_safety_hook.py + test_dispatcher_2d_modes.py + run_all_tests --fast PASS 100%"
+    ],
+    "command": "Fix cac ton dong da may tram tren .agents/ va .claude/: (1) Don whitelist/duong dan cung C:\\Users\\ADMIN, C:\\dev, D:\\booktok-app, D:\\AI VIDEO trong .claude/settings.json & settings.local.json va xoa .agents/hooks.json.recovery-backup; (2) Thay C:/Users/ADMIN/AppData/Local/Temp trong dce_round2_*.py bang tempfile.gettempdir() hoac archive; (3) Cap nhat .agents/tools/mcp_config.json chuan da may tram (py -3) + script setup MCP dce-cad cho may moi (C:\\Users\\user\\.gemini\\antigravity\\mcp_config.json chua co); (4) Dong bo CODEX vao agent_selection.py / dispatch_task.py neu phu hop; (5) Chay test hook + dispatcher + run_all_tests --fast truoc khi dong ca (--complete --agent CODEX).",
+    "acceptance_cmd": "py -3 -X utf8 .agents/tests/test_antigravity_dual_bus_hook.py; py -3 -X utf8 .agents/tests/test_workspace_claude_safety_hook.py; py -3 -X utf8 .agents/tests/test_dispatcher_2d_modes.py"
+  },
+  "Verification_Status": "CONFIRMED_AND_HANDED_OFF",
+  "claim_timestamp": "2026-11-25T17:15:51.097608+07:00",
+  "last_heartbeat": "2026-11-25T17:15:51.097608+07:00"
+}

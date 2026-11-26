@@ -1,0 +1,2328 @@
+{
+  "Standard_Method": "DCE A1-06 Independent Linkage Validation Script v6",
+  "c2_remediated_dir": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3",
+  "source_fixture": "g:\\My Drive\\Google AI Studio\\.agents\\skills\\Technical_Illustrator\\cad_integration\\fixtures\\g2_steel_and_sheet_fixture.json",
+  "manifest_sha256": "16b6d22bfa848470057d97469417ee29ab47e638eca26cdd6d461de4c4b4ecbd",
+  "c2_audit_artifact_sha256": "16b6d22bfa848470057d97469417ee29ab47e638eca26cdd6d461de4c4b4ecbd",
+  "overall_status": "PASS",
+  "checks": {
+    "manifest_sha256_match": true,
+    "all_5_sidecar_sha256_match": true,
+    "all_5_recorded_handles_resolved": true,
+    "all_5_viewports_nonoverlap": true,
+    "kc04_dual_viewport_frozen_layers_disjoint": true,
+    "all_5_strict_3way_physical_linkage": true,
+    "all_5_compliance_physical_pass": true,
+    "all_5_compliance_plan_pass": true
+  },
+  "sheets": {
+    "KC-02": {
+      "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-02_C2_A3.dxf",
+      "layout_summary": {
+        "modelspace_entity_total": 135,
+        "modelspace_counts": {
+          "LWPOLYLINE": 24,
+          "INSERT": 27,
+          "TEXT": 47,
+          "LINE": 31,
+          "DIMENSION": 5,
+          "HATCH": 1
+        },
+        "paperspace_entity_total": 65,
+        "paperspace_counts": {
+          "LWPOLYLINE": 5,
+          "LINE": 5,
+          "TEXT": 53,
+          "VIEWPORT": 2
+        },
+        "sheet_titles_in_modelspace": [],
+        "paperspace_title_or_annotation_entities": [
+          {
+            "handle": "1A7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AD",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1AE",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1AF",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1B0",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1B1",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1B2",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1B6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1D9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1DF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1E0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1E1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1E2",
+            "layer": "DCE_Schedule"
+          }
+        ],
+        "dimension_styles": [
+          "DCE_DIM_COT_50",
+          "DCE_DIM_MAIN_50"
+        ]
+      },
+      "linkage_against_fixture": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-02_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-02_C2_A3.dce_audit.json",
+        "sheet_no": "KC-02",
+        "actual_sha256": "e639975e9727412f7deb6c9b48e4c072d0d29145ccc4ac0c1798bbdbce4a54f9",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1B3",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                205.0,
+                145.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            },
+            {
+              "handle": "1B4",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                150.0,
+                205.0,
+                280.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "linkage_against_c2_registry": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-02_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-02_C2_A3.dce_audit.json",
+        "sheet_no": "KC-02",
+        "actual_sha256": "e639975e9727412f7deb6c9b48e4c072d0d29145ccc4ac0c1798bbdbce4a54f9",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1B3",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                205.0,
+                145.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            },
+            {
+              "handle": "1B4",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                150.0,
+                205.0,
+                280.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "compliance_physical": {
+        "status": "PASS",
+        "issues": [],
+        "dimensions": {
+          "total_dimensions": 5,
+          "dce_compliant_dimensions": 5,
+          "non_dce_dimensions": []
+        },
+        "non_dce_layers": []
+      },
+      "compliance_plan": {
+        "status": "PASS",
+        "physical_status": "PASS",
+        "gate_status": "PASS",
+        "gates_passed": 16,
+        "gates_unverified": 0,
+        "metadata_issues": [],
+        "issues_count": 0
+      }
+    },
+    "KC-03": {
+      "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-03_C2_A3.dxf",
+      "layout_summary": {
+        "modelspace_entity_total": 134,
+        "modelspace_counts": {
+          "LWPOLYLINE": 23,
+          "INSERT": 25,
+          "TEXT": 51,
+          "LINE": 31,
+          "DIMENSION": 3,
+          "HATCH": 1
+        },
+        "paperspace_entity_total": 62,
+        "paperspace_counts": {
+          "LWPOLYLINE": 4,
+          "LINE": 5,
+          "TEXT": 52,
+          "VIEWPORT": 1
+        },
+        "sheet_titles_in_modelspace": [],
+        "paperspace_title_or_annotation_entities": [
+          {
+            "handle": "182",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "183",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "184",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "185",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "186",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "187",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "188",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "189",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "18A",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "18B",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "18C",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "18D",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "191",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "194",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "195",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "196",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "197",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "198",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "199",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19A",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19B",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19C",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19D",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19E",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19F",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BA",
+            "layer": "DCE_Schedule"
+          }
+        ],
+        "dimension_styles": [
+          "DCE_DIM_MAIN_50"
+        ]
+      },
+      "linkage_against_fixture": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-03_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-03_C2_A3.dce_audit.json",
+        "sheet_no": "KC-03",
+        "actual_sha256": "adf6b135457a2fa32cf54f52e99a7149f8d043ccd436b9c867fb0a01593c1487",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "18E",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "linkage_against_c2_registry": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-03_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-03_C2_A3.dce_audit.json",
+        "sheet_no": "KC-03",
+        "actual_sha256": "adf6b135457a2fa32cf54f52e99a7149f8d043ccd436b9c867fb0a01593c1487",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "18E",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "compliance_physical": {
+        "status": "PASS",
+        "issues": [],
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "non_dce_layers": []
+      },
+      "compliance_plan": {
+        "status": "PASS",
+        "physical_status": "PASS",
+        "gate_status": "PASS",
+        "gates_passed": 16,
+        "gates_unverified": 0,
+        "metadata_issues": [],
+        "issues_count": 0
+      }
+    },
+    "KC-04": {
+      "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-04_C2_A3.dxf",
+      "layout_summary": {
+        "modelspace_entity_total": 134,
+        "modelspace_counts": {
+          "LWPOLYLINE": 29,
+          "INSERT": 23,
+          "TEXT": 51,
+          "LINE": 27,
+          "DIMENSION": 3,
+          "HATCH": 1
+        },
+        "paperspace_entity_total": 67,
+        "paperspace_counts": {
+          "LWPOLYLINE": 5,
+          "LINE": 5,
+          "TEXT": 55,
+          "VIEWPORT": 2
+        },
+        "sheet_titles_in_modelspace": [],
+        "paperspace_title_or_annotation_entities": [
+          {
+            "handle": "17E",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "17F",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "180",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "181",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "182",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "183",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "184",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "185",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "186",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "187",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "188",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "189",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "18D",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "18E",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "18F",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "192",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "195",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "196",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "197",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "198",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "199",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19A",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19B",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19C",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19D",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19E",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19F",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BB",
+            "layer": "DCE_Schedule"
+          }
+        ],
+        "dimension_styles": [
+          "DCE_DIM_MAIN_50"
+        ]
+      },
+      "linkage_against_fixture": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-04_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-04_C2_A3.dce_audit.json",
+        "sheet_no": "KC-04",
+        "actual_sha256": "b4df8bc644faed049a3ffa2041e750bc22e1bdb012b51fadc01816ecfc492430",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 16,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 20,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 20,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "18A",
+              "layer": "VP_BOTTOM",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                205.0,
+                145.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": [
+                "REBAR_TOP"
+              ]
+            },
+            {
+              "handle": "18B",
+              "layer": "VP_TOP",
+              "paper_bbox": [
+                15.0,
+                150.0,
+                205.0,
+                280.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": [
+                "REBAR_BOTTOM"
+              ]
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": true,
+          "vp_top_freezes_rebar_bottom": true,
+          "vp_bottom_freezes_rebar_top": true,
+          "visible_rebar_handles_in_vp_top": [
+            "173",
+            "174",
+            "175",
+            "176",
+            "177",
+            "178"
+          ],
+          "visible_rebar_handles_in_vp_bottom": [
+            "16D",
+            "16E",
+            "16F",
+            "170",
+            "171",
+            "172"
+          ],
+          "disjoint_visible_rebar_ok": true
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "linkage_against_c2_registry": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-04_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-04_C2_A3.dce_audit.json",
+        "sheet_no": "KC-04",
+        "actual_sha256": "b4df8bc644faed049a3ffa2041e750bc22e1bdb012b51fadc01816ecfc492430",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 16,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 20,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 20,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "18A",
+              "layer": "VP_BOTTOM",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                205.0,
+                145.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": [
+                "REBAR_TOP"
+              ]
+            },
+            {
+              "handle": "18B",
+              "layer": "VP_TOP",
+              "paper_bbox": [
+                15.0,
+                150.0,
+                205.0,
+                280.0
+              ],
+              "width_mm": 190.0,
+              "height_mm": 130.0,
+              "view_height": 6500.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": [
+                "REBAR_BOTTOM"
+              ]
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": true,
+          "vp_top_freezes_rebar_bottom": true,
+          "vp_bottom_freezes_rebar_top": true,
+          "visible_rebar_handles_in_vp_top": [
+            "173",
+            "174",
+            "175",
+            "176",
+            "177",
+            "178"
+          ],
+          "visible_rebar_handles_in_vp_bottom": [
+            "16D",
+            "16E",
+            "16F",
+            "170",
+            "171",
+            "172"
+          ],
+          "disjoint_visible_rebar_ok": true
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "compliance_physical": {
+        "status": "PASS",
+        "issues": [],
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "non_dce_layers": [
+          {
+            "layer": "REBAR_BOTTOM",
+            "count": 6
+          },
+          {
+            "layer": "REBAR_TOP",
+            "count": 6
+          }
+        ]
+      },
+      "compliance_plan": {
+        "status": "PASS",
+        "physical_status": "PASS",
+        "gate_status": "PASS",
+        "gates_passed": 16,
+        "gates_unverified": 0,
+        "metadata_issues": [],
+        "issues_count": 0
+      }
+    },
+    "KC-06": {
+      "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-06_C2_A3.dxf",
+      "layout_summary": {
+        "modelspace_entity_total": 159,
+        "modelspace_counts": {
+          "LWPOLYLINE": 24,
+          "INSERT": 23,
+          "TEXT": 48,
+          "LINE": 55,
+          "DIMENSION": 3,
+          "HATCH": 1,
+          "CIRCLE": 5
+        },
+        "paperspace_entity_total": 62,
+        "paperspace_counts": {
+          "LWPOLYLINE": 4,
+          "LINE": 5,
+          "TEXT": 52,
+          "VIEWPORT": 1
+        },
+        "sheet_titles_in_modelspace": [],
+        "paperspace_title_or_annotation_entities": [
+          {
+            "handle": "197",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "198",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "199",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19A",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19B",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19C",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19D",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19E",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19F",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A0",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A1",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A2",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CF",
+            "layer": "DCE_Schedule"
+          }
+        ],
+        "dimension_styles": [
+          "DCE_DIM_MAIN_50"
+        ]
+      },
+      "linkage_against_fixture": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-06_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-06_C2_A3.dce_audit.json",
+        "sheet_no": "KC-06",
+        "actual_sha256": "15bd39a942a1996009b6bf111b8b6385bb512a28ee3b4a8a567fa60ddb519ad3",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1A3",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "linkage_against_c2_registry": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-06_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-06_C2_A3.dce_audit.json",
+        "sheet_no": "KC-06",
+        "actual_sha256": "15bd39a942a1996009b6bf111b8b6385bb512a28ee3b4a8a567fa60ddb519ad3",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1A3",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "compliance_physical": {
+        "status": "PASS",
+        "issues": [],
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "non_dce_layers": []
+      },
+      "compliance_plan": {
+        "status": "PASS",
+        "physical_status": "PASS",
+        "gate_status": "PASS",
+        "gates_passed": 16,
+        "gates_unverified": 0,
+        "metadata_issues": [],
+        "issues_count": 0
+      }
+    },
+    "KC-07": {
+      "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-07_C2_A3.dxf",
+      "layout_summary": {
+        "modelspace_entity_total": 157,
+        "modelspace_counts": {
+          "LWPOLYLINE": 28,
+          "INSERT": 23,
+          "TEXT": 51,
+          "LINE": 27,
+          "DIMENSION": 3,
+          "HATCH": 1,
+          "CIRCLE": 24
+        },
+        "paperspace_entity_total": 62,
+        "paperspace_counts": {
+          "LWPOLYLINE": 4,
+          "LINE": 5,
+          "TEXT": 52,
+          "VIEWPORT": 1
+        },
+        "sheet_titles_in_modelspace": [],
+        "paperspace_title_or_annotation_entities": [
+          {
+            "handle": "195",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "196",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "197",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "198",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "199",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19A",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "19B",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19C",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19D",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19E",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "19F",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A0",
+            "layer": "DCE_Frame"
+          },
+          {
+            "handle": "1A4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1A9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1AF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1B9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BD",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BE",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1BF",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C0",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C1",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C2",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C3",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C4",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C5",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C6",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C7",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C8",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1C9",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CA",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CB",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CC",
+            "layer": "DCE_Schedule"
+          },
+          {
+            "handle": "1CD",
+            "layer": "DCE_Schedule"
+          }
+        ],
+        "dimension_styles": [
+          "DCE_DIM_MAIN_50"
+        ]
+      },
+      "linkage_against_fixture": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-07_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-07_C2_A3.dce_audit.json",
+        "sheet_no": "KC-07",
+        "actual_sha256": "e8b7991cb2429dfdeba46380954e82ca946a82e18ce93b9154fd32e41bc980d4",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1A1",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "linkage_against_c2_registry": {
+        "Standard_Method": "DCE A1-06 DXF Entity Map & 3-Way Linkage Validator v6",
+        "dxf_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-07_C2_A3.dxf",
+        "sidecar_path": "g:\\My Drive\\Google AI Studio\\.agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\KC-07_C2_A3.dce_audit.json",
+        "sheet_no": "KC-07",
+        "actual_sha256": "e8b7991cb2429dfdeba46380954e82ca946a82e18ce93b9154fd32e41bc980d4",
+        "dxf_sha256_match": true,
+        "top_sha256_match": true,
+        "provenance_sha256_present": true,
+        "provenance_sha256_match": true,
+        "entity_map_entries": 12,
+        "expected_elements_count": 12,
+        "recorded_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "resolved_handle_counts": {
+          "geometry": 12,
+          "tag": 12,
+          "schedule": 36
+        },
+        "recorded_handles_resolved_ok": true,
+        "strict_3way_physical_linkage_ok": true,
+        "viewport_inspection": {
+          "viewports": [
+            {
+              "handle": "1A1",
+              "layer": "VP_MODEL",
+              "paper_bbox": [
+                15.0,
+                15.0,
+                300.0,
+                280.0
+              ],
+              "width_mm": 285.0,
+              "height_mm": 265.0,
+              "view_height": 13250.0,
+              "actual_scale_denominator": 50.0,
+              "frozen_layers": []
+            }
+          ],
+          "viewport_overlap_mm2": [],
+          "viewport_nonoverlap_ok": true,
+          "has_dual_rebar_viewports": false,
+          "vp_top_freezes_rebar_bottom": false,
+          "vp_bottom_freezes_rebar_top": false,
+          "visible_rebar_handles_in_vp_top": [],
+          "visible_rebar_handles_in_vp_bottom": [],
+          "disjoint_visible_rebar_ok": false
+        },
+        "issues": {
+          "missing_geometry_handles": [],
+          "missing_tag_handles": [],
+          "invalid_tag_entities": [],
+          "missing_schedule_handles": [],
+          "rebar_layer_mismatches": [],
+          "unmapped_expected_elements": [],
+          "missing_physical_geometry": [],
+          "missing_physical_tag": [],
+          "metadata_only_schedule_refs": [],
+          "source_ref_mismatches": [],
+          "tag_ref_mismatches": [],
+          "formatting_warnings": []
+        },
+        "Calculation_Logs": [
+          {
+            "step": "sidecar_sha256_match",
+            "passed": true
+          },
+          {
+            "step": "recorded_handles_resolved",
+            "passed": true
+          },
+          {
+            "step": "viewport_nonoverlap",
+            "passed": true
+          },
+          {
+            "step": "dual_rebar_viewport_freeze",
+            "passed": true
+          },
+          {
+            "step": "strict_3way_physical_linkage",
+            "passed": true
+          }
+        ]
+      },
+      "compliance_physical": {
+        "status": "PASS",
+        "issues": [],
+        "dimensions": {
+          "total_dimensions": 3,
+          "dce_compliant_dimensions": 3,
+          "non_dce_dimensions": []
+        },
+        "non_dce_layers": []
+      },
+      "compliance_plan": {
+        "status": "PASS",
+        "physical_status": "PASS",
+        "gate_status": "PASS",
+        "gates_passed": 16,
+        "gates_unverified": 0,
+        "metadata_issues": [],
+        "issues_count": 0
+      }
+    }
+  },
+  "Calculation_Logs": [
+    {
+      "step": "manifest_sha256_match",
+      "passed": true
+    },
+    {
+      "step": "all_5_sidecar_sha256_match",
+      "passed": true
+    },
+    {
+      "step": "all_5_recorded_handles_resolved",
+      "passed": true
+    },
+    {
+      "step": "all_5_viewports_nonoverlap",
+      "passed": true
+    },
+    {
+      "step": "kc04_dual_viewport_frozen_layers_disjoint",
+      "passed": true
+    },
+    {
+      "step": "all_5_strict_3way_physical_linkage",
+      "passed": true
+    },
+    {
+      "step": "all_5_compliance_physical_pass",
+      "passed": true
+    },
+    {
+      "step": "all_5_compliance_plan_pass",
+      "passed": true
+    }
+  ]
+}

@@ -27,7 +27,7 @@ def main():
     parser.add_argument("--criteria", required=True, help="Tiêu chí nghiệm thu (phân cách bởi dấu chấm phẩy ';')")
     parser.add_argument("--summary", default="", help="Tóm tắt công việc đã thực hiện")
     parser.add_argument("--workspace", default=None, help="Thư mục workspace tùy chọn")
-    parser.add_argument("--agent-selection", choices=["AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"])
+    parser.add_argument("--agent-selection", choices=["AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "CODEX_ONLY", "DUAL"])
     parser.add_argument("--dispatch-ticket")
     args = parser.parse_args()
 

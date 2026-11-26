@@ -404,7 +404,7 @@ class TestRegressionClaudeReview(unittest.TestCase):
             l3.release()
 
     def test_sync_bus_normalize_path(self):
-        """v2.0: Chuẩn hóa đường dẫn ổ đĩa H:\ cũ sang workspace root hiện tại."""
+        r"""v2.0: Chuẩn hóa đường dẫn ổ đĩa H:\ cũ sang workspace root hiện tại."""
         import sync_bus
         fake_root = Path(r"G:\My Drive\Google AI Studio")
         old_path = r"H:\My Drive\AI AGENT\SKILL\test.json"
@@ -441,9 +441,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_ptr = Path(td) / "_CA_HIEN_TAI.md"
             tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
                  mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "ACTIVE_POINTER_PATH", tmp_ptr), \
                  mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
                  mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 res = sync_bus.auto_handoff(
@@ -483,9 +485,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_ptr = Path(td) / "_CA_HIEN_TAI.md"
             tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
                  mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "ACTIVE_POINTER_PATH", tmp_ptr), \
                  mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
                  mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 # 1. Handoff tạo PENDING
@@ -520,9 +524,11 @@ class TestRegressionClaudeReview(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             tmp_bus = Path(td) / "bus.json"
             tmp_memo = Path(td) / "memo.md"
+            tmp_ptr = Path(td) / "_CA_HIEN_TAI.md"
             tmp_lock = Path(td) / "bus.lock"
             with mock.patch.object(sync_bus, "BUS_PATH", tmp_bus), \
                  mock.patch.object(sync_bus, "MEMO_PATH", tmp_memo), \
+                 mock.patch.object(sync_bus, "ACTIVE_POINTER_PATH", tmp_ptr), \
                  mock.patch.object(sync_bus, "LOCK_PATH", tmp_lock), \
                  mock.patch.object(sync_bus, "WORKSPACE_ROOT", Path(td)):
                 sync_bus.auto_handoff(

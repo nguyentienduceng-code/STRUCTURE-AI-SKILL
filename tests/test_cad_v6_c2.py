@@ -218,6 +218,110 @@ class TestC2SheetSet(unittest.TestCase):
                     self.assertAlmostEqual(page.rect.width * 25.4 / 72.0, 420.0, delta=1.0)
                     self.assertAlmostEqual(page.rect.height * 25.4 / 72.0, 297.0, delta=1.0)
 
+    def test_08_v2_01_schedule_rows_print_on_paper_not_clipped(self) -> None:
+        """V2-01: the real BOM table (12 structural elements) must physically sit on the A3 paperspace sheet.
+
+        - Each of the 12 fixture elements must carry ps_schedule_handles (paper-space TEXT
+          handles) in the sidecar entity_map, each resolving to a real paperspace DCE_Schedule
+          TEXT entity inside the A3 inner frame (no clip).
+        - Rebar strips (no schedule_refs) must NOT get paper BOM rows.
+        - The schedule band must not overlap any paperspace viewport (rows stay on-paper)."""
+        import ezdxf
+        BOM = ["COL_C1_F1", "COL_C1_F2", "BM_D1A_F2_S1", "BM_D1A_F2_S2",
+               "STEEL_COL_C1", "STEEL_BP_01", "STEEL_BP_02", "STEEL_PL_01",
+               "STEEL_BM_B1", "STEEL_BOX_BX1", "STEEL_CH_U1", "STEEL_PP_P1"]
+        with tempfile.TemporaryDirectory() as td:
+            res = export_sheet_set(Path(td), str(FIXTURE), strict=True, render_previews=False)
+            self.assertEqual(res["status"], "PASS")
+            for s in res["sheets"]:
+                dxf_p = Path(td) / f"{s['sheet_no']}_C2_A3.dxf"
+                doc = ezdxf.readfile(str(dxf_p))
+                ps = doc.layouts.get("Layout1")
+                audit = json.loads(dxf_p.with_suffix(".dce_audit.json").read_text(encoding="utf8"))
+                emap = audit["entity_map"]
+
+                # Every one of the 12 structural BOM elements must carry 3 paper TEXT rows
+                for eid in BOM:
+                    self.assertIn(eid, emap, f"{s['sheet_no']}/{eid} missing from entity_map")
+                    handles = emap[eid].get("ps_schedule_handles", [])
+                    self.assertEqual(len(handles), 3, f"{s['sheet_no']}/{eid}: expected 3 ps TEXT rows")
+                    for h in handles:
+                        found = next((e for e in ps if str(e.dxf.handle) == h), None)
+                        self.assertIsNotNone(found, f"{s['sheet_no']}/{eid}: ps handle {h} not in paperspace")
+                        self.assertEqual(found.dxf.layer, "DCE_Schedule")
+                        self.assertTrue(10.0 <= found.dxf.insert.x <= 415.0, f"{eid} ps row off-sheet x={found.dxf.insert.x}")
+                        self.assertTrue(5.0 <= found.dxf.insert.y <= 292.0, f"{eid} ps row off-sheet y={found.dxf.insert.y}")
+
+                # Non-BOM entries (KC-04 rebar strips) must NOT print paper BOM rows
+                for eid in [k for k in emap if k not in BOM]:
+                    self.assertEqual(emap[eid].get("ps_schedule_handles", []), [],
+                                     f"{s['sheet_no']}/{eid}: non-BOM entry must not print BOM rows")
+
+                # Paper BOM band must not overlap any viewport (rows visible, not clipped)
+                for vp in ps.query("VIEWPORT"):
+                    if getattr(vp.dxf, "id", 1) == 1:
+                        continue
+                    vx0, vx1 = vp.dxf.center.x - vp.dxf.width / 2.0, vp.dxf.center.x + vp.dxf.width / 2.0
+                    vy0, vy1 = vp.dxf.center.y - vp.dxf.height / 2.0, vp.dxf.center.y + vp.dxf.height / 2.0
+                    for eid in BOM:
+                        for h in emap[eid].get("ps_schedule_handles", []):
+                            ent = next(e for e in ps if str(e.dxf.handle) == h)
+                            self.assertFalse(vx0 <= ent.dxf.insert.x <= vx1 and vy0 <= ent.dxf.insert.y <= vy1,
+                                             f"{s['sheet_no']}/{eid}: paper BOM row inside viewport")
+
+
+    def test_09_v2_03_details_driven_by_input_not_hardcoded(self) -> None:
+        """V2-03: changing the design input MUST change the detail geometry/labels.
+
+        (a) KC-06 beam: mutate section/rebar/stirrup/grade in detail_design -> label + box update.
+        (b) KC-04 rebar: mutate bar_spec in rebar_strips -> bar label updates.
+        (c) Removing detail_design / rebar region -> MISSING_INPUT (never a PASS)."""
+        import ezdxf
+        import copy
+
+        # (a) KC-06 beam driven by input
+        base = copy.deepcopy(self.data)
+        mutated = copy.deepcopy(self.data)
+        mutated["detail_design"]["KC-06"]["beam"].update({
+            "width_mm": 250, "height_mm": 500, "main_rebar": "4D24",
+            "stirrup": "D10a200", "concrete_grade": "B30",
+            "section_name": "250x500",
+        })
+        with tempfile.TemporaryDirectory() as td1:
+            export_sheet_set(Path(td1), str(FIXTURE), strict=False, render_previews=False)
+            txt_before = [e.dxf.text for e in ezdxf.readfile(str(Path(td1) / "KC-06_C2_A3.dxf")).modelspace() if e.dxftype() == "TEXT" and e.dxf.layer == "DCE_Name"]
+        with tempfile.TemporaryDirectory() as td2:
+            mut_fix = Path(td2) / "mut.json"
+            mut_fix.write_text(json.dumps(mutated, ensure_ascii=False), encoding="utf8")
+            export_sheet_set(Path(td2) / "out", mut_fix, strict=False, render_previews=False)
+            txt_after = [e.dxf.text for e in ezdxf.readfile(str(Path(td2) / "out" / "KC-06_C2_A3.dxf")).modelspace() if e.dxftype() == "TEXT" and e.dxf.layer == "DCE_Name"]
+        # the before label used the default 200x400/2D20+3D20; after must reflect the mutated input
+        self.assertIn("250x500", " ".join(txt_after))
+        self.assertIn("4D24+D10a200", " ".join(txt_after))
+        self.assertNotIn("200x400", " ".join(txt_after))
+
+        # (b) KC-04 rebar driven by input
+        mut2 = copy.deepcopy(self.data)
+        for r in mut2["rebar_strips"]:
+            r["bar_spec"] = "d14a200"
+        with tempfile.TemporaryDirectory() as td3:
+            f3 = Path(td3) / "m2.json"; f3.write_text(json.dumps(mut2, ensure_ascii=False), encoding="utf8")
+            export_sheet_set(Path(td3) / "out", f3, strict=False, render_previews=False)
+            bars = [e.dxf.text for e in ezdxf.readfile(str(Path(td3) / "out" / "KC-04_C2_A3.dxf")).modelspace() if e.dxftype() == "TEXT" and str(e.dxf.layer).startswith("REBAR_")]
+            self.assertTrue(any("d14a200" in b for b in bars), f"rebar label not driven by input: {bars}")
+
+        # (c) missing design input -> MISSING_INPUT
+        mut3 = copy.deepcopy(self.data)
+        mut3["rebar_strips"] = [{k: v for k, v in r.items() if k != "region"} for r in mut3["rebar_strips"]]
+        mut3.pop("detail_design", None)
+        with tempfile.TemporaryDirectory() as td4:
+            f4 = Path(td4) / "m3.json"; f4.write_text(json.dumps(mut3, ensure_ascii=False), encoding="utf8")
+            res = export_sheet_set(Path(td4) / "out", f4, strict=False, render_previews=False)
+            self.assertEqual(res["status"], "MISSING_INPUT")
+            self.assertIn("KC-04", res["missing_inputs"])
+            self.assertIn("KC-06", res["missing_inputs"])
+            self.assertIn("KC-07", res["missing_inputs"])
+
 
 if __name__ == "__main__":
     unittest.main()

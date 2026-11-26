@@ -423,7 +423,7 @@ def build_claude_handover_prompt(
     domain = classification.get("domain_skill", "GENERAL")
 
     choice = classification.get("agent_selection", "AUTO")
-    actor = {"GEMINI_ONLY": "Gemini", "CLAUDE_ONLY": "Claude"}.get(choice)
+    actor = {"GEMINI_ONLY": "Gemini", "CLAUDE_ONLY": "Claude", "CODEX_ONLY": "Codex"}.get(choice)
     role = f"{actor} lập hồ sơ và tự kiểm tra" if actor else "Chủ trì thẩm tra kỹ thuật"
     if mode == "PRODUCT_COLLAB":
         deliv_win = classification.get("deliverable_dir_win") or "<CHƯA XÁC ĐỊNH THƯ MỤC DỰ ÁN>"

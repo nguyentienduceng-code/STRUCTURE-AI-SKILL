@@ -32,6 +32,27 @@ from product_deliverable_gate import (
 )
 
 
+def _task_guides(skill, task, catalog):
+    """Select supplemental documents from the installed skill's own entry points."""
+    data = catalog.get(skill, {})
+    triggers = data.get("guide_triggers", {})
+    if not triggers:
+        return []
+    phrases = []
+    for clause in re.split(r"[,;.!?\n]", task):
+        for part in re.split(r"\b(?:nhung|thay vao do|but|instead)\b", normalize_vn(clause)):
+            positive = re.split(r"\b(?:khong(?! gian\b)|bo qua|do not|skip)\b", part, maxsplit=1)[0]
+            phrases.append(f" {positive} ")
+    folder = Path(__file__).resolve().parent.parent / skill
+    guides = []
+    for name in data.get("entry_points", []):
+        if any(f" {normalize_vn(term)} " in phrase for term in triggers.get(name, []) for phrase in phrases):
+            path = folder / name
+            if path.suffix == ".md" and path.is_file():
+                guides.append(str(path))
+    return guides
+
+
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -107,7 +128,12 @@ class SyncBus2DAdapter:
         deliverable_gate: Optional[ProductDeliverableGate] = None,
     ) -> None:
         self.workspace_root = Path(workspace_root or os.getcwd())
-        self.bus_path = Path(bus_path) if bus_path else (self.workspace_root / "memory" / "DUAL_AGENT_BUS.json")
+        if bus_path:
+            self.bus_path = Path(bus_path)
+        elif (self.workspace_root / ".agents" / "memory").is_dir():
+            self.bus_path = self.workspace_root / ".agents" / "memory" / "DUAL_AGENT_BUS.json"
+        else:
+            self.bus_path = self.workspace_root / "memory" / "DUAL_AGENT_BUS.json"
         self.classifier = classifier or IntentClassifier2D(workspace_root=self.workspace_root)
         self.deliverable_gate = deliverable_gate or ProductDeliverableGate()
 
@@ -154,7 +180,9 @@ class SyncBus2DAdapter:
             project_identity = (project_identity or "").strip() or match.get("project_name")
         now_epoch = time.time()
         now_iso = _utc_now_iso()
-        skills = SkillClassifier().classify(task_intent_text(prompt))
+        classifier = SkillClassifier()
+        task = task_intent_text(prompt)
+        skills = classifier.classify(task)
         workflow = skills.get("workflow") or {}
         owners = {step["step"]: step["owner"] for step in clf["execution_plan"]}
         maker = owners.get("prepare", owners.get("execute"))
@@ -170,6 +198,10 @@ class SyncBus2DAdapter:
             skills["pipeline"] = None
         skill_names = workflow.get("skills") or ([primary] if primary else [])
         skill_files = [str(Path(__file__).resolve().parent.parent / name / "SKILL.md") for name in dict.fromkeys(skill_names)]
+        stages = workflow.get("stages", [])
+        for stage in stages:
+            stage["guide_files"] = _task_guides(stage["skill"], stage.get("task") or task, classifier.skills)
+        guides = [] if stages or not primary else _task_guides(primary, task, classifier.skills)
         dispatch = {
             key: clf[key] for key in (
                 "domain_skill", "domain_confidence", "engagement_mode", "mode_confidence",
@@ -186,7 +218,7 @@ class SyncBus2DAdapter:
         required_formats = sorted({formats[w] for group in export for w in group.split() if w in formats})
         dispatch.update(
             required_extensions=required_formats,
-            primary_skill=primary, skill_workflow=skills.get("workflow"), skill_files=skill_files,
+            primary_skill=primary, skill_workflow=skills.get("workflow"), skill_files=skill_files, guide_files=guides,
             expected_files=list(expected_files), project_identity=project_identity,
             independent_review_required=independent_review_required,
             expected_extensions=list(expected_extensions) if mode == MODE_PRODUCT else [],
@@ -253,6 +285,11 @@ class SyncBus2DAdapter:
             source_scripts=source_scripts,
             notes=notes,
         )
+
+        guide_steps = [(stage["skill"], stage["guide_files"]) for stage in stages] or [(primary, guides)]
+        for name, files in guide_steps:
+            if files:
+                handover_prompt += f"\nKhi thực hiện bước {name}, đọc thêm: " + ", ".join(files)
 
         payload = {
             "bus_version": "3.4",

@@ -6,7 +6,7 @@ from pathlib import Path
 import os
 import tempfile
 
-from agent_selection import AGENT_CHOICES
+from agent_selection import AGENT_CHOICES, SINGLE_AGENT
 from sync_bus_2d_patch import SyncBus2DAdapter, approve_drafts
 
 
@@ -36,7 +36,7 @@ def main():
     check.add_argument("--approval-record", type=Path)
     check.add_argument("--ticket", required=True, type=Path)
     check.add_argument("--report", required=True, type=Path)
-    check.add_argument("--actor", choices=("CLAUDE", "GEMINI"), required=True)
+    check.add_argument("--actor", choices=tuple(SINGLE_AGENT.values()), required=True)
     check.add_argument("--review-record", type=Path, help="Xác nhận từ người kiểm tra và mã băm từng tệp")
     args = parser.parse_args()
     try:

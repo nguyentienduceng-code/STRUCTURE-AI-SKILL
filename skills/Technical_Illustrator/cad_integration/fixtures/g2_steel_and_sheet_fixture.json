@@ -212,7 +212,11 @@
       "face": "BOTTOM",
       "direction": "X",
       "bar_spec": "d10a150",
-      "zone": "MIDSPAN"
+      "zone": "MIDSPAN",
+      "region": [8800.0, 12000.0, 12500.0, 13500.0],
+      "bars": 2,
+      "spacing_mm": 450.0,
+      "cover_mm": 40.0
     },
     {
       "strip_id": "RS_F2_BOT_Y1",
@@ -220,25 +224,109 @@
       "face": "BOTTOM",
       "direction": "Y",
       "bar_spec": "d10a150",
-      "zone": "MIDSPAN"
+      "zone": "MIDSPAN",
+      "region": [8800.0, 12000.0, 12500.0, 13500.0],
+      "bars": 2,
+      "spacing_mm": 450.0,
+      "cover_mm": 40.0
     },
     {
       "strip_id": "RS_F2_TOP_X1",
       "floor_id": "F2_TANG2",
       "face": "TOP",
       "direction": "X",
-      "bar_spec": "d10a150",
-      "zone": "SUPPORT_LEFT"
+      "bar_spec": "d12a150",
+      "zone": "SUPPORT_LEFT",
+      "region": [10000.0, 14000.0, 14000.0, 15000.0],
+      "bars": 2,
+      "spacing_mm": 250.0,
+      "cover_mm": 30.0
     },
     {
       "strip_id": "RS_F2_TOP_Y1",
       "floor_id": "F2_TANG2",
       "face": "TOP",
       "direction": "Y",
-      "bar_spec": "d10a150",
-      "zone": "SUPPORT_TOP"
+      "bar_spec": "d12a150",
+      "zone": "SUPPORT_TOP",
+      "region": [15100.0, 12500.0, 18200.0, 14500.0],
+      "bars": 2,
+      "spacing_mm": 350.0,
+      "cover_mm": 30.0
     }
   ],
+  "detail_design": {
+    "KC-03": {
+      "detail_scale": 50,
+      "slab_panels": [
+        {
+          "panel_id": "S1",
+          "thickness_mm": 120,
+          "rebar": "d10a150",
+          "region": [7150.0, 10150.0, 12850.0, 14850.0]
+        },
+        {
+          "panel_id": "S2",
+          "thickness_mm": 150,
+          "rebar": "d12a200",
+          "region": [13150.0, 10150.0, 18750.0, 14850.0]
+        }
+      ]
+    },
+    "KC-04": {
+      "detail_scale": 50
+    },
+    "KC-06": {
+      "detail_scale": 20,
+      "beam": {
+        "mark": "MC-BM-D1A",
+        "section_name": "200x400",
+        "width_mm": 200,
+        "height_mm": 400,
+        "main_rebar": "2D20+3D20",
+        "stirrup": "D8a150",
+        "concrete_grade": "B25",
+        "length_mm": 6000
+      }
+    },
+    "KC-07": {
+      "detail_scale": 20,
+      "steel_details": [
+        {
+          "target": "CT-COL-C1",
+          "name": "CT-COL-C1",
+          "section_name": "300x300",
+          "main_rebar": "8D20",
+          "kind": "CONCRETE_COLUMN"
+        },
+        {
+          "target": "CT-BP-BD01",
+          "name": "CT-BP-BD01",
+          "plate": "PL400x400x20",
+          "bolt_spec": "M20",
+          "bolt_rows": 2,
+          "bolt_cols": 2,
+          "kind": "BASEPLATE"
+        },
+        {
+          "target": "CT-BP-BD02",
+          "name": "CT-BP-BD02",
+          "plate": "PL560x420x28",
+          "bolt_spec": "M24",
+          "bolt_rows": 2,
+          "bolt_cols": 4,
+          "kind": "BASEPLATE"
+        },
+        {
+          "target": "CT-GUSSET-01",
+          "name": "CT-GUSSET-01",
+          "plate": "PL240x180x14",
+          "shape": "TRAPEZOID",
+          "kind": "GUSSET_PLATE"
+        }
+      ]
+    }
+  },
   "sheet_set_preview_manifest": {
     "paper_size": "A3_LANDSCAPE",
     "floor_order": ["F1_TANG1", "F2_TANG2", "F3_MAI"],

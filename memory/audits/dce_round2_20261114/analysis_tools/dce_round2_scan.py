@@ -1,11 +1,14 @@
 import sys,json,re,hashlib,collections,zipfile
 from pathlib import Path
-sys.stdout.reconfigure(encoding='utf-8');sys.dont_write_bytecode=True
-sys.path.insert(0,'C:/Users/ADMIN/AppData/Local/Temp/dce_round2_analysis_tools')
+from tempfile import gettempdir
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+sys.dont_write_bytecode = True
+sys.path.insert(0,str(Path(gettempdir()) / 'dce_round2_analysis_tools'))
 import dnfile
 from dncil.cil.body.reader import read_method_body_from_bytes
 from dncil.clr.token import Token,StringToken
-out=Path('G:/My Drive/Google AI Studio/.agents/memory/audits/dce_round2_20261114');out.mkdir(parents=True,exist_ok=True)
+out=Path(__file__).resolve().parents[1];out.mkdir(parents=True,exist_ok=True)
 root=Path('C:/Dce Pro')
 def manifest():
     result={}

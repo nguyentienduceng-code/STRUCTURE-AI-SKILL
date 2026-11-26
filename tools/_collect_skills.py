@@ -38,23 +38,18 @@ def _parse_frontmatter(text: str) -> dict:
 
     File có thể dùng CRLF (Windows); chuẩn hóa về LF trước khi parse.
     """
-    # Chuẩn hóa line endings: CRLF → LF
-    text = text.replace("\r\n", "\n").replace("\r", "\n")
-    # Tách block frontmatter giữa 2 dấu ---
-    # File thực tế bắt đầu bằng "---\n" và kết thúc block bằng "\n---\n"
-    if not text.startswith("---"):
-        return {}
-    # Bỏ dòng đầu "---\n"
-    after_open = text[4:]
-    # Tìm dòng "---" đóng
-    parts = after_open.split("\n---\n", 1)
-    if len(parts) < 2:
-        return []
-    block = parts[0]
+    lines = text.removeprefix("\ufeff").splitlines()
+    if not lines or lines[0].rstrip() != "---":
+        raise SkillFrontmatterError("Missing opening frontmatter delimiter")
+    for end in range(1, len(lines)):
+        if lines[end].rstrip() == "---":
+            break
+    else:
+        raise SkillFrontmatterError("Missing closing frontmatter delimiter")
     result: dict = {}
     current_key: Optional[str] = None
     current_lines: list = []
-    for raw_line in block.splitlines():
+    for raw_line in lines[1:end]:
         # Bỏ qua comment và dòng rỗng đứng một mình
         if not raw_line.strip() or raw_line.lstrip().startswith("#"):
             continue
@@ -64,6 +59,8 @@ def _parse_frontmatter(text: str) -> dict:
             if current_key is not None:
                 result[current_key] = "\n".join(current_lines).strip()
             current_key = m.group(1)
+            if current_key in result:
+                raise SkillFrontmatterError(f"Duplicate frontmatter key: {current_key}")
             value = m.group(2).strip()
             # Bỏ dấu nháy bao quanh nếu có
             if (value.startswith('"') and value.endswith('"')) or (
@@ -89,58 +86,49 @@ def _classify_status(version: str) -> str:
     return "production" if major >= 1 else "placeholder"
 
 
-def collect_skills(skills_root: Path) -> list[Skill]:
-    """Walk skills_root, parse mỗi SKILL.md, trả về list[Skill] đã sắp xếp theo tên."""
-    if not skills_root.exists():
-        return []
-    skills: list[Skill] = []
-    for entry in sorted(skills_root.iterdir()):
-        if not entry.is_dir():
-            continue
-        skill_md = entry / "SKILL.md"
-        if not skill_md.exists():
-            continue
-        try:
-            text = skill_md.read_text(encoding="utf-8", errors="replace")
-            fm = _parse_frontmatter(text)
-            name = fm.get("name", entry.name)
-            # Validate: phải có key version trong frontmatter (không được default)
-            if "version" not in fm:
-                raise SkillFrontmatterError(
-                    f"missing 'version' trong frontmatter của {skill_md}"
-                )
-            version = fm["version"]
-            last_updated = fm.get("last_updated") or fm.get("updated", "unknown")
-            description = fm.get("description", "")
-            alias = fm.get("alias", "")
-            # Validate: name phải khớp thư mục (hoặc khớp qua alias chuẩn hóa)
-            if name != entry.name:
-                if alias == entry.name or name.lower().replace("-", "_") == entry.name.lower().replace("-", "_"):
-                    name = entry.name
-                else:
-                    raise SkillFrontmatterError(
-                        f"name '{name}' != folder '{entry.name}' in {skill_md}"
-                    )
-            if not re.match(r"^\d+\.\d+\.\d+$", version):
-                raise SkillFrontmatterError(
-                    f"version '{version}' không đúng định dạng X.Y.Z in {skill_md}"
-                )
-            skills.append(
-                Skill(
-                    name=name,
-                    version=version,
-                    last_updated=last_updated,
-                    description=description,
-                    path=skill_md,
-                    status=_classify_status(version),
-                )
+def read_skill(skill_md: Path) -> Skill:
+    """Read and validate the metadata for one local skill."""
+    try:
+        text = skill_md.read_text(encoding="utf-8", errors="replace")
+        fm = _parse_frontmatter(text)
+        name = fm.get("name", skill_md.parent.name)
+        # Validate: phải có key version trong frontmatter (không được default)
+        if "version" not in fm:
+            raise SkillFrontmatterError(
+                f"missing 'version' trong frontmatter của {skill_md}"
             )
-        except SkillFrontmatterError as e:
-            # Ghi nhận lỗi nhưng không crash; caller sẽ xử lý warning
-            raise
-        except Exception as e:
-            raise SkillFrontmatterError(f"Lỗi đọc {skill_md}: {e}") from e
-    return skills
+        version = fm["version"]
+        last_updated = fm.get("last_updated") or fm.get("updated", "unknown")
+        description = fm.get("description", "")
+        alias = fm.get("alias", "")
+        # Validate: name phải khớp thư mục (hoặc khớp qua alias chuẩn hóa)
+        if name != skill_md.parent.name:
+            if alias == skill_md.parent.name or name.lower().replace("-", "_") == skill_md.parent.name.lower().replace("-", "_"):
+                name = skill_md.parent.name
+            else:
+                raise SkillFrontmatterError(
+                    f"name '{name}' != folder '{skill_md.parent.name}' in {skill_md}"
+                )
+        if not re.match(r"^\d+\.\d+\.\d+$", version):
+            raise SkillFrontmatterError(
+                f"version '{version}' không đúng định dạng X.Y.Z in {skill_md}"
+            )
+        return Skill(
+            name=name,
+            version=version,
+            last_updated=last_updated,
+            description=description,
+            path=skill_md,
+            status=_classify_status(version),
+        )
+    except (OSError, UnicodeError, SkillFrontmatterError) as exc:
+        raise SkillFrontmatterError(f"{skill_md}: {exc}") from exc
+
+
+def collect_skills(skills_root: Path) -> list[Skill]:
+    """Read skill entry points in stable directory order."""
+    return [read_skill(path) for path in sorted(skills_root.glob("*/SKILL.md"))]
+
 
 
 def collect_skills_summary(skills_root: Path) -> dict:

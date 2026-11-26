@@ -264,6 +264,24 @@ def _format_size(size: Any) -> str:
     return s or "STANDARD"
 
 
+def _parse_section(spec: Any) -> Tuple[int, int, int]:
+    """Parse a section/plate spec string into (width_mm, height_mm, thickness_mm).
+
+    Accepts e.g. 'PL400x400x20' -> (400,400,20), '300x300' -> (300,300,0),
+    'H300x300x10x15' -> (300,300,15). Returns (0,0,0) when unparseable.
+    """
+    import re
+    s = str(spec or "").upper()
+    nums = re.findall(r"\d+", s)
+    w = _int_num(nums[0]) if len(nums) > 0 else 0
+    h = _int_num(nums[1]) if len(nums) > 1 else 0
+    t = _int_num(nums[2]) if len(nums) > 2 else 0
+    return w, h, t
+
+
+_parse_plate = _parse_section
+
+
 def _sheet_mode(sheet_no: str) -> str:
     return {
         "KC-02": "COLUMN_WALL_SETOUT",
@@ -306,13 +324,23 @@ def _sheet_missing_inputs(sheet: SheetSpec, data: Dict[str, Any], audit: Dict[st
 
     if sheet.sheet_no == "KC-04" and not data.get("rebar_strips"):
         missing.append("MISSING_REBAR_STRIPS")
+    if sheet.sheet_no == "KC-04" and any(
+        "region" not in r for r in data.get("rebar_strips", [])
+    ):
+        missing.append("MISSING_REBAR_STRIP_REGION")
     if sheet.sheet_no == "KC-06":
         beams = [r for r in data.get("concrete_elements", []) if r.get("category") == "BEAM"]
         if not beams:
             missing.append("MISSING_BEAM_ELEMENTS_FOR_KC06")
+        if not data.get("detail_design", {}).get("KC-06", {}).get("beam"):
+            missing.append("MISSING_BEAM_DETAIL_DESIGN_FOR_KC06")
     if sheet.sheet_no == "KC-07":
         if not data.get("baseplates") and not data.get("steel_plates") and not data.get("steel_sections"):
             missing.append("MISSING_STEEL_DETAIL_ELEMENTS_FOR_KC07")
+        if not data.get("detail_design", {}).get("KC-07", {}).get("steel_details"):
+            missing.append("MISSING_STEEL_DETAIL_DESIGN_FOR_KC07")
+    if sheet.sheet_no == "KC-03" and not data.get("detail_design", {}).get("KC-03", {}).get("slab_panels"):
+        missing.append("MISSING_SLAB_PANEL_DESIGN_FOR_KC03")
 
     return sorted(set(missing))
 
@@ -672,10 +700,14 @@ def _emit_all_fixture_elements(
     entity_map: Dict[str, Any],
     schedule_bbox: List[float],
     entities_log: List[Dict[str, Any]],
-) -> None:
-    """Emit resolvable geometry + physical tag INSERT + schedule TEXT for all 12 fixture elements."""
+) -> List[Dict[str, Any]]:
+    """Emit resolvable geometry + physical tag INSERT + schedule TEXT for all fixture elements.
+
+    Returns the per-element schedule data rows (ordered) so the caller can also print the
+    real table on the paper sheet (V2-01)."""
     sx0, hdr_y = _emit_schedule_header_and_frame(msp, schedule_bbox)
     schedule_rows_log: List[List[str]] = [["KY HIEU", "TIET DIEN / QUY CACH", "MA THAM CHIEU"]]
+    element_rows: List[Dict[str, Any]] = []
     row_idx = 0
 
     # 1. Concrete Elements (4 items: COL_C1_F1, COL_C1_F2, BM_D1A_F2_S1, BM_D1A_F2_S2)
@@ -717,6 +749,7 @@ def _emit_all_fixture_elements(
         }
         _emit_tag_insert(msp, doc, mark=mark, size_str=size_str, eid=eid, role=layer_role, point=tag_pt, entity_map=entity_map)
         _emit_schedule_row(msp, row_idx, mark, size_str, ",".join(s_refs), eid, entity_map, sx0, hdr_y, schedule_rows_log)
+        element_rows.append({"element_id": eid, "mark": mark, "size": size_str, "schedule_refs": list(s_refs)})
         row_idx += 1
 
     # 2. Steel Sections (5 items placed in Steel Sub-zone X in [21500..28500], Y=18500..20500)
@@ -739,6 +772,7 @@ def _emit_all_fixture_elements(
         }
         _emit_tag_insert(msp, doc, mark=mark, size_str=size_str, eid=eid, role="STEEL_MEMBER", point=(x, y + 480.0), entity_map=entity_map)
         _emit_schedule_row(msp, row_idx, mark, size_str, ",".join(s_refs), eid, entity_map, sx0, hdr_y, schedule_rows_log)
+        element_rows.append({"element_id": eid, "mark": mark, "size": size_str, "schedule_refs": list(s_refs)})
         row_idx += 1
 
     # 3. Baseplates (2 items: STEEL_BP_01, STEEL_BP_02)
@@ -763,6 +797,7 @@ def _emit_all_fixture_elements(
         }
         _emit_tag_insert(msp, doc, mark=mark, size_str=size_str, eid=eid, role="STEEL_BASEPLATE", point=(x, y + ph / 2 + 320.0), entity_map=entity_map)
         _emit_schedule_row(msp, row_idx, mark, size_str, ",".join(s_refs), eid, entity_map, sx0, hdr_y, schedule_rows_log)
+        element_rows.append({"element_id": eid, "mark": mark, "size": size_str, "schedule_refs": list(s_refs)})
         row_idx += 1
 
     # 4. Steel Plates (STEEL_PL_01)
@@ -787,6 +822,7 @@ def _emit_all_fixture_elements(
         }
         _emit_tag_insert(msp, doc, mark=mark, size_str=size_str, eid=eid, role="STEEL_PLATE", point=(x, y + gh / 2 + 320.0), entity_map=entity_map)
         _emit_schedule_row(msp, row_idx, mark, size_str, ",".join(s_refs), eid, entity_map, sx0, hdr_y, schedule_rows_log)
+        element_rows.append({"element_id": eid, "mark": mark, "size": size_str, "schedule_refs": list(s_refs)})
         row_idx += 1
 
     entities_log.append({
@@ -797,6 +833,7 @@ def _emit_all_fixture_elements(
         "rows": schedule_rows_log,
         "cell_width_factors": [[0.70, 0.70, 0.70] for _ in schedule_rows_log],
     })
+    return element_rows
 
 
 def _add_sheet_role_specific_geometry(
@@ -818,42 +855,61 @@ def _add_sheet_role_specific_geometry(
         msp.add_lwpolyline([(6400, 9400), (19600, 9400), (19600, 20600), (6400, 20600)], close=True, dxfattribs={"layer": "DCE_NetThay"})
 
     elif sno == "KC-03":
-        # Beam-slab framing plan: slab boundary + two-way span diagonal arrows + DCE_KyHieuSan inserts
-        slab_panels = [
-            ("S1", "h=120", 10000.0, 12500.0, 7150.0, 10150.0, 12850.0, 14850.0),
-            ("S2", "h=120", 16000.0, 12500.0, 13150.0, 10150.0, 18750.0, 14850.0),
-        ]
-        for smark, sthick, sx, sy, px0, py0, px1, py1 in slab_panels:
-            s_ins = msp.add_blockref("DCE_KyHieuSan", (sx, sy), dxfattribs={"layer": "DCE_Name"})
-            s_ins.add_auto_attribs({"SH": f"{smark} {sthick}"})
+        # Beam-slab framing plan: slab panels driven by detail_design (panel_id, thickness_mm, rebar, region)
+        panels = data.get("detail_design", {}).get(sno, {}).get("slab_panels", [])
+        for panel in panels:
+            pid = str(panel.get("panel_id", "S"))
+            thick = _int_num(panel.get("thickness_mm"), 120)
+            region = panel.get("region")
+            if not region:
+                continue
+            px0, py0, px1, py1 = [float(v) for v in region]
+            s_ins = msp.add_blockref("DCE_KyHieuSan", ((px0 + px1) / 2.0, (py0 + py1) / 2.0), dxfattribs={"layer": "DCE_Name"})
+            s_ins.add_auto_attribs({"SH": f"{pid} h={thick} ({panel.get('rebar', 'd10a150')})"})
             entities_log.append({"type": "INSERT", "block": "DCE_KyHieuSan", "handle": s_ins.dxf.handle, "layer": "DCE_Name"})
+            msp.add_lwpolyline([(px0, py0), (px1, py0), (px1, py1), (px0, py1)], close=True, dxfattribs={"layer": "DCE_NetThay"})
             msp.add_line((px0 + 300, py0 + 300), (px1 - 300, py1 - 300), dxfattribs={"layer": "DCE_NetThay"})
             msp.add_line((px0 + 300, py1 - 300), (px1 - 300, py0 + 300), dxfattribs={"layer": "DCE_NetThay"})
 
     elif sno == "KC-04":
-        # Slab rebar plan: distinct BOTTOM (midspan) & TOP (support) bars with hooks on REBAR_BOTTOM / REBAR_TOP
-        for idx, row in enumerate(data.get("rebar_strips", [])):
+        # Slab rebar plan: bars driven by rebar_strips (region, bars, spacing_mm, cover_mm).
+        # TOP strips -> REBAR_TOP, BOTTOM strips -> REBAR_BOTTOM (kept disjoint via viewport freeze).
+        for row in data.get("rebar_strips", []):
             sid = row["strip_id"]
             face = str(row.get("face", "")).upper()
             direction = str(row.get("direction", "X")).upper()
             layer = f"REBAR_{face}"
-            if face == "BOTTOM":
-                if direction == "X":
-                    pts = [(7500.0, 12200.0 + idx * 450.0), (12500.0, 12200.0 + idx * 450.0)]
-                else:
-                    pts = [(9500.0 + idx * 450.0, 10400.0), (9500.0 + idx * 450.0, 14600.0)]
-            else:
-                if direction == "X":
-                    pts = [(12100.0, 13400.0 + idx * 250.0), (14100.0, 13400.0 + idx * 250.0)]
-                else:
-                    pts = [(15200.0 + idx * 350.0, 12600.0), (15200.0 + idx * 350.0, 14400.0)]
+            region = row.get("region")
+            bars = max(1, _int_num(row.get("bars", 2)))
+            spacing = float(row.get("spacing_mm", 450.0))
+            cover = float(row.get("cover_mm", 40.0))
+            label = f"{row.get('bar_spec', 'd10a150')} ({face})"
 
-            pl = msp.add_lwpolyline([(pts[0][0], pts[0][1] - 120), pts[0], pts[1], (pts[1][0], pts[1][1] - 120)], dxfattribs={"layer": layer})
-            msp.add_text(f"{row.get('bar_spec', 'd10a150')} ({face})", height=95, dxfattribs={"layer": layer}).set_placement((pts[0][0] + 150.0, pts[0][1] + 220.0))
+            bar_handles = []
+            if region:
+                rx0, ry0, rx1, ry1 = [float(v) for v in region]
+                for b in range(bars):
+                    off = cover + b * spacing
+                    if direction == "X":
+                        y = ry0 + off
+                        pts = [(rx0, y - cover), (rx0, y), (rx1, y), (rx1, y - cover)]
+                    else:
+                        x = rx1 - off
+                        pts = [(x + cover, ry0), (x, ry0), (x, ry1), (x + cover, ry1)]
+                    pl = msp.add_lwpolyline(pts, dxfattribs={"layer": layer})
+                    bar_handles.append(pl.dxf.handle)
+                text_pt = ((rx0 + rx1) / 2.0, (ry0 + ry1) / 2.0 + 260.0)
+            else:
+                text_pt = (0.0, 0.0)
+
+            msp.add_text(label, height=95, dxfattribs={"layer": layer}).set_placement(text_pt)
             entity_map[sid] = {
-                "geometry_handles": [pl.dxf.handle],
+                "geometry_handles": bar_handles,
                 "source_refs": [sid],
                 "face": face,
+                "region": region,
+                "bars": bars,
+                "spacing_mm": spacing,
                 "tag_refs": [],
                 "schedule_refs": [],
             }
@@ -862,61 +918,113 @@ def _add_sheet_role_specific_geometry(
                 "strip_id": sid,
                 "face": face,
                 "layer": layer,
-                "handle": pl.dxf.handle,
+                "handles": bar_handles,
+                "region": region,
+                "bars": bars,
+                "spacing_mm": spacing,
+                "cover_mm": cover,
             })
 
     elif sno == "KC-06":
-        # Real Beam Elevation & Cross-Section Details (MC-BM-D1A: 200x400 mm, B25)
+        # Beam Elevation & Cross-Section driven by detail_design (mark, section, rebar, stirrup, length)
+        beam = data.get("detail_design", {}).get(sno, {}).get("beam")
+        if not beam:
+            return
+        bw = float(beam.get("width_mm", 200.0))
+        bh = float(beam.get("height_mm", 400.0))
+        b_mark = str(beam.get("mark", "MC-BM"))
+        b_grade = str(beam.get("concrete_grade", ""))
+        b_main = str(beam.get("main_rebar", ""))
+        b_stir = str(beam.get("stirrup", ""))
+        b_len = float(beam.get("length_mm", 6000.0))
+        b_sec = str(beam.get("section_name") or f"{_int_num(bw)}x{_int_num(bh)}")
+
         bx0, by0 = 21600.0, 11200.0
-        # Beam longitudinal elevation (L = 6000 scaled box)
-        msp.add_lwpolyline([(bx0, by0), (bx0 + 6000, by0), (bx0 + 6000, by0 + 800), (bx0, by0 + 800)], close=True, dxfattribs={"layer": "DCE_Cot"})
-        msp.add_line((bx0 + 80, by0 + 700), (bx0 + 5920, by0 + 700), dxfattribs={"layer": "DCE_Thep_Chu"})
-        msp.add_line((bx0 + 80, by0 + 100), (bx0 + 5920, by0 + 100), dxfattribs={"layer": "DCE_Thep_Chu"})
-        for sx in range(0, 5800, 220):
+        # Beam longitudinal elevation (length + section from input, 1:1 at model scale)
+        msp.add_lwpolyline([(bx0, by0), (bx0 + b_len, by0), (bx0 + b_len, by0 + bh), (bx0, by0 + bh)], close=True, dxfattribs={"layer": "DCE_Cot"})
+        msp.add_line((bx0 + 80, by0 + bh - 100), (bx0 + b_len - 80, by0 + bh - 100), dxfattribs={"layer": "DCE_Thep_Chu"})
+        msp.add_line((bx0 + 80, by0 + 100), (bx0 + b_len - 80, by0 + 100), dxfattribs={"layer": "DCE_Thep_Chu"})
+        for sx in range(0, int(b_len) - 400, 220):
             x_st = bx0 + 150 + sx
-            msp.add_line((x_st, by0 + 80), (x_st, by0 + 720), dxfattribs={"layer": "DCE_Thep_Dai"})
-        # Cross-section 1-1 (200x400 enlarged x3 -> 600x1200)
+            msp.add_line((x_st, by0 + 80), (x_st, by0 + bh - 80), dxfattribs={"layer": "DCE_Thep_Dai"})
+        # Cross-section 1-1 drawn 1:1 in model, enlarged by detail_scale ratio (50/20 = 2.5)
         cx0, cy0 = 22200.0, 22200.0
-        msp.add_lwpolyline([(cx0, cy0), (cx0 + 600, cy0), (cx0 + 600, cy0 + 1200), (cx0, cy0 + 1200)], close=True, dxfattribs={"layer": "DCE_Cot"})
-        msp.add_lwpolyline([(cx0 + 75, cy0 + 75), (cx0 + 525, cy0 + 75), (cx0 + 525, cy0 + 1125), (cx0 + 75, cy0 + 1125)], close=True, dxfattribs={"layer": "DCE_Thep_Dai"})
-        for rx, ry in ((cx0 + 95, cy0 + 95), (cx0 + 300, cy0 + 95), (cx0 + 505, cy0 + 95), (cx0 + 95, cy0 + 1105), (cx0 + 505, cy0 + 1105)):
+        d_scale = float(data.get("detail_design", {}).get(sno, {}).get("detail_scale", 20) or 20)
+        k = max(1.0, 50.0 / d_scale)
+        msp.add_lwpolyline([(cx0, cy0), (cx0 + bw * k, cy0), (cx0 + bw * k, cy0 + bh * k), (cx0, cy0 + bh * k)], close=True, dxfattribs={"layer": "DCE_Cot"})
+        msp.add_lwpolyline([(cx0 + 75, cy0 + 75), (cx0 + bw * k - 75, cy0 + 75), (cx0 + bw * k - 75, cy0 + bh * k - 75), (cx0 + 75, cy0 + bh * k - 75)], close=True, dxfattribs={"layer": "DCE_Thep_Dai"})
+        for rx, ry in ((cx0 + 95, cy0 + 95), (cx0 + bw * k / 2, cy0 + 95), (cx0 + bw * k - 95, cy0 + 95),
+                       (cx0 + 95, cy0 + bh * k - 95), (cx0 + bw * k - 95, cy0 + bh * k - 95)):
             msp.add_circle((rx, ry), radius=35.0, dxfattribs={"layer": "DCE_Thep_Chu"})
-        msp.add_text("MC-BM-D1A (200x400) | 2D20+3D20 | D8a150", height=110, dxfattribs={"layer": "DCE_Name"}).set_placement((cx0, cy0 + 1350.0))
+        label = f"{b_mark} ({b_sec})"
+        if b_main or b_stir:
+            label += f" | {b_main}+{b_stir}" if (b_main and b_stir) else f" | {b_main or b_stir}"
+        if b_grade:
+            label += f" | {b_grade}"
+        msp.add_text(label, height=110, dxfattribs={"layer": "DCE_Name"}).set_placement((cx0, cy0 + bh * k + 150.0))
 
     elif sno == "KC-07":
-        # Real Column Section (CT-COL-C1) + Baseplates (CT-BP-BD01, CT-BP-BD02) + Gusset Plate (CT-GUSSET-01)
-        # 2x2 grid in [21600..28600, 12000..23500] so zero label collision
-        # 1. CT-COL-C1 (300x300 enlarged 900x900)
-        cx0, cy0 = 21600.0, 22200.0
-        msp.add_lwpolyline([(cx0, cy0), (cx0 + 900, cy0), (cx0 + 900, cy0 + 900), (cx0, cy0 + 900)], close=True, dxfattribs={"layer": "DCE_Cot"})
-        msp.add_lwpolyline([(cx0 + 80, cy0 + 80), (cx0 + 820, cy0 + 80), (cx0 + 820, cy0 + 820), (cx0 + 80, cy0 + 820)], close=True, dxfattribs={"layer": "DCE_Thep_Dai"})
-        for rx, ry in ((cx0 + 110, cy0 + 110), (cx0 + 450, cy0 + 110), (cx0 + 790, cy0 + 110),
-                       (cx0 + 110, cy0 + 450), (cx0 + 790, cy0 + 450),
-                       (cx0 + 110, cy0 + 790), (cx0 + 450, cy0 + 790), (cx0 + 790, cy0 + 790)):
-            msp.add_circle((rx, ry), radius=32.0, dxfattribs={"layer": "DCE_Thep_Chu"})
-        msp.add_text("CT-COL-C1 (300x300) 8D20", height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((cx0, cy0 + 1040.0))
+        # Steel detail drawings driven by detail_design (plate specs, bolt layout, gusset shape, enlarge factor)
+        details = data.get("detail_design", {}).get(sno, {}).get("steel_details", [])
+        if not details:
+            return
+        d_scale = float(data.get("detail_design", {}).get(sno, {}).get("detail_scale", 20) or 20)
+        k_default = max(1.0, 50.0 / d_scale)
+        grid_x = [21600.0, 25600.0]
+        grid_y = [22200.0, 12500.0]
+        for i, det in enumerate(details):
+            kind = str(det.get("kind", "BASEPLATE")).upper()
+            name = str(det.get("name", det.get("target", f"DET{i+1}")))
+            k = float(det.get("enlarge", k_default))
+            cx0, cy0 = grid_x[i % 2], grid_y[i // 2]
+            plate = str(det.get("plate") or det.get("section_name") or "")
+            pw, ph, pt = _parse_plate(plate)
 
-        # 2. CT-BP-BD01 (400x400 + 4 bolts M20)
-        bx1, by1 = 25600.0, 22200.0
-        msp.add_lwpolyline([(bx1, by1), (bx1 + 800, by1), (bx1 + 800, by1 + 800), (bx1, by1 + 800)], close=True, dxfattribs={"layer": "DCE_Block"})
-        for dx, dy in ((120, 120), (680, 120), (120, 680), (680, 680)):
-            msp.add_circle((bx1 + dx, by1 + dy), radius=42.0, dxfattribs={"layer": "DCE_Block"})
-        msp.add_text("CT-BP-BD01 PL400x400x20", height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((bx1, by1 + 940.0))
+            if kind in ("BASEPLATE", "CONCRETE_COLUMN", "STEEL_MEMBER"):
+                bw, bhh = pw * k, ph * k
+                msp.add_lwpolyline([(cx0, cy0), (cx0 + bw, cy0), (cx0 + bw, cy0 + bhh), (cx0, cy0 + bhh)], close=True, dxfattribs={"layer": "DCE_Block"})
+                msp.add_lwpolyline([(cx0 + 75, cy0 + 75), (cx0 + bw - 75, cy0 + 75), (cx0 + bw - 75, cy0 + bhh - 75), (cx0 + 75, cy0 + bhh - 75)], close=True, dxfattribs={"layer": "DCE_Thep_Dai"})
+                rows = _int_num(det.get("bolt_rows"), 2)
+                cols = _int_num(det.get("bolt_cols"), 2)
+                if kind == "CONCRETE_COLUMN":
+                    cols = rows = 3
+                    for ri in range(rows):
+                        for ci in range(cols):
+                            if ri == 1 and ci == 1:
+                                continue
+                            msp.add_circle((cx0 + bw / 2 + (ci - 1) * (bw / 3), cy0 + bhh / 2 + (ri - 1) * (bhh / 3)), radius=32.0, dxfattribs={"layer": "DCE_Thep_Chu"})
+                elif rows > 0 and cols > 0:
+                    ex, ey = bw * 0.15, bhh * 0.15
+                    sx = (bw - 2 * ex) / max(cols - 1, 1)
+                    sy = (bhh - 2 * ey) / max(rows - 1, 1)
+                    for ri in range(rows):
+                        for ci in range(cols):
+                            msp.add_circle((cx0 + ex + ci * sx, cy0 + ey + ri * sy), radius=max(30.0, 46.0 * pt / 28.0), dxfattribs={"layer": "DCE_Block"})
+                lbl = f"{name} {plate}".strip()
+                if det.get("main_rebar"):
+                    lbl = f"{name} ({det.get('section_name', f'{_int_num(pw)}x{_int_num(ph)}')}) {det.get('main_rebar')}"
+                if det.get("bolt_spec"):
+                    lbl += f" {det.get('bolt_spec')}"
+                msp.add_text(lbl, height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((cx0, cy0 + bhh + 140.0))
 
-        # 3. CT-BP-BD02 (560x420 + 8 bolts M24)
-        bx2, by2 = 21600.0, 12500.0
-        msp.add_lwpolyline([(bx2, by2), (bx2 + 1120, by2), (bx2 + 1120, by2 + 840), (bx2, by2 + 840)], close=True, dxfattribs={"layer": "DCE_Block"})
-        for ci in range(4):
-            for ri in range(2):
-                msp.add_circle((bx2 + 130 + ci * 285, by2 + 130 + ri * 580), radius=46.0, dxfattribs={"layer": "DCE_Block"})
-        msp.add_text("CT-BP-BD02 PL560x420x28", height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((bx2, by2 + 980.0))
+            elif kind == "GUSSET_PLATE":
+                bw, bhh = pw * k, ph * k
+                msp.add_lwpolyline(
+                    [(cx0, cy0), (cx0 + bw, cy0), (cx0 + bw, cy0 + bhh * 0.55), (cx0 + bw * 0.53, cy0 + bhh), (cx0, cy0 + bhh)],
+                    close=True, dxfattribs={"layer": "DCE_Block"},
+                )
+                for bxp, byp in ((bw * 0.2, bw * 0.2), (bw * 0.78, bw * 0.2), (bw * 0.2, bhh * 0.72), (bw * 0.5, bhh * 0.72)):
+                    msp.add_circle((cx0 + bxp, cy0 + byp), radius=35.0, dxfattribs={"layer": "DCE_Block"})
+                msp.add_text(f"{name} {plate}", height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((cx0, cy0 + bhh + 140.0))
 
-        # 4. CT-GUSSET-01 (STEEL_PL_01 trapezoid + 4 bolt holes)
-        gx0, gy0 = 25600.0, 12500.0
-        msp.add_lwpolyline([(gx0, gy0), (gx0 + 900, gy0), (gx0 + 900, gy0 + 420), (gx0 + 480, gy0 + 780), (gx0, gy0 + 780)], close=True, dxfattribs={"layer": "DCE_Block"})
-        for bxp, byp in ((180, 180), (700, 180), (180, 560), (480, 560)):
-            msp.add_circle((gx0 + bxp, gy0 + byp), radius=35.0, dxfattribs={"layer": "DCE_Block"})
-        msp.add_text("CT-GUSSET-01 PL240x180x14", height=100, dxfattribs={"layer": "DCE_Name"}).set_placement((gx0, gy0 + 940.0))
+            entities_log.append({
+                "type": "STEEL_DETAIL_DRAWING",
+                "name": name,
+                "kind": kind,
+                "plate": plate,
+                "enlarge": k,
+                "bbox": [cx0, cy0, cx0 + max(pw, ph) * k, cy0 + max(pw, ph) * k],
+            })
 
 
 def _setup_paperspace_a3(
@@ -924,10 +1032,17 @@ def _setup_paperspace_a3(
     sheet: SheetSpec,
     manifest: SheetSetManifest,
     result_viewports: List[Dict[str, Any]],
+    element_rows: Optional[List[Dict[str, Any]]] = None,
+    entity_map: Optional[Dict[str, Any]] = None,
 ) -> None:
-    """Create A3 paperspace frame, non-overlapping viewports (scale 1:50), right-side title strip & sheet index."""
+    """Create A3 paperspace frame, non-overlapping viewports (scale 1:50), right-side title strip & sheet index.
+
+    V2-01: also emit the *real* fixture schedule table (element rows) into paperspace so the
+    BOM physically prints on the A3 sheet, not only in model space. Single-viewport sheets
+    narrow the main viewport to [15..300] to free a right schedule band [305..365]."""
     ps = doc.layouts.get("Layout1")
     w, h = _paper_size_mm(sheet.paper_size)  # (420, 297)
+    dual = len(sheet.viewports) > 1
 
     # A3 outer + inner frame + right-side title strip [370..415, 5..292]
     ps.add_lwpolyline([(0, 0), (w, 0), (w, h), (0, h)], close=True, dxfattribs={"layer": "DCE_Frame"})
@@ -951,15 +1066,16 @@ def _setup_paperspace_a3(
 
     # Non-overlapping Paperspace Viewports inside [15..365, 15..280]
     for vi, vp in enumerate(sheet.viewports):
-        if len(sheet.viewports) > 1:
+        if dual:
             bbox = [15.0, 15.0 + vi * 135.0, 205.0, 145.0 + vi * 135.0]
         else:
-            bbox = [15.0, 15.0, 365.0, 280.0]
+            # Free a right schedule band [305..365] on single-viewport sheets
+            bbox = [15.0, 15.0, 300.0, 280.0]
 
         x0, y0, x1, y1 = bbox
         vp_h = y1 - y0
         view_height = vp_h * vp.scale
-        vc_x = 13500.0 if len(sheet.viewports) > 1 else 18000.0
+        vc_x = 13500.0 if dual else 18000.0
         vc_y = 14000.0 if vi == 0 else 15000.0
         if sheet.sheet_no in ("KC-06", "KC-07"):
             vc_x = 20000.0
@@ -991,12 +1107,65 @@ def _setup_paperspace_a3(
             "frozen_layers": sorted(str(x) for x in v.frozen_layers),
         })
 
-    if len(sheet.viewports) > 1:
+    if dual:
         ps.add_lwpolyline([(212, 15), (365, 15), (365, 280), (212, 280)], close=True, dxfattribs={"layer": "DCE_Schedule"})
         ps.add_text(f"GHI CHU & BANG KE {sheet.sheet_no}", height=2.5, dxfattribs={"layer": "DCE_Schedule"}).set_placement((216, 272))
         if sheet.sheet_no == "KC-04":
             ps.add_text("VP DUOI: THEP LOP DUOI (FREEZE REBAR_TOP)", height=2.0, dxfattribs={"layer": "DCE_Schedule"}).set_placement((216, 258))
             ps.add_text("VP TREN: THEP LOP TREN (FREEZE REBAR_BOTTOM)", height=2.0, dxfattribs={"layer": "DCE_Schedule"}).set_placement((216, 246))
+
+    # --- V2-01: real fixture schedule table on the paper sheet ---
+    if element_rows:
+        _emit_paperspace_schedule(ps, sheet, element_rows, entity_map or {})
+
+
+def _emit_paperspace_schedule(
+    ps,
+    sheet: SheetSpec,
+    element_rows: List[Dict[str, Any]],
+    entity_map: Dict[str, Any],
+) -> None:
+    """Emit the real fixture BOM rows into paperspace so they print on the A3 sheet (V2-01).
+
+    Dual-viewport sheets use the right panel [212..365]; single-viewport sheets use the freed
+    band [305..365]. Each element's paper TEXT row handle is recorded in
+    entity_map[element_id]['ps_schedule_handles'] so strict 3-way linkage still resolves the
+    schedule on paper (not just in model space)."""
+    dual = len(sheet.viewports) > 1
+    if dual:
+        px0, px1 = 216.0, 361.0
+        row_top = 240.0
+    else:
+        px0, px1 = 307.0, 363.0
+        row_top = 272.0
+    row_h = 12.0
+    c_mark_w = px1 - px0
+    c0 = px0
+    c1 = px0 + c_mark_w * 0.36
+    c2 = px0 + c_mark_w * 0.64
+
+    ps.add_lwpolyline([(px0, row_top + 8.0), (px1, row_top + 8.0), (px1, row_top - len(element_rows) * row_h), (px0, row_top - len(element_rows) * row_h)],
+                      close=True, dxfattribs={"layer": "DCE_Schedule"})
+    ps.add_line((px0, row_top + 8.0), (px1, row_top + 8.0), dxfattribs={"layer": "DCE_Schedule"})
+    ps.add_text(f"BANG THONG KE C2 {sheet.sheet_no}", height=2.2, dxfattribs={"layer": "DCE_Schedule"}).set_placement((px0, row_top + 10.0))
+    for x in (c1, c2):
+        ps.add_line((x, row_top + 8.0), (x, row_top - len(element_rows) * row_h), dxfattribs={"layer": "DCE_Schedule"})
+    hdr = row_top
+    ps.add_text("KY HIEU", height=1.6, dxfattribs={"layer": "DCE_Schedule"}).set_placement((c0 + 0.6, hdr))
+    ps.add_text("TIET DIEN", height=1.6, dxfattribs={"layer": "DCE_Schedule"}).set_placement((c1 + 0.6, hdr))
+    ps.add_text("THAM CHIEU", height=1.6, dxfattribs={"layer": "DCE_Schedule"}).set_placement((c2 + 0.6, hdr))
+
+    for i, row in enumerate(element_rows):
+        eid = row["element_id"]
+        y = hdr - (i + 1) * row_h
+        t_mark = ps.add_text(str(row.get("mark", eid))[:12], height=1.5, dxfattribs={"layer": "DCE_Schedule"})
+        t_mark.set_placement((c0 + 0.6, y))
+        t_size = ps.add_text(str(row.get("size", ""))[:16], height=1.5, dxfattribs={"layer": "DCE_Schedule"})
+        t_size.set_placement((c1 + 0.6, y))
+        t_ref = ps.add_text(",".join(row.get("schedule_refs", []))[:20], height=1.5, dxfattribs={"layer": "DCE_Schedule"})
+        t_ref.set_placement((c2 + 0.6, y))
+        ent = entity_map.setdefault(eid, {})
+        ent.setdefault("ps_schedule_handles", []).extend([t_mark.dxf.handle, t_size.dxf.handle, t_ref.dxf.handle])
 
 
 def _draw_viewport_contents(ax, msp, *, frozen_layers: set[str], layer_colors: Dict[str, str], fg_dark: str) -> None:
@@ -1272,6 +1441,34 @@ def render_sheet_set_previews(
                         ax_mid.text(0.03, 0.17, "• VP_SLAB_BOT: Chi hien REBAR_BOTTOM (Xanh)", fontsize=5.8, color="#1D4ED8")
                         ax_mid.text(0.03, 0.12, "• VP_SLAB_TOP: Chi hien REBAR_TOP (Do)", fontsize=5.8, color="#DC2626")
 
+                # V2-01: single-viewport sheets freed a right schedule band [305..365] (main viewport is now [15..300]).
+                # Render the real fixture BOM rows in that band so the preview matches the paperspace layout.
+                elif len(ps_vps) == 1:
+                    ax_sched = fig.add_axes([305.0 / a3_w, 15.0 / a3_h, 60.0 / a3_w, 265.0 / a3_h], facecolor="#F8F7F4")
+                    ax_sched.set_xlim(0, 1)
+                    ax_sched.set_ylim(0, 1)
+                    ax_sched.set_xticks([])
+                    ax_sched.set_yticks([])
+                    for sp in ax_sched.spines.values():
+                        sp.set_edgecolor("#1E3246")
+                        sp.set_linewidth(0.8)
+                    ax_sched.add_patch(Rectangle((0.0, 0.92), 1.0, 0.08, facecolor=bg_header, edgecolor="#1E3246", linewidth=0.7))
+                    ax_sched.text(0.5, 0.96, f"BANG THONG KE {sno}", ha="center", va="center", fontsize=6.4, fontweight="bold", color=fg_navy)
+
+                    sched_rows = []
+                    for ent_log in sidecar.get("entities_log", []):
+                        if ent_log.get("type") == "SCHEDULE_TABLE":
+                            sched_rows = ent_log.get("rows", [])
+                            break
+                    y_cur = 0.88
+                    ax_sched.text(0.04, y_cur, "KY HIEU | TIET DIEN | THAM CHIEU", fontsize=5.6, fontweight="bold", color=fg_navy)
+                    y_cur -= 0.032
+                    ax_sched.plot([0.03, 0.97], [y_cur + 0.015, y_cur + 0.015], color="#94A3B8", linewidth=0.6)
+                    for row in sched_rows[1:13]:  # skip header row already drawn
+                        mk, sz = str(row[0])[:9], str(row[1])[:12]
+                        ax_sched.text(0.04, y_cur, f"{mk:<9s}| {sz}", fontsize=5.0, color=fg_dark, family="monospace")
+                        y_cur -= 0.038
+
             # Right-side A3 Title Strip [370..415, 5..292]
             ax_side = fig.add_axes([370.0 / a3_w, 5.0 / a3_h, 45.0 / a3_w, 287.0 / a3_h], facecolor="#FFFFFF")
             ax_side.set_xlim(0, 1)
@@ -1381,9 +1578,9 @@ def export_sheet_set(
         entities_log: List[Dict[str, Any]] = []
 
         ctx = _draw_common_frame_and_grid(msp, doc, sheet, manifest, entities_log, scale=scale)
-        _emit_all_fixture_elements(msp, doc, data, entity_map, ctx["schedule_bbox"], entities_log)
+        sched_rows = _emit_all_fixture_elements(msp, doc, data, entity_map, ctx["schedule_bbox"], entities_log)
         _add_sheet_role_specific_geometry(msp, sheet, data, entity_map, entities_log)
-        _setup_paperspace_a3(doc, sheet, manifest, result["viewports"])
+        _setup_paperspace_a3(doc, sheet, manifest, result["viewports"], element_rows=sched_rows, entity_map=entity_map)
 
         miss_for_sheet = per_sheet_missing.get(sheet.sheet_no, [])
         if miss_for_sheet:

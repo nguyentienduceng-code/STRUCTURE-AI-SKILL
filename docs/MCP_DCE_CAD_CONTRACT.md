@@ -17,7 +17,7 @@ Không cần AutoCAD đang chạy để dùng các tool DXF/preview.
 | 9 | `auto_layout_and_scale_plan` | Tính toán tỷ lệ động (Sheet-Scale Governor `1:50`..`1:250`) và dàn trang A1/A0 tự động không tràn khung. |
 | 10 | `export_cad_sheet_set` | Xuất bộ hồ sơ đa bản vẽ chuẩn `cad_sheet_set.py` (AC1021) kèm chỉ mục bảng vẽ & kiểm tra nhất quán liên tờ. |
 | 11 | `open_form` | Mở form bản vẽ chuẩn hóa 3 tầng (Dự án → Chuẩn người dùng → SSOT) để nhập/hiệu chỉnh thông số an toàn. |
-| 12 | `diff_form` | So sánh sai lệch form CAD đã chỉnh tay với SSOT (`baseline='ssot'`) tạo `model_patches` có cấu trúc. |
+| 12 | `diff_form` | So sánh với form chuẩn (`ssot`) hoặc bản sửa trước (`prev_rev`). Thiếu bản sửa trả `E001_FILE_NOT_FOUND`. Kết quả ghi đường dẫn và SHA-256 của hai DXF, các layer thêm/sửa/mất và các thay đổi ánh xạ được vào mô hình. |
 | 13 | `apply_agent_changes` | Merge-lane khóa vùng `DCE_AGENT_OWNED`: kiểm tra `structural_schema_gate`, nâng `model_version` (`v+1`) & chỉ tái sinh tờ ảnh hưởng. |
 
 ## Compliance schema 2.0 (5 Profiles / 25 Gates)

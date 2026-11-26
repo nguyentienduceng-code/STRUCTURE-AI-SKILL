@@ -206,10 +206,18 @@ def _brief(groups: Dict[str, List[Dict[str, Any]]], ids: List[str]) -> List[Dict
 
 
 def _dup_primaries(pa: Dict[str, Any], pb: Dict[str, Any]) -> Dict[str, List[Any]]:
-    """Các element_id có >=2 PRIMARY trong cùng một snapshot (cả A lẫn B)."""
+    """Các element_id (KHÁC RỖNG) có >=2 PRIMARY trong cùng một snapshot.
+
+    Record CHƯA CÓ element_id (vô danh, chưa ghép — thuộc UNMATCHED) được nhóm
+    vào key rỗng `""`; đó KHÔNG phải DUPLICATE_PRIMARY (duplicate chỉ có nghĩa
+    khi CÙNG MỘT element_id đã xác nhận bị >=2 handle sở hữu, ví dụ hậu quả
+    COPY/WBLOCK). Lọc bỏ nhóm key rỗng để khỏi dương tính giả trên mọi bản vẽ
+    có khung/trắc/dim (luôn nhiều PRIMARY vô danh)."""
     dups: Dict[str, List[Any]] = {}
     for groups in (pa, pb):
         for eid, grp in groups.items():
+            if not eid:
+                continue
             if len(grp) >= 2:
                 dups[eid] = [r.get("handle") for r in grp]
     return dups

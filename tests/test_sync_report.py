@@ -242,6 +242,24 @@ class TestMalformedSkillFrontmatter(unittest.TestCase):
                 collect_skills(tmp_path)
 
 
+    def test_version_is_unambiguous_and_only_in_header(self):
+        from _collect_skills import SkillFrontmatterError, read_skill
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "SKILL.md"
+            for content in (
+                "---\ndescription: test\n---\nExample version: 9.9.9",
+                "---\nversion: 1.0.0\nversion: 2.0.0\n---",
+                "---\nversion: 1.0.0",
+            ):
+                with self.subTest(content=content):
+                    path.write_text(content, encoding="utf-8")
+                    with self.assertRaises(SkillFrontmatterError):
+                        read_skill(path)
+            path.write_bytes(b"\xef\xbb\xbf---\r\nversion: '1.2.3'\r\n---")
+            self.assertEqual(read_skill(path).version, "1.2.3")
+
+
 class TestCLIArgs(unittest.TestCase):
     """parse_args xử lý flags đúng."""
 

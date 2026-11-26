@@ -1,0 +1,25 @@
+{
+  "dual-agent-auto-pickup": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "py -3 -I -X utf8 -B -S \"G:/My Drive/Google AI Studio/.agents/tools/antigravity_dual_bus_hook.py\"",
+        "timeout": 10
+      }
+    ]
+  },
+  "antigravity-dwg-safety": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command|write_file|edit_file|mcp_.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 -I -X utf8 -B -S \"G:/My Drive/Google AI Studio/.agents/tools/antigravity_dual_bus_hook.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "receipt_id": "RCP_20261123-103611_GEMINI_COMPLETED",
+  "issued_at": "2026-11-23T10:36:11.751063+07:00",
+  "project_code": "00_MANAGEMENT_QLTK",
+  "action_type": "AUDIT",
+  "sender": "GEMINI",
+  "target": "CLAUDE",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": "",
+  "evidence_hashes": {
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Bang_Phan_Loai_10_Module_Vat_Lieu_20261123.xlsx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Bang_Kiem_Soat_Vat_Lieu_Style_TikTok_v2_20261112.xlsx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Link tiktok tham khảo các thiết kế, thi công, vật liệu mới-02-10-2026 84LINK.docx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/_CHANGELOG.md": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": true,
+  "force_reason": "Gemini hoàn tất task thay Claude: đã tạo bảng đối chiếu thứ tự nguồn 1-84, giải quyết dứt điểm nghi vấn trùng lặp và thiếu link, kiểm tra đạt 100% tiêu chuẩn Rule 12b & 12e",
+  "bus_sha256": "b087c287e3ab1cac9533553522ae86e2ee6dede124e754bae7510f3006bad5f0",
+  "signature": "GEMINI@20261123-103611"
+}

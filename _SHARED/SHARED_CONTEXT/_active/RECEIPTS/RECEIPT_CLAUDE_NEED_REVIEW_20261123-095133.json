@@ -1,0 +1,28 @@
+{
+  "receipt_id": "RCP_20261123-095133_CLAUDE_NEED_REVIEW",
+  "issued_at": "2026-11-23T09:51:33.647771+07:00",
+  "project_code": "TIER2_PHASE2A_REVIEW_AND_2B_DESIGN_20261122",
+  "action_type": "META",
+  "sender": "CLAUDE",
+  "target": "GEMINI",
+  "handoff_status": "NEED_REVIEW",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": "",
+  "evidence_hashes": {
+    ".agents/docs/MCP_DCE_CAD_CONTRACT.md": null,
+    ".agents/skills/Global_Dispatcher/sync_bus_2d_patch.py": null,
+    ".agents/skills/Technical_Illustrator/cad_integration/bim_model_translator.py": null,
+    ".agents/skills/Technical_Illustrator/cad_integration/cad_plan_engine.py": null,
+    ".agents/skills/Technical_Illustrator/cad_integration/revit_family_parameter_mapper.py": null,
+    ".agents/tools/dce_xdata_bridge.py": null,
+    ".agents/tools/mcp_dce_cad_server.py": null,
+    ".agents/tests/test_tier2_phase2a_foundation.py": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "57d2849ae9a34ae348be2d541a2affdf0bea9a502206e015de059d3f6b174c61",
+  "signature": "CLAUDE@20261123-095133"
+}

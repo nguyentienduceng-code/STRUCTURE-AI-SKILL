@@ -1,0 +1,46 @@
+{
+  "project_context": {
+    "project_code": "00_TAX_MASTER",
+    "project_purpose": "Nâng cấp toàn diện tư duy Agent Claude: 4 trụ cột kiểm toán kinh tế số và FCT",
+    "role_distribution": "Gemini (Tác tử triển khai/lập báo cáo) <-> Claude (Kiểm toán viên độc lập / Red-Team)",
+    "action_type": "TAX_REPORT"
+  },
+  "last_updated_by": "GEMINI",
+  "timestamp": "2026-11-22T10:55:05.000000+07:00",
+  "handoff_status": "PENDING",
+  "current_holder": "IDLE",
+  "summary": "Gemini đã chính thức ban hành Chỉ thị Nâng cấp Tư duy Chiến lược CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md theo yêu cầu của Kế toán trưởng. Yêu cầu Claude tiếp nhận ca trực, rà soát lại toàn bộ Agent và nâng cấp toàn diện tư duy theo 4 trụ cột: (1) Substance over Form cho ví/tài khoản trả trước; (2) Thuế GTGT 10% (Luật 48/2024) và Đồng nhất cơ sở tính thuế Net/0.85 (TT 109); (3) Kiểm toán phản biện cầu thị, không bác bỏ vội vàng; (4) Xây dựng lá chắn đối soát 3 chiều chống ấn định thuế.",
+  "artifacts_modified": [
+    "PROJECT/00_MANAGEMENT_TAX_BUS/CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md",
+    "SKILL/SKILL KE TOAN THUE/docs/TAX_LESSONS_LEARNED.json",
+    "SKILL/SKILL KE TOAN THUE/TAX_STANDARDS_LOCK.md",
+    "PROJECT/00_MANAGEMENT_TAX_BUS/RECEIPTS/RECEIPT_GEMINI_PENDING_20261122-105505.json"
+  ],
+  "next_action_for_partner": {
+    "target_agent": "CLAUDE",
+    "task_description": "Đọc và thực thi CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md; cập nhật bộ quy tắc kiểm toán nội bộ; khóa cứng 4 trụ cột: (1) Substance over Form cho ví Ads, (2) GTGT 10% Luật 48 và Đồng nhất cơ sở Net/0.85 TT 109, (3) Kiểm toán cầu thị không phản biện bảo thủ, (4) Lá chắn kiểm toán 3 chiều. Xuất biên bản xác nhận nâng cấp CLAUDE_STRATEGIC_UPGRADE_CONFIRMATION.md.",
+    "target_files": [
+      "PROJECT/00_MANAGEMENT_TAX_BUS/CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md",
+      "SKILL/SKILL KE TOAN THUE/docs/TAX_LESSONS_LEARNED.json",
+      "SKILL/SKILL KE TOAN THUE/TAX_STANDARDS_LOCK.md"
+    ],
+    "acceptance_criteria": [
+      "Tiếp nhận chỉ thị CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md",
+      "Xóa bỏ vĩnh viễn định kiến gross-up tuần tự cho nền tảng số",
+      "Xác nhận áp dụng chuẩn mực v6.1 TAX_STANDARDS_LOCK.md",
+      "Xuất biên bản xác nhận CLAUDE_STRATEGIC_UPGRADE_CONFIRMATION.md"
+    ],
+    "command": "python \"SKILL/SKILL DUAL AGENT/scripts/claim_task.py\" --agent CLAUDE",
+    "deliverable": "PROJECT/00_MANAGEMENT_TAX_BUS/CLAUDE_STRATEGIC_UPGRADE_CONFIRMATION.md",
+    "evidence_files": [
+      "PROJECT/00_MANAGEMENT_TAX_BUS/CLAUDE_STRATEGIC_THINKING_UPGRADE_DIRECTIVE.md"
+    ],
+    "acceptance_cmd": "python SKILL/SKILL DUAL AGENT/scripts/quick_status.py",
+    "report_file": "PROJECT/00_MANAGEMENT_TAX_BUS/CLAUDE_STRATEGIC_UPGRADE_CONFIRMATION.md"
+  },
+  "Verification_Status": "PENDING",
+  "lease_holder": null,
+  "lease_expire_at": null,
+  "claim_timestamp": null,
+  "last_heartbeat": null
+}

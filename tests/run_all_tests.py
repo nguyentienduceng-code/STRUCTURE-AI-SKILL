@@ -53,11 +53,14 @@ SUITES = [
     ("31. Dynamic Sheet-Scale Governor & SSOT Layout (Directive v5.0) (11 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_sheet_scale_fitter.py")]),
     ("32. CAD Semantics v6 C1 Renderer & Tag Placement (6 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_cad_v6_c1.py")]),
     ("33. CAD Semantics v6 C2 Sheet Set & Dual Viewport (3 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_cad_v6_c2.py")]),
+    ("34. Bootstrap Matrix — hook fail-closed wrapper (4 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_bootstrap_matrix.py")]),
+    ("35. MCP machine-local installer (3 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_setup_dce_cad_mcp.py")]),
+    ("36. Release manifest & registry tool (4 tests)", [sys.executable, "-B", str(TESTS_DIR / "test_release_manifest_tool.py")]),
 ]
 
 # Smoke tier includes the real-PDF grounding guard. Slow reporting, CAD,
 # control timing, nonlinear solving and durable orchestration remain in full CI.
-FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 18, 19, 20, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33}
+FAST_SUITES = {1, 2, 3, 4, 5, 6, 8, 9, 14, 15, 17, 18, 19, 20, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}
 
 
 def _auto_register_unregistered():

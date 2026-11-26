@@ -81,7 +81,7 @@
       "entity_counts": {
         "INSERT": 25,
         "LINE": 31,
-        "LWPOLYLINE": 21,
+        "LWPOLYLINE": 23,
         "HATCH": 1,
         "CIRCLE": 0,
         "DIMENSION": 3,
@@ -101,7 +101,7 @@
       "entity_counts": {
         "INSERT": 23,
         "LINE": 27,
-        "LWPOLYLINE": 25,
+        "LWPOLYLINE": 29,
         "HATCH": 1,
         "CIRCLE": 0,
         "DIMENSION": 3,
@@ -119,7 +119,7 @@
       ],
       "entity_counts": {
         "INSERT": 23,
-        "LINE": 56,
+        "LINE": 55,
         "LWPOLYLINE": 24,
         "HATCH": 1,
         "CIRCLE": 5,
@@ -139,7 +139,7 @@
       "entity_counts": {
         "INSERT": 23,
         "LINE": 27,
-        "LWPOLYLINE": 26,
+        "LWPOLYLINE": 28,
         "HATCH": 1,
         "CIRCLE": 24,
         "DIMENSION": 3,
@@ -182,7 +182,7 @@
       "paper_bbox": [
         15.0,
         15.0,
-        365.0,
+        300.0,
         280.0
       ],
       "view_height": 13250.0,
@@ -228,7 +228,7 @@
       "paper_bbox": [
         15.0,
         15.0,
-        365.0,
+        300.0,
         280.0
       ],
       "view_height": 13250.0,
@@ -242,7 +242,7 @@
       "paper_bbox": [
         15.0,
         15.0,
-        365.0,
+        300.0,
         280.0
       ],
       "view_height": 13250.0,
@@ -285,5 +285,5 @@
     "pdf_path": ".agents\\memory\\audits\\cad_v6\\claude\\c2_remediated_v3\\c2_sheet_set_preview.pdf",
     "paper_size": "A3_LANDSCAPE"
   },
-  "artifact_sha256": "ea987d773f8c5f2fca95ed55c0ba5dbb98747f3528c44670ea999ac0a56c60bd"
+  "artifact_sha256": "16b6d22bfa848470057d97469417ee29ab47e638eca26cdd6d461de4c4b4ecbd"
 }

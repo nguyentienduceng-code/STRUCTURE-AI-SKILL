@@ -1,11 +1,11 @@
 {
   "schema_version": "DCE_C2_PROVENANCE_V2",
   "provenance": {
-    "dxf_sha256": "51c26c6e8a001e7fe06e51283f85acca9b15ed29648c8dd9b66c26251ff74190",
-    "fixture_sha256": "ae84387a39f2205ecec452c964844c42a9da99e3f13e353c00b23a1df9ed66ec",
+    "dxf_sha256": "e8b7991cb2429dfdeba46380954e82ca946a82e18ce93b9154fd32e41bc980d4",
+    "fixture_sha256": "cc3607c5eb9415fd1de0f6b7d2b1c032b06cbc08197339d35d7884608a55aa47",
     "generator": "cad_sheet_set.C2_REMEDIATED_V2"
   },
-  "dxf_sha256": "51c26c6e8a001e7fe06e51283f85acca9b15ed29648c8dd9b66c26251ff74190",
+  "dxf_sha256": "e8b7991cb2429dfdeba46380954e82ca946a82e18ce93b9154fd32e41bc980d4",
   "sheet_no": "KC-07",
   "sheet_status": "PASS",
   "scale": 50.0,
@@ -506,6 +506,58 @@
           0.7
         ]
       ]
+    },
+    {
+      "type": "STEEL_DETAIL_DRAWING",
+      "name": "CT-COL-C1",
+      "kind": "CONCRETE_COLUMN",
+      "plate": "300x300",
+      "enlarge": 2.5,
+      "bbox": [
+        21600.0,
+        22200.0,
+        22350.0,
+        22950.0
+      ]
+    },
+    {
+      "type": "STEEL_DETAIL_DRAWING",
+      "name": "CT-BP-BD01",
+      "kind": "BASEPLATE",
+      "plate": "PL400x400x20",
+      "enlarge": 2.5,
+      "bbox": [
+        25600.0,
+        22200.0,
+        26600.0,
+        23200.0
+      ]
+    },
+    {
+      "type": "STEEL_DETAIL_DRAWING",
+      "name": "CT-BP-BD02",
+      "kind": "BASEPLATE",
+      "plate": "PL560x420x28",
+      "enlarge": 2.5,
+      "bbox": [
+        21600.0,
+        12500.0,
+        23000.0,
+        13900.0
+      ]
+    },
+    {
+      "type": "STEEL_DETAIL_DRAWING",
+      "name": "CT-GUSSET-01",
+      "kind": "GUSSET_PLATE",
+      "plate": "PL240x180x14",
+      "enlarge": 2.5,
+      "bbox": [
+        25600.0,
+        12500.0,
+        26200.0,
+        13100.0
+      ]
     }
   ],
   "blocks_defined": {
@@ -694,6 +746,11 @@
         "F1",
         "F2",
         "F3"
+      ],
+      "ps_schedule_handles": [
+        "1AA",
+        "1AB",
+        "1AC"
       ]
     },
     "COL_C1_F2": {
@@ -719,6 +776,11 @@
         "FC",
         "FD",
         "FE"
+      ],
+      "ps_schedule_handles": [
+        "1AD",
+        "1AE",
+        "1AF"
       ]
     },
     "BM_D1A_F2_S1": {
@@ -744,6 +806,11 @@
         "107",
         "108",
         "109"
+      ],
+      "ps_schedule_handles": [
+        "1B0",
+        "1B1",
+        "1B2"
       ]
     },
     "BM_D1A_F2_S2": {
@@ -769,6 +836,11 @@
         "112",
         "113",
         "114"
+      ],
+      "ps_schedule_handles": [
+        "1B3",
+        "1B4",
+        "1B5"
       ]
     },
     "STEEL_COL_C1": {
@@ -794,6 +866,11 @@
         "11D",
         "11E",
         "11F"
+      ],
+      "ps_schedule_handles": [
+        "1B6",
+        "1B7",
+        "1B8"
       ]
     },
     "STEEL_BM_B1": {
@@ -819,6 +896,11 @@
         "128",
         "129",
         "12A"
+      ],
+      "ps_schedule_handles": [
+        "1B9",
+        "1BA",
+        "1BB"
       ]
     },
     "STEEL_BOX_BX1": {
@@ -844,6 +926,11 @@
         "133",
         "134",
         "135"
+      ],
+      "ps_schedule_handles": [
+        "1BC",
+        "1BD",
+        "1BE"
       ]
     },
     "STEEL_CH_U1": {
@@ -869,6 +956,11 @@
         "13E",
         "13F",
         "140"
+      ],
+      "ps_schedule_handles": [
+        "1BF",
+        "1C0",
+        "1C1"
       ]
     },
     "STEEL_PP_P1": {
@@ -894,6 +986,11 @@
         "149",
         "14A",
         "14B"
+      ],
+      "ps_schedule_handles": [
+        "1C2",
+        "1C3",
+        "1C4"
       ]
     },
     "STEEL_BP_01": {
@@ -919,6 +1016,11 @@
         "154",
         "155",
         "156"
+      ],
+      "ps_schedule_handles": [
+        "1C5",
+        "1C6",
+        "1C7"
       ]
     },
     "STEEL_BP_02": {
@@ -944,6 +1046,11 @@
         "15F",
         "160",
         "161"
+      ],
+      "ps_schedule_handles": [
+        "1C8",
+        "1C9",
+        "1CA"
       ]
     },
     "STEEL_PL_01": {
@@ -969,6 +1076,11 @@
         "16A",
         "16B",
         "16C"
+      ],
+      "ps_schedule_handles": [
+        "1CB",
+        "1CC",
+        "1CD"
       ]
     }
   },

@@ -7,8 +7,10 @@ __pycache__/
 # Temporary & test outputs
 test_output/
 _approval_cache/
+scratch/
 *.tmp
 *.bak
+*.recovery-backup
 *.log
 traces/
 *.db
@@ -17,6 +19,7 @@ traces/
 
 # External References & Clones
 references/
+!skills/references/
 
 # Dependencies
 node_modules/

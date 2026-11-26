@@ -1,0 +1,30 @@
+{
+  "receipt_id": "RCP_20261124-230040_CLAUDE_COMPLETED",
+  "issued_at": "2026-11-24T23:00:40.494397+07:00",
+  "project_code": "03_Sprint2_KetQua_NeChu_CAD",
+  "action_type": "CODE",
+  "sender": "CLAUDE",
+  "target": "CLAUDE",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/cad_v6/gemini/DUAL_BRIDGE_V36_RESULT.md",
+  "evidence_hashes": {
+    ".agents/tools/sync_bus.py": null,
+    ".agents/tools/accoreconsole_adapter.py": null,
+    ".agents/tools/claude_safety_hook.py": null,
+    ".agents/tools/antigravity_dual_bus_hook.py": null,
+    ".claude/CLAUDE.md": null,
+    ".claude/commands/nhan-ca.md": null,
+    ".claude/commands/ban-giao.md": null,
+    ".agents/tests/test_dual_bus_v36_communication.py": null,
+    ".agents/tests/test_antigravity_dual_bus_hook.py": null,
+    ".agents/tests/test_workspace_claude_safety_hook.py": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "00bc55f3faf9be19a473952c6834fc4fe31ef7b1c30c48199cd3b7c141f60c9a",
+  "signature": "CLAUDE@20261124-230040"
+}

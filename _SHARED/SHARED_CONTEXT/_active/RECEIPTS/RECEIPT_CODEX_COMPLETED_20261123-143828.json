@@ -1,0 +1,23 @@
+{
+  "receipt_id": "RCP_20261123-143828_CODEX_COMPLETED",
+  "issued_at": "2026-11-23T14:38:28.903473+07:00",
+  "project_code": "02_SS1",
+  "action_type": "DOCX",
+  "sender": "CODEX",
+  "target": "CODEX",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/02_ss1/codex/SHIFT_RESULT.md",
+  "evidence_hashes": {
+    "01_Projects/02_SS1/04_Deliverables_ToTrinh/SS1_BaoCao_DanhGia_TuVan_NenMong_MongBe_20261123.md": null,
+    "01_Projects/02_SS1/04_Deliverables_ToTrinh/SS1_BaoCao_DanhGia_TuVan_NenMong_MongBe_v2_20261123.docx": null,
+    "01_Projects/02_SS1/03_Agent_Workspace/codex_ss1_draft_20261123/SS1_Word_v2_verification.json": "0467ef27d3198f4b092429bd8dd5ffc3c97296f1e58b465063a3f203aea72d0c",
+    "01_Projects/02_SS1/03_Agent_Workspace/codex_ss1_draft_20261123/SS1_Word_v2_preview.png": "4e872fe8afdd6a9a44b2d7b670ec973f93953471e6028312ce51c266ccec7cda"
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "de1c5e9a0a1be80057eee863b02653c2f3ab98b06f2a36cadbb259d24c8bb0b2",
+  "signature": "CODEX@20261123-143828"
+}

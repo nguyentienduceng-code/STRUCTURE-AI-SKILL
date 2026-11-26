@@ -65,6 +65,29 @@ class TestDispatcher2DModes(unittest.TestCase):
         draft.write_text("Kết quả trình duyệt", encoding="utf-8")
         return approve_drafts(work, "Đồng ý", [draft])
 
+    def test_guides_follow_active_skill_and_stage(self):
+        cases = [
+            ("@Structural_Design_Engineer tính bu lông cho liên kết bản mã", ["SKILL_CONNECTION.md"]),
+            ("@Structural_Design_Engineer tính bu lông, không cần thuyết minh tính toán", ["SKILL_CONNECTION.md"]),
+            ("@Design_Evaluation lập tờ trình", ["SKILL_REPORT.md"]),
+            ("@SKILL_PHULUC phụ lục kết cấu thép", ["PARTIAL_THEP.md"]),
+        ]
+        for prompt, expected in cases:
+            with self.subTest(prompt=prompt):
+                ticket = self.adapter.prepare_handover_payload(prompt, "guide", prompt, agent_selection="CLAUDE_ONLY")
+                files = [Path(path) for path in ticket["dispatch_2d"]["guide_files"]]
+                self.assertEqual([p.name for p in files], expected)
+                self.assertTrue(all(p.is_file() for p in files))
+
+        prompt = "Tính liên kết bu lông rồi kiểm chứng kết quả"
+        ticket = self.adapter.prepare_handover_payload(prompt, "stages", prompt, agent_selection="CLAUDE_ONLY")
+        dispatch = ticket["dispatch_2d"]
+        self.assertEqual(dispatch["guide_files"], [])
+        design, verify = dispatch["skill_workflow"]["stages"]
+        self.assertEqual([Path(p).name for p in design["guide_files"]], ["SKILL_CONNECTION.md"])
+        self.assertEqual(verify["guide_files"], [])
+        self.assertIn(design["guide_files"][0], ticket["human_handoff"]["handover_prompt"])
+
     def test_01_product_collab_lien_chieu(self) -> None:
         prompt = "Rà soát tờ trình và thuyết minh khảo sát địa chất Liên Chiểu Đà Nẵng xuất hồ sơ hoàn chỉnh"
         res = self.classifier.classify(prompt)
@@ -233,10 +256,10 @@ class TestDispatcher2DModes(unittest.TestCase):
         self.assertEqual(done["status"], "COMPLETED")
         self.assertEqual(done["human_handoff"]["deliverable_gate_status"], "BYPASSED_SYSTEM_MODE")
 
-    def test_13_same_product_four_choices_and_project_mismatch(self):
+    def test_13_same_product_agent_choices_and_project_mismatch(self):
         from docx import Document
         prompt = "Xuất tờ trình cho Mont Alp, tham khảo .agents/AGENTS.md"
-        for choice in ("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"):
+        for choice in ("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "CODEX_ONLY", "DUAL"):
             with self.subTest(choice=choice):
                 name = f"{choice}.docx"
                 work = self.adapter.prepare_handover_payload(
@@ -272,6 +295,7 @@ class TestDispatcher2DModes(unittest.TestCase):
         for suffix, expected in [
             ("riêng ca này chỉ dùng Claude", "CLAUDE_ONLY"),
             ("chỉ muốn sài Germini", "GEMINI_ONLY"),
+            ("riêng ca này chỉ dùng Codex", "CODEX_ONLY"),
             ("dùng Claude và Gemini", "DUAL"), ("tự động chọn tác tử", "AUTO"),
             ('theo ví dụ “chỉ dùng Claude”', "GEMINI_ONLY"),
         ]:
@@ -282,7 +306,7 @@ class TestDispatcher2DModes(unittest.TestCase):
     def test_15_single_agent_excludes_bus_and_wrong_actor(self):
         bus = self._workspace / "isolated-bus.json"
         adapter = SyncBus2DAdapter(self._workspace, bus)
-        for choice, actor in (("CLAUDE_ONLY", "CLAUDE"), ("GEMINI_ONLY", "GEMINI")):
+        for choice, actor in (("CLAUDE_ONLY", "CLAUDE"), ("GEMINI_ONLY", "GEMINI"), ("CODEX_ONLY", "CODEX")):
             for cmd in ("/solo giải thích", "/sys nâng cấp skill", "/prod xuất tờ trình Mont Alp"):
                 work = adapter.prepare_handover_payload(cmd, cmd, cmd, agent_selection=choice, write_to_bus=True)
                 owners = {s["owner"] for s in work["dispatch_2d"]["execution_plan"]}
@@ -366,7 +390,7 @@ class TestDispatcher2DModes(unittest.TestCase):
         invoke(planner, "set-default", "--workspace", ws, "--project-dir", folder, "--agent-selection", "CLAUDE_ONLY")
         self.addCleanup((folder / ".agent-selection").unlink)
         for choice, actor in [("DUAL", "CLAUDE"), ("CLAUDE_ONLY", "CLAUDE"),
-                              ("GEMINI_ONLY", "GEMINI"), ("AUTO", "CLAUDE")]:
+                              ("GEMINI_ONLY", "GEMINI"), ("CODEX_ONLY", "CODEX"), ("AUTO", "CLAUDE")]:
             with self.subTest(choice=choice):
                 ticket = ws / (choice + ".json")
                 record = ws / (choice + ".approval.json")

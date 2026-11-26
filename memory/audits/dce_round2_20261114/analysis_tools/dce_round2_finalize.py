@@ -1,8 +1,12 @@
 import sys,json,re,zipfile,hashlib,shutil
 from pathlib import Path
-sys.stdout.reconfigure(encoding='utf-8');sys.dont_write_bytecode=True
-root=Path('G:/My Drive/Google AI Studio/.agents')
-out=(root/'memory/audits/dce_round2_20261114').resolve()
+from tempfile import gettempdir
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+sys.dont_write_bytecode = True
+scripts = Path(__file__).resolve().parent
+out = scripts.parent
+root = out.parents[2]
 assert json.loads((out/'source_integrity.json').read_text())['unchanged']
 # A cross-round comparison is not the Round 2 start/end integrity check.
 # Preserve the original Round 1 checkpoint instead of replacing its history.
@@ -13,12 +17,14 @@ if not cross['unchanged']:
         'note':'Differences from the previous round baseline, not changes during Round 2. Round 2 own baseline is unchanged.',
         'comparison':cross},ensure_ascii=False,indent=2),encoding='utf-8')
     prior.write_text(json.dumps({'files_before':3010,'files_after':3010,'changes':[],'unchanged':True},indent=2),encoding='utf-8')
-scripts=out/'analysis_tools';scripts.mkdir(exist_ok=True)
-for name in ('scan','query','summarize','focus','precision','findings','proven','finalize'):
-    src=Path('C:/Users/ADMIN/AppData/Local/Temp')/('dce_round2_'+name+'.py')
-    shutil.copyfile(src,scripts/src.name)
-shutil.copyfile('C:/Users/ADMIN/AppData/Local/Temp/dce_round2_dwg_tools/inspect.mjs',scripts/'inspect.mjs')
-shutil.copyfile('C:/Users/ADMIN/AppData/Local/Temp/dce_round2_dwg_tools/package-lock.json',scripts/'package-lock.json')
+scratch = Path(gettempdir())
+for suffix in ('scan', 'query', 'summarize', 'focus', 'precision', 'findings', 'proven', 'finalize'):
+    name = f'dce_round2_{suffix}.py'
+    if not (scripts / name).is_file():
+        shutil.copyfile(scratch / name, scripts / name)
+for name in ('inspect.mjs', 'package-lock.json'):
+    if not (scripts / name).is_file():
+        shutil.copyfile(scratch / 'dce_round2_dwg_tools' / name, scripts / name)
 versions={'dnfile':'0.18.0','dncil':'1.0.2','libredwg_web':'0.8.8','dwg_warning':{'code':76,'flags':['UNHANDLEDCLASS','INVALIDTYPE','VALUEOUTOFBOUNDS']},'source_execution':False}
 (scripts/'versions.json').write_text(json.dumps(versions,indent=2),encoding='utf-8')
 files=[p for p in out.iterdir() if p.is_file() and (re.search(r'_(calls|il|api_evidence)\.json$',p.name) or p.name.endswith('.dwg.json') or p.name=='dwg_summary.json')]

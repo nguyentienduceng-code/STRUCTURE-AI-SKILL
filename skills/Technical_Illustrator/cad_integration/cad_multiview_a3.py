@@ -269,11 +269,11 @@ def _render_left_table(engine, tbl: Dict[str, Any]) -> None:
             if int(grp["start_col"]) <= ci <= int(grp["end_col"]):
                 engine._add_fitted_table_text(str(htxt), cx_m, (y_mid_h + y_top - hdr_h) / 2.0, col_widths[ci] - 40.0, height=115.0, layer="DCE_Schedule")
             else:
-                engine._add_fitted_table_text(str(htxt), cx_m, y_top - hdr_h / 2.0, col_widths[ci] - 50.0, height=130.0, layer="DCE_Schedule")
+                engine._add_fitted_table_text(str(htxt), cx_m, y_top - hdr_h / 2.0, max(120.0, col_widths[ci] - 120.0), height=130.0, layer="DCE_Schedule")
     else:
         for ci, htxt in enumerate(headers):
             cx_m = (xs[ci] + xs[ci + 1]) / 2.0
-            engine._add_fitted_table_text(str(htxt), cx_m, y_top - hdr_h / 2.0, col_widths[ci] - 50.0, height=145.0, layer="DCE_Schedule")
+            engine._add_fitted_table_text(str(htxt), cx_m, y_top - hdr_h / 2.0, max(120.0, col_widths[ci] - 120.0), height=145.0, layer="DCE_Schedule")
 
     for ri, row in enumerate(rows):
         ry_top = y_top - hdr_h - ri * row_h
@@ -285,7 +285,7 @@ def _render_left_table(engine, tbl: Dict[str, Any]) -> None:
             if isinstance(val, dict) and "pile_icon" in val:
                 _draw_pile_symbol(msp, cx_m, ry_mid, size_mm=240.0, kind=str(val["pile_icon"]), draw_cross_lines=True)
             else:
-                engine._add_fitted_table_text(str(val), cx_m, ry_mid, col_widths[ci] - 60.0, height=140.0, layer="DCE_Schedule")
+                engine._add_fitted_table_text(str(val), cx_m, ry_mid, max(120.0, col_widths[ci] - 160.0), height=140.0, layer="DCE_Schedule")
 
 
 def _add_hatch_zone(msp, bbox: List[float], style: str, spacing_m: float, angle: float, ox: float, oy: float, label: str = "") -> None:
@@ -556,6 +556,7 @@ def _render_viewport(
             )
             continue
         _rect_poly(msp, px0, py0, px1, py1, layer="DCE_BaoBeTong")
+        obstacles.append((px0 - 50.0, py0 - 50.0, px1 + 50.0, py1 + 50.0))
         pad_m = float(cap.get("pad_m", 0.10))
         if pad_m > 0:
             x_min_b = ox + float(cap.get("clip_x0", 0.0)) * 1000.0
@@ -769,20 +770,54 @@ def _render_viewport(
                 cy = oy + float(bm["label_y_override"]) * 1000.0
                 cands = [(cx, cy), (cx, cy - 260.0), (cx, cy + 260.0)]
             else:
-                off = 220.0
+                off = 250.0
+                off_far = 490.0
                 cands = (
-                    [(cx, by1 + off), (cx, by0 - off), (cx + 420.0, by1 + off), (cx - 420.0, by1 + off)]
+                    [
+                        (cx, by1 + off),
+                        (cx, by0 - off),
+                        (cx, by1 + off_far),
+                        (cx + 480.0, by1 + off),
+                        (cx - 480.0, by1 + off),
+                        (cx + 820.0, by1 + off),
+                        (cx - 820.0, by1 + off),
+                    ]
                     if side == "above"
-                    else [(cx, by0 - off), (cx, by1 + off), (cx + 420.0, by0 - off)]
+                    else [
+                        (cx, by0 - off),
+                        (cx, by1 + off),
+                        (cx, by0 - off_far),
+                        (cx + 480.0, by0 - off),
+                        (cx - 480.0, by0 - off),
+                        (cx + 820.0, by0 - off),
+                        (cx - 820.0, by0 - off),
+                    ]
                 )
         else:
             cy = oy + float(bm["label_y_override"]) * 1000.0 if bm.get("label_y_override") is not None else (by0 + by1) / 2.0
             rot = 90.0
-            off = 210.0
+            off = 240.0
+            off_far = 470.0
             cands = (
-                [(bx0 - off, cy), (bx1 + off, cy), (bx0 - off, cy + 450.0), (bx0 - off, cy - 450.0)]
+                [
+                    (bx0 - off, cy),
+                    (bx1 + off, cy),
+                    (bx0 - off_far, cy),
+                    (bx0 - off, cy + 480.0),
+                    (bx0 - off, cy - 480.0),
+                    (bx1 + off, cy + 480.0),
+                    (bx1 + off, cy - 480.0),
+                ]
                 if side == "left"
-                else [(bx1 + off, cy), (bx0 - off, cy), (bx1 + off, cy + 450.0), (bx1 + off, cy - 450.0)]
+                else [
+                    (bx1 + off, cy),
+                    (bx0 - off, cy),
+                    (bx1 + off_far, cy),
+                    (bx1 + off, cy + 480.0),
+                    (bx1 + off, cy - 480.0),
+                    (bx0 - off, cy + 480.0),
+                    (bx0 - off, cy - 480.0),
+                ]
             )
 
         chosen = cands[0]
@@ -844,6 +879,62 @@ def _render_viewport(
             text_shift_y=float(ld.get("text_shift_y", 0.0)),
         )
 
+    # 10b. Automatic 2-axis column edge setout dimensions (`DCE_Setout`, Rule 12d / G8.06)
+    if vp.get("auto_column_setout_dims") and vp.get("columns"):
+        gx_coords_w = [ox + float(gm) * 1000.0 for _, gm in active_x]
+        gy_coords_w = [oy + float(gm) * 1000.0 for _, gm in active_y]
+        seen_x_setout: set = set()
+        seen_y_setout: set = set()
+        for col in vp.get("columns", []):
+            ckind = str(col.get("kind", "RC")).upper()
+            if "STOP" in ckind or "STEEL" in ckind:
+                continue
+            cx0 = ox + float(col["x0"]) * 1000.0
+            cy0 = oy + float(col["y0"]) * 1000.0
+            cx1 = ox + float(col["x1"]) * 1000.0
+            cy1 = oy + float(col["y1"]) * 1000.0
+            cx_mid = (cx0 + cx1) / 2.0
+            cy_mid = (cy0 + cy1) / 2.0
+            if gx_coords_w:
+                gx_near = min(gx_coords_w, key=lambda gx: abs(gx - cx_mid))
+                is_bot_side = abs(cy_mid - y_bot_plan) <= abs(cy_mid - y_top_plan)
+                base_y_set = (y_bot_plan - 430.0) if is_bot_side else (y_top_plan + 330.0)
+                for face_x in (cx0, cx1):
+                    dx_off = abs(face_x - gx_near)
+                    if 100.0 <= dx_off <= 600.0:
+                        k_x = (round(gx_near), is_bot_side, round(face_x))
+                        if k_x not in seen_x_setout:
+                            seen_x_setout.add(k_x)
+                            _add_native_dim(
+                                msp,
+                                (min(gx_near, face_x), cy_mid),
+                                (max(gx_near, face_x), cy_mid),
+                                (min(gx_near, face_x), base_y_set),
+                                angle=0.0,
+                                layer="DCE_Setout",
+                                dimtxt_mm=1.10,
+                                dimtad=1,
+                            )
+            if gy_coords_w:
+                gy_near = min(gy_coords_w, key=lambda gy: abs(gy - cy_mid))
+                base_x_set = cx0 - 420.0
+                for face_y in (cy0, cy1):
+                    dy_off = abs(face_y - gy_near)
+                    if 100.0 <= dy_off <= 600.0:
+                        k_y = (round(gy_near), round(dy_off))
+                        if k_y not in seen_y_setout:
+                            seen_y_setout.add(k_y)
+                            _add_native_dim(
+                                msp,
+                                (cx_mid, min(gy_near, face_y)),
+                                (cx_mid, max(gy_near, face_y)),
+                                (base_x_set, min(gy_near, face_y)),
+                                angle=90.0,
+                                layer="DCE_Setout",
+                                dimtxt_mm=1.10,
+                                dimtad=1,
+                            )
+
     # 11. Viewport Title + Underline + Scale
     tpos = vp.get("title_pos_mm")
     cx_title = float(tpos[0]) if tpos else (x_left_plan + x_right_plan) / 2.0
@@ -854,9 +945,19 @@ def _render_viewport(
     msp.add_line((cx_title - half_ul, title_y - 250.0), (cx_title + half_ul, title_y - 250.0), dxfattribs={"layer": "DCE_TKT-TEXT"})
     _add_text(msp, str(vp.get("scale_label", "TL: 1/100")), cx_title, title_y - 530.0, 220.0, layer="DCE_TKT-TEXT")
 
-    # 11b. Optional bottom-left viewport schedule (e.g. BẢNG THỐNG KÊ CỌC / ĐÀI MÓNG)
+    # 11b. Optional bottom-left viewport schedule (e.g. BẢNG THỐNG KÊ CỌC / ĐÀI MÓNG / CỘT)
     if vp.get("left_table"):
-        _render_left_table(engine, vp["left_table"])
+        lt_spec = dict(vp["left_table"])
+        hdrs_lt = [str(h).strip().upper() for h in lt_spec.get("headers", [])]
+        if vp.get("columns") and hdrs_lt and hdrs_lt[0] == "CỘT" and not lt_spec.get("keep_stopped_rows"):
+            active_marks = {
+                str(c.get("mark", "")).strip()
+                for c in vp["columns"]
+                if "STOP" not in str(c.get("kind", "")).upper()
+            }
+            if active_marks:
+                lt_spec["rows"] = [r for r in lt_spec.get("rows", []) if str(r[0]).strip() in active_marks]
+        _render_left_table(engine, lt_spec)
 
     # 12. Right-hand GHI CHÚ box (optional; supports default top-right or bottom_right)
     note_x0 = max(bubble_right_cx + 750.0, 28500.0)
@@ -1292,6 +1393,7 @@ def export_multiview_a3_sheet(
     project_dir: Optional[str] = None,
     use_dce_blocks: Optional[bool] = None,
     full_evidence: bool = False,
+    purge_unused: bool = True,
 ) -> Any:
     """Export one A3 multi-view sheet using `DcePlanEngine` + `.dce_audit.json` sidecar."""
     _cad_dir = str(Path(__file__).resolve().parent)
@@ -1414,6 +1516,10 @@ def export_multiview_a3_sheet(
         form_validation=form_val_dict,
         use_dce_blocks=use_dce_blocks,
     )
+
+    if purge_unused:
+        from cad_block_adapters import purge_unused_blocks
+        purge_unused_blocks(engine.doc)
 
     if not dry_run:
         out_p = Path(output_dxf_path)

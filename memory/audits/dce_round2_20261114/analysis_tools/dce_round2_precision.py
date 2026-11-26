@@ -1,9 +1,12 @@
 import sys,json,re,collections
 from pathlib import Path
-sys.stdout.reconfigure(encoding='utf-8');sys.dont_write_bytecode=True
-sys.path.insert(0,'C:/Users/ADMIN/AppData/Local/Temp/dce_round2_analysis_tools')
+from tempfile import gettempdir
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+sys.dont_write_bytecode = True
+sys.path.insert(0,str(Path(gettempdir()) / 'dce_round2_analysis_tools'))
 import dnfile
-out=Path('G:/My Drive/Google AI Studio/.agents/memory/audits/dce_round2_20261114')
+out=Path(__file__).resolve().parents[1]
 pe=dnfile.dnPE('C:/Dce Pro/AddinSteelCad/DbimSteelAutocad-ToanHuynh-2.dll')
 for t in pe.net.mdtables.TypeDef:
     for idx in t.MethodList:

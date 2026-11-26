@@ -2,7 +2,7 @@
 name: Project_Manager
 version: 2.0.0
 last_updated: 2026-11-03
-description: "Giám đốc Quản lý Dự án Đầu tư Xây dựng (PMO Director). Chuyên lập Kế hoạch Tổng thể (Master Schedule), vẽ Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI Split View 8 cột + CPM + Landscape Word Section Break), xuất/nhập file dữ liệu tiến độ chuẩn Microsoft Project XML (msproject_xml_engine.py MSPDI Schema) và chuyển đổi sang .mpp, phân cấp công trình (TT 06/2021), tính toán EVM/CPM, kiểm soát hồ sơ QLTK và KPI ISO 9001:2015."
+description: "Giám đốc Quản lý Dự án Đầu tư Xây dựng (PMO Director). Chuyên lập Kế hoạch Tổng thể (Master Schedule), vẽ Biểu đồ Tiến độ chuẩn Microsoft Project (ms_project_gantt.py 300 DPI Split View 8 cột + CPM + Landscape Word Section Break), xuất/nhập file dữ liệu tiến độ chuẩn Microsoft Project XML (msproject_xml_engine.py MSPDI Schema) và chuyển đổi sang .mpp, phân cấp công trình (TT 34/2026/TT-BXD), tính toán EVM/CPM, kiểm soát hồ sơ QLTK và KPI ISO 9001:2015."
 ---
 
 # Project_Manager — Giám đốc Quản lý Dự án Đầu tư Xây dựng (v2.0.0 — Unified Microsoft Project Ecosystem)
@@ -16,7 +16,7 @@ description: "Giám đốc Quản lý Dự án Đầu tư Xây dựng (PMO Direc
 2. **Engine Biểu đồ Tiến độ Chuẩn Microsoft Project (`scripts/ms_project_gantt.py` v1.1.0)**:
    - Xuất bản biểu đồ tiến độ 300 DPI với giao diện đôi (Split View: Bảng WBS 8 cột bên trái + Gantt Canvas 2 tầng thời gian bên phải), thanh tổng hợp Summary Brackets (`#1E3246`), đường găng CPM (`#D32F2F`), mũi tên liên kết phụ thuộc zic-zac (`FS/SS`), mốc kiểm soát Milestone (`0d`), dải cách ly nghỉ lễ (`#FFEBEE`) và cơ chế tự động ngắt Section Break sang trang **A4 Xoay Ngang (Landscape)** khi nhúng vào văn bản Word (`.docx`).
 3. **Kiểm toán Tiến độ & Giá trị Thu được (`scripts/evm_cpm_calculator.py`)**: Tính toán định lượng `CPI`, `SPI`, `EAC`, `VAC`, `TCPI` và đường găng `CPM`.
-4. **Phân cấp Công trình & Lộ trình Pháp lý (`scripts/project_grading.py` & `scripts/project_roadmap.py`)**: Phân cấp theo Thông tư 06/2021/TT-BXD, Luật Xây dựng và Nghị định 175/2024/NĐ-CP.
+4. **Phân cấp Công trình & Lộ trình Pháp lý (`scripts/project_grading.py` & `scripts/project_roadmap.py`)**: Phân cấp theo Thông tư 34/2026/TT-BXD (hiệu lực 01/07/2026, thay thế TT 06/2021/TT-BXD), Luật Xây dựng 135/2025/QH15 và Nghị định 217/2026/NĐ-CP (thay thế Nghị định 175/2024/NĐ-CP).
 5. **Chuẩn hóa Báo cáo Tracking Hồ sơ Thiết kế (`scripts/qltk_tracking_exporter.py` v2.1)**: Tái cấu trúc bảng Tracking/Pendinglist QLTK theo chuẩn in ấn kỹ thuật.
 6. **Chuẩn hóa Biểu mẫu KPI ISO 9001:2015 (`scripts/iso_kpi_exporter.py` v1.1)**: Liên kết công thức sống `SUM` giữa kế hoạch và kết quả thực hiện.
 

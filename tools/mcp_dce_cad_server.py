@@ -340,20 +340,24 @@ def resolve_cad_collisions(
 
 @_tool()
 def convert_to_dwg(dxf_path: str, out_dwg: str = "") -> dict:
-    """DXF -> DWG qua ODA File Converter (nếu đã cài).
-    Chưa cài => degrade an toàn trả UNAVAILABLE + hướng dẫn (RFC §5.2.2),
-    KHÔNG hard-depend.
-    Đã được sandbox hoá hoàn toàn qua VirtualDriveGuard và scratch local:
-    - Đầu vào DXF được cô lập trên ổ NTFS cục bộ (C:/D:)
-    - ODA subprocess chỉ thao tác trong thư mục scratch cô lập
-    - Kết quả DWG được kiểm tra và chuyển an toàn về đích đến mong muốn
+    """DXF -> DWG qua Autodesk AutoCAD Core Console (accoreconsole.exe) hoặc ODA File Converter.
+    Thao tác hoàn toàn trong thư mục scratch cô lập trên ổ NTFS cục bộ, không sửa file gốc.
+    Nếu không tìm thấy cả hai công cụ => trả UNAVAILABLE trung thực.
     """
+    try:
+        import accoreconsole_adapter as _acc  # noqa: E402
+        if _acc.detect_accoreconsole():
+            res = _acc.convert_dxf_to_dwg_via_accoreconsole(dxf_path, out_dwg=out_dwg)
+            if res.get("status") != "UNAVAILABLE":
+                return res
+    except Exception:
+        pass
+
     if not os.path.isfile(ODA_EXE):
         return {"status": "UNAVAILABLE",
-                "reason": f"ODA File Converter không tìm thấy tại {ODA_EXE}",
-                "suggestion": ("Cài ODA File Converter (miễn phí, Open Design "
-                               "Alliance) rồi set env ODA_FILE_CONVERTER nếu "
-                               "đặt khác vị trí."),
+                "reason": f"Cả accoreconsole.exe và ODA File Converter ({ODA_EXE}) đều không tìm thấy.",
+                "suggestion": ("Cài đặt AutoCAD 2021 Core Console hoặc ODA File Converter "
+                               "rồi đặt biến môi trường ACCORECONSOLE_EXE / ODA_FILE_CONVERTER."),
                 "fallback": "Giao file .dxf trực tiếp (mở được mọi AutoCAD)."}
 
     safe_dxf = Path(dxf_path).resolve()
@@ -741,16 +745,12 @@ def diff_form(
     if spec is None:
         return {"status": "E001", "error": f"Unknown form_id: {form_id}"}
 
-    base_path: Optional[Path] = None
     if baseline == "prev_rev":
-        rev_dir = Path(project_dir) / "forms" / "revisions"
-        stem = Path(spec["filename"]).stem
-        revs = sorted(rev_dir.glob(f"{stem}_v*.dxf")) if rev_dir.is_dir() else []
-        if len(revs) >= 2:
-            base_path = revs[-2]
-        elif len(revs) == 1:
-            base_path = revs[0]
-    if base_path is None or not base_path.is_file():
+        base_path = cfc.previous_form_revision(Path(project_dir), spec["filename"])
+        if base_path is None:
+            return {"status": "ERROR", "code": "E001_FILE_NOT_FOUND",
+                    "error": f"No previous form revision found for {form_id}."}
+    else:
         base_path = cfc.SSOT_FORMS_DIR / spec["filename"]
 
     model_dict = None

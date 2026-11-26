@@ -58,9 +58,12 @@ class TestMcpDceCadServer(unittest.TestCase):
         self.assertEqual({s.split('(',1)[0] for s in config['_note']['tools']}, set(tool_names))
 
     def test_02_convert_to_dwg_degrade(self):
-        """convert_to_dwg phải degrade an toàn trả UNAVAILABLE khi chưa có ODA."""
+        """convert_to_dwg trả UNAVAILABLE khi cả Core Console và ODA đều vắng."""
         from unittest.mock import patch
-        with patch.object(srv, 'ODA_EXE', str(Path(self.tmp_dir) / 'unavailable.exe')):
+        with (
+            patch("accoreconsole_adapter.detect_accoreconsole", return_value=None),
+            patch.object(srv, 'ODA_EXE', str(Path(self.tmp_dir) / 'unavailable.exe')),
+        ):
             res = srv.convert_to_dwg("non_existent.dxf")
         self.assertEqual(res.get("status"), "UNAVAILABLE")
         if res.get("status") == "UNAVAILABLE":

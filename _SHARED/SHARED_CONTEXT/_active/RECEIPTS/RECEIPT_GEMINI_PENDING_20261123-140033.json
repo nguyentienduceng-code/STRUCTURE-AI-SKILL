@@ -1,0 +1,40 @@
+{
+  "receipt_id": "RCP_20261123-140033_GEMINI_PENDING",
+  "issued_at": "2026-11-23T14:00:33.136769+07:00",
+  "project_code": "02_SS1",
+  "action_type": "DOCX",
+  "sender": "GEMINI",
+  "target": "CODEX",
+  "handoff_status": "PENDING",
+  "gate_passed": false,
+  "gate_missing": [
+    "visual_gate_evidence (>=1 .png preview / log nghiệm thu)"
+  ],
+  "evidence_files": [],
+  "report_file": "",
+  "evidence_hashes": {
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_CLAUDE_NEED_REVIEW_20261123-095133.json": null,
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_COMPLETED_20261123-100411.json": null,
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_COMPLETED_20261123-103611.json": null,
+    ".agents/_SHARED/SHARED_CONTEXT/_active/RECEIPTS/RECEIPT_GEMINI_PENDING_20261123-101234.json": null,
+    ".agents/memory/audits/00_management_qltk": null,
+    ".agents/memory/audits/PLAN_TIER2_PHASE2B_SOLO_AND_2C_DEBT.md": null,
+    ".agents/memory/audits/cad_v6/claude/V2_REMEDIATION_REPORT_V3.md": null,
+    ".agents/memory/audits/cad_v6/gemini/A1_V3_FINAL_VERIFICATION_REPORT.md": null,
+    ".agents/memory/audits/cad_v6/gemini/a1_06_linkage_validation_v3.json": null,
+    ".agents/memory/projects": null,
+    ".agents/tests/test_tier2_phase2b_snapshot_diff.py": null,
+    ".agents/tools/autocad_snapshot_bridge.py": null,
+    ".agents/tools/dce_snapshot_plugin.cs": null,
+    ".agents/tools/dce_snapshot_plugin.dll": null,
+    ".agents/tools/native_dwg_diff.py": null,
+    ".agents/tools/native_dwg_snapshot.py": null,
+    "01_Projects/02_SS1/04_Deliverables_ToTrinh/BRIEF_CODEX_SS1_TU_VAN_MONG_BE.md": null,
+    "01_Projects/02_SS1/04_Deliverables_ToTrinh/~$1_BaoCao_DanhGia_TuVan_NenMong_MongBe_20261123.docx": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": true,
+  "force_reason": "",
+  "bus_sha256": "9f6f9e934857ca52e52cc0a56ac33341285507824cfd7a0f5eca0053683a29c5",
+  "signature": "GEMINI@20261123-140033"
+}

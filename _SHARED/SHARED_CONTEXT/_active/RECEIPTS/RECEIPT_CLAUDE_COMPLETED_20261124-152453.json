@@ -1,0 +1,31 @@
+{
+  "receipt_id": "RCP_20261124-152453_CLAUDE_COMPLETED",
+  "issued_at": "2026-11-24T15:24:53.355408+07:00",
+  "project_code": "03_Sprint2_KetQua_NeChu_CAD",
+  "action_type": "CAD",
+  "sender": "CLAUDE",
+  "target": "CLAUDE",
+  "handoff_status": "COMPLETED",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-02_MatBangKetCauNgam.png",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-05_DinhViCot_Mong_T2.png",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-06_DinhViCot_T2_SanThuong.png",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-07_DinhViCot_SanThuong_TumMai.png"
+  ],
+  "report_file": ".agents/memory/audits/cad_v6/gemini/CAD_V6_S0_S1_RESULT.md",
+  "evidence_hashes": {
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-02_MatBangKetCauNgam.png": "4b76fafd57ae2d8b3d1969e454ca3c0a5d6d20b9198f017b8c225edd7fbfcb4b",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-05_DinhViCot_Mong_T2.png": "9205cf46486fecb3ca70596d625b35e8c6241aacac51481771b33823b607dfdf",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-06_DinhViCot_T2_SanThuong.png": "1f5985f7b604be03d6d5bcec432cbbcbf4036d76b05c91eafcfe579b52ada80d",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/KC-07_DinhViCot_SanThuong_TumMai.png": "0891d6d6e85c8264fe237486896de39a2106070e767003fd6007b6d5a7d3dac4",
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/SPRINT2_DRAFT/SPRINT2_Form04_RC_Detail_BBS_DRAFT.dxf": null,
+    "01_Projects/03_Sprint2_KetQua_NeChu_CAD/04_Deliverables_ToTrinh/SPRINT2_DRAFT/SPRINT2_Form04_RC_Detail_BBS_DRAFT.draft.json": null,
+    ".agents/tools/cad_rc_detail_engine.py": null
+  },
+  "force_used": false,
+  "force_reason": "",
+  "bus_sha256": "54b622f5aa73db73970fffd4cce6ea44f1f2d707a7a9aafbb7e04b7cb3a77fee",
+  "signature": "CLAUDE@20261124-152453"
+}

@@ -199,9 +199,12 @@ def extract_form_diff(
     whitelist = get_standard_layer_whitelist()
     u_layers = _extract_layers_snapshot(user_doc)
     b_layers = _extract_layers_snapshot(base_doc)
+    baseline_by_name = {name.casefold(): spec for name, spec in b_layers.items()}
+    current_names = {name.casefold() for name in u_layers}
     layer_changes: List[Dict[str, Any]] = []
     for lname, uspec in sorted(u_layers.items()):
-        if lname not in b_layers:
+        before = baseline_by_name.get(lname.casefold())
+        if before is None:
             layer_changes.append({
                 "layer": lname,
                 "kind": "added",
@@ -209,18 +212,28 @@ def extract_form_diff(
                 "after": uspec,
                 "confidence": 1.0,
             })
-        elif uspec != b_layers[lname]:
-            diffs = {k: (b_layers[lname][k], uspec[k]) for k in ("color", "linetype", "lineweight") if uspec[k] != b_layers[lname][k]}
+        elif uspec != before:
+            diffs = {k: (before[k], uspec[k]) for k in ("color", "linetype", "lineweight") if uspec[k] != before[k]}
             if diffs:
                 layer_changes.append({
                     "layer": lname,
                     "kind": "modified",
                     "whitelist_ok": lname.lower() in whitelist,
-                    "before": b_layers[lname],
+                    "before": before,
                     "after": uspec,
                     "changed_fields": diffs,
                     "confidence": 1.0,
                 })
+
+    for lname, before in sorted(b_layers.items()):
+        if lname.casefold() not in current_names:
+            layer_changes.append({
+                "layer": lname,
+                "kind": "removed",
+                "whitelist_ok": lname.lower() in whitelist,
+                "before": before,
+                "confidence": 1.0,
+            })
 
     # 2. Zone diffs
     zone_changes: List[Dict[str, Any]] = []
@@ -367,6 +380,7 @@ def extract_form_diff(
         "user_form_dxf": str(up),
         "baseline_form_dxf": str(bp),
         "user_form_sha256": u_val.inventory.get("dxf_sha256", ""),
+        "baseline_form_sha256": b_val.inventory.get("dxf_sha256", ""),
         "change_count": total_changes,
         "layer_changes": layer_changes,
         "zone_changes": zone_changes,

@@ -342,6 +342,7 @@ def get_bus_paths(ws_root: Path) -> tuple[Path, Path]:
     return ws_root / "memory" / "DUAL_AGENT_BUS.json", ws_root / "memory" / "DUAL_AGENT_HANDOFF_MEMO.md"
 
 BUS_PATH, MEMO_PATH = get_bus_paths(WORKSPACE_ROOT)
+ACTIVE_POINTER_PATH = WORKSPACE_ROOT / ".agents" / "memory" / "_CA_HIEN_TAI.md"
 LOCK_PATH = LOCK_DIR / LOCK_FILENAME
 
 
@@ -947,6 +948,46 @@ def detect_modified_files(
 # 4. BỘ KIỂM TRA TÍNH HỢP LỆ DỮ LIỆU & QUY ƯỚC TRẠNG THÁI (SCHEMA v3.0)
 # ==============================================================================
 
+VALID_LIFECYCLE_STATES = (
+    "DESIGN_PROPOSAL",
+    "DRAFT_PACKAGE",
+    "NATIVE_GENERATED",
+    "NATIVE_VALIDATED",
+    "ENGINEER_APPROVED",
+)
+
+
+def detect_environment_capabilities(workspace_root: Path = WORKSPACE_ROOT) -> Dict[str, Any]:
+    """Khảo sát năng lực công cụ CAD/Bus trên máy cục bộ để đính kèm vào phiếu bàn giao v3.6."""
+    accore_exe: Optional[str] = None
+    try:
+        tools_dir = str(Path(__file__).resolve().parent)
+        if tools_dir not in sys.path:
+            sys.path.insert(0, tools_dir)
+        import accoreconsole_adapter  # noqa: E402
+        accore_exe = accoreconsole_adapter.detect_accoreconsole()
+    except Exception:
+        accore_exe = None
+
+    try:
+        import ezdxf  # noqa: F401
+        ezdxf_ok = True
+    except Exception:
+        ezdxf_ok = False
+
+    return {
+        "schema_version": "3.6",
+        "workspace_root_posix": str(Path(workspace_root)).replace("\\", "/"),
+        "accoreconsole_available": bool(accore_exe),
+        "accoreconsole_exe": accore_exe,
+        "accoreconsole_readonly_cmd": "python .agents/tools/accoreconsole_adapter.py --audit-only <path.dwg>",
+        "autocad_snapshot_bridge": ".agents/tools/autocad_snapshot_bridge.py",
+        "python_ezdxf_available": ezdxf_ok,
+        "sheet_set_manager_native_dst": False,
+        "live_peer_messaging_between_tabs": False,
+    }
+
+
 VALID_HANDOFF_STATUSES = {
     "PENDING",       # Agent A vừa giao việc, đang chờ Agent B nhận ca
     "IN_PROGRESS",   # Agent B đã tiếp nhận và đang chủ động thực thi (LOCK - Không can thiệp)
@@ -963,7 +1004,8 @@ VALID_STATUSES = {
     "VERIFIED_AND_ACCEPTED_BY_BOTH_AGENTS",
     "CLAUDE_VERIFIED_PASS_WITH_FIXES",
     "REJECTED_WITH_FEEDBACK",
-    "REVIEW_REQUIRED"
+    "REVIEW_REQUIRED",
+    "BLOCKED_RETURN"
 }
 
 def validate_bus_payload(payload: dict) -> Tuple[bool, str]:
@@ -1063,6 +1105,17 @@ def generate_handoff_memo(payload: dict, memo_path: Path = MEMO_PATH) -> None:
     gate_ok, gate_missing = visual_gate_check(payload)
     if not gate_ok:
         memo_lines.append(f"> **Visual Gate (Điều 12d):** 🛑 CHƯA ĐẠT — thiếu: {', '.join(gate_missing)}  ")
+    env_caps = payload.get("environment_capabilities") if isinstance(payload.get("environment_capabilities"), dict) else None
+    lifecycle_st = ctx.get("artifact_lifecycle_state")
+    if lifecycle_st:
+        memo_lines.append(f"> **Trạng thái vòng đời sản phẩm:** `{lifecycle_st}`  ")
+    if env_caps:
+        ac_exe = env_caps.get("accoreconsole_exe") or "KHÔNG TÌM THẤY"
+        memo_lines.append(
+            f"> **Năng lực môi trường (v3.6):** `accoreconsole.exe`={'CÓ' if env_caps.get('accoreconsole_available') else 'KHÔNG'} (`{ac_exe}`) "
+            f"| chỉ-đọc: `{env_caps.get('accoreconsole_readonly_cmd', '')}` "
+            f"| `native_dst={bool(env_caps.get('sheet_set_manager_native_dst', False))}`  "
+        )
     memo_lines.extend([
         f"> **Chế độ phân việc:** {role_distribution}  ",
         f"> **Kênh bus nguyên tử:** `{to_relative_path(str(BUS_PATH), WORKSPACE_ROOT)}`  ",
@@ -1116,6 +1169,13 @@ def generate_handoff_memo(payload: dict, memo_path: Path = MEMO_PATH) -> None:
         for crit in criteria:
             memo_lines.append(f"  - [ ] {crit}")
 
+    blocking_qs = next_action.get("blocking_questions", [])
+    if blocking_qs:
+        memo_lines.append("")
+        memo_lines.append("- **Câu hỏi / Điểm chặn cần đối tác phản hồi (`BLOCKED_RETURN`):**")
+        for bq in blocking_qs:
+            memo_lines.append(f"  - ⛔ {bq}")
+
     memo_lines.extend([
         "",
         f"- **Lệnh điều phối tương thích (Command):**",
@@ -1129,6 +1189,13 @@ def generate_handoff_memo(payload: dict, memo_path: Path = MEMO_PATH) -> None:
 
     memo_content = "\n".join(memo_lines)
     _atomic_write_text(memo_path, memo_content)
+    try:
+        ws_resolved = Path(WORKSPACE_ROOT).resolve()
+        ptr_resolved = Path(ACTIVE_POINTER_PATH).resolve()
+        if Path(memo_path).resolve() == Path(MEMO_PATH).resolve() and ptr_resolved.is_relative_to(ws_resolved):
+            _atomic_write_text(ACTIVE_POINTER_PATH, memo_content)
+    except OSError:
+        pass
 
 
 # ==============================================================================
@@ -1214,6 +1281,9 @@ def auto_handoff(
     dispatch_ticket: Optional[dict] = None,
     approval_record: Optional[dict] = None,
     review_record: Optional[dict] = None,
+    # ---- v3.6 Capabilities, Lifecycle State & Blocked-Return ----
+    artifact_lifecycle_state: Optional[str] = None,
+    blocking_questions: Optional[List[str]] = None,
 ) -> dict:
     """
     TỰ ĐỘNG BÀN GIAO THÔNG TIN KHI CÓ XÁC NHẬN (AUTOMATED HANDOFF ON CONFIRMATION v3.0/v3.3).
@@ -1272,14 +1342,35 @@ def auto_handoff(
     elif report_file:
         eff_report_file = to_relative_path(report_file, WORKSPACE_ROOT)
 
+    if artifact_lifecycle_state is not None and artifact_lifecycle_state not in VALID_LIFECYCLE_STATES:
+        raise ValueError(f"[SYNC_BUS v3.6] Invalid artifact_lifecycle_state: {artifact_lifecycle_state}. Allowed: {VALID_LIFECYCLE_STATES}")
+
+    # Bảo toàn work_ticket cùng dự án khi bàn giao lại mà không truyền --dispatch-ticket
+    if work is None and BUS_PATH.exists():
+        try:
+            prev_bus = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
+            prev_wt = prev_bus.get("work_ticket")
+            prev_proj = str((prev_bus.get("project_context") or {}).get("project_code", ""))
+            if isinstance(prev_wt, dict) and (not prev_proj or prev_proj == project_code):
+                work = dict(prev_wt)
+                work["status"] = handoff_status
+                work["task_title"] = task_description or next_cmd or work.get("task_title", "")
+        except Exception:
+            pass
+
+    clean_blocking = [str(q).strip() for q in (blocking_questions or []) if str(q).strip()]
+    project_ctx = {
+        "project_code": project_code,
+        "project_purpose": project_purpose,
+        "role_distribution": role_distribution,
+        "action_type": action_type,
+        **({"artifact_lifecycle_state": artifact_lifecycle_state} if artifact_lifecycle_state else {}),
+    }
+
     payload = {
         **({"work_ticket": work} if work else {}),
-        "project_context": {
-            "project_code": project_code,
-            "project_purpose": project_purpose,
-            "role_distribution": role_distribution,
-            "action_type": action_type
-        },
+        "project_context": project_ctx,
+        "environment_capabilities": detect_environment_capabilities(WORKSPACE_ROOT),
         "last_updated_by": sender,
         "timestamp": datetime.now().astimezone().isoformat(),
         "handoff_status": handoff_status,
@@ -1297,6 +1388,7 @@ def auto_handoff(
             **({"evidence_files": [to_relative_path(f, WORKSPACE_ROOT) for f in evidence_files if str(f).strip()]} if evidence_files else {}),
             **({"acceptance_cmd": acceptance_cmd} if acceptance_cmd else {}),
             **({"report_file": eff_report_file} if eff_report_file else {}),
+            **({"blocking_questions": clean_blocking} if clean_blocking else {}),
         },
         "Verification_Status": status
     }
@@ -1570,15 +1662,21 @@ def complete_task(
 
 def request_review(
     agent: str, summary: str = "", next_agent: str = "GEMINI", force: bool = False,
-    reason: str = "", report_file: Optional[str] = None
+    reason: str = "", report_file: Optional[str] = None,
+    blocking_questions: Optional[List[str]] = None,
+    blocked_return: bool = False,
+    task_description: str = "",
 ) -> dict:
     """
-    Tác tử hoàn thành bước kỹ thuật và yêu cầu kiểm tra chéo / phê duyệt.
-    Chuyển handoff_status -> NEED_REVIEW, bàn giao lượt review cho next_agent.
+    Tác tử hoàn thành bước kỹ thuật hoặc phát hiện điểm chặn/mâu thuẫn và chuyển lượt review.
+    Chuyển handoff_status -> NEED_REVIEW, current_holder -> IDLE, bàn giao lượt cho next_agent.
 
-    v3.2 — Visual Gate (Điều 12d): với task CAD/Bản vẽ, bắt buộc có bằng chứng
-    nghiệm thu (preview .png / log) trước khi đặt NEED_REVIEW.
+    v3.6 — Hỗ trợ `blocked_return=True` / `blocking_questions`: trả ca khi thiếu đầu vào/công cụ
+    hoặc phát hiện mâu thuẫn mà KHÔNG cần --force vượt Visual Gate.
     """
+    clean_blocking = [str(q).strip() for q in (blocking_questions or []) if str(q).strip()]
+    eff_blocked = bool(blocked_return or clean_blocking)
+
     with FileLock(LOCK_PATH):
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
@@ -1598,21 +1696,27 @@ def request_review(
         data["current_holder"] = "IDLE"
         data["last_updated_by"] = agent
         data["timestamp"] = datetime.now().astimezone().isoformat()
-        data["Verification_Status"] = "REVIEW_REQUIRED"
+        data["Verification_Status"] = "BLOCKED_RETURN" if eff_blocked else "REVIEW_REQUIRED"
+        data["environment_capabilities"] = detect_environment_capabilities(WORKSPACE_ROOT)
         if isinstance(data.get("work_ticket"), dict):
             data["work_ticket"]["status"] = "NEED_REVIEW"
         if summary:
             data["summary"] = summary
         if "next_action_for_partner" in data:
             data["next_action_for_partner"]["target_agent"] = next_agent
+            if task_description:
+                data["next_action_for_partner"]["task_description"] = task_description
+                data["next_action_for_partner"]["command"] = task_description
+            if clean_blocking:
+                data["next_action_for_partner"]["blocking_questions"] = clean_blocking
             # v3.3: đính kèm báo cáo pha (RESULT.md) nếu khai báo
             if report_file:
                 data["next_action_for_partner"]["report_file"] = to_relative_path(report_file, WORKSPACE_ROOT)
         data.pop("lease_expire_at", None)
         data.pop("lease_holder", None)
-        # v3.2/v3.3: Visual Gate (Điều 12d) + RECEIPT
+        # v3.2/v3.3: Visual Gate (Điều 12d) + RECEIPT (miễn gate khi blocked_return trả ngược hợp lệ)
         gate_result = (True, [])
-        if not force:
+        if not force and not eff_blocked:
             gate_result = visual_gate_check(data, workspace_root=WORKSPACE_ROOT)
             gate_ok, gate_missing = gate_result[0], gate_result[1]
             if not gate_ok:
@@ -1633,9 +1737,11 @@ def request_review(
         _atomic_write_json(BUS_PATH, data)
         generate_handoff_memo(data, MEMO_PATH)
         # v3.3: RECEIPT cho ca NEED_REVIEW (lượt review chính thức) hoặc --force
-        write_receipt(data, gate_result, reason=reason, force_used=force, workspace_root=WORKSPACE_ROOT)
+        eff_reason = reason or ("BLOCKED_RETURN" if eff_blocked else "")
+        write_receipt(data, gate_result, reason=eff_reason, force_used=force, workspace_root=WORKSPACE_ROOT)
 
-    print(f"[SYNC_BUS v3.3] 🔍 {agent} ĐÃ YÊU CẦU KIỂM TRA CHÉO (NEED_REVIEW) TỪ {next_agent}!")
+    tag = "BLOCKED_RETURN (trả ca cần làm rõ)" if eff_blocked else "NEED_REVIEW"
+    print(f"[SYNC_BUS v3.6] 🔍 {agent} ĐÃ CHUYỂN TRẠNG THÁI {tag} TỚI {next_agent} (holder=IDLE)!")
     return data
 
 
@@ -1835,7 +1941,7 @@ def main():
     parser.add_argument("--agent", type=str, default="CLAUDE", help="Tên tác tử thực hiện thao tác vòng đời")
 
     # Bàn giao tự động
-    parser.add_argument("--agent-selection", choices=("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "DUAL"))
+    parser.add_argument("--agent-selection", choices=("AUTO", "CLAUDE_ONLY", "GEMINI_ONLY", "CODEX_ONLY", "DUAL"))
     parser.add_argument("--dispatch-ticket", type=Path, help="Phiếu do dispatch_task.py prepare tạo")
     parser.add_argument("--approval-record", type=Path, help="Xác nhận của người dùng trước khi xuất")
     parser.add_argument("--review-record", type=Path, help="Xác nhận kiểm tra phiên bản cuối")
@@ -1888,6 +1994,12 @@ def main():
                         help="v3.3: Chỉ định file báo cáo pha (RESULT.md) hiện có cho ca này")
     parser.add_argument("--phase", type=str, default="SHIFT",
                         help="v3.3: Số hiệu pha/ca (vd C1, G2, A1) — dùng cho tên RESULT.md")
+    parser.add_argument("--lifecycle-state", choices=VALID_LIFECYCLE_STATES, default=None,
+                        help="v3.6: Trạng thái vòng đời sản phẩm (DESIGN_PROPOSAL..ENGINEER_APPROVED)")
+    parser.add_argument("--blocking-questions", type=str, default="",
+                        help="v3.6: Câu hỏi/điểm chặn phân cách dấu chấm phẩy (;) khi trả ca NEED_REVIEW")
+    parser.add_argument("--blocked-return", action="store_true",
+                        help="v3.6: Trả ca về đối tác ở trạng thái NEED_REVIEW / BLOCKED_RETURN để làm rõ đầu vào")
 
     # Xử lý xung đột Google Drive
     parser.add_argument("--scan-conflicts", action="store_true", help="Quét tìm các tệp tin xung đột Google Drive (1), (2)")
@@ -1943,8 +2055,11 @@ def main():
         return
 
     if args.need_review:
+        blocking_list = [q.strip() for q in args.blocking_questions.split(";") if q.strip()] if args.blocking_questions else None
         request_review(args.agent, summary=args.summary, next_agent=args.target, force=args.force,
-                       reason=args.receipt_reason, report_file=args.report_file)
+                       reason=args.receipt_reason, report_file=args.report_file,
+                       blocking_questions=blocking_list, blocked_return=args.blocked_return,
+                       task_description=args.task)
         return
 
     if args.scan_conflicts:
@@ -2001,6 +2116,9 @@ def main():
             report_file=args.report_file,
             phase=args.phase,
             emit_report=args.emit_report,
+            # v3.6 Capabilities, Lifecycle & Blocked-Return
+            artifact_lifecycle_state=args.lifecycle_state,
+            blocking_questions=[q.strip() for q in args.blocking_questions.split(";") if q.strip()] if args.blocking_questions else None,
         )
         if "dispatch_2d" in result:
             print(json.dumps(result, ensure_ascii=False))

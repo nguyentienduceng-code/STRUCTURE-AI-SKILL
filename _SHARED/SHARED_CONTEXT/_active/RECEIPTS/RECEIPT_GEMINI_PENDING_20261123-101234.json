@@ -1,0 +1,26 @@
+{
+  "receipt_id": "RCP_20261123-101234_GEMINI_PENDING",
+  "issued_at": "2026-11-23T10:12:34.728929+07:00",
+  "project_code": "00_MANAGEMENT_QLTK",
+  "action_type": "AUDIT",
+  "sender": "GEMINI",
+  "target": "CLAUDE",
+  "handoff_status": "PENDING",
+  "gate_passed": false,
+  "gate_missing": [
+    "visual_gate_evidence (>=1 .png preview / log nghiệm thu)"
+  ],
+  "evidence_files": [],
+  "report_file": "",
+  "evidence_hashes": {
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Bang_Phan_Loai_10_Module_Vat_Lieu_20261123.xlsx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Bang_Kiem_Soat_Vat_Lieu_Style_TikTok_v2_20261112.xlsx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/BXD-Link tiktok tham khảo các thiết kế, thi công, vật liệu mới-02-10-2026 84LINK.docx": null,
+    "01_Projects/00_Management_QLTK/05_Giao_Nhan_Ho_So_&_Van_Ban/Vat_Lieu_Tham_Khao/_CHANGELOG.md": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": true,
+  "force_reason": "Giao ca cho Claude thẩm tra độc lập các liên kết trùng lặp và thiếu sót theo yêu cầu của Người dùng",
+  "bus_sha256": "3c4663932c57ee1a61d45688faeb46992cd05532270c8551b64b12299617da1f",
+  "signature": "GEMINI@20261123-101234"
+}

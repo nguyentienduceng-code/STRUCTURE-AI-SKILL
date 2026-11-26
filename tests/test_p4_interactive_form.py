@@ -17,6 +17,7 @@ Conventions mirror `test_p1_schema_gate_and_merge_lane.py` and
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import tempfile
@@ -108,6 +109,38 @@ class TestP4StructuralGateUnit(unittest.TestCase):
 # ============================================================================
 
 class TestP4PatcherFlow(unittest.TestCase):
+    def test_previous_revision_matches_across_mcp_and_patcher(self):
+        import mcp_dce_cad_server as server
+
+        with tempfile.TemporaryDirectory() as tmp:
+            project, form = _proj_with_form(tmp)
+            revisions = project / "forms" / "revisions"
+            # Move the seeded history aside to model a project without snapshots.
+            revisions.rename(project / "forms" / "seeded_revisions")
+            revisions.mkdir()
+            (revisions / f"{form.stem}_vbackup.dxf").touch()
+            (revisions / f"{form.stem}_v99.dxf").mkdir()
+            patcher = cfp.NonDestructivePatcher(project, FORM, baseline="prev_rev")
+
+            missing = server.diff_form(str(project), FORM, "prev_rev")
+            self.assertEqual(missing.get("code"), "E001_FILE_NOT_FOUND")
+            with self.assertRaises(mdf.DiffValidationError) as caught:
+                patcher.diff_form()
+            self.assertEqual(caught.exception.code, "E001_FILE_NOT_FOUND")
+
+            for version, expected in ((9, 9), (10, 9), (11, 10)):
+                snapshot = revisions / f"{form.stem}_v{version}.dxf"
+                drawing = ezdxf.readfile(form)
+                drawing.layers.new(f"REVISION_{version}")
+                drawing.saveas(snapshot)
+                for diff in (server.diff_form(str(project), FORM, "prev_rev"), patcher.diff_form()):
+                    expected_file = revisions / f"{form.stem}_v{expected}.dxf"
+                    self.assertEqual(Path(diff["baseline_form_dxf"]), expected_file)
+                    removed = [c["layer"] for c in diff["layer_changes"] if c["kind"] == "removed"]
+                    self.assertEqual(removed, [f"REVISION_{expected}"])
+                    self.assertEqual(diff["baseline_form_sha256"], hashlib.sha256(expected_file.read_bytes()).hexdigest())
+                    self.assertEqual(diff["user_form_sha256"], hashlib.sha256(form.read_bytes()).hexdigest())
+
     def test_e001_missing_model_ssot(self):
         with tempfile.TemporaryDirectory() as td:
             res = ops.init_project_workspace("P4_E001", base_dir=td, seed_model=_build_two_sheet_model())

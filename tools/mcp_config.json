@@ -1,10 +1,9 @@
 {
   "mcpServers": {
     "dce-cad": {
-      "command": "python",
-      "args": ["-B", "G:\\My Drive\\Google AI Studio\\.agents\\tools\\mcp_dce_cad_server.py"],
+      "command": "py",
+      "args": ["-3", "-B", "mcp_dce_cad_server.py"],
       "env": {
-        "ODA_FILE_CONVERTER": "C:\\Program Files\\ODA\\ODA File Converter\\ODAFileConverter.exe",
         "PYTHONIOENCODING": "utf-8",
         "PYTHONDONTWRITEBYTECODE": "1"
       }
@@ -14,7 +13,8 @@
     "source": "RFC_MCP_DCE_CAD_PERCEPTION_LOOP.md §6.3.4 (mẫu cấu trúc từ kit E, trỏ .agents/ thật)",
     "clients": ["Claude Code (claude mcp add --python ...)", "Claude Desktop (claude_desktop_config.json)", "Antigravity IDE", "Cursor (mcp.json)"],
     "registration_example": {
-      "claude_code": "claude mcp add dce-cad -- python \"G:\\My Drive\\Google AI Studio\\.agents\\tools\\mcp_dce_cad_server.py\""
+      "antigravity": "py -3 \"<workspace>/.agents/tools/setup_dce_cad_mcp.py\"",
+      "claude_code": "claude mcp add dce-cad -- py -3 -B \"<workspace>/.agents/tools/mcp_dce_cad_server.py\""
     },
     "tools": [
       "render_cad_plan(sheet_type, output_dxf_path, template_path, pdf_path, model_json_path, v6, dry_run)",

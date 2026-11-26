@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-22T14:24:32.619293+07:00",
+  "timestamp": "2026-11-25T21:05:52.929612+07:00",
   "skills_summary": {
     "total": 14,
     "production": 14,
@@ -19,8 +19,8 @@
       },
       {
         "name": "Global_Dispatcher",
-        "version": "3.0.0",
-        "last_updated": "2026-11-20",
+        "version": "3.1.0",
+        "last_updated": "2026-11-23",
         "status": "production"
       },
       {
@@ -92,7 +92,7 @@
     ]
   },
   "standards": {
-    "total_standards_locked": 22,
+    "total_standards_locked": 23,
     "items": [
       {
         "domain": "Tải trọng & tác động",
@@ -179,10 +179,10 @@
         "pdf_ref": null
       },
       {
-        "domain": "Cấp công trình (Quản lý XD)",
+        "domain": "Cấp công trình & Quản lý hoạt động XD",
         "current": "Thông tư 34/2026/TT-BXD",
         "legacy": "TT 06/2021/TT-BXD",
-        "pdf_ref": "Phân cấp Đặc biệt, I, II, III, IV theo Phụ lục I (công suất) & Bảng 2 Phụ lục II (quy mô kết cấu)"
+        "pdf_ref": "`QCVN/3b. Thong tu 34-2026_TT-BXD_Phan cap cong trinh.pdf` + `QCVN/3c. Nghi dinh 217-2026_ND-CP_Quan ly hoat dong xay dung.pdf` — Phân cấp Đặc biệt, I–IV theo Phụ lục I & Bảng 2 Phụ lục II TT 34/2026; quản lý thiết kế & thẩm tra theo Điều 41, Mẫu số 02 & Mẫu số 12 Phụ lục I NĐ 217/2026"
       },
       {
         "domain": "Phân cấp phục vụ Thiết kế XD",
@@ -201,6 +201,12 @@
         "current": "QCVN 06:2022/BXD",
         "legacy": "QCVN 06:2022",
         "pdf_ref": "`QCVN/6.` + `QCVN/6a.`"
+      },
+      {
+        "domain": "An toàn trong thi công xây dựng",
+        "current": "QCVN 18:2021/BXD",
+        "legacy": "QCVN 18:2014/BXD",
+        "pdf_ref": "`QCVN/7. QCVN 18-2021_AN TOAN TRONG THI CONG XAY DUNG.pdf` — An toàn công trường (Mục 2.1), giàn giáo (Mục 2.2), kết cấu chống đỡ tạm (Mục 2.3), thiết bị nâng/cần trục tháp (Mục 2.4), đào đất & công trình ngầm (Mục 2.8)"
       },
       {
         "domain": "Nhà chung cư",

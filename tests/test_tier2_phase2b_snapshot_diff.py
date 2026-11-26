@@ -338,5 +338,92 @@ class TestNativeMcpDegrade(unittest.TestCase):
             self.assertIn("reason", s2)
 
 
+class TestEngineIdentityRoundTrip(unittest.TestCase):
+    """Engine thật (KC-02/KC-03) giờ nhúng `DCE_ELEMENT_ID` + `DCE_BEAM` XData lên
+    thực thể — snapshot đường ezdxf (native_dwg_snapshot.build_snapshot_from_dxf)
+    đọc lại được identity (with_identity>0, không DUPLICATE_PRIMARY).
+
+    Đây là 'chốt canonical element identity TRƯỚC native snapshot' (spec §4.1):
+    trước thay đổi, output engine là UNMATCHED 100% (đã đo: BV KC.dwg 31/31
+    với fixture, 10137/10137 với file thật). Chạy thật, không cần AutoCAD."""
+
+    @classmethod
+    def setUpClass(cls):
+        import importlib.util
+        import contextlib
+        import io
+        cls._contextlib, cls._io = contextlib, io
+        cad = Path(__file__).resolve().parent.parent / "skills" / "Technical_Illustrator" / "cad_integration"
+
+        def load(path, name):
+            spec = importlib.util.spec_from_file_location(name, str(path))
+            mod = importlib.util.module_from_spec(spec)
+            sys.modules[name] = mod
+            spec.loader.exec_module(mod)
+            return mod
+        cls.cpe = load(cad / "cad_plan_engine.py", "rt_engine")
+        cls.regmod = load(cad / "cad_element_registry.py", "rt_registry")
+        cls.tmp = Path(tempfile.mkdtemp(prefix="rt_identity_"))
+
+    @classmethod
+    def tearDownClass(cls):
+        import shutil
+        shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def _engine(self, model, reg, out_name):
+        return self.cpe.DcePlanEngine(model=model, v6=True, element_registry=reg)
+
+    def test_kc02_columns_walls_carry_identity(self):
+        model = self.cpe.build_structural_model()
+        reg = self.regmod.CadElementRegistry("RT_KC02")
+        out = self.tmp / "kc02.dxf"
+        eng = self._engine(model, reg, "kc02.dxf")
+        with self._contextlib.redirect_stdout(self._io.StringIO()):
+            eng.setup().render_sheet_kc02().save(str(out))
+        s = snap.build_snapshot_from_dxf(str(out), document_id="RT_KC02")
+        self.assertGreater(s["counts"]["with_identity"], 0,
+                           "KC-02 UNMATCHED toàn bộ — engine chưa nhúng DCE_ELEMENT_ID")
+        cols = [r for r in s["records"] if (r.get("element_id") or "").startswith("COL_")]
+        walls = [r for r in s["records"] if (r.get("element_id") or "").startswith("WALL_")]
+        self.assertGreater(len(cols), 0, "không có cột nào mang element_id")
+        for c in cols:
+            self.assertEqual(c["role"], "PRIMARY_GEOM")
+        self.assertGreater(len(walls), 0, "không có vách nào mang element_id")
+        # Mỗi element_id DUY NHẤT một PRIMARY (không COPY/đổi revision giả).
+        rep = diff.diff_snapshots(s, s)
+        self.assertEqual(rep["issues"]["DUPLICATE_PRIMARY"], {})
+        # element_id trong snapshot phải khớp registry (định danh bền, không UUID).
+        reg_ids = {eid for eid in reg.elements if eid.startswith(("COL_", "WALL_"))}
+        snap_ids = {c["element_id"] for c in cols + walls}
+        self.assertEqual(snap_ids, reg_ids)
+
+    def test_kc03_v6_beams_carry_identity_and_beam_xdata(self):
+        model = self.cpe.build_structural_model()
+        reg = self.regmod.CadElementRegistry("RT_KC03")
+        out = self.tmp / "kc03_v6.dxf"
+        eng = self._engine(model, reg, "kc03_v6.dxf")
+        with self._contextlib.redirect_stdout(self._io.StringIO()):
+            eng.setup().render_sheet_kc03().save_v6(str(out))
+        s = snap.build_snapshot_from_dxf(str(out), document_id="RT_KC03")
+        from collections import Counter
+        prim = [r for r in s["records"] if r.get("role") == "PRIMARY_GEOM" and r.get("element_id")]
+        counts = Counter(r["element_id"] for r in prim)
+        self.assertTrue(all(v == 1 for v in counts.values()),
+                        f"DUPLICATE_PRIMARY trong engine: "
+                        f"{ {k: v for k, v in counts.items() if v > 1} }")
+        # Dầm v6 (KC-03) mang định danh BEAM_* (kèm DCE_ELEMENT_ID + DCE_BEAM).
+        beams = [r for r in prim if r["element_id"].startswith("BEAM_")]
+        self.assertGreater(len(beams), 0, "không dầm v6 nào mang element_id")
+        with_b = [b for b in beams if (b.get("properties") or {}).get("b_mm") is not None]
+        self.assertGreater(len(with_b), 0, "DCE_BEAM (MARK/B/H) chưa được gắn")
+        for b in with_b:
+            self.assertTrue(b.get("mark"), "dầm thiếu DCE_BEAM.MARK")
+        # Nét 2 của dầm double-line là DETAIL_VIEW (cùng eid), không phải PRIMARY thứ hai.
+        details = [r for r in s["records"]
+                   if r.get("role") == "DETAIL_VIEW" and (r.get("element_id") or "").startswith("BEAM_")]
+        self.assertEqual(len(details), len(beams),
+                         "mỗi dầm double-line phải có đúng 1 nét phụ DETAIL_VIEW")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

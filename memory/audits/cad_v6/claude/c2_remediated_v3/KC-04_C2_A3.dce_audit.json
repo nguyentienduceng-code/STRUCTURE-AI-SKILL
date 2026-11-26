@@ -1,11 +1,11 @@
 {
   "schema_version": "DCE_C2_PROVENANCE_V2",
   "provenance": {
-    "dxf_sha256": "954a72a0e1eb4b97930020be6e999a0ec22638049b81d0cad5c39c1d2e890b04",
-    "fixture_sha256": "ae84387a39f2205ecec452c964844c42a9da99e3f13e353c00b23a1df9ed66ec",
+    "dxf_sha256": "b4df8bc644faed049a3ffa2041e750bc22e1bdb012b51fadc01816ecfc492430",
+    "fixture_sha256": "cc3607c5eb9415fd1de0f6b7d2b1c032b06cbc08197339d35d7884608a55aa47",
     "generator": "cad_sheet_set.C2_REMEDIATED_V2"
   },
-  "dxf_sha256": "954a72a0e1eb4b97930020be6e999a0ec22638049b81d0cad5c39c1d2e890b04",
+  "dxf_sha256": "b4df8bc644faed049a3ffa2041e750bc22e1bdb012b51fadc01816ecfc492430",
   "sheet_no": "KC-04",
   "sheet_status": "PASS",
   "scale": 50.0,
@@ -512,28 +512,76 @@
       "strip_id": "RS_F2_BOT_X1",
       "face": "BOTTOM",
       "layer": "REBAR_BOTTOM",
-      "handle": "16D"
+      "handles": [
+        "16D",
+        "16E"
+      ],
+      "region": [
+        8800.0,
+        12000.0,
+        12500.0,
+        13500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 450.0,
+      "cover_mm": 40.0
     },
     {
       "type": "SLAB_REBAR_STRIP",
       "strip_id": "RS_F2_BOT_Y1",
       "face": "BOTTOM",
       "layer": "REBAR_BOTTOM",
-      "handle": "16F"
+      "handles": [
+        "170",
+        "171"
+      ],
+      "region": [
+        8800.0,
+        12000.0,
+        12500.0,
+        13500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 450.0,
+      "cover_mm": 40.0
     },
     {
       "type": "SLAB_REBAR_STRIP",
       "strip_id": "RS_F2_TOP_X1",
       "face": "TOP",
       "layer": "REBAR_TOP",
-      "handle": "171"
+      "handles": [
+        "173",
+        "174"
+      ],
+      "region": [
+        10000.0,
+        14000.0,
+        14000.0,
+        15000.0
+      ],
+      "bars": 2,
+      "spacing_mm": 250.0,
+      "cover_mm": 30.0
     },
     {
       "type": "SLAB_REBAR_STRIP",
       "strip_id": "RS_F2_TOP_Y1",
       "face": "TOP",
       "layer": "REBAR_TOP",
-      "handle": "173"
+      "handles": [
+        "176",
+        "177"
+      ],
+      "region": [
+        15100.0,
+        12500.0,
+        18200.0,
+        14500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 350.0,
+      "cover_mm": 30.0
     }
   ],
   "blocks_defined": {
@@ -722,6 +770,11 @@
         "F1",
         "F2",
         "F3"
+      ],
+      "ps_schedule_handles": [
+        "198",
+        "199",
+        "19A"
       ]
     },
     "COL_C1_F2": {
@@ -747,6 +800,11 @@
         "FC",
         "FD",
         "FE"
+      ],
+      "ps_schedule_handles": [
+        "19B",
+        "19C",
+        "19D"
       ]
     },
     "BM_D1A_F2_S1": {
@@ -772,6 +830,11 @@
         "107",
         "108",
         "109"
+      ],
+      "ps_schedule_handles": [
+        "19E",
+        "19F",
+        "1A0"
       ]
     },
     "BM_D1A_F2_S2": {
@@ -797,6 +860,11 @@
         "112",
         "113",
         "114"
+      ],
+      "ps_schedule_handles": [
+        "1A1",
+        "1A2",
+        "1A3"
       ]
     },
     "STEEL_COL_C1": {
@@ -822,6 +890,11 @@
         "11D",
         "11E",
         "11F"
+      ],
+      "ps_schedule_handles": [
+        "1A4",
+        "1A5",
+        "1A6"
       ]
     },
     "STEEL_BM_B1": {
@@ -847,6 +920,11 @@
         "128",
         "129",
         "12A"
+      ],
+      "ps_schedule_handles": [
+        "1A7",
+        "1A8",
+        "1A9"
       ]
     },
     "STEEL_BOX_BX1": {
@@ -872,6 +950,11 @@
         "133",
         "134",
         "135"
+      ],
+      "ps_schedule_handles": [
+        "1AA",
+        "1AB",
+        "1AC"
       ]
     },
     "STEEL_CH_U1": {
@@ -897,6 +980,11 @@
         "13E",
         "13F",
         "140"
+      ],
+      "ps_schedule_handles": [
+        "1AD",
+        "1AE",
+        "1AF"
       ]
     },
     "STEEL_PP_P1": {
@@ -922,6 +1010,11 @@
         "149",
         "14A",
         "14B"
+      ],
+      "ps_schedule_handles": [
+        "1B0",
+        "1B1",
+        "1B2"
       ]
     },
     "STEEL_BP_01": {
@@ -947,6 +1040,11 @@
         "154",
         "155",
         "156"
+      ],
+      "ps_schedule_handles": [
+        "1B3",
+        "1B4",
+        "1B5"
       ]
     },
     "STEEL_BP_02": {
@@ -972,6 +1070,11 @@
         "15F",
         "160",
         "161"
+      ],
+      "ps_schedule_handles": [
+        "1B6",
+        "1B7",
+        "1B8"
       ]
     },
     "STEEL_PL_01": {
@@ -997,49 +1100,90 @@
         "16A",
         "16B",
         "16C"
+      ],
+      "ps_schedule_handles": [
+        "1B9",
+        "1BA",
+        "1BB"
       ]
     },
     "RS_F2_BOT_X1": {
       "geometry_handles": [
-        "16D"
+        "16D",
+        "16E"
       ],
       "source_refs": [
         "RS_F2_BOT_X1"
       ],
       "face": "BOTTOM",
+      "region": [
+        8800.0,
+        12000.0,
+        12500.0,
+        13500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 450.0,
       "tag_refs": [],
       "schedule_refs": []
     },
     "RS_F2_BOT_Y1": {
       "geometry_handles": [
-        "16F"
+        "170",
+        "171"
       ],
       "source_refs": [
         "RS_F2_BOT_Y1"
       ],
       "face": "BOTTOM",
+      "region": [
+        8800.0,
+        12000.0,
+        12500.0,
+        13500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 450.0,
       "tag_refs": [],
       "schedule_refs": []
     },
     "RS_F2_TOP_X1": {
       "geometry_handles": [
-        "171"
+        "173",
+        "174"
       ],
       "source_refs": [
         "RS_F2_TOP_X1"
       ],
       "face": "TOP",
+      "region": [
+        10000.0,
+        14000.0,
+        14000.0,
+        15000.0
+      ],
+      "bars": 2,
+      "spacing_mm": 250.0,
       "tag_refs": [],
       "schedule_refs": []
     },
     "RS_F2_TOP_Y1": {
       "geometry_handles": [
-        "173"
+        "176",
+        "177"
       ],
       "source_refs": [
         "RS_F2_TOP_Y1"
       ],
       "face": "TOP",
+      "region": [
+        15100.0,
+        12500.0,
+        18200.0,
+        14500.0
+      ],
+      "bars": 2,
+      "spacing_mm": 350.0,
       "tag_refs": [],
       "schedule_refs": []
     }

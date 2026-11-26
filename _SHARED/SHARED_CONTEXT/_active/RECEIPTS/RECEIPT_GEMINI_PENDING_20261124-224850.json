@@ -1,0 +1,30 @@
+{
+  "receipt_id": "RCP_20261124-224850_GEMINI_PENDING",
+  "issued_at": "2026-11-24T22:48:50.574849+07:00",
+  "project_code": "03_Sprint2_KetQua_NeChu_CAD",
+  "action_type": "CODE",
+  "sender": "GEMINI",
+  "target": "CLAUDE",
+  "handoff_status": "PENDING",
+  "gate_passed": true,
+  "gate_missing": [],
+  "evidence_files": [],
+  "report_file": ".agents/memory/audits/cad_v6/gemini/DUAL_BRIDGE_V36_RESULT.md",
+  "evidence_hashes": {
+    ".agents/tools/sync_bus.py": null,
+    ".agents/tools/accoreconsole_adapter.py": null,
+    ".agents/tools/claude_safety_hook.py": null,
+    ".agents/tools/antigravity_dual_bus_hook.py": null,
+    ".claude/CLAUDE.md": null,
+    ".claude/commands/nhan-ca.md": null,
+    ".claude/commands/ban-giao.md": null,
+    ".agents/tests/test_dual_bus_v36_communication.py": null,
+    ".agents/tests/test_antigravity_dual_bus_hook.py": null,
+    ".agents/tests/test_workspace_claude_safety_hook.py": null,
+    ".agents/memory/DUAL_AGENT_BUS.json": null
+  },
+  "force_used": true,
+  "force_reason": "Unlock blocked Claude shift after user approval and hand over Dual-Agent Bridge v3.6 verification",
+  "bus_sha256": "db3dade4c82e57bf7ce38b8efad9a2eccb98b079291bc2f5fa23b91b48f120d3",
+  "signature": "GEMINI@20261124-224850"
+}

@@ -542,6 +542,18 @@ def export_with_open_form(
             "block_evidence": getattr(eng, "block_evidence", {}),
         }
 
+    if form_id == "FORM_04_CHITIET_COC_DAM_COT" and (model.get("detail_sheet") or model.get("sheet_no")):
+        from cad_rc_detail_engine import build_custom_detail_sheet
+        res_det = build_custom_detail_sheet(model, output_dxf_path, project_dir=project_dir)
+        return {
+            "status": "OK",
+            "form_id": form_id,
+            "layout_mode": "model+paperspace",
+            "output_dxf": str(output_dxf_path),
+            "dxf_sha256": hashlib.sha256(Path(output_dxf_path).read_bytes()).hexdigest(),
+            "detail_result": res_det,
+        }
+
     # Open-Form runner for FORM_01 (A1 RC), FORM_03 (A1 Steel), FORM_04 (A3 Details)
     from cad_plan_engine import DcePlanEngine
 

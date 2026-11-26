@@ -485,7 +485,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461365.7541087964
+2461368.405150463
   9
 $TDUCREATE
  40
@@ -493,7 +493,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461365.7541087964
+2461368.405150463
   9
 $TDUUPDATE
  40
@@ -545,7 +545,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-1BA
+1E6
   9
 $SURFTAB1
  70
@@ -925,11 +925,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{47FEA394-3E90-43B6-9391-EEF3454347B7}
+{421F6857-BE06-4921-B47C-A58D446BC7FB}
   9
 $VERSIONGUID
   2
-{0C5D858D-D39A-45FF-897E-768DBDA31AED}
+{0A7AD67F-8044-4013-ABD7-E4D8E5C15578}
   9
 $EXTNAMES
 290
@@ -2225,7 +2225,7 @@ ACAD
   0
 APPID
   5
-1B7
+1E3
 330
 3
 100
@@ -2239,7 +2239,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-1B8
+1E4
 330
 3
 100
@@ -12657,6 +12657,1398 @@ GHI CHU & BANG KE KC-02
 100
 AcDbText
   0
+LWPOLYLINE
+  5
+1B7
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+216.0
+ 20
+248.0
+ 10
+361.0
+ 20
+248.0
+ 10
+361.0
+ 20
+96.0
+ 10
+216.0
+ 20
+96.0
+  0
+LINE
+  5
+1B8
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbLine
+ 10
+216.0
+ 20
+248.0
+ 30
+0.0
+ 11
+361.0
+ 21
+248.0
+ 31
+0.0
+  0
+TEXT
+  5
+1B9
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.0
+ 20
+250.0
+ 30
+0.0
+ 40
+2.2
+  1
+BANG THONG KE C2 KC-02
+ 11
+216.0
+ 21
+250.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+1BA
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbLine
+ 10
+268.2
+ 20
+248.0
+ 30
+0.0
+ 11
+268.2
+ 21
+96.0
+ 31
+0.0
+  0
+LINE
+  5
+1BB
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbLine
+ 10
+308.8
+ 20
+248.0
+ 30
+0.0
+ 11
+308.8
+ 21
+96.0
+ 31
+0.0
+  0
+TEXT
+  5
+1BC
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+240.0
+ 30
+0.0
+ 40
+1.6
+  1
+KY HIEU
+ 11
+216.6
+ 21
+240.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1BD
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+240.0
+ 30
+0.0
+ 40
+1.6
+  1
+TIET DIEN
+ 11
+268.8
+ 21
+240.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1BE
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+240.0
+ 30
+0.0
+ 40
+1.6
+  1
+THAM CHIEU
+ 11
+309.40000000000003
+ 21
+240.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1BF
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+228.0
+ 30
+0.0
+ 40
+1.5
+  1
+C1
+ 11
+216.6
+ 21
+228.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C0
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+228.0
+ 30
+0.0
+ 40
+1.5
+  1
+300x300 mm
+ 11
+268.8
+ 21
+228.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C1
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+228.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_C1
+ 11
+309.40000000000003
+ 21
+228.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C2
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+216.0
+ 30
+0.0
+ 40
+1.5
+  1
+C1
+ 11
+216.6
+ 21
+216.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C3
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+216.0
+ 30
+0.0
+ 40
+1.5
+  1
+300x300 mm
+ 11
+268.8
+ 21
+216.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C4
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+216.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_C1
+ 11
+309.40000000000003
+ 21
+216.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C5
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+204.0
+ 30
+0.0
+ 40
+1.5
+  1
+D1A
+ 11
+216.6
+ 21
+204.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C6
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+204.0
+ 30
+0.0
+ 40
+1.5
+  1
+200x400 mm
+ 11
+268.8
+ 21
+204.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C7
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+204.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_D1A
+ 11
+309.40000000000003
+ 21
+204.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C8
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+192.0
+ 30
+0.0
+ 40
+1.5
+  1
+D1A
+ 11
+216.6
+ 21
+192.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1C9
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+192.0
+ 30
+0.0
+ 40
+1.5
+  1
+200x400 mm
+ 11
+268.8
+ 21
+192.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CA
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+192.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_D1A
+ 11
+309.40000000000003
+ 21
+192.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CB
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+180.0
+ 30
+0.0
+ 40
+1.5
+  1
+SC1
+ 11
+216.6
+ 21
+180.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CC
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+180.0
+ 30
+0.0
+ 40
+1.5
+  1
+H300x300x10x15
+ 11
+268.8
+ 21
+180.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CD
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+180.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_SC1
+ 11
+309.40000000000003
+ 21
+180.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CE
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+168.0
+ 30
+0.0
+ 40
+1.5
+  1
+SB1
+ 11
+216.6
+ 21
+168.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1CF
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+168.0
+ 30
+0.0
+ 40
+1.5
+  1
+I350x175x7x11
+ 11
+268.8
+ 21
+168.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D0
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+168.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_SB1
+ 11
+309.40000000000003
+ 21
+168.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D1
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+156.0
+ 30
+0.0
+ 40
+1.5
+  1
+SBX1
+ 11
+216.6
+ 21
+156.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D2
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+156.0
+ 30
+0.0
+ 40
+1.5
+  1
+BOX_200x200x6
+ 11
+268.8
+ 21
+156.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D3
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+156.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_SBX1
+ 11
+309.40000000000003
+ 21
+156.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D4
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+144.0
+ 30
+0.0
+ 40
+1.5
+  1
+SU1
+ 11
+216.6
+ 21
+144.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D5
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+144.0
+ 30
+0.0
+ 40
+1.5
+  1
+U160x64x5
+ 11
+268.8
+ 21
+144.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D6
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+144.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_SU1
+ 11
+309.40000000000003
+ 21
+144.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D7
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+132.0
+ 30
+0.0
+ 40
+1.5
+  1
+SP1
+ 11
+216.6
+ 21
+132.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D8
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+132.0
+ 30
+0.0
+ 40
+1.5
+  1
+D219x6.0
+ 11
+268.8
+ 21
+132.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1D9
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+132.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_SP1
+ 11
+309.40000000000003
+ 21
+132.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DA
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+120.0
+ 30
+0.0
+ 40
+1.5
+  1
+BD-01
+ 11
+216.6
+ 21
+120.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DB
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+120.0
+ 30
+0.0
+ 40
+1.5
+  1
+PL400x400x20
+ 11
+268.8
+ 21
+120.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DC
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+120.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_BP_01
+ 11
+309.40000000000003
+ 21
+120.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DD
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+108.0
+ 30
+0.0
+ 40
+1.5
+  1
+BD-02
+ 11
+216.6
+ 21
+108.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DE
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+108.0
+ 30
+0.0
+ 40
+1.5
+  1
+PL560x420x28
+ 11
+268.8
+ 21
+108.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1DF
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+108.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_BP_02
+ 11
+309.40000000000003
+ 21
+108.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1E0
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+216.6
+ 20
+96.0
+ 30
+0.0
+ 40
+1.5
+  1
+GUSSET-01
+ 11
+216.6
+ 21
+96.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1E1
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+268.8
+ 20
+96.0
+ 30
+0.0
+ 40
+1.5
+  1
+PL240x180x14
+ 11
+268.8
+ 21
+96.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+1E2
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+DCE_Schedule
+100
+AcDbText
+ 10
+309.40000000000003
+ 20
+96.0
+ 30
+0.0
+ 40
+1.5
+  1
+SCH_PL_01
+ 11
+309.40000000000003
+ 21
+96.0
+ 31
+0.0
+100
+AcDbText
+  0
 ENDSEC
   0
 SECTION
@@ -13647,7 +15039,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-1B9
+1E5
   0
 DICTIONARYVAR
   5
@@ -13659,11 +15051,11 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-11-20T11:05:55.494168+00:00
+1.4.4 @ 2026-11-23T02:43:25.460250+00:00
   0
 DICTIONARYVAR
   5
-1B9
+1E5
 330
 2D
 100
@@ -13671,7 +15063,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-11-20T11:05:55.515671+00:00
+1.4.4 @ 2026-11-23T02:43:25.501966+00:00
   0
 ENDSEC
   0
