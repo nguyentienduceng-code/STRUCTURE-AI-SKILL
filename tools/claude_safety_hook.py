@@ -39,8 +39,61 @@ def protected(path):
     return not export or os.path.lexists(path)
 
 
+SAFE_BUS_SCRIPTS = (
+    ".agents/tools/sync_bus.py",
+    ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/sync_bus.py",
+    ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/handover_task.py",
+)
+PY_LAUNCHER_RE = re.compile(r"^(?:python(?:3(?:\.\d+)?)?|py)(?:\.exe)?$", re.I)
+PY_SAFE_FLAGS_RE = re.compile(r"^(?:-[BEIsSuO]+|-3(?:\.\d+)?|-X\S*)$")
+
+
 def tokens(command):
     return [next(x for x in match.groups() if x is not None) for match in TOKENS.finditer(command)]
+
+
+def _safe_quote_syntax(command, allow_dquote_semicolon=False):
+    """Reject unquoted shell chaining/redirection, unmatched quotes, and expansion."""
+    quote = None
+    for ch in command:
+        if quote is None:
+            if ch in ("'", '"'):
+                quote = ch
+            elif ch in ";&|<>\x60$\r\n()":
+                return False
+        elif ch == quote:
+            quote = None
+        elif quote == '"':
+            bad = "\x60$\r\n&|<>" if allow_dquote_semicolon else ";\x60$\r\n&|<>"
+            if ch in bad:
+                return False
+        else:
+            if ch in ";\x60$\r\n&|<>":
+                return False
+    return quote is None
+
+
+def _extract_python_script(words, cwd):
+    """Parse `<py-launcher> [safe-flags] <script> [args...]` without `-c` or `-m`."""
+    if len(words) < 2 or not PY_LAUNCHER_RE.fullmatch(words[0]):
+        return None, []
+    idx = 1
+    while idx < len(words):
+        flag = words[idx]
+        if flag in ("-c", "-m") or flag.startswith(("-c", "-m")):
+            return None, []
+        if flag == "-X":
+            if idx + 1 >= len(words):
+                return None, []
+            idx += 2
+            continue
+        if PY_SAFE_FLAGS_RE.fullmatch(flag):
+            idx += 1
+            continue
+        break
+    if idx >= len(words):
+        return None, []
+    return local_path(words[idx], cwd), words[idx + 1:]
 
 
 def read_only(command):
@@ -86,20 +139,23 @@ def handle(event):
                 for word in words:
                     if any(q in word for q in ("'", '"')):
                         paths.extend(w for w in tokens(word) if w.casefold().endswith(".dwg"))
+                script, rest = _extract_python_script(words, cwd)
                 # The workspace bridge runs Core Console on a staging copy.
-                if (len(words) in (4, 5) and not re.search(r"[;&|<>$`\r\n]", command)
-                        and re.fullmatch(r"(?:py|python(?:3)?)(?:\.exe)?", words[0], re.I)
-                        and local_path(words[1], cwd) == Path(ROOT) / ".agents/tools/autocad_snapshot_bridge.py"
-                        and ((words[2] == "snapshot" and len(words) == 4)
-                             or (words[2] == "diff" and len(words) == 5))
-                        and all(w.lower().endswith(".dwg") for w in words[3:])):
+                if (script == Path(ROOT) / ".agents/tools/autocad_snapshot_bridge.py"
+                        and _safe_quote_syntax(command, allow_dquote_semicolon=False)
+                        and ((len(rest) == 2 and rest[0] == "snapshot" and rest[1].lower().endswith(".dwg"))
+                             or (len(rest) == 3 and rest[0] == "diff"
+                                 and all(w.lower().endswith(".dwg") for w in rest[1:])))):
                     return "", ""
                 # Read-only AutoCAD Core Console AUDIT on an isolated temp copy.
-                if (len(words) == 4 and not re.search(r"[;&|<>$`\r\n]", command)
-                        and re.fullmatch(r"(?:py|python(?:3)?)(?:\.exe)?", words[0], re.I)
-                        and local_path(words[1], cwd) == Path(ROOT) / ".agents/tools/accoreconsole_adapter.py"
-                        and words[2] == "--audit-only"
-                        and words[3].lower().endswith(".dwg")):
+                if (script == Path(ROOT) / ".agents/tools/accoreconsole_adapter.py"
+                        and _safe_quote_syntax(command, allow_dquote_semicolon=False)
+                        and len(rest) == 2 and rest[0] == "--audit-only"
+                        and rest[1].lower().endswith(".dwg")):
+                    return "", ""
+                # Dual-Agent BUS IPC commands never modify DWG files (paths/summaries are metadata).
+                if (script in {Path(ROOT) / rel for rel in SAFE_BUS_SCRIPTS}
+                        and _safe_quote_syntax(command, allow_dquote_semicolon=True)):
                     return "", ""
                 copy = re.fullmatch(r"\s*(?:cp|copy|copy-item)\s+[^;&|<>$\r\n]+", command, re.I)
                 # Copy reads the source. The destination, including a directory, is a write.

@@ -1439,7 +1439,7 @@ def auto_handoff(
         # -> cho phép ghi đè hợp lệ (auto-claim) mà không cần --force.
         if not force:
             try:
-                curr_data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+                curr_data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
                 if curr_data.get("handoff_status") == "IN_PROGRESS" and curr_data.get("current_holder") != sender:
                     if _is_lease_expired(curr_data):
                         holder = curr_data.get("current_holder", "PARTNER")
@@ -1552,7 +1552,7 @@ def claim_task(agent: str, force: bool = False) -> dict:
     with FileLock(LOCK_PATH):
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
-        data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
         holder = str(data.get("current_holder", "IDLE")).upper()
         agent = agent.upper()
         if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
@@ -1584,7 +1584,8 @@ def claim_task(agent: str, force: bool = False) -> dict:
 def complete_task(
     agent: str, summary: str = "", files: Optional[List[str]] = None, force: bool = False,
     reason: str = "", report_file: Optional[str] = None, review_record: Optional[dict] = None,
-    approval_record: Optional[dict] = None
+    approval_record: Optional[dict] = None, evidence_files: Optional[List[str]] = None,
+    check_evidence_on_disk: bool = False
 ) -> dict:
     """
     Tác tử đã hoàn tất toàn bộ tiêu chí nghiệm thu.
@@ -1601,7 +1602,7 @@ def complete_task(
     with FileLock(LOCK_PATH):
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
-        data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
         holder = str(data.get("current_holder", "IDLE")).upper()
         agent = agent.upper()
         if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
@@ -1624,7 +1625,11 @@ def complete_task(
         if summary:
             data["summary"] = summary
         if files:
-            data["artifacts_modified"] = [to_relative_path(f, WORKSPACE_ROOT) for f in files]
+            data["artifacts_modified"] = [to_relative_path(f, WORKSPACE_ROOT) for f in files if str(f).strip()]
+        if evidence_files:
+            data.setdefault("next_action_for_partner", {})["evidence_files"] = [
+                to_relative_path(f, WORKSPACE_ROOT) for f in evidence_files if str(f).strip()
+            ]
         # v3.3: đính kèm báo cáo pha (RESULT.md) nếu khai báo
         if report_file:
             data.setdefault("next_action_for_partner", {})["report_file"] = to_relative_path(report_file, WORKSPACE_ROOT)
@@ -1634,7 +1639,8 @@ def complete_task(
         # v3.2/v3.3: Visual Gate (Điều 12d) + RECEIPT
         gate_result = (True, [])
         if not force:
-            gate_result = visual_gate_check(data, workspace_root=WORKSPACE_ROOT)
+            gate_result = visual_gate_check(data, workspace_root=WORKSPACE_ROOT,
+                                            check_on_disk=check_evidence_on_disk)
             gate_ok, gate_missing = gate_result[0], gate_result[1]
             if not gate_ok:
                 raise ValueError(
@@ -1666,6 +1672,11 @@ def request_review(
     blocking_questions: Optional[List[str]] = None,
     blocked_return: bool = False,
     task_description: str = "",
+    files: Optional[List[str]] = None,
+    evidence_files: Optional[List[str]] = None,
+    deliverable: Optional[str] = None,
+    acceptance_cmd: Optional[str] = None,
+    check_evidence_on_disk: bool = False,
 ) -> dict:
     """
     Tác tử hoàn thành bước kỹ thuật hoặc phát hiện điểm chặn/mâu thuẫn và chuyển lượt review.
@@ -1680,7 +1691,7 @@ def request_review(
     with FileLock(LOCK_PATH):
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
-        data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
         holder = str(data.get("current_holder", "IDLE")).upper()
         agent = agent.upper()
         if data.get("handoff_status") == "IN_PROGRESS" and holder != agent:
@@ -1702,6 +1713,8 @@ def request_review(
             data["work_ticket"]["status"] = "NEED_REVIEW"
         if summary:
             data["summary"] = summary
+        if files:
+            data["artifacts_modified"] = [to_relative_path(f, WORKSPACE_ROOT) for f in files if str(f).strip()]
         if "next_action_for_partner" in data:
             data["next_action_for_partner"]["target_agent"] = next_agent
             if task_description:
@@ -1709,6 +1722,14 @@ def request_review(
                 data["next_action_for_partner"]["command"] = task_description
             if clean_blocking:
                 data["next_action_for_partner"]["blocking_questions"] = clean_blocking
+            if evidence_files:
+                data["next_action_for_partner"]["evidence_files"] = [
+                    to_relative_path(f, WORKSPACE_ROOT) for f in evidence_files if str(f).strip()
+                ]
+            if deliverable:
+                data["next_action_for_partner"]["deliverable"] = deliverable
+            if acceptance_cmd:
+                data["next_action_for_partner"]["acceptance_cmd"] = acceptance_cmd
             # v3.3: đính kèm báo cáo pha (RESULT.md) nếu khai báo
             if report_file:
                 data["next_action_for_partner"]["report_file"] = to_relative_path(report_file, WORKSPACE_ROOT)
@@ -1717,7 +1738,8 @@ def request_review(
         # v3.2/v3.3: Visual Gate (Điều 12d) + RECEIPT (miễn gate khi blocked_return trả ngược hợp lệ)
         gate_result = (True, [])
         if not force and not eff_blocked:
-            gate_result = visual_gate_check(data, workspace_root=WORKSPACE_ROOT)
+            gate_result = visual_gate_check(data, workspace_root=WORKSPACE_ROOT,
+                                            check_on_disk=check_evidence_on_disk)
             gate_ok, gate_missing = gate_result[0], gate_result[1]
             if not gate_ok:
                 raise ValueError(
@@ -1753,7 +1775,7 @@ def heartbeat(agent: str) -> dict:
     with FileLock(LOCK_PATH):
         if not BUS_PATH.exists():
             raise FileNotFoundError(f"Không tìm thấy bus tại {BUS_PATH}")
-        data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
         agent = agent.upper()
         holder = str(data.get("current_holder", "IDLE")).upper()
         if str(data.get("handoff_status", "")).upper() != "IN_PROGRESS" or holder != agent:
@@ -1772,7 +1794,7 @@ def read_bus(validate: bool = True) -> dict:
         print(f"[SYNC_BUS] ⚠️ File bus chưa tồn tại tại {BUS_PATH}")
         return {}
     with FileLock(LOCK_PATH):
-        data = json.loads(BUS_PATH.read_text(encoding="utf-8"))
+        data = json.loads(BUS_PATH.read_text(encoding="utf-8-sig"))
 
     if validate:
         is_valid, reason = validate_bus_payload(data)
@@ -2047,19 +2069,26 @@ def main():
         return
 
     if args.complete:
-        complete_files = [f.strip() for f in args.complete_files.split(",") if f.strip()] if args.complete_files else None
+        raw_complete = (args.complete_files or "") + ("," + args.files if args.files else "")
+        complete_files = list(dict.fromkeys(f.strip() for f in raw_complete.split(",") if f.strip())) or None
+        evidence_list = [f.strip() for f in args.evidence_files.split(",") if f.strip()] if args.evidence_files else None
         complete_task(args.agent, summary=args.summary, files=complete_files, force=args.force,
                       reason=args.receipt_reason, report_file=args.report_file,
                       approval_record=json.loads(args.approval_record.read_text(encoding="utf-8-sig")) if args.approval_record else None,
-                      review_record=json.loads(args.review_record.read_text(encoding="utf-8-sig")) if args.review_record else None)
+                      review_record=json.loads(args.review_record.read_text(encoding="utf-8-sig")) if args.review_record else None,
+                      evidence_files=evidence_list, check_evidence_on_disk=args.check_evidence_on_disk)
         return
 
     if args.need_review:
         blocking_list = [q.strip() for q in args.blocking_questions.split(";") if q.strip()] if args.blocking_questions else None
+        review_files = [f.strip() for f in args.files.split(",") if f.strip()] if args.files else None
+        evidence_list = [f.strip() for f in args.evidence_files.split(",") if f.strip()] if args.evidence_files else None
         request_review(args.agent, summary=args.summary, next_agent=args.target, force=args.force,
                        reason=args.receipt_reason, report_file=args.report_file,
                        blocking_questions=blocking_list, blocked_return=args.blocked_return,
-                       task_description=args.task)
+                       task_description=args.task, files=review_files, evidence_files=evidence_list,
+                       deliverable=args.deliverable, acceptance_cmd=args.acceptance_cmd,
+                       check_evidence_on_disk=args.check_evidence_on_disk)
         return
 
     if args.scan_conflicts:

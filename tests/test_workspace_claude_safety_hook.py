@@ -46,16 +46,25 @@ class HookTests(unittest.TestCase):
         for command in ("git status", "git diff", "pytest -q", "python tests/smoke.py",
                         "Get-FileHash Original.DWG", "git diff -- Original.DWG",
                         f'python "{bridge}" snapshot Original.DWG',
+                        f'py -3 -B "{accore}" --audit-only 04_Deliverables_ToTrinh/new_or_existing.dwg',
                         f'python "{accore}" --audit-only 04_Deliverables_ToTrinh/new_or_existing.dwg',
+                        f'py -3 "{self.root / ".agents/tools/sync_bus.py"}" --need-review --agent CLAUDE --target GEMINI --files "Original.DWG" --criteria "0 error; Du Xref"',
+                        f'python "{self.root / ".agents/skills/SKILL_DUAL_AGENT_BRIDGE/scripts/handover_task.py"}" --sender CLAUDE --target GEMINI --task "Audit Original.DWG" --criteria "a;b"',
                         'copy Original.DWG "04_Deliverables_ToTrinh/new.dwg"'):
             with self.subTest(command=command):
                 self.assertFalse(hook.handle(self.event("Bash", command=command))[0])
         for command in ("echo data > Original.DWG", "git status && echo x > Original.DWG",
                         f'python "{accore}" Original.DWG',
                         f'python "{accore}" --audit-only Original.DWG; echo hi',
+                        f'py -3 "{self.root / ".agents/tools/sync_bus.py"}" --read; echo x > Original.DWG',
+                        f'py -3 "{self.root / ".agents/tools/sync_bus.py"}" --files Original.DWG > Original.DWG',
                         "Set-Content Original.DWG sample", 'python -c "open(\'Original.DWG\', \'wb\')"'):
             with self.subTest(command=command):
                 self.assertEqual(hook.handle(self.event("PowerShell", command=command))[0], "deny")
+        self.assertIn(
+            hook.handle(self.event("PowerShell", command=f'py -3 "{self.root / ".agents/tools/sync_bus.py"}" --summary "$(cat Original.DWG)"'))[0],
+            ("ask", "deny"),
+        )
 
     def test_push_review(self):
         for command in ("git push origin main", 'git -C "repo with spaces" push', "git status && git push"):

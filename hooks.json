@@ -11,7 +11,7 @@
   "antigravity-dwg-safety": {
     "PreToolUse": [
       {
-        "matcher": "run_command|write_file|edit_file|mcp_.*",
+        "matcher": "run_command|write_file|edit_file|multi_edit|mcp_.*",
         "hooks": [
           {
             "type": "command",

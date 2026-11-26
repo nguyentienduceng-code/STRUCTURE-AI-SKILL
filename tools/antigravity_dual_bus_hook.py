@@ -27,7 +27,12 @@ STATE_PATH: Path = (
 
 VALID_TARGETS = {"CLAUDE", "GEMINI", "CODEX"}
 CLAUDE_KEYWORDS = ("claude", "sonnet", "opus", "haiku", "anthropic")
-GEMINI_KEYWORDS = ("gemini", "flash", "neon", "carbon", "argon")
+GEMINI_KEYWORDS = (
+    "gemini", "flash", "neon", "carbon", "argon",
+    "hydrogen", "helium", "lithium", "beryllium", "boron",
+    "nitrogen", "oxygen", "fluorine", "google", "antigravity",
+)
+CODEX_KEYWORDS = ("codex", "gpt-", "o1-", "o3", "o4", "openai")
 EXPLICIT_CLAIM_TRIGGERS = ("/nhan-ca", "nhận ca", "nhan ca", "claim task")
 FORCE_REINJECT_TRIGGERS = ("/nhan-ca", "nhận ca", "nhan ca")
 MAX_STATE_ENTRIES = 200
@@ -79,6 +84,8 @@ def _detect_active_agent(event: Dict[str, Any], is_claude_code: bool, target: st
         return "CLAUDE"
     if any(kw in model_name for kw in GEMINI_KEYWORDS):
         return "GEMINI"
+    if any(kw in model_name for kw in CODEX_KEYWORDS):
+        return "CODEX"
     if model_name in {"", "auto"} and any(trig in user_input for trig in EXPLICIT_CLAIM_TRIGGERS):
         return target
     return ""
@@ -105,7 +112,7 @@ def _build_briefing(bus: Dict[str, Any], target: str) -> tuple[str, str, str, st
     env_caps = bus.get("environment_capabilities") if isinstance(bus.get("environment_capabilities"), dict) else None
 
     footer = (
-        f"Chạy ngay: python .agents/tools/sync_bus.py --claim --agent {target} "
+        f"Chạy ngay: py -3 .agents/tools/sync_bus.py --claim --agent {target} "
         "để khóa ca trước khi làm; nếu thiếu đầu vào/công cụ, trả ca ngay qua --need-review --blocked-return."
     )
 
@@ -178,7 +185,10 @@ def _handle_auto_pickup(event: Dict[str, Any], is_claude_code: bool) -> Dict[str
     force_reinject = any(trig in user_text for trig in FORCE_REINJECT_TRIGGERS)
 
     session_id = str(event.get("conversationId") or event.get("session_id") or "default")
-    ticket_key = str((bus.get("work_ticket") or {}).get("request_id") or bus.get("timestamp") or "unknown")
+    req_id = str((bus.get("work_ticket") or {}).get("request_id") or "")
+    bus_ts = str(bus.get("timestamp") or "unknown")
+    handoff_st = str(bus.get("handoff_status") or "")
+    ticket_key = f"{req_id}:{bus_ts}:{handoff_st}:{target}" if req_id else f"{bus_ts}:{handoff_st}:{target}"
     cache_key = f"{session_id}:{ticket_key}"
 
     state_raw = _load_json_safe(STATE_PATH) or {}

@@ -132,6 +132,57 @@ class DualBusV36CommunicationTests(unittest.TestCase):
         self.assertIn("environment_capabilities", res)
         self.assertTrue(sync_bus.validate_bus_payload(res)[0])
 
+    def test_need_review_and_complete_accept_evidence_files(self) -> None:
+        preview = self.root / "out" / "preview.png"
+        report = self.root / ".agents" / "memory" / "audits" / "03_sprint2_ketqua_nechu_cad" / "claude" / "R2_RESULT.md"
+        preview.parent.mkdir(parents=True, exist_ok=True)
+        report.parent.mkdir(parents=True, exist_ok=True)
+        preview.write_bytes(b"png-bytes")
+        report.write_text("# R2_RESULT.md\n", encoding="utf-8")
+
+        initial = {
+            "project_context": {"project_code": "03_Sprint2_KetQua_NeChu_CAD", "project_purpose": "Kiem tra", "action_type": "CAD"},
+            "last_updated_by": "GEMINI",
+            "timestamp": "2026-11-26T10:00:00+07:00",
+            "handoff_status": "IN_PROGRESS",
+            "current_holder": "CLAUDE",
+            "summary": "Dang kiem tra CAD",
+            "artifacts_modified": [".agents/memory/DUAL_AGENT_BUS.json"],
+            "next_action_for_partner": {
+                "target_agent": "CLAUDE",
+                "task_description": "Verify CAD",
+                "command": "Verify CAD",
+                "acceptance_criteria": [],
+            },
+            "Verification_Status": "IN_PROGRESS",
+        }
+        self.bus_path.write_text(json.dumps(initial, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        rev = sync_bus.request_review(
+            agent="CLAUDE",
+            summary="Đã kiểm tra CAD và đính kèm bằng chứng preview.",
+            next_agent="GEMINI",
+            files=[str(preview), ".agents/memory/DUAL_AGENT_BUS.json"],
+            evidence_files=[str(preview)],
+            report_file=str(report),
+            check_evidence_on_disk=True,
+        )
+        self.assertEqual(rev["handoff_status"], "NEED_REVIEW")
+        self.assertEqual(rev["current_holder"], "IDLE")
+        self.assertEqual(rev["next_action_for_partner"]["target_agent"], "GEMINI")
+        self.assertEqual(rev["next_action_for_partner"]["evidence_files"], ["out/preview.png"])
+
+        comp = sync_bus.complete_task(
+            agent="GEMINI",
+            summary="Đã nghiệm thu xong với bằng chứng trên đĩa.",
+            files=[str(preview)],
+            evidence_files=[str(preview)],
+            report_file=str(report),
+            check_evidence_on_disk=True,
+        )
+        self.assertEqual(comp["handoff_status"], "COMPLETED")
+        self.assertEqual(comp["current_holder"], "IDLE")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

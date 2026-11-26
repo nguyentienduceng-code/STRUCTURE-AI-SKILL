@@ -258,6 +258,31 @@ class AntigravityDualBusHookTests(unittest.TestCase):
         self.assertIn("Chốt 7 hay 8 workbook?", msg)
         self.assertIn("Env: accoreconsole=YES", msg)
 
+    def test_pre_invocation_recognizes_hydrogen_and_same_ticket_return_turn(self) -> None:
+        self._write_bus(status="PENDING", holder="IDLE", target="GEMINI", req_id="req-roundtrip-1")
+        ev = {
+            "hookEventName": "PreInvocation",
+            "conversationId": "conv-gemini-hydrogen",
+            "modelName": "hydrogen",
+            "lastUserInput": "kiểm tra ca",
+        }
+        out1 = hook.handle(ev)
+        self.assertIn("injectSteps", out1)
+        # Same unmodified bus state in same conversation must deduplicate
+        self.assertEqual(hook.handle(ev), {})
+
+        # Partner returns the same request_id with updated timestamp & NEED_REVIEW -> must re-inject
+        payload = json.loads(self.bus_path.read_text(encoding="utf-8"))
+        payload["timestamp"] = "2026-11-26T16:40:00+07:00"
+        payload["last_updated_by"] = "CLAUDE"
+        payload["handoff_status"] = "NEED_REVIEW"
+        payload["summary"] = "Claude đã kiểm tra xong và trả kết quả về Gemini."
+        self.bus_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        out2 = hook.handle(ev)
+        self.assertIn("injectSteps", out2)
+        self.assertIn("Claude đã kiểm tra xong", out2["injectSteps"][0]["systemMessage"]["systemMessage"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
